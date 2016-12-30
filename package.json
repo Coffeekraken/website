@@ -1,0 +1,45 @@
+{
+  "name": "coffeekraken-website",
+  "version": "0.0.1",
+  "description": "Coffeekraken website",
+  "main": "dist/index.js",
+  "scripts": {
+    "dist": "npm run dist.build",
+    "dist.build": "npm run dist.build.css && npm run dist.build.js && npm run dist.build.styleguide",
+    "dist.build.js": "webpack",
+    "dist.build.css": "node-sass src/sass/style.scss dist/css/style.css --include-path node_modules --output-style compact",
+    "dist.build.styleguide": "node-sass src/sass/style.scss dist/css/styleguide.css --include-path node_modules --output-style expanded",
+    "dist.watch": "concurrently --kill-others \"npm run dist.watch.css\" \"npm run dist.watch.js\"",
+    "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.build.js\"",
+    "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.build.css && npm run dist.build.styleguide\"",
+    "test": "coffeekraken-testing-stack",
+    "styleguide": "nodemon --watch /data/web/coffeekraken/styleguide /data/web/coffeekraken/styleguide/run"
+  },
+  "keywords": [
+    "coffee",
+    "kraken",
+    "coffeekraken"
+  ],
+  "author": "Coffeekraken <hello@coffeekraken.io>",
+  "license": "MIT",
+  "dependencies": {
+    "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "chai": "^3.5.0",
+    "coffeekraken-testing-stack": "git+https://github.com/Coffeekraken/testing-stack.git#release/0.0.1",
+    "concurrently": "^3.1.0",
+    "node-sass": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "open": "0.0.5",
+    "webcomponents.js": "^0.7.23",
+    "webpack": "^1.14.0"
+  }
+}
