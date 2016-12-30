@@ -28,7 +28,7 @@
 
 /** Get a registered color by name or wrap a new color into a s-color call to manipulate it with ease. Supported actions : - hue {Deg} - lighten {Percent} - darken {Percent} - saturate {Percent} - desaturate {Percent} - grayscale {Boolean} - complement {Boolean} - invert {Boolean} - opacity {Percent} - mix {Color} @param 		{String}{Color} 		$color 				The color name or the color value to manipulate @param 		{String}{List} 			[$modifier=null] 	The color modifier to apply. Can be a registered modifier name or a modifier list @return 		{Color} 									The actual color value @example 	 	scss // default color (settings.colors.default) $myColor : s-color(default); // primary color (settings.colors.primary) $primary : s-color(primary); // manipulate $primary-dark : s-color(primary, -darken 10%); // registered modifier $primary-light : s-color(primary, light); // $name as list $modified primary : s-color((primary, -darken 10%)); @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return the color in a modifier list @param 			{List} 			$modifiers 		The modifiers list @return 			{String} 						The color name @example $my-color : s-color-modifier(outline primary); // => primary @author 		Olivier Bossel <olivier.bossel@gmail.com> */
-/** Return the css class selector for the current component setted by the [core/mixins/_s-component.scss] mixin and build with the passed arguments. This function generate the class selector depending of the settings.selector.method setting or the selector method setted by the [s-selector-method mixin](../mixins/_s-selector-method.scss) @param 			{String} 			[$element=null] 		The element name of the class selector | '&' if target the same element like `&s-component-selector("&", ) {}` @param 			{String} 			[$modifier=null] 		The modifier name of the class selector @param 			{String} 			[$state=null] 			The state name of the class selector @param 			{String} 			[$modifierName=null] 	The modifier name that will be used for webcomponent method like [$modifierName="$modifier"] @param 			{String} 			[$method=null] 			The method wanted to generate the selector. [See here](../_selector-methods.scss) @return 			{String} 									The generated class selector @example \@incluse s-component('my-component') { // if settings.selector.method === 'BEM' s-component-selector('item') // => '.my-component__item' s-component-selector(null, 'red') // => '.my-component--red' s-component-selector('coco',null,'active') // => '.my-component__coco--active' // if setting.selector.method === 'SMACCS' s-component-selector('item') // => '.my-component-item' s-component-selector(null, 'red') // => '.my-component-red' s-component-selector('coco',null,'active') // => '.my-component-coco.is-active' } // if target the same element with & : \@include s-component('my-component') { s-component-selector(, red, , "color") { &s-component-selector("&", , "active") { // something here... } } } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
+/** Return the css class selector for the current component setted by the [core/mixins/_s-component.scss] mixin and build with the passed arguments. @param 			{String} 			[$element=null] 		The element name of the class selector | '&' if target the same element like `&s-component-selector("&", ) {}` @param 			{String} 			[$modifier=null] 		The modifier name of the class selector @param 			{String} 			[$state=null] 			The state name of the class selector @return 			{String} 									The generated class selector @example \@incluse s-component('my-component') { // if settings.selector.method === 'BEM' s-component-selector('item') // => '.my-component__item' s-component-selector(null, 'red') // => '.my-component--red' s-component-selector('coco',null,'active') // => '.my-component__coco--active' } // if target the same element with & : \@include s-component('my-component') { s-component-selector(, red, , "color") { &s-component-selector("&", , "active") { // something here... } } } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return the name of the top level component setted with the [../mixins/_s-component.scss] mixin @param 			{String} 			[$default=null] 		The name to return if no top component name exist @return 			{String} 									The component name @example s-component('hello') // => 'hello' \@include s-component('my-component') { s-component('hello') // => 'my-component' \@include s-component('another-component') { s-component('hello') // => 'my-component' } } @author 			Olivier Bossel <olivier.bossel@gmail.com>; */
 /** Convert a passed value to the wanted unit The conversion between some units that depends on a font-size will take the settings.typo.font-size value as reference. Available conversions - from px - to em - to rem - to pt - to % - from em - to rem - to px - to pt - to % - from pt - to em - to rem - to px - to pt - to % - from rem - to em - to px - to pt - to % @param 			{Number} 		$value 			The value to convert @param 			{String} 		$unit 			The unit in which to convert the value @return 			{Number} 						The converted value @example // if the settings.typo.font-size === 16px s-convert(24px, rem) // 1.5rem s-convert(3rem, pt) // 36pt @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Transform a dash notation value into a map Dash notation value is : -key1 value1 -key2 value2 @param 			{List} 			$dash 			The dash list notation to transform @return 			{Map} 							The map generated @example $dash : -hello world -coco universe s-dash-to-map($dash); // ( // 	hello : world, // 	coco : universe // ) @author 			Olivier Bossel <olivier.bossel@gmail.com> */
@@ -54,7 +54,6 @@
 /** Return the passed values in the same unit but that has been rounded on the corresponding px value This ensure that your passed value will be a round px value for final rander in the viewport @param 		{Number} 		$value 			The value to process @return 		{Number} 						The rounded value in same input unit but px rounded @example // if settings.typo.font-size == 16px s-render-round(5.2rem); // 1. transform to px values : 5.2 * 16px = 83.2px // 2. round even the px value : 83px // 3. transform to passed unit value : 84px / 16px = 5.1875rem @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Search and replace tokens like colors #primary in a passed string, list or map Supported tokens types : 1. Colors : colorName @example s-replace-tokens(12px #primary hello #secondary); // > 12px #ddd hello #fff; @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return a selector builded with the params passed, depending on the settings.selector.method base setting. @param 			{String} 			$block 						The block part of the selector @param 			{String} 			[$element=null] 			The element part of the selector @param 			{String} 			[$modifier=null] 			The modifier part of the selector @param 			{String} 			[$state=null] 				The state part of the selector @param 			{String} 			[$modifierName=null] 		The modifier name that will be used for webcomponent method like [$modifierName="$modifier"] @param 			{String} 			[$method=BEM] 				The method used to build the selector (BEM or SMACCS) @return 			{String} 										The generated class selector @example s-selector(my-component, item, null, active, null, BEM); // => .my-component__item--active s-selector(my-component, item, null, active, null, SMACCS); // => .my-component-item.is-active @author 			Olivier Bossel <olivier.bossel@gmail.com> */
-/** Return the selector method define at the top level with the the [../mixins/_s-selector-method.scss] mixin @param 			{String} 			[$default=settings.selector.method] 		The selector method to return if no top selector method exist @return 			{String} 														The selector method @example s-selector-method() // => settings.selector.method s-selector-method(BEM) // => BEM \@include s-selector-method(SMACCS) { s-selector-method(BEM) // => SMACCS \@include s-selector-method(WEBCOMPONENT) { s-selector-method() // => SMACCS } } @author 			Olivier Bossel <olivier.bossel@gmail.com>; */
 /** Get a settings from the global settings stack @param 				{String} 			$path 						The setting path wanted separated by dots @param 				{String} 			[$context=s-context()] 		The context name to get the setting @return 				{Mixed} 										The setting value¨ @example $font-size : s-setting('typo.font-size'); // etc... @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return a value interpolated from the settings.spaces stack @param 			{String} 			$size 			The space size wanted. Must exist in the settings.sizes stack @return 			{Number} 							The actual space value @example .my-cool-section { padding : s-pace(big); } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return a number without any units @param 			{Number} 		$number 		The number to process @return 			{Number} 						The number without units @example s-strip-units(12px); // => 12 s-strip-units(30rem); // => 30 @author 			Olivier Bossel <olivier.bossel@gmail.com> */
@@ -76,108 +75,107 @@
 /** Init the sugar toolkit. This has to be called **AFTER** all the [./_s-setup.scss] mixin call and **BEFORE** all the others sugar mixins and functions calls @example \@include s-init(); @author 		Olivier Bossel <olivier.bossel@gmail.com> */
 /** Register all the dynamic helper classes that depends on the settings, etc... This is used internaly @example \@include s-init-classes(); @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Register a helper class under a certain namespace @param 			{String} 		$classname 		The classname that will be printed out @param 			{String} 		$namespace 		The dots separated namespace under which the class will live @example \@include s-register-class(my-cool-class, 'my.cool.namespace') { background : pink; } \@include s-register-class(another-cool-class, 'my.another.namespace') { background : red; } // print out my helpers classes \@include s-classes('my'); @author 			Olivier Bossel <olivier.bossel@gmail.com> */
-/** Set the selector method that will be handled inside the mixin [See here](../_selector-methods.scss) for available selector methods @param 			{String} 			[$method=null] 			The selector method to set @example \@include s-selector-method(SMACCS) { s-selector-method(BEM) // => SMACCS \@include s-selector-method(WEBCOMPONENT) { s-selector-method() // => 'SMACCS' } } @author 			Olivier Bossel <olivier.bossel@gmail.com>; */
 /** Setup sugar toolkit by overriding the default [settings](../_settings.scss) This has to be called **BEFORE** the [s-init mixin](./_s-init.scss) @param 			{Map} 			$settings 		The settings to override @example \@include s-setup(( typo : ( font-size : 12px ), sizes : ( small : 0.5, big : 1.5 ) )); // this mixin can be called as many times as you need // this allows you to separate your configs setup into multiple // files... @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Display the vertical rhythme @param 			{Color} 		The color wanted @example body { @include s-show-vertical-rhythme(); } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Take a transition as parameter and print the corresponding transition property The $transitions parameter can be either a registered transition name or a custom css transition like : all .2s ease-in-out 2s The $transitions argument will be parsed with the [./_s-parse-properties.scss] function. @param 			{List} 				$transitions 			The registered transition(s) name(s) or the transition(s) strings(s) to transform into list @return 			{List} 										The corresponding transition list properties @example // register a transition \@include s-setup(( transitions : ( fast : all .2s ease-in-out 0s, // other transitions... ) )); // registered transition .my-cool-element { \@include s-transition(fast>); // transition : all .2s ease-in-out 0s; } // custom transition .my-cool-element { \@include s-transition(fast -delay .5s, fase width ease-in); // transition : all .2s ease-in-out .5s, width .2s ease-in 0s; } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Set the unit context to use inside the mixin. This mean that if you set a unit context, then get a number setting through the [s-setting function](../functions/_s-setting.scss), The value that will be returned will be converted into the unit context if possible @param 			{String} 			$unit 			The unit wanted @example // if settings.typo.font-size == 16px s-setting('typo.font-size'); // => 16px \@incluse s-unit-context(rem) { s-setting('typo.font-size'); // => 1rem } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Print out the vertical rhythme properties map calculated depending on the passed arguments @param 			{Number} 				[$font-size=settings.typo.font-size] 			The font size wanted @param 			{String} 				[$font-family=settings.typo.font-family] 		The font family to use @param 			{Number} 				[$line-height=null] 							The line height to use @param 			{Number} 				[$margin-top=0] 								The targeted margin-top @param 			{Number} 				[$margin-bottom=0] 								The targeted margin-bottom @param 			{Number} 				[$padding-top=0] 								The targeted padding-top @param 			{Number} 				[$padding-bottom=0] 							The targeted padding-bottom @param 			{List} 					[$margin=null] 									The targeted margin property @param 			{List} 					[$padding=null] 								The targeted padding property @param 			{List} 					[$border-top=null] 								The targeted border-top property @param 			{List} 					[$border-bottom=null] 							The targeted border-bottom property @param 			{Number} 				[$border-top-width=0] 							The targeted border-top-width property @param 			{Number} 				[$border-bottom-width=0] 						The targeted border-bottom-width property @param 			{Number} 				[$border=null] 									The targeted border property @param 			{Number} 				[$cap-height=null] 								The font cap-height used to calculate the vertical ryhthme @param 			{Boolean}{String} 		[$calculate-height=false] 						If true|min-height|max-height|height, will return the corresponding absolute height value in the map @TODO example @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** This file is responsible to register the static helper classes like pull-right, clear, etc... @author 			Olivier Bossel <olivier.bossel@gmail.com> */
-.pull-left { /** @name 		```.pull-left``` Allows you to pull an element to the left side @styleguide 	Helper classes @example 	html <span class="pull-left">Hello world</span> </div> */ float: left; }
+.pull-left { /** @name 		```.pull-left``` Allows you to pull an element to the left side @styleguide 	Helpers / Pull @example 	html <span class="pull-left">Hello world</span> </div> */ float: left; }
 
-.pull-right { /** @name 		```.pull-right``` Allows you to pull an element to the right side @styleguide 	Helper classes @example 	html <span class="pull-right">Hello world</span> </div> */ float: right; }
+.pull-right { /** @name 		```.pull-right``` Allows you to pull an element to the right side @styleguide 	Helpers / Pull @example 	html <span class="pull-right">Hello world</span> </div> */ float: right; }
 
-.relative { /** @name 		```.relative``` Set an element position as ```relative``` @styleguide 	Helper classes @example 	html <div class="relative"> I'm relative now </div> */ position: relative; }
+.relative { /** @name 		```.relative``` Set an element position as ```relative``` @styleguide 	Helpers / Position @example 	html <div class="relative"> I'm relative now </div> */ position: relative; }
 
-.absolute { /** @name 		```.absolute``` Set an element position as ```absolute``` @styleguide 	Helper classes @example 	html <div class="absolute"> I'm absolute now </div> */ position: absolute; }
+.absolute { /** @name 		```.absolute``` Set an element position as ```absolute``` @styleguide 	Helpers / Positon @example 	html <div class="absolute"> I'm absolute now </div> */ position: absolute; }
 
-.clear-left { /** @name 		```.clear-left``` Clear the left float on the element @styleguide 	Helper classes @example 	html <div class="clear-left"> I clear the left float </div> */ clear: left; }
+.clear-left { /** @name 		```.clear-left``` Clear the left float on the element @styleguide 	Helpers / Float @example 	html <div class="clear-left"> I clear the left float </div> */ clear: left; }
 
-.clear-right { /** @name 		```.clear-right``` Clear the right float on the element @styleguide 	Helper classes @example 	html <div class="clear-right"> I clear the right float </div> */ clear: right; }
+.clear-right { /** @name 		```.clear-right``` Clear the right float on the element @styleguide 	Helpers / Float @example 	html <div class="clear-right"> I clear the right float </div> */ clear: right; }
 
-.clear { /** @name 		```.clear``` Clear both float on the element @styleguide 	Helper classes @example 	html <div class="clear"> I clear both floats </div> */ clear: both; }
+.clear { /** @name 		```.clear``` Clear both float on the element @styleguide 	Helpers / Float @example 	html <div class="clear"> I clear both floats </div> */ clear: both; }
 
-.show { /** @name 		```.show``` Display the element as ```block``` @styleguide 	Helper classes @example 	html <div class="show"> I'm displayed </div> */ display: block; }
+.show { /** @name 		```.show``` Display the element as ```block``` @styleguide 	Helpers / Display @example 	html <div class="show"> I'm displayed </div> */ display: block; }
 
-.show-inline { /** @name 		```.show-inline``` Display the element as ```inline-block``` @styleguide 	Helper classes @example 	html <div class="show-inline"> I'm inline displayed </div> */ display: inline-block; }
+.show-inline { /** @name 		```.show-inline``` Display the element as ```inline-block``` @styleguide 	Helpers / Display @example 	html <div class="show-inline"> I'm inline displayed </div> */ display: inline-block; }
 
-.hidden { /** @name 		```.hidden``` Hide the element by setting the display to ```none``` @styleguide 	Helper classes @example 	html <div class="hidden"> I'm hidden </div> */ display: none; }
+.hidden { /** @name 		```.hidden``` Hide the element by setting the display to ```none``` @styleguide 	Helpers / Display @example 	html <div class="hidden"> I'm hidden </div> */ display: none; }
 
-.hide { /** @name 		```.hide``` Hide the element by setting the display to ```none``` @styleguide 	Helper classes @example 	html <div class="hide"> I'm hidden </div> */ display: none; }
+.hide { /** @name 		```.hide``` Hide the element by setting the display to ```none``` @styleguide 	Helpers / Display @example 	html <div class="hide"> I'm hidden </div> */ display: none; }
 
-.visible { /** @name 		```.visible``` Display the element by setting the visibility to ```visible``` @styleguide 	Helper classes @example 	html <div class="visible"> I'm visible </div> */ visibility: visible; }
+.visible { /** @name 		```.visible``` Display the element by setting the visibility to ```visible``` @styleguide 	Helpers / Display @example 	html <div class="visible"> I'm visible </div> */ visibility: visible; }
 
-.invisible { /** @name 		```.invisible``` Display the element by setting the visibility to ```hidden``` @styleguide 	Helper classes @example 	html <div class="invisible"> I'm invisible </div> */ visibility: hidden; }
+.invisible { /** @name 		```.invisible``` Display the element by setting the visibility to ```hidden``` @styleguide 	Helpers / Display @example 	html <div class="invisible"> I'm invisible </div> */ visibility: hidden; }
 
-.visually-hidden { /** @name 		```.visually-hidden``` Hide the element from display but not for SEO. This class use some tricks to make the element dissapear without using some ```display:none;```, etc... @styleguide 	Helper classes @example 	html <div class="visually-hidden"> I'm only visually hidden </div> */ margin: -1px; padding: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip: rect(0, 0, 0, 0); position: absolute; }
+.visually-hidden { /** @name 		```.visually-hidden``` Hide the element from display but not for SEO. This class use some tricks to make the element dissapear without using some ```display:none;```, etc... @styleguide 	Helpers / Display @example 	html <div class="visually-hidden"> I'm only visually hidden </div> */ margin: -1px; padding: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip: rect(0, 0, 0, 0); position: absolute; }
 
-.t-hidden { /** @name 		```.t-hidden``` Hide the text @styleguide 	Helper classes @example 	html <div class="t-hidden"> I'm not visible </div> */ overflow: hidden; text-indent: -9000px; display: block; }
+.t-hidden { /** @name 		```.t-hidden``` Hide the text @styleguide 	Helpers / Text @example 	html <div class="t-hidden"> I'm not visible </div> */ overflow: hidden; text-indent: -9000px; display: block; }
 
-.t-truncate { /** @name 		```.t-truncate``` Hide the text @styleguide 	Helper classes @example 	html <div class="t-truncate"> I'm truncated cause I talk a lot too much Nulla mauris eros, finibus ac faucibus et, tempus quis risus. Praesent sit amet nulla vel libero euismod sodales eu nec. </div> */ display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.t-truncate { /** @name 		```.t-truncate``` Hide the text @styleguide 	Helpers / Text @example 	html <div class="t-truncate"> I'm truncated cause I talk a lot too much Nulla mauris eros, finibus ac faucibus et, tempus quis risus. Praesent sit amet nulla vel libero euismod sodales eu nec. </div> */ display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .t-truncate > * { text-overflow: ellipsis; overflow: hidden; }
 
-.t-left { /** @name 		```.t-left``` Align the text to the left @styleguide 	Helper classes @example 	html <div class="t-left"> I'm left aligned </div> */ text-align: left; }
+.t-left { /** @name 		```.t-left``` Align the text to the left @styleguide 	Helpers / Text @example 	html <div class="t-left"> I'm left aligned </div> */ text-align: left; }
 
-.t-right { /** @name 		```.t-right``` Align the text to the right @styleguide 	Helper classes @example 	html <div class="t-right"> I'm right aligned </div> */ text-align: right; }
+.t-right { /** @name 		```.t-right``` Align the text to the right @styleguide 	Helpers / Text @example 	html <div class="t-right"> I'm right aligned </div> */ text-align: right; }
 
-.t-center { /** @name 		```.t-center``` Align the text to the center @styleguide 	Helper classes @example 	html <div class="t-center"> I'm centered </div> */ text-align: center; }
+.t-center { /** @name 		```.t-center``` Align the text to the center @styleguide 	Helpers / Text @example 	html <div class="t-center"> I'm centered </div> */ text-align: center; }
 
-.t-justify { /** @name 		```.t-justify``` Make the text justified @styleguide 	Helper classes @example 	html <div class="t-justify"> Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu. </div> */ text-align: justify; }
+.t-justify { /** @name 		```.t-justify``` Make the text justified @styleguide 	Helpers / Text @example 	html <div class="t-justify"> Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu. </div> */ text-align: justify; }
 
-.t-lowercase { /** @name 		```.t-lowercase``` Transform the text to lowercase @styleguide 	Helper classes @example 	html <div class="t-lowercase"> I'M LOWERCASE </div> */ text-transform: lowercase; }
+.t-lowercase { /** @name 		```.t-lowercase``` Transform the text to lowercase @styleguide 	Helpers / Text @example 	html <div class="t-lowercase"> I'M LOWERCASE </div> */ text-transform: lowercase; }
 
-.t-uppercase { /** @name 		```.t-uppercase``` Transform the text to uppercase @styleguide 	Helper classes @example 	html <div class="t-uppercase"> I'm uppercase </div> */ text-transform: uppercase; }
+.t-uppercase { /** @name 		```.t-uppercase``` Transform the text to uppercase @styleguide 	Helpers / Text @example 	html <div class="t-uppercase"> I'm uppercase </div> */ text-transform: uppercase; }
 
-.t-capitalize { /** @name 		```.t-capitalize``` Capizalize the words @styleguide 	Helper classes @example 	html <div class="t-capitalize"> I'm capitalized </div> */ text-transform: capitalize; }
+.t-capitalize { /** @name 		```.t-capitalize``` Capizalize the words @styleguide 	Helpers / Text @example 	html <div class="t-capitalize"> I'm capitalized </div> */ text-transform: capitalize; }
 
-.f-bold { /** @name 		```.f-bold``` Set the font-weight to ```bold``` @styleguide 	Helper classes @example 	html This <span class="f-bold">word</span> is bold */ font-weight: bold; }
+.f-bold { /** @name 		```.f-bold``` Set the font-weight to ```bold``` @styleguide 	Helpers / Font @example 	html This <span class="f-bold">word</span> is bold */ font-weight: bold; }
 
-.f-lighter { /** @name 		```.f-lighter``` Set the font-weight to ```lighter``` @styleguide 	Helper classes @example 	html This <span class="f-lighter">word</span> is lighter */ font-weight: lighter; }
+.f-lighter { /** @name 		```.f-lighter``` Set the font-weight to ```lighter``` @styleguide 	Helpers / Font @example 	html This <span class="f-lighter">word</span> is lighter */ font-weight: lighter; }
 
-.f-bolder { /** @name 		```.f-bolder``` Set the font-weight to ```bolder``` @styleguide 	Helper classes @example 	html This <span class="f-bolder">word</span> is bolder */ font-weight: bolder; }
+.f-bolder { /** @name 		```.f-bolder``` Set the font-weight to ```bolder``` @styleguide 	Helpers / Font @example 	html This <span class="f-bolder">word</span> is bolder */ font-weight: bolder; }
 
-.f-normal { /** @name 		```.f-normal``` Set the font-weight to ```normal``` @styleguide 	Helper classes @example 	html <div class="f-bold"> This <span class="f-normal">word</span> is normal </div> */ font-weight: normal; font-style: normal; }
+.f-normal { /** @name 		```.f-normal``` Set the font-weight to ```normal``` @styleguide 	Helpers / Font @example 	html <div class="f-bold"> This <span class="f-normal">word</span> is normal </div> */ font-weight: normal; font-style: normal; }
 
-.f-italic { /** @name 		```.f-italic``` Set the font-style to ```italic``` @styleguide 	Helper classes @example 	html This <span class="f-italic">word</span> is italic */ font-style: italic; }
+.f-italic { /** @name 		```.f-italic``` Set the font-style to ```italic``` @styleguide 	Helpers / Font @example 	html This <span class="f-italic">word</span> is italic */ font-style: italic; }
 
-.f-oblique { /** @name 		```.f-oblique``` Set the font-style to ```oblique``` @styleguide 	Helper classes @example 	html This <span class="f-oblique">word</span> is oblique */ font-style: oblique; }
+.f-oblique { /** @name 		```.f-oblique``` Set the font-style to ```oblique``` @styleguide 	Helpers / Font @example 	html This <span class="f-oblique">word</span> is oblique */ font-style: oblique; }
 
-.f-small-caps { /** @name 		```.f-small-caps``` Set the font-variant to ```small-caps``` @styleguide 	Helper classes @example 	html This <span class="f-small-caps">word</span> is small-caps */ font-variant: small-caps; }
+.f-small-caps { /** @name 		```.f-small-caps``` Set the font-variant to ```small-caps``` @styleguide 	Helpers / Font @example 	html This <span class="f-small-caps">word</span> is small-caps */ font-variant: small-caps; }
 
-.block-center { /** @name 		```.block-center``` Set the element to as ```display:block``` and center it @styleguide 	Helper classes @example 	html <div class="block-center bkg-primary" style="width:100px;"> I'm a centered block </div> */ display: block; margin-left: auto; margin-right: auto; }
+.block-center { /** @name 		```.block-center``` Set the element to as ```display:block``` and center it @styleguide 	Helpers / Block @example 	html <div class="block-center bkg-primary" style="width:100px;"> I'm a centered block </div> */ display: block; margin-left: auto; margin-right: auto; }
 
-.clearfix { /** @name 		```.clearfix``` Apply the micro clearfix on the element @styleguide 	Helper classes @example 	html <div class="clearfix bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
+.clearfix { /** @name 		```.clearfix``` Apply the micro clearfix on the element @styleguide 	Helpers / Clearfix @example 	html <div class="clearfix bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
 
-.clearfix-float { /** @name 		```.clearfix-float``` Apply the float clearfix on the element @styleguide 	Helper classes @example 	html <div class="clearfix-float bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
+.clearfix-float { /** @name 		```.clearfix-float``` Apply the float clearfix on the element @styleguide 	Helpers / Clearfix @example 	html <div class="clearfix-float bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
 
-.clearfix, .clearfix-micro { /** @name 		```.clearfix``` Apply the micro clearfix on the element @styleguide 	Helper classes @example 	html <div class="clearfix bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
+.clearfix, .clearfix-micro { /** @name 		```.clearfix``` Apply the micro clearfix on the element @styleguide 	Helpers / Clearfix @example 	html <div class="clearfix bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
 
-.clearfix-overflow { /** @name 		```.clearfix-overflow``` Apply the overflow clearfix on the element @styleguide 	Helper classes @example 	html <div class="clearfix-overflow bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
+.clearfix-overflow { /** @name 		```.clearfix-overflow``` Apply the overflow clearfix on the element @styleguide 	Helpers / Clearfix @example 	html <div class="clearfix-overflow bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
 
-.clearfix-facebook { /** @name 		```.clearfix-facebook``` Apply the facebook clearfix on the element @styleguide 	Helper classes @example 	html <div class="clearfix-facebook bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
+.clearfix-facebook { /** @name 		```.clearfix-facebook``` Apply the facebook clearfix on the element @styleguide 	Helpers / Clearfix @example 	html <div class="clearfix-facebook bkg-primary"> <div class="pull-right">right pulled</div> </div> <div class="bkg-primary"> <div class="pull-right">right pulled without clearfix</div> </div> */ }
 
-.no-transitions { /** @name 		```.no-transitions``` Disable the transitions <span class="f-bold">only on the element</span> @styleguide 	Helper classes @example 	html <div class="no-transitions"> I have no more transitions <div>But I have</div> </div> */ }
+.no-transitions { /** @name 		```.no-transitions``` Disable the transitions <span class="f-bold">only on the element</span> @styleguide 	Helpers / Transitions @example 	html <div class="no-transitions"> I have no more transitions <div>But I have</div> </div> */ }
 
 .no-transitions, .no-transitions:before, .no-transitions:after { transition: none !important; }
 
-.clear-transitions { /** @name 		```.clear-transitions``` Disable the transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helper classes @example 	html <div class="clear-transitions"> I have no more transitions <div>Me neither</div> </div> */ }
+.clear-transitions { /** @name 		```.clear-transitions``` Disable the transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helpers / Transitions @example 	html <div class="clear-transitions"> I have no more transitions <div>Me neither</div> </div> */ }
 
 .clear-transitions, .clear-transitions:before, .clear-transitions:after, .clear-transitions *, .clear-transitions *:before, .clear-transitions *:after { transition: none !important; }
 
-.no-animations { /** @name 		```.no-animations``` Disable the animations <span class="f-bold">only on the element</span> @styleguide 	Helper classes @example 	html <div class="no-animations"> I have no more animations <div>But I have</div> </div> */ }
+.no-animations { /** @name 		```.no-animations``` Disable the animations <span class="f-bold">only on the element</span> @styleguide 	Helpers / Animations @example 	html <div class="no-animations"> I have no more animations <div>But I have</div> </div> */ }
 
 .no-animations, .no-animations:before, .no-animations:after { animation: none !important; }
 
-.clear-animations { /** @name 		```.clear-animations``` Disable the transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helper classes @example 	html <div class="clear-animations"> I have no more animations <div>Me neither</div> </div> */ }
+.clear-animations { /** @name 		```.clear-animations``` Disable the transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helpers / Animations @example 	html <div class="clear-animations"> I have no more animations <div>Me neither</div> </div> */ }
 
 .clear-animations, .clear-animations:before, .clear-animations:after, .clear-animations *, .clear-animations *:before, .clear-animations *:after { animation: none !important; }
 
-.no-transmations { /** @name 		```.no-transmations``` Disable the animations and transitions <span class="f-bold">only on the element</span> @styleguide 	Helper classes @example 	html <div class="no-transmations"> I have no more animations or transitions <div>But I have</div> </div> */ }
+.no-transmations { /** @name 		```.no-transmations``` Disable the animations and transitions <span class="f-bold">only on the element</span> @styleguide 	Helpers / Transmations @example 	html <div class="no-transmations"> I have no more animations or transitions <div>But I have</div> </div> */ }
 
 .no-transmations, .no-transmations:before, .no-transmations:after { transition: none !important; animation: none !important; }
 
-.clear-transmations { /** @name 		```.clear-transmations``` Disable the animations and transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helper classes @example 	html <div class="clear-transmations"> I have no more animations or transitions <div>Me neither</div> </div> */ }
+.clear-transmations { /** @name 		```.clear-transmations``` Disable the animations and transitions <span class="f-bold">on the element and all his children</span> @styleguide 	Helpers / Transmations @example 	html <div class="clear-transmations"> I have no more animations or transitions <div>Me neither</div> </div> */ }
 
 .clear-transmations, .clear-transmations:before, .clear-transmations:after, .clear-transmations *, .clear-transmations *:before, .clear-transmations *:after { transition: none !important; animation: none !important; }
 
@@ -192,6 +190,12 @@
 /** Generate a long shadow effect like [this](https://www.google.ch/search?q=long+shadow&espv=2&biw=2560&bih=1316&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjjne6x49LPAhVBHRQKHat8AW8Q_AUIBigB) @param 		{Color} 		[$color=rgba(0,0,0,.3)] 			The shadow color @param 		{String} 		[$type=text] 						The shadow type (text,box) @param 		{Degree} 		[$angle=135deg] 					The shadow angle @param 		{Integer} 		[$depth=20] 						The shadow depth @param 		{Boolean} 		[$fade=false] 						If true, the shadow will fade itself @param 		{Number} 		[$blur=0] 							The blur amount of the shadow @param 		{Number} 		[$blur-ratio=0] 					The ratio to blur each depth more @example .my-cool-title { \@include s-long-shadow( $depth : 10 ); } .my-cool-box { \@include s-long-shadow( $type : box ); } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Create side lines around an item @param 			{String} 		[$style=solid] 			The line style, same possible values as the border-style property @param 			{String} 		[$side=both] 			The side where to put lines (left,right,both) @param 			{Number} 		[$height=1px] 			The lines height @param 			{Number} 		[$width=50%] 			The width of the lines @param 			{Color} 		[$color=text]			The color of the lines @param 			{Number} 		[$padding=0] 			The padding between the lines and the content @param 			{Number} 		[$offset-top=null] 		The line offset top @example h1 { \@include s-side-lined( $padding : 20px, $side : right, $width : 100% ); } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Load all components */
+.btn, .btn--block { display: inline-block; border: none; cursor: pointer; outline-width: 0; -webkit-appearance: none; line-height: 0; text-decoration: none; font-size: 1em; user-select: none; }
+
+.btn:not(button):not(input), .btn--block:not(button):not(input) { line-height: 1; }
+
+.btn > *, .btn--block > * { vertical-align: middle; }
+
 button { line-height: 1; }
 
 /** Paragraphs */
@@ -474,27 +478,32 @@ body { color: #777; }
 
 .bkg-info { background-color: #2199e8; }
 
-/** @name 	Titles @styleguide 	Typography @example 	html <div class="tf"> <h1>Hello World</h1> <h2>Hello World</h2> <h3>Hello World</h3> <h4>Hello World</h4> <h5>Hello World</h5> <h6>Hello World</h6> </div> */
+/** @name 	h1 h1 title styling @styleguide 	Typography / Titles @example 	html <h1 class="h1">Hello World</h1> <div class="tf"> <h1>Hello World</h1> </div> */
 .h1, .tf h1 { font-size: 5.5349rem; line-height: 1.1; }
 
 .h1.vr, .vr > .h1, .tf h1.vr, .vr > .tf h1 { margin-bottom: 1rem; }
 
+/** @name 	h2 h2 title styling @styleguide 	Typography / Titles @example 	html <h2 class="h2">Hello World</h2> <div class="tf"> <h2>Hello World</h2> </div> */
 .h2, .tf h2 { font-size: 4.16158rem; line-height: 1.1; }
 
 .h2.vr, .vr > .h2, .tf h2.vr, .vr > .tf h2 { margin-bottom: 1rem; }
 
+/** @name 	h3 h3 title styling @styleguide 	Typography / Titles @example 	html <h3 class="h3">Hello World</h3> <div class="tf"> <h3>Hello World</h3> </div> */
 .h3, .tf h3 { font-size: 3.12901rem; line-height: 1.1; }
 
 .h3.vr, .vr > .h3, .tf h3.vr, .vr > .tf h3 { margin-bottom: 1rem; }
 
+/** @name 	h4 h4 title styling @styleguide 	Typography / Titles @example 	html <h4 class="h4">Hello World</h4> <div class="tf"> <h4>Hello World</h4> </div> */
 .h4, .tf h4 { font-size: 2.35264rem; line-height: 1.1; }
 
 .h4.vr, .vr > .h4, .tf h4.vr, .vr > .tf h4 { margin-bottom: 1rem; }
 
+/** @name 	h5 h5 title styling @styleguide 	Typography / Titles @example 	html <h5 class="h5">Hello World</h5> <div class="tf"> <h5>Hello World</h5> </div> */
 .h5, .tf h5 { font-size: 1.7689rem; line-height: 1.1; }
 
 .h5.vr, .vr > .h5, .tf h5.vr, .vr > .tf h5 { margin-bottom: 1rem; }
 
+/** @name 	h6 h6 title styling @styleguide 	Typography / Titles @example 	html <h6 class="h6">Hello World</h6> <div class="tf"> <h6>Hello World</h6> </div> */
 .h6, .tf h6 { font-size: 1.33rem; line-height: 1.1; }
 
 .h6.vr, .vr > .h6, .tf h6.vr, .vr > .tf h6 { margin-bottom: 1rem; }
@@ -513,13 +522,156 @@ h1.vr, .vr > h1, h2.vr, .vr > h2, h3.vr, .vr > h3, h4.vr, .vr > h4, h5.vr, .vr >
 
 .h6, .tf h6 { color: #777; }
 
+/** @name 	Default Default paragraph styling @styleguide 	Typography / Paragraphs @example 	html <p class="p"> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> <div class="tf"> <p> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> </div> */
 .p, .tf p { line-height: 1.4; }
 
 .p.vr, .vr > .p, .tf p.vr, .vr > .tf p { margin-bottom: 1rem; }
 
+/** @name 	Lead Lead paragraph styling @styleguide 	Typography / Paragraphs @example 	html <p class="p p--lead"> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> <div class="tf"> <p class="lead"> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> </div> */
 .p--lead, .tf p.lead { font-size: 1.3rem; font-weight: lighter; }
 
 p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1rem; }
+
+/** @name 	Base button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn"> Hello World </a> */
+.btn { border-radius: 0.1875em; padding: 0.8125em 1em; height: 2.625em; text-align: left; }
+
+/** @name 	Block button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--block"> Hello World </a> */
+.btn--block { border-radius: 0.1875em; padding: 0.8125em 1em; height: 2.625em; text-align: left; display: block; width: 100%; }
+
+.btn { transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background-color: #777; border: 1px solid #777; color: white; }
+
+.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+
+/** @name 	primary button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--primary"> Hello World </a> */
+.btn--primary { background-color: #f2bc2b; border: 1px solid #f2bc2b; color: white; }
+
+.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) { background-color: #c4920c; border-color: #c4920c; }
+
+.btn--primary.btn--outline { color: #f2bc2b; background-color: transparent; border: 1px solid #f2bc2b; }
+
+.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled), :checked + .btn--primary.btn--outline:not(:disabled) { background-color: #f2bc2b; border-color: #f2bc2b; color: white; }
+
+.btn--primary.btn--link { background-color: transparent !important; color: #f2bc2b !important; border: none !important; position: relative; }
+
+.btn--primary.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #f2bc2b; }
+
+.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
+
+.btn--primary.btn:disabled { background-color: #f2bc2b; border: 1px solid #f2bc2b; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
+
+.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) { background-color: #c4920c; border-color: #c4920c; }
+
+/** @name 	secondary button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--secondary"> Hello World </a> */
+.btn--secondary { background-color: #777; border: 1px solid #777; color: white; }
+
+.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+
+.btn--secondary.btn--outline { color: #777; background-color: transparent; border: 1px solid #777; }
+
+.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled), :checked + .btn--secondary.btn--outline:not(:disabled) { background-color: #777; border-color: #777; color: white; }
+
+.btn--secondary.btn--link { background-color: transparent !important; color: #777 !important; border: none !important; position: relative; }
+
+.btn--secondary.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #777; }
+
+.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
+
+.btn--secondary.btn:disabled { background-color: #777; border: 1px solid #777; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
+
+.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+
+/** @name 	success button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--success"> Hello World </a> */
+.btn--success { background-color: #5cb85c; border: 1px solid #5cb85c; color: white; }
+
+.btn--success[active]:not(:disabled), .btn--success.active:not(:disabled), .btn--success:active:not(:disabled), .btn--success:hover:not(:disabled) { background-color: #3d8b3d; border-color: #3d8b3d; }
+
+.btn--success.btn--outline { color: #5cb85c; background-color: transparent; border: 1px solid #5cb85c; }
+
+.btn--success.btn--outline:active:not(:disabled), .btn--success.btn--outline:hover:not(:disabled), .btn--success.btn--outline.active:not(:disabled), :checked + .btn--success.btn--outline:not(:disabled) { background-color: #5cb85c; border-color: #5cb85c; color: white; }
+
+.btn--success.btn--link { background-color: transparent !important; color: #5cb85c !important; border: none !important; position: relative; }
+
+.btn--success.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #5cb85c; }
+
+.btn--success.btn--link[active]:not(:disabled):after, .btn--success.btn--link.active:not(:disabled):after, .btn--success.btn--link:active:not(:disabled):after, .btn--success.btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
+
+.btn--success.btn:disabled { background-color: #5cb85c; border: 1px solid #5cb85c; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
+
+.btn--success.btn:disabled[active]:not(:disabled), .btn--success.btn:disabled.active:not(:disabled), .btn--success.btn:disabled:active:not(:disabled), .btn--success.btn:disabled:hover:not(:disabled) { background-color: #3d8b3d; border-color: #3d8b3d; }
+
+/** @name 	error button Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--error"> Hello World </a> */
+.btn--error { background-color: #d9534f; border: 1px solid #d9534f; color: white; }
+
+.btn--error[active]:not(:disabled), .btn--error.active:not(:disabled), .btn--error:active:not(:disabled), .btn--error:hover:not(:disabled) { background-color: #b52b27; border-color: #b52b27; }
+
+.btn--error.btn--outline { color: #d9534f; background-color: transparent; border: 1px solid #d9534f; }
+
+.btn--error.btn--outline:active:not(:disabled), .btn--error.btn--outline:hover:not(:disabled), .btn--error.btn--outline.active:not(:disabled), :checked + .btn--error.btn--outline:not(:disabled) { background-color: #d9534f; border-color: #d9534f; color: white; }
+
+.btn--error.btn--link { background-color: transparent !important; color: #d9534f !important; border: none !important; position: relative; }
+
+.btn--error.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #d9534f; }
+
+.btn--error.btn--link[active]:not(:disabled):after, .btn--error.btn--link.active:not(:disabled):after, .btn--error.btn--link:active:not(:disabled):after, .btn--error.btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
+
+.btn--error.btn:disabled { background-color: #d9534f; border: 1px solid #d9534f; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
+
+.btn--error.btn:disabled[active]:not(:disabled), .btn--error.btn:disabled.active:not(:disabled), .btn--error.btn:disabled:active:not(:disabled), .btn--error.btn:disabled:hover:not(:disabled) { background-color: #b52b27; border-color: #b52b27; }
+
+corner-badge { position: absolute; display: block; }
+
+corner-badge > * { position: relative; }
+
+corner-badge:before { content: ''; display: block; position: absolute; border-style: solid; border-color: transparent; }
+
+corner-badge { font-size: 1em; width: 3em; height: 3em; padding: 0.4em; }
+
+corner-badge:before { border-width: 1.5em; }
+
+/** @name 	corner-badge top left @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl"> <!-- content here --> </corner-badge> */
+corner-badge[align="tl"] { top: 0; left: 0; }
+
+corner-badge[align="tl"]:before { border-right-color: transparent !important; border-bottom-color: transparent !important; top: 0; left: 0; }
+
+/** @name 	corner-badge top right @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tr"> <!-- content here --> </corner-badge> */
+corner-badge[align="tr"] { top: 0; right: 0; text-align: right; }
+
+corner-badge[align="tr"]:before { border-bottom-color: transparent !important; border-left-color: transparent !important; top: 0; right: 0; }
+
+/** @name 	corner-badge bottom left @styleguide 	Components / Corner Badge @example 	html <corner-badge align="bl"> <!-- content here --> </corner-badge> */
+corner-badge[align="bl"] { bottom: 0; left: 0; }
+
+corner-badge[align="bl"]:before { border-top-color: transparent !important; border-right-color: transparent !important; bottom: 0; left: 0; }
+
+/** @name 	corner-badge bottom right @styleguide 	Components / Corner Badge @example 	html <corner-badge align="br"> <!-- content here --> </corner-badge> */
+corner-badge[align="br"] { bottom: 0; right: 0; }
+
+corner-badge[align="br"]:before { border-top-color: transparent !important; border-left-color: transparent !important; bottom: 0; right: 0; }
+
+corner-badge { color: white; }
+
+corner-badge:before { border-color: #777; }
+
+/** @name 	corner-badge default @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="default"> <!-- content here --> </corner-badge> */
+corner-badge[color="default"]:before { border-color: #777; }
+
+/** @name 	corner-badge primary @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="primary"> <!-- content here --> </corner-badge> */
+corner-badge[color="primary"]:before { border-color: #f2bc2b; }
+
+/** @name 	corner-badge secondary @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="secondary"> <!-- content here --> </corner-badge> */
+corner-badge[color="secondary"]:before { border-color: #777; }
+
+/** @name 	corner-badge success @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="success"> <!-- content here --> </corner-badge> */
+corner-badge[color="success"]:before { border-color: #5cb85c; }
+
+/** @name 	corner-badge warning @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="warning"> <!-- content here --> </corner-badge> */
+corner-badge[color="warning"]:before { border-color: #f0ad4e; }
+
+/** @name 	corner-badge error @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="error"> <!-- content here --> </corner-badge> */
+corner-badge[color="error"]:before { border-color: #d9534f; }
+
+/** @name 	corner-badge info @styleguide 	Components / Corner Badge @example 	html <corner-badge align="tl" color="info"> <!-- content here --> </corner-badge> */
+corner-badge[color="info"]:before { border-color: #2199e8; }
 
 /** Layout All the layout level specific styling. */
 /** Layout All the layout level specific styling. */

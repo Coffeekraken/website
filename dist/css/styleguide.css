@@ -252,13 +252,10 @@
 /**
  * Return the css class selector for the current component setted by the [core/mixins/_s-component.scss] mixin
  * and build with the passed arguments.
- * This function generate the class selector depending of the settings.selector.method setting or the selector method setted by the [s-selector-method mixin](../mixins/_s-selector-method.scss)
  *
  * @param 			{String} 			[$element=null] 		The element name of the class selector | '&' if target the same element like `&s-component-selector("&", ) {}`
  * @param 			{String} 			[$modifier=null] 		The modifier name of the class selector
  * @param 			{String} 			[$state=null] 			The state name of the class selector
- * @param 			{String} 			[$modifierName=null] 	The modifier name that will be used for webcomponent method like [$modifierName="$modifier"]
- * @param 			{String} 			[$method=null] 			The method wanted to generate the selector. [See here](../_selector-methods.scss)
  * @return 			{String} 									The generated class selector
  *
  * @example
@@ -267,10 +264,6 @@
  * 		s-component-selector('item') // => '.my-component__item'
  * 		s-component-selector(null, 'red') // => '.my-component--red'
  * 		s-component-selector('coco',null,'active') // => '.my-component__coco--active'
- * 		// if setting.selector.method === 'SMACCS'
- * 		s-component-selector('item') // => '.my-component-item'
- * 		s-component-selector(null, 'red') // => '.my-component-red'
- * 		s-component-selector('coco',null,'active') // => '.my-component-coco.is-active'
  * }
  *
  * // if target the same element with & :
@@ -750,24 +743,6 @@
  * s-selector(my-component, item, null, active, null, SMACCS); // => .my-component-item.is-active
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the selector method define at the top level with the the [../mixins/_s-selector-method.scss] mixin
- *
- * @param 			{String} 			[$default=settings.selector.method] 		The selector method to return if no top selector method exist
- * @return 			{String} 														The selector method
- *
- * @example
- * s-selector-method() // => settings.selector.method
- * s-selector-method(BEM) // => BEM
- * \@include s-selector-method(SMACCS) {
- * 		s-selector-method(BEM) // => SMACCS
- * 		\@include s-selector-method(WEBCOMPONENT) {
- * 			s-selector-method() // => SMACCS
- * 		}
- * }
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>;
  */
 /**
  * Get a settings from the global settings stack
@@ -1272,22 +1247,6 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Set the selector method that will be handled inside the mixin
- * [See here](../_selector-methods.scss) for available selector methods
- *
- * @param 			{String} 			[$method=null] 			The selector method to set
- *
- * @example
- * \@include s-selector-method(SMACCS) {
- * 		s-selector-method(BEM) // => SMACCS
- * 		\@include s-selector-method(WEBCOMPONENT) {
- * 			s-selector-method() // => 'SMACCS'
- * 		}
- * }
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>;
- */
-/**
  * Setup sugar toolkit by overriding the default [settings](../_settings.scss)
  * This has to be called **BEFORE** the [s-init mixin](./_s-init.scss)
  *
@@ -1402,7 +1361,7 @@
   /**
 	 * @name 		```.pull-left```
 	 * Allows you to pull an element to the left side
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Pull
 	 * @example 	html
 	 * 	<span class="pull-left">Hello world</span>
 	 * </div>
@@ -1414,7 +1373,7 @@
   /**
 	 * @name 		```.pull-right```
 	 * Allows you to pull an element to the right side
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Pull
 	 * @example 	html
 	 * 	<span class="pull-right">Hello world</span>
 	 * </div>
@@ -1426,7 +1385,7 @@
   /**
 	 * @name 		```.relative```
 	 * Set an element position as ```relative```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Position
 	 * @example 	html
 	 * <div class="relative">
 	 * 	I'm relative now
@@ -1439,7 +1398,7 @@
   /**
 	 * @name 		```.absolute```
 	 * Set an element position as ```absolute```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Positon
 	 * @example 	html
 	 * <div class="absolute">
 	 * 	I'm absolute now
@@ -1452,7 +1411,7 @@
   /**
 	 * @name 		```.clear-left```
 	 * Clear the left float on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Float
 	 * @example 	html
 	 * <div class="clear-left">
 	 * 	I clear the left float
@@ -1465,7 +1424,7 @@
   /**
 	 * @name 		```.clear-right```
 	 * Clear the right float on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Float
 	 * @example 	html
 	 * <div class="clear-right">
 	 * 	I clear the right float
@@ -1478,7 +1437,7 @@
   /**
 	 * @name 		```.clear```
 	 * Clear both float on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Float
 	 * @example 	html
 	 * <div class="clear">
 	 * 	I clear both floats
@@ -1491,7 +1450,7 @@
   /**
 	 * @name 		```.show```
 	 * Display the element as ```block```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="show">
 	 * 	I'm displayed
@@ -1504,7 +1463,7 @@
   /**
 	 * @name 		```.show-inline```
 	 * Display the element as ```inline-block```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="show-inline">
 	 * 	I'm inline displayed
@@ -1517,7 +1476,7 @@
   /**
 	 * @name 		```.hidden```
 	 * Hide the element by setting the display to ```none```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="hidden">
 	 * 	I'm hidden
@@ -1530,7 +1489,7 @@
   /**
 	 * @name 		```.hide```
 	 * Hide the element by setting the display to ```none```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="hide">
 	 * 	I'm hidden
@@ -1543,7 +1502,7 @@
   /**
 	 * @name 		```.visible```
 	 * Display the element by setting the visibility to ```visible```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="visible">
 	 * 	I'm visible
@@ -1556,7 +1515,7 @@
   /**
 	 * @name 		```.invisible```
 	 * Display the element by setting the visibility to ```hidden```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="invisible">
 	 * 	I'm invisible
@@ -1570,7 +1529,7 @@
 	 * @name 		```.visually-hidden```
 	 * Hide the element from display but not for SEO.
 	 * This class use some tricks to make the element dissapear without using some ```display:none;```, etc...
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Display
 	 * @example 	html
 	 * <div class="visually-hidden">
 	 * 	I'm only visually hidden
@@ -1590,7 +1549,7 @@
   /**
 	 * @name 		```.t-hidden```
 	 * Hide the text
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-hidden">
 	 * 	I'm not visible
@@ -1605,7 +1564,7 @@
   /**
 	 * @name 		```.t-truncate```
 	 * Hide the text
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-truncate">
 	 * 	I'm truncated cause I talk a lot too much Nulla mauris eros, finibus ac faucibus et, tempus quis risus. Praesent sit amet nulla vel libero euismod sodales eu nec.
@@ -1627,7 +1586,7 @@
   /**
 	 * @name 		```.t-left```
 	 * Align the text to the left
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-left">
 	 * 	I'm left aligned
@@ -1640,7 +1599,7 @@
   /**
 	 * @name 		```.t-right```
 	 * Align the text to the right
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-right">
 	 * 	I'm right aligned
@@ -1653,7 +1612,7 @@
   /**
 	 * @name 		```.t-center```
 	 * Align the text to the center
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-center">
 	 * 	I'm centered
@@ -1666,7 +1625,7 @@
   /**
 	 * @name 		```.t-justify```
 	 * Make the text justified
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-justify">
 	 * 	Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu.
@@ -1679,7 +1638,7 @@
   /**
 	 * @name 		```.t-lowercase```
 	 * Transform the text to lowercase
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-lowercase">
 	 * 	I'M LOWERCASE
@@ -1692,7 +1651,7 @@
   /**
 	 * @name 		```.t-uppercase```
 	 * Transform the text to uppercase
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-uppercase">
 	 * 	I'm uppercase
@@ -1705,7 +1664,7 @@
   /**
 	 * @name 		```.t-capitalize```
 	 * Capizalize the words
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Text
 	 * @example 	html
 	 * <div class="t-capitalize">
 	 * 	I'm capitalized
@@ -1718,7 +1677,7 @@
   /**
 	 * @name 		```.f-bold```
 	 * Set the font-weight to ```bold```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * This <span class="f-bold">word</span> is bold
 	 */
@@ -1729,7 +1688,7 @@
   /**
 	 * @name 		```.f-lighter```
 	 * Set the font-weight to ```lighter```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * 	This <span class="f-lighter">word</span> is lighter
 	 */
@@ -1740,7 +1699,7 @@
   /**
 	 * @name 		```.f-bolder```
 	 * Set the font-weight to ```bolder```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * This <span class="f-bolder">word</span> is bolder
 	 */
@@ -1751,7 +1710,7 @@
   /**
 	 * @name 		```.f-normal```
 	 * Set the font-weight to ```normal```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * <div class="f-bold">
 	 * 	This <span class="f-normal">word</span> is normal
@@ -1765,7 +1724,7 @@
   /**
 	 * @name 		```.f-italic```
 	 * Set the font-style to ```italic```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * This <span class="f-italic">word</span> is italic
 	 */
@@ -1776,7 +1735,7 @@
   /**
 	 * @name 		```.f-oblique```
 	 * Set the font-style to ```oblique```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * This <span class="f-oblique">word</span> is oblique
 	 */
@@ -1787,7 +1746,7 @@
   /**
 	 * @name 		```.f-small-caps```
 	 * Set the font-variant to ```small-caps```
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Font
 	 * @example 	html
 	 * This <span class="f-small-caps">word</span> is small-caps
 	 */
@@ -1798,7 +1757,7 @@
   /**
 	 * @name 		```.block-center```
 	 * Set the element to as ```display:block``` and center it
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Block
 	 * @example 	html
 	 * <div class="block-center bkg-primary" style="width:100px;">
 	 * 	I'm a centered block
@@ -1813,7 +1772,7 @@
   /**
 	 * @name 		```.clearfix```
 	 * Apply the micro clearfix on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Clearfix
 	 * @example 	html
 	 * <div class="clearfix bkg-primary">
 	 * 	<div class="pull-right">right pulled</div>
@@ -1828,7 +1787,7 @@
   /**
 	 * @name 		```.clearfix-float```
 	 * Apply the float clearfix on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Clearfix
 	 * @example 	html
 	 * <div class="clearfix-float bkg-primary">
 	 * 	<div class="pull-right">right pulled</div>
@@ -1843,7 +1802,7 @@
   /**
 	 * @name 		```.clearfix```
 	 * Apply the micro clearfix on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Clearfix
 	 * @example 	html
 	 * <div class="clearfix bkg-primary">
 	 * 	<div class="pull-right">right pulled</div>
@@ -1858,7 +1817,7 @@
   /**
 	 * @name 		```.clearfix-overflow```
 	 * Apply the overflow clearfix on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Clearfix
 	 * @example 	html
 	 * <div class="clearfix-overflow bkg-primary">
 	 * 	<div class="pull-right">right pulled</div>
@@ -1873,7 +1832,7 @@
   /**
 	 * @name 		```.clearfix-facebook```
 	 * Apply the facebook clearfix on the element
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Clearfix
 	 * @example 	html
 	 * <div class="clearfix-facebook bkg-primary">
 	 * 	<div class="pull-right">right pulled</div>
@@ -1888,7 +1847,7 @@
   /**
 	 * @name 		```.no-transitions```
 	 * Disable the transitions <span class="f-bold">only on the element</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Transitions
 	 * @example 	html
 	 * <div class="no-transitions">
 	 * 	I have no more transitions
@@ -1905,7 +1864,7 @@
   /**
 	 * @name 		```.clear-transitions```
 	 * Disable the transitions <span class="f-bold">on the element and all his children</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Transitions
 	 * @example 	html
 	 * <div class="clear-transitions">
 	 * 	I have no more transitions
@@ -1922,7 +1881,7 @@
   /**
 	 * @name 		```.no-animations```
 	 * Disable the animations <span class="f-bold">only on the element</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Animations
 	 * @example 	html
 	 * <div class="no-animations">
 	 * 	I have no more animations
@@ -1939,7 +1898,7 @@
   /**
 	 * @name 		```.clear-animations```
 	 * Disable the transitions <span class="f-bold">on the element and all his children</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Animations
 	 * @example 	html
 	 * <div class="clear-animations">
 	 * 	I have no more animations
@@ -1956,7 +1915,7 @@
   /**
 	 * @name 		```.no-transmations```
 	 * Disable the animations and transitions <span class="f-bold">only on the element</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Transmations
 	 * @example 	html
 	 * <div class="no-transmations">
 	 * 	I have no more animations or transitions
@@ -1974,7 +1933,7 @@
   /**
 	 * @name 		```.clear-transmations```
 	 * Disable the animations and transitions <span class="f-bold">on the element and all his children</span>
-	 * @styleguide 	Helper classes
+	 * @styleguide 	Helpers / Transmations
 	 * @example 	html
 	 * <div class="clear-transmations">
 	 * 	I have no more animations or transitions
@@ -2186,6 +2145,26 @@
 /**
  * Load all components
  */
+.btn, .btn--block {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  outline-width: 0;
+  -webkit-appearance: none;
+  line-height: 0;
+  text-decoration: none;
+  font-size: 1em;
+  user-select: none;
+}
+
+.btn:not(button):not(input), .btn--block:not(button):not(input) {
+  line-height: 1;
+}
+
+.btn > *, .btn--block > * {
+  vertical-align: middle;
+}
+
 button {
   line-height: 1;
 }
@@ -2841,16 +2820,13 @@ body {
 }
 
 /**
-	 * @name 	Titles
-	 * @styleguide 	Typography
+	 * @name 	h1
+	 * h1 title styling
+	 * @styleguide 	Typography / Titles
 	 * @example 	html
+	 * <h1 class="h1">Hello World</h1>
 	 * <div class="tf">
 	 * 	<h1>Hello World</h1>
-	 * 	<h2>Hello World</h2>
-	 * 	<h3>Hello World</h3>
-	 * 	<h4>Hello World</h4>
-	 * 	<h5>Hello World</h5>
-	 * 	<h6>Hello World</h6>
 	 * </div>
 	 */
 .h1,
@@ -2867,6 +2843,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	h2
+	 * h2 title styling
+	 * @styleguide 	Typography / Titles
+	 * @example 	html
+	 * <h2 class="h2">Hello World</h2>
+	 * <div class="tf">
+	 * 	<h2>Hello World</h2>
+	 * </div>
+	 */
 .h2,
 .tf h2 {
   font-size: 4.16158rem;
@@ -2881,6 +2867,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	h3
+	 * h3 title styling
+	 * @styleguide 	Typography / Titles
+	 * @example 	html
+	 * <h3 class="h3">Hello World</h3>
+	 * <div class="tf">
+	 * 	<h3>Hello World</h3>
+	 * </div>
+	 */
 .h3,
 .tf h3 {
   font-size: 3.12901rem;
@@ -2895,6 +2891,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	h4
+	 * h4 title styling
+	 * @styleguide 	Typography / Titles
+	 * @example 	html
+	 * <h4 class="h4">Hello World</h4>
+	 * <div class="tf">
+	 * 	<h4>Hello World</h4>
+	 * </div>
+	 */
 .h4,
 .tf h4 {
   font-size: 2.35264rem;
@@ -2909,6 +2915,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	h5
+	 * h5 title styling
+	 * @styleguide 	Typography / Titles
+	 * @example 	html
+	 * <h5 class="h5">Hello World</h5>
+	 * <div class="tf">
+	 * 	<h5>Hello World</h5>
+	 * </div>
+	 */
 .h5,
 .tf h5 {
   font-size: 1.7689rem;
@@ -2923,6 +2939,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	h6
+	 * h6 title styling
+	 * @styleguide 	Typography / Titles
+	 * @example 	html
+	 * <h6 class="h6">Hello World</h6>
+	 * <div class="tf">
+	 * 	<h6>Hello World</h6>
+	 * </div>
+	 */
 .h6,
 .tf h6 {
   font-size: 1.33rem;
@@ -2977,6 +3003,20 @@ h1.vr,
   color: #777;
 }
 
+/**
+	 * @name 	Default
+	 * Default paragraph styling
+	 * @styleguide 	Typography / Paragraphs
+	 * @example 	html
+	 * <p class="p">
+	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
+	 * </p>
+	 * <div class="tf">
+	 * 	<p>
+	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
+	 *   </p>
+	 * </div>
+	 */
 .p,
 .tf p {
   line-height: 1.4;
@@ -2990,6 +3030,20 @@ h1.vr,
   margin-bottom: 1rem;
 }
 
+/**
+	 * @name 	Lead
+	 * Lead paragraph styling
+	 * @styleguide 	Typography / Paragraphs
+	 * @example 	html
+	 * <p class="p p--lead">
+	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
+	 * </p>
+	 * <div class="tf">
+	 * 	<p class="lead">
+	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
+	 *   </p>
+	 * </div>
+	 */
 .p--lead,
 .tf p.lead {
   font-size: 1.3rem;
@@ -3000,6 +3054,542 @@ p.vr,
 .vr > p, .p.vr,
 .vr > .p {
   margin-bottom: 1rem;
+}
+
+/**
+		 * @name 	Base button
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Buttons
+		 * @example 	html
+		 * <a class="btn">
+		 * 	Hello World
+		 * </a>
+		 */
+.btn {
+  border-radius: 0.1875em;
+  padding: 0.8125em 1em;
+  height: 2.625em;
+  text-align: left;
+}
+
+/**
+		 * @name 	Block button
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Buttons
+		 * @example 	html
+		 * <a class="btn btn--block">
+		 * 	Hello World
+		 * </a>
+		 */
+.btn--block {
+  border-radius: 0.1875em;
+  padding: 0.8125em 1em;
+  height: 2.625em;
+  text-align: left;
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: #777;
+  border: 1px solid #777;
+  color: white;
+}
+
+.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
+  background-color: #515151;
+  border-color: #515151;
+}
+
+/**
+			 * @name 	primary button
+			 * Lead paragraph styling
+			 * @styleguide 	Components / Buttons
+			 * @example 	html
+			 * <a class="btn btn--primary">
+			 * 	Hello World
+			 * </a>
+			 */
+.btn--primary {
+  background-color: #f2bc2b;
+  border: 1px solid #f2bc2b;
+  color: white;
+}
+
+.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+.btn--primary.btn--outline {
+  color: #f2bc2b;
+  background-color: transparent;
+  border: 1px solid #f2bc2b;
+}
+
+.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
+:checked + .btn--primary.btn--outline:not(:disabled) {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--primary.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border: none !important;
+  position: relative;
+}
+
+.btn--primary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.40625em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2em);
+}
+
+.btn--primary.btn:disabled {
+  background-color: #f2bc2b;
+  border: 1px solid #f2bc2b;
+  color: white;
+  opacity: 0.25;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+/**
+			 * @name 	secondary button
+			 * Lead paragraph styling
+			 * @styleguide 	Components / Buttons
+			 * @example 	html
+			 * <a class="btn btn--secondary">
+			 * 	Hello World
+			 * </a>
+			 */
+.btn--secondary {
+  background-color: #777;
+  border: 1px solid #777;
+  color: white;
+}
+
+.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
+  background-color: #515151;
+  border-color: #515151;
+}
+
+.btn--secondary.btn--outline {
+  color: #777;
+  background-color: transparent;
+  border: 1px solid #777;
+}
+
+.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
+:checked + .btn--secondary.btn--outline:not(:disabled) {
+  background-color: #777;
+  border-color: #777;
+  color: white;
+}
+
+.btn--secondary.btn--link {
+  background-color: transparent !important;
+  color: #777 !important;
+  border: none !important;
+  position: relative;
+}
+
+.btn--secondary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.40625em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #777;
+}
+
+.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2em);
+}
+
+.btn--secondary.btn:disabled {
+  background-color: #777;
+  border: 1px solid #777;
+  color: white;
+  opacity: 0.25;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
+  background-color: #515151;
+  border-color: #515151;
+}
+
+/**
+			 * @name 	success button
+			 * Lead paragraph styling
+			 * @styleguide 	Components / Buttons
+			 * @example 	html
+			 * <a class="btn btn--success">
+			 * 	Hello World
+			 * </a>
+			 */
+.btn--success {
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+  color: white;
+}
+
+.btn--success[active]:not(:disabled), .btn--success.active:not(:disabled), .btn--success:active:not(:disabled), .btn--success:hover:not(:disabled) {
+  background-color: #3d8b3d;
+  border-color: #3d8b3d;
+}
+
+.btn--success.btn--outline {
+  color: #5cb85c;
+  background-color: transparent;
+  border: 1px solid #5cb85c;
+}
+
+.btn--success.btn--outline:active:not(:disabled), .btn--success.btn--outline:hover:not(:disabled), .btn--success.btn--outline.active:not(:disabled),
+:checked + .btn--success.btn--outline:not(:disabled) {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  color: white;
+}
+
+.btn--success.btn--link {
+  background-color: transparent !important;
+  color: #5cb85c !important;
+  border: none !important;
+  position: relative;
+}
+
+.btn--success.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.40625em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #5cb85c;
+}
+
+.btn--success.btn--link[active]:not(:disabled):after, .btn--success.btn--link.active:not(:disabled):after, .btn--success.btn--link:active:not(:disabled):after, .btn--success.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2em);
+}
+
+.btn--success.btn:disabled {
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+  color: white;
+  opacity: 0.25;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--success.btn:disabled[active]:not(:disabled), .btn--success.btn:disabled.active:not(:disabled), .btn--success.btn:disabled:active:not(:disabled), .btn--success.btn:disabled:hover:not(:disabled) {
+  background-color: #3d8b3d;
+  border-color: #3d8b3d;
+}
+
+/**
+			 * @name 	error button
+			 * Lead paragraph styling
+			 * @styleguide 	Components / Buttons
+			 * @example 	html
+			 * <a class="btn btn--error">
+			 * 	Hello World
+			 * </a>
+			 */
+.btn--error {
+  background-color: #d9534f;
+  border: 1px solid #d9534f;
+  color: white;
+}
+
+.btn--error[active]:not(:disabled), .btn--error.active:not(:disabled), .btn--error:active:not(:disabled), .btn--error:hover:not(:disabled) {
+  background-color: #b52b27;
+  border-color: #b52b27;
+}
+
+.btn--error.btn--outline {
+  color: #d9534f;
+  background-color: transparent;
+  border: 1px solid #d9534f;
+}
+
+.btn--error.btn--outline:active:not(:disabled), .btn--error.btn--outline:hover:not(:disabled), .btn--error.btn--outline.active:not(:disabled),
+:checked + .btn--error.btn--outline:not(:disabled) {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: white;
+}
+
+.btn--error.btn--link {
+  background-color: transparent !important;
+  color: #d9534f !important;
+  border: none !important;
+  position: relative;
+}
+
+.btn--error.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.40625em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #d9534f;
+}
+
+.btn--error.btn--link[active]:not(:disabled):after, .btn--error.btn--link.active:not(:disabled):after, .btn--error.btn--link:active:not(:disabled):after, .btn--error.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2em);
+}
+
+.btn--error.btn:disabled {
+  background-color: #d9534f;
+  border: 1px solid #d9534f;
+  color: white;
+  opacity: 0.25;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--error.btn:disabled[active]:not(:disabled), .btn--error.btn:disabled.active:not(:disabled), .btn--error.btn:disabled:active:not(:disabled), .btn--error.btn:disabled:hover:not(:disabled) {
+  background-color: #b52b27;
+  border-color: #b52b27;
+}
+
+corner-badge {
+  position: absolute;
+  display: block;
+}
+
+corner-badge > * {
+  position: relative;
+}
+
+corner-badge:before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+}
+
+corner-badge {
+  font-size: 1em;
+  width: 3em;
+  height: 3em;
+  padding: 0.4em;
+}
+
+corner-badge:before {
+  border-width: 1.5em;
+}
+
+/**
+			 * @name 	corner-badge top left
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[align="tl"] {
+  top: 0;
+  left: 0;
+}
+
+corner-badge[align="tl"]:before {
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  top: 0;
+  left: 0;
+}
+
+/**
+			 * @name 	corner-badge top right
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tr">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[align="tr"] {
+  top: 0;
+  right: 0;
+  text-align: right;
+}
+
+corner-badge[align="tr"]:before {
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+  top: 0;
+  right: 0;
+}
+
+/**
+			 * @name 	corner-badge bottom left
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="bl">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[align="bl"] {
+  bottom: 0;
+  left: 0;
+}
+
+corner-badge[align="bl"]:before {
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  bottom: 0;
+  left: 0;
+}
+
+/**
+			 * @name 	corner-badge bottom right
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="br">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[align="br"] {
+  bottom: 0;
+  right: 0;
+}
+
+corner-badge[align="br"]:before {
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  bottom: 0;
+  right: 0;
+}
+
+corner-badge {
+  color: white;
+}
+
+corner-badge:before {
+  border-color: #777;
+}
+
+/**
+			 * @name 	corner-badge default
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="default">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="default"]:before {
+  border-color: #777;
+}
+
+/**
+			 * @name 	corner-badge primary
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="primary">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="primary"]:before {
+  border-color: #f2bc2b;
+}
+
+/**
+			 * @name 	corner-badge secondary
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="secondary">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="secondary"]:before {
+  border-color: #777;
+}
+
+/**
+			 * @name 	corner-badge success
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="success">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="success"]:before {
+  border-color: #5cb85c;
+}
+
+/**
+			 * @name 	corner-badge warning
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="warning">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="warning"]:before {
+  border-color: #f0ad4e;
+}
+
+/**
+			 * @name 	corner-badge error
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="error">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="error"]:before {
+  border-color: #d9534f;
+}
+
+/**
+			 * @name 	corner-badge info
+			 * @styleguide 	Components / Corner Badge
+			 * @example 	html
+			 * <corner-badge align="tl" color="info">
+			 * 	<!-- content here -->
+			 * </corner-badge>
+			 */
+corner-badge[color="info"]:before {
+  border-color: #2199e8;
 }
 
 /**
