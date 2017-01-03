@@ -2,3 +2,16 @@
 @include s-init();
 // classes
 @include s-classes();
+
+
+@include s-dropdown-component(
+    $colors : default primary secondary
+);
+
+@include s-component('nav') {
+	@include s-nav-justify-component-bare();
+    @include s-nav-inline-component-bare();
+    @include s-nav-tabs-component(
+        $colors : default primary secondary
+    );
+}

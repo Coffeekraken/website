@@ -1,0 +1,14 @@
+@include s-setup((
+    fonts : (
+        roboto : (
+            font-family : 'Roboto'
+        )
+    )
+));
+
+@include s-setup((
+    filters : (
+        shadowed : drop-shadow(rgba(0,0,0,.3) 0 0 10px),
+        blured : blur(3px)
+    )
+))

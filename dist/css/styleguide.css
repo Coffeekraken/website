@@ -7,6 +7,7 @@
  * Vendors
  * All external librarie needed in the project.
  */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 /**
  * Parse and return the Map respresentation of a border property
  * The $border argument will be parsed with the [s-parse-properties](../core/functions/_s-parse-properties.scss) function.
@@ -169,7 +170,7 @@
 
 	$clearfix-method sets default method
 */
-.clearfix-overflow {
+.clearfix-overflow, .nav--tabs {
   overflow: hidden;
 }
 
@@ -1398,7 +1399,7 @@
   /**
 	 * @name 		```.absolute```
 	 * Set an element position as ```absolute```
-	 * @styleguide 	Helpers / Positon
+	 * @styleguide 	Helpers / Position
 	 * @example 	html
 	 * <div class="absolute">
 	 * 	I'm absolute now
@@ -1444,6 +1445,45 @@
 	 * </div>
 	 */
   clear: both;
+}
+
+.block {
+  /**
+	 * @name 		```.block```
+	 * Display the element as ```block```
+	 * @styleguide 	Helpers / Display
+	 * @example 	html
+	 * <div class="block">
+	 * 	I'm displayed as block
+	 * </div>
+	 */
+  display: block;
+}
+
+.inline {
+  /**
+	 * @name 		```.inline```
+	 * Display the element as ```inline```
+	 * @styleguide 	Helpers / Display
+	 * @example 	html
+	 * <div class="inline">
+	 * 	I'm displayed as inline
+	 * </div>
+	 */
+  display: inline;
+}
+
+.inline-block {
+  /**
+	 * @name 		```.inline-block```
+	 * Display the element as ```inline-block```
+	 * @styleguide 	Helpers / Display
+	 * @example 	html
+	 * <div class="inline-block">
+	 * 	I'm displayed as inline-block
+	 * </div>
+	 */
+  display: inline-block;
 }
 
 .show {
@@ -1813,7 +1853,7 @@
 	 */
 }
 
-.clearfix-overflow {
+.clearfix-overflow, .nav--tabs {
   /**
 	 * @name 		```.clearfix-overflow```
 	 * Apply the overflow clearfix on the element
@@ -2147,7 +2187,9 @@
  */
 .btn, .btn--block {
   display: inline-block;
-  border: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
   cursor: pointer;
   outline-width: 0;
   -webkit-appearance: none;
@@ -2251,73 +2293,73 @@ table {
 }
 
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		default
-		 * @color 		#777
+		 * @color 		#848e91
 		 * @display 	color
 		 */
 /**
-				 * @styleguide 	Colors
+				 * @styleguide 	Colors / Swatches
 				 * @name 		default--light
-				 * @color 		#c4c4c4
+				 * @color 		#d5d8d9
 				 * @display 	color
 				 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		title
-		 * @color 		#777
+		 * @color 		#2b3438
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		text
-		 * @color 		#777
+		 * @color 		#848e91
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		link
 		 * @color 		#f2bc2b
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		primary
 		 * @color 		#f2bc2b
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		secondary
 		 * @color 		#777
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		success
 		 * @color 		#5cb85c
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		warning
 		 * @color 		#f0ad4e
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		error
 		 * @color 		#d9534f
 		 * @display 	color
 		 */
 /**
-		 * @styleguide 	Colors
+		 * @styleguide 	Colors / Swatches
 		 * @name 		info
 		 * @color 		#2199e8
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#777", "modifiers": {"light": "#c4c4c4"}}, "title": {"color": "text"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#777"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "selector": {"method": "BEM"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}}, "filters": [], "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#d5d8d9"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#777"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "selector": {"method": "BEM"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -2329,494 +2371,1930 @@ html {
   box-sizing: inherit;
 }
 
+a {
+  color: inherit;
+}
+
 html {
   font-size: 16Px;
-  color: #777;
+  color: #848e91;
   font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
   font-weight: normal;
 }
 
 body {
-  color: #777;
+  color: #848e91;
 }
 
+/**
+				 * @name   			default
+				 * @styleguide 		Fonts / Faces
+				 * @display 		font
+				 * @font-family 	Helvetica Neue, Helvetica, Verdana, Arial, sans-serif
+				 * @font-style 		
+				 * @font-weight 	normal
+				 */
+/**
+				 * @name   			code
+				 * @styleguide 		Fonts / Faces
+				 * @display 		font
+				 * @font-family 	Menlo, Monaco, Consolas, Courier New, monospace
+				 * @font-style 		
+				 * @font-weight 	normal
+				 */
+/**
+				 * @name   			roboto
+				 * @styleguide 		Fonts / Faces
+				 * @display 		font
+				 * @font-family 	Roboto
+				 * @font-style 		
+				 * @font-weight 	
+				 */
+/**
+			 * @name 	```.fi-shadowed```
+			 * @styleguide  	Helpers / Filters
+			 * @example 	html
+			 * <div class="fi-shadowed">
+			 * 	I'm filtered with shadowed
+			 * </div>
+			 */
+.fi-shadowed {
+  filter: drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px);
+}
+
+/**
+			 * @name 	```.fi-blured```
+			 * @styleguide  	Helpers / Filters
+			 * @example 	html
+			 * <div class="fi-blured">
+			 * 	I'm filtered with blured
+			 * </div>
+			 */
+.fi-blured {
+  filter: blur(3px);
+}
+
+/**
+			 * @name 	```.tr-fast```
+			 * @styleguide  	Helpers / Transitions
+			 * @example 	html
+			 * <div class="tr-fast">
+			 * 	I'm transitionned with fast
+			 * </div>
+			 */
 .tr-fast {
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
 }
 
+/**
+			 * @name 	```.tr-slow```
+			 * @styleguide  	Helpers / Transitions
+			 * @example 	html
+			 * <div class="tr-slow">
+			 * 	I'm transitionned with slow
+			 * </div>
+			 */
 .tr-slow {
   transition: all 0.5s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
 }
 
+/**
+			 * @name 	```.tr-default```
+			 * @styleguide  	Helpers / Transitions
+			 * @example 	html
+			 * <div class="tr-default">
+			 * 	I'm transitionned with default
+			 * </div>
+			 */
 .tr-default {
   transition: all 0.2s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
 }
 
+/**
+			 * @name 	```.f-default```
+			 * @styleguide  	Fonts / Classes
+			 * @example 	html
+			 * <div class="f-default">
+			 * 	I have the font "default" applied
+			 * </div>
+			 */
 .f-default {
   font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
   font-weight: normal;
 }
 
+/**
+			 * @name 	```.f-code```
+			 * @styleguide  	Fonts / Classes
+			 * @example 	html
+			 * <div class="f-code">
+			 * 	I have the font "code" applied
+			 * </div>
+			 */
 .f-code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-weight: normal;
 }
 
+/**
+			 * @name 	```.f-roboto```
+			 * @styleguide  	Fonts / Classes
+			 * @example 	html
+			 * <div class="f-roboto">
+			 * 	I have the font "roboto" applied
+			 * </div>
+			 */
+.f-roboto {
+  font-family: "Roboto";
+}
+
+/**
+			 * @name 	```.m-b-smaller```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b-smaller" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b-smaller {
   margin-bottom: 0.3125rem;
 }
 
+/**
+			 * @name 	```.m-t-smaller```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t-smaller" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t-smaller {
   margin-top: 0.3125rem;
 }
 
+/**
+			 * @name 	```.m-l-smaller```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l-smaller" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l-smaller {
   margin-left: 0.3125rem;
 }
 
+/**
+			 * @name 	```.m-r-smaller```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r-smaller {
   margin-right: 0.3125rem;
 }
 
+/**
+			 * @name 	```.m-s-smaller```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s-smaller {
   margin-left: 0.3125rem;
   margin-right: 0.3125rem;
 }
 
-.p-smaller {
+/**
+			 * @name 	```.p-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p-smaller:not(p) {
   padding: 0.3125rem;
 }
 
+/**
+			 * @name 	```.p-b-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b-smaller {
   padding-bottom: 0.3125rem;
 }
 
+/**
+			 * @name 	```.p-t-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t-smaller {
   padding-top: 0.3125rem;
 }
 
+/**
+			 * @name 	```.p-l-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l-smaller {
   padding-left: 0.3125rem;
 }
 
+/**
+			 * @name 	```.p-r-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r-smaller {
   padding-right: 0.3125rem;
 }
 
+/**
+			 * @name 	```.p-s-smaller```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s-smaller {
   padding-left: 0.3125rem;
   padding-right: 0.3125rem;
 }
 
+/**
+			 * @name 	```.m-b-small```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b-small" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b-small {
   margin-bottom: 0.625rem;
 }
 
+/**
+			 * @name 	```.m-t-small```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t-small" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t-small {
   margin-top: 0.625rem;
 }
 
+/**
+			 * @name 	```.m-l-small```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l-small" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l-small {
   margin-left: 0.625rem;
 }
 
+/**
+			 * @name 	```.m-r-small```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r-small {
   margin-right: 0.625rem;
 }
 
+/**
+			 * @name 	```.m-s-small```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s-small {
   margin-left: 0.625rem;
   margin-right: 0.625rem;
 }
 
-.p-small {
+/**
+			 * @name 	```.p-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p-small:not(p) {
   padding: 0.625rem;
 }
 
+/**
+			 * @name 	```.p-b-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b-small {
   padding-bottom: 0.625rem;
 }
 
+/**
+			 * @name 	```.p-t-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t-small {
   padding-top: 0.625rem;
 }
 
+/**
+			 * @name 	```.p-l-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l-small {
   padding-left: 0.625rem;
 }
 
+/**
+			 * @name 	```.p-r-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r-small {
   padding-right: 0.625rem;
 }
 
+/**
+			 * @name 	```.p-s-small```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s-small" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s-small {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
 }
 
+/**
+			 * @name 	```.m-b```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b {
   margin-bottom: 1rem;
 }
 
+/**
+			 * @name 	```.m-t```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t {
   margin-top: 1rem;
 }
 
+/**
+			 * @name 	```.m-l```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l {
   margin-left: 1rem;
 }
 
+/**
+			 * @name 	```.m-r```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r {
   margin-right: 1rem;
 }
 
+/**
+			 * @name 	```.m-s```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s {
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
-.p {
+/**
+			 * @name 	```.p```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p:not(p) {
   padding: 1rem;
 }
 
+/**
+			 * @name 	```.p-b```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b {
   padding-bottom: 1rem;
 }
 
+/**
+			 * @name 	```.p-t```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t {
   padding-top: 1rem;
 }
 
+/**
+			 * @name 	```.p-l```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l {
   padding-left: 1rem;
 }
 
+/**
+			 * @name 	```.p-r```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r {
   padding-right: 1rem;
 }
 
+/**
+			 * @name 	```.p-s```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
+/**
+			 * @name 	```.m-b-medium```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b-medium" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b-medium {
   margin-bottom: 1.625rem;
 }
 
+/**
+			 * @name 	```.m-t-medium```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t-medium" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t-medium {
   margin-top: 1.625rem;
 }
 
+/**
+			 * @name 	```.m-l-medium```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l-medium" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l-medium {
   margin-left: 1.625rem;
 }
 
+/**
+			 * @name 	```.m-r-medium```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r-medium {
   margin-right: 1.625rem;
 }
 
+/**
+			 * @name 	```.m-s-medium```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s-medium {
   margin-left: 1.625rem;
   margin-right: 1.625rem;
 }
 
-.p-medium {
+/**
+			 * @name 	```.p-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p-medium:not(p) {
   padding: 1.625rem;
 }
 
+/**
+			 * @name 	```.p-b-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b-medium {
   padding-bottom: 1.625rem;
 }
 
+/**
+			 * @name 	```.p-t-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t-medium {
   padding-top: 1.625rem;
 }
 
+/**
+			 * @name 	```.p-l-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l-medium {
   padding-left: 1.625rem;
 }
 
+/**
+			 * @name 	```.p-r-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r-medium {
   padding-right: 1.625rem;
 }
 
+/**
+			 * @name 	```.p-s-medium```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s-medium {
   padding-left: 1.625rem;
   padding-right: 1.625rem;
 }
 
+/**
+			 * @name 	```.m-b-big```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b-big" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b-big {
   margin-bottom: 2.375rem;
 }
 
+/**
+			 * @name 	```.m-t-big```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t-big" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t-big {
   margin-top: 2.375rem;
 }
 
+/**
+			 * @name 	```.m-l-big```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l-big" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l-big {
   margin-left: 2.375rem;
 }
 
+/**
+			 * @name 	```.m-r-big```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r-big {
   margin-right: 2.375rem;
 }
 
+/**
+			 * @name 	```.m-s-big```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s-big {
   margin-left: 2.375rem;
   margin-right: 2.375rem;
 }
 
-.p-big {
+/**
+			 * @name 	```.p-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p-big:not(p) {
   padding: 2.375rem;
 }
 
+/**
+			 * @name 	```.p-b-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b-big {
   padding-bottom: 2.375rem;
 }
 
+/**
+			 * @name 	```.p-t-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t-big {
   padding-top: 2.375rem;
 }
 
+/**
+			 * @name 	```.p-l-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l-big {
   padding-left: 2.375rem;
 }
 
+/**
+			 * @name 	```.p-r-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r-big {
   padding-right: 2.375rem;
 }
 
+/**
+			 * @name 	```.p-s-big```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s-big" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s-big {
   padding-left: 2.375rem;
   padding-right: 2.375rem;
 }
 
+/**
+			 * @name 	```.m-b-bigger```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-b-bigger" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-b-bigger {
   margin-bottom: 3rem;
 }
 
+/**
+			 * @name 	```.m-t-bigger```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div class="m-t-bigger" style="background:#777; width:100px; height:5px"></div>
+			 */
 .m-t-bigger {
   margin-top: 3rem;
 }
 
+/**
+			 * @name 	```.m-l-bigger```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div class="m-l-bigger" style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-l-bigger {
   margin-left: 3rem;
 }
 
+/**
+			 * @name 	```.m-r-bigger```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-r-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-r-bigger {
   margin-right: 3rem;
 }
 
+/**
+			 * @name 	```.m-s-bigger```
+			 * @styleguide  	Layout / Margins
+			 * @example 	html
+			 * <div class="m-s-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div>
+			 * <div style="display:inline-block; background:#777; width:50px; height:50px"></div>
+			 */
 .m-s-bigger {
   margin-left: 3rem;
   margin-right: 3rem;
 }
 
-.p-bigger {
+/**
+			 * @name 	```.p-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
+.p-bigger:not(p) {
   padding: 3rem;
 }
 
+/**
+			 * @name 	```.p-b-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-b-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-b-bigger {
   padding-bottom: 3rem;
 }
 
+/**
+			 * @name 	```.p-t-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-t-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-t-bigger {
   padding-top: 3rem;
 }
 
+/**
+			 * @name 	```.p-l-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-l-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-l-bigger {
   padding-left: 3rem;
 }
 
+/**
+			 * @name 	```.p-r-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-r-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-r-bigger {
   padding-right: 3rem;
 }
 
+/**
+			 * @name 	```.p-s-bigger```
+			 * @styleguide  	Layout / Paddings
+			 * @example 	html
+			 * <div class="p-s-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;">
+			 * 	<div style="background:#777; width:100%; height:100%"></div>
+			 * </div>
+			 */
 .p-s-bigger {
   padding-left: 3rem;
   padding-right: 3rem;
 }
 
+/**
+			 * @name 	```.s-smaller```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-smaller">
+			 * 	I have the size "smaller" defined
+			 * </div>
+			 */
 .s-smaller {
   font-size: 0.3rem;
 }
 
+/**
+			 * @name 	```.s-smaller-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-smaller-rel">
+			 * 	I have the size "smaller" defined
+			 * </div>
+			 */
 .s-smaller-rel {
   font-size: 0.3em;
 }
 
+/**
+			 * @name 	```.s-small```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-small">
+			 * 	I have the size "small" defined
+			 * </div>
+			 */
 .s-small {
   font-size: 0.6rem;
 }
 
+/**
+			 * @name 	```.s-small-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-small-rel">
+			 * 	I have the size "small" defined
+			 * </div>
+			 */
 .s-small-rel {
   font-size: 0.6em;
 }
 
+/**
+			 * @name 	```.s-default```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-default">
+			 * 	I have the size "default" defined
+			 * </div>
+			 */
 .s-default {
   font-size: 1rem;
 }
 
+/**
+			 * @name 	```.s-default-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-default-rel">
+			 * 	I have the size "default" defined
+			 * </div>
+			 */
 .s-default-rel {
   font-size: 1em;
 }
 
+/**
+			 * @name 	```.s-medium```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-medium">
+			 * 	I have the size "medium" defined
+			 * </div>
+			 */
 .s-medium {
   font-size: 1.6rem;
 }
 
+/**
+			 * @name 	```.s-medium-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-medium-rel">
+			 * 	I have the size "medium" defined
+			 * </div>
+			 */
 .s-medium-rel {
   font-size: 1.6em;
 }
 
+/**
+			 * @name 	```.s-big```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-big">
+			 * 	I have the size "big" defined
+			 * </div>
+			 */
 .s-big {
   font-size: 2.4rem;
 }
 
+/**
+			 * @name 	```.s-big-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-big-rel">
+			 * 	I have the size "big" defined
+			 * </div>
+			 */
 .s-big-rel {
   font-size: 2.4em;
 }
 
+/**
+			 * @name 	```.s-bigger```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-bigger">
+			 * 	I have the size "bigger" defined
+			 * </div>
+			 */
 .s-bigger {
   font-size: 3rem;
 }
 
+/**
+			 * @name 	```.s-bigger-rel```
+			 * @styleguide  	Layout / Sizes
+			 * @example 	html
+			 * <div class="s-bigger-rel">
+			 * 	I have the size "bigger" defined
+			 * </div>
+			 */
 .s-bigger-rel {
   font-size: 3em;
 }
 
+/**
+		 * @name 	```.no-p-t```
+		 * Reset **top** padding
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-p-t" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-p-t {
   padding-top: 0 !important;
 }
 
+/**
+		 * @name 	```.no-p-r```
+		 * Reset **right** padding
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-p-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-p-r {
   padding-right: 0 !important;
 }
 
+/**
+		 * @name 	```.no-p-b```
+		 * Reset **bottom** padding
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-p-b" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-p-b {
   padding-bottom: 0 !important;
 }
 
+/**
+		 * @name 	```.no-p-l```
+		 * Reset **left** padding
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-p-l" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-p-l {
   padding-left: 0 !important;
 }
 
+/**
+		 * @name 	```.no-p-s```
+		 * Reset **left** and **right** paddings
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-p-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-p-s {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
+/**
+		 * @name 	```.no-m-t```
+		 * Reset **top** padding
+		 * @styleguide  	Layout / No margin
+		 * @example 	html
+		 * <div class="no-m-t" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-m-t {
   margin-top: 0 !important;
 }
 
+/**
+		 * @name 	```.no-m-r```
+		 * Reset **right** padding
+		 * @styleguide  	Layout / No margin
+		 * @example 	html
+		 * <div class="no-m-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-m-r {
   margin-right: 0 !important;
 }
 
+/**
+		 * @name 	```.no-m-b```
+		 * Reset **bottom** padding
+		 * @styleguide  	Layout / No margin
+		 * @example 	html
+		 * <div class="no-m-b" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-m-b {
   margin-bottom: 0 !important;
 }
 
+/**
+		 * @name 	```.no-m-l```
+		 * Reset **left** padding
+		 * @styleguide  	Layout / No margin
+		 * @example 	html
+		 * <div class="no-m-l" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-m-l {
   margin-left: 0 !important;
 }
 
+/**
+		 * @name 	```.no-m-s```
+		 * Reset **left** and **right** margins
+		 * @styleguide  	Layout / No paddings
+		 * @example 	html
+		 * <div class="no-m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div>
+		 */
 .no-m-s {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
 
+/**
+				 * @name 	```.c-default```
+				 * Specify the color to **default**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-default">
+				 * 	I'm in "default" color
+				 * </div>
+				 */
 .c-default {
-  color: #777;
+  color: #848e91;
 }
 
+/**
+				 * @name 	```.bkg-default```
+				 * Specify the background color to **default**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-default p" style="color:white">
+				 * 	My background color is "default"
+				 * </div>
+				 */
 .bkg-default {
-  background-color: #777;
+  background-color: #848e91;
 }
 
+/**
+						 * @name 	```.c-default--light```
+						 * Specify the color to **default--light**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="c-default--light">
+						 * 	I'm in "default--light" color
+						 * </div>
+						 */
 .c-default--light {
-  color: #c4c4c4;
+  color: #d5d8d9;
 }
 
+/**
+						 * @name 	```.bkg-default--light```
+						 * Specify the background color to **default--light**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="bkg-default--light p" style="color:white">
+						 * 	My background color is "default--light"
+						 * </div>
+						 */
 .bkg-default--light {
-  background-color: #c4c4c4;
+  background-color: #d5d8d9;
 }
 
+/**
+				 * @name 	```.c-title```
+				 * Specify the color to **title**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-title">
+				 * 	I'm in "title" color
+				 * </div>
+				 */
 .c-title {
-  color: #777;
+  color: #2b3438;
 }
 
+/**
+				 * @name 	```.bkg-title```
+				 * Specify the background color to **title**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-title p" style="color:white">
+				 * 	My background color is "title"
+				 * </div>
+				 */
 .bkg-title {
-  background-color: #777;
+  background-color: #2b3438;
 }
 
+/**
+				 * @name 	```.c-text```
+				 * Specify the color to **text**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-text">
+				 * 	I'm in "text" color
+				 * </div>
+				 */
 .c-text {
-  color: #777;
+  color: #848e91;
 }
 
+/**
+				 * @name 	```.bkg-text```
+				 * Specify the background color to **text**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-text p" style="color:white">
+				 * 	My background color is "text"
+				 * </div>
+				 */
 .bkg-text {
-  background-color: #777;
+  background-color: #848e91;
 }
 
+/**
+				 * @name 	```.c-link```
+				 * Specify the color to **link**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-link">
+				 * 	I'm in "link" color
+				 * </div>
+				 */
 .c-link {
   color: #f2bc2b;
 }
 
+/**
+				 * @name 	```.bkg-link```
+				 * Specify the background color to **link**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-link p" style="color:white">
+				 * 	My background color is "link"
+				 * </div>
+				 */
 .bkg-link {
   background-color: #f2bc2b;
 }
 
+/**
+				 * @name 	```.c-primary```
+				 * Specify the color to **primary**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-primary">
+				 * 	I'm in "primary" color
+				 * </div>
+				 */
 .c-primary {
   color: #f2bc2b;
 }
 
+/**
+				 * @name 	```.bkg-primary```
+				 * Specify the background color to **primary**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-primary p" style="color:white">
+				 * 	My background color is "primary"
+				 * </div>
+				 */
 .bkg-primary {
   background-color: #f2bc2b;
 }
 
+/**
+				 * @name 	```.c-secondary```
+				 * Specify the color to **secondary**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-secondary">
+				 * 	I'm in "secondary" color
+				 * </div>
+				 */
 .c-secondary {
   color: #777;
 }
 
+/**
+				 * @name 	```.bkg-secondary```
+				 * Specify the background color to **secondary**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-secondary p" style="color:white">
+				 * 	My background color is "secondary"
+				 * </div>
+				 */
 .bkg-secondary {
   background-color: #777;
 }
 
+/**
+				 * @name 	```.c-success```
+				 * Specify the color to **success**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-success">
+				 * 	I'm in "success" color
+				 * </div>
+				 */
 .c-success {
   color: #5cb85c;
 }
 
+/**
+				 * @name 	```.bkg-success```
+				 * Specify the background color to **success**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-success p" style="color:white">
+				 * 	My background color is "success"
+				 * </div>
+				 */
 .bkg-success {
   background-color: #5cb85c;
 }
 
+/**
+				 * @name 	```.c-warning```
+				 * Specify the color to **warning**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-warning">
+				 * 	I'm in "warning" color
+				 * </div>
+				 */
 .c-warning {
   color: #f0ad4e;
 }
 
+/**
+				 * @name 	```.bkg-warning```
+				 * Specify the background color to **warning**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-warning p" style="color:white">
+				 * 	My background color is "warning"
+				 * </div>
+				 */
 .bkg-warning {
   background-color: #f0ad4e;
 }
 
+/**
+				 * @name 	```.c-error```
+				 * Specify the color to **error**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-error">
+				 * 	I'm in "error" color
+				 * </div>
+				 */
 .c-error {
   color: #d9534f;
 }
 
+/**
+				 * @name 	```.bkg-error```
+				 * Specify the background color to **error**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-error p" style="color:white">
+				 * 	My background color is "error"
+				 * </div>
+				 */
 .bkg-error {
   background-color: #d9534f;
 }
 
+/**
+				 * @name 	```.c-info```
+				 * Specify the color to **info**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-info">
+				 * 	I'm in "info" color
+				 * </div>
+				 */
 .c-info {
   color: #2199e8;
 }
 
+/**
+				 * @name 	```.bkg-info```
+				 * Specify the background color to **info**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-info p" style="color:white">
+				 * 	My background color is "info"
+				 * </div>
+				 */
 .bkg-info {
   background-color: #2199e8;
+}
+
+.s-dropdown__menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  pointer-events: none;
+}
+
+.s-dropdown:hover .s-dropdown__menu, .s-dropdown.active .s-dropdown__menu, .s-dropdown.s-dropdown--active .s-dropdown__menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/**
+		 * @name 	```.s-dropdown```
+		 * Provide a nice dropdown component
+		 * @styleguide 		Components / s-dropdown
+		 * @example 	html
+		 * <div style="display:inline-block" class="s-dropdown">
+		 * 	<a>Display dropdown</a>
+		 * 	<ul class="s-dropdown__menu">
+		 *  	<li class="s-dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 1
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="s-dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 2
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="s-dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 3
+		 *   		</a>
+		 *  	</li>
+		 *  </ul>
+		 * </div>
+		 */
+.s-dropdown {
+  position: relative;
+  /**
+			 * @name 	```.s-dropdown--right```
+			 * Provide a nice dropdown component aligned to the right
+			 * @styleguide 		Components / s-dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="s-dropdown s-dropdown--right">
+			 * 	<a>Display right dropdown</a>
+			 * 	<ul class="s-dropdown__menu">
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+}
+
+.s-dropdown:hover, .s-dropdown.active, .s-dropdown.s-dropdown--active {
+  z-index: 1;
+}
+
+.s-dropdown:hover .s-dropdown__menu, .s-dropdown.active .s-dropdown__menu, .s-dropdown.s-dropdown--active .s-dropdown__menu {
+  top: 100%;
+}
+
+.s-dropdown.s-dropdown--right .s-dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+.s-dropdown.s-dropdown--up .s-dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.s-dropdown.s-dropdown--up:hover .s-dropdown__menu, .s-dropdown.s-dropdown--up.active .s-dropdown__menu, .s-dropdown.s-dropdown--up.s-dropdown--active .s-dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.s-dropdown__menu {
+  transition: all, 0.2s, ease-in-out, 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.s-dropdown__item {
+  white-space: nowrap;
+}
+
+.s-dropdown__item > a {
+  display: block;
+}
+
+.s-dropdown__menu {
+  background: #848e91;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  overflow: hidden;
+}
+
+.s-dropdown__item {
+  border-top: solid 1px rgba(132, 142, 145, 0.2);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: white;
+  left: 0;
+  position: relative;
+  color: #848e91;
+  transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.s-dropdown__item:hover, .s-dropdown__item.active, .s-dropdown__item.s-dropdown--active {
+  left: 5px;
+}
+
+.s-dropdown__item > a {
+  padding: 0.8125em 1em;
+  color: #848e91;
+  display: block;
+  width: 100%;
+}
+
+/**
+			 * @name 	```.s-dropdown--default```
+			 * Provide a nice dropdown default component
+			 * @styleguide 		Components / s-dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="s-dropdown s-dropdown--default">
+			 * 	<a>Display default dropdown</a>
+			 * 	<ul class="s-dropdown__menu">
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.s-dropdown--default .s-dropdown__menu {
+  background-color: #848e91;
+}
+
+/**
+			 * @name 	```.s-dropdown--primary```
+			 * Provide a nice dropdown primary component
+			 * @styleguide 		Components / s-dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="s-dropdown s-dropdown--primary">
+			 * 	<a>Display primary dropdown</a>
+			 * 	<ul class="s-dropdown__menu">
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.s-dropdown--primary .s-dropdown__menu {
+  background-color: #f2bc2b;
+}
+
+/**
+			 * @name 	```.s-dropdown--secondary```
+			 * Provide a nice dropdown secondary component
+			 * @styleguide 		Components / s-dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="s-dropdown s-dropdown--secondary">
+			 * 	<a>Display secondary dropdown</a>
+			 * 	<ul class="s-dropdown__menu">
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="s-dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.s-dropdown--secondary .s-dropdown__menu {
+  background-color: #777;
+}
+
+.nav--justify, .nav--inline, .nav--tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+/**
+	 * @name 	```.nav--justify```
+	 * Provide a simple justify navigation component
+	 * @styleguide 	Components / Navigations
+	 * @example 	html
+	 * <ul class="nav nav--justify">
+	 * 	<li class="nav__item">
+	 *  	Item 1
+	 * 	</li>
+	 * 	<li class="nav__item">
+	 *  	Item 2
+	 * 	</li>
+	 * 	<li class="nav__item">
+	 *  	Item 3
+	 * 	</li>
+	 * </ul>
+	 */
+.nav--justify {
+  display: table;
+  width: 100%;
+}
+
+.nav--justify > li,
+.nav--justify > .nav__item {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.nav--justify > li, .nav--justify > li a,
+.nav--justify > .nav__item,
+.nav--justify > .nav__item a {
+  text-align: center;
+}
+
+.nav--right {
+  text-align: right;
+}
+
+/**
+		 * @name 	```.nav--inline```
+		 * Provide a simple inline navigation component
+		 * @styleguide 	Components / Navigations
+		 * @example 	html
+		 * <ul class="nav nav--inline">
+		 * 	<li class="nav__item">
+		 *  	Item 1
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 2
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 3
+		 * 	</li>
+		 * </ul>
+		 */
+.nav--inline {
+  display: block;
+}
+
+.nav--inline > li,
+.nav--inline > .nav__item {
+  position: relative;
+  display: inline-block;
+}
+
+.nav--right {
+  text-align: right;
+}
+
+/**
+		 * @name 	```.nav--tabs```
+		 * Provide a simple tabs navigation component
+		 * @styleguide 	Components / Navigations
+		 * @example 	html
+		 * <ul class="nav nav--tabs">
+		 * 	<li class="nav__item">
+		 *  	Item 1
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 2
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 3
+		 * 	</li>
+		 * </ul>
+		 */
+.nav--tabs > li,
+.nav--tabs > .nav__item {
+  position: relative;
+  padding: 1em 0.8125em;
+  float: left;
+  cursor: pointer;
+}
+
+.nav--tabs > li.disabled, .nav--tabs > li.nav--disabled,
+.nav--tabs > .nav__item.disabled,
+.nav--tabs > .nav__item.nav--disabled {
+  pointer-events: none;
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.nav--tabs {
+  border-top-left-radius: 0.1875em;
+  border-top-right-radius: 0.1875em;
+  /**
+				 * @name 	```.nav--tabs.nav--default```
+				 * Provide a simple tabs navigation component
+				 * @styleguide 	Components / Navigations
+				 * @example 	html
+				 * <ul class="nav nav--tabs nav--default">
+				 * 	<li class="nav__item active">
+				 *  	Item 1
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 2
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 3
+				 * 	</li>
+				 * </ul>
+				 */
+  /**
+				 * @name 	```.nav--tabs.nav--primary```
+				 * Provide a simple tabs navigation component
+				 * @styleguide 	Components / Navigations
+				 * @example 	html
+				 * <ul class="nav nav--tabs nav--primary">
+				 * 	<li class="nav__item active">
+				 *  	Item 1
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 2
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 3
+				 * 	</li>
+				 * </ul>
+				 */
+  /**
+				 * @name 	```.nav--tabs.nav--secondary```
+				 * Provide a simple tabs navigation component
+				 * @styleguide 	Components / Navigations
+				 * @example 	html
+				 * <ul class="nav nav--tabs nav--secondary">
+				 * 	<li class="nav__item active">
+				 *  	Item 1
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 2
+				 * 	</li>
+				 * 	<li class="nav__item">
+				 *  	Item 3
+				 * 	</li>
+				 * </ul>
+				 */
+}
+
+.nav--tabs > li,
+.nav--tabs > .nav__item {
+  position: relative;
+  margin-bottom: -1px;
+}
+
+.nav--tabs.nav--default {
+  border-bottom: 1px solid rgba(132, 142, 145, 0.2);
+}
+
+.nav--tabs.nav--default > li,
+.nav--tabs.nav--default > .nav__item {
+  border: 1px solid rgba(132, 142, 145, 0.1);
+  color: #848e91;
+}
+
+.nav--tabs.nav--default > li.nav--hover, .nav--tabs.nav--default > li:hover,
+.nav--tabs.nav--default > .nav__item.nav--hover,
+.nav--tabs.nav--default > .nav__item:hover {
+  background-color: rgba(132, 142, 145, 0.1);
+}
+
+.nav--tabs.nav--default > li.active, .nav--tabs.nav--default > li.nav--active,
+.nav--tabs.nav--default > .nav__item.active,
+.nav--tabs.nav--default > .nav__item.nav--active {
+  background-color: #848e91;
+  border-color: #848e91;
+  color: white;
+}
+
+.nav--tabs.nav--primary {
+  border-bottom: 1px solid rgba(242, 188, 43, 0.2);
+}
+
+.nav--tabs.nav--primary > li,
+.nav--tabs.nav--primary > .nav__item {
+  border: 1px solid rgba(242, 188, 43, 0.1);
+  color: #f2bc2b;
+}
+
+.nav--tabs.nav--primary > li.nav--hover, .nav--tabs.nav--primary > li:hover,
+.nav--tabs.nav--primary > .nav__item.nav--hover,
+.nav--tabs.nav--primary > .nav__item:hover {
+  background-color: rgba(242, 188, 43, 0.1);
+}
+
+.nav--tabs.nav--primary > li.active, .nav--tabs.nav--primary > li.nav--active,
+.nav--tabs.nav--primary > .nav__item.active,
+.nav--tabs.nav--primary > .nav__item.nav--active {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.nav--tabs.nav--secondary {
+  border-bottom: 1px solid rgba(119, 119, 119, 0.2);
+}
+
+.nav--tabs.nav--secondary > li,
+.nav--tabs.nav--secondary > .nav__item {
+  border: 1px solid rgba(119, 119, 119, 0.1);
+  color: #777;
+}
+
+.nav--tabs.nav--secondary > li.nav--hover, .nav--tabs.nav--secondary > li:hover,
+.nav--tabs.nav--secondary > .nav__item.nav--hover,
+.nav--tabs.nav--secondary > .nav__item:hover {
+  background-color: rgba(119, 119, 119, 0.1);
+}
+
+.nav--tabs.nav--secondary > li.active, .nav--tabs.nav--secondary > li.nav--active,
+.nav--tabs.nav--secondary > .nav__item.active,
+.nav--tabs.nav--secondary > .nav__item.nav--active {
+  background-color: #777;
+  border-color: #777;
+  color: white;
 }
 
 /**
@@ -2831,7 +4309,7 @@ body {
 	 */
 .h1,
 .tf h1 {
-  font-size: 5.5349rem;
+  font-size: 3.5em;
   line-height: 1.1;
 }
 
@@ -2855,7 +4333,7 @@ body {
 	 */
 .h2,
 .tf h2 {
-  font-size: 4.16158rem;
+  font-size: 3em;
   line-height: 1.1;
 }
 
@@ -2879,7 +4357,7 @@ body {
 	 */
 .h3,
 .tf h3 {
-  font-size: 3.12901rem;
+  font-size: 2.5em;
   line-height: 1.1;
 }
 
@@ -2903,7 +4381,7 @@ body {
 	 */
 .h4,
 .tf h4 {
-  font-size: 2.35264rem;
+  font-size: 2em;
   line-height: 1.1;
 }
 
@@ -2927,7 +4405,7 @@ body {
 	 */
 .h5,
 .tf h5 {
-  font-size: 1.7689rem;
+  font-size: 1.5em;
   line-height: 1.1;
 }
 
@@ -2951,7 +4429,7 @@ body {
 	 */
 .h6,
 .tf h6 {
-  font-size: 1.33rem;
+  font-size: 1em;
   line-height: 1.1;
 }
 
@@ -2970,37 +4448,37 @@ h1.vr,
 .vr > h4, h5.vr,
 .vr > h5, h6.vr,
 .vr > h6 {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .h1,
 .tf h1 {
-  color: #777;
+  color: #2b3438;
 }
 
 .h2,
 .tf h2 {
-  color: #777;
+  color: #2b3438;
 }
 
 .h3,
 .tf h3 {
-  color: #777;
+  color: #2b3438;
 }
 
 .h4,
 .tf h4 {
-  color: #777;
+  color: #2b3438;
 }
 
 .h5,
 .tf h5 {
-  color: #777;
+  color: #2b3438;
 }
 
 .h6,
 .tf h6 {
-  color: #777;
+  color: #2b3438;
 }
 
 /**
@@ -3008,10 +4486,10 @@ h1.vr,
 	 * Default paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p">
+	 * <p class="p vr">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf">
+	 * <div class="tf vr">
 	 * 	<p>
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -3035,10 +4513,10 @@ h1.vr,
 	 * Lead paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p p--lead">
+	 * <p class="p p--lead vr">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf">
+	 * <div class="tf vr">
 	 * 	<p class="lead">
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -3046,46 +4524,50 @@ h1.vr,
 	 */
 .p--lead,
 .tf p.lead {
-  font-size: 1.3rem;
+  font-size: 1.3em;
   font-weight: lighter;
 }
 
 p.vr,
 .vr > p, .p.vr,
 .vr > .p {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
+}
+
+.link,
+.tf a {
+  text-decoration: none;
+  color: #f2bc2b;
 }
 
 /**
-		 * @name 	Base button
+		 * @name 	```.btn```
 		 * Lead paragraph styling
 		 * @styleguide 	Components / Buttons
 		 * @example 	html
 		 * <a class="btn">
-		 * 	Hello World
+		 * 	Default button
 		 * </a>
 		 */
 .btn {
   border-radius: 0.1875em;
   padding: 0.8125em 1em;
   height: 2.625em;
-  text-align: left;
 }
 
 /**
-		 * @name 	Block button
+		 * @name 	```.btn--block```
 		 * Lead paragraph styling
 		 * @styleguide 	Components / Buttons
 		 * @example 	html
 		 * <a class="btn btn--block">
-		 * 	Hello World
+		 * 	Block button
 		 * </a>
 		 */
 .btn--block {
   border-radius: 0.1875em;
   padding: 0.8125em 1em;
   height: 2.625em;
-  text-align: left;
   display: block;
   width: 100%;
 }
@@ -3093,29 +4575,81 @@ p.vr,
 .btn {
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
-  background-color: #777;
-  border: 1px solid #777;
+  background-color: #848e91;
+  border-color: #848e91;
   color: white;
 }
 
 .btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
-  background-color: #515151;
-  border-color: #515151;
+  background-color: #5f676a;
+  border-color: #5f676a;
+}
+
+.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.40625em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2em);
 }
 
 /**
-			 * @name 	primary button
-			 * Lead paragraph styling
+			 * @name 	```.btn--primary```
+			 * Primary button
 			 * @styleguide 	Components / Buttons
 			 * @example 	html
 			 * <a class="btn btn--primary">
-			 * 	Hello World
+			 * 	Primary button
 			 * </a>
 			 */
 .btn--primary {
   background-color: #f2bc2b;
-  border: 1px solid #f2bc2b;
+  border-color: #f2bc2b;
   color: white;
+  /**
+				 * @name 	```.btn--outline.btn--primary```
+				 * Outline primary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--outline btn--primary">
+				 * 	Primary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn--link.btn--primary```
+				 * Link primary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--link btn--primary">
+				 * 	Primary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn:disabled.btn--primary```
+				 * Disabled primary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <button disabled class="btn btn--primary">
+				 * 	Primary outlined button
+				 * </button>
+				 */
 }
 
 .btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
@@ -3126,7 +4660,7 @@ p.vr,
 .btn--primary.btn--outline {
   color: #f2bc2b;
   background-color: transparent;
-  border: 1px solid #f2bc2b;
+  border-color: #f2bc2b;
 }
 
 .btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
@@ -3139,7 +4673,7 @@ p.vr,
 .btn--primary.btn--link {
   background-color: transparent !important;
   color: #f2bc2b !important;
-  border: none !important;
+  border-color: transparent !important;
   position: relative;
 }
 
@@ -3163,7 +4697,7 @@ p.vr,
 
 .btn--primary.btn:disabled {
   background-color: #f2bc2b;
-  border: 1px solid #f2bc2b;
+  border-color: #f2bc2b;
   color: white;
   opacity: 0.25;
   cursor: not-allowed !important;
@@ -3175,19 +4709,57 @@ p.vr,
   border-color: #c4920c;
 }
 
+.btn--hover-primary:hover {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
 /**
-			 * @name 	secondary button
-			 * Lead paragraph styling
+			 * @name 	```.btn--secondary```
+			 * Secondary button
 			 * @styleguide 	Components / Buttons
 			 * @example 	html
 			 * <a class="btn btn--secondary">
-			 * 	Hello World
+			 * 	Secondary button
 			 * </a>
 			 */
 .btn--secondary {
   background-color: #777;
-  border: 1px solid #777;
+  border-color: #777;
   color: white;
+  /**
+				 * @name 	```.btn--outline.btn--secondary```
+				 * Outline secondary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--outline btn--secondary">
+				 * 	Secondary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn--link.btn--secondary```
+				 * Link secondary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--link btn--secondary">
+				 * 	Secondary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn:disabled.btn--secondary```
+				 * Disabled secondary button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <button disabled class="btn btn--secondary">
+				 * 	Secondary outlined button
+				 * </button>
+				 */
 }
 
 .btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
@@ -3198,7 +4770,7 @@ p.vr,
 .btn--secondary.btn--outline {
   color: #777;
   background-color: transparent;
-  border: 1px solid #777;
+  border-color: #777;
 }
 
 .btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
@@ -3211,7 +4783,7 @@ p.vr,
 .btn--secondary.btn--link {
   background-color: transparent !important;
   color: #777 !important;
-  border: none !important;
+  border-color: transparent !important;
   position: relative;
 }
 
@@ -3235,7 +4807,7 @@ p.vr,
 
 .btn--secondary.btn:disabled {
   background-color: #777;
-  border: 1px solid #777;
+  border-color: #777;
   color: white;
   opacity: 0.25;
   cursor: not-allowed !important;
@@ -3247,19 +4819,57 @@ p.vr,
   border-color: #515151;
 }
 
+.btn--hover-secondary:hover {
+  background-color: #777;
+  border-color: #777;
+  color: white;
+}
+
+.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) {
+  background-color: #515151;
+  border-color: #515151;
+}
+
 /**
-			 * @name 	success button
-			 * Lead paragraph styling
+			 * @name 	```.btn--success```
+			 * Success button
 			 * @styleguide 	Components / Buttons
 			 * @example 	html
 			 * <a class="btn btn--success">
-			 * 	Hello World
+			 * 	Success button
 			 * </a>
 			 */
 .btn--success {
   background-color: #5cb85c;
-  border: 1px solid #5cb85c;
+  border-color: #5cb85c;
   color: white;
+  /**
+				 * @name 	```.btn--outline.btn--success```
+				 * Outline success button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--outline btn--success">
+				 * 	Success outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn--link.btn--success```
+				 * Link success button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--link btn--success">
+				 * 	Success link button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn:disabled.btn--success```
+				 * Disabled success button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <button disabled class="btn btn--success">
+				 * 	Success outlined button
+				 * </button>
+				 */
 }
 
 .btn--success[active]:not(:disabled), .btn--success.active:not(:disabled), .btn--success:active:not(:disabled), .btn--success:hover:not(:disabled) {
@@ -3270,7 +4880,7 @@ p.vr,
 .btn--success.btn--outline {
   color: #5cb85c;
   background-color: transparent;
-  border: 1px solid #5cb85c;
+  border-color: #5cb85c;
 }
 
 .btn--success.btn--outline:active:not(:disabled), .btn--success.btn--outline:hover:not(:disabled), .btn--success.btn--outline.active:not(:disabled),
@@ -3283,7 +4893,7 @@ p.vr,
 .btn--success.btn--link {
   background-color: transparent !important;
   color: #5cb85c !important;
-  border: none !important;
+  border-color: transparent !important;
   position: relative;
 }
 
@@ -3307,7 +4917,7 @@ p.vr,
 
 .btn--success.btn:disabled {
   background-color: #5cb85c;
-  border: 1px solid #5cb85c;
+  border-color: #5cb85c;
   color: white;
   opacity: 0.25;
   cursor: not-allowed !important;
@@ -3319,19 +4929,57 @@ p.vr,
   border-color: #3d8b3d;
 }
 
+.btn--hover-success:hover {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  color: white;
+}
+
+.btn--hover-success:hover[active]:not(:disabled), .btn--hover-success:hover.active:not(:disabled), .btn--hover-success:hover:active:not(:disabled), .btn--hover-success:hover:hover:not(:disabled) {
+  background-color: #3d8b3d;
+  border-color: #3d8b3d;
+}
+
 /**
-			 * @name 	error button
-			 * Lead paragraph styling
+			 * @name 	```.btn--error```
+			 * Error button
 			 * @styleguide 	Components / Buttons
 			 * @example 	html
 			 * <a class="btn btn--error">
-			 * 	Hello World
+			 * 	Error button
 			 * </a>
 			 */
 .btn--error {
   background-color: #d9534f;
-  border: 1px solid #d9534f;
+  border-color: #d9534f;
   color: white;
+  /**
+				 * @name 	```.btn--outline.btn--error```
+				 * Outline error button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--outline btn--error">
+				 * 	Error outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn--link.btn--error```
+				 * Link error button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <a class="btn btn--link btn--error">
+				 * 	Error link button
+				 * </a>
+				 */
+  /**
+				 * @name 	```.btn:disabled.btn--error```
+				 * Disabled error button
+				 * @styleguide 	Components / Buttons
+				 * @example 	html
+				 * <button disabled class="btn btn--error">
+				 * 	Error outlined button
+				 * </button>
+				 */
 }
 
 .btn--error[active]:not(:disabled), .btn--error.active:not(:disabled), .btn--error:active:not(:disabled), .btn--error:hover:not(:disabled) {
@@ -3342,7 +4990,7 @@ p.vr,
 .btn--error.btn--outline {
   color: #d9534f;
   background-color: transparent;
-  border: 1px solid #d9534f;
+  border-color: #d9534f;
 }
 
 .btn--error.btn--outline:active:not(:disabled), .btn--error.btn--outline:hover:not(:disabled), .btn--error.btn--outline.active:not(:disabled),
@@ -3355,7 +5003,7 @@ p.vr,
 .btn--error.btn--link {
   background-color: transparent !important;
   color: #d9534f !important;
-  border: none !important;
+  border-color: transparent !important;
   position: relative;
 }
 
@@ -3379,7 +5027,7 @@ p.vr,
 
 .btn--error.btn:disabled {
   background-color: #d9534f;
-  border: 1px solid #d9534f;
+  border-color: #d9534f;
   color: white;
   opacity: 0.25;
   cursor: not-allowed !important;
@@ -3391,16 +5039,27 @@ p.vr,
   border-color: #b52b27;
 }
 
-corner-badge {
+.btn--hover-error:hover {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: white;
+}
+
+.btn--hover-error:hover[active]:not(:disabled), .btn--hover-error:hover.active:not(:disabled), .btn--hover-error:hover:active:not(:disabled), .btn--hover-error:hover:hover:not(:disabled) {
+  background-color: #b52b27;
+  border-color: #b52b27;
+}
+
+.corner-badge {
   position: absolute;
   display: block;
 }
 
-corner-badge > * {
+.corner-badge > * {
   position: relative;
 }
 
-corner-badge:before {
+.corner-badge:before {
   content: '';
   display: block;
   position: absolute;
@@ -3408,31 +5067,31 @@ corner-badge:before {
   border-color: transparent;
 }
 
-corner-badge {
+.corner-badge {
   font-size: 1em;
   width: 3em;
   height: 3em;
   padding: 0.4em;
 }
 
-corner-badge:before {
+.corner-badge:before {
   border-width: 1.5em;
 }
 
 /**
-			 * @name 	corner-badge top left
+			 * @name 	```.corner-badge--tl```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl">
+			 * <div class="corner-badge corner-badge--tl">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[align="tl"] {
+.corner-badge--tl {
   top: 0;
   left: 0;
 }
 
-corner-badge[align="tl"]:before {
+.corner-badge--tl:before {
   border-right-color: transparent !important;
   border-bottom-color: transparent !important;
   top: 0;
@@ -3440,20 +5099,20 @@ corner-badge[align="tl"]:before {
 }
 
 /**
-			 * @name 	corner-badge top right
+			 * @name 	```.corner-badge--tr```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tr">
+			 * <div class="corner-badge corner-badge--tr">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[align="tr"] {
+.corner-badge--tr {
   top: 0;
   right: 0;
   text-align: right;
 }
 
-corner-badge[align="tr"]:before {
+.corner-badge--tr:before {
   border-bottom-color: transparent !important;
   border-left-color: transparent !important;
   top: 0;
@@ -3461,19 +5120,19 @@ corner-badge[align="tr"]:before {
 }
 
 /**
-			 * @name 	corner-badge bottom left
+			 * @name 	```.corner-badge--bl```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="bl">
+			 * <div class="corner-badge corner-badge--bl">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[align="bl"] {
+.corner-badge--bl {
   bottom: 0;
   left: 0;
 }
 
-corner-badge[align="bl"]:before {
+.corner-badge--bl:before {
   border-top-color: transparent !important;
   border-right-color: transparent !important;
   bottom: 0;
@@ -3481,114 +5140,114 @@ corner-badge[align="bl"]:before {
 }
 
 /**
-			 * @name 	corner-badge bottom right
+			 * @name 	```.corner-badge--br```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="br">
+			 * <div class="corner-badge corner-badge--br">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[align="br"] {
+.corner-badge--br {
   bottom: 0;
   right: 0;
 }
 
-corner-badge[align="br"]:before {
+.corner-badge--br:before {
   border-top-color: transparent !important;
   border-left-color: transparent !important;
   bottom: 0;
   right: 0;
 }
 
-corner-badge {
+.corner-badge {
   color: white;
 }
 
-corner-badge:before {
-  border-color: #777;
+.corner-badge:before {
+  border-color: #848e91;
 }
 
 /**
-			 * @name 	corner-badge default
+			 * @name 	```.corner-badge--default```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="default">
+			 * <div class="corner-badge corner-badge--tl corner-badge--default">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="default"]:before {
-  border-color: #777;
+.corner-badge--default:before {
+  border-color: #848e91;
 }
 
 /**
-			 * @name 	corner-badge primary
+			 * @name 	```.corner-badge--primary```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="primary">
+			 * <div class="corner-badge corner-badge--tl corner-badge--primary">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="primary"]:before {
+.corner-badge--primary:before {
   border-color: #f2bc2b;
 }
 
 /**
-			 * @name 	corner-badge secondary
+			 * @name 	```.corner-badge--secondary```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="secondary">
+			 * <div class="corner-badge corner-badge--tl corner-badge--secondary">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="secondary"]:before {
+.corner-badge--secondary:before {
   border-color: #777;
 }
 
 /**
-			 * @name 	corner-badge success
+			 * @name 	```.corner-badge--success```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="success">
+			 * <div class="corner-badge corner-badge--tl corner-badge--success">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="success"]:before {
+.corner-badge--success:before {
   border-color: #5cb85c;
 }
 
 /**
-			 * @name 	corner-badge warning
+			 * @name 	```.corner-badge--warning```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="warning">
+			 * <div class="corner-badge corner-badge--tl corner-badge--warning">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="warning"]:before {
+.corner-badge--warning:before {
   border-color: #f0ad4e;
 }
 
 /**
-			 * @name 	corner-badge error
+			 * @name 	```.corner-badge--error```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="error">
+			 * <div class="corner-badge corner-badge--tl corner-badge--error">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="error"]:before {
+.corner-badge--error:before {
   border-color: #d9534f;
 }
 
 /**
-			 * @name 	corner-badge info
+			 * @name 	```.corner-badge--info```
 			 * @styleguide 	Components / Corner Badge
 			 * @example 	html
-			 * <corner-badge align="tl" color="info">
+			 * <div class="corner-badge corner-badge--tl corner-badge--info">
 			 * 	<!-- content here -->
-			 * </corner-badge>
+			 * </div>
 			 */
-corner-badge[color="info"]:before {
+.corner-badge--info:before {
   border-color: #2199e8;
 }
 
