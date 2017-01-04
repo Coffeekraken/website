@@ -205,7 +205,36 @@
 
 button { line-height: 1; }
 
-/** Paragraphs */
+/** Apply the title css @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the title bare css @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the title style css @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the paragraph bare css @param 		{Number} 		$size 				The size wanted @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the paragraph style css @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the link css @param 		{Color} 		[$color=primary] 		The color used to style link @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the link bare css @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the link style css @param 		{Color} 		[$color=primary] 		The color used to style link @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the inline-text css @param 		{String} 		$tag 		The tag to use the style for @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the inline-text bare css @param 		{String} 		$tag 		The tag to use the style for @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the inline-text css @param 		{String} 		$tag 		The tag to use the style for @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the list css @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt" @param 		{Color} 			[$color=primary] 	The color used for styling bullets @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the list bare css @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt" @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Apply the list style css @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt" @param 		{Color} 			[$color=primary] 	The color used for styling bullets @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide all the classes of the typography component like titles, paragraphs, lists, etc.. @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the styling for the titles classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the titles classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the style styling for the titles classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the styling for the paragraphs classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the ```.p``` and ```.p--lead``` classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the ```.p``` class @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the styling for the links classes @param 		{Color} 		[$color=primary] 		The color used to style links @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the links classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the style styling for the links classes @param 		{Color} 		[$color=primary] 		The color used to style links @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the styling for the inline-text classes @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the inline-text classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the style styling for the inline-text classes @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the styling for the lists classes @param 		{Color} 		[$color=primary] 		The color used to style bullets @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the bare styling for the lists classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
+/** Provide the style styling for the lists classes @param 		{Color} 		[$color=primary] 		The color used to style bullets @author 		Olivier Bossel <olivier.bossel@gmail.com> */
 /** Load all components */
 @keyframes s-ripple { 0% { opacity: 1;
     transform: translateX(-50%) translateY(-50%) scale(0, 0); }
@@ -240,12 +269,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 /** @styleguide 	Colors / Swatches @name 		text @color 		#848e91 @display 	color */
 /** @styleguide 	Colors / Swatches @name 		link @color 		#f2bc2b @display 	color */
 /** @styleguide 	Colors / Swatches @name 		primary @color 		#f2bc2b @display 	color */
-/** @styleguide 	Colors / Swatches @name 		secondary @color 		#777 @display 	color */
+/** @styleguide 	Colors / Swatches @name 		secondary @color 		#2b3438 @display 	color */
 /** @styleguide 	Colors / Swatches @name 		success @color 		#5cb85c @display 	color */
 /** @styleguide 	Colors / Swatches @name 		warning @color 		#f0ad4e @display 	color */
 /** @styleguide 	Colors / Swatches @name 		error @color 		#d9534f @display 	color */
 /** @styleguide 	Colors / Swatches @name 		info @color 		#2199e8 @display 	color */
-.s-settings:after { content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#d5d8d9"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#777"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "selector": {"method": "BEM"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"]}}'; display: none; }
+.s-settings:after { content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#d5d8d9"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"]}}'; display: none; }
 
 html { box-sizing: border-box; }
 
@@ -284,253 +313,253 @@ body { color: #848e91; }
 /** @name 	```.f-roboto``` @styleguide  	Fonts / Classes @example 	html <div class="f-roboto"> I have the font "roboto" applied </div> */
 .f-roboto { font-family: "Roboto"; }
 
-/** @name 	```.m-b-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-b-smaller" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-b-smaller" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b-smaller { margin-bottom: 0.3125rem; }
 
-/** @name 	```.m-t-smaller``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-smaller" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t-smaller``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-smaller" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t-smaller { margin-top: 0.3125rem; }
 
-/** @name 	```.m-l-smaller``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-smaller" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l-smaller``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-smaller" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l-smaller { margin-left: 0.3125rem; }
 
-/** @name 	```.m-r-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-r-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-r-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r-smaller { margin-right: 0.3125rem; }
 
-/** @name 	```.m-s-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-s-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s-smaller``` @styleguide  	Layout / Margins @example 	html <div class="m-s-smaller" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s-smaller { margin-left: 0.3125rem; margin-right: 0.3125rem; }
 
-/** @name 	```.p-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-smaller:not(p) { padding: 0.3125rem; }
 
-/** @name 	```.p-b-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b-smaller { padding-bottom: 0.3125rem; }
 
-/** @name 	```.p-t-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t-smaller { padding-top: 0.3125rem; }
 
-/** @name 	```.p-l-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l-smaller { padding-left: 0.3125rem; }
 
-/** @name 	```.p-r-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r-smaller { padding-right: 0.3125rem; }
 
-/** @name 	```.p-s-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s-smaller``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-smaller" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s-smaller { padding-left: 0.3125rem; padding-right: 0.3125rem; }
 
-/** @name 	```.m-b-small``` @styleguide  	Layout / Margins @example 	html <div class="m-b-small" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b-small``` @styleguide  	Layout / Margins @example 	html <div class="m-b-small" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b-small { margin-bottom: 0.625rem; }
 
-/** @name 	```.m-t-small``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-small" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t-small``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-small" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t-small { margin-top: 0.625rem; }
 
-/** @name 	```.m-l-small``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-small" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l-small``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-small" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l-small { margin-left: 0.625rem; }
 
-/** @name 	```.m-r-small``` @styleguide  	Layout / Margins @example 	html <div class="m-r-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r-small``` @styleguide  	Layout / Margins @example 	html <div class="m-r-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r-small { margin-right: 0.625rem; }
 
-/** @name 	```.m-s-small``` @styleguide  	Layout / Margins @example 	html <div class="m-s-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s-small``` @styleguide  	Layout / Margins @example 	html <div class="m-s-small" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s-small { margin-left: 0.625rem; margin-right: 0.625rem; }
 
-/** @name 	```.p-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-small:not(p) { padding: 0.625rem; }
 
-/** @name 	```.p-b-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b-small { padding-bottom: 0.625rem; }
 
-/** @name 	```.p-t-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t-small { padding-top: 0.625rem; }
 
-/** @name 	```.p-l-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l-small { padding-left: 0.625rem; }
 
-/** @name 	```.p-r-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r-small { padding-right: 0.625rem; }
 
-/** @name 	```.p-s-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s-small``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-small" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s-small { padding-left: 0.625rem; padding-right: 0.625rem; }
 
-/** @name 	```.m-b``` @styleguide  	Layout / Margins @example 	html <div class="m-b" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b``` @styleguide  	Layout / Margins @example 	html <div class="m-b" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b { margin-bottom: 1rem; }
 
-/** @name 	```.m-t``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t { margin-top: 1rem; }
 
-/** @name 	```.m-l``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l { margin-left: 1rem; }
 
-/** @name 	```.m-r``` @styleguide  	Layout / Margins @example 	html <div class="m-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r``` @styleguide  	Layout / Margins @example 	html <div class="m-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r { margin-right: 1rem; }
 
-/** @name 	```.m-s``` @styleguide  	Layout / Margins @example 	html <div class="m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s``` @styleguide  	Layout / Margins @example 	html <div class="m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s { margin-left: 1rem; margin-right: 1rem; }
 
-/** @name 	```.p``` @styleguide  	Layout / Paddings @example 	html <div class="p" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p``` @styleguide  	Layout / Paddings @example 	html <div class="p" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p:not(p) { padding: 1rem; }
 
-/** @name 	```.p-b``` @styleguide  	Layout / Paddings @example 	html <div class="p-b" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b``` @styleguide  	Layout / Paddings @example 	html <div class="p-b" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b { padding-bottom: 1rem; }
 
-/** @name 	```.p-t``` @styleguide  	Layout / Paddings @example 	html <div class="p-t" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t``` @styleguide  	Layout / Paddings @example 	html <div class="p-t" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t { padding-top: 1rem; }
 
-/** @name 	```.p-l``` @styleguide  	Layout / Paddings @example 	html <div class="p-l" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l``` @styleguide  	Layout / Paddings @example 	html <div class="p-l" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l { padding-left: 1rem; }
 
-/** @name 	```.p-r``` @styleguide  	Layout / Paddings @example 	html <div class="p-r" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r``` @styleguide  	Layout / Paddings @example 	html <div class="p-r" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r { padding-right: 1rem; }
 
-/** @name 	```.p-s``` @styleguide  	Layout / Paddings @example 	html <div class="p-s" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s``` @styleguide  	Layout / Paddings @example 	html <div class="p-s" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s { padding-left: 1rem; padding-right: 1rem; }
 
-/** @name 	```.m-b-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-b-medium" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-b-medium" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b-medium { margin-bottom: 1.625rem; }
 
-/** @name 	```.m-t-medium``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-medium" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t-medium``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-medium" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t-medium { margin-top: 1.625rem; }
 
-/** @name 	```.m-l-medium``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-medium" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l-medium``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-medium" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l-medium { margin-left: 1.625rem; }
 
-/** @name 	```.m-r-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-r-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-r-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r-medium { margin-right: 1.625rem; }
 
-/** @name 	```.m-s-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-s-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s-medium``` @styleguide  	Layout / Margins @example 	html <div class="m-s-medium" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s-medium { margin-left: 1.625rem; margin-right: 1.625rem; }
 
-/** @name 	```.p-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-medium:not(p) { padding: 1.625rem; }
 
-/** @name 	```.p-b-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b-medium { padding-bottom: 1.625rem; }
 
-/** @name 	```.p-t-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t-medium { padding-top: 1.625rem; }
 
-/** @name 	```.p-l-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l-medium { padding-left: 1.625rem; }
 
-/** @name 	```.p-r-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r-medium { padding-right: 1.625rem; }
 
-/** @name 	```.p-s-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s-medium``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-medium" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s-medium { padding-left: 1.625rem; padding-right: 1.625rem; }
 
-/** @name 	```.m-b-big``` @styleguide  	Layout / Margins @example 	html <div class="m-b-big" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b-big``` @styleguide  	Layout / Margins @example 	html <div class="m-b-big" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b-big { margin-bottom: 2.375rem; }
 
-/** @name 	```.m-t-big``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-big" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t-big``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-big" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t-big { margin-top: 2.375rem; }
 
-/** @name 	```.m-l-big``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-big" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l-big``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-big" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l-big { margin-left: 2.375rem; }
 
-/** @name 	```.m-r-big``` @styleguide  	Layout / Margins @example 	html <div class="m-r-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r-big``` @styleguide  	Layout / Margins @example 	html <div class="m-r-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r-big { margin-right: 2.375rem; }
 
-/** @name 	```.m-s-big``` @styleguide  	Layout / Margins @example 	html <div class="m-s-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s-big``` @styleguide  	Layout / Margins @example 	html <div class="m-s-big" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s-big { margin-left: 2.375rem; margin-right: 2.375rem; }
 
-/** @name 	```.p-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-big:not(p) { padding: 2.375rem; }
 
-/** @name 	```.p-b-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b-big { padding-bottom: 2.375rem; }
 
-/** @name 	```.p-t-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t-big { padding-top: 2.375rem; }
 
-/** @name 	```.p-l-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l-big { padding-left: 2.375rem; }
 
-/** @name 	```.p-r-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r-big { padding-right: 2.375rem; }
 
-/** @name 	```.p-s-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s-big``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-big" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s-big { padding-left: 2.375rem; padding-right: 2.375rem; }
 
-/** @name 	```.m-b-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-b-bigger" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-b-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-b-bigger" style="background:#f2bc2b; width:100px; height:5px"></div> <div style="background:#2b3438; width:100px; height:5px"></div> */
 .m-b-bigger { margin-bottom: 3rem; }
 
-/** @name 	```.m-t-bigger``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-bigger" style="background:#777; width:100px; height:5px"></div> */
+/** @name 	```.m-t-bigger``` @styleguide  	Layout / Margins @example 	html <div style="background:#f2bc2b; width:100px; height:5px"></div> <div class="m-t-bigger" style="background:#2b3438; width:100px; height:5px"></div> */
 .m-t-bigger { margin-top: 3rem; }
 
-/** @name 	```.m-l-bigger``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-bigger" style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-l-bigger``` @styleguide  	Layout / Margins @example 	html <div style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div class="m-l-bigger" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-l-bigger { margin-left: 3rem; }
 
-/** @name 	```.m-r-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-r-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-r-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-r-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-r-bigger { margin-right: 3rem; }
 
-/** @name 	```.m-s-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-s-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#777; width:50px; height:50px"></div> */
+/** @name 	```.m-s-bigger``` @styleguide  	Layout / Margins @example 	html <div class="m-s-bigger" style="display:inline-block; background:#f2bc2b; width:50px; height:50px"></div> <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div> */
 .m-s-bigger { margin-left: 3rem; margin-right: 3rem; }
 
-/** @name 	```.p-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-bigger:not(p) { padding: 3rem; }
 
-/** @name 	```.p-b-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-b-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-b-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-b-bigger { padding-bottom: 3rem; }
 
-/** @name 	```.p-t-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-t-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-t-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-t-bigger { padding-top: 3rem; }
 
-/** @name 	```.p-l-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-l-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-l-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-l-bigger { padding-left: 3rem; }
 
-/** @name 	```.p-r-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-r-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-r-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-r-bigger { padding-right: 3rem; }
 
-/** @name 	```.p-s-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#777; width:100%; height:100%"></div> </div> */
+/** @name 	```.p-s-bigger``` @styleguide  	Layout / Paddings @example 	html <div class="p-s-bigger" style="border:1px solid #f2bc2b; width:150px; height:150px;"> <div style="background:#2b3438; width:100%; height:100%"></div> </div> */
 .p-s-bigger { padding-left: 3rem; padding-right: 3rem; }
 
 /** @name 	```.s-smaller``` @styleguide  	Layout / Sizes @example 	html <div class="s-smaller"> I have the size "smaller" defined </div> */
 .s-smaller { font-size: 0.3rem; }
 
-/** @name 	```.s-smaller-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-smaller-rel"> I have the size "smaller" defined </div> */
+/** @name 	```.s-smaller-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-smaller-rel"> I have the size "smaller" defined relative to my parent </div> */
 .s-smaller-rel { font-size: 0.3em; }
 
 /** @name 	```.s-small``` @styleguide  	Layout / Sizes @example 	html <div class="s-small"> I have the size "small" defined </div> */
 .s-small { font-size: 0.6rem; }
 
-/** @name 	```.s-small-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-small-rel"> I have the size "small" defined </div> */
+/** @name 	```.s-small-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-small-rel"> I have the size "small" defined relative to my parent </div> */
 .s-small-rel { font-size: 0.6em; }
 
 /** @name 	```.s-default``` @styleguide  	Layout / Sizes @example 	html <div class="s-default"> I have the size "default" defined </div> */
 .s-default { font-size: 1rem; }
 
-/** @name 	```.s-default-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-default-rel"> I have the size "default" defined </div> */
+/** @name 	```.s-default-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-default-rel"> I have the size "default" defined relative to my parent </div> */
 .s-default-rel { font-size: 1em; }
 
 /** @name 	```.s-medium``` @styleguide  	Layout / Sizes @example 	html <div class="s-medium"> I have the size "medium" defined </div> */
 .s-medium { font-size: 1.6rem; }
 
-/** @name 	```.s-medium-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-medium-rel"> I have the size "medium" defined </div> */
+/** @name 	```.s-medium-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-medium-rel"> I have the size "medium" defined relative to my parent </div> */
 .s-medium-rel { font-size: 1.6em; }
 
 /** @name 	```.s-big``` @styleguide  	Layout / Sizes @example 	html <div class="s-big"> I have the size "big" defined </div> */
 .s-big { font-size: 2.4rem; }
 
-/** @name 	```.s-big-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-big-rel"> I have the size "big" defined </div> */
+/** @name 	```.s-big-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-big-rel"> I have the size "big" defined relative to my parent </div> */
 .s-big-rel { font-size: 2.4em; }
 
 /** @name 	```.s-bigger``` @styleguide  	Layout / Sizes @example 	html <div class="s-bigger"> I have the size "bigger" defined </div> */
 .s-bigger { font-size: 3rem; }
 
-/** @name 	```.s-bigger-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-bigger-rel"> I have the size "bigger" defined </div> */
+/** @name 	```.s-bigger-rel``` @styleguide  	Layout / Sizes @example 	html <div class="s-bigger-rel"> I have the size "bigger" defined relative to my parent </div> */
 .s-bigger-rel { font-size: 3em; }
 
-/** @name 	```.no-p-t``` Reset **top** padding @styleguide  	Layout / No paddings @example 	html <div class="no-p-t" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-p-t``` Reset **top** padding @styleguide  	Layout / No padding @example 	html <div class="no-p-t" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-p-t { padding-top: 0 !important; }
 
-/** @name 	```.no-p-r``` Reset **right** padding @styleguide  	Layout / No paddings @example 	html <div class="no-p-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-p-r``` Reset **right** padding @styleguide  	Layout / No padding @example 	html <div class="no-p-r" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-p-r { padding-right: 0 !important; }
 
-/** @name 	```.no-p-b``` Reset **bottom** padding @styleguide  	Layout / No paddings @example 	html <div class="no-p-b" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-p-b``` Reset **bottom** padding @styleguide  	Layout / No padding @example 	html <div class="no-p-b" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-p-b { padding-bottom: 0 !important; }
 
-/** @name 	```.no-p-l``` Reset **left** padding @styleguide  	Layout / No paddings @example 	html <div class="no-p-l" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-p-l``` Reset **left** padding @styleguide  	Layout / No padding @example 	html <div class="no-p-l" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-p-l { padding-left: 0 !important; }
 
-/** @name 	```.no-p-s``` Reset **left** and **right** paddings @styleguide  	Layout / No paddings @example 	html <div class="no-p-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-p-s``` Reset **left** and **right** paddings @styleguide  	Layout / No padding @example 	html <div class="no-p-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-p-s { padding-left: 0 !important; padding-right: 0 !important; }
 
 /** @name 	```.no-m-t``` Reset **top** padding @styleguide  	Layout / No margin @example 	html <div class="no-m-t" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
@@ -545,7 +574,7 @@ body { color: #848e91; }
 /** @name 	```.no-m-l``` Reset **left** padding @styleguide  	Layout / No margin @example 	html <div class="no-m-l" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-m-l { margin-left: 0 !important; }
 
-/** @name 	```.no-m-s``` Reset **left** and **right** margins @styleguide  	Layout / No paddings @example 	html <div class="no-m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
+/** @name 	```.no-m-s``` Reset **left** and **right** margins @styleguide  	Layout / No padding @example 	html <div class="no-m-s" style="display:inline-block; background:#f2bc2b; width:50px; height:50px;"></div> */
 .no-m-s { margin-left: 0 !important; margin-right: 0 !important; }
 
 /** @name 	```.c-default``` Specify the color to **default** @styleguide  	Colors / Classes @example 	html <div class="c-default"> I'm in "default" color </div> */
@@ -585,10 +614,10 @@ body { color: #848e91; }
 .bkg-primary { background-color: #f2bc2b; }
 
 /** @name 	```.c-secondary``` Specify the color to **secondary** @styleguide  	Colors / Classes @example 	html <div class="c-secondary"> I'm in "secondary" color </div> */
-.c-secondary { color: #777; }
+.c-secondary { color: #2b3438; }
 
 /** @name 	```.bkg-secondary``` Specify the background color to **secondary** @styleguide  	Colors / Classes @example 	html <div class="bkg-secondary p" style="color:white"> My background color is "secondary" </div> */
-.bkg-secondary { background-color: #777; }
+.bkg-secondary { background-color: #2b3438; }
 
 /** @name 	```.c-success``` Specify the color to **success** @styleguide  	Colors / Classes @example 	html <div class="c-success"> I'm in "success" color </div> */
 .c-success { color: #5cb85c; }
@@ -614,49 +643,49 @@ body { color: #848e91; }
 /** @name 	```.bkg-info``` Specify the background color to **info** @styleguide  	Colors / Classes @example 	html <div class="bkg-info p" style="color:white"> My background color is "info" </div> */
 .bkg-info { background-color: #2199e8; }
 
-.s-dropdown__menu { visibility: hidden; opacity: 0; position: absolute; top: 100%; pointer-events: none; }
+.dropdown__menu { visibility: hidden; opacity: 0; position: absolute; top: 100%; pointer-events: none; }
 
-.s-dropdown:hover .s-dropdown__menu, .s-dropdown.active .s-dropdown__menu, .s-dropdown.s-dropdown--active .s-dropdown__menu { visibility: visible; opacity: 1; pointer-events: all; }
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu { visibility: visible; opacity: 1; pointer-events: all; }
 
-/** @name 	```.s-dropdown``` Provide a nice dropdown component @styleguide 		Components / s-dropdown @example 	html <div style="display:inline-block" class="s-dropdown"> <a>Display dropdown</a> <ul class="s-dropdown__menu"> <li class="s-dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
-.s-dropdown { position: relative; /** @name 	```.s-dropdown--right``` Provide a nice dropdown component aligned to the right @styleguide 		Components / s-dropdown @example 	html <div style="display:inline-block" class="s-dropdown s-dropdown--right"> <a>Display right dropdown</a> <ul class="s-dropdown__menu"> <li class="s-dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */ }
+/** @name 	Dropdown Provide a nice dropdown component @styleguide 		Components / Dropdown @example 	html <div style="display:inline-block" class="dropdown"> <a>Display dropdown</a> <ul class="dropdown__menu"> <li class="dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
+.dropdown { position: relative; /** @name 	Dropdown right Provide a nice dropdown component aligned to the right @styleguide 		Components / Dropdown @example 	html <div style="display:inline-block" class="dropdown dropdown--right"> <a>Display right dropdown</a> <ul class="dropdown__menu"> <li class="dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */ }
 
-.s-dropdown:hover, .s-dropdown.active, .s-dropdown.s-dropdown--active { z-index: 1; }
+.dropdown:hover, .dropdown.active, .dropdown.dropdown--active { z-index: 1; }
 
-.s-dropdown:hover .s-dropdown__menu, .s-dropdown.active .s-dropdown__menu, .s-dropdown.s-dropdown--active .s-dropdown__menu { top: 100%; }
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu { top: 100%; }
 
-.s-dropdown.s-dropdown--right .s-dropdown__menu { left: auto; right: 0; }
+.dropdown.dropdown--right .dropdown__menu { left: auto; right: 0; }
 
-.s-dropdown.s-dropdown--up .s-dropdown__menu { top: auto; bottom: 100%; }
+.dropdown.dropdown--up .dropdown__menu { top: auto; bottom: 100%; }
 
-.s-dropdown.s-dropdown--up:hover .s-dropdown__menu, .s-dropdown.s-dropdown--up.active .s-dropdown__menu, .s-dropdown.s-dropdown--up.s-dropdown--active .s-dropdown__menu { top: auto; bottom: 100%; }
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu { top: auto; bottom: 100%; }
 
-.s-dropdown__menu { transition: all, 0.2s, ease-in-out, 0s, outline-color 0s linear 0s; outline-color: black; }
+.dropdown__menu { transition: all, 0.2s, ease-in-out, 0s, outline-color 0s linear 0s; outline-color: black; }
 
-.s-dropdown__item { white-space: nowrap; }
+.dropdown__item { white-space: nowrap; }
 
-.s-dropdown__item > a { display: block; }
+.dropdown__item > a { display: block; }
 
-.s-dropdown__menu { background: #848e91; box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px; transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; overflow: hidden; }
+.dropdown__menu { background: #848e91; box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px; transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; overflow: hidden; }
 
-.s-dropdown__item { border-top: solid 1px rgba(132, 142, 145, 0.2); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background-color: white; left: 0; position: relative; color: #848e91; transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; }
+.dropdown__item { border-top: solid 1px rgba(132, 142, 145, 0.2); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background-color: white; left: 0; position: relative; color: #848e91; transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; }
 
-.s-dropdown__item:hover, .s-dropdown__item.active, .s-dropdown__item.s-dropdown--active { left: 5px; }
+.dropdown__item:hover, .dropdown__item.active, .dropdown__item.dropdown--active { left: 5px; }
 
-.s-dropdown__item > a { padding: 0.8125em 1em; color: #848e91; display: block; width: 100%; }
+.dropdown__item > a { padding: 0.8125em 1em; color: #848e91; display: block; width: 100%; }
 
-/** @name 	```.s-dropdown--default``` Provide a nice dropdown default component @styleguide 		Components / s-dropdown @example 	html <div style="display:inline-block" class="s-dropdown s-dropdown--default"> <a>Display default dropdown</a> <ul class="s-dropdown__menu"> <li class="s-dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
-.s-dropdown--default .s-dropdown__menu { background-color: #848e91; }
+/** @name 	<span class="c-default">Default</span> Dropdown Provide a nice dropdown default component @styleguide 		Components / Dropdown @example 	html <div style="display:inline-block" class="dropdown dropdown--default"> <a>Display default dropdown</a> <ul class="dropdown__menu"> <li class="dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
+.dropdown--default .dropdown__menu { background-color: #848e91; }
 
-/** @name 	```.s-dropdown--primary``` Provide a nice dropdown primary component @styleguide 		Components / s-dropdown @example 	html <div style="display:inline-block" class="s-dropdown s-dropdown--primary"> <a>Display primary dropdown</a> <ul class="s-dropdown__menu"> <li class="s-dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
-.s-dropdown--primary .s-dropdown__menu { background-color: #f2bc2b; }
+/** @name 	<span class="c-primary">Primary</span> Dropdown Provide a nice dropdown primary component @styleguide 		Components / Dropdown @example 	html <div style="display:inline-block" class="dropdown dropdown--primary"> <a>Display primary dropdown</a> <ul class="dropdown__menu"> <li class="dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
+.dropdown--primary .dropdown__menu { background-color: #f2bc2b; }
 
-/** @name 	```.s-dropdown--secondary``` Provide a nice dropdown secondary component @styleguide 		Components / s-dropdown @example 	html <div style="display:inline-block" class="s-dropdown s-dropdown--secondary"> <a>Display secondary dropdown</a> <ul class="s-dropdown__menu"> <li class="s-dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="s-dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
-.s-dropdown--secondary .s-dropdown__menu { background-color: #777; }
+/** @name 	<span class="c-secondary">Secondary</span> Dropdown Provide a nice dropdown secondary component @styleguide 		Components / Dropdown @example 	html <div style="display:inline-block" class="dropdown dropdown--secondary"> <a>Display secondary dropdown</a> <ul class="dropdown__menu"> <li class="dropdown__item"> <a href="#" title="..."> Item 1 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 2 </a> </li> <li class="dropdown__item"> <a href="#" title="..."> Item 3 </a> </li> </ul> </div> */
+.dropdown--secondary .dropdown__menu { background-color: #2b3438; }
 
 .nav--justify, .nav--inline, .nav--tabs { list-style: none; padding: 0; margin: 0; user-select: none; }
 
-/** @name 	```.nav--justify``` Provide a simple justify navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--justify"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
+/** @name 	Nav justify Provide a simple justify navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--justify"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
 .nav--justify { display: table; width: 100%; }
 
 .nav--justify > li, .nav--justify > .nav__item { display: table-cell; vertical-align: middle; }
@@ -665,19 +694,19 @@ body { color: #848e91; }
 
 .nav--right { text-align: right; }
 
-/** @name 	```.nav--inline``` Provide a simple inline navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--inline"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
+/** @name 	Nav inline Provide a simple inline navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--inline"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
 .nav--inline { display: block; }
 
 .nav--inline > li, .nav--inline > .nav__item { position: relative; display: inline-block; }
 
 .nav--right { text-align: right; }
 
-/** @name 	```.nav--tabs``` Provide a simple tabs navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--tabs"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
+/** @name 	Nav tabs Provide a simple tabs navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--tabs"> <li class="nav__item"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */
 .nav--tabs > li, .nav--tabs > .nav__item { position: relative; padding: 1em 0.8125em; float: left; cursor: pointer; }
 
 .nav--tabs > li.disabled, .nav--tabs > li.nav--disabled, .nav--tabs > .nav__item.disabled, .nav--tabs > .nav__item.nav--disabled { pointer-events: none; opacity: .5; cursor: not-allowed; }
 
-.nav--tabs { border-top-left-radius: 0.1875em; border-top-right-radius: 0.1875em; /** @name 	```.nav--tabs.nav--default``` Provide a simple tabs navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--tabs nav--default"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ /** @name 	```.nav--tabs.nav--primary``` Provide a simple tabs navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--tabs nav--primary"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ /** @name 	```.nav--tabs.nav--secondary``` Provide a simple tabs navigation component @styleguide 	Components / Navigations @example 	html <ul class="nav nav--tabs nav--secondary"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ }
+.nav--tabs { border-top-left-radius: 0.1875em; border-top-right-radius: 0.1875em; /** @name 	<span class="c-default">Default</span> Nav tabs Provide a simple tabs navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--tabs nav--default"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ /** @name 	<span class="c-primary">Primary</span> Nav tabs Provide a simple tabs navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--tabs nav--primary"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ /** @name 	<span class="c-secondary">Secondary</span> Nav tabs Provide a simple tabs navigation component @styleguide 	Components / Nav @example 	html <ul class="nav nav--tabs nav--secondary"> <li class="nav__item active"> Item 1 </li> <li class="nav__item"> Item 2 </li> <li class="nav__item"> Item 3 </li> </ul> */ }
 
 .nav--tabs > li, .nav--tabs > .nav__item { position: relative; margin-bottom: -1px; }
 
@@ -697,13 +726,13 @@ body { color: #848e91; }
 
 .nav--tabs.nav--primary > li.active, .nav--tabs.nav--primary > li.nav--active, .nav--tabs.nav--primary > .nav__item.active, .nav--tabs.nav--primary > .nav__item.nav--active { background-color: #f2bc2b; border-color: #f2bc2b; color: white; }
 
-.nav--tabs.nav--secondary { border-bottom: 1px solid rgba(119, 119, 119, 0.2); }
+.nav--tabs.nav--secondary { border-bottom: 1px solid rgba(43, 52, 56, 0.2); }
 
-.nav--tabs.nav--secondary > li, .nav--tabs.nav--secondary > .nav__item { border: 1px solid rgba(119, 119, 119, 0.1); color: #777; }
+.nav--tabs.nav--secondary > li, .nav--tabs.nav--secondary > .nav__item { border: 1px solid rgba(43, 52, 56, 0.1); color: #2b3438; }
 
-.nav--tabs.nav--secondary > li.nav--hover, .nav--tabs.nav--secondary > li:hover, .nav--tabs.nav--secondary > .nav__item.nav--hover, .nav--tabs.nav--secondary > .nav__item:hover { background-color: rgba(119, 119, 119, 0.1); }
+.nav--tabs.nav--secondary > li.nav--hover, .nav--tabs.nav--secondary > li:hover, .nav--tabs.nav--secondary > .nav__item.nav--hover, .nav--tabs.nav--secondary > .nav__item:hover { background-color: rgba(43, 52, 56, 0.1); }
 
-.nav--tabs.nav--secondary > li.active, .nav--tabs.nav--secondary > li.nav--active, .nav--tabs.nav--secondary > .nav__item.active, .nav--tabs.nav--secondary > .nav__item.nav--active { background-color: #777; border-color: #777; color: white; }
+.nav--tabs.nav--secondary > li.active, .nav--tabs.nav--secondary > li.nav--active, .nav--tabs.nav--secondary > .nav__item.active, .nav--tabs.nav--secondary > .nav__item.nav--active { background-color: #2b3438; border-color: #2b3438; color: white; }
 
 /** @name 	h1 h1 title styling @styleguide 	Typography / Titles @example 	html <h1 class="h1">Hello World</h1> <div class="tf"> <h1>Hello World</h1> </div> */
 .h1, .tf h1 { font-size: 3.5em; line-height: 1.1; }
@@ -750,7 +779,7 @@ h1.vr, .vr > h1, h2.vr, .vr > h2, h3.vr, .vr > h3, h4.vr, .vr > h4, h5.vr, .vr >
 .h6, .tf h6 { color: #2b3438; }
 
 /** @name 	Default Default paragraph styling @styleguide 	Typography / Paragraphs @example 	html <p class="p vr"> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> <div class="tf vr"> <p> Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus. </p> </div> */
-.p, .tf p { line-height: 1.4; }
+.p, .tf p { font-size: 1em; line-height: 1.4; }
 
 .p.vr, .vr > .p, .tf p.vr, .vr > .tf p { margin-bottom: 1rem; }
 
@@ -761,10 +790,95 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .link, .tf a { text-decoration: none; color: #f2bc2b; }
 
-/** @name 	```.btn``` Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn"> Default button </a> */
+/** @name 		Marked text For highlighting a run of text due to its relevance in another context, use the ```mark``` tag. @styleguide 		Typography / Inline texts @example 		html This is a <span class="mark">marked text</span> <div class="tf"> This is another <mark>marked text</mark> </div> */
+/** @name 		Deleted text For indicating blocks of text that have been deleted use the ```del``` tag. @styleguide 		Typography / Inline texts @example 		html This is a <span class="del">deleted text</span> <div class="tf"> This is another <del>deleted text</del> </div> */
+/** @name 		Strikethrough text For indicating blocks of text that are no longer relevant use the ```s``` tag. @styleguide 		Typography / Inline texts @example 		html This is a <span class="s">striked through text</span> <div class="tf"> This is another <s>striked through text</s> </div> */
+/** @name 		Inserted text For indicating additions to the document use the ```ins``` tag. @styleguide 		Typography / Inline texts @example 		html This is a <span class="ins">inserted text</span> <div class="tf"> This is another <ins>inserted text</ins> </div> */
+/** @name 		Underlined text To underline text use the ```u``` tag. @styleguide 		Typography / Inline texts @example 		html This is a <span class="u">underlined text</span> <div class="tf"> This is another <u>underlined text</u> </div> */
+/** @name 		Small text For de-emphasizing inline or blocks of text, use the ```small``` tag to set text at 85% the size of the parent. @styleguide 		Typography / Inline texts @example 		html This is a <span class="small">small text</span> <div class="tf"> This is another <small>small text</small> </div> */
+/** @name 		Bold For emphasizing a snippet of text with a heavier font-weight. @styleguide 		Typography / Inline texts @example 		html This is a <span class="strong">strong text</span> <div class="tf"> This is another <strong>strong text</strong> </div> */
+/** @name 		Italics For emphasizing a snippet of text with italics. @styleguide 		Typography / Inline texts @example 		html This is an <span class="em">italic text</span> <div class="tf"> This is another <em>italic text</em> </div> */
+.mark, .tf mark { background-color: rgba(242, 188, 43, 0.1); }
+
+.del, .tf del { text-decoration: line-through; }
+
+.s, .tf s { text-decoration: line-through; }
+
+.ins, .tf ins { text-decoration: underline; }
+
+.u, .tf u { text-decoration: underline; }
+
+.small, .tf small { font-size: .85em; }
+
+.strong, .tf strong { font-weight: bold; }
+
+.em, .tf em { font-style: italic; }
+
+/** @name 	Description list A list of terms with their associated descriptions. @styleguide 		Typography / Lists @example 	html <div class="tf"> <dl> <dt>List item 1</dt> <dd>Mauris sit amet erat vitae mi pellentesque placerat. Vestibulum dapibus.</dd> <dt>List item 1</dt> <dd>Mauris sit amet erat vitae mi pellentesque placerat. Vestibulum dapibus.</dd> <dt>List item 1</dt> <dd>Mauris sit amet erat vitae mi pellentesque placerat. Vestibulum dapibus.</dd> </dl> </div> */
+.dl, .tf dl { counter-reset: s-list; }
+
+.dl.vr, .vr > .dl, .tf dl.vr, .vr > .tf dl { margin-bottom: 2em; }
+
+.dt, .tf dl > dt { font-weight: bold; margin-bottom: .3em; }
+
+.dd, .tf dl > dd { margin-bottom: .5em; }
+
+/** @name 	Unordered list A list of items in which the order does not explicitly matter. @styleguide 		Typography / Lists @example 	html <div class="tf"> <ul> <li>List item 1</li> <li>List item 2</li> <li>List item 3</li> <li>List item 4</li> </ul> </div> */
+.ul, .tf ul { counter-reset: s-list; }
+
+.ul.vr, .vr > .ul, .tf ul.vr, .vr > .tf ul { margin-bottom: 2em; }
+
+.ul > .li, .ul > li, .tf ul > li { padding-left: 1em; position: relative; margin-bottom: .3em; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { content: counter(s-list, circle); counter-increment: s-list; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { left: 0; color: #848e91 !important; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { position: absolute; display: block; }
+
+.ul > .li > ul, .ul > .li > ol, .ul > .li > dl, .ul > li > ul, .ul > li > ol, .ul > li > dl, .tf ul > li > ul, .tf ul > li > ol, .tf ul > li > dl { margin-left: 0; margin-bottom: 0; }
+
+/** @name 	Ordered list A list of items in which the order does explicitly matter. @styleguide 		Typography / Lists @example 	html <div class="tf"> <ol> <li>List item 1</li> <li>List item 2</li> <li>List item 3</li> <li>List item 4</li> </ol> </div> */
+.ol, .tf ol { counter-reset: s-list; }
+
+.ol.vr, .vr > .ol, .tf ol.vr, .vr > .tf ol { margin-bottom: 2em; }
+
+.ol > .li, .ol > li, .tf ol > li { padding-left: 1em; position: relative; margin-bottom: .3em; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { content: counter(s-list, decimal); counter-increment: s-list; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { left: 0; top: 0.4em; color: #848e91 !important; font-size: 0.6em !important; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { position: absolute; display: block; }
+
+.ol > .li > ul, .ol > .li > ol, .ol > .li > dl, .ol > li > ul, .ol > li > ol, .ol > li > dl, .tf ol > li > ul, .tf ol > li > ol, .tf ol > li > dl { margin-left: 0; margin-bottom: 0; }
+
+.dt, .tf dl > dt { font-weight: bold; }
+
+.ul > .li, .ul > li, .tf ul > li { padding-left: 1em; position: relative; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { content: counter(s-list, circle); counter-increment: s-list; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { left: 0; color: #f2bc2b !important; }
+
+.ul > .li:before, .ul > li:before, .tf ul > li:before { position: absolute; display: block; }
+
+.ul > .li > ul, .ul > .li > ol, .ul > .li > dl, .ul > li > ul, .ul > li > ol, .ul > li > dl, .tf ul > li > ul, .tf ul > li > ol, .tf ul > li > dl { margin-left: 0; margin-bottom: 0; }
+
+.ol > .li, .ol > li, .tf ol > li { padding-left: 1em; position: relative; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { content: counter(s-list, decimal); counter-increment: s-list; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { left: 0; top: 0.4em; color: #f2bc2b !important; font-size: 0.6em !important; }
+
+.ol > .li:before, .ol > li:before, .tf ol > li:before { position: absolute; display: block; }
+
+.ol > .li > ul, .ol > .li > ol, .ol > .li > dl, .ol > li > ul, .ol > li > ol, .ol > li > dl, .tf ol > li > ul, .tf ol > li > ol, .tf ol > li > dl { margin-left: 0; margin-bottom: 0; }
+
+/** @name 	btn Lead paragraph styling @styleguide 	Components / Btn @example 	html <a class="btn"> Default button </a> */
 .btn { border-radius: 0.1875em; padding: 0.8125em 1em; height: 2.625em; }
 
-/** @name 	```.btn--block``` Lead paragraph styling @styleguide 	Components / Buttons @example 	html <a class="btn btn--block"> Block button </a> */
+/** @name 	btn block Lead paragraph styling @styleguide 	Components / Btn @example 	html <a class="btn btn--block"> Block button </a> */
 .btn--block { border-radius: 0.1875em; padding: 0.8125em 1em; height: 2.625em; display: block; width: 100%; }
 
 .btn { transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background-color: #848e91; border-color: #848e91; color: white; }
@@ -777,8 +891,8 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
 
-/** @name 	```.btn--primary``` Primary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--primary"> Primary button </a> */
-.btn--primary { background-color: #f2bc2b; border-color: #f2bc2b; color: white; /** @name 	```.btn--outline.btn--primary``` Outline primary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--outline btn--primary"> Primary outlined button </a> */ /** @name 	```.btn--link.btn--primary``` Link primary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--link btn--primary"> Primary link button </a> */ /** @name 	```.btn:disabled.btn--primary``` Disabled primary button @styleguide 	Components / Buttons @example 	html <button disabled class="btn btn--primary"> Primary outlined button </button> */ }
+/** @name 	<span class="c-primary">Primary</span> btn Primary button @styleguide 	Components / Btn @example 	html <a class="btn btn--primary"> Primary button </a> */
+.btn--primary { background-color: #f2bc2b; border-color: #f2bc2b; color: white; /** @name 	<span class="c-primary">Primary</span> outline btn Outline primary button @styleguide 	Components / Btn @example 	html <a class="btn btn--outline btn--primary"> Primary outlined button </a> */ /** @name 	<span class="c-primary">Primary</span> link btn Link primary button @styleguide 	Components / Btn @example 	html <a class="btn btn--link btn--primary"> Primary link button </a> */ /** @name 	<span class="c-primary">Primary</span> disabled btn Disabled primary button @styleguide 	Components / Btn @example 	html <button disabled class="btn btn--primary"> Primary outlined button </button> */ }
 
 .btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) { background-color: #c4920c; border-color: #c4920c; }
 
@@ -800,31 +914,31 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) { background-color: #c4920c; border-color: #c4920c; }
 
-/** @name 	```.btn--secondary``` Secondary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--secondary"> Secondary button </a> */
-.btn--secondary { background-color: #777; border-color: #777; color: white; /** @name 	```.btn--outline.btn--secondary``` Outline secondary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--outline btn--secondary"> Secondary outlined button </a> */ /** @name 	```.btn--link.btn--secondary``` Link secondary button @styleguide 	Components / Buttons @example 	html <a class="btn btn--link btn--secondary"> Secondary link button </a> */ /** @name 	```.btn:disabled.btn--secondary``` Disabled secondary button @styleguide 	Components / Buttons @example 	html <button disabled class="btn btn--secondary"> Secondary outlined button </button> */ }
+/** @name 	<span class="c-secondary">Secondary</span> btn Secondary button @styleguide 	Components / Btn @example 	html <a class="btn btn--secondary"> Secondary button </a> */
+.btn--secondary { background-color: #2b3438; border-color: #2b3438; color: white; /** @name 	<span class="c-secondary">Secondary</span> outline btn Outline secondary button @styleguide 	Components / Btn @example 	html <a class="btn btn--outline btn--secondary"> Secondary outlined button </a> */ /** @name 	<span class="c-secondary">Secondary</span> link btn Link secondary button @styleguide 	Components / Btn @example 	html <a class="btn btn--link btn--secondary"> Secondary link button </a> */ /** @name 	<span class="c-secondary">Secondary</span> disabled btn Disabled secondary button @styleguide 	Components / Btn @example 	html <button disabled class="btn btn--secondary"> Secondary outlined button </button> */ }
 
-.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) { background-color: #0a0c0d; border-color: #0a0c0d; }
 
-.btn--secondary.btn--outline { color: #777; background-color: transparent; border-color: #777; }
+.btn--secondary.btn--outline { color: #2b3438; background-color: transparent; border-color: #2b3438; }
 
-.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled), :checked + .btn--secondary.btn--outline:not(:disabled) { background-color: #777; border-color: #777; color: white; }
+.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled), :checked + .btn--secondary.btn--outline:not(:disabled) { background-color: #2b3438; border-color: #2b3438; color: white; }
 
-.btn--secondary.btn--link { background-color: transparent !important; color: #777 !important; border-color: transparent !important; position: relative; }
+.btn--secondary.btn--link { background-color: transparent !important; color: #2b3438 !important; border-color: transparent !important; position: relative; }
 
-.btn--secondary.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #777; }
+.btn--secondary.btn--link:after { content: ''; position: absolute; display: block; bottom: 0.40625em; left: 50%; height: .2em; width: 0; transform: translateX(-50%) translateY(0) translateZ(0); transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; background: #2b3438; }
 
 .btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after { width: calc(100% - 2em); }
 
-.btn--secondary.btn:disabled { background-color: #777; border-color: #777; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
+.btn--secondary.btn:disabled { background-color: #2b3438; border-color: #2b3438; color: white; opacity: 0.25; cursor: not-allowed !important; pointer-events: none; }
 
-.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) { background-color: #0a0c0d; border-color: #0a0c0d; }
 
-.btn--hover-secondary:hover { background-color: #777; border-color: #777; color: white; }
+.btn--hover-secondary:hover { background-color: #2b3438; border-color: #2b3438; color: white; }
 
-.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) { background-color: #515151; border-color: #515151; }
+.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) { background-color: #0a0c0d; border-color: #0a0c0d; }
 
-/** @name 	```.btn--success``` Success button @styleguide 	Components / Buttons @example 	html <a class="btn btn--success"> Success button </a> */
-.btn--success { background-color: #5cb85c; border-color: #5cb85c; color: white; /** @name 	```.btn--outline.btn--success``` Outline success button @styleguide 	Components / Buttons @example 	html <a class="btn btn--outline btn--success"> Success outlined button </a> */ /** @name 	```.btn--link.btn--success``` Link success button @styleguide 	Components / Buttons @example 	html <a class="btn btn--link btn--success"> Success link button </a> */ /** @name 	```.btn:disabled.btn--success``` Disabled success button @styleguide 	Components / Buttons @example 	html <button disabled class="btn btn--success"> Success outlined button </button> */ }
+/** @name 	<span class="c-success">Success</span> btn Success button @styleguide 	Components / Btn @example 	html <a class="btn btn--success"> Success button </a> */
+.btn--success { background-color: #5cb85c; border-color: #5cb85c; color: white; /** @name 	<span class="c-success">Success</span> outline btn Outline success button @styleguide 	Components / Btn @example 	html <a class="btn btn--outline btn--success"> Success outlined button </a> */ /** @name 	<span class="c-success">Success</span> link btn Link success button @styleguide 	Components / Btn @example 	html <a class="btn btn--link btn--success"> Success link button </a> */ /** @name 	<span class="c-success">Success</span> disabled btn Disabled success button @styleguide 	Components / Btn @example 	html <button disabled class="btn btn--success"> Success outlined button </button> */ }
 
 .btn--success[active]:not(:disabled), .btn--success.active:not(:disabled), .btn--success:active:not(:disabled), .btn--success:hover:not(:disabled) { background-color: #3d8b3d; border-color: #3d8b3d; }
 
@@ -846,8 +960,8 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .btn--hover-success:hover[active]:not(:disabled), .btn--hover-success:hover.active:not(:disabled), .btn--hover-success:hover:active:not(:disabled), .btn--hover-success:hover:hover:not(:disabled) { background-color: #3d8b3d; border-color: #3d8b3d; }
 
-/** @name 	```.btn--error``` Error button @styleguide 	Components / Buttons @example 	html <a class="btn btn--error"> Error button </a> */
-.btn--error { background-color: #d9534f; border-color: #d9534f; color: white; /** @name 	```.btn--outline.btn--error``` Outline error button @styleguide 	Components / Buttons @example 	html <a class="btn btn--outline btn--error"> Error outlined button </a> */ /** @name 	```.btn--link.btn--error``` Link error button @styleguide 	Components / Buttons @example 	html <a class="btn btn--link btn--error"> Error link button </a> */ /** @name 	```.btn:disabled.btn--error``` Disabled error button @styleguide 	Components / Buttons @example 	html <button disabled class="btn btn--error"> Error outlined button </button> */ }
+/** @name 	<span class="c-error">Error</span> btn Error button @styleguide 	Components / Btn @example 	html <a class="btn btn--error"> Error button </a> */
+.btn--error { background-color: #d9534f; border-color: #d9534f; color: white; /** @name 	<span class="c-error">Error</span> outline btn Outline error button @styleguide 	Components / Btn @example 	html <a class="btn btn--outline btn--error"> Error outlined button </a> */ /** @name 	<span class="c-error">Error</span> link btn Link error button @styleguide 	Components / Btn @example 	html <a class="btn btn--link btn--error"> Error link button </a> */ /** @name 	<span class="c-error">Error</span> disabled btn Disabled error button @styleguide 	Components / Btn @example 	html <button disabled class="btn btn--error"> Error outlined button </button> */ }
 
 .btn--error[active]:not(:disabled), .btn--error.active:not(:disabled), .btn--error:active:not(:disabled), .btn--error:hover:not(:disabled) { background-color: #b52b27; border-color: #b52b27; }
 
@@ -879,22 +993,22 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .corner-badge:before { border-width: 1.5em; }
 
-/** @name 	```.corner-badge--tl``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl"> <!-- content here --> </div> */
+/** @name 	Corner Badge top left @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl"> <!-- content here --> </div> */
 .corner-badge--tl { top: 0; left: 0; }
 
 .corner-badge--tl:before { border-right-color: transparent !important; border-bottom-color: transparent !important; top: 0; left: 0; }
 
-/** @name 	```.corner-badge--tr``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tr"> <!-- content here --> </div> */
+/** @name 	Corner Badge top right @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tr"> <!-- content here --> </div> */
 .corner-badge--tr { top: 0; right: 0; text-align: right; }
 
 .corner-badge--tr:before { border-bottom-color: transparent !important; border-left-color: transparent !important; top: 0; right: 0; }
 
-/** @name 	```.corner-badge--bl``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--bl"> <!-- content here --> </div> */
+/** @name 	Corner Badge bottom left @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--bl"> <!-- content here --> </div> */
 .corner-badge--bl { bottom: 0; left: 0; }
 
 .corner-badge--bl:before { border-top-color: transparent !important; border-right-color: transparent !important; bottom: 0; left: 0; }
 
-/** @name 	```.corner-badge--br``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--br"> <!-- content here --> </div> */
+/** @name 	Corner Badge bottom right @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--br"> <!-- content here --> </div> */
 .corner-badge--br { bottom: 0; right: 0; }
 
 .corner-badge--br:before { border-top-color: transparent !important; border-left-color: transparent !important; bottom: 0; right: 0; }
@@ -903,25 +1017,25 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 .corner-badge:before { border-color: #848e91; }
 
-/** @name 	```.corner-badge--default``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--default"> <!-- content here --> </div> */
+/** @name 	<span class="c-default">Default</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--default"> <!-- content here --> </div> */
 .corner-badge--default:before { border-color: #848e91; }
 
-/** @name 	```.corner-badge--primary``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--primary"> <!-- content here --> </div> */
+/** @name 	<span class="c-primary">Primary</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--primary"> <!-- content here --> </div> */
 .corner-badge--primary:before { border-color: #f2bc2b; }
 
-/** @name 	```.corner-badge--secondary``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--secondary"> <!-- content here --> </div> */
-.corner-badge--secondary:before { border-color: #777; }
+/** @name 	<span class="c-secondary">Secondary</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--secondary"> <!-- content here --> </div> */
+.corner-badge--secondary:before { border-color: #2b3438; }
 
-/** @name 	```.corner-badge--success``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--success"> <!-- content here --> </div> */
+/** @name 	<span class="c-success">Success</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--success"> <!-- content here --> </div> */
 .corner-badge--success:before { border-color: #5cb85c; }
 
-/** @name 	```.corner-badge--warning``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--warning"> <!-- content here --> </div> */
+/** @name 	<span class="c-warning">Warning</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--warning"> <!-- content here --> </div> */
 .corner-badge--warning:before { border-color: #f0ad4e; }
 
-/** @name 	```.corner-badge--error``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--error"> <!-- content here --> </div> */
+/** @name 	<span class="c-error">Error</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--error"> <!-- content here --> </div> */
 .corner-badge--error:before { border-color: #d9534f; }
 
-/** @name 	```.corner-badge--info``` @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--info"> <!-- content here --> </div> */
+/** @name 	<span class="c-info">Info</span> Corner Badge @styleguide 	Components / Corner Badge @example 	html <div class="corner-badge corner-badge--tl corner-badge--info"> <!-- content here --> </div> */
 .corner-badge--info:before { border-color: #2199e8; }
 
 /** Layout All the layout level specific styling. */
@@ -932,5 +1046,100 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 /** Blocks All the blocks styling. A block can contain other blocks or objects and does not have to relay on his ancestors to be properly displayed. */
 /** Objects All the objects styling. An object response to the same rules has the blocks, unless they cannot contain any other objects or blocks. */
 /** Objects All the objects styling. An object response to the same rules has the blocks, unless they cannot contain any other objects or blocks. */
+/** @name 		Default table Display table contents @styleguide 		Components / Table @example 		html <table class="table"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */
+.table { width: 100%; }
+
+.table.vr, .vr > .table { margin-bottom: 2em; }
+
+.table .th, .table th { text-align: left; }
+
+.table .th, .table th, .table .td, .table td { padding: 0.8125em 1em; position: relative; }
+
+.table .th:last-child, .table th:last-child, .table .td:last-child, .table td:last-child { border-right: none; }
+
+.table .th:before, .table th:before, .table .td:before, .table td:before { content: ''; display: block; position: absolute; top: 50%; left: 0; transform: translateX(0) translateY(-50%) translateZ(0); width: 100%; height: 100%; transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; border-width: 0; border-color: transparent; border-style: solid; border-top-width: 0.0625rem; border-bottom-width: 0.0625rem; pointer-events: none; }
+
+.table .th:last-child:before, .table th:last-child:before, .table .td:last-child:before, .table td:last-child:before { border-right-width: 1px; }
+
+.table .th:first-child:before, .table th:first-child:before, .table .td:first-child:before, .table td:first-child:before { border-left-width: 1px; }
+
+.table .th, .table th { font-weight: bold; position: relative; }
+
+.table .tr:last-child .td, .table tr:last-child td, .table .tr:last-child:not(:first-child) .th, .table tr:last-child:not(:first-child) th { border-bottom: none !important; }
+
+.table .caption:before, .table caption:before { content: "\2014 \00A0"; }
+
+.table .td.adapt, .table td.adapt, .table .th.adapt, .table th.adapt { width: 1px; white-space: nowrap; }
+
+.table .td.grow, .table td.grow, .table .th.grow, .table th.grow { width: 9999999px; }
+
+.table--responsive { min-height: 0.01%; overflow-x: auto; width: 100%; overflow-y: hidden; }
+
+/** @name 		Centered table Display centered table contents @styleguide 		Components / Table @example 		html <table class="table table--center"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */
+.table--center td, .table--center .td, .table--center th, .table--center .th { text-align: center; }
+
+/** @name 		Middle table Display middle aligned table contents @styleguide 		Components / Table @example 		html <table class="table table--middle"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td> Mauris sem nulla, maximus id dignissim vitae,<br> ullamcorper a turpis. Vestibulum vel eros non nisl<br> euismod tempus vitae non turpis. </td> <td>Table cell 3</td> </tr> </table> */
+.table--middle td, .table--middle .td, .table--middle th, .table--middle .th { vertical-align: middle; }
+
+.table { /** @name 		<span class="c-default">Default</span> table Display default table contents @styleguide 		Components / Table @example 		html <table class="table table--default"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-primary">Primary</span> table Display primary table contents @styleguide 		Components / Table @example 		html <table class="table table--primary"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-secondary">Secondary</span> table Display secondary table contents @styleguide 		Components / Table @example 		html <table class="table table--secondary"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ }
+
+.table tr { border-bottom: 1px solid rgba(132, 142, 145, 0.1); }
+
+.table tr:last-of-type { border-bottom: none; }
+
+.table.table--default { /** @name 		<span class="c-default">Default</span> striped table Display default table contents @styleguide 		Components / Table @example 		html <table class="table table--default table--striped"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-default">Default</span> bordered table Display default bordered table contents @styleguide 		Components / Table @example 		html <table class="table table--default table--bordered"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-default">Default</span> hoverable table Display default hoverable table contents @styleguide 		Components / Table @example 		html <table class="table table--default table--hover"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ }
+
+.table.table--default th { color: #848e91; }
+
+.table.table--default.table--striped > thead > .tr:nth-of-type(odd) > td, .table.table--default.table--striped > thead > .tr:nth-of-type(odd) > th, .table.table--default.table--striped > thead > tr:nth-of-type(odd) > td, .table.table--default.table--striped > thead > tr:nth-of-type(odd) > th { background-color: rgba(132, 142, 145, 0.2); }
+
+.table.table--default.table--striped > tbody > .tr:nth-of-type(even) > td, .table.table--default.table--striped > tbody > .tr:nth-of-type(even) > th, .table.table--default.table--striped > tbody > tr:nth-of-type(even) > td, .table.table--default.table--striped > tbody > tr:nth-of-type(even) > th { background-color: rgba(132, 142, 145, 0.05); }
+
+.table.table--default.table--bordered { border: 1px solid rgba(132, 142, 145, 0.1); }
+
+.table.table--default.table--bordered tr { border-bottom: 1px solid rgba(132, 142, 145, 0.1); }
+
+.table.table--default.table--bordered tr:last-of-type { border-bottom: none; }
+
+.table.table--default.table--bordered td, .table.table--default.table--bordered th { border-right: 1px solid rgba(132, 142, 145, 0.1); }
+
+.table.table--default.table--hover > tbody > .tr:hover td, .table.table--default.table--hover > tbody > .tr:hover .td, .table.table--default.table--hover > tbody > .tr:hover th, .table.table--default.table--hover > tbody > .tr:hover .th, .table.table--default.table--hover > tbody > tr:hover td, .table.table--default.table--hover > tbody > tr:hover .td, .table.table--default.table--hover > tbody > tr:hover th, .table.table--default.table--hover > tbody > tr:hover .th { background-color: rgba(132, 142, 145, 0.1); }
+
+.table.table--primary { /** @name 		<span class="c-primary">Primary</span> striped table Display primary table contents @styleguide 		Components / Table @example 		html <table class="table table--primary table--striped"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-primary">Primary</span> bordered table Display primary bordered table contents @styleguide 		Components / Table @example 		html <table class="table table--primary table--bordered"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-primary">Primary</span> hoverable table Display primary hoverable table contents @styleguide 		Components / Table @example 		html <table class="table table--primary table--hover"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ }
+
+.table.table--primary th { color: #f2bc2b; }
+
+.table.table--primary.table--striped > thead > .tr:nth-of-type(odd) > td, .table.table--primary.table--striped > thead > .tr:nth-of-type(odd) > th, .table.table--primary.table--striped > thead > tr:nth-of-type(odd) > td, .table.table--primary.table--striped > thead > tr:nth-of-type(odd) > th { background-color: rgba(242, 188, 43, 0.2); }
+
+.table.table--primary.table--striped > tbody > .tr:nth-of-type(even) > td, .table.table--primary.table--striped > tbody > .tr:nth-of-type(even) > th, .table.table--primary.table--striped > tbody > tr:nth-of-type(even) > td, .table.table--primary.table--striped > tbody > tr:nth-of-type(even) > th { background-color: rgba(242, 188, 43, 0.05); }
+
+.table.table--primary.table--bordered { border: 1px solid rgba(242, 188, 43, 0.1); }
+
+.table.table--primary.table--bordered tr { border-bottom: 1px solid rgba(242, 188, 43, 0.1); }
+
+.table.table--primary.table--bordered tr:last-of-type { border-bottom: none; }
+
+.table.table--primary.table--bordered td, .table.table--primary.table--bordered th { border-right: 1px solid rgba(242, 188, 43, 0.1); }
+
+.table.table--primary.table--hover > tbody > .tr:hover td, .table.table--primary.table--hover > tbody > .tr:hover .td, .table.table--primary.table--hover > tbody > .tr:hover th, .table.table--primary.table--hover > tbody > .tr:hover .th, .table.table--primary.table--hover > tbody > tr:hover td, .table.table--primary.table--hover > tbody > tr:hover .td, .table.table--primary.table--hover > tbody > tr:hover th, .table.table--primary.table--hover > tbody > tr:hover .th { background-color: rgba(242, 188, 43, 0.1); }
+
+.table.table--secondary { /** @name 		<span class="c-secondary">Secondary</span> striped table Display secondary table contents @styleguide 		Components / Table @example 		html <table class="table table--secondary table--striped"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-secondary">Secondary</span> bordered table Display secondary bordered table contents @styleguide 		Components / Table @example 		html <table class="table table--secondary table--bordered"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ /** @name 		<span class="c-secondary">Secondary</span> hoverable table Display secondary hoverable table contents @styleguide 		Components / Table @example 		html <table class="table table--secondary table--hover"> <tr> <th>#</th> <th>Table head 1</th> <th>Table head 2</th> <th>Table head 3</th> </tr> <tr> <td>1</td> <td>Table cell 1</td> <td>Table cell 2</td> <td>Table cell 3</td> </tr> </table> */ }
+
+.table.table--secondary th { color: #2b3438; }
+
+.table.table--secondary.table--striped > thead > .tr:nth-of-type(odd) > td, .table.table--secondary.table--striped > thead > .tr:nth-of-type(odd) > th, .table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > td, .table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > th { background-color: rgba(43, 52, 56, 0.2); }
+
+.table.table--secondary.table--striped > tbody > .tr:nth-of-type(even) > td, .table.table--secondary.table--striped > tbody > .tr:nth-of-type(even) > th, .table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > td, .table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > th { background-color: rgba(43, 52, 56, 0.05); }
+
+.table.table--secondary.table--bordered { border: 1px solid rgba(43, 52, 56, 0.1); }
+
+.table.table--secondary.table--bordered tr { border-bottom: 1px solid rgba(43, 52, 56, 0.1); }
+
+.table.table--secondary.table--bordered tr:last-of-type { border-bottom: none; }
+
+.table.table--secondary.table--bordered td, .table.table--secondary.table--bordered th { border-right: 1px solid rgba(43, 52, 56, 0.1); }
+
+.table.table--secondary.table--hover > tbody > .tr:hover td, .table.table--secondary.table--hover > tbody > .tr:hover .td, .table.table--secondary.table--hover > tbody > .tr:hover th, .table.table--secondary.table--hover > tbody > .tr:hover .th, .table.table--secondary.table--hover > tbody > tr:hover td, .table.table--secondary.table--hover > tbody > tr:hover .td, .table.table--secondary.table--hover > tbody > tr:hover th, .table.table--secondary.table--hover > tbody > tr:hover .th { background-color: rgba(43, 52, 56, 0.1); }
+
 /** Trumps All the things that does not fit in any others directory. Try to keep this folder has small as possible. If you have to many things in here, that mean that you probably need to refactor your codebase... */
 /** Trumps All the things that does not fit in any others directory. Try to keep this folder has small as possible. If you have to many things in here, that mean that you probably need to refactor your codebase... */
