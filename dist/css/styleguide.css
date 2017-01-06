@@ -729,6 +729,15 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
+ * Process selector to avoid having --default, etc...
+ * @param 		{String} 		$selector 		The selector to process
+ * @return 		{String} 						The processed selector
+ * @example 	scss
+ * s-selector('.input--default'); // => .input
+ * s-selector('.input-default'); // => .input
+ * s-selector('.input.default'); // => .input
+ */
+/**
  * Get a settings from the global settings stack
  *
  * @param 				{String} 			$path 						The setting path wanted separated by dots
@@ -6484,7 +6493,7 @@ p.vr,
 
 /**
  * @name 		Datepicker
- * @styleguide 		Date / Datepicker
+ * @styleguide 		Form / Datepicker
  * @example 	html
  * 	<input type="text" name="date" /><br>
  *  <s-datepicker color="primary" inline for="date"></s-datepicker>
@@ -6508,6 +6517,10 @@ p.vr,
   border-radius: 0.1875em;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
+}
+
+.flatpickr-current-month .cur-year {
+  color: #848e91;
 }
 
 .flatpickr-calendar[color="default"] .flatpickr-day.inRange,

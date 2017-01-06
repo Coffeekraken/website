@@ -70,9 +70,7 @@
 
 	var _SDatepickerComponent2 = _interopRequireDefault(_SDatepickerComponent);
 
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _SDatepickerComponent2.default.define('s-datepicker', _SDatepickerComponent2.default);
 
@@ -80,37 +78,13 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
-	var _createClass = function () {
-		function defineProperties(target, props) {
-			for (var i = 0; i < props.length; i++) {
-				var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-			}
-		}return function (Constructor, protoProps, staticProps) {
-			if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-		};
-	}();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _get = function get(object, property, receiver) {
-		if (object === null) object = Function.prototype;var desc = Object.getOwnPropertyDescriptor(object, property);if (desc === undefined) {
-			var parent = Object.getPrototypeOf(object);if (parent === null) {
-				return undefined;
-			} else {
-				return get(parent, property, receiver);
-			}
-		} else if ("value" in desc) {
-			return desc.value;
-		} else {
-			var getter = desc.get;if (getter === undefined) {
-				return undefined;
-			}return getter.call(receiver);
-		}
-	};
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 	var _SWebComponent2 = __webpack_require__(4);
 
@@ -128,27 +102,13 @@
 
 	var _autoCast2 = _interopRequireDefault(_autoCast);
 
-	function _interopRequireDefault(obj) {
-		return obj && obj.__esModule ? obj : { default: obj };
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) {
-		if (!(instance instanceof Constructor)) {
-			throw new TypeError("Cannot call a class as a function");
-		}
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _possibleConstructorReturn(self, call) {
-		if (!self) {
-			throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-		}return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-	}
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) {
-		if (typeof superClass !== "function" && superClass !== null) {
-			throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-		}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-	}
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	console.log('window', window);
 	console.log('document', document);
@@ -164,6 +124,7 @@
 
 		_createClass(SDatepickerComponent, [{
 			key: 'componentWillMount',
+
 
 			/**
 	   * Component will mount
@@ -308,14 +269,16 @@
 		}], [{
 			key: 'css',
 
+
 			/**
 	   * Css
 	   */
 			value: function css(componentName, componentNameDash) {
-				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay:inline-block;\n\t\t\t}\n\t\t\t.flatpickr-input {\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1\n\t\t\t}\n\t\t\t.flatpickr-mobileInput {\n\t\t\t\topacity: 0;\n\t\t\t\tvisibility: hidden;\n\t\t\t\tposition: absolute;\n\t\t\t\twidth: 0;\n\t\t\t\theight: 0;\n\t\t\t\tbox-sizing: border-box;\n\t\t\t\tpadding: 0\n\t\t\t}\n\t\t\t.flatpickr-calendar {\n\t\t\t\tbackground: #fff;\n\t\t\t\topacity:0;\n\t\t\t\tpointer-events: none;\n\t\t\t\tmargin-top:-20px;\n\t\t\t\ttext-align: center;\n\t\t\t\tpadding:1em;\n\t\t\t\tposition: absolute;\n\t\t\t\ttop:0; left: -200vw;\n\t\t\t}\n\t\t\t.flatpickr-calendar.open {\n\t\t\t\topacity: 1;\n\t\t\t\tz-index: 99999;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\ttop:0; left:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.inline {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tposition: relative;\n\t\t\t\topacity:1;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\tleft:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.static {\n\t\t\t\tposition: relative\n\t\t\t}\n\t\t\t.flatpickr-calendar.static.open {\n\t\t\t\tdisplay: block\n\t\t\t}\n\t\t\t.flatpickr-calendar.hasWeeks {\n\t\t\t}\n\n\t\t\t.flatpickr-month,\n\t\t\t.flatpickr-next-month i,\n\t\t\t.flatpickr-prev-month i {\n\t\t\t\tposition: relative\n\t\t\t}\n\n\t\t\t.flatpickr-month {\n\t\t\t\tuser-select:none;\n\t\t\t\twidth:100%;\n\t\t\t\tdisplay: flex;\n\t\t\t}\n\t\t\t.flatpickr-month > span {\n\t\t\t\tvertical-align: middle;\n\t\t\t}\n\n\t\t\t.flatpickr-next-month,\n\t\t\t.flatpickr-prev-month {\n\t\t\t\ttext-decoration: none;\n\t\t\t\tcursor: pointer;\n\t\t\t\twidth: 3em;\n\t\t\t\tdisplay : inline-block !important;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-next-month[style*="none"],\n\t\t\t.flatpickr-prev-month[style*="none"] {\n\t\t\t\tpointer-events:none;\n\t\t\t\topacity: .4;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg,\n\t\t\t.flatpickr-prev-month svg {\n\t\t\t\theight: 1em;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg path,\n\t\t\t.flatpickr-prev-month svg path {\n\t\t\t\tfill: inherit\n\t\t\t}\n\t\t\t.flatpickr-current-month {\n\t\t\t\tflex: 1 auto;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-month {\n\t\t\t\tfont-weight: bold;\n\t\t\t}\n\t\t\t.flatpickr-current-month .numInputWrapper {\n\t\t\t\tdisplay:inline;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year {\n\t\t\t\tpadding: 0;\n\t\t\t\tmargin: 0;\n\t\t\t\twidth: 3.2em;\n\t\t\t\tdisplay: inline;\n\t\t\t\tfont-size: inherit;\n\t\t\t\tline-height: 0;\n\t\t\t\theight: initial;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tvertical-align: initial;\n\t\t\t\toutline:none;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year:hover {\n\t\t\t\tbackground: rgba(0, 0, 0, .05)\n\t\t\t}\n\t\t\t.flatpickr-weekdays {\n\t\t\t\tpadding:.5em 0;\n\t\t\t\toverflow: hidden;\n\t\t\t}\n\t\t\tspan.flatpickr-weekday {\n\t\t\t\tcursor: default;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t\tdisplay:inline-block;\n\t\t\t\twidth: 5em;\n\t\t\t\tfont-size:.6em;\n\t\t\t\tpadding:.5em 0;\n\t\t\t}\n\n\t\t\t.flatpickr-rContainer {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\twidth: 21em;\n\t\t\t}\n\t\t\t.flatpickr-days {\n\t\t\t\toutline: 0;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\t\t\t.flatpickr-day {\n\t\t\t\twidth: 3em;\n\t\t\t\theight: 3em;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcursor: pointer;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-day.disabled,\n\t\t\t.flatpickr-day.disabled:hover,\n\t\t\t.flatpickr-day.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed,\n\t\t\t.flatpickr-day.notAllowed.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed.prevMonthDay,\n\t\t\t.flatpickr-day.prevMonthDay {\n\t\t\t\tcolor: rgba(57, 57, 57, .3);\n\t\t\t\tbackground: 0 0;\n\t\t\t\tborder-color: transparent;\n\t\t\t\tcursor: default\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper {\n\t\t\t\tpadding-top:.5em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tfloat: left\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weeks {\n\t\t\t\tpadding: .5em .25rem 0 .25em;\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weekday {\n\t\t\t\tfloat: none;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper span.flatpickr-day {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-time {\n\t\t\t\toverflow: auto;\n\t\t\t\ttext-align: center;\n\t\t\t\tborder-top: 0;\n\t\t\t\toutline: 0;\n\t\t\t\tdisplay: block;\n\t\t\t\tdisplay: flex;\n\t\t\t\tmin-width:10em;\n\t\t\t}\n\t\t\t.flatpickr-am-pm {\n\t\t\t\tuser-select:none;\n\t\t\t}\n\t\t\t.flatpickr-am-pm,\n\t\t\t.flatpickr-time input,\n\t\t\t.flatpickr-time-separator {\n\t\t\t\theight: 3em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcolor: #393939\n\t\t\t}\n\t\t\t.flatpickr-time input {\n\t\t\t\tfont-size: 1em;\n\t\t\t\tbackground: 0 0;\n\t\t\t\tbox-shadow: none;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tflex: 1;\n\t\t\t\twidth: 33%;\n\t\t\t\tmin-width: 33%;\n\t\t\t\ttext-align: center;\n\t\t\t\tmargin: 0;\n\t\t\t\tpadding: 0;\n\t\t\t\tcursor: pointer;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-minute {\n\t\t\t\twidth: 26%;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-second {\n\t\t\t}\n\t\t\t.flatpickr-time input:focus {\n\t\t\t\toutline: 0;\n\t\t\t\tborder: 0\n\t\t\t}\n\n\t\t\t.flatpickr-time.has-seconds input[type=number] {\n\t\t\t\twidth: 25%;\n\t\t\t\tmin-width: 25%\n\t\t\t}\n\t\t\t.hasTime .flatpickr-days,\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-bottom: 0;\n\t\t\t\tborder-bottom-right-radius: 0;\n\t\t\t\tborder-bottom-left-radius: 0\n\t\t\t}\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-left: 0\n\t\t\t}\n\n\t\t\t.flatpickr-am-pm {\n\t\t\t\toutline: 0;\n\t\t\t\twidth: 21%;\n\t\t\t\tpadding: 0 2%;\n\t\t\t\tcursor: pointer;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\n\t\t\t@media all and (-ms-high-contrast: none) {\n\t\t\t\t.flatpickr-month {\n\t\t\t\t\tpadding: 0\n\t\t\t\t}\n\t\t\t\t.flatpickr-month svg {\n\t\t\t\t\ttop: 0 !important\n\t\t\t\t}\n\t\t\t}\n\t\t';
+				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay:inline-block;\n\t\t\t}\n\t\t\t.flatpickr-input {\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1\n\t\t\t}\n\t\t\t.flatpickr-mobileInput {\n\t\t\t\topacity: 0;\n\t\t\t\tvisibility: hidden;\n\t\t\t\tposition: absolute;\n\t\t\t\twidth: 0;\n\t\t\t\theight: 0;\n\t\t\t\tbox-sizing: border-box;\n\t\t\t\tpadding: 0\n\t\t\t}\n\t\t\t.flatpickr-calendar {\n\t\t\t\tbackground: #fff;\n\t\t\t\topacity:0;\n\t\t\t\tpointer-events: none;\n\t\t\t\tmargin-top:-20px;\n\t\t\t\ttext-align: center;\n\t\t\t\tpadding:1em;\n\t\t\t\tposition: absolute;\n\t\t\t\ttop:0; left: -200vw;\n\t\t\t}\n\t\t\t.flatpickr-calendar.open {\n\t\t\t\topacity: 1;\n\t\t\t\tz-index: 99999;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\ttop:0; left:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.inline {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tposition: relative;\n\t\t\t\topacity:1;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpadding:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\tleft:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.static {\n\t\t\t\tposition: relative\n\t\t\t}\n\t\t\t.flatpickr-calendar.static.open {\n\t\t\t\tdisplay: block\n\t\t\t}\n\t\t\t.flatpickr-calendar.hasWeeks {\n\t\t\t}\n\n\t\t\t.flatpickr-month,\n\t\t\t.flatpickr-next-month i,\n\t\t\t.flatpickr-prev-month i {\n\t\t\t\tposition: relative\n\t\t\t}\n\n\t\t\t.flatpickr-month {\n\t\t\t\tuser-select:none;\n\t\t\t\twidth:100%;\n\t\t\t\tdisplay: flex;\n\t\t\t}\n\t\t\t.flatpickr-month > span {\n\t\t\t\tvertical-align: middle;\n\t\t\t}\n\n\t\t\t.flatpickr-next-month,\n\t\t\t.flatpickr-prev-month {\n\t\t\t\ttext-decoration: none;\n\t\t\t\tcursor: pointer;\n\t\t\t\twidth: 3em;\n\t\t\t\tdisplay : inline-block !important;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-next-month[style*="none"],\n\t\t\t.flatpickr-prev-month[style*="none"] {\n\t\t\t\tpointer-events:none;\n\t\t\t\topacity: .4;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg,\n\t\t\t.flatpickr-prev-month svg {\n\t\t\t\theight: 1em;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg path,\n\t\t\t.flatpickr-prev-month svg path {\n\t\t\t\tfill: inherit\n\t\t\t}\n\t\t\t.flatpickr-current-month {\n\t\t\t\tflex: 1 auto;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-month {\n\t\t\t\tfont-weight: bold;\n\t\t\t}\n\t\t\t.flatpickr-current-month .numInputWrapper {\n\t\t\t\tdisplay:inline;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year {\n\t\t\t\tpadding: 0;\n\t\t\t\tmargin: 0;\n\t\t\t\twidth: 3.2em;\n\t\t\t\tdisplay: inline;\n\t\t\t\tfont-size: inherit;\n\t\t\t\tline-height: 0;\n\t\t\t\theight: initial;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tvertical-align: initial;\n\t\t\t\toutline:none;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year:hover {\n\t\t\t\tbackground: rgba(0, 0, 0, .05)\n\t\t\t}\n\t\t\t.flatpickr-weekdays {\n\t\t\t\tpadding:.5em 0;\n\t\t\t\toverflow: hidden;\n\t\t\t}\n\t\t\tspan.flatpickr-weekday {\n\t\t\t\tcursor: default;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t\tdisplay:inline-block;\n\t\t\t\twidth: 5em;\n\t\t\t\tfont-size:.6em;\n\t\t\t\tpadding:.5em 0;\n\t\t\t}\n\n\t\t\t.flatpickr-rContainer {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\twidth: 21em;\n\t\t\t}\n\t\t\t.flatpickr-days {\n\t\t\t\toutline: 0;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\t\t\t.flatpickr-day {\n\t\t\t\twidth: 3em;\n\t\t\t\theight: 3em;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcursor: pointer;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-day.disabled,\n\t\t\t.flatpickr-day.disabled:hover,\n\t\t\t.flatpickr-day.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed,\n\t\t\t.flatpickr-day.notAllowed.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed.prevMonthDay,\n\t\t\t.flatpickr-day.prevMonthDay {\n\t\t\t\tcolor: rgba(57, 57, 57, .3);\n\t\t\t\tbackground: 0 0;\n\t\t\t\tborder-color: transparent;\n\t\t\t\tcursor: default\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper {\n\t\t\t\tpadding-top:.5em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tfloat: left\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weeks {\n\t\t\t\tpadding: .5em .25rem 0 .25em;\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weekday {\n\t\t\t\tfloat: none;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper span.flatpickr-day {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-time {\n\t\t\t\toverflow: auto;\n\t\t\t\ttext-align: center;\n\t\t\t\tborder-top: 0;\n\t\t\t\toutline: 0;\n\t\t\t\tdisplay: block;\n\t\t\t\tdisplay: flex;\n\t\t\t\tmin-width:10em;\n\t\t\t}\n\t\t\t.flatpickr-am-pm {\n\t\t\t\tuser-select:none;\n\t\t\t}\n\t\t\t.flatpickr-am-pm,\n\t\t\t.flatpickr-time input,\n\t\t\t.flatpickr-time-separator {\n\t\t\t\theight: 3em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcolor: #393939\n\t\t\t}\n\t\t\t.flatpickr-time input {\n\t\t\t\tfont-size: 1em;\n\t\t\t\tbackground: 0 0;\n\t\t\t\tbox-shadow: none;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tflex: 1;\n\t\t\t\twidth: 33%;\n\t\t\t\tmin-width: 33%;\n\t\t\t\ttext-align: center;\n\t\t\t\tmargin: 0;\n\t\t\t\tpadding: 0;\n\t\t\t\tcursor: pointer;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-minute {\n\t\t\t\twidth: 26%;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-second {\n\t\t\t}\n\t\t\t.flatpickr-time input:focus {\n\t\t\t\toutline: 0;\n\t\t\t\tborder: 0\n\t\t\t}\n\n\t\t\t.flatpickr-time.has-seconds input[type=number] {\n\t\t\t\twidth: 25%;\n\t\t\t\tmin-width: 25%\n\t\t\t}\n\t\t\t.hasTime .flatpickr-days,\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-bottom: 0;\n\t\t\t\tborder-bottom-right-radius: 0;\n\t\t\t\tborder-bottom-left-radius: 0\n\t\t\t}\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-left: 0\n\t\t\t}\n\n\t\t\t.flatpickr-am-pm {\n\t\t\t\toutline: 0;\n\t\t\t\twidth: 21%;\n\t\t\t\tpadding: 0 2%;\n\t\t\t\tcursor: pointer;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\n\t\t\t@media all and (-ms-high-contrast: none) {\n\t\t\t\t.flatpickr-month {\n\t\t\t\t\tpadding: 0\n\t\t\t\t}\n\t\t\t\t.flatpickr-month svg {\n\t\t\t\t\ttop: 0 !important\n\t\t\t\t}\n\t\t\t}\n\t\t';
 			}
 		}, {
 			key: 'defaultProps',
+
 
 			/**
 	   * Default props
@@ -865,11 +828,13 @@
 				// register the webcomponent
 				var webcomponent = void 0;
 				if (document.registerElement) {
+					console.log('register', name, document);
 					webcomponent = document.registerElement(name, {
 						prototype: component.prototype,
 						extends: ext
 					});
 				} else if (window.customElements) {
+					console.log('customElement', name, window);
 					webcomponent = window.customElements.define(name, component, {
 						extends: ext
 					});
@@ -3814,6 +3779,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
 	var isArray_1 = __webpack_require__(35);
 	var isObject_1 = __webpack_require__(36);
 	var isFunction_1 = __webpack_require__(33);
@@ -3866,7 +3836,8 @@
 	            var trial = tryCatch_1.tryCatch(_unsubscribe).call(this);
 	            if (trial === errorObject_1.errorObject) {
 	                hasErrors = true;
-	                (errors = errors || []).push(errorObject_1.errorObject.e);
+	                errors = errors || (errorObject_1.errorObject.e instanceof UnsubscriptionError_1.UnsubscriptionError ?
+	                    flattenUnsubscriptionErrors(errorObject_1.errorObject.e.errors) : [errorObject_1.errorObject.e]);
 	            }
 	        }
 	        if (isArray_1.isArray(_subscriptions)) {
@@ -3881,7 +3852,7 @@
 	                        errors = errors || [];
 	                        var err = errorObject_1.errorObject.e;
 	                        if (err instanceof UnsubscriptionError_1.UnsubscriptionError) {
-	                            errors = errors.concat(err.errors);
+	                            errors = errors.concat(flattenUnsubscriptionErrors(err.errors));
 	                        }
 	                        else {
 	                            errors.push(err);
@@ -3925,19 +3896,20 @@
 	                sub = new Subscription(teardown);
 	            case 'object':
 	                if (sub.closed || typeof sub.unsubscribe !== 'function') {
-	                    break;
+	                    return sub;
 	                }
 	                else if (this.closed) {
 	                    sub.unsubscribe();
-	                }
-	                else {
-	                    (this._subscriptions || (this._subscriptions = [])).push(sub);
+	                    return sub;
 	                }
 	                break;
 	            default:
 	                throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
 	        }
-	        return sub;
+	        var childSub = new ChildSubscription(sub, this);
+	        this._subscriptions = this._subscriptions || [];
+	        this._subscriptions.push(childSub);
+	        return childSub;
 	    };
 	    /**
 	     * Removes a Subscription from the internal list of subscriptions that will
@@ -3965,6 +3937,24 @@
 	    return Subscription;
 	}());
 	exports.Subscription = Subscription;
+	var ChildSubscription = (function (_super) {
+	    __extends(ChildSubscription, _super);
+	    function ChildSubscription(_innerSub, _parent) {
+	        _super.call(this);
+	        this._innerSub = _innerSub;
+	        this._parent = _parent;
+	    }
+	    ChildSubscription.prototype._unsubscribe = function () {
+	        var _a = this, _innerSub = _a._innerSub, _parent = _a._parent;
+	        _parent.remove(this);
+	        _innerSub.unsubscribe();
+	    };
+	    return ChildSubscription;
+	}(Subscription));
+	exports.ChildSubscription = ChildSubscription;
+	function flattenUnsubscriptionErrors(errors) {
+	    return errors.reduce(function (errs, err) { return errs.concat((err instanceof UnsubscriptionError_1.UnsubscriptionError) ? err.errors : err); }, []);
+	}
 	//# sourceMappingURL=Subscription.js.map
 
 /***/ },
@@ -4428,8 +4418,7 @@
 	  if (value == null) {
 	    return value === undefined ? undefinedTag : nullTag;
 	  }
-	  value = Object(value);
-	  return (symToStringTag && symToStringTag in value)
+	  return (symToStringTag && symToStringTag in Object(value))
 	    ? getRawTag(value)
 	    : objectToString(value);
 	}
@@ -5198,7 +5187,7 @@
 	 */
 	function hashHas(key) {
 	  var data = this.__data__;
-	  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+	  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
 	}
 
 	module.exports = hashHas;

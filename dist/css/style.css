@@ -54,6 +54,7 @@
 /** Return the passed values in the same unit but that has been odd rounded on the corresponding px value This ensure that your passed value will be a round px value for final rander in the viewport @param 		{Number} 		$value 			The value to process @return 		{Number} 						The rounded value in same input unit but px rounded @example // if settings.typo.font-size == 16px s-render-round-odd(5.2rem); // 1. transform to px values : 5.2 * 16px = 83.2px // 2. round odd the px value : 83px // 3. transform to passed unit value : 84px / 16px = 5.1875rem @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return the passed values in the same unit but that has been rounded on the corresponding px value This ensure that your passed value will be a round px value for final rander in the viewport @param 		{Number} 		$value 			The value to process @return 		{Number} 						The rounded value in same input unit but px rounded @example // if settings.typo.font-size == 16px s-render-round(5.2rem); // 1. transform to px values : 5.2 * 16px = 83.2px // 2. round even the px value : 83px // 3. transform to passed unit value : 84px / 16px = 5.1875rem @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Search and replace tokens like colors #primary in a passed string, list or map Supported tokens types : 1. Colors : colorName @example s-replace-tokens(12px #primary hello #secondary); // > 12px #ddd hello #fff; @author 			Olivier Bossel <olivier.bossel@gmail.com> */
+/** Process selector to avoid having --default, etc... @param 		{String} 		$selector 		The selector to process @return 		{String} 						The processed selector @example 	scss s-selector('.input--default'); // => .input s-selector('.input-default'); // => .input s-selector('.input.default'); // => .input */
 /** Get a settings from the global settings stack @param 				{String} 			$path 						The setting path wanted separated by dots @param 				{String} 			[$context=s-context()] 		The context name to get the setting @return 				{Mixed} 										The setting value¨ @example $font-size : s-setting('typo.font-size'); // etc... @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return a value interpolated from the settings.spaces stack @param 			{String} 			$size 			The space size wanted. Must exist in the settings.sizes stack @return 			{Number} 							The actual space value @example .my-cool-section { padding : s-pace(big); } @author 			Olivier Bossel <olivier.bossel@gmail.com> */
 /** Return a number without any units @param 			{Number} 		$number 		The number to process @return 			{Number} 						The number without units @example s-strip-units(12px); // => 12 s-strip-units(30rem); // => 30 @author 			Olivier Bossel <olivier.bossel@gmail.com> */
@@ -1275,7 +1276,7 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 
 [data-input-activator]:focus ~ .form-addon--secondary, [data-input-activator]:checked ~ .form-addon--secondary, .form-addon--secondary:focus:not(:disabled), .form-addon--secondary.active:not(:disabled) { border-left-color: rgba(43, 52, 56, 0.6); }
 
-/** @name 		Datepicker @styleguide 		Date / Datepicker @example 	html <input type="text" name="date" /><br> <s-datepicker color="primary" inline for="date"></s-datepicker> */
+/** @name 		Datepicker @styleguide 		Form / Datepicker @example 	html <input type="text" name="date" /><br> <s-datepicker color="primary" inline for="date"></s-datepicker> */
 .flatpickr-calendar.open { box-shadow: rgba(0, 0, 0, 0.2) 0 12px 18px; }
 
 .flatpickr-calendar { transition: margin-top 0.1s ease-in-out 0s, opacity 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; border-radius: 0.1875em; }
@@ -1283,6 +1284,8 @@ p.vr, .vr > p, .p.vr, .vr > .p { margin-bottom: 1em; }
 .flatpickr-month { color: #848e91; fill: #848e91; }
 
 .flatpickr-day { border-radius: 0.1875em; transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s; outline-color: black; }
+
+.flatpickr-current-month .cur-year { color: #848e91; }
 
 .flatpickr-calendar[color="default"] .flatpickr-day.inRange, .flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay.inRange, .flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay:focus, .flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay:hover, .flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay.inRange, .flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay:focus, .flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay:hover, .flatpickr-calendar[color="default"] .flatpickr-day:focus:not(.disabled), .flatpickr-calendar[color="default"] .flatpickr-day:hover:not(.disabled) { cursor: pointer; outline: 0; background: rgba(132, 142, 145, 0.1); }
 
