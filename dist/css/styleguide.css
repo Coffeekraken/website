@@ -729,23 +729,6 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Return a selector builded with the params passed, depending on the settings.selector.method base setting.
- *
- * @param 			{String} 			$block 						The block part of the selector
- * @param 			{String} 			[$element=null] 			The element part of the selector
- * @param 			{String} 			[$modifier=null] 			The modifier part of the selector
- * @param 			{String} 			[$state=null] 				The state part of the selector
- * @param 			{String} 			[$modifierName=null] 		The modifier name that will be used for webcomponent method like [$modifierName="$modifier"]
- * @param 			{String} 			[$method=BEM] 				The method used to build the selector (BEM or SMACCS)
- * @return 			{String} 										The generated class selector
- *
- * @example
- * s-selector(my-component, item, null, active, null, BEM); // => .my-component__item--active
- * s-selector(my-component, item, null, active, null, SMACCS); // => .my-component-item.is-active
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
  * Get a settings from the global settings stack
  *
  * @param 				{String} 			$path 						The setting path wanted separated by dots
@@ -2209,6 +2192,34 @@
 
 button {
   line-height: 1;
+}
+
+.form-input, .form-select, .form-textarea, .form-addon {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+}
+
+.form-input:not(.input-addon):not(textarea), .form-select:not(.input-addon):not(textarea), .form-textarea:not(.input-addon):not(textarea), .form-addon:not(.input-addon):not(textarea) {
+  line-height: 1 !important;
+}
+
+.form-input, .form-select, .form-textarea, .form-input--primary, .form-select--primary, .form-textarea--primary, .form-input--secondary, .form-select--secondary, .form-textarea--secondary {
+  border-width: 1px;
+  border-bottom-width: 3px;
+  border-style: solid;
+}
+
+[data-input-activator]:focus ~ .form-input, [data-input-activator]:focus ~ .form-select, [data-input-activator]:focus ~ .form-textarea, [data-input-activator]:focus ~ .form-input--primary, [data-input-activator]:focus ~ .form-select--primary, [data-input-activator]:focus ~ .form-textarea--primary, [data-input-activator]:focus ~ .form-input--secondary, [data-input-activator]:focus ~ .form-select--secondary, [data-input-activator]:focus ~ .form-textarea--secondary, .form-input:focus, .form-select:focus, .form-textarea:focus, .form-input--primary:focus, .form-select--primary:focus, .form-textarea--primary:focus, .form-input--secondary:focus, .form-select--secondary:focus, .form-textarea--secondary:focus {
+  border-left-width: 5px;
+}
+
+.form-input:disabled, .form-select:disabled, .form-textarea:disabled, .form-input--primary:disabled, .form-select--primary:disabled, .form-textarea--primary:disabled, .form-input--secondary:disabled, .form-select--secondary:disabled, .form-textarea--secondary:disabled {
+  cursor: not-allowed;
 }
 
 /**
@@ -5822,6 +5833,863 @@ p.vr,
  * All the objects styling.
  * An object response to the same rules has the blocks, unless they cannot contain any other objects or blocks.
  */
+/**
+ * Form styling
+ */
+/**
+		 * @name 	Basic input
+		 * @styleguide 		Form / Input
+		 * @example 	html
+		 * <input class="form-input" placeholder="Hello world" />
+		 */
+.form-input {
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-weight: normal;
+  border-radius: 0.1875em;
+  padding: 0 1em;
+  height: 2.625em;
+}
+
+.form-input:not(input):not(select) {
+  padding: 0.8125em 1em;
+}
+
+/**
+		 * @name 	Basic select
+		 * @styleguide 		Form / Select
+		 * @example 	html
+		 * <select class="form-select">
+		 * 	<option>Value 1</option>
+		 * 	<option>Value 2</option>
+		 * 	<option>Value 3</option>
+		 * </select>
+		 */
+.form-select {
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-weight: normal;
+  background-size: 9px 6px;
+  background-position: right center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 0.1875em;
+  padding: 0 1em;
+  height: 2.625em;
+}
+
+.form-select:not(input):not(select) {
+  padding: 0.8125em 1em;
+}
+
+/**
+		 * @name 	Basic textarea
+		 * @styleguide 		Form / Textarea
+		 * @example 	html
+		 * <textarea class="form-textarea" placeholder="Hello world"></textarea>
+		 */
+.form-textarea {
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-weight: normal;
+  padding: 0.8125em 1em;
+  display: inline-block;
+}
+
+/**
+		 * @name 	Group
+		 * @styleguide 		Form / Group
+		 * @example 	html
+		 * <div class="form-group">
+		 * 	<input class="form-input" placeholder="Hello world" />
+		 * 	<input class="btn" type="submit" value="Ok" />
+		 * </div>
+		 */
+.form-group {
+  display: flex !important;
+  flex: 1 !important;
+}
+
+.form-group > * {
+  flex: 1;
+}
+
+.form-group > input[type="submit"],
+.form-group > input[type="checkbox"],
+.form-group > input[type="radio"],
+.form-group > button,
+.form-group .form-addon {
+  flex: 0;
+}
+
+/**
+		 * @name 	Addon
+		 * @styleguide 		Form / Addon
+		 * @example 	html
+		 * <div class="form-group">
+		 * 	<div class="form-addon">
+		 *  	Email
+		 *  </div>
+		 * 	<input class="form-input" placeholder="john.doe@gmail.com" />
+		 * 	<input class="btn" type="submit" value="Ok" />
+		 * </div>
+		 */
+.form-addon {
+  pointer-events: none;
+  border-radius: 0.1875em;
+  padding: 0 1em;
+  height: 2.625em;
+}
+
+.form-addon:not(input):not(select) {
+  padding: 0.8125em 1em;
+}
+
+.form-addon.vr,
+.vr > .form-addon {
+  margin-bottom: 1em;
+}
+
+/**
+			 * @name 	<span class="c-default">Default</span> input
+			 * @styleguide 		Form / Input
+			 * @example 	html
+			 * <input class="form-input form-input--default" placeholder="Hello world" />
+			 */
+.form-input {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(132, 142, 145, 0.1);
+  border-bottom-color: rgba(132, 142, 145, 0.3);
+}
+
+.form-input::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-input,
+[data-input-activator]:checked ~ .form-input, .form-input:hover:not(:disabled), .form-input:focus:not(:disabled), .form-input.active:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-input,
+[data-input-activator]:checked ~ .form-input, .form-input:focus:not(:disabled), .form-input.active:not(:disabled) {
+  border-left-color: rgba(132, 142, 145, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-default">Default</span> select
+			 * @styleguide 		Form / Select
+			 * @example 	html
+			 * <select class="form-select form-select--default">
+			 * 	<option>Value 1</option>
+			 * 	<option>Value 2</option>
+			 * 	<option>Value 3</option>
+			 * </select>
+			 */
+.form-select {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(132, 142, 145, 0.1);
+  border-bottom-color: rgba(132, 142, 145, 0.3);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23848e91"></polygon></svg>');
+}
+
+.form-select::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-select,
+[data-input-activator]:checked ~ .form-select, .form-select:hover:not(:disabled), .form-select:focus:not(:disabled), .form-select.active:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-select,
+[data-input-activator]:checked ~ .form-select, .form-select:focus:not(:disabled), .form-select.active:not(:disabled) {
+  border-left-color: rgba(132, 142, 145, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-default">Default</span> textarea
+			 * @styleguide 		Form / Textarea
+			 * @example 	html
+			 * <textarea class="form-textarea form-textarea--default" placeholder="Hello world"></textarea>
+			 */
+.form-textarea {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(132, 142, 145, 0.1);
+  border-bottom-color: rgba(132, 142, 145, 0.3);
+}
+
+.form-textarea::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-textarea,
+[data-input-activator]:checked ~ .form-textarea, .form-textarea:hover:not(:disabled), .form-textarea:focus:not(:disabled), .form-textarea.active:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-textarea,
+[data-input-activator]:checked ~ .form-textarea, .form-textarea:focus:not(:disabled), .form-textarea.active:not(:disabled) {
+  border-left-color: rgba(132, 142, 145, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-default">Default</span> addon
+			 * @styleguide 		Form / Addon
+			 * @example 	html
+			 * <div class="form-group">
+			 * 	<div class="form-addon form-addon--default">
+			 *  	Email
+			 *  </div>
+			 * 	<input class="form-input" placeholder="john.doe@gmail.com" />
+			 * 	<input class="btn" type="submit" value="Ok" />
+			 * </div>
+			 */
+.form-addon {
+  border-color: rgba(132, 142, 145, 0.1);
+  border-bottom-color: rgba(132, 142, 145, 0.3);
+  background-color: rgba(132, 142, 145, 0.08);
+  color: #6b7477;
+}
+
+[data-input-activator]:focus ~ .form-addon,
+[data-input-activator]:checked ~ .form-addon, .form-addon:hover:not(:disabled), .form-addon:focus:not(:disabled), .form-addon.active:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-addon,
+[data-input-activator]:checked ~ .form-addon, .form-addon:focus:not(:disabled), .form-addon.active:not(:disabled) {
+  border-left-color: rgba(132, 142, 145, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> input
+			 * @styleguide 		Form / Input
+			 * @example 	html
+			 * <input class="form-input form-input--primary" placeholder="Hello world" />
+			 */
+.form-input--primary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(242, 188, 43, 0.1);
+  border-bottom-color: rgba(242, 188, 43, 0.3);
+}
+
+.form-input--primary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--primary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--primary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--primary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--primary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-input--primary,
+[data-input-activator]:checked ~ .form-input--primary, .form-input--primary:hover:not(:disabled), .form-input--primary:focus:not(:disabled), .form-input--primary.active:not(:disabled) {
+  border-bottom-color: rgba(242, 188, 43, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-input--primary,
+[data-input-activator]:checked ~ .form-input--primary, .form-input--primary:focus:not(:disabled), .form-input--primary.active:not(:disabled) {
+  border-left-color: rgba(242, 188, 43, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> select
+			 * @styleguide 		Form / Select
+			 * @example 	html
+			 * <select class="form-select form-select--primary">
+			 * 	<option>Value 1</option>
+			 * 	<option>Value 2</option>
+			 * 	<option>Value 3</option>
+			 * </select>
+			 */
+.form-select--primary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(242, 188, 43, 0.1);
+  border-bottom-color: rgba(242, 188, 43, 0.3);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23f2bc2b"></polygon></svg>');
+}
+
+.form-select--primary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--primary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--primary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--primary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--primary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-select--primary,
+[data-input-activator]:checked ~ .form-select--primary, .form-select--primary:hover:not(:disabled), .form-select--primary:focus:not(:disabled), .form-select--primary.active:not(:disabled) {
+  border-bottom-color: rgba(242, 188, 43, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-select--primary,
+[data-input-activator]:checked ~ .form-select--primary, .form-select--primary:focus:not(:disabled), .form-select--primary.active:not(:disabled) {
+  border-left-color: rgba(242, 188, 43, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> textarea
+			 * @styleguide 		Form / Textarea
+			 * @example 	html
+			 * <textarea class="form-textarea form-textarea--primary" placeholder="Hello world"></textarea>
+			 */
+.form-textarea--primary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(242, 188, 43, 0.1);
+  border-bottom-color: rgba(242, 188, 43, 0.3);
+}
+
+.form-textarea--primary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--primary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--primary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--primary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--primary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-textarea--primary,
+[data-input-activator]:checked ~ .form-textarea--primary, .form-textarea--primary:hover:not(:disabled), .form-textarea--primary:focus:not(:disabled), .form-textarea--primary.active:not(:disabled) {
+  border-bottom-color: rgba(242, 188, 43, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-textarea--primary,
+[data-input-activator]:checked ~ .form-textarea--primary, .form-textarea--primary:focus:not(:disabled), .form-textarea--primary.active:not(:disabled) {
+  border-left-color: rgba(242, 188, 43, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> addon
+			 * @styleguide 		Form / Addon
+			 * @example 	html
+			 * <div class="form-group">
+			 * 	<div class="form-addon form-addon--primary">
+			 *  	Email
+			 *  </div>
+			 * 	<input class="form-input" placeholder="john.doe@gmail.com" />
+			 * 	<input class="btn" type="submit" value="Ok" />
+			 * </div>
+			 */
+.form-addon--primary {
+  border-color: rgba(242, 188, 43, 0.1);
+  border-bottom-color: rgba(242, 188, 43, 0.3);
+  background-color: rgba(242, 188, 43, 0.08);
+  color: #dca40e;
+}
+
+[data-input-activator]:focus ~ .form-addon--primary,
+[data-input-activator]:checked ~ .form-addon--primary, .form-addon--primary:hover:not(:disabled), .form-addon--primary:focus:not(:disabled), .form-addon--primary.active:not(:disabled) {
+  border-bottom-color: rgba(242, 188, 43, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-addon--primary,
+[data-input-activator]:checked ~ .form-addon--primary, .form-addon--primary:focus:not(:disabled), .form-addon--primary.active:not(:disabled) {
+  border-left-color: rgba(242, 188, 43, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> input
+			 * @styleguide 		Form / Input
+			 * @example 	html
+			 * <input class="form-input form-input--secondary" placeholder="Hello world" />
+			 */
+.form-input--secondary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(43, 52, 56, 0.1);
+  border-bottom-color: rgba(43, 52, 56, 0.3);
+}
+
+.form-input--secondary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--secondary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--secondary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--secondary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-input--secondary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-input--secondary,
+[data-input-activator]:checked ~ .form-input--secondary, .form-input--secondary:hover:not(:disabled), .form-input--secondary:focus:not(:disabled), .form-input--secondary.active:not(:disabled) {
+  border-bottom-color: rgba(43, 52, 56, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-input--secondary,
+[data-input-activator]:checked ~ .form-input--secondary, .form-input--secondary:focus:not(:disabled), .form-input--secondary.active:not(:disabled) {
+  border-left-color: rgba(43, 52, 56, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> select
+			 * @styleguide 		Form / Select
+			 * @example 	html
+			 * <select class="form-select form-select--secondary">
+			 * 	<option>Value 1</option>
+			 * 	<option>Value 2</option>
+			 * 	<option>Value 3</option>
+			 * </select>
+			 */
+.form-select--secondary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(43, 52, 56, 0.1);
+  border-bottom-color: rgba(43, 52, 56, 0.3);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%232b3438"></polygon></svg>');
+}
+
+.form-select--secondary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--secondary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--secondary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--secondary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-select--secondary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-select--secondary,
+[data-input-activator]:checked ~ .form-select--secondary, .form-select--secondary:hover:not(:disabled), .form-select--secondary:focus:not(:disabled), .form-select--secondary.active:not(:disabled) {
+  border-bottom-color: rgba(43, 52, 56, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-select--secondary,
+[data-input-activator]:checked ~ .form-select--secondary, .form-select--secondary:focus:not(:disabled), .form-select--secondary.active:not(:disabled) {
+  border-left-color: rgba(43, 52, 56, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> textarea
+			 * @styleguide 		Form / Textarea
+			 * @example 	html
+			 * <textarea class="form-textarea form-textarea--secondary" placeholder="Hello world"></textarea>
+			 */
+.form-textarea--secondary {
+  color: #848e91;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(43, 52, 56, 0.1);
+  border-bottom-color: rgba(43, 52, 56, 0.3);
+}
+
+.form-textarea--secondary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--secondary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--secondary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--secondary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.form-textarea--secondary:disabled {
+  opacity: 0.25;
+}
+
+[data-input-activator]:focus ~ .form-textarea--secondary,
+[data-input-activator]:checked ~ .form-textarea--secondary, .form-textarea--secondary:hover:not(:disabled), .form-textarea--secondary:focus:not(:disabled), .form-textarea--secondary.active:not(:disabled) {
+  border-bottom-color: rgba(43, 52, 56, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-textarea--secondary,
+[data-input-activator]:checked ~ .form-textarea--secondary, .form-textarea--secondary:focus:not(:disabled), .form-textarea--secondary.active:not(:disabled) {
+  border-left-color: rgba(43, 52, 56, 0.6);
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> addon
+			 * @styleguide 		Form / Addon
+			 * @example 	html
+			 * <div class="form-group">
+			 * 	<div class="form-addon form-addon--secondary">
+			 *  	Email
+			 *  </div>
+			 * 	<input class="form-input" placeholder="john.doe@gmail.com" />
+			 * 	<input class="btn" type="submit" value="Ok" />
+			 * </div>
+			 */
+.form-addon--secondary {
+  border-color: rgba(43, 52, 56, 0.1);
+  border-bottom-color: rgba(43, 52, 56, 0.3);
+  background-color: rgba(43, 52, 56, 0.08);
+  color: #15191b;
+}
+
+[data-input-activator]:focus ~ .form-addon--secondary,
+[data-input-activator]:checked ~ .form-addon--secondary, .form-addon--secondary:hover:not(:disabled), .form-addon--secondary:focus:not(:disabled), .form-addon--secondary.active:not(:disabled) {
+  border-bottom-color: rgba(43, 52, 56, 0.6);
+}
+
+[data-input-activator]:focus ~ .form-addon--secondary,
+[data-input-activator]:checked ~ .form-addon--secondary, .form-addon--secondary:focus:not(:disabled), .form-addon--secondary.active:not(:disabled) {
+  border-left-color: rgba(43, 52, 56, 0.6);
+}
+
+/**
+ * @name 		Datepicker
+ * @styleguide 		Date / Datepicker
+ * @example 	html
+ * 	<input type="text" name="date" /><br>
+ *  <s-datepicker color="primary" inline for="date"></s-datepicker>
+ */
+.flatpickr-calendar.open {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 12px 18px;
+}
+
+.flatpickr-calendar {
+  transition: margin-top 0.1s ease-in-out 0s, opacity 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-radius: 0.1875em;
+}
+
+.flatpickr-month {
+  color: #848e91;
+  fill: #848e91;
+}
+
+.flatpickr-day {
+  border-radius: 0.1875em;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-day.inRange,
+.flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay.inRange,
+.flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay:focus,
+.flatpickr-calendar[color="default"] .flatpickr-day.nextMonthDay:hover,
+.flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay.inRange,
+.flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay:focus,
+.flatpickr-calendar[color="default"] .flatpickr-day.prevMonthDay:hover,
+.flatpickr-calendar[color="default"] .flatpickr-day:focus:not(.disabled),
+.flatpickr-calendar[color="default"] .flatpickr-day:hover:not(.disabled) {
+  cursor: pointer;
+  outline: 0;
+  background: rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-day.today {
+  color: #848e91;
+  font-weight: bold;
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-day.selected,
+.flatpickr-calendar[color="default"] .flatpickr-day.selected.nextMonthDay,
+.flatpickr-calendar[color="default"] .flatpickr-day.selected.prevMonthDay,
+.flatpickr-calendar[color="default"] .flatpickr-day.selected:focus,
+.flatpickr-calendar[color="default"] .flatpickr-day.selected:hover {
+  background: #848e91;
+  color: #fff;
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-time input:focus,
+.flatpickr-calendar[color="default"] .flatpickr-time input:hover {
+  background: rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-am-pm:focus,
+.flatpickr-calendar[color="default"] .flatpickr-am-pm:hover {
+  background: rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-current-month .cur-year:hover {
+  background: rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-rContainer + .flatpickr-time {
+  border-top: 1px solid rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-weekwrapper .flatpickr-weeks {
+  border-right: 1px solid rgba(132, 142, 145, 0.1);
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-next-month svg:hover,
+.flatpickr-calendar[color="default"] .flatpickr-prev-month svg:hover {
+  fill: #848e91;
+}
+
+.flatpickr-calendar[color="default"] .flatpickr-next-month:hover,
+.flatpickr-calendar[color="default"] .flatpickr-prev-month:hover {
+  color: #848e91;
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-day.inRange,
+.flatpickr-calendar[color="primary"] .flatpickr-day.nextMonthDay.inRange,
+.flatpickr-calendar[color="primary"] .flatpickr-day.nextMonthDay:focus,
+.flatpickr-calendar[color="primary"] .flatpickr-day.nextMonthDay:hover,
+.flatpickr-calendar[color="primary"] .flatpickr-day.prevMonthDay.inRange,
+.flatpickr-calendar[color="primary"] .flatpickr-day.prevMonthDay:focus,
+.flatpickr-calendar[color="primary"] .flatpickr-day.prevMonthDay:hover,
+.flatpickr-calendar[color="primary"] .flatpickr-day:focus:not(.disabled),
+.flatpickr-calendar[color="primary"] .flatpickr-day:hover:not(.disabled) {
+  cursor: pointer;
+  outline: 0;
+  background: rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-day.today {
+  color: #f2bc2b;
+  font-weight: bold;
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-day.selected,
+.flatpickr-calendar[color="primary"] .flatpickr-day.selected.nextMonthDay,
+.flatpickr-calendar[color="primary"] .flatpickr-day.selected.prevMonthDay,
+.flatpickr-calendar[color="primary"] .flatpickr-day.selected:focus,
+.flatpickr-calendar[color="primary"] .flatpickr-day.selected:hover {
+  background: #f2bc2b;
+  color: #fff;
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-time input:focus,
+.flatpickr-calendar[color="primary"] .flatpickr-time input:hover {
+  background: rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-am-pm:focus,
+.flatpickr-calendar[color="primary"] .flatpickr-am-pm:hover {
+  background: rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-current-month .cur-year:hover {
+  background: rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-rContainer + .flatpickr-time {
+  border-top: 1px solid rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-weekwrapper .flatpickr-weeks {
+  border-right: 1px solid rgba(242, 188, 43, 0.1);
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-next-month svg:hover,
+.flatpickr-calendar[color="primary"] .flatpickr-prev-month svg:hover {
+  fill: #f2bc2b;
+}
+
+.flatpickr-calendar[color="primary"] .flatpickr-next-month:hover,
+.flatpickr-calendar[color="primary"] .flatpickr-prev-month:hover {
+  color: #f2bc2b;
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-day.inRange,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.nextMonthDay.inRange,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.nextMonthDay:focus,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.nextMonthDay:hover,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.prevMonthDay.inRange,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.prevMonthDay:focus,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.prevMonthDay:hover,
+.flatpickr-calendar[color="secondary"] .flatpickr-day:focus:not(.disabled),
+.flatpickr-calendar[color="secondary"] .flatpickr-day:hover:not(.disabled) {
+  cursor: pointer;
+  outline: 0;
+  background: rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-day.today {
+  color: #2b3438;
+  font-weight: bold;
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-day.selected,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.selected.nextMonthDay,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.selected.prevMonthDay,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.selected:focus,
+.flatpickr-calendar[color="secondary"] .flatpickr-day.selected:hover {
+  background: #2b3438;
+  color: #fff;
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-time input:focus,
+.flatpickr-calendar[color="secondary"] .flatpickr-time input:hover {
+  background: rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-am-pm:focus,
+.flatpickr-calendar[color="secondary"] .flatpickr-am-pm:hover {
+  background: rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-current-month .cur-year:hover {
+  background: rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-rContainer + .flatpickr-time {
+  border-top: 1px solid rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-weekwrapper .flatpickr-weeks {
+  border-right: 1px solid rgba(43, 52, 56, 0.1);
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-next-month svg:hover,
+.flatpickr-calendar[color="secondary"] .flatpickr-prev-month svg:hover {
+  fill: #2b3438;
+}
+
+.flatpickr-calendar[color="secondary"] .flatpickr-next-month:hover,
+.flatpickr-calendar[color="secondary"] .flatpickr-prev-month:hover {
+  color: #2b3438;
+}
+
 /**
 		 * @name 		Default table
 		 * Display table contents

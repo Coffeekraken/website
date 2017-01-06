@@ -1,0 +1,12 @@
+@import 'node_modules/coffeekraken-s-datepicker-component/index';
+
+/**
+ * @name 		Datepicker
+ * @styleguide 		Date / Datepicker
+ * @example 	html
+ * 	<input type="text" name="date" /><br>
+ *  <s-datepicker color="primary" inline for="date"></s-datepicker>
+ */
+@include s-datepicker-component(
+	$colors : default primary secondary
+);

@@ -13,7 +13,7 @@
     "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.build.js\"",
     "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.build.css && npm run dist.build.styleguide\"",
     "test": "coffeekraken-testing-stack",
-    "styleguide": "nodemon --watch /data/web/coffeekraken/styleguide /data/web/coffeekraken/styleguide/run"
+    "styleguide": "nodemon --watch /Users/olivierbossel/data/web/coffeekraken/styleguide /Users/olivierbossel/data/web/coffeekraken/styleguide/run"
   },
   "keywords": [
     "coffee",
@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
+    "coffeekraken-s-datepicker-component": "git+https://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
     "marked": "^0.3.6"
   },
   "devDependencies": {
