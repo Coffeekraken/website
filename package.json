@@ -25,6 +25,9 @@
   "dependencies": {
     "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
     "coffeekraken-s-datepicker-component": "git+https://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
+    "coffeekraken-s-google-map-component": "git+https://git@github.com/Coffeekraken/s-google-map-component.git#release/0.0.1",
+    "coffeekraken-s-google-map-marker-component": "git+https://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
+    "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
     "marked": "^0.3.6"
   },
   "devDependencies": {

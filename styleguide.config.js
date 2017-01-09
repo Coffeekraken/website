@@ -1,4 +1,7 @@
 module.exports = {
 	// styleguide file
-	styleguide : 'dist/css/styleguide.css',
+	styleguide : [
+		'dist/js/app.js',
+		'dist/css/styleguide.css'
+	]
 }
