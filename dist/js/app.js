@@ -5357,6 +5357,10 @@
 
 	var _coffeekrakenSCustomScrollbarComponent2 = _interopRequireDefault(_coffeekrakenSCustomScrollbarComponent);
 
+	var _coffeekrakenSRippleComponent = __webpack_require__(204);
+
+	var _coffeekrakenSRippleComponent2 = _interopRequireDefault(_coffeekrakenSRippleComponent);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -13969,6 +13973,1175 @@
 	 */
 	!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.SimpleBar=e():t.SimpleBar=e()}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={exports:{},id:r,loaded:!1};return t[r].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{"default":t}}Object.defineProperty(e,"__esModule",{value:!0});var i=n(32),o=r(i),s=n(29),c=r(s),u=n(30),l=r(u),a=n(33),f=r(a),h=n(34),d=r(h),p=n(71),v=r(p),b=n(70),y=r(b);n(69);var m=function(){function t(e,n){(0,f.default)(this,t),this.el=e,this.track,this.scrollbar,this.flashTimeout,this.contentEl=this.el,this.scrollContentEl=this.el,this.dragOffset={x:0,y:0},this.isVisible={x:!0,y:!0},this.scrollOffsetAttr={x:"scrollLeft",y:"scrollTop"},this.sizeAttr={x:"offsetWidth",y:"offsetHeight"},this.scrollSizeAttr={x:"scrollWidth",y:"scrollHeight"},this.offsetAttr={x:"left",y:"top"},this.observer,this.currentAxis,this.enabled,this.options=(0,l.default)({},t.defaultOptions,n),this.classNames=this.options.classNames,this.flashScrollbar=this.flashScrollbar.bind(this),this.startScroll=this.startScroll.bind(this),this.startDrag=this.startDrag.bind(this),this.drag=this.drag.bind(this),this.endDrag=this.endDrag.bind(this),this.init(),this.recalculate=(0,y.default)(this.recalculate,100,{leading:!0})}return(0,d.default)(t,[{key:"init",value:function(){return this.el.SimpleBar=this,this.enabled=0!==(0,v.default)(),this.enabled||this.options.forceEnabled?(this.initDOM(),this.trackX=this.el.querySelector("."+this.classNames.track+".horizontal"),this.trackY=this.el.querySelector("."+this.classNames.track+".vertical"),this.scrollbarX=this.trackX.querySelector("."+this.classNames.scrollbar),this.scrollbarY=this.trackY.querySelector("."+this.classNames.scrollbar),this.scrollContentEl=this.el.querySelector("."+this.classNames.scrollContent),this.contentEl=this.el.querySelector("."+this.classNames.content),this.recalculate(),this.options.autoHide||(this.showScrollbar("x"),this.showScrollbar("y")),void this.initListeners()):void(this.el.style.overflow="auto")}},{key:"initDOM",value:function(){if(!this.el.querySelectorAll("."+this.classNames.content).length){if(this.options.wrapContent){var t=document.createElement("div"),e=document.createElement("div");for(t.classList.add(this.classNames.scrollContent),e.classList.add(this.classNames.content);this.el.firstChild;)e.appendChild(this.el.firstChild);t.appendChild(e),this.el.appendChild(t)}var n=document.createElement("div"),r=document.createElement("div");n.classList.add(this.classNames.track),r.classList.add(this.classNames.scrollbar),n.appendChild(r),this.trackX=n.cloneNode(!0),this.trackX.classList.add("horizontal"),this.trackY=n.cloneNode(!0),this.trackY.classList.add("vertical"),this.el.insertBefore(this.trackX,this.el.firstChild),this.el.insertBefore(this.trackY,this.el.firstChild)}}},{key:"initListeners",value:function(){var t=this;this.options.autoHide&&this.el.addEventListener("mouseenter",this.flashScrollbar),this.scrollbarX.addEventListener("mousedown",function(e){return t.startDrag(e,"x")}),this.scrollbarY.addEventListener("mousedown",function(e){return t.startDrag(e,"y")}),this.scrollContentEl.addEventListener("scroll",this.startScroll),"undefined"!=typeof MutationObserver&&(this.observer=new MutationObserver(function(e){e.forEach(function(e){(e.target===t.el||e.addedNodes.length)&&t.recalculate()})}),this.observer.observe(this.el,{attributes:!0,childList:!0,characterData:!0,subtree:!0}))}},{key:"removeListeners",value:function(){var t=this;this.options.autoHide&&this.el.removeEventListener("mouseenter",this.flashScrollbar),this.scrollbarX.removeEventListener("mousedown",function(e){return t.startDrag(e,"x")}),this.scrollbarY.removeEventListener("mousedown",function(e){return t.startDrag(e,"y")}),this.scrollContentEl.removeEventListener("scroll",this.startScroll),this.observer&&this.observer.disconnect()}},{key:"startDrag",value:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"y";t.preventDefault();var n="y"===e?this.scrollbarY:this.scrollbarX,r="y"===e?t.pageY:t.pageX;this.dragOffset[e]=r-n.getBoundingClientRect()[this.offsetAttr[e]],this.currentAxis=e,document.addEventListener("mousemove",this.drag),document.addEventListener("mouseup",this.endDrag)}},{key:"drag",value:function(t){t.preventDefault();var e="y"===this.currentAxis?t.pageY:t.pageX,n="y"===this.currentAxis?this.trackY:this.trackX,r=e-n.getBoundingClientRect()[this.offsetAttr[this.currentAxis]]-this.dragOffset[this.currentAxis],i=r/n[this.sizeAttr[this.currentAxis]],o=i*this.contentEl[this.scrollSizeAttr[this.currentAxis]];this.scrollContentEl[this.scrollOffsetAttr[this.currentAxis]]=o}},{key:"endDrag",value:function(){document.removeEventListener("mousemove",this.drag),document.removeEventListener("mouseup",this.endDrag)}},{key:"resizeScrollbar",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"y",e=void 0,n=void 0;"x"===t?(e=this.trackX,n=this.scrollbarX):(e=this.trackY,n=this.scrollbarY);var r=this.contentEl[this.scrollSizeAttr[t]],i=this.scrollContentEl[this.scrollOffsetAttr[t]],o=e[this.sizeAttr[t]],s=o/r,c=i/(r-o),u=Math.max(Math.floor(s*(o-2))-2,this.options.scrollbarMinSize),l=(o-4-u)*c+2;this.isVisible[t]=o<r,this.isVisible[t]?(e.style.visibility="visible","x"===t?(n.style.left=l+"px",n.style.width=u+"px"):(n.style.top=l+"px",n.style.height=u+"px")):e.style.visibility="hidden"}},{key:"resizeScrollContent",value:function(){var t=(0,v.default)();this.contentEl.scrollWidth<=this.el.offsetWidth?this.contentEl.scrollHeight<=this.el.offsetHeight?(this.scrollContentEl.style.width="auto",this.scrollContentEl.style.height="auto"):(this.scrollContentEl.style.width=this.el.offsetWidth+t+"px",this.scrollContentEl.style.height=this.el.offsetHeight+"px"):this.contentEl.scrollHeight<=this.el.offsetHeight?(this.scrollContentEl.style.width="auto",this.scrollContentEl.style.height=this.el.offsetHeight+t+"px"):(this.scrollContentEl.style.height=this.el.offsetHeight+t+"px",this.scrollContentEl.style.width=this.el.offsetWidth+t+"px")}},{key:"startScroll",value:function(){this.flashScrollbar()}},{key:"flashScrollbar",value:function(){this.resizeScrollbar("x"),this.resizeScrollbar("y"),this.showScrollbar("x"),this.showScrollbar("y")}},{key:"showScrollbar",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"y";this.isVisible[t]&&("x"===t?this.scrollbarX.classList.add("visible"):this.scrollbarY.classList.add("visible"),this.options.autoHide&&("number"==typeof this.flashTimeout&&window.clearTimeout(this.flashTimeout),this.flashTimeout=window.setTimeout(this.hideScrollbar.bind(this),1e3)))}},{key:"hideScrollbar",value:function(){this.scrollbarX.classList.remove("visible"),this.scrollbarY.classList.remove("visible"),"number"==typeof this.flashTimeout&&window.clearTimeout(this.flashTimeout)}},{key:"recalculate",value:function(){this.enabled&&(this.resizeScrollContent(),this.resizeScrollbar("x"),this.resizeScrollbar("y"))}},{key:"getScrollElement",value:function(){return this.scrollContentEl}},{key:"getContentElement",value:function(){return this.contentEl}},{key:"unMount",value:function(){this.removeListeners(),this.el.SimpleBar=null}}],[{key:"initHtmlApi",value:function(){"undefined"!=typeof MutationObserver&&(this.observer=new MutationObserver(function(e){e.forEach(function(e){(0,c.default)(e.addedNodes).forEach(function(e){1===e.nodeType&&(e.hasAttribute("data-simplebar")?new t(e,t.getElOptions(e)):(0,c.default)(e.querySelectorAll("[data-simplebar]")).forEach(function(e){new t(e,t.getElOptions(e))}))}),(0,c.default)(e.removedNodes).forEach(function(t){1===t.nodeType&&(t.hasAttribute("data-simplebar")?t.SimpleBar&&t.SimpleBar.unMount():(0,c.default)(t.querySelectorAll("[data-simplebar]")).forEach(function(t){t.SimpleBar&&t.SimpleBar.unMount()}))})})}),this.observer.observe(document,{childList:!0,subtree:!0})),document.addEventListener("DOMContentLoaded",function(){(0,c.default)(document.querySelectorAll("[data-simplebar]")).forEach(function(e){new t(e,t.getElOptions(e))})})}},{key:"getElOptions",value:function(e){var n=(0,o.default)(t.htmlAttributes).reduce(function(n,r){var i=t.htmlAttributes[r];return e.hasAttribute(i)&&(n[r]=JSON.parse(e.getAttribute(i))),n},{});return n}},{key:"removeObserver",value:function(){this.observer&&this.observer.disconnect()}},{key:"defaultOptions",get:function(){return{wrapContent:!0,autoHide:!0,forceEnabled:!1,classNames:{content:"simplebar-content",scrollContent:"simplebar-scroll-content",scrollbar:"simplebar-scrollbar",track:"simplebar-track"},scrollbarMinSize:10}}},{key:"htmlAttributes",get:function(){return{autoHide:"data-simplebar-autohide",forceEnabled:"data-simplebar-force-enabled",scrollbarMinSize:"data-simplebar-scrollbar-min-size"}}}]),t}();e.default=m,m.initHtmlApi(),t.exports=e.default},function(t,e){var n=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=n)},function(t,e,n){var r=n(25)("wks"),i=n(28),o=n(5).Symbol,s="function"==typeof o,c=t.exports=function(t){return r[t]||(r[t]=s&&o[t]||(s?o:i)("Symbol."+t))};c.store=r},function(t,e,n){t.exports=!n(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e,n){var r=n(5),i=n(1),o=n(20),s=n(10),c="prototype",u=function(t,e,n){var l,a,f,h=t&u.F,d=t&u.G,p=t&u.S,v=t&u.P,b=t&u.B,y=t&u.W,m=d?i:i[e]||(i[e]={}),x=m[c],g=d?r:p?r[e]:(r[e]||{})[c];d&&(n=e);for(l in n)a=!h&&g&&void 0!==g[l],a&&l in m||(f=a?g[l]:n[l],m[l]=d&&"function"!=typeof g[l]?n[l]:b&&a?o(f,r):y&&g[l]==f?function(t){var e=function(e,n,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(e);case 2:return new t(e,n)}return new t(e,n,r)}return t.apply(this,arguments)};return e[c]=t[c],e}(f):v&&"function"==typeof f?o(Function.call,f):f,v&&((m.virtual||(m.virtual={}))[l]=f,t&u.R&&x&&!x[l]&&s(x,l,f)))};u.F=1,u.G=2,u.S=4,u.P=8,u.B=16,u.W=32,u.U=64,u.R=128,t.exports=u},function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e,n){var r=n(7),i=n(44),o=n(62),s=Object.defineProperty;e.f=n(3)?Object.defineProperty:function(t,e,n){if(r(t),e=o(e,!0),r(n),i)try{return s(t,e,n)}catch(c){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var r=n(13);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,e){t.exports=function(t){try{return!!t()}catch(e){return!0}}},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var r=n(6),i=n(16);t.exports=n(3)?function(t,e,n){return r.f(t,e,i(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var r=n(12);t.exports=function(t){return Object(r(t))}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e){t.exports={}},function(t,e,n){var r=n(56),i=n(22);t.exports=Object.keys||function(t){return r(t,i)}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e,n){var r=n(25)("keys"),i=n(28);t.exports=function(t){return r[t]||(r[t]=i(t))}},function(t,e){var n=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:n)(t)}},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var r=n(39);t.exports=function(t,e,n){if(r(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,r){return t.call(e,n,r)};case 3:return function(n,r,i){return t.call(e,n,r,i)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var r=n(13),i=n(5).document,o=r(i)&&r(i.createElement);t.exports=function(t){return o?i.createElement(t):{}}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e,n){var r=n(19);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,e,n){var r=n(6).f,i=n(9),o=n(2)("toStringTag");t.exports=function(t,e,n){t&&!i(t=n?t:t.prototype,o)&&r(t,o,{configurable:!0,value:e})}},function(t,e,n){var r=n(5),i="__core-js_shared__",o=r[i]||(r[i]={});t.exports=function(t){return o[t]||(o[t]={})}},function(t,e,n){var r=n(23),i=n(12);t.exports=function(t){return r(i(t))}},function(t,e,n){var r=n(18),i=Math.min;t.exports=function(t){return t>0?i(r(t),9007199254740991):0}},function(t,e){var n=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+r).toString(36))}},function(t,e,n){t.exports={"default":n(35),__esModule:!0}},function(t,e,n){t.exports={"default":n(36),__esModule:!0}},function(t,e,n){t.exports={"default":n(37),__esModule:!0}},function(t,e,n){t.exports={"default":n(38),__esModule:!0}},function(t,e){"use strict";e.__esModule=!0,e.default=function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{"default":t}}e.__esModule=!0;var i=n(31),o=r(i);e.default=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),(0,o.default)(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}()},function(t,e,n){n(68),n(64),t.exports=n(1).Array.from},function(t,e,n){n(65),t.exports=n(1).Object.assign},function(t,e,n){n(66);var r=n(1).Object;t.exports=function(t,e,n){return r.defineProperty(t,e,n)}},function(t,e,n){n(67),t.exports=n(1).Object.keys},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e,n){var r=n(26),i=n(27),o=n(61);t.exports=function(t){return function(e,n,s){var c,u=r(e),l=i(u.length),a=o(s,l);if(t&&n!=n){for(;l>a;)if(c=u[a++],c!=c)return!0}else for(;l>a;a++)if((t||a in u)&&u[a]===n)return t||a||0;return!t&&-1}}},function(t,e,n){var r=n(19),i=n(2)("toStringTag"),o="Arguments"==r(function(){return arguments}()),s=function(t,e){try{return t[e]}catch(n){}};t.exports=function(t){var e,n,c;return void 0===t?"Undefined":null===t?"Null":"string"==typeof(n=s(e=Object(t),i))?n:o?r(e):"Object"==(c=r(e))&&"function"==typeof e.callee?"Arguments":c}},function(t,e,n){"use strict";var r=n(6),i=n(16);t.exports=function(t,e,n){e in t?r.f(t,e,i(0,n)):t[e]=n}},function(t,e,n){t.exports=n(5).document&&document.documentElement},function(t,e,n){t.exports=!n(3)&&!n(8)(function(){return 7!=Object.defineProperty(n(21)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){var r=n(14),i=n(2)("iterator"),o=Array.prototype;t.exports=function(t){return void 0!==t&&(r.Array===t||o[i]===t)}},function(t,e,n){var r=n(7);t.exports=function(t,e,n,i){try{return i?e(r(n)[0],n[1]):e(n)}catch(o){var s=t.return;throw void 0!==s&&r(s.call(t)),o}}},function(t,e,n){"use strict";var r=n(52),i=n(16),o=n(24),s={};n(10)(s,n(2)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=r(s,{next:i(1,n)}),o(t,e+" Iterator")}},function(t,e,n){"use strict";var r=n(50),i=n(4),o=n(59),s=n(10),c=n(9),u=n(14),l=n(47),a=n(24),f=n(55),h=n(2)("iterator"),d=!([].keys&&"next"in[].keys()),p="@@iterator",v="keys",b="values",y=function(){return this};t.exports=function(t,e,n,m,x,g,S){l(n,e,m);var E,O,w,k=function(t){if(!d&&t in _)return _[t];switch(t){case v:return function(){return new n(this,t)};case b:return function(){return new n(this,t)}}return function(){return new n(this,t)}},j=e+" Iterator",A=x==b,C=!1,_=t.prototype,M=_[h]||_[p]||x&&_[x],L=M||k(x),T=x?A?k("entries"):L:void 0,N="Array"==e?_.entries||M:M;if(N&&(w=f(N.call(new t)),w!==Object.prototype&&(a(w,j,!0),r||c(w,h)||s(w,h,y))),A&&M&&M.name!==b&&(C=!0,L=function(){return M.call(this)}),r&&!S||!d&&!C&&_[h]||s(_,h,L),u[e]=L,u[j]=y,x)if(E={values:A?L:k(b),keys:g?L:k(v),entries:T},S)for(O in E)O in _||o(_,O,E[O]);else i(i.P+i.F*(d||C),e,E);return E}},function(t,e,n){var r=n(2)("iterator"),i=!1;try{var o=[7][r]();o.return=function(){i=!0},Array.from(o,function(){throw 2})}catch(s){}t.exports=function(t,e){if(!e&&!i)return!1;var n=!1;try{var o=[7],s=o[r]();s.next=function(){return{done:n=!0}},o[r]=function(){return s},t(o)}catch(c){}return n}},function(t,e){t.exports=!0},function(t,e,n){"use strict";var r=n(15),i=n(54),o=n(57),s=n(11),c=n(23),u=Object.assign;t.exports=!u||n(8)(function(){var t={},e={},n=Symbol(),r="abcdefghijklmnopqrst";return t[n]=7,r.split("").forEach(function(t){e[t]=t}),7!=u({},t)[n]||Object.keys(u({},e)).join("")!=r})?function(t,e){for(var n=s(t),u=arguments.length,l=1,a=i.f,f=o.f;u>l;)for(var h,d=c(arguments[l++]),p=a?r(d).concat(a(d)):r(d),v=p.length,b=0;v>b;)f.call(d,h=p[b++])&&(n[h]=d[h]);return n}:u},function(t,e,n){var r=n(7),i=n(53),o=n(22),s=n(17)("IE_PROTO"),c=function(){},u="prototype",l=function(){var t,e=n(21)("iframe"),r=o.length,i="<",s=">";for(e.style.display="none",n(43).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write(i+"script"+s+"document.F=Object"+i+"/script"+s),t.close(),l=t.F;r--;)delete l[u][o[r]];return l()};t.exports=Object.create||function(t,e){var n;return null!==t?(c[u]=r(t),n=new c,c[u]=null,n[s]=t):n=l(),void 0===e?n:i(n,e)}},function(t,e,n){var r=n(6),i=n(7),o=n(15);t.exports=n(3)?Object.defineProperties:function(t,e){i(t);for(var n,s=o(e),c=s.length,u=0;c>u;)r.f(t,n=s[u++],e[n]);return t}},function(t,e){e.f=Object.getOwnPropertySymbols},function(t,e,n){var r=n(9),i=n(11),o=n(17)("IE_PROTO"),s=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=i(t),r(t,o)?t[o]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?s:null}},function(t,e,n){var r=n(9),i=n(26),o=n(40)(!1),s=n(17)("IE_PROTO");t.exports=function(t,e){var n,c=i(t),u=0,l=[];for(n in c)n!=s&&r(c,n)&&l.push(n);for(;e.length>u;)r(c,n=e[u++])&&(~o(l,n)||l.push(n));return l}},function(t,e){e.f={}.propertyIsEnumerable},function(t,e,n){var r=n(4),i=n(1),o=n(8);t.exports=function(t,e){var n=(i.Object||{})[t]||Object[t],s={};s[t]=e(n),r(r.S+r.F*o(function(){n(1)}),"Object",s)}},function(t,e,n){t.exports=n(10)},function(t,e,n){var r=n(18),i=n(12);t.exports=function(t){return function(e,n){var o,s,c=String(i(e)),u=r(n),l=c.length;return u<0||u>=l?t?"":void 0:(o=c.charCodeAt(u),o<55296||o>56319||u+1===l||(s=c.charCodeAt(u+1))<56320||s>57343?t?c.charAt(u):o:t?c.slice(u,u+2):(o-55296<<10)+(s-56320)+65536)}}},function(t,e,n){var r=n(18),i=Math.max,o=Math.min;t.exports=function(t,e){return t=r(t),t<0?i(t+e,0):o(t,e)}},function(t,e,n){var r=n(13);t.exports=function(t,e){if(!r(t))return t;var n,i;if(e&&"function"==typeof(n=t.toString)&&!r(i=n.call(t)))return i;if("function"==typeof(n=t.valueOf)&&!r(i=n.call(t)))return i;if(!e&&"function"==typeof(n=t.toString)&&!r(i=n.call(t)))return i;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var r=n(41),i=n(2)("iterator"),o=n(14);t.exports=n(1).getIteratorMethod=function(t){if(void 0!=t)return t[i]||t["@@iterator"]||o[r(t)]}},function(t,e,n){"use strict";var r=n(20),i=n(4),o=n(11),s=n(46),c=n(45),u=n(27),l=n(42),a=n(63);i(i.S+i.F*!n(49)(function(t){Array.from(t)}),"Array",{from:function(t){var e,n,i,f,h=o(t),d="function"==typeof this?this:Array,p=arguments.length,v=p>1?arguments[1]:void 0,b=void 0!==v,y=0,m=a(h);if(b&&(v=r(v,p>2?arguments[2]:void 0,2)),void 0==m||d==Array&&c(m))for(e=u(h.length),n=new d(e);e>y;y++)l(n,y,b?v(h[y],y):h[y]);else for(f=m.call(h),n=new d;!(i=f.next()).done;y++)l(n,y,b?s(f,v,[i.value,y],!0):i.value);return n.length=y,n}})},function(t,e,n){var r=n(4);r(r.S+r.F,"Object",{assign:n(51)})},function(t,e,n){var r=n(4);r(r.S+r.F*!n(3),"Object",{defineProperty:n(6).f})},function(t,e,n){var r=n(11),i=n(15);n(58)("keys",function(){return function(t){return i(r(t))}})},function(t,e,n){"use strict";var r=n(60)(!0);n(48)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,n=this._i;return n>=e.length?{value:void 0,done:!0}:(t=r(e,n),this._i+=t.length,{value:t,done:!1})})},function(t,e){},function(t,e){(function(e){function n(t,e,n){function i(e){var n=v,r=b;return v=b=void 0,w=e,m=t.apply(r,n)}function o(t){return w=t,x=setTimeout(a,e),k?i(t):m}function u(t){var n=t-O,r=t-w,i=e-n;return j?S(i,y-r):i}function l(t){var n=t-O,r=t-w;return void 0===O||n>=e||n<0||j&&r>=y}function a(){var t=E();return l(t)?f(t):void(x=setTimeout(a,u(t)))}function f(t){return x=void 0,A&&v?i(t):(v=b=void 0,m)}function h(){void 0!==x&&clearTimeout(x),w=0,v=O=b=x=void 0}function d(){return void 0===x?m:f(E())}function p(){var t=E(),n=l(t);if(v=arguments,b=this,O=t,n){if(void 0===x)return o(O);if(j)return x=setTimeout(a,e),i(O)}return void 0===x&&(x=setTimeout(a,e)),m}var v,b,y,m,x,O,w=0,k=!1,j=!1,A=!0;if("function"!=typeof t)throw new TypeError(c);return e=s(e)||0,r(n)&&(k=!!n.leading,j="maxWait"in n,y=j?g(s(n.maxWait)||0,e):y,A="trailing"in n?!!n.trailing:A),p.cancel=h,p.flush=d,p}function r(t){var e=typeof t;return!!t&&("object"==e||"function"==e)}function i(t){return!!t&&"object"==typeof t}function o(t){return"symbol"==typeof t||i(t)&&x.call(t)==l}function s(t){if("number"==typeof t)return t;if(o(t))return u;if(r(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=r(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=t.replace(a,"");var n=h.test(t);return n||d.test(t)?p(t.slice(2),n?2:8):f.test(t)?u:+t}var c="Expected a function",u=NaN,l="[object Symbol]",a=/^\s+|\s+$/g,f=/^[-+]0x[0-9a-f]+$/i,h=/^0b[01]+$/i,d=/^0o[0-7]+$/i,p=parseInt,v="object"==typeof e&&e&&e.Object===Object&&e,b="object"==typeof self&&self&&self.Object===Object&&self,y=v||b||Function("return this")(),m=Object.prototype,x=m.toString,g=Math.max,S=Math.min,E=function(){return y.Date.now()};t.exports=n}).call(e,function(){return this}())},function(t,e,n){var r,i,o;/*! scrollbarWidth.js v0.1.0 | felixexter | MIT | https://github.com/felixexter/scrollbarWidth */
 	!function(n,s){i=[],r=s,o="function"==typeof r?r.apply(e,i):r,!(void 0!==o&&(t.exports=o))}(this,function(){"use strict";function t(){var t,e=document.body,n=document.createElement("div"),r=n.style;return r.position="absolute",r.top=r.left="-9999px",r.width=r.height="100px",r.overflow="scroll",e.appendChild(n),t=n.offsetWidth-n.clientWidth,e.removeChild(n),t}return t})}])});
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SRippleComponent = __webpack_require__(205);
+
+	var _SRippleComponent2 = _interopRequireDefault(_SRippleComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _SRippleComponent2.default.define('s-ripple', _SRippleComponent2.default);
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _SWebComponent2 = __webpack_require__(2);
+
+	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
+
+	var _coffeekrakenSParticlesSystemComponent = __webpack_require__(206);
+
+	var _coffeekrakenSParticlesSystemComponent2 = _interopRequireDefault(_coffeekrakenSParticlesSystemComponent);
+
+	var _style = __webpack_require__(213);
+
+	var _style2 = _interopRequireDefault(_style);
+
+	var _offset = __webpack_require__(217);
+
+	var _offset2 = _interopRequireDefault(_offset);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * @name 	Ripple
+	 * Display a ripple on click
+	 * @styleguide 	Effects / Ripple
+	 * @example 	html
+	 * <div style="height:500px; position:relative;">
+	 * 	<s-ripple></s-ripple>
+	 * 	<div style="position:absolute; top:50%; left:50%; transform:translateX(-50%) translateY(-50%)">
+	 * 	 Click to see the ripple effect in action
+	 * 	</div>
+	 * </div>
+	 */
+
+	var SRippleComponent = function (_SWebComponent) {
+		_inherits(SRippleComponent, _SWebComponent);
+
+		function SRippleComponent() {
+			_classCallCheck(this, SRippleComponent);
+
+			return _possibleConstructorReturn(this, (SRippleComponent.__proto__ || Object.getPrototypeOf(SRippleComponent)).apply(this, arguments));
+		}
+
+		_createClass(SRippleComponent, [{
+			key: 'componentWillMount',
+
+
+			/**
+	   * Component will mount
+	   * @definition 		SWebComponent.componentWillMount
+	   */
+			value: function componentWillMount() {
+				_get(SRippleComponent.prototype.__proto__ || Object.getPrototypeOf(SRippleComponent.prototype), 'componentWillMount', this).call(this);
+				this._particlesSystem = null;
+			}
+
+			/**
+	   * Mount component
+	   * @definition 		SWebComponent.componentMount
+	   */
+
+		}, {
+			key: 'componentMount',
+			value: function componentMount() {
+				_get(SRippleComponent.prototype.__proto__ || Object.getPrototypeOf(SRippleComponent.prototype), 'componentMount', this).call(this);
+				// set initial styles
+				this._setInitialStyles();
+				// listen for click on parent
+				this.parentNode.addEventListener('click', this._onParentClick.bind(this));
+				this._parentNode = this.parentNode;
+			}
+
+			/**
+	   * Component unmount
+	   * @definition 		SWebComponent.componentUnmount
+	   */
+
+		}, {
+			key: 'componentUnmount',
+			value: function componentUnmount() {
+				_get(SRippleComponent.prototype.__proto__ || Object.getPrototypeOf(SRippleComponent.prototype), 'componentUnmount', this).call(this);
+				// do not listen for click anymore
+				this._parentNode.removeEventListener('click', this._onParentClick);
+			}
+
+			/**
+	   * When click on parent, trigger a ripple
+	   */
+
+		}, {
+			key: '_onParentClick',
+			value: function _onParentClick(e) {
+
+				// calculate position of the emitter
+				var emitterX = void 0,
+				    emitterY = void 0;
+				if (this.props.centered) {
+					emitterX = this.offsetWith * .5;
+					emitterY = this.offsetHeight * .5;
+				} else {
+					var elmOffset = (0, _offset2.default)(this);
+					emitterX = e.pageX - elmOffset.left;
+					emitterY = e.pageY - elmOffset.top;
+				}
+
+				// add a particle system
+				if (!this._particlesSystem) {
+					this._particlesSystem = document.createElement('s-particles-system').setProps({
+						particleClass: this._componentNameDash + '__particle',
+						loop: false
+					});
+					this.appendChild(this._particlesSystem);
+				}
+
+				// amit a particle
+				this._emitRipples(emitterX, emitterY);
+			}
+
+			/**
+	   * Emit ripples
+	   */
+
+		}, {
+			key: '_emitRipples',
+			value: function _emitRipples(emitterX, emitterY) {
+				var _this2 = this;
+
+				var current = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+
+				var emX = emitterX,
+				    emY = emitterY;
+
+				// handle spread
+				if (this.props.spread) {
+					emX += -this.props.spread + Math.round(Math.random() * (this.props.spread * 2));
+					emY += -this.props.spread + Math.round(Math.random() * (this.props.spread * 2));
+				}
+
+				// set emitter position
+				this._particlesSystem.setProps({
+					emitterX: emX,
+					emitterY: emY
+				});
+
+				// emit a particle
+				this._particlesSystem.emitParticle();
+				// check if need more that 1
+				if (this.props.count > 1 && current < this.props.count) {
+					setTimeout(function () {
+						_this2._emitRipples(emitterX, emitterY, current + 1);
+					}, this.props.delay);
+				}
+			}
+
+			/**
+	   * Set initial styles
+	   */
+
+		}, {
+			key: '_setInitialStyles',
+			value: function _setInitialStyles() {
+				if (this.parentNode.style.position !== 'relative' || this.parentNode.style.position !== 'absolute') {
+					(0, _style2.default)(this.parentNode, {
+						position: 'relative'
+					});
+				}
+				if (this.props.contains) {
+					(0, _style2.default)(this, {
+						overflow: 'hidden'
+					});
+				} else {
+					(0, _style2.default)(this, {
+						overflow: null
+					});
+				}
+			}
+
+			/**
+	   * Should component update
+	   */
+
+		}, {
+			key: 'shouldComponentUpdate',
+			value: function shouldComponentUpdate(nextProps) {
+				return false;
+			}
+		}], [{
+			key: 'css',
+
+
+			/**
+	   * Css
+	   */
+			value: function css(componentName, componentNameDash) {
+				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tpointer-events : none;\n\t\t\t\tposition : absolute;\n\t\t\t\ttop : 0;\n\t\t\t\tleft : 0;\n\t\t\t\twidth : 100%;\n\t\t\t\theight : 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__particle {\n\t\t\t\ttop:50%; left:50%;\n\t\t\t\t-webkit-transform: translateX(-50%) translateY(-50%);\n\t\t\t\ttransform: translateX(-50%) translateY(-50%);\n\t\t\t\tposition:absolute;\n\t\t\t\twidth:150%;\n\t\t\t\tborder-radius: 50%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__particle:after {\n\t\t\t\tcontent:"";\n\t\t\t\tdisplay:block;\n\t\t\t\twidth:100%;\n\t\t\t\theight:0;\n\t\t\t\tpadding-top:100%;\n\t\t\t}\n\t\t';
+			}
+		}, {
+			key: 'defaultProps',
+
+
+			/**
+	   * Default props
+	   * @definition 		SWebComponent.defaultProps
+	   */
+			get: function get() {
+				return {
+					/**
+	     * Set if need to stay contained in the parent (overflow hidden)
+	     * @prop
+	     * @type 		{Boolean}
+	     */
+					contains: true,
+
+					/**
+	     * Set if want the ripple to be centered into his parent and not be placed where the user has clicked
+	     * @prop
+	     * @type 		{Boolean}
+	     */
+					centered: false,
+
+					/**
+	     * Set the delay between each ripples if the props.count is more that 1
+	     * @prop
+	     * @type 		{Number}
+	     */
+					delay: 130,
+
+					/**
+	     * Set the number of ripples wanted on each click
+	     * @prop
+	     * @type 		{Integer}
+	     */
+					count: 1,
+
+					/**
+	     * Set the random distance that each ripples will takes relative to the emitter position
+	     * @prop
+	     * @type 		{Number}
+	     */
+					spread: 0
+				};
+			}
+		}]);
+
+		return SRippleComponent;
+	}(_SWebComponent3.default);
+
+	exports.default = SRippleComponent;
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SParticlesSystemComponent = __webpack_require__(207);
+
+	var _SParticlesSystemComponent2 = _interopRequireDefault(_SParticlesSystemComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _SParticlesSystemComponent2.default.define('s-particles-system', _SParticlesSystemComponent2.default);
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _SWebComponent2 = __webpack_require__(2);
+
+	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
+
+	var _coffeekrakenSParticleComponent = __webpack_require__(208);
+
+	var _coffeekrakenSParticleComponent2 = _interopRequireDefault(_coffeekrakenSParticleComponent);
+
+	var _getAnimationProperties = __webpack_require__(210);
+
+	var _getAnimationProperties2 = _interopRequireDefault(_getAnimationProperties);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SParticlesSystemComponent = function (_SWebComponent) {
+		_inherits(SParticlesSystemComponent, _SWebComponent);
+
+		function SParticlesSystemComponent() {
+			_classCallCheck(this, SParticlesSystemComponent);
+
+			return _possibleConstructorReturn(this, (SParticlesSystemComponent.__proto__ || Object.getPrototypeOf(SParticlesSystemComponent)).apply(this, arguments));
+		}
+
+		_createClass(SParticlesSystemComponent, [{
+			key: 'componentMount',
+
+
+			/**
+	   * Mount component
+	   * @definition 		SWebComponent.componentMount
+	   */
+			value: function componentMount() {
+				var _this2 = this;
+
+				_get(SParticlesSystemComponent.prototype.__proto__ || Object.getPrototypeOf(SParticlesSystemComponent.prototype), 'componentMount', this).call(this);
+
+				// check if need to create a timer or not
+				if (this.props.amount && this.props.duration) {
+					this._timer = new STimer(this.props.duration / this.props.amount, {
+						loop: this.props.loop
+					});
+					// on tick
+					this._timer.onTick(function () {
+						// emit a particle
+						_this2.emitParticle();
+					});
+					if (this.props.onComplete) {
+						this._timer.onComplete(this.props.onComplete);
+					}
+					if (this.props.active) {
+						// start the timer
+						this._timer.start();
+					}
+				}
+			}
+
+			/**
+	   * Unmount component
+	   * @definition 		SWebComponent.componentUnmount
+	   */
+
+		}, {
+			key: 'componentUnmount',
+			value: function componentUnmount() {
+				_get(SParticlesSystemComponent.prototype.__proto__ || Object.getPrototypeOf(SParticlesSystemComponent.prototype), 'componentUnmount', this).call(this);
+				if (this._timer) {
+					this._timer.destroy();
+				}
+			}
+
+			/**
+	   * Component will receive prop
+	   * @definition 		SWebComponent.componentWillReceiveProp
+	   */
+
+		}, {
+			key: 'componentWillReceiveProp',
+			value: function componentWillReceiveProp(name, newVal, oldVal) {
+				switch (name) {
+					case 'active':
+						if (!newVal) this.stop();else this.start();
+						break;
+				}
+			}
+
+			/**
+	   * Emit a particle
+	   * @return 		{HTMLElement} 		The emited particle
+	   */
+
+		}, {
+			key: 'emitParticle',
+			value: function emitParticle() {
+				var _this3 = this;
+
+				// append a new particle
+				var particle = document.createElement('s-particle');
+
+				// set particle position
+				particle.style.top = this.props.emitterY + Math.random() * this.props.spread + 'px';
+				particle.style.left = this.props.emitterX + Math.random() * this.props.spread + 'px';
+
+				// append class if needed
+				if (this.props.particleClass) {
+					if (this.props.particleClass instanceof Array) {
+						if (this.props.particleClassSelection === 'random') {
+							particle.classList.add(this.props.particleClass[Math.round(Math.random() * (this.props.particleClass.length - 1))]);
+						}
+					} else {
+						particle.classList.add(this.props.particleClass);
+					}
+				}
+
+				// add the particle element if specified
+				if (this.props.particleElm) {
+					var particles = [].concat(this.props.particleElm);
+					particle.appendChild(particles[Math.round(Math.random() * particles.length - 1)]);
+				}
+
+				this.mutate(function () {
+					// append the new particle into the system
+					_this3.appendChild(particle);
+				});
+
+				// return the emited particle
+				return particle;
+			}
+
+			/**
+	   * Stop the system
+	   */
+
+		}, {
+			key: 'stop',
+			value: function stop() {
+				this._timer.stop();
+			}
+
+			/**
+	   * Start the system
+	   */
+
+		}, {
+			key: 'start',
+			value: function start() {
+				this._timer.start();
+			}
+		}], [{
+			key: 'css',
+
+
+			/**
+	   * Css
+	   */
+			value: function css(componentName, componentNameDash) {
+				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t}\n\t\t';
+			}
+		}, {
+			key: 'defaultProps',
+
+
+			/**
+	   * Default props
+	   * @definition 		SWebComponent.defaultProps
+	   */
+			get: function get() {
+				return {
+					/**
+	     * Emitter x position
+	     * @prop
+	     * @type	{Number}
+	     */
+					emitterX: 0,
+					/**
+	     * Emitter y position
+	     * @prop
+	     * @type	{Number}
+	     */
+					emitterY: 0,
+					/**
+	     * Max distance where the particle will take birth from the emiter position
+	     * @prop
+	     * @type	{Number}
+	     */
+					spread: 0,
+					/**
+	     * Amount of particles to emit during the props.duration property
+	     * @prop
+	     * @type	{Integer}
+	     */
+					amount: 0,
+					/**
+	     * Duration of the particles emission
+	     * @prop
+	     * @type	{Number}
+	     */
+					duration: null,
+					/**
+	     * Class to apply to each particles
+	     * @prop
+	     * @type	{String}
+	     */
+					particleClass: null,
+					/**
+	     * Specify the method to pick a particle class if the props.particleClass is an array. Only random is supported for now
+	     * @prop
+	     * @type 	{String|Array<String>}
+	     */
+					particleClassSelection: 'random',
+					/**
+	     * DOM element to add into particle. If is an array, will pick a particle randomly
+	     * @prop
+	     * @type	{HTMLElement|Array<HTMLElement>}
+	     */
+					particleElm: null,
+					/**
+	     * Callback when the emission is completed
+	     * @prop
+	     * @type  	{Function}
+	     */
+					onComplete: null,
+					/**
+	     * Specify if the system if active or not
+	     * @prop
+	     * @type	{Boolean}
+	     */
+					active: true,
+					/**
+	     * Specify if the system hs to start again at the end automatically
+	     * @prop
+	     * @type 	{Boolean}
+	     */
+					loop: false
+				};
+			}
+		}]);
+
+		return SParticlesSystemComponent;
+	}(_SWebComponent3.default);
+
+	exports.default = SParticlesSystemComponent;
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SParticleComponent = __webpack_require__(209);
+
+	var _SParticleComponent2 = _interopRequireDefault(_SParticleComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _SParticleComponent2.default.define('s-particle', _SParticleComponent2.default);
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _SWebComponent2 = __webpack_require__(2);
+
+	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
+
+	var _getAnimationProperties = __webpack_require__(210);
+
+	var _getAnimationProperties2 = _interopRequireDefault(_getAnimationProperties);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SParticleComponent = function (_SWebComponent) {
+		_inherits(SParticleComponent, _SWebComponent);
+
+		function SParticleComponent() {
+			_classCallCheck(this, SParticleComponent);
+
+			return _possibleConstructorReturn(this, (SParticleComponent.__proto__ || Object.getPrototypeOf(SParticleComponent)).apply(this, arguments));
+		}
+
+		_createClass(SParticleComponent, [{
+			key: 'componentMount',
+
+
+			/**
+	   * Mount component
+	   * @definition 		SWebComponent.componentMount
+	   */
+			value: function componentMount() {
+				var _this2 = this;
+
+				_get(SParticleComponent.prototype.__proto__ || Object.getPrototypeOf(SParticleComponent.prototype), 'componentMount', this).call(this);
+
+				var lifetime = this.props.lifetime;
+				if (!lifetime) {
+					// get the animation properties
+					var animation = (0, _getAnimationProperties2.default)(this);
+					lifetime = animation.totalDuration;
+				}
+
+				// wait till the animation is finished to remove the particle from DOM
+				setTimeout(function () {
+					if (_this2.parentNode) {
+						_this2.parentNode.removeChild(_this2);
+					}
+				}, lifetime);
+			}
+		}], [{
+			key: 'css',
+
+
+			/**
+	   * Css
+	   */
+			value: function css(componentName, componentNameDash) {
+				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: absolute;\n\t\t\t}\n\t\t';
+			}
+		}, {
+			key: 'defaultProps',
+
+
+			/**
+	   * Default props
+	   * @definition 		SWebComponent.defaultProps
+	   */
+			get: function get() {
+				return {
+					/**
+	     * Specify the particle lifetime. It not specified, will be auto-detected from his animation.
+	     */
+					lifetime: null
+				};
+			}
+		}]);
+
+		return SParticleComponent;
+	}(_SWebComponent3.default);
+
+	exports.default = SParticleComponent;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = getAnimationProperties;
+
+	var _getStyleProperty = __webpack_require__(211);
+
+	var _getStyleProperty2 = _interopRequireDefault(_getStyleProperty);
+
+	var _toMs = __webpack_require__(212);
+
+	var _toMs2 = _interopRequireDefault(_toMs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Get the css animation properties from an HTMLElement in an object format
+	 *
+	 * @name 		getAnimationProperties
+	 * @param 		{HTMLElement} 					elm  		The element to get the properties from
+	 * @return 		{Object} 									The animation properties
+	 *
+	 * @example  	js
+	 * import getAnimationProperties from 'sugarcss/js/dom/getAnimationProperties'
+	 * const props = getAnimationProperties(myCoolHTMLElement);
+	 * // output format
+	 * // {
+	 * // 	name : ['animation1'],
+	 * // 	duration : [200],
+	 * // 	delay : [0],
+	 * // 	timingFunction : ['linear'],
+	 * // 	iterationCount : [1],
+	 * // 	direction : ['forward'],
+	 * // 	totalDuration : 200
+	 * // }
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+
+	function splitIfNeeded(what, separator) {
+		if (what.indexOf(separator) !== -1) {
+			return what.split(separator).map(function (item) {
+				return item.trim();
+			});
+		}
+		return what;
+	}
+	function getAnimationProperties(elm) {
+		// get the animation properties
+		var name = (0, _getStyleProperty2.default)(elm, 'animation-name') || '';
+		var duration = (0, _getStyleProperty2.default)(elm, 'animation-duration') || '0s';
+		var timingFunction = (0, _getStyleProperty2.default)(elm, 'animation-timing-function') || 'linear';
+		var delay = (0, _getStyleProperty2.default)(elm, 'animation-delay') || '0s';
+		var iterationCount = (0, _getStyleProperty2.default)(elm, 'animation-iteration-count') || 1;
+		var direction = (0, _getStyleProperty2.default)(elm, 'animation-direction') || 'normal';
+
+		// return the animation object
+		var props = {
+			name: name.split(','),
+			duration: duration.split(',').map(function (value) {
+				return (0, _toMs2.default)(value);
+			}),
+			delay: ('' + delay).split(',').map(function (value) {
+				return (0, _toMs2.default)(value);
+			}),
+			timingFunction: timingFunction.split(','),
+			iterationCount: ('' + iterationCount).split(','),
+			direction: direction.split(',')
+		};
+		var totalDuration = 0;
+		var i = 0;
+		var delays = [0].concat(props.delay);
+		[0].concat(props.duration).forEach(function (val) {
+			if (val + delays[i] > totalDuration) {
+				totalDuration = val + delays[i];
+			}
+		});
+		props.totalDuration = totalDuration;
+		return props;
+	}
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = getStyleProperty;
+
+	var _camelize = __webpack_require__(6);
+
+	var _camelize2 = _interopRequireDefault(_camelize);
+
+	var _autoCast = __webpack_require__(5);
+
+	var _autoCast2 = _interopRequireDefault(_autoCast);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Get a style property on the passed element through the computed style.
+	 * This function try to store the actual style to not trigger more that 1 redraw
+	 * each js execution loop.
+	 *
+	 * @name 		getStyleProperty
+	 * @param 		{HTMLElement} 					elm  		The element to get style from
+	 * @param 		{String} 						property 	The css property to get
+	 * @return 		{Mixed} 									The style value
+	 *
+	 * @example  	js
+	 * import getStyleProperty from 'sugarcss/js/dom/getStyleProperty'
+	 * const opacity = getStyleProperty(myCoolHTMLElement, 'opacity');
+	 *
+	 * @see 		https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function getStyleProperty(elm, property) {
+
+	  // caching mecanisme
+	  setTimeout(function () {
+	    elm._sComputedStyle = null;
+	  });
+
+	  var computed = elm._sComputedStyle || window.getComputedStyle(elm);
+	  elm._sComputedStyle = computed;
+
+	  var prefixes = ['', 'webkit-', 'moz-', 'ms-', 'o-', 'khtml-'];
+	  for (var i = 0; i < prefixes.length; i++) {
+	    var prefix = prefixes[i];
+	    var value = computed[(0, _camelize2.default)('' + prefix + property)];
+	    if (value && value.trim() !== '') return (0, _autoCast2.default)(value);
+	  }
+	  return null;
+	}
+
+/***/ },
+/* 212 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = toMs;
+	function toMs(string) {
+		// parse the string to int to get the lenght of the suffix
+		// if (string.substr(0,1) === '.') string = '0${string}';
+		var value = parseFloat(string);
+		var valueLength = ('' + value).length;
+		var suffix = string.substr(valueLength);
+		// switch on suffix
+		switch (suffix) {
+			case 'ms':
+				// milisecond
+				return value;
+				break;
+			case 's': // seconds
+			default:
+				return value * 1000;
+				break;
+		}
+	}
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = style;
+
+	var _uncamelize = __webpack_require__(214);
+
+	var _uncamelize2 = _interopRequireDefault(_uncamelize);
+
+	var _styleString2Object = __webpack_require__(215);
+
+	var _styleString2Object2 = _interopRequireDefault(_styleString2Object);
+
+	var _styleObject2String = __webpack_require__(216);
+
+	var _styleObject2String2 = _interopRequireDefault(_styleObject2String);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Set or remove a css style property on an HTMLElement
+	 *
+	 * @name 		style
+	 * @param 		{HTMLElement} 			elm 			The element to process
+	 * @param 		{Object} 				styleObj 		An object of style to apply
+	 * @return 		(Object) 								The element applied style
+	 *
+	 * @example 	js
+	 * import style from 'sugarcss/js/dom/style'
+	 * style(myCoolHTMLElement, {
+	 * 		paddingLeft : 20,
+	 * 		display : null
+	 * });
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+
+	if (!window.sugar) window.sugar = {};
+	window.sugar._styles = new Map();
+
+	function style(elm, styleObj) {
+
+		// get the current style of the element
+		var current = window.sugar._styles.get(elm);
+
+		// if first time handling style
+		if (!current) {
+			// convert style string to object
+			var styleAttr = elm.getAttribute('style');
+
+			if (styleAttr) {
+				styleObj = _extends({}, (0, _styleString2Object2.default)(styleAttr), styleObj);
+			}
+
+			current = {
+				styleObj: styleObj,
+				elm: elm
+			};
+		}
+
+		// mix the style oject
+		current.styleObj = _extends({}, current.styleObj, styleObj);
+
+		// apply the style to the element
+		// elm.setAttribute('style', __styleObject2String(current.styleObj));
+		elm.style.cssText = (0, _styleObject2String2.default)(current.styleObj);
+
+		// save the styleObj into map
+		window.sugar._styles.set(elm, current);
+
+		// return the style
+		return elm.style;
+	}
+
+/***/ },
+/* 214 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = uncamelize;
+	/**
+	 * Uncamelize a string
+	 */
+	function uncamelize(text) {
+		var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
+
+		// Replace all capital letters by separator followed by lowercase one
+		var res = '';
+		res = text.replace(/[A-Z]/g, function (letter) {
+			return separator + letter.toLowerCase();
+		});
+
+		// Remove first separator (to avoid _hello_world name)
+		return res.replace("/^" + separator + "/", '').trim();
+	}
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = styleString2Object;
+
+	var _camelize = __webpack_require__(6);
+
+	var _camelize2 = _interopRequireDefault(_camelize);
+
+	var _autoCast = __webpack_require__(5);
+
+	var _autoCast2 = _interopRequireDefault(_autoCast);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Transform a style string to an object representation
+	 *
+	 * @name 		styleString2Object
+	 * @param 		{String} 				style 			The style string
+	 * @return 		(Object) 								The string object representation
+	 *
+	 * @example 	js
+	 * import styleString2Object from 'sugarcss/js/dom/styleString2Object'
+	 * const styleString = styleString2Object('padding-left:20px; display:block;');
+	 * // output => {
+	 * //		paddingLeft : '20px',
+	 * // 		display : 'block'
+	 * // }
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function styleString2Object(style) {
+	  if (!style || style === '') return {};
+	  var obj = {};
+	  var split = style.replace(/\s/g, '').split(';');
+	  split.forEach(function (statement) {
+	    // split statement by key value pairs
+	    var spl = statement.split(':'),
+	        key = (0, _camelize2.default)(spl[0]),
+	        value = spl[1];
+	    // add element into object
+	    obj[key] = (0, _autoCast2.default)(value);
+	  });
+	  // return the style object
+	  return obj;
+	}
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = styleObject2String;
+
+	var _uncamelize = __webpack_require__(214);
+
+	var _uncamelize2 = _interopRequireDefault(_uncamelize);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Transform a style object to inline string separated by ;
+	 *
+	 * @name 		styleObject2String
+	 * @param 		{Object} 				styleObj 		An object of style to apply
+	 * @return 		(String) 								The string style representation
+	 *
+	 * @example 	js
+	 * import styleObject2String from 'sugarcss/js/dom/styleObject2String'
+	 * const styleString = styleObject2String({
+	 * 		paddingLeft : '20px',
+	 * 		display : 'block'
+	 * });
+	 * // output => padding-left:20px; display:block;
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function styleObject2String(styleObj) {
+	  // process the style object
+	  var propertiesArray = [];
+	  for (var key in styleObj) {
+	    var value = styleObj[key];
+	    // if the value is ''
+	    // mean that we need to get rid of
+	    if (value === undefined || value === '') {
+	      delete styleObj[key];
+	    } else {
+	      propertiesArray.push((0, _uncamelize2.default)(key) + ':' + value + ';');
+	    }
+	  }
+	  // return the css text
+	  return propertiesArray.join(' ');
+	}
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = offset;
+
+	var _getTranslateProperties = __webpack_require__(218);
+
+	var _getTranslateProperties2 = _interopRequireDefault(_getTranslateProperties);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// import __getBoundingClientRect from './getBoundingClientRect'
+
+	/**
+	 * Get the offset top and left of the passed element from the document top left point
+	 *
+	 * @name 		offset
+	 * @param 		{HTMLElement} 					elm  		The element to get the offset from
+	 * @return 		{Object} 									The offset top and left object
+	 *
+	 * @example  	js
+	 * import offset from 'sugarcss/js/dom/offset'
+	 * const offsetElm = offset(myCoolElement);
+	 * // output : { top : 200, left : 300 }
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function offset(elm) {
+		var body = void 0,
+		    box = void 0,
+		    clientLeft = void 0,
+		    clientTop = void 0,
+		    docEl = void 0,
+		    left = void 0,
+		    scrollLeft = void 0,
+		    scrollTop = void 0,
+		    top = void 0,
+		    translates = void 0,
+		    transX = void 0,
+		    transY = void 0;
+		box = elm.getBoundingClientRect();
+		body = document.body;
+		docEl = document.documentElement;
+		scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+		scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+		clientTop = docEl.clientTop || body.clientTop || 0;
+		clientLeft = docEl.clientLeft || body.clientLeft || 0;
+		translates = (0, _getTranslateProperties2.default)(elm);
+		transX = translates.x;
+		transY = translates.y;
+		top = box.top + scrollTop - clientTop + transY;
+		left = box.left + scrollLeft - clientLeft + transX;
+		return {
+			top: Math.round(top),
+			left: Math.round(left)
+		};
+	}
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = getTranslateProperties;
+	/**
+	 * Get a translate properties of an HTMLElement
+	 *
+	 * @name 		getTranslateProperties
+	 * @param 		{HTMLElement} 					elm  		The element to get the properties from
+	 * @return 		{Object} 									The translate x,y and z properties
+	 *
+	 * @example  	js
+	 * import getTranslateProperties from 'sugarcss/js/dom/getTranslateProperties'
+	 * const props = getTranslateProperties(myCoolHTMLElement);
+	 * // output format
+	 * // {
+	 * // 	x : 100,
+	 * // 	y : 0,
+	 * // 	z : 0
+	 * // }
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function getTranslateProperties(elm) {
+		if (!window.getComputedStyle) return;
+		var idx = void 0,
+		    mat = void 0,
+		    style = void 0,
+		    transform = void 0;
+		style = getComputedStyle(elm);
+		transform = style.transform || style.webkitTransform || style.mozTransform || style.msTransform;
+		if (!transform) return {
+			x: 0,
+			y: 0,
+			z: 0
+		};
+		mat = transform.match(/^matrix3d\((.+)\)$/);
+		if (mat) {
+			return {
+				x: parseFloat(mat[1].split(', ')[12]),
+				y: parseFloat(mat[1].split(', ')[13]),
+				z: parseFloat(mat[1].split(', ')[14])
+			};
+		}
+		mat = transform.match(/^matrix\((.+)\)$/);
+		if (mat) {
+			return {
+				x: parseFloat(mat[1].split(', ')[4]),
+				y: parseFloat(mat[1].split(', ')[5]),
+				z: parseFloat(mat[1].split(', ')[6])
+			};
+		} else {
+			return {
+				x: 0,
+				y: 0,
+				z: 0
+			};
+		}
+	}
 
 /***/ }
 /******/ ]);

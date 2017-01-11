@@ -865,7 +865,7 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Return the unit context if has been set by the [../mixins/_s-unit-context.scss] mixin
+ * Return the unit context if has been set by the [s-unit-context mixin](../mixins/_s-unit-context.scss)
  *
  * @return 		{String} 				The unit context setted
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
@@ -2464,7 +2464,13 @@ table {
 /**
 				 * @styleguide 	Colors / Swatches
 				 * @name 		default--light
-				 * @color 		#d5d8d9
+				 * @color 		#acb3b5
+				 * @display 	color
+				 */
+/**
+				 * @styleguide 	Colors / Swatches
+				 * @name 		default--dark
+				 * @color 		#5f676a
 				 * @display 	color
 				 */
 /**
@@ -2522,7 +2528,7 @@ table {
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#d5d8d9"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.6, "big": 2.4, "bigger": 3}, "typo": {"font-family": "default", "font-size": "16px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": {"default": "0.2em"}, "padding-vertical": {"default": "1em"}, "padding-horizontal": {"default": "0.8em"}, "font-size": {"default": "1em"}, "disabled-opacity": {"default": 0.5}}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -2611,19 +2617,6 @@ body {
 }
 
 /**
-			 * @name 	```.tr-slow```
-			 * @styleguide  	Helpers / Transitions
-			 * @example 	html
-			 * <div class="tr-slow">
-			 * 	I'm transitionned with slow
-			 * </div>
-			 */
-.tr-slow {
-  transition: all 0.5s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-}
-
-/**
 			 * @name 	```.tr-default```
 			 * @styleguide  	Helpers / Transitions
 			 * @example 	html
@@ -2633,6 +2626,19 @@ body {
 			 */
 .tr-default {
   transition: all 0.2s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+/**
+			 * @name 	```.tr-slow```
+			 * @styleguide  	Helpers / Transitions
+			 * @example 	html
+			 * <div class="tr-slow">
+			 * 	I'm transitionned with slow
+			 * </div>
+			 */
+.tr-slow {
+  transition: all 0.5s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
 }
 
@@ -3740,7 +3746,7 @@ body {
 						 * </div>
 						 */
 .c-default--light {
-  color: #d5d8d9;
+  color: #acb3b5;
 }
 
 /**
@@ -3753,7 +3759,33 @@ body {
 						 * </div>
 						 */
 .bkg-default--light {
-  background-color: #d5d8d9;
+  background-color: #acb3b5;
+}
+
+/**
+						 * @name 	```.c-default--dark```
+						 * Specify the color to **default--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="c-default--dark">
+						 * 	I'm in "default--dark" color
+						 * </div>
+						 */
+.c-default--dark {
+  color: #5f676a;
+}
+
+/**
+						 * @name 	```.bkg-default--dark```
+						 * Specify the background color to **default--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="bkg-default--dark p" style="color:white">
+						 * 	My background color is "default--dark"
+						 * </div>
+						 */
+.bkg-default--dark {
+  background-color: #5f676a;
 }
 
 /**
@@ -4610,8 +4642,35 @@ h1.vr,
 .vr > h3, h4.vr,
 .vr > h4, h5.vr,
 .vr > h5, h6.vr,
-.vr > h6 {
-  margin-bottom: 1em;
+.vr > h6,
+.h1.vr,
+.vr >
+.h1, .h2.vr,
+.vr > .h2, .h3.vr,
+.vr > .h3, .h4.vr,
+.vr > .h4, .h5.vr,
+.vr > .h5, .h6.vr,
+.vr > .h6 {
+  padding-bottom: .25em;
+  padding-top: .25em;
+}
+
+h1.vr:first-child,
+.vr > h1:first-child, h2.vr:first-child,
+.vr > h2:first-child, h3.vr:first-child,
+.vr > h3:first-child, h4.vr:first-child,
+.vr > h4:first-child, h5.vr:first-child,
+.vr > h5:first-child, h6.vr:first-child,
+.vr > h6:first-child,
+.h1.vr:first-child,
+.vr >
+.h1:first-child, .h2.vr:first-child,
+.vr > .h2:first-child, .h3.vr:first-child,
+.vr > .h3:first-child, .h4.vr:first-child,
+.vr > .h4:first-child, .h5.vr:first-child,
+.vr > .h5:first-child, .h6.vr:first-child,
+.vr > .h6:first-child {
+  padding-top: 0;
 }
 
 .h1,
@@ -4695,7 +4754,14 @@ h1.vr,
 p.vr,
 .vr > p, .p.vr,
 .vr > .p {
-  margin-bottom: 1em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+p.vr:first-child,
+.vr > p:first-child, .p.vr:first-child,
+.vr > .p:first-child {
+  padding-top: 0;
 }
 
 .link,
@@ -5002,6 +5068,31 @@ p.vr,
 .tf ol > li > dl {
   margin-left: 0;
   margin-bottom: 0;
+}
+
+dl.vr,
+.vr > dl, ul.vr,
+.vr > ul, ol.vr,
+.vr > ol,
+.dl.vr,
+.vr >
+.dl, .ul.vr,
+.vr > .ul, .ol.vr,
+.vr > .ol {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+dl.vr:first-child,
+.vr > dl:first-child, ul.vr:first-child,
+.vr > ul:first-child, ol.vr:first-child,
+.vr > ol:first-child,
+.dl.vr:first-child,
+.vr >
+.dl:first-child, .ul.vr:first-child,
+.vr > .ul:first-child, .ol.vr:first-child,
+.vr > .ol:first-child {
+  padding-top: 0;
 }
 
 .dt,
@@ -5865,7 +5956,7 @@ s-custom-scrollbar .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-primary">Primary</span>
+				 * @name 		 	<span class="c-primary">Primary</span> Scrollbar
 				 * Provide a way to display a nice primary custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -5885,7 +5976,7 @@ s-custom-scrollbar[color="primary"] .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-secondary">Secondary</span>
+				 * @name 		 	<span class="c-secondary">Secondary</span> Scrollbar
 				 * Provide a way to display a nice secondary custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -5905,7 +5996,7 @@ s-custom-scrollbar[color="secondary"] .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-success">Success</span>
+				 * @name 		 	<span class="c-success">Success</span> Scrollbar
 				 * Provide a way to display a nice success custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -5925,7 +6016,7 @@ s-custom-scrollbar[color="success"] .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-warning">Warning</span>
+				 * @name 		 	<span class="c-warning">Warning</span> Scrollbar
 				 * Provide a way to display a nice warning custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -5945,7 +6036,7 @@ s-custom-scrollbar[color="warning"] .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-error">Error</span>
+				 * @name 		 	<span class="c-error">Error</span> Scrollbar
 				 * Provide a way to display a nice error custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -5965,7 +6056,7 @@ s-custom-scrollbar[color="error"] .simplebar-scrollbar {
 }
 
 /**
-				 * @name 			Scrollbar <span class="c-info">Info</span>
+				 * @name 		 	<span class="c-info">Info</span> Scrollbar
 				 * Provide a way to display a nice info custom-scrollbar
 				 * @styleguide  	Components / Scrollbar
 				 * @example 		html
@@ -6643,6 +6734,11 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   border-left-color: rgba(43, 52, 56, 0.6);
 }
 
+/**
+ * Print out the datepicker sugar style
+ * @param 		{List} 		[$colors=default primary secondary] 		The list of sugar registered colors wanted
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
 .flatpickr-calendar.open {
   box-shadow: rgba(0, 0, 0, 0.2) 0 12px 18px;
 }
@@ -7176,6 +7272,22 @@ s-google-map:before {
   display: block;
   height: 0;
   padding-top: 56.25%;
+}
+
+@keyframes s-ripple {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(1, 1);
+  }
+}
+
+.s-ripple__particle {
+  background: rgba(0, 0, 0, 0.3);
+  animation: s-ripple 0.3s 0s ease-out 1 normal forwards;
 }
 
 /**

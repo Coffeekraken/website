@@ -1,20 +1,17 @@
-# {project-name}
+# Coffeekraken Website
 
-[![Build Status](https://travis-ci.org/{project-path}.svg)](https://travis-ci.org/{project-path})
+This is the [coffeekraken.io](http://coffeekraken.io) website project. It's a quite simple website that present what and who are coffeekraken.
 
-{project-description}
-
-* Homepage: []()
-* Source: []()
-* Twitter: []()
+* Homepage: [coffeekraken.io](http://coffeekraken.io)
+* Source: [Github](http://github.com/coffeekraken/website)
+* Twitter: [Coffeekrakenio](http://twitter.com/coffeekrakenio)
 
 ## Quick start
 
-{project-quick-start}
+To install the website, run these commands:
 
-## Features
-
-{project-features}
+1. ```npm install``` : Install dependencies
+2. ```npm dist``` : Build the distribution folder with images, etc...
 
 ## Browser support
 
@@ -23,12 +20,3 @@
 * Internet Explorer 10+
 * Opera *(latest 2)*
 * Safari *(latest 2)*
-
-## Documentation
-
-Take a look at the [documentation table of contents](doc/TOC.md).
-The documentation is bundled with the project so be careful to check that your version correspond to this documentation if you check it online.
-
-## License
-
-The code is available under the [MIT license](LICENSE.txt).

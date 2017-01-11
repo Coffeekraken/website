@@ -4,14 +4,13 @@
   "description": "Coffeekraken website",
   "main": "dist/index.js",
   "scripts": {
-    "dist": "npm run dist.build",
-    "dist.build": "npm run dist.build.css && npm run dist.build.js && npm run dist.build.styleguide",
-    "dist.build.js": "webpack",
-    "dist.build.css": "node-sass src/sass/style.scss dist/css/style.css --include-path node_modules --output-style compact",
-    "dist.build.styleguide": "node-sass src/sass/style.scss dist/css/styleguide.css --include-path node_modules --output-style expanded",
+    "dist": "npm run dist.css && npm run dist.js && npm run dist.styleguide",
+    "dist.js": "webpack",
+    "dist.css": "node-sass src/sass/style.scss dist/css/style.css --include-path node_modules --output-style compact",
+    "dist.styleguide": "node-sass src/sass/style.scss dist/css/styleguide.css --include-path node_modules --output-style expanded",
     "dist.watch": "concurrently --kill-others \"npm run dist.watch.css\" \"npm run dist.watch.js\"",
-    "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.build.js\"",
-    "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.build.css && npm run dist.build.styleguide\"",
+    "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.js\"",
+    "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.css && npm run dist.styleguide\"",
     "test": "coffeekraken-testing-stack",
     "styleguide": "nodemon --watch /Users/olivierbossel/data/web/coffeekraken/styleguide /Users/olivierbossel/data/web/coffeekraken/styleguide/run"
   },
@@ -23,11 +22,12 @@
   "author": "Coffeekraken <hello@coffeekraken.io>",
   "license": "MIT",
   "dependencies": {
-    "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
+    "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
     "coffeekraken-s-datepicker-component": "git+https://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
     "coffeekraken-s-google-map-component": "git+https://git@github.com/Coffeekraken/s-google-map-component.git#release/0.0.1",
     "coffeekraken-s-google-map-marker-component": "git+https://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
-    "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
+    "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
+    "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
     "marked": "^0.3.6"
   },
   "devDependencies": {
