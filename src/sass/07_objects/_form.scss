@@ -1,6 +1,6 @@
 /**
  * Form styling
  */
-@include s-form-component(
+@include s-form-classes(
     $colors : default primary secondary
 );

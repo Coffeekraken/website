@@ -1,10 +1,10 @@
-@include s-typography-component();
+@include s-typography-classes();
 
 
-@include s-button-component(
+@include s-button-classes(
     $colors : primary secondary success error
 );
 
-@include s-corner-badge-component(
+@include s-corner-badge-classes(
     $colors : default primary secondary success warning error info
 );

@@ -12,7 +12,7 @@
     "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.js\"",
     "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.css && npm run dist.styleguide\"",
     "test": "coffeekraken-testing-stack",
-    "styleguide": "nodemon --watch /Users/olivierbossel/data/web/coffeekraken/styleguide /Users/olivierbossel/data/web/coffeekraken/styleguide/run"
+    "carpenter": "nodemon --watch /Users/olivierbossel/data/web/coffeekraken/carpenter /Users/olivierbossel/data/web/coffeekraken/carpenter/run"
   },
   "keywords": [
     "coffee",
@@ -28,6 +28,7 @@
     "coffeekraken-s-google-map-marker-component": "git+https://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
     "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
     "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
+    "coffeekraken-gridle": "git+https://git@github.com/Coffeekraken/gridle.git#release/3.0.0",
     "marked": "^0.3.6"
   },
   "devDependencies": {
