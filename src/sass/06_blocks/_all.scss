@@ -4,4 +4,6 @@
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
-@import 's-custom-scrollbar';
+@import 'card',
+		'nav',
+		's-custom-scrollbar';

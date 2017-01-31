@@ -1,0 +1,7 @@
+@include s-button-classes(
+	$colors : primary secondary
+);
+
+.btn {
+	border-radius: 2em;
+}

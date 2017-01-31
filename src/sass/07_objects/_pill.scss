@@ -1,0 +1,18 @@
+.pill {
+	padding:.5em 1.5em;
+	color: white;
+	border-radius: 20px;
+	font-size:12px;
+	display: inline-block;
+	@include s-font(roboto-bold);
+	@include s-filter(text-shadow(rgba(0,0,0,.2) 1px 1px 0))
+}
+.pill--primary {
+	background-color: s-color(primary);
+}
+.pill--secondary {
+	background-color: s-color(secondary);
+}
+.pill--secondary-light {
+	background-color: s-color(secondary, -lighten 20%);
+}

@@ -1,0 +1,14 @@
+<svg width="116" height="125" viewBox="0 0 116 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>package-icon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1355 -2879)" figma:type="canvas">
+<g id="package-icon" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(1355.64 2879)" fill="#E7A800" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 76.8409 86.9792L 78.4091 85.9375L 78.4091 94.7917L 76.8409 95.8333L 76.8409 86.9792ZM 95.1364 85.9375L 96.7045 84.8958L 96.7045 76.0417L 95.1364 77.0833L 95.1364 85.9375ZM 87.2955 90.1042L 88.8636 89.0625L 88.8636 80.2083L 87.2955 81.25L 87.2955 90.1042ZM 90.4318 88.0208L 92 86.9792L 92 78.125L 90.4318 79.1667L 90.4318 88.0208ZM 84.6818 91.6667L 86.25 90.625L 86.25 81.7708L 84.6818 82.8125L 84.6818 91.6667ZM 79.9773 94.2708L 81.5455 93.2292L 81.5455 84.375L 79.9773 85.4167L 79.9773 94.2708ZM 115 35.9375L 115 95.8333L 63.7727 125L 0 88.5417L 0 28.6458L 51.2273 0L 115 35.9375ZM 51.2273 11.9792L 40.25 18.2292L 86.7727 45.3125L 98.7955 38.5417C 98.7955 39.0625 51.2273 11.9792 51.2273 11.9792ZM 57.5 67.1875L 10.4545 40.1042L 10.4545 82.8125L 57.5 109.375L 57.5 67.1875ZM 75.7955 51.0417L 29.2727 23.9583L 16.7273 31.25L 63.25 57.8125C 62.7273 58.3333 75.7955 51.0417 75.7955 51.0417ZM 104.545 47.3958L 67.9545 67.1875L 67.9545 110.937L 104.545 90.1042L 104.545 47.3958Z"/>
+</defs>
+</svg>

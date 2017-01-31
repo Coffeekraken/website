@@ -1,0 +1,6 @@
+.coffeekraken-logo {
+	@include s-coffeekraken-logo(
+		$color : white,
+		$accent : s-color(primary)
+	);
+}

@@ -1,0 +1,46 @@
+@include s-nav-inline-classes();
+
+/**
+ * Nav pills
+ */
+.nav--pills {
+	@extend .nav--inline;
+
+	.nav__item {
+		margin:5px;
+	}
+}
+
+/**
+ * Nav topbar
+ */
+.nav--topbar {
+	@extend .nav--inline;
+
+	.nav__item {
+		vertical-align: middle;
+		margin:0 10px;
+		&:first-child {
+			margin-left:0;
+		}
+		&:last-child {
+			margin-right:0;
+		}
+	}
+
+	.nav__item.logo {
+		@include s-transition(fast);
+		&:first-child {
+			width:0;
+			overflow: hidden;
+		}
+	}
+	body.scrolled & {
+		.nav__item.logo {
+			&:first-child {
+				width:60px;
+				overflow: hidden;
+			}
+		}
+	}
+}

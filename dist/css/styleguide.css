@@ -7,7 +7,738 @@
  * Vendors
  * All external librarie needed in the project.
  */
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,800");
+/**
+ * @name 	Functions API
+ * This are all the API functions that are exposed by gridle.
+ */
+/**
+ * Get states count
+ * @return 	{Integer} 	The number of states defined
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get the current state map
+ * @return 		{Map} 	The current state map
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get the current state name
+ * @return 		{String} 	The current state name
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get the column width in percent for the global or a specific context
+ *
+ * @param 	{Integer} 		[$columns=1] 							The number of columns to calculate
+ * @param 	{Integer} 		[$stateMap-or-stateName=current] 	 	The state to calculate the column width for
+ * @return 	{Percent} 												The width in percent
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/*
+ * Get a state map
+ *
+ * @param 	{String|Map} 		[$state=current] 		The name or map of the state to get
+ * @return 	{Map} 				A state map object
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Check if a state exist :
+ * @param 	{String} 		$name 		The name of the state to check
+ * @return 	{Boolean} 					true if exist
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get a state variable
+ *
+ * @param 	{String} 		$varName 								The variable name
+ * @param  	{String} 		[$stateMap-or-stateName=current] 	 	The state name or a map state value
+ * @return 	{Mixed} 												The finded value
+ */
+/**
+ * Set a variable in a state
+ * @param  		{String} 	$var                    	Variable name to assign
+ * @param  		{Mixed} 	$newValue          			The new value to assign
+ * @param 		{String} 	[$state=current] 			The state to apply the variable for
+ * @return 		{List}                         			The states list (full)
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * get the registered gridle states
+ * @return 	{Map} 		All the registered states
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * get the registered gridle states names
+ * @return 	{List} 		All the registered states names
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get the register columns map
+ * @param 	{String|List<String>} 		[$state=current] 		The state name or map
+ * @return 	{Map} 												The map of registered columns for the specified state
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Will return the generated selector depending on the "package" wanted, the state and some optional values that might be needed by the package (like for row-align that need a "side" value)
+ * @param 		{String} 							$package 			The package to generate the selector for (see _settings.scss file)
+ * @param 		{String|List<String} 				[$states=null] 		The list of state to generate the selector for. If not specified, will generate for all registered states
+ * @param 		{Mixed} 							[$value=null] 		The value that will be used to replace the "%{tokenName}" inside the package pattern
+ * @example 	scss
+ * g-selector(grid, mobile, 2) {
+ * 	// your code here
+ * 	// The selector will be .gr-2@mobile
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Return the current used driver
+ * @return 	{String} 		The used driver like default or driver
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Check if the used driver is the specified one
+ * @param 		{String} 		$driver 	The driver to check
+ * @return 		{Boolean} 					True if is the current driver
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Get the media query for a particular state, or width, etc...
+ *
+ * @param 	{Mixed} 		[$stateName-or-stateMap=current] 		The state name of the min width
+ * @return 	{String} 												The media query string without the @media
+ */
+/**
+ * @name 	Setting mixins
+ * This are all the mixins that are exposed by gridle for the setting up your grid.
+ */
+/**
+ * Setting up your grid
+ * @param 		{Map} 		$settings 		Your default grid settings
+ * @example 	scss
+ * // default settings
+ * $_gridle-settings : (
+ *	name : default,
+ *	min-width : null,
+ *	max-width : null,
+ *	query : null,
+ *	classes : true,
+ *	context : 12,
+ *	column-width : null,
+ *	gutter-width : 20px,
+ *	gutter-height : 0,
+ *	gutter-top : 0,
+ *	gutter-right : 10px,
+ *	gutter-bottom : 0,
+ *	gutter-left : 10px,
+ *	direction : ltr,
+ *	dir-attribute : false,
+ *	name-multiplicator : 1,
+ *	states-classes : false,
+ *	classes-prefix : null
+ * );
+ *
+ * // setting up your grid
+ * \@include g-setup((
+ * 	context : 12
+ * 	// other settings
+ * ));
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register a new state with some settings
+ * @param 		{String} 		$name 		The new state name
+ * @param 		{Map} 			$settings 	The state settings
+ * @example 	scss
+ * \@include g-register-state(mobile, (
+ * 	max-width : 600px
+ * ));
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register some clear each that will been generated in classes
+ * @param 		{Integer} 		$count 		The n each item to clear
+ * @param 		{String} 		$what 		What to clear (left, right, both)
+ * @example 	scss
+ * \@include g-register-clear-each(2, left);
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register a new custom column in case the generated ones are not enough.
+ * This is useful when you have a 12 columns grid and you need some 1/5 ones.
+ * @param 		{String} 		$name 		The column name
+ * @param 		{Integer} 		$columns 	The column width
+ * @param 		{Integer} 		$context 	The context on which to calculate the column width
+ *
+ * @example 	scss
+ * \@include g-register-column(1on5, 1, 5);
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set a pattern for a specified package used to generate the classnames
+ * @param 		{String} 	$package 		The package name to specify the pattern for
+ * @param 		{List} 		$pattern 		The new classname pattern
+ *
+ * @example 	scss
+ * \@include g-set-classname-map(grid, ('grid','-','%count','@','%state'));
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set a generic selector for a specific package. This generic selector will be used to target some elements like [class*="gr-"].
+ * If not specified for a package, the generic selector will be generated automatically but sometimes it's better to hardcode it.
+ * @param 		{String} 		$package 		The package to specify the generic selector for
+ * @param 		{String} 		$selector 		The generic selector like [class*="gr-"], or whatever...
+ * @example 	scss
+ * \@include g-set-generic-selector(grid, '[class*="gr-"]');
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register some basics states:
+ *
+ * - mobile : 0 to 480px
+ * - tablet : 481px to 1024px
+ *
+ * @example 	scss
+ * \@include g-register-default-states();
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register some basics mobile first states:
+ *
+ * - xs : 0 to 750px
+ * - sm : 750px to infinite
+ * - md : 970px to infinite
+ * - lg : 1170px to infinite
+ *
+ * @example 	scss
+ * \@include g-register-default-mobile-first-states();
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	Base API
+ * This are all the base API mixins that are exposed by gridle.
+ */
+/**
+ * Specify a layout using a single call like in the example bellow
+ * @param 		{Map} 				$layout 				The map layout wanted
+ * @param 		{Map|List|String} 	[$context=null] 		The context in which to apply the layout
+ * @example 	scss
+ * body {
+ * 	\@include g-layout((
+ * 	 	'#header' : 12,
+ * 	 	'#sidebar' : 4 mobile 12,
+ * 	 	'#content' : 8 mobile 12,
+ * 	 	'#footer' : 12
+ * 	));
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply some styling in a passed state
+ * @param 		{Map|List|String} 		$states 		The states to apply the css for. Can be a state map, a list of states or a state name
+ * @example 	scss
+ * .my-cool-element {
+ * 	// specify a register state name
+ * 	\@include g-state(mobile) {
+ * 		// your css code here...
+ * 	}
+ * 	// specify more than one register states
+ * 	\@include g-state(mobile tablet) {
+ * 		// your css code here...
+ * 	}
+ *  // specify a min and max width
+ * 	\@include g-state(200px, 500px) {
+ * 		// your css code here...
+ * 	}
+ * 	// passing a state map (complexe usage)
+ * 	\@include g-state((
+ * 		query : 'print only'
+ * 	)) {
+ * 		// your code here...
+ * 	}
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply some css depending on the element size (element queries)
+ * **Using this mixin requires that you import the ```gridle-eq.js``` file into your javascript code**
+ * @param 	{Number} 	$size 				The size to take care of. If negative, mean lower than, if positive, mean greater than.
+ * @param 	{Boolean} 	[$height=false] 	Set to true to handle height instead of width
+ * @example 	scss
+ * .my-cool-element {
+ *  	\@include g-eq(-400px) {
+ *  		// your css that will be applied when element
+ *  		// is between 0 and 399px wide
+ *  	}
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Basically, this is the same as the ```g-state``` mixin, with the difference that it will not print any media queries. It will just create a state context in which your inside code will refer.
+ * @param 		{Map|List|String} 		$states 		The states to apply the css for. Can be a state map, a list of states or a state name
+ * @example 	scss
+ * @warn(g-get-state-var(min-width)); // will output the min-width of the default state
+ * \@include g-state-context(mobile) {
+ *  	@warn(g-get-state-var(min-width)); // will output the min-width of the mobile state
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Will print the generated selector depending on the "package" wanted, the state and some optional values that might be needed by the package (like for row-align that need a "side" value)
+ * @param 		{String} 							$package 			The package to generate the selector for (see _settings.scss file)
+ * @param 		{String|List<String} 				[$states=null] 		The list of state to generate the selector for. If not specified, will generate for all registered states
+ * @param 		{Mixed} 							[$value=null] 		The value that will be used to replace the "%{tokenName}" inside the package pattern
+ * @example 	scss
+ * \@include g-selector(grid, mobile, 2) {
+ * 	// your code here
+ * 	// The selector will be .gr-2@mobile
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Helper gridle mixin that let you specify the grid properties through ```g-set``` map, or a list of properties like "8 push 2 mobile 12 push 0"
+ * @param 		{Map|List} 			$properties 			The grid properties to apply
+ * @example 	scss
+ * #content {
+ * 	// using list
+ * 	\@include gridle(8 mobile 12);
+ * 	// using a map
+ * 	\@include gridle((
+ * 		grid : 8,
+ * 		mobile : (
+ * 			grid : 12
+ * 		)
+ * 	));
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Helper mixin that let you specify the grid properties through map formated like in the example bellow.
+ * Here's the possible properties:
+ *
+ * - ```grid``` {Integer} : The grid column count
+ * - ```container``` {Boolean} : Set the element as container
+ * - ```grid-grow``` {Boolean} : Set the element a grid column that grow
+ * - ```grid-adapt``` {Boolean} : Set the element a grid column that adapt
+ * - ```grid-table``` {Boolean} : Set the element a grid column of type table
+ * - ```push``` {Integer} : Set the push count
+ * - ```pull``` {Integer} : Set the pull count
+ * - ```prefix``` {Integer} : Set the prefix count
+ * - ```suffix``` {Integer} : Set the suffix count
+ * - ```clear-each``` {Integer} : Set the clear each count
+ * - ```grid-centered``` {Boolean} : Set the grid column as centered
+ * - ```row``` {Boolean} : Set the element as a grid row
+ * - ```row-full``` {Boolean} : Set the element as a grid row full
+ * - ```col``` {Boolean} : Set the element as a grid column (vertical)
+ * - ```row-align``` {String} : Set the row alignement
+ * - ```row-no-gutter``` {Boolean} : Remove the gutters on columns inside this row
+ * - ```nowrap``` {Boolean} : Set a nowrap on the row
+ * - ```wrap``` {Boolean} : Reset the wrap property on the row
+ * - ```order``` {Integer} : Set the order of the column (flex driver)
+ * - ```hide``` {Boolean} : Hide the element
+ * - ```show``` {Boolean} : Show the element
+ * - ```visible``` {Boolean} : Set the visibility of the element to visible
+ * - ```not-visible``` {Boolean} : Set the visibility of the element to hidden
+ * - ```invisible``` {Boolean} : Set the visibility of the element to hidden
+ * - ```show-inline``` {Boolean} : Set the display of the element to inline-block
+ * - ```float``` {String} : Set the specified float of the element
+ * - ```clear``` {String} : Clear the specified float of the element
+ * - ```no-gutter``` {Boolean|String|List<String>} : Remove the specified gutters
+ * - ```gutter``` {Boolean|String|List<String>} : Apply the specified gutters
+ *
+ * @param 		{Map} 			$properties 			The grid map properties to apply
+ * @example 	scss
+ * #content {
+ * 	// using a map
+ * 	\@include gridle((
+ * 		grid : 8,
+ * 		push : 2
+ * 		mobile : (
+ * 			grid : 12
+ * 		),
+ * 		{stateName} : {mapProperties}
+ * 	));
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the push count for the column
+ * @param 		{Integer} 		$columns 			The number of columns to push this column
+ * @param 		{Integer} 		[$context=null]  	The context on which to calculate the push value. By default, it is the default context setted with ```g-setup```.
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-push(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the pull count for the column
+ * @param 		{Integer} 		$columns 			The number of columns to pull this column
+ * @param 		{Integer} 		[$context=null]  	The context on which to calculate the pull value. By default, it is the default context setted with ```g-setup```.
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-pull(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the prefix count for the column
+ * @param 		{Integer} 		$columns 			The number of columns to prefix this column
+ * @param 		{Integer} 		[$context=null]  	The context on which to calculate the prefix value. By default, it is the default context setted with ```g-setup```.
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-prefix(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the suffix count for the column
+ * @param 		{Integer} 		$columns 			The number of columns to suffix this column
+ * @param 		{Integer} 		[$context=null]  	The context on which to calculate the suffix value. By default, it is the default context setted with ```g-setup```.
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-suffix(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Display a debug grid on top of the row
+ * @example 	scss
+ * .my-row {
+ * 	\@include g-row-debug();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Make the element a grid container
+ * @example 	scss
+ * .my-cool-container {
+ * 	\@include g-container();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Remove the gutters on each columns inside the row
+ * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to clear
+ * @example 	scss
+ * .my-cool-row {
+ * 	\@include g-row-no-gutter(left right);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Make a column centered
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-grid-centered();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Hide an element
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-hide();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the visibility of an element to hidden
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-not-visible();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the visibility of an element to hidden
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-invisible();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the display of an element to block
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-show();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the display of an element to inline-block
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-show();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the visibility of an element to visible
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-show();
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the float property of the element to the specified direction
+ * @param 		{String} 		[$float=left] 		The float direction to set
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-float(right);
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Clear the float property of the element to the specified direction
+ * @param 		{String} 		[$float=left] 		The float direction to clear
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-clear(right);
+ * }
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Remove the gutters on the column
+ * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to clear
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-no-gutter(left right);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the gutters on the column
+ * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to apply gutters on
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-gutter(left right);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	Generate mixins
+ * This are all the mixins that you can use to generate classes to use inside your HTML codebase
+ */
+/**
+ * Generate a custom class for all the states
+ * @param 	{List} 	$pattern 					The name pattern of the class
+ * @param 	{List} 	[$statesNames=null] 		The states names to generate. If null or all, will generate the class for all registered states
+ * @example 	scss
+ * \@include g-generate-custom-class(('my','-','cool','-','class','-','%state')) {
+ * 	color: pink;
+ * 	padding: g-get-state-var(gutter-left);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Generate all the classes depending on the packages you have specified like:
+ * - ```.container@{state}``` : default container
+ * - ```.row@{state}``` : default row
+ * - ```.row-align-{align}@{state}``` : default row-align
+ * - ```.row-full@{state}``` : default row-full
+ * - ```.row-debug@{state}``` : default row-debug
+ * - ```.row-no-gutter@{state}``` : default row-no-gutter
+ * - ```.nowrap@{state}``` : default nowrap
+ * - ```.wrap@{state}``` : default wrap
+ * - ```.col@{state}``` : default col
+ * - ```.gr-{column}@{state}``` : default grid
+ * - ```.gr-table@{state}``` : default gr-table
+ * - ```.gr-grow@{state}``` : default gr-grow
+ * - ```.gr-adapt@{state}``` : default gr-adapt
+ * - ```.gr-centered@{state}``` : default gr-centered
+ * - ```.push@{state}``` : default push
+ * - ```.pull@{state}``` : default pull
+ * - ```.prefix@{state}``` : default prefix
+ * - ```.suffix@{state}``` : default suffix
+ * - ```.hide@{state}``` : helpers hide
+ * - ```.show@{state}``` : helpers show
+ * - ```.show-inline@{state}``` : helpers show-inline
+ * - ```.not-visible@{state}``` : helpers not-visible
+ * - ```.visible@{state}``` : helpers visible
+ * - ```.float-{%float}@{state}``` : helpers float
+ * - ```.clear-{%float}@{state}``` : helpers clear
+ * - ```.clear-each-{%count}@{state}``` : helpers clear-each
+ * - ```.gutter-{%side}@{state}``` : helpers gutter
+ * - ```.no-gutter-{%side}@{state}``` : helpers no-gutter
+ * - ```.auto-height@{state}``` : helpers auto-height
+ * - ```.order-{%column-count}@{state}``` : helpers order
+ *
+ * @param 		{String|List<String>} 		[$states=all] 		The states to generate the classes for
+ * @param 		{String|List<String>} 		[$package=all] 		The packages to generate the classes for
+ * @param 		{String} 					[$scope=null] 		A classname to scope the classes in
+ *
+ * @example 	scss
+ * // generate all the classes
+ * \@include g-generate-classes();
+ * // generate only certain states
+ * \@include g-generate-classes(mobile tablet);
+ * // generate only the helpers for all the states
+ * \@include g-generate-classes(all, helpers);
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	Default driver API
+ * This are all the API mixins that are exposed by gridle for the default driver.
+ */
+/**
+ * Set the element as a row
+ * @param 		{Boolean} 		[$reverse=false] 		Revert the columns order if true
+ * @example 	scss
+ * .my-cool-row {
+ * 	\@include g-row();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the element as a col
+ * @param 		{Boolean} 		[$reverse=false] 		Revert the columns order if true
+ * @example 	scss
+ * .my-cool-col {
+ * 	\@include g-col();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply a nowrap on the element
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-nowrap();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Reset the nowrap on the element
+ * @example 	scss
+ * .my-cool-element {
+ * 	\@include g-wrap();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply a column width on the element
+ * @param 		{Integer|String} 		$columns 			The column count to apply or a registered column name
+ * @param 		{Integer} 				[$context=null]  	The context on which to calculate the column width. If null, take the context setted with ```g-setup```
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-grid(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the grid element as a table display type
+ * @example 	scss
+ * .my-cool-column {
+ * 	\@include g-grid(2);
+ * 	\@include g-grid-table();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the width of the row element to full viewport width
+ * @example 	scss
+ * .my-cool-row {
+ *  \@include g-row();
+ * 	\@include g-row-full();
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the width of the grid element to adapt to his content
+ * @example 	scss
+ * .my-cool-column {
+ *  \@include g-grid-adapt();
+ *  // or
+ *  \@include g-grid(adapt);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the width of the grid element to grow depending on the place it has at disposal
+ * @example 	scss
+ * .my-cool-column {
+ *  \@include g-grid-grow();
+ *  // or
+ *  \@include g-grid(grow);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Clear each n childs
+ * @example 	scss
+ * .my-cool-row {
+ *  \@include g-clear-each(2);
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the alignement of the columns inside the row using these alignement properties:
+ *
+ * - top : Align vertical top
+ * - middle : Align vertical middle
+ * - bottom : Align vertical bottom
+ * - left : Align horizontal left
+ * - center : Align horizontal center
+ * - right : Align horizontal right
+ *
+ * @example 	scss
+ * .my-cool-row {
+ *  \@include g-row-align(middle center);
+ *  \@include g-row-align(right);
+ *  \@include g-row-align(middle);
+ *  // etc...
+ * }
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
 /**
  * Parse and return the Map respresentation of a border property
  * The $border argument will be parsed with the [s-parse-properties](../core/functions/_s-parse-properties.scss) function.
@@ -170,7 +901,7 @@
 
 	$clearfix-method sets default method
 */
-.clearfix-overflow, .nav--tabs {
+.clearfix-overflow {
   overflow: hidden;
 }
 
@@ -941,78 +1672,83 @@
 /**
  * Print out all wanted registered classes like padding helpers, margin helpers, font helpers, etc...
  * Available namespaces
- * - `sugar.filter.{name}` : .fi-{name}
- * - `sugar.transition.{name}` : .tr-{name}
- * - `sugar.font.family.{name}` : .f-{name}
- * - `sugar.margin.bottom.{size}` : .m-b-{size}
- * - `sugar.margin.top.{size}` : .m-t-{size}
- * - `sugar.margin.left.{size}` : .m-l-{size}
- * - `sugar.margin.right.{size}` : .m-r-{size}
- * - `sugar.margin.side.{size}` : .m-s-{size}
- * - `sugar.padding.all.{size}` : .p-{size}
- * - `sugar.padding.top.{size}` : .p-t-{size}
- * - `sugar.padding.bottom.{size}` : .p-b-{size}
- * - `sugar.padding.left.{size}` : .p-l-{size}
- * - `sugar.padding.right.{size}` : .p-r-{size}
- * - `sugar.padding.side.{size}` : .p-s-{size}
- * - `sugar.size.{size}` : .s-{size}
- * - `sugar.size.rel.{size}` : .s-{size}-rel
- * - `sugar.padding.no.top` : .no-p-t
- * - `sugar.padding.no.bottom` : .no-p-b
- * - `sugar.padding.no.left` : .no-p-l
- * - `sugar.padding.no.right` : .no-p-r
- * - `sugar.padding.no.side` : .no-p-s
- * - `sugar.margin.no.top` : .no-m-t
- * - `sugar.margin.no.bottom` : .no-m-b
- * - `sugar.margin.no.left` : .no-m-l
- * - `sugar.margin.no.right` : .no-m-r
- * - `sugar.margin.no.side` : .no-m-s
- * - `sugar.color.{name}.color` .c-{name}
- * - `sugar.color.{name}.bkg` : .bkg-{name}
- * - `sugar.color.{name}.modifier.{mod-name}.color` : .c-{name}--{mod-name}
- * - `sugar.color.{name}.modifier.{mod-name}.bkg` : .bkg-{name}--{mod-name}
- * - `sugar.pull.left` : .pull-left
- * - `sugar.pull.right` : .pull-right
- * - `sugar.position.relative` : .relative
- * - `sugar.position.absolute` : .absolute
- * - `sugar.clear.left` : .clear-left
- * - `sugar.clear.right` : .clear-right
- * - `sugar.clear.both` : .clear
- * - `sugar.display.show` : .show
- * - `sugar.display.show-inline` : .show-inline
- * - `sugar.display.hidden` : .hidden
- * - `sugar.display.hide` : .hide
- * - `sugar.display.visible` : .visible
- * - `sugar.display.invisible` : .invisible
- * - `sugar.display.visually-hidden` : .visually-hidden
- * - `sugar.text.hidden` : .t-hidden
- * - `sugar.text.truncate` : .t-truncate
- * - `sugar.text.align.left` : .t-left
- * - `sugar.text.align.right` : .t-right
- * - `sugar.text.align.center` : .t-center
- * - `sugar.text.align.justify` : .t-justify
- * - `sugar.text.transform.lowercase` : .t-lowercase
- * - `sugar.text.transform.uppercase` : .t-uppercase
- * - `sugar.text.transform.capitalize` : .t-capitalize
- * - `sugar.font.weight.bold` : .f-bold
- * - `sugar.font.weight.lighter` : .f-lighter
- * - `sugar.font.weight.bolder` : .f-bolder
- * - `sugar.font.weight.normal` : .f-normal
- * - `sugar.font.style.italic` : .f-italic
- * - `sugar.font.style.oblique` : .f-oblique
- * - `sugar.font.variant.small-caps` : .f-small-caps
- * - `sugar.block.align.center` : .block-center
- * - `sugar.clearfix.default` : .clearfix
- * - `sugar.clearfix.float` : .clearfix-float
- * - `sugar.clearfix.micro` : .clearfix-micro
- * - `sugar.clearfix.overflow` : .clearfix-overflow
- * - `sugar.clearfix.facebook` : .clearfix-facebook
- * - `sugar.no-transitions` : .no-transitions
- * - `sugar.clear-transitions` : .clear-transitions
- * - `sugar.no-animations` : .no-animations
- * - `sugar.clear-animations` : .clear-animations
- * - `sugar.no-transmations` : .no-transmations
- * - `sugar.clear-transmations` : .clear-transmations
+ * - sugar.filter.{name} : .fi-{name}
+ * - sugar.transition.{name} : .tr-{name}
+ * - sugar.font.family.{name} : .f-{name}
+ * - sugar.margin.bottom.{size} : .m-b-{size}
+ * - sugar.margin.top.{size} : .m-t-{size}
+ * - sugar.margin.left.{size} : .m-l-{size}
+ * - sugar.margin.right.{size} : .m-r-{size}
+ * - sugar.margin.side.{size} : .m-s-{size}
+ * - sugar.padding.all.{size} : .p-{size}
+ * - sugar.padding.top.{size} : .p-t-{size}
+ * - sugar.padding.bottom.{size} : .p-b-{size}
+ * - sugar.padding.left.{size} : .p-l-{size}
+ * - sugar.padding.right.{size} : .p-r-{size}
+ * - sugar.padding.side.{size} : .p-s-{size}
+ * - sugar.size.{size} : .s-{size}
+ * - sugar.size.rel.{size} : .s-{size}-rel
+ * - sugar.padding.no.top : .no-p-t
+ * - sugar.padding.no.bottom : .no-p-b
+ * - sugar.padding.no.left : .no-p-l
+ * - sugar.padding.no.right : .no-p-r
+ * - sugar.padding.no.side : .no-p-s
+ * - sugar.margin.no.top : .no-m-t
+ * - sugar.margin.no.bottom : .no-m-b
+ * - sugar.margin.no.left : .no-m-l
+ * - sugar.margin.no.right : .no-m-r
+ * - sugar.margin.no.side : .no-m-s
+ * - sugar.color.{name}.color` .c-{name}
+ * - sugar.color.{name}.bkg : .bkg-{name}
+ * - sugar.color.{name}.modifier.{mod-name}.color : .c-{name}--{mod-name}
+ * - sugar.color.{name}.modifier.{mod-name}.bkg : .bkg-{name}--{mod-name}
+ * - sugar.pull.left : .pull-left
+ * - sugar.pull.right : .pull-right
+ * - sugar.position.relative : .relative
+ * - sugar.position.absolute : .absolute
+ * - sugar.clear.left : .clear-left
+ * - sugar.clear.right : .clear-right
+ * - sugar.clear.both : .clear
+ * - sugar.display.show : .show
+ * - sugar.display.show-inline : .show-inline
+ * - sugar.display.hidden : .hidden
+ * - sugar.display.hide : .hide
+ * - sugar.display.visible : .visible
+ * - sugar.display.invisible : .invisible
+ * - sugar.display.visually-hidden : .visually-hidden
+ * - sugar.text.hidden : .t-hidden
+ * - sugar.text.truncate : .t-truncate
+ * - sugar.text.align.left : .t-left
+ * - sugar.text.align.right : .t-right
+ * - sugar.text.align.center : .t-center
+ * - sugar.text.align.justify : .t-justify
+ * - sugar.text.transform.lowercase : .t-lowercase
+ * - sugar.text.transform.uppercase : .t-uppercase
+ * - sugar.text.transform.capitalize : .t-capitalize
+ * - sugar.font.weight.bold : .f-bold
+ * - sugar.font.weight.lighter : .f-lighter
+ * - sugar.font.weight.bolder : .f-bolder
+ * - sugar.font.weight.normal : .f-normal
+ * - sugar.font.style.italic : .f-italic
+ * - sugar.font.style.oblique : .f-oblique
+ * - sugar.font.variant.small-caps : .f-small-caps
+ * - sugar.block.align.center : .block-center
+ * - sugar.ratio.16-9 : ```.ratio-16-9```
+ * - sugar.ratio.4-3 : ```.ratio-4-3```
+ * - sugar.ratio.1-1 : ```.ratio-1-1```
+ * - sugar.size.abs.cover : ```.abs-cover```
+ * - sugar.size.abs.contain : ```.abs-contain```
+ * - sugar.clearfix.default : .clearfix
+ * - sugar.clearfix.float : .clearfix-float
+ * - sugar.clearfix.micro : .clearfix-micro
+ * - sugar.clearfix.overflow : .clearfix-overflow
+ * - sugar.clearfix.facebook : .clearfix-facebook
+ * - sugar.no-transitions : .no-transitions
+ * - sugar.clear-transitions : .clear-transitions
+ * - sugar.no-animations : .no-animations
+ * - sugar.clear-animations : .clear-animations
+ * - sugar.no-transmations : .no-transmations
+ * - sugar.clear-transmations : .clear-transmations
  *
  * @param 			{List}<string> 			$namespaces 		The classes namespaces wanted
  *
@@ -1354,7 +2090,56 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * This file is responsible to register the static helper classes like pull-right, clear, etc...
+ * @name 	Helper Classes
+ * This file is responsible to register the static helper classes like:
+ *
+ * - sugar.pull.left : ```.pull-left```
+ * - sugar.pull.right : ```.pull-right```
+ * - sugar.position.relative : ```.relative```
+ * - sugar.position.absolute : ```.absolute```
+ * - sugar.clear.left : ```.clear-left```
+ * - sugar.clear.right : ```.clear-right```
+ * - sugar.clear.both : ```.clear```
+ * - sugar.display.show : ```.show```
+ * - sugar.display.show-inline : ```.show-inline```
+ * - sugar.display.hidden : ```.hidden```
+ * - sugar.display.hide : ```.hide```
+ * - sugar.display.visible : ```.visible```
+ * - sugar.display.invisible : ```.invisible```
+ * - sugar.display.visually-hidden : ```.visually-hidden```
+ * - sugar.text.hidden : ```.t-hidden```
+ * - sugar.text.truncate : ```.t-truncate```
+ * - sugar.text.align.left : ```.t-left```
+ * - sugar.text.align.right : ```.t-right```
+ * - sugar.text.align.center : ```.t-center```
+ * - sugar.text.align.justify : ```.t-justify```
+ * - sugar.text.transform.lowercase : ```.t-lowercase```
+ * - sugar.text.transform.uppercase : ```.t-uppercase```
+ * - sugar.text.transform.capitalize : ```.t-capitalize```
+ * - sugar.font.weight.bold : ```.f-bold```
+ * - sugar.font.weight.lighter : ```.f-lighter```
+ * - sugar.font.weight.bolder : ```.f-bolder```
+ * - sugar.font.weight.normal : ```.f-normal```
+ * - sugar.font.style.italic : ```.f-italic```
+ * - sugar.font.style.oblique : ```.f-oblique```
+ * - sugar.font.variant.small-caps : ```.f-small-caps```
+ * - sugar.block.align.center : ```.block-center```
+ * - sugar.ratio.16-9 : ```.ratio-16-9```
+ * - sugar.ratio.4-3 : ```.ratio-4-3```
+ * - sugar.ratio.1-1 : ```.ratio-1-1```
+ * - sugar.size.abs.cover : ```.abs-cover```
+ * - sugar.size.abs.contain : ```.abs-contain```
+ * - sugar.clearfix.default : ```.clearfix```
+ * - sugar.clearfix.float : ```.clearfix-float```
+ * - sugar.clearfix.micro : ```.clearfix-micro```
+ * - sugar.clearfix.overflow : ```.clearfix-overflow```
+ * - sugar.clearfix.facebook : ```.clearfix-facebook```
+ * - sugar.no-transitions : ```.no-transitions```
+ * - sugar.clear-transitions : ```.clear-transitions```
+ * - sugar.no-animations : ```.no-animations```
+ * - sugar.clear-animations : ```.clear-animations```
+ * - sugar.no-transmations : ```.no-transmations```
+ * - sugar.clear-transmations : ```.clear-transmations```
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -1808,6 +2593,42 @@
   margin-right: auto;
 }
 
+.abs-cover {
+  /**
+	 * @name 		```.abs-cover```
+	 * Set a size that will cover the entire parent surface by positionning it in absolute
+	 * @styleguide 	Helpers / Sizes
+	 * @example 	html
+	 * <div class="ratio-16-9">
+	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-cover" />
+	 * </div>
+	 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.abs-contain {
+  /**
+	 * @name 		```.abs-contain```
+	 * Set a size that will contain the entire parent surface by positionning it in absolute
+	 * @styleguide 	Helpers / Sizes
+	 * @example 	html
+	 * <div class="ratio-16-9">
+	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-contain" />
+	 * </div>
+	 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .clearfix {
   /**
 	 * @name 		```.clearfix```
@@ -1853,7 +2674,7 @@
 	 */
 }
 
-.clearfix-overflow, .nav--tabs {
+.clearfix-overflow {
   /**
 	 * @name 		```.clearfix-overflow```
 	 * Apply the overflow clearfix on the element
@@ -1881,6 +2702,69 @@
 	 * 	<div class="pull-right">right pulled without clearfix</div>
 	 * </div>
 	 */
+}
+
+.ratio-16-9 {
+  /**
+	 * @name 		```.ratio-16-9```
+	 * Keep a 16/9 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100% / 16 * 9
+	 * @styleguide 	Helpers / Ratios
+	 * @example 	html
+	 * <div class="ratio-16-9">
+	 * 	I will keep my ratio
+	 * </div>
+	 */
+  position: relative;
+  overflow: hidden;
+}
+
+.ratio-16-9:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.ratio-4-3 {
+  /**
+	 * @name 		```.ratio-4-3```
+	 * Keep a 4/3 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100% / 4 * 3
+	 * @styleguide 	Helpers / Ratios
+	 * @example 	html
+	 * <div class="ratio-4-3">
+	 * 	I will keep my ratio
+	 * </div>
+	 */
+  position: relative;
+  overflow: hidden;
+}
+
+.ratio-4-3:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 75%;
+}
+
+.ratio-1-1 {
+  /**
+	 * @name 		```.ratio-1-1```
+	 * Keep a 1/1 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100%
+	 * @styleguide 	Helpers / Ratios
+	 * @example 	html
+	 * <div class="ratio-1-1">
+	 * 	I will keep my ratio
+	 * </div>
+	 */
+  position: relative;
+  overflow: hidden;
+}
+
+.ratio-1-1:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 75%;
 }
 
 .no-transitions {
@@ -2183,7 +3067,51 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Load all components
+ * @name 	SButtonComponent
+ * Provide ability to generate buttons that follow your settings like colors, look and feel, etc...
+ *
+ * - ```.btn```
+ * - ```.btn--block```
+ * - ```.btn--{color}```
+ * - ```.btn--outline```
+ * - ```.btn--link```
+ * - ```.btn:disabled```
+ * - ```.btn--hover-{$color}```
+ *
+ * See:
+ * - [Element level mixins API](./sass/_main.md)
+ * - [Classes level mixins API](./sass/_classes.md)
+ *
+ * @example 	scss
+ * // apply the button bare and style to my custom element
+ * .my-cool-element {
+ * 	\@include s-button();
+ * }
+ * // apply only the bare styling to my custom element
+ * .my-cool-element {
+ * 	\@include s-button-bare();
+ * }
+ * // apply only the style styling to my custom element
+ * .my-cool-element {
+ * 	\@include s-button-style();
+ * }
+
+ * // will print out classes for the button including bare and style part
+ * \@include s-button-classes(
+ * 	$colors : default primary secondary
+ * );
+ * // will print out classes for the button including only bare part
+ * \@include s-button-classes-bare();
+ * // will print out classes for the button including only style part
+ * \@include s-button-classes-style(
+ * 	$colors : default primary secondary
+ * );
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SButtonComponent
+ * This file provide the mixins to create buttons
  */
 .btn, .btn--block {
   display: inline-block;
@@ -2211,23 +3139,157 @@ button {
   line-height: 1;
 }
 
-.corner-badge {
-  position: absolute;
-  display: block;
-}
+/**
+ * Apply the button css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button bare css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button style css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SButtonComponent Classes
+ * This file provide the mixins to generate button classes
+ */
+/**
+ * Provide all the classes of the button component like .btn, .btn--outline, etc...
+ * - ```.btn```
+ * - ```.btn--{color}```
+ * - ```.btn--outline```
+ * - ```.btn--link```
+ * - ```.btn--block```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the buttons classes
+ * - ```.btn```
+ * - ```.btn--block```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the buttons classes
+ * - ```.btn--{color}```
+ * - ```.btn--outline```
+ * - ```.btn--link```
+ * - ```.btn:disabled```
+ * - ```.btn--hover-{$color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SCornerBadgeComponent
+ * Provide ability to generate corner badges that follow your settings like colors.
+ *
+ * - ```.corner-badge```
+ * - ```.corner-badge--tl```
+ * - ```.corner-badge--tr```
+ * - ```.corner-badge--bl```
+ * - ```.corner-badge--br```
+ * - ```.corner-badge--{color}```
+ *
+ * See:
+ * - [Element level mixins API](./sass/_main.md)
+ * - [Classes level mixins API](./sass/_classes.md)
+ *
+ * @example 	scss
+ * // apply the corner badge bare and style to my custom element
+ * .my-cool-element {
+ * 	\@include s-corner-badge(primary tr);
+ * }
+ * // apply only the bare styling to my custom element
+ * .my-cool-element {
+ * 	\@include s-corner-badge-bare(tr);
+ * }
+ * // apply only the style styling to my custom element
+ * .my-cool-element {
+ * 	\@include s-corner-badge-style(primary);
+ * }
 
-.corner-badge > * {
-  position: relative;
-}
-
-.corner-badge:before {
-  content: '';
-  display: block;
-  position: absolute;
-  border-style: solid;
-  border-color: transparent;
-}
-
+ * // will print out classes for the corner badges including bare and style part
+ * \@include s-corner-badge-classes(
+ * 	$corners : tr tl br bl,
+ * 	$colors : default primary secondary
+ * );
+ * // will print out classes for the button including only bare part
+ * \@include s-button-classes-bare(
+ * 	$corners : tr tl br bl
+ * );
+ * // will print out classes for the button including only style part
+ * \@include s-button-classes-style(
+ * 	$colors : default primary secondary
+ * );
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SCornerBadgeComponent
+ * This file provide the mixins to create corner badges
+ */
+/**
+ * Apply the corner badge css
+ * @param 		{Number} 		[$modifiers=default tr] 			The modifiers that represent the corner badge you want. Available : {color} tl tr bl br
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the corner badge bare css
+ * @param 		{Number} 		[$modifiers=tr] 			The modifiers that represent the corner badge you want. Available : tl tr bl br
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the corner badge style css
+ * @param 		{Number} 		[$modifiers=default] 			The modifiers that represent the corner badge you want. Available : {color}
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SCornerBadgeComponent Classes
+ * This file provide the mixins to generate corner badge classes
+ */
+/**
+ * Provide all the classes of the corner badge component like:
+ * - ```.corner-badge```
+ * - ```.corner-badge--tl```
+ * - ```.corner-badge--tr```
+ * - ```.corner-badge--bl```
+ * - ```.corner-badge--br```
+ * - ```.corner-badge--{color}```
+ *
+ * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the corner badge component like:
+ * - ```.corner-badge```
+ * - ```.corner-badge--tl```
+ * - ```.corner-badge--tr```
+ * - ```.corner-badge--bl```
+ * - ```.corner-badge--br```
+ *
+ * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the corner badge component like:
+ * - ```.corner-badge--{color}```
+ *
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SDropdownComponent
+ * Documentation coming soon...
+ */
 .dropdown__menu {
   visibility: hidden;
   opacity: 0;
@@ -2242,6 +3304,10 @@ button {
   pointer-events: all;
 }
 
+/**
+ * @name 	SFormComponent
+ * Documentation coming soon...
+ */
 .form-input, .form-select, .form-textarea, .form-addon {
   display: inline-block;
   -webkit-appearance: none;
@@ -2265,13 +3331,82 @@ button {
   cursor: not-allowed;
 }
 
-.nav--justify, .nav--inline, .nav--tabs {
+/**
+ * @name 	SNavComponent
+ * Documentation coming soon...
+ */
+.nav--inline, .nav--pills, .nav--topbar {
   list-style: none;
   padding: 0;
   margin: 0;
   user-select: none;
 }
 
+/**
+ * @name 	STableComponent
+ * Documentation coming soon...
+ */
+/**
+ * @name 	STypographyComponent
+ * Provide ability to generate base typography classes for:
+ * - Titles:
+ * 	- ```.h1-h6```
+ * 	- ```.tf h1-h6```
+ * - Paragraphs
+ * 	- ```.p```, ```.tf p```
+ * 	- ```.p--lead```, ```.tf p.p--lead```
+ * - Links
+ * 	- ```.link```, ```.tf a```
+ * - Inline text elements
+ *  - ```.mark```, ```.tf mark```
+ *  - ```.del```, ```.tf del```
+ *  - ```.s```, ```.tf s```
+ *  - ```.ins```, ```.tf ins```
+ *  - ```.u```, ```.tf u```
+ *  - ```.small```, ```.tf small```
+ *  - ```.strong```, ```.tf strong```
+ *  - ```.em```, ```.tf em```
+ * - Lists
+ * 	- ```.dl```, ```.tf dl```
+ * 		- ```.dt```, ```.tf dt```
+ * 		- ```.dd```, ```.tf dd```
+ * 	- ```.ul```, ```.tf ul```
+ * 		- ```.li```, ```.tf li```
+ * 	- ```.ol```, ```.tf ol```
+ * 		- ```.li```, ```.tf li```
+ * - Captions
+ * 	- ```.caption```, ```.tf caption```, ```.tf figcaption```
+ * - Quotes
+ * 	- ```.quote```, ```.tf quote```
+ * 	- ```.blockquote```, ```.tf blockquote```
+ *
+ * See:
+ * - [Element level mixins API](./sass/_main.md)
+ * - [Classes level mixins API](./sass/_classes.md)
+ *
+ * @example 	scss
+ * // apply the title bare and style to my custom element
+ * h1 {
+ * 	\@include s-typography-title(4em);
+ * }
+ * // apply only the bare styling to my custom title
+ * h1 {
+ * 	\@include s-typography-title-bare(4em);
+ * }
+ * // apply only the style styling to my custom title
+ * h1 {
+ * 	\@include s-typography-title-style(4em);
+ * }
+ *
+ * // provide classes for all the typography elements
+ * \@include s-typography-classes();
+ *
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	STypographyComponent
+ * This file provide the mixins to create typography elements
+ */
 /**
  * Apply the title css
  * @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size
@@ -2372,98 +3507,171 @@ button {
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
+ * @name 	STypographyComponent Classes
+ * This file provide the mixins to generate typography classes
+ */
+/**
  * Provide all the classes of the typography component like titles, paragraphs, lists, etc..
  * @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Provide the styling for the titles classes
+ * Provide the styling for the titles classes:
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the paragraphs classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the ```.p``` and ```.p--lead``` classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the ```.p``` class
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the links classes
+ * - ```.link```, ```.tf a```
  * @param 		{Color} 		[$color=primary] 		The color used to style links
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the links classes
+ * - ```.link```, ```.tf a```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the links classes
+ * - ```.link```, ```.tf a```
  * @param 		{Color} 		[$color=primary] 		The color used to style links
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
  * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
  * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
  * @param 		{Color} 		[$color=primary] 		The color used to style bullets
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
  * @param 		{Color} 		[$color=primary] 		The color used to style bullets
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the bare styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Provide the style styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
@@ -2544,29 +3752,6 @@ button {
 	 * @gridle-classes-prefix 	
 	 */
 /**
-	 * @name 	ipad-landscape State
-	 * Here's the settings for the **ipad-landscape** state.
-	 * @styleguide 	Gridle / States
-	 * @display 	gridle-settings
-	 * @gridle-name 	ipad-landscape
-	 * @gridle-min-width 	
-	 * @gridle-max-width 	
-	 * @gridle-query 	only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)
-	 * @gridle-classes 	true
-	 * @gridle-context 	12
-	 * @gridle-gutter-width 	60px
-	 * @gridle-gutter-height 	50px
-	 * @gridle-gutter-top 	25px
-	 * @gridle-gutter-right 	30px
-	 * @gridle-gutter-bottom 	25px
-	 * @gridle-gutter-left 	30px
-	 * @gridle-direction 	rtl
-	 * @gridle-dir-attribute 	false
-	 * @gridle-name-multiplicator 	1
-	 * @gridle-states-classes 	false
-	 * @gridle-classes-prefix 	
-	 */
-/**
  * Utils
  * Import all the different utils functions, mixins, classes, etc...
  */
@@ -2582,6 +3767,13 @@ button {
  * Generic
  * All the generic codebase for the project like typography, resets, etc...
  */
+.bkg-kraken {
+  background-image: url("../img/kraken-bkg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom 50%;
+}
+
 .container:after {
   content: "";
   display: table;
@@ -2603,6 +3795,7 @@ button {
 
 .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12 {
   display: inline-block;
+  min-height: .5px;
   line-height: 1;
   float: left;
   -webkit-box-sizing: border-box;
@@ -2686,8 +3879,9 @@ button {
 }
 
 @media screen and (max-width: 480px) {
-  .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile {
+  .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, [class*="gr-"] {
     display: inline-block;
+    min-height: .5px;
     line-height: 1;
     float: left;
     -webkit-box-sizing: border-box;
@@ -2787,6 +3981,7 @@ button {
 @media screen and (min-width: 481px) and (max-width: 1024px) {
   .gr-1on5\@tablet, .gr-0\@tablet, .gr-1\@tablet, .gr-2\@tablet, .gr-3\@tablet, .gr-4\@tablet, .gr-5\@tablet, .gr-6\@tablet, .gr-7\@tablet, .gr-8\@tablet, .gr-9\@tablet, .gr-10\@tablet, .gr-11\@tablet, .gr-12\@tablet {
     display: inline-block;
+    min-height: .5px;
     line-height: 1;
     float: left;
     -webkit-box-sizing: border-box;
@@ -2862,105 +4057,6 @@ button {
   }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .container\@ipad-landscape:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .row\@ipad-landscape:before, .row-reverse\@ipad-landscape:before, .row\@ipad-landscape:after, .row-reverse\@ipad-landscape:after {
-    content: "";
-    display: table;
-  }
-  .row\@ipad-landscape:after, .row-reverse\@ipad-landscape:after {
-    clear: both;
-  }
-  .row\@ipad-landscape, .row-reverse\@ipad-landscape {
-    zoom: 1;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-1on5\@ipad-landscape, .gr-0\@ipad-landscape, .gr-1\@ipad-landscape, .gr-2\@ipad-landscape, .gr-3\@ipad-landscape, .gr-4\@ipad-landscape, .gr-5\@ipad-landscape, .gr-6\@ipad-landscape, .gr-7\@ipad-landscape, .gr-8\@ipad-landscape, .gr-9\@ipad-landscape, .gr-10\@ipad-landscape, .gr-11\@ipad-landscape, .gr-12\@ipad-landscape {
-    display: inline-block;
-    line-height: 1;
-    float: right;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    vertical-align: top;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-adapt\@ipad-landscape {
-    display: table-cell;
-    width: 1px;
-    white-space: nowrap !important;
-    line-height: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-grow\@ipad-landscape {
-    display: table-cell;
-    width: 99999px;
-    line-height: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .push-1on5\@ipad-landscape, .push-0\@ipad-landscape, .push-1\@ipad-landscape, .push-2\@ipad-landscape, .push-3\@ipad-landscape, .push-4\@ipad-landscape, .push-5\@ipad-landscape, .push-6\@ipad-landscape, .push-7\@ipad-landscape, .push-8\@ipad-landscape, .push-9\@ipad-landscape, .push-10\@ipad-landscape, .push-11\@ipad-landscape, .push-12\@ipad-landscape {
-    position: relative;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .pull-1on5\@ipad-landscape, .pull-0\@ipad-landscape, .pull-1\@ipad-landscape, .pull-2\@ipad-landscape, .pull-3\@ipad-landscape, .pull-4\@ipad-landscape, .pull-5\@ipad-landscape, .pull-6\@ipad-landscape, .pull-7\@ipad-landscape, .pull-8\@ipad-landscape, .pull-9\@ipad-landscape, .pull-10\@ipad-landscape, .pull-11\@ipad-landscape, .pull-12\@ipad-landscape {
-    position: relative;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .nowrap\@ipad-landscape {
-    white-space: nowrap;
-  }
-  .nowrap\@ipad-landscape > * {
-    white-space: normal;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .wrap\@ipad-landscape {
-    white-space: normal;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-centered\@ipad-landscape {
-    display: block !important;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    clear: both !important;
-  }
-}
-
 @media screen and (max-width: 400px) {
   @-ms-viewport {
     width: device-width;
@@ -2968,7 +4064,7 @@ button {
 }
 
 #gridle-settings {
-  content: '{ "version" : "2.0.48", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "mobile":{ "name" : "mobile", "min-width" : null, "max-width" : "480px", "query" : "screen and (max-width: 480px)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "tablet":{ "name" : "tablet", "min-width" : "481px", "max-width" : "1024px", "query" : "screen and (min-width: 481px) and (max-width: 1024px)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "ipad-landscape":{ "name" : "ipad-landscape", "min-width" : null, "max-width" : null, "query" : "only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "60px", "gutter-height" : "50px", "gutter-top" : "25px", "gutter-right" : "30px", "gutter-bottom" : "25px", "gutter-left" : "30px", "direction" : "rtl", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }';
+  content: '{ "version" : "3.0.0", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "mobile":{ "name" : "mobile", "min-width" : null, "max-width" : "480px", "query" : "screen and (max-width: 480px)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "tablet":{ "name" : "tablet", "min-width" : "481px", "max-width" : "1024px", "query" : "screen and (min-width: 481px) and (max-width: 1024px)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }';
 }
 
 /**
@@ -4674,545 +5770,6 @@ body {
   }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-1on5\@ipad-landscape {
-    width: 20%;
-  }
-  .push-1on5\@ipad-landscape {
-    right: 20%;
-    left: auto;
-  }
-  .pull-1on5\@ipad-landscape {
-    left: 20%;
-    right: auto;
-  }
-  .prefix-1on5\@ipad-landscape {
-    margin-right: 20%;
-  }
-  .suffix-1on5\@ipad-landscape {
-    margin-left: 20%;
-  }
-  .gr-0\@ipad-landscape {
-    width: 0%;
-  }
-  .push-0\@ipad-landscape {
-    right: 0%;
-    left: auto;
-  }
-  .pull-0\@ipad-landscape {
-    left: 0%;
-    right: auto;
-  }
-  .prefix-0\@ipad-landscape {
-    margin-right: 0%;
-  }
-  .suffix-0\@ipad-landscape {
-    margin-left: 0%;
-  }
-  .gr-1\@ipad-landscape {
-    width: 8.33333%;
-  }
-  .push-1\@ipad-landscape {
-    right: 8.33333%;
-    left: auto;
-  }
-  .pull-1\@ipad-landscape {
-    left: 8.33333%;
-    right: auto;
-  }
-  .prefix-1\@ipad-landscape {
-    margin-right: 8.33333%;
-  }
-  .suffix-1\@ipad-landscape {
-    margin-left: 8.33333%;
-  }
-  .gr-2\@ipad-landscape {
-    width: 16.66667%;
-  }
-  .push-2\@ipad-landscape {
-    right: 16.66667%;
-    left: auto;
-  }
-  .pull-2\@ipad-landscape {
-    left: 16.66667%;
-    right: auto;
-  }
-  .prefix-2\@ipad-landscape {
-    margin-right: 16.66667%;
-  }
-  .suffix-2\@ipad-landscape {
-    margin-left: 16.66667%;
-  }
-  .gr-3\@ipad-landscape {
-    width: 25%;
-  }
-  .push-3\@ipad-landscape {
-    right: 25%;
-    left: auto;
-  }
-  .pull-3\@ipad-landscape {
-    left: 25%;
-    right: auto;
-  }
-  .prefix-3\@ipad-landscape {
-    margin-right: 25%;
-  }
-  .suffix-3\@ipad-landscape {
-    margin-left: 25%;
-  }
-  .gr-4\@ipad-landscape {
-    width: 33.33333%;
-  }
-  .push-4\@ipad-landscape {
-    right: 33.33333%;
-    left: auto;
-  }
-  .pull-4\@ipad-landscape {
-    left: 33.33333%;
-    right: auto;
-  }
-  .prefix-4\@ipad-landscape {
-    margin-right: 33.33333%;
-  }
-  .suffix-4\@ipad-landscape {
-    margin-left: 33.33333%;
-  }
-  .gr-5\@ipad-landscape {
-    width: 41.66667%;
-  }
-  .push-5\@ipad-landscape {
-    right: 41.66667%;
-    left: auto;
-  }
-  .pull-5\@ipad-landscape {
-    left: 41.66667%;
-    right: auto;
-  }
-  .prefix-5\@ipad-landscape {
-    margin-right: 41.66667%;
-  }
-  .suffix-5\@ipad-landscape {
-    margin-left: 41.66667%;
-  }
-  .gr-6\@ipad-landscape {
-    width: 50%;
-  }
-  .push-6\@ipad-landscape {
-    right: 50%;
-    left: auto;
-  }
-  .pull-6\@ipad-landscape {
-    left: 50%;
-    right: auto;
-  }
-  .prefix-6\@ipad-landscape {
-    margin-right: 50%;
-  }
-  .suffix-6\@ipad-landscape {
-    margin-left: 50%;
-  }
-  .gr-7\@ipad-landscape {
-    width: 58.33333%;
-  }
-  .push-7\@ipad-landscape {
-    right: 58.33333%;
-    left: auto;
-  }
-  .pull-7\@ipad-landscape {
-    left: 58.33333%;
-    right: auto;
-  }
-  .prefix-7\@ipad-landscape {
-    margin-right: 58.33333%;
-  }
-  .suffix-7\@ipad-landscape {
-    margin-left: 58.33333%;
-  }
-  .gr-8\@ipad-landscape {
-    width: 66.66667%;
-  }
-  .push-8\@ipad-landscape {
-    right: 66.66667%;
-    left: auto;
-  }
-  .pull-8\@ipad-landscape {
-    left: 66.66667%;
-    right: auto;
-  }
-  .prefix-8\@ipad-landscape {
-    margin-right: 66.66667%;
-  }
-  .suffix-8\@ipad-landscape {
-    margin-left: 66.66667%;
-  }
-  .gr-9\@ipad-landscape {
-    width: 75%;
-  }
-  .push-9\@ipad-landscape {
-    right: 75%;
-    left: auto;
-  }
-  .pull-9\@ipad-landscape {
-    left: 75%;
-    right: auto;
-  }
-  .prefix-9\@ipad-landscape {
-    margin-right: 75%;
-  }
-  .suffix-9\@ipad-landscape {
-    margin-left: 75%;
-  }
-  .gr-10\@ipad-landscape {
-    width: 83.33333%;
-  }
-  .push-10\@ipad-landscape {
-    right: 83.33333%;
-    left: auto;
-  }
-  .pull-10\@ipad-landscape {
-    left: 83.33333%;
-    right: auto;
-  }
-  .prefix-10\@ipad-landscape {
-    margin-right: 83.33333%;
-  }
-  .suffix-10\@ipad-landscape {
-    margin-left: 83.33333%;
-  }
-  .gr-11\@ipad-landscape {
-    width: 91.66667%;
-  }
-  .push-11\@ipad-landscape {
-    right: 91.66667%;
-    left: auto;
-  }
-  .pull-11\@ipad-landscape {
-    left: 91.66667%;
-    right: auto;
-  }
-  .prefix-11\@ipad-landscape {
-    margin-right: 91.66667%;
-  }
-  .suffix-11\@ipad-landscape {
-    margin-left: 91.66667%;
-  }
-  .gr-12\@ipad-landscape {
-    width: 100%;
-  }
-  .push-12\@ipad-landscape {
-    right: 100%;
-    left: auto;
-  }
-  .pull-12\@ipad-landscape {
-    left: 100%;
-    right: auto;
-  }
-  .prefix-12\@ipad-landscape {
-    margin-right: 100%;
-  }
-  .suffix-12\@ipad-landscape {
-    margin-left: 100%;
-  }
-  .float-left\@ipad-landscape {
-    float: left;
-  }
-  .float-right\@ipad-landscape {
-    float: right;
-  }
-  .clear\@ipad-landscape {
-    clear: both;
-  }
-  .clear-left\@ipad-landscape {
-    clear: left;
-  }
-  .clear-right\@ipad-landscape {
-    clear: right;
-  }
-  .auto-height\@ipad-landscape {
-    height: inherit;
-    min-height: inherit;
-    max-height: inherit;
-  }
-  .row\@ipad-landscape {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -30px;
-    margin-right: -30px;
-  }
-  [class*="no-gutter"] > .row\@ipad-landscape {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  .row-reverse\@ipad-landscape {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -30px;
-    margin-right: -30px;
-    transform: rotateY(180deg);
-  }
-  .row-reverse\@ipad-landscape > [class*="gr-"] {
-    transform: rotateY(-180deg);
-  }
-  [class*="no-gutter"] > .row-reverse\@ipad-landscape {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  .row-full\@ipad-landscape {
-    width: 100vw;
-    margin-right: 50% !important;
-    margin-left: 0 !important;
-    -webkit-transform: translateX(50%);
-    -moz-transition: translateX(50%);
-    -ms-transform: translateX(50%);
-    -o-transform: translateX(50%);
-    transform: translateX(50%);
-  }
-  .col\@ipad-landscape {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -30px;
-    margin-right: -30px;
-  }
-  .col-reverse\@ipad-landscape {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -30px;
-    margin-right: -30px;
-    transform: rotateX(180deg);
-  }
-  .col-reverse\@ipad-landscape > [class*="gr-"] {
-    transform: rotateX(-180deg);
-  }
-  .gr-table\@ipad-landscape {
-    display: table-cell;
-    float: none;
-    vertical-align: top;
-  }
-  .row-no-gutter\@ipad-landscape {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .row-no-gutter\@ipad-landscape > [class*="gr-"] {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-  }
-  .row-no-gutter-top\@ipad-landscape {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .row-no-gutter-top\@ipad-landscape > [class*="gr-"] {
-    padding-top: 0;
-  }
-  .row-no-gutter-right\@ipad-landscape {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .row-no-gutter-right\@ipad-landscape > [class*="gr-"] {
-    padding-right: 0;
-  }
-  .row-no-gutter-bottom\@ipad-landscape {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .row-no-gutter-bottom\@ipad-landscape > [class*="gr-"] {
-    padding-bottom: 0;
-  }
-  .row-no-gutter-left\@ipad-landscape {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .row-no-gutter-left\@ipad-landscape > [class*="gr-"] {
-    padding-left: 0;
-  }
-  .row-align-left\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: left;
-  }
-  .row-align-left\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
-  }
-  .row-align-center\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: center;
-  }
-  .row-align-center\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
-  }
-  .row-align-center\@ipad-landscape > * {
-    text-align: left;
-  }
-  .row-align-right\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: right;
-  }
-  .row-align-right\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
-  }
-  .row-align-right\@ipad-landscape > * {
-    text-align: left;
-  }
-  .row-align-middle\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: middle;
-  }
-  .row-align-middle\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: middle;
-    font-size: 1rem;
-  }
-  .row-align-top\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: top;
-  }
-  .row-align-top\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
-  }
-  .row-align-bottom\@ipad-landscape {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: bottom;
-  }
-  .row-align-bottom\@ipad-landscape > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: bottom;
-    font-size: 1rem;
-  }
-  .no-gutter\@ipad-landscape {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-  }
-  .no-gutter-left\@ipad-landscape {
-    padding-left: 0;
-  }
-  .no-gutter-right\@ipad-landscape {
-    padding-right: 0;
-  }
-  .no-gutter-top\@ipad-landscape {
-    padding-top: 0;
-  }
-  .no-gutter-bottom\@ipad-landscape {
-    padding-bottom: 0;
-  }
-  .row > .gutter\@ipad-landscape,
-  .gutter\@ipad-landscape {
-    padding-top: 25px;
-    padding-right: 30px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-  }
-  .row > .gutter-left\@ipad-landscape,
-  .gutter-left\@ipad-landscape {
-    padding-left: 30px;
-  }
-  .row > .gutter-right\@ipad-landscape,
-  .gutter-right\@ipad-landscape {
-    padding-right: 30px;
-  }
-  .row > .gutter-top\@ipad-landscape,
-  .gutter-top\@ipad-landscape {
-    padding-top: 25px;
-  }
-  .row > .gutter-bottom\@ipad-landscape,
-  .gutter-bottom\@ipad-landscape {
-    padding-bottom: 25px;
-  }
-  .hide\@ipad-landscape {
-    display: none !important;
-  }
-  .not-visible\@ipad-landscape {
-    visibility: hidden;
-  }
-  .show\@ipad-landscape {
-    display: block !important;
-  }
-  .show-inline\@ipad-landscape {
-    display: inline-block !important;
-  }
-  .visible\@ipad-landscape {
-    visibility: visible;
-  }
-  .row-debug\@ipad-landscape {
-    position: relative;
-    z-index: 99999;
-    overflow: hidden;
-  }
-  .row-debug\@ipad-landscape:before {
-    pointer-events: none;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 99999px;
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
-    background-size: 16.66667% 100%;
-    z-index: 99999;
-  }
-  body {
-    direction: rtl;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, .gr-1on5\@tablet, .gr-0\@tablet, .gr-1\@tablet, .gr-2\@tablet, .gr-3\@tablet, .gr-4\@tablet, .gr-5\@tablet, .gr-6\@tablet, .gr-7\@tablet, .gr-8\@tablet, .gr-9\@tablet, .gr-10\@tablet, .gr-11\@tablet, .gr-12\@tablet, .gr-1on5\@ipad-landscape, .gr-0\@ipad-landscape, .gr-1\@ipad-landscape, .gr-2\@ipad-landscape, .gr-3\@ipad-landscape, .gr-4\@ipad-landscape, .gr-5\@ipad-landscape, .gr-6\@ipad-landscape, .gr-7\@ipad-landscape, .gr-8\@ipad-landscape, .gr-9\@ipad-landscape, .gr-10\@ipad-landscape, .gr-11\@ipad-landscape, .gr-12\@ipad-landscape {
-    g-gutter: top right bottom left;
-  }
-  .gr-grow, .gr-grow\@mobile, .gr-grow\@tablet, .gr-grow\@ipad-landscape {
-    g-gutter: top right bottom left;
-  }
-  .gr-adapt, .gr-adapt\@mobile, .gr-adapt\@tablet, .gr-adapt\@ipad-landscape {
-    g-gutter: top right bottom left;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, .gr-1on5\@tablet, .gr-0\@tablet, .gr-1\@tablet, .gr-2\@tablet, .gr-3\@tablet, .gr-4\@tablet, .gr-5\@tablet, .gr-6\@tablet, .gr-7\@tablet, .gr-8\@tablet, .gr-9\@tablet, .gr-10\@tablet, .gr-11\@tablet, .gr-12\@tablet, .gr-1on5\@ipad-landscape, .gr-0\@ipad-landscape, .gr-1\@ipad-landscape, .gr-2\@ipad-landscape, .gr-3\@ipad-landscape, .gr-4\@ipad-landscape, .gr-5\@ipad-landscape, .gr-6\@ipad-landscape, .gr-7\@ipad-landscape, .gr-8\@ipad-landscape, .gr-9\@ipad-landscape, .gr-10\@ipad-landscape, .gr-11\@ipad-landscape, .gr-12\@ipad-landscape {
-    direction: rtl;
-    float: right;
-  }
-}
-
 [class*="gr-"] > [class^="row"],
 [class*="gr-"] > [class^="col"] {
   margin-left: -10px;
@@ -5235,16 +5792,15 @@ body {
   }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  [class*="gr-"] > [class^="row"],
-  [class*="gr-"] > [class^="col"] {
-    margin-left: -30px;
-    margin-right: -30px;
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.container {
-  padding: 0 10px;
+@media screen and (max-width: 480px) and (max-width: 480px) and (max-width: 480px) {
+  [class*="gr-"] {
+    width: 100%;
+  }
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -5336,6 +5892,12 @@ table {
 		 * @display 	color
 		 */
 /**
+				 * @styleguide 	Colors / Swatches
+				 * @name 		secondary--dark
+				 * @color 		#15191b
+				 * @display 	color
+				 */
+/**
 		 * @styleguide 	Colors / Swatches
 		 * @name 		success
 		 * @color 		#5cb85c
@@ -5359,8 +5921,32 @@ table {
 		 * @color 		#2199e8
 		 * @display 	color
 		 */
+/**
+		 * @styleguide 	Colors / Swatches
+		 * @name 		grey
+		 * @color 		#FBFBFC
+		 * @display 	color
+		 */
+/**
+				 * @styleguide 	Colors / Swatches
+				 * @name 		grey--light
+				 * @color 		white
+				 * @display 	color
+				 */
+/**
+				 * @styleguide 	Colors / Swatches
+				 * @name 		grey--dark
+				 * @color 		#dedee6
+				 * @display 	color
+				 */
+/**
+		 * @styleguide 	Colors / Swatches
+		 * @name 		white
+		 * @color 		#fff
+		 * @display 	color
+		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "default", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto"}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC", "modifiers": {"light": "white", "dark": "#dedee6"}}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto", "font-weight": 400}, "roboto-light": {"font-family": "Roboto", "font-weight": 300}, "roboto-bold": {"font-family": "Roboto", "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -5379,12 +5965,14 @@ a {
 html {
   font-size: 14Px;
   color: #848e91;
-  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Roboto";
+  font-weight: 400;
 }
 
 body {
   color: #848e91;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /**
@@ -5417,7 +6005,23 @@ body {
 				 * @display 		font
 				 * @font-family 	Roboto
 				 * @font-style 		
-				 * @font-weight 	
+				 * @font-weight 	400
+				 */
+/**
+				 * @name   			roboto-light
+				 * @styleguide 		Fonts / Faces
+				 * @display 		font
+				 * @font-family 	Roboto
+				 * @font-style 		
+				 * @font-weight 	300
+				 */
+/**
+				 * @name   			roboto-bold
+				 * @styleguide 		Fonts / Faces
+				 * @display 		font
+				 * @font-family 	Roboto
+				 * @font-style 		
+				 * @font-weight 	800
 				 */
 /**
 			 * @name 	```.fi-shadowed```
@@ -5531,6 +6135,33 @@ body {
 			 */
 .f-roboto {
   font-family: "Roboto";
+  font-weight: 400;
+}
+
+/**
+			 * @name 	```.f-roboto-light```
+			 * @styleguide  	Fonts / Classes
+			 * @example 	html
+			 * <div class="f-roboto-light">
+			 * 	I have the font "roboto-light" applied
+			 * </div>
+			 */
+.f-roboto-light {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+/**
+			 * @name 	```.f-roboto-bold```
+			 * @styleguide  	Fonts / Classes
+			 * @example 	html
+			 * <div class="f-roboto-bold">
+			 * 	I have the font "roboto-bold" applied
+			 * </div>
+			 */
+.f-roboto-bold {
+  font-family: "Roboto";
+  font-weight: 800;
 }
 
 /**
@@ -5541,7 +6172,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b-smaller {
-  margin-bottom: 0.28571rem;
+  margin-bottom: 0.71429rem;
 }
 
 /**
@@ -5552,7 +6183,7 @@ body {
 			 * <div class="m-t-smaller" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t-smaller {
-  margin-top: 0.28571rem;
+  margin-top: 0.71429rem;
 }
 
 /**
@@ -5563,7 +6194,7 @@ body {
 			 * <div class="m-l-smaller" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l-smaller {
-  margin-left: 0.28571rem;
+  margin-left: 0.71429rem;
 }
 
 /**
@@ -5574,7 +6205,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r-smaller {
-  margin-right: 0.28571rem;
+  margin-right: 0.71429rem;
 }
 
 /**
@@ -5585,8 +6216,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s-smaller {
-  margin-left: 0.28571rem;
-  margin-right: 0.28571rem;
+  margin-left: 0.71429rem;
+  margin-right: 0.71429rem;
 }
 
 /**
@@ -5598,7 +6229,7 @@ body {
 			 * </div>
 			 */
 .p-smaller:not(p) {
-  padding: 0.28571rem;
+  padding: 0.71429rem;
 }
 
 /**
@@ -5610,7 +6241,7 @@ body {
 			 * </div>
 			 */
 .p-b-smaller {
-  padding-bottom: 0.28571rem;
+  padding-bottom: 0.71429rem;
 }
 
 /**
@@ -5622,7 +6253,7 @@ body {
 			 * </div>
 			 */
 .p-t-smaller {
-  padding-top: 0.28571rem;
+  padding-top: 0.71429rem;
 }
 
 /**
@@ -5634,7 +6265,7 @@ body {
 			 * </div>
 			 */
 .p-l-smaller {
-  padding-left: 0.28571rem;
+  padding-left: 0.71429rem;
 }
 
 /**
@@ -5646,7 +6277,7 @@ body {
 			 * </div>
 			 */
 .p-r-smaller {
-  padding-right: 0.28571rem;
+  padding-right: 0.71429rem;
 }
 
 /**
@@ -5658,8 +6289,8 @@ body {
 			 * </div>
 			 */
 .p-s-smaller {
-  padding-left: 0.28571rem;
-  padding-right: 0.28571rem;
+  padding-left: 0.71429rem;
+  padding-right: 0.71429rem;
 }
 
 /**
@@ -5670,7 +6301,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b-small {
-  margin-bottom: 0.57143rem;
+  margin-bottom: 1.42857rem;
 }
 
 /**
@@ -5681,7 +6312,7 @@ body {
 			 * <div class="m-t-small" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t-small {
-  margin-top: 0.57143rem;
+  margin-top: 1.42857rem;
 }
 
 /**
@@ -5692,7 +6323,7 @@ body {
 			 * <div class="m-l-small" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l-small {
-  margin-left: 0.57143rem;
+  margin-left: 1.42857rem;
 }
 
 /**
@@ -5703,7 +6334,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r-small {
-  margin-right: 0.57143rem;
+  margin-right: 1.42857rem;
 }
 
 /**
@@ -5714,8 +6345,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s-small {
-  margin-left: 0.57143rem;
-  margin-right: 0.57143rem;
+  margin-left: 1.42857rem;
+  margin-right: 1.42857rem;
 }
 
 /**
@@ -5727,7 +6358,7 @@ body {
 			 * </div>
 			 */
 .p-small:not(p) {
-  padding: 0.57143rem;
+  padding: 1.42857rem;
 }
 
 /**
@@ -5739,7 +6370,7 @@ body {
 			 * </div>
 			 */
 .p-b-small {
-  padding-bottom: 0.57143rem;
+  padding-bottom: 1.42857rem;
 }
 
 /**
@@ -5751,7 +6382,7 @@ body {
 			 * </div>
 			 */
 .p-t-small {
-  padding-top: 0.57143rem;
+  padding-top: 1.42857rem;
 }
 
 /**
@@ -5763,7 +6394,7 @@ body {
 			 * </div>
 			 */
 .p-l-small {
-  padding-left: 0.57143rem;
+  padding-left: 1.42857rem;
 }
 
 /**
@@ -5775,7 +6406,7 @@ body {
 			 * </div>
 			 */
 .p-r-small {
-  padding-right: 0.57143rem;
+  padding-right: 1.42857rem;
 }
 
 /**
@@ -5787,8 +6418,8 @@ body {
 			 * </div>
 			 */
 .p-s-small {
-  padding-left: 0.57143rem;
-  padding-right: 0.57143rem;
+  padding-left: 1.42857rem;
+  padding-right: 1.42857rem;
 }
 
 /**
@@ -5799,7 +6430,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b {
-  margin-bottom: 1rem;
+  margin-bottom: 2.85714rem;
 }
 
 /**
@@ -5810,7 +6441,7 @@ body {
 			 * <div class="m-t" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t {
-  margin-top: 1rem;
+  margin-top: 2.85714rem;
 }
 
 /**
@@ -5821,7 +6452,7 @@ body {
 			 * <div class="m-l" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l {
-  margin-left: 1rem;
+  margin-left: 2.85714rem;
 }
 
 /**
@@ -5832,7 +6463,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r {
-  margin-right: 1rem;
+  margin-right: 2.85714rem;
 }
 
 /**
@@ -5843,8 +6474,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 2.85714rem;
+  margin-right: 2.85714rem;
 }
 
 /**
@@ -5856,7 +6487,7 @@ body {
 			 * </div>
 			 */
 .p:not(p) {
-  padding: 1rem;
+  padding: 2.85714rem;
 }
 
 /**
@@ -5868,7 +6499,7 @@ body {
 			 * </div>
 			 */
 .p-b {
-  padding-bottom: 1rem;
+  padding-bottom: 2.85714rem;
 }
 
 /**
@@ -5880,7 +6511,7 @@ body {
 			 * </div>
 			 */
 .p-t {
-  padding-top: 1rem;
+  padding-top: 2.85714rem;
 }
 
 /**
@@ -5892,7 +6523,7 @@ body {
 			 * </div>
 			 */
 .p-l {
-  padding-left: 1rem;
+  padding-left: 2.85714rem;
 }
 
 /**
@@ -5904,7 +6535,7 @@ body {
 			 * </div>
 			 */
 .p-r {
-  padding-right: 1rem;
+  padding-right: 2.85714rem;
 }
 
 /**
@@ -5916,8 +6547,8 @@ body {
 			 * </div>
 			 */
 .p-s {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 2.85714rem;
+  padding-right: 2.85714rem;
 }
 
 /**
@@ -5928,7 +6559,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b-medium {
-  margin-bottom: 1.42857rem;
+  margin-bottom: 4.28571rem;
 }
 
 /**
@@ -5939,7 +6570,7 @@ body {
 			 * <div class="m-t-medium" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t-medium {
-  margin-top: 1.42857rem;
+  margin-top: 4.28571rem;
 }
 
 /**
@@ -5950,7 +6581,7 @@ body {
 			 * <div class="m-l-medium" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l-medium {
-  margin-left: 1.42857rem;
+  margin-left: 4.28571rem;
 }
 
 /**
@@ -5961,7 +6592,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r-medium {
-  margin-right: 1.42857rem;
+  margin-right: 4.28571rem;
 }
 
 /**
@@ -5972,8 +6603,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s-medium {
-  margin-left: 1.42857rem;
-  margin-right: 1.42857rem;
+  margin-left: 4.28571rem;
+  margin-right: 4.28571rem;
 }
 
 /**
@@ -5985,7 +6616,7 @@ body {
 			 * </div>
 			 */
 .p-medium:not(p) {
-  padding: 1.42857rem;
+  padding: 4.28571rem;
 }
 
 /**
@@ -5997,7 +6628,7 @@ body {
 			 * </div>
 			 */
 .p-b-medium {
-  padding-bottom: 1.42857rem;
+  padding-bottom: 4.28571rem;
 }
 
 /**
@@ -6009,7 +6640,7 @@ body {
 			 * </div>
 			 */
 .p-t-medium {
-  padding-top: 1.42857rem;
+  padding-top: 4.28571rem;
 }
 
 /**
@@ -6021,7 +6652,7 @@ body {
 			 * </div>
 			 */
 .p-l-medium {
-  padding-left: 1.42857rem;
+  padding-left: 4.28571rem;
 }
 
 /**
@@ -6033,7 +6664,7 @@ body {
 			 * </div>
 			 */
 .p-r-medium {
-  padding-right: 1.42857rem;
+  padding-right: 4.28571rem;
 }
 
 /**
@@ -6045,8 +6676,8 @@ body {
 			 * </div>
 			 */
 .p-s-medium {
-  padding-left: 1.42857rem;
-  padding-right: 1.42857rem;
+  padding-left: 4.28571rem;
+  padding-right: 4.28571rem;
 }
 
 /**
@@ -6057,7 +6688,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b-big {
-  margin-bottom: 2rem;
+  margin-bottom: 7.14286rem;
 }
 
 /**
@@ -6068,7 +6699,7 @@ body {
 			 * <div class="m-t-big" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t-big {
-  margin-top: 2rem;
+  margin-top: 7.14286rem;
 }
 
 /**
@@ -6079,7 +6710,7 @@ body {
 			 * <div class="m-l-big" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l-big {
-  margin-left: 2rem;
+  margin-left: 7.14286rem;
 }
 
 /**
@@ -6090,7 +6721,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r-big {
-  margin-right: 2rem;
+  margin-right: 7.14286rem;
 }
 
 /**
@@ -6101,8 +6732,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s-big {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 7.14286rem;
+  margin-right: 7.14286rem;
 }
 
 /**
@@ -6114,7 +6745,7 @@ body {
 			 * </div>
 			 */
 .p-big:not(p) {
-  padding: 2rem;
+  padding: 7.14286rem;
 }
 
 /**
@@ -6126,7 +6757,7 @@ body {
 			 * </div>
 			 */
 .p-b-big {
-  padding-bottom: 2rem;
+  padding-bottom: 7.14286rem;
 }
 
 /**
@@ -6138,7 +6769,7 @@ body {
 			 * </div>
 			 */
 .p-t-big {
-  padding-top: 2rem;
+  padding-top: 7.14286rem;
 }
 
 /**
@@ -6150,7 +6781,7 @@ body {
 			 * </div>
 			 */
 .p-l-big {
-  padding-left: 2rem;
+  padding-left: 7.14286rem;
 }
 
 /**
@@ -6162,7 +6793,7 @@ body {
 			 * </div>
 			 */
 .p-r-big {
-  padding-right: 2rem;
+  padding-right: 7.14286rem;
 }
 
 /**
@@ -6174,8 +6805,8 @@ body {
 			 * </div>
 			 */
 .p-s-big {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 7.14286rem;
+  padding-right: 7.14286rem;
 }
 
 /**
@@ -6186,7 +6817,7 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-b-bigger {
-  margin-bottom: 3rem;
+  margin-bottom: 10.71429rem;
 }
 
 /**
@@ -6197,7 +6828,7 @@ body {
 			 * <div class="m-t-bigger" style="background:#2b3438; width:100px; height:5px"></div>
 			 */
 .m-t-bigger {
-  margin-top: 3rem;
+  margin-top: 10.71429rem;
 }
 
 /**
@@ -6208,7 +6839,7 @@ body {
 			 * <div class="m-l-bigger" style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-l-bigger {
-  margin-left: 3rem;
+  margin-left: 10.71429rem;
 }
 
 /**
@@ -6219,7 +6850,7 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-r-bigger {
-  margin-right: 3rem;
+  margin-right: 10.71429rem;
 }
 
 /**
@@ -6230,8 +6861,8 @@ body {
 			 * <div style="display:inline-block; background:#2b3438; width:50px; height:50px"></div>
 			 */
 .m-s-bigger {
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin-left: 10.71429rem;
+  margin-right: 10.71429rem;
 }
 
 /**
@@ -6243,7 +6874,7 @@ body {
 			 * </div>
 			 */
 .p-bigger:not(p) {
-  padding: 3rem;
+  padding: 10.71429rem;
 }
 
 /**
@@ -6255,7 +6886,7 @@ body {
 			 * </div>
 			 */
 .p-b-bigger {
-  padding-bottom: 3rem;
+  padding-bottom: 10.71429rem;
 }
 
 /**
@@ -6267,7 +6898,7 @@ body {
 			 * </div>
 			 */
 .p-t-bigger {
-  padding-top: 3rem;
+  padding-top: 10.71429rem;
 }
 
 /**
@@ -6279,7 +6910,7 @@ body {
 			 * </div>
 			 */
 .p-l-bigger {
-  padding-left: 3rem;
+  padding-left: 10.71429rem;
 }
 
 /**
@@ -6291,7 +6922,7 @@ body {
 			 * </div>
 			 */
 .p-r-bigger {
-  padding-right: 3rem;
+  padding-right: 10.71429rem;
 }
 
 /**
@@ -6303,8 +6934,8 @@ body {
 			 * </div>
 			 */
 .p-s-bigger {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 10.71429rem;
+  padding-right: 10.71429rem;
 }
 
 /**
@@ -6772,6 +7403,32 @@ body {
 }
 
 /**
+						 * @name 	```.c-secondary--dark```
+						 * Specify the color to **secondary--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="c-secondary--dark">
+						 * 	I'm in "secondary--dark" color
+						 * </div>
+						 */
+.c-secondary--dark {
+  color: #15191b;
+}
+
+/**
+						 * @name 	```.bkg-secondary--dark```
+						 * Specify the background color to **secondary--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="bkg-secondary--dark p" style="color:white">
+						 * 	My background color is "secondary--dark"
+						 * </div>
+						 */
+.bkg-secondary--dark {
+  background-color: #15191b;
+}
+
+/**
 				 * @name 	```.c-success```
 				 * Specify the color to **success**
 				 * @styleguide  	Colors / Classes
@@ -6876,452 +7533,107 @@ body {
 }
 
 /**
-		 * @name 	Dropdown
-		 * Provide a nice dropdown component
-		 * @styleguide 		Components / Dropdown
-		 * @example 	html
-		 * <div style="display:inline-block" class="dropdown">
-		 * 	<a>Display dropdown</a>
-		 * 	<ul class="dropdown__menu">
-		 *  	<li class="dropdown__item">
-		 *   		<a href="#" title="...">
-		 *   			Item 1
-		 *   		</a>
-		 *  	</li>
-		 *  	<li class="dropdown__item">
-		 *   		<a href="#" title="...">
-		 *   			Item 2
-		 *   		</a>
-		 *  	</li>
-		 *  	<li class="dropdown__item">
-		 *   		<a href="#" title="...">
-		 *   			Item 3
-		 *   		</a>
-		 *  	</li>
-		 *  </ul>
-		 * </div>
-		 */
-.dropdown {
-  position: relative;
-  /**
-			 * @name 	Dropdown right
-			 * Provide a nice dropdown component aligned to the right
-			 * @styleguide 		Components / Dropdown
-			 * @example 	html
-			 * <div style="display:inline-block" class="dropdown dropdown--right">
-			 * 	<a>Display right dropdown</a>
-			 * 	<ul class="dropdown__menu">
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 1
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 2
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 3
-			 *   		</a>
-			 *  	</li>
-			 *  </ul>
-			 * </div>
-			 */
+				 * @name 	```.c-grey```
+				 * Specify the color to **grey**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="c-grey">
+				 * 	I'm in "grey" color
+				 * </div>
+				 */
+.c-grey {
+  color: #FBFBFC;
 }
 
-.dropdown:hover, .dropdown.active, .dropdown.dropdown--active {
-  z-index: 1;
+/**
+				 * @name 	```.bkg-grey```
+				 * Specify the background color to **grey**
+				 * @styleguide  	Colors / Classes
+				 * @example 	html
+				 * <div class="bkg-grey p" style="color:white">
+				 * 	My background color is "grey"
+				 * </div>
+				 */
+.bkg-grey {
+  background-color: #FBFBFC;
 }
 
-.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
-  top: 100%;
+/**
+						 * @name 	```.c-grey--light```
+						 * Specify the color to **grey--light**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="c-grey--light">
+						 * 	I'm in "grey--light" color
+						 * </div>
+						 */
+.c-grey--light {
+  color: white;
 }
 
-.dropdown.dropdown--right .dropdown__menu {
-  left: auto;
-  right: 0;
-}
-
-.dropdown.dropdown--up .dropdown__menu {
-  top: auto;
-  bottom: 100%;
-}
-
-.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
-  top: auto;
-  bottom: 100%;
-}
-
-.dropdown__menu {
-  transition: all, 0.2s, ease-in-out, 0s, outline-color 0s linear 0s;
-  outline-color: black;
-}
-
-.dropdown__item {
-  white-space: nowrap;
-}
-
-.dropdown__item > a {
-  display: block;
-}
-
-.dropdown__menu {
-  background: #848e91;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  overflow: hidden;
-}
-
-.dropdown__item {
-  border-top: solid 1px rgba(132, 142, 145, 0.2);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
+/**
+						 * @name 	```.bkg-grey--light```
+						 * Specify the background color to **grey--light**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="bkg-grey--light p" style="color:white">
+						 * 	My background color is "grey--light"
+						 * </div>
+						 */
+.bkg-grey--light {
   background-color: white;
-  left: 0;
-  position: relative;
-  color: #848e91;
-  transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-}
-
-.dropdown__item:hover, .dropdown__item.active, .dropdown__item.dropdown--active {
-  left: 5px;
-}
-
-.dropdown__item > a {
-  padding: 0.8em 1em;
-  color: #848e91;
-  display: block;
-  width: 100%;
 }
 
 /**
-			 * @name 	<span class="c-default">Default</span> Dropdown
-			 * Provide a nice dropdown default component
-			 * @styleguide 		Components / Dropdown
-			 * @example 	html
-			 * <div style="display:inline-block" class="dropdown dropdown--default">
-			 * 	<a>Display default dropdown</a>
-			 * 	<ul class="dropdown__menu">
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 1
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 2
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 3
-			 *   		</a>
-			 *  	</li>
-			 *  </ul>
-			 * </div>
-			 */
-.dropdown--default .dropdown__menu {
-  background-color: #848e91;
+						 * @name 	```.c-grey--dark```
+						 * Specify the color to **grey--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="c-grey--dark">
+						 * 	I'm in "grey--dark" color
+						 * </div>
+						 */
+.c-grey--dark {
+  color: #dedee6;
 }
 
 /**
-			 * @name 	<span class="c-primary">Primary</span> Dropdown
-			 * Provide a nice dropdown primary component
-			 * @styleguide 		Components / Dropdown
-			 * @example 	html
-			 * <div style="display:inline-block" class="dropdown dropdown--primary">
-			 * 	<a>Display primary dropdown</a>
-			 * 	<ul class="dropdown__menu">
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 1
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 2
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 3
-			 *   		</a>
-			 *  	</li>
-			 *  </ul>
-			 * </div>
-			 */
-.dropdown--primary .dropdown__menu {
-  background-color: #f2bc2b;
+						 * @name 	```.bkg-grey--dark```
+						 * Specify the background color to **grey--dark**
+						 * @styleguide  	Colors / Classes
+						 * @example 	html
+						 * <div class="bkg-grey--dark p" style="color:white">
+						 * 	My background color is "grey--dark"
+						 * </div>
+						 */
+.bkg-grey--dark {
+  background-color: #dedee6;
 }
 
 /**
-			 * @name 	<span class="c-secondary">Secondary</span> Dropdown
-			 * Provide a nice dropdown secondary component
-			 * @styleguide 		Components / Dropdown
-			 * @example 	html
-			 * <div style="display:inline-block" class="dropdown dropdown--secondary">
-			 * 	<a>Display secondary dropdown</a>
-			 * 	<ul class="dropdown__menu">
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 1
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 2
-			 *   		</a>
-			 *  	</li>
-			 *  	<li class="dropdown__item">
-			 *   		<a href="#" title="...">
-			 *   			Item 3
-			 *   		</a>
-			 *  	</li>
-			 *  </ul>
-			 * </div>
-			 */
-.dropdown--secondary .dropdown__menu {
-  background-color: #2b3438;
-}
-
-/**
-		 * @name 	Nav justify
-		 * Provide a simple justify navigation component
-		 * @styleguide 	Components / Nav
-		 * @example 	html
-		 * <ul class="nav nav--justify">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--justify {
-  display: table;
-  width: 100%;
-}
-
-.nav--justify > li,
-.nav--justify > .nav__item {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.nav--justify > li, .nav--justify > li a,
-.nav--justify > .nav__item,
-.nav--justify > .nav__item a {
-  text-align: center;
-}
-
-.nav--right {
-  text-align: right;
-}
-
-/**
-		 * @name 	Nav inline
-		 * Provide a simple inline navigation component
-		 * @styleguide 	Components / Nav
-		 * @example 	html
-		 * <ul class="nav nav--inline">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--inline {
-  display: block;
-}
-
-.nav--inline > li,
-.nav--inline > .nav__item {
-  position: relative;
-  display: inline-block;
-}
-
-.nav--right {
-  text-align: right;
-}
-
-/**
-		 * @name 	Nav tabs
-		 * Provide a simple tabs navigation component
-		 * @styleguide 	Components / Nav
-		 * @example 	html
-		 * <ul class="nav nav--tabs">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--tabs > li,
-.nav--tabs > .nav__item {
-  position: relative;
-  padding: 1em 0.8em;
-  float: left;
-  cursor: pointer;
-}
-
-.nav--tabs > li.disabled, .nav--tabs > li.nav--disabled,
-.nav--tabs > .nav__item.disabled,
-.nav--tabs > .nav__item.nav--disabled {
-  pointer-events: none;
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-.nav--tabs {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  /**
-				 * @name 	<span class="c-default">Default</span> Nav tabs
-				 * Provide a simple tabs navigation component
-				 * @styleguide 	Components / Nav
+				 * @name 	```.c-white```
+				 * Specify the color to **white**
+				 * @styleguide  	Colors / Classes
 				 * @example 	html
-				 * <ul class="nav nav--tabs nav--default">
-				 * 	<li class="nav__item active">
-				 *  	Item 1
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 2
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 3
-				 * 	</li>
-				 * </ul>
+				 * <div class="c-white">
+				 * 	I'm in "white" color
+				 * </div>
 				 */
-  /**
-				 * @name 	<span class="c-primary">Primary</span> Nav tabs
-				 * Provide a simple tabs navigation component
-				 * @styleguide 	Components / Nav
+.c-white {
+  color: #fff;
+}
+
+/**
+				 * @name 	```.bkg-white```
+				 * Specify the background color to **white**
+				 * @styleguide  	Colors / Classes
 				 * @example 	html
-				 * <ul class="nav nav--tabs nav--primary">
-				 * 	<li class="nav__item active">
-				 *  	Item 1
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 2
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 3
-				 * 	</li>
-				 * </ul>
+				 * <div class="bkg-white p" style="color:white">
+				 * 	My background color is "white"
+				 * </div>
 				 */
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> Nav tabs
-				 * Provide a simple tabs navigation component
-				 * @styleguide 	Components / Nav
-				 * @example 	html
-				 * <ul class="nav nav--tabs nav--secondary">
-				 * 	<li class="nav__item active">
-				 *  	Item 1
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 2
-				 * 	</li>
-				 * 	<li class="nav__item">
-				 *  	Item 3
-				 * 	</li>
-				 * </ul>
-				 */
-}
-
-.nav--tabs > li,
-.nav--tabs > .nav__item {
-  position: relative;
-  margin-bottom: -1px;
-}
-
-.nav--tabs.nav--default {
-  border-bottom: 1px solid rgba(132, 142, 145, 0.2);
-}
-
-.nav--tabs.nav--default > li,
-.nav--tabs.nav--default > .nav__item {
-  border: 1px solid rgba(132, 142, 145, 0.1);
-  color: #848e91;
-}
-
-.nav--tabs.nav--default > li.nav--hover, .nav--tabs.nav--default > li:hover,
-.nav--tabs.nav--default > .nav__item.nav--hover,
-.nav--tabs.nav--default > .nav__item:hover {
-  background-color: rgba(132, 142, 145, 0.1);
-}
-
-.nav--tabs.nav--default > li.active, .nav--tabs.nav--default > li.nav--active,
-.nav--tabs.nav--default > .nav__item.active,
-.nav--tabs.nav--default > .nav__item.nav--active {
-  background-color: #848e91;
-  border-color: #848e91;
-  color: white;
-}
-
-.nav--tabs.nav--primary {
-  border-bottom: 1px solid rgba(242, 188, 43, 0.2);
-}
-
-.nav--tabs.nav--primary > li,
-.nav--tabs.nav--primary > .nav__item {
-  border: 1px solid rgba(242, 188, 43, 0.1);
-  color: #f2bc2b;
-}
-
-.nav--tabs.nav--primary > li.nav--hover, .nav--tabs.nav--primary > li:hover,
-.nav--tabs.nav--primary > .nav__item.nav--hover,
-.nav--tabs.nav--primary > .nav__item:hover {
-  background-color: rgba(242, 188, 43, 0.1);
-}
-
-.nav--tabs.nav--primary > li.active, .nav--tabs.nav--primary > li.nav--active,
-.nav--tabs.nav--primary > .nav__item.active,
-.nav--tabs.nav--primary > .nav__item.nav--active {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-}
-
-.nav--tabs.nav--secondary {
-  border-bottom: 1px solid rgba(43, 52, 56, 0.2);
-}
-
-.nav--tabs.nav--secondary > li,
-.nav--tabs.nav--secondary > .nav__item {
-  border: 1px solid rgba(43, 52, 56, 0.1);
-  color: #2b3438;
-}
-
-.nav--tabs.nav--secondary > li.nav--hover, .nav--tabs.nav--secondary > li:hover,
-.nav--tabs.nav--secondary > .nav__item.nav--hover,
-.nav--tabs.nav--secondary > .nav__item:hover {
-  background-color: rgba(43, 52, 56, 0.1);
-}
-
-.nav--tabs.nav--secondary > li.active, .nav--tabs.nav--secondary > li.nav--active,
-.nav--tabs.nav--secondary > .nav__item.active,
-.nav--tabs.nav--secondary > .nav__item.nav--active {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
+.bkg-white {
+  background-color: #fff;
 }
 
 /**
@@ -7707,7 +8019,7 @@ p.vr:last-child,
 
 .small,
 .tf small {
-  font-size: .85em;
+  font-size: .65em;
 }
 
 .strong,
@@ -8113,7 +8425,7 @@ figcaption:last-child {
 }
 
 .caption,
-.tf caption,
+.figcaption .tf caption,
 .tf figcaption {
   opacity: .65;
 }
@@ -8133,37 +8445,57 @@ figcaption:last-child {
 	 * </div>
 	 */
 .quote,
-.tf quote {
+.blockquote,
+.tf quote,
+.tf blockquote {
   font-size: 2.5em;
   font-style: italic;
   font-family: Palatino, Times, Georgia, serif;
   font-weight: normal;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 3.57143rem 7.14286rem 3.57143rem 7.14286rem;
   display: block;
 }
 
 .quote.vr,
 .vr > .quote,
+.blockquote.vr,
+.vr >
+.blockquote,
 quote.vr,
 .vr >
-quote {
+quote,
+blockquote.vr,
+.vr >
+blockquote {
   margin-bottom: 1em;
 }
 
 .quote.vr:last-child,
 .vr > .quote:last-child,
+.blockquote.vr:last-child,
+.vr >
+.blockquote:last-child,
 quote.vr:last-child,
 .vr >
-quote:last-child {
+quote:last-child,
+blockquote.vr:last-child,
+.vr >
+blockquote:last-child {
   margin-bottom: 0;
 }
 
 .quote,
+.blockquote,
+.tf blockquote,
 .tf quote {
   position: relative;
 }
 
 .quote:before, .quote:after,
+.blockquote:before,
+.blockquote:after,
+.tf blockquote:before,
+.tf blockquote:after,
 .tf quote:before,
 .tf quote:after {
   display: inline-block;
@@ -8172,6 +8504,8 @@ quote:last-child {
 }
 
 .quote:before,
+.blockquote:before,
+.tf blockquote:before,
 .tf quote:before {
   content: "“";
   top: 0;
@@ -8179,734 +8513,214 @@ quote:last-child {
 }
 
 .quote:after,
+.blockquote:after,
+.tf blockquote:after,
 .tf quote:after {
   content: "”";
   bottom: 0;
   right: 0;
 }
 
-/**
-		 * @name 	btn
-		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
-		 * @example 	html
-		 * <a class="btn">
-		 * 	Default button
-		 * </a>
-		 */
-.btn {
-  border-radius: 0;
-  padding: 0.8em 1em;
-  height: 2.6em;
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto";
+  font-weight: 300;
 }
 
 /**
-		 * @name 	btn block
-		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
-		 * @example 	html
-		 * <a class="btn btn--block">
-		 * 	Block button
-		 * </a>
-		 */
-.btn--block {
-  border-radius: 0;
-  padding: 0.8em 1em;
-  height: 2.6em;
-  display: block;
+ * Layout
+ * All the layout level specific styling.
+ */
+/**
+ * Layout
+ * All the layout level specific styling.
+ */
+.use {
+  background-image: url("../img/package-icon.svg"), url("../img/package-icon.svg"), url("../img/package-icon.svg"), url("../img/package-icon.svg"), url("../img/package-icon.svg"), url("../img/package-icon.svg"), url("../img/package-icon.svg");
+  background-size: 120px auto, 120px auto, 120px auto, 70px auto, 70px auto, 70px auto, 70px auto;
+  background-position: top 50px right 50px, left 30% bottom -50px, left 50% top -70px, left 15% top 50px, right 25% bottom 100px, right -30px bottom 140px, left 5% top 60%;
+  background-repeat: no-repeat;
+}
+
+.who__img-macbook-kraken {
+  position: absolute;
+  transform: translateY(-40%);
+}
+
+body {
+  padding-top: 50px;
+}
+
+/**
+ * Topbar
+ */
+.topbar {
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 10;
 }
 
-.btn {
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background-color: #848e91;
-  border-color: #848e91;
-  color: white;
+.topbar h1 {
+  color: inherit;
 }
 
-.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
-  background-color: #5f676a;
-  border-color: #5f676a;
+.topbar a,
+.topbar .link {
+  text-decoration: none;
 }
 
-.btn--link {
-  background-color: transparent !important;
-  color: #f2bc2b !important;
-  border-color: transparent !important;
-  position: relative;
-}
-
-.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #f2bc2b;
-}
-
-.btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2em);
+.topbar a i,
+.topbar .link i {
+  margin-right: 5px;
 }
 
 /**
-			 * @name 	<span class="c-primary">Primary</span> btn
-			 * Primary button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--primary">
-			 * 	Primary button
-			 * </a>
-			 */
-.btn--primary {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-  /**
-				 * @name 	<span class="c-primary">Primary</span> outline btn
-				 * Outline primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--primary">
-				 * 	Primary outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-primary">Primary</span> link btn
-				 * Link primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--primary">
-				 * 	Primary link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-primary">Primary</span> disabled btn
-				 * Disabled primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--primary">
-				 * 	Primary disabled button
-				 * </button>
-				 */
-}
-
-.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-.btn--primary.btn--outline {
-  color: #f2bc2b;
-  background-color: transparent;
-  border-color: #f2bc2b;
-}
-
-.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
-:checked + .btn--primary.btn--outline:not(:disabled) {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-}
-
-.btn--primary.btn--link {
-  background-color: transparent !important;
-  color: #f2bc2b !important;
-  border-color: transparent !important;
-  position: relative;
-}
-
-.btn--primary.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #f2bc2b;
-}
-
-.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2em);
-}
-
-.btn--primary.btn:disabled {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-.btn--hover-primary:hover {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-}
-
-.btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-/**
-			 * @name 	<span class="c-secondary">Secondary</span> btn
-			 * Secondary button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--secondary">
-			 * 	Secondary button
-			 * </a>
-			 */
-.btn--secondary {
+ * Header
+ */
+.header {
   background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> outline btn
-				 * Outline secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--secondary">
-				 * 	Secondary outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> link btn
-				 * Link secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--secondary">
-				 * 	Secondary link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
-				 * Disabled secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--secondary">
-				 * 	Secondary disabled button
-				 * </button>
-				 */
-}
-
-.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
-.btn--secondary.btn--outline {
-  color: #2b3438;
-  background-color: transparent;
-  border-color: #2b3438;
-}
-
-.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
-:checked + .btn--secondary.btn--outline:not(:disabled) {
-  background-color: #2b3438;
-  border-color: #2b3438;
+  background-image: url("../img/header-bkg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 7.14286rem 0;
   color: white;
 }
 
-.btn--secondary.btn--link {
-  background-color: transparent !important;
-  color: #2b3438 !important;
-  border-color: transparent !important;
+.header .h1 {
+  color: inherit;
+}
+
+.header__img-editors {
   position: relative;
+  left: 100%;
+  transform: translateX(-100%);
 }
 
-.btn--secondary.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
+/**
+ * Footer
+ */
+.footer {
+  color: white;
+}
+
+.footer .h1, .footer .h2, .footer .h3, .footer .h4, .footer .h5, .footer .h6 {
+  color: inherit;
+}
+
+/**
+ * Pages
+ * All the pages level specific styling.
+ */
+/**
+ * Pages
+ * All the pages level specific styling.
+ */
+/**
+ * Blocks
+ * All the blocks styling.
+ * A block can contain other blocks or objects and does not have to relay on his ancestors
+ * to be properly displayed.
+ */
+/**
+ * Blocks
+ * All the blocks styling.
+ * A block can contain other blocks or objects and does not have to relay on his ancestors
+ * to be properly displayed.
+ */
+.card {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  background: white;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
-  background: #2b3438;
-}
-
-.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2em);
-}
-
-.btn--secondary.btn:disabled {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
-.btn--hover-secondary:hover {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-}
-
-.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
-/**
-			 * @name 	<span class="c-success">Success</span> btn
-			 * Success button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--success">
-			 * 	Success button
-			 * </a>
-			 */
-.btn--success {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  color: white;
-  /**
-				 * @name 	<span class="c-success">Success</span> outline btn
-				 * Outline success button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--success">
-				 * 	Success outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-success">Success</span> link btn
-				 * Link success button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--success">
-				 * 	Success link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-success">Success</span> disabled btn
-				 * Disabled success button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--success">
-				 * 	Success disabled button
-				 * </button>
-				 */
-}
-
-.btn--success[active]:not(:disabled), .btn--success.active:not(:disabled), .btn--success:active:not(:disabled), .btn--success:hover:not(:disabled) {
-  background-color: #3d8b3d;
-  border-color: #3d8b3d;
-}
-
-.btn--success.btn--outline {
-  color: #5cb85c;
-  background-color: transparent;
-  border-color: #5cb85c;
-}
-
-.btn--success.btn--outline:active:not(:disabled), .btn--success.btn--outline:hover:not(:disabled), .btn--success.btn--outline.active:not(:disabled),
-:checked + .btn--success.btn--outline:not(:disabled) {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  color: white;
-}
-
-.btn--success.btn--link {
-  background-color: transparent !important;
-  color: #5cb85c !important;
-  border-color: transparent !important;
   position: relative;
+  transform: scale(1, 1);
 }
 
-.btn--success.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #5cb85c;
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 40px 60px;
+  z-index: 1;
+  transform: scale(1.01, 1.01);
 }
 
-.btn--success.btn--link[active]:not(:disabled):after, .btn--success.btn--link.active:not(:disabled):after, .btn--success.btn--link:active:not(:disabled):after, .btn--success.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2em);
+.card .btn {
+  border-radius: 3px;
 }
 
-.btn--success.btn:disabled {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--success.btn:disabled[active]:not(:disabled), .btn--success.btn:disabled.active:not(:disabled), .btn--success.btn:disabled:active:not(:disabled), .btn--success.btn:disabled:hover:not(:disabled) {
-  background-color: #3d8b3d;
-  border-color: #3d8b3d;
-}
-
-.btn--hover-success:hover {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  color: white;
-}
-
-.btn--hover-success:hover[active]:not(:disabled), .btn--hover-success:hover.active:not(:disabled), .btn--hover-success:hover:active:not(:disabled), .btn--hover-success:hover:hover:not(:disabled) {
-  background-color: #3d8b3d;
-  border-color: #3d8b3d;
+.card__content {
+  padding: 2.85714rem;
 }
 
 /**
-			 * @name 	<span class="c-error">Error</span> btn
-			 * Error button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--error">
-			 * 	Error button
-			 * </a>
-			 */
-.btn--error {
-  background-color: #d9534f;
-  border-color: #d9534f;
-  color: white;
-  /**
-				 * @name 	<span class="c-error">Error</span> outline btn
-				 * Outline error button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--error">
-				 * 	Error outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-error">Error</span> link btn
-				 * Link error button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--error">
-				 * 	Error link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-error">Error</span> disabled btn
-				 * Disabled error button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--error">
-				 * 	Error disabled button
-				 * </button>
-				 */
+		 * @name 	Nav inline
+		 * Provide a simple inline navigation component
+		 * @styleguide 	Components / Nav
+		 * @example 	html
+		 * <ul class="nav nav--inline">
+		 * 	<li class="nav__item">
+		 *  	Item 1
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 2
+		 * 	</li>
+		 * 	<li class="nav__item">
+		 *  	Item 3
+		 * 	</li>
+		 * </ul>
+		 */
+.nav--inline, .nav--pills, .nav--topbar {
+  display: block;
 }
 
-.btn--error[active]:not(:disabled), .btn--error.active:not(:disabled), .btn--error:active:not(:disabled), .btn--error:hover:not(:disabled) {
-  background-color: #b52b27;
-  border-color: #b52b27;
-}
-
-.btn--error.btn--outline {
-  color: #d9534f;
-  background-color: transparent;
-  border-color: #d9534f;
-}
-
-.btn--error.btn--outline:active:not(:disabled), .btn--error.btn--outline:hover:not(:disabled), .btn--error.btn--outline.active:not(:disabled),
-:checked + .btn--error.btn--outline:not(:disabled) {
-  background-color: #d9534f;
-  border-color: #d9534f;
-  color: white;
-}
-
-.btn--error.btn--link {
-  background-color: transparent !important;
-  color: #d9534f !important;
-  border-color: transparent !important;
+.nav--inline > li, .nav--pills > li, .nav--topbar > li,
+.nav--inline > .nav__item, .nav--pills > .nav__item, .nav--topbar > .nav__item {
   position: relative;
+  display: inline-block;
 }
 
-.btn--error.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #d9534f;
-}
-
-.btn--error.btn--link[active]:not(:disabled):after, .btn--error.btn--link.active:not(:disabled):after, .btn--error.btn--link:active:not(:disabled):after, .btn--error.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2em);
-}
-
-.btn--error.btn:disabled {
-  background-color: #d9534f;
-  border-color: #d9534f;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--error.btn:disabled[active]:not(:disabled), .btn--error.btn:disabled.active:not(:disabled), .btn--error.btn:disabled:active:not(:disabled), .btn--error.btn:disabled:hover:not(:disabled) {
-  background-color: #b52b27;
-  border-color: #b52b27;
-}
-
-.btn--hover-error:hover {
-  background-color: #d9534f;
-  border-color: #d9534f;
-  color: white;
-}
-
-.btn--hover-error:hover[active]:not(:disabled), .btn--hover-error:hover.active:not(:disabled), .btn--hover-error:hover:active:not(:disabled), .btn--hover-error:hover:hover:not(:disabled) {
-  background-color: #b52b27;
-  border-color: #b52b27;
-}
-
-.corner-badge {
-  font-size: 1em;
-  width: 3em;
-  height: 3em;
-  padding: 0.4em;
-}
-
-.corner-badge:before {
-  border-width: 1.5em;
-}
-
-/**
-			 * @name 	Corner Badge top left
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--tl {
-  top: 0;
-  left: 0;
-}
-
-.corner-badge--tl:before {
-  border-right-color: transparent !important;
-  border-bottom-color: transparent !important;
-  top: 0;
-  left: 0;
-}
-
-/**
-			 * @name 	Corner Badge top right
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tr">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--tr {
-  top: 0;
-  right: 0;
+.nav--right {
   text-align: right;
 }
 
-.corner-badge--tr:before {
-  border-bottom-color: transparent !important;
-  border-left-color: transparent !important;
-  top: 0;
-  right: 0;
-}
-
 /**
-			 * @name 	Corner Badge bottom left
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--bl">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--bl {
-  bottom: 0;
-  left: 0;
-}
-
-.corner-badge--bl:before {
-  border-top-color: transparent !important;
-  border-right-color: transparent !important;
-  bottom: 0;
-  left: 0;
-}
-
-/**
-			 * @name 	Corner Badge bottom right
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--br">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--br {
-  bottom: 0;
-  right: 0;
-}
-
-.corner-badge--br:before {
-  border-top-color: transparent !important;
-  border-left-color: transparent !important;
-  bottom: 0;
-  right: 0;
-}
-
-.corner-badge {
-  color: white;
-}
-
-.corner-badge:before {
-  border-color: #848e91;
-}
-
-/**
-			 * @name 	<span class="c-default">Default</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--default">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--default:before {
-  border-color: #848e91;
-}
-
-/**
-			 * @name 	<span class="c-primary">Primary</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--primary">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--primary:before {
-  border-color: #f2bc2b;
-}
-
-/**
-			 * @name 	<span class="c-secondary">Secondary</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--secondary">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--secondary:before {
-  border-color: #2b3438;
-}
-
-/**
-			 * @name 	<span class="c-success">Success</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--success">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--success:before {
-  border-color: #5cb85c;
-}
-
-/**
-			 * @name 	<span class="c-warning">Warning</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--warning">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--warning:before {
-  border-color: #f0ad4e;
-}
-
-/**
-			 * @name 	<span class="c-error">Error</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--error">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--error:before {
-  border-color: #d9534f;
-}
-
-/**
-			 * @name 	<span class="c-info">Info</span> Corner Badge
-			 * @styleguide 	Components / Corner Badge
-			 * @example 	html
-			 * <div class="corner-badge corner-badge--tl corner-badge--info">
-			 * 	<!-- content here -->
-			 * </div>
-			 */
-.corner-badge--info:before {
-  border-color: #2199e8;
-}
-
-/**
- * Layout
- * All the layout level specific styling.
+ * Nav pills
  */
+.nav--pills .nav__item {
+  margin: 5px;
+}
+
 /**
- * Layout
- * All the layout level specific styling.
+ * Nav topbar
  */
-/**
- * Pages
- * All the pages level specific styling.
- */
-/**
- * Pages
- * All the pages level specific styling.
- */
-/**
- * Blocks
- * All the blocks styling.
- * A block can contain other blocks or objects and does not have to relay on his ancestors
- * to be properly displayed.
- */
-/**
- * Blocks
- * All the blocks styling.
- * A block can contain other blocks or objects and does not have to relay on his ancestors
- * to be properly displayed.
- */
+.nav--topbar .nav__item {
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.nav--topbar .nav__item:first-child {
+  margin-left: 0;
+}
+
+.nav--topbar .nav__item:last-child {
+  margin-right: 0;
+}
+
+.nav--topbar .nav__item.logo {
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.nav--topbar .nav__item.logo:first-child {
+  width: 0;
+  overflow: hidden;
+}
+
+body.scrolled .nav--topbar .nav__item.logo:first-child {
+  width: 60px;
+  overflow: hidden;
+}
+
 /**
  * Skin the scrollbar container
  * @example 	scss
@@ -9079,15 +8893,15 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 		 * <input class="form-input" placeholder="Hello world" />
 		 */
 .form-input {
-  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Roboto";
+  font-weight: 400;
   border-radius: 0;
-  padding: 0 1em;
+  padding: 0 1.4em;
   height: 2.6em;
 }
 
 .form-input:not(input):not(select) {
-  padding: 0.8em 1em;
+  padding: 0.8em 1.4em;
 }
 
 /**
@@ -9101,20 +8915,20 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 		 * </select>
 		 */
 .form-select {
-  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Roboto";
+  font-weight: 400;
   background-size: 9px 6px;
   background-position: right center;
   background-origin: content-box;
   background-repeat: no-repeat;
   background-color: white;
   border-radius: 0;
-  padding: 0 1em;
+  padding: 0 1.4em;
   height: 2.6em;
 }
 
 .form-select:not(input):not(select) {
-  padding: 0.8em 1em;
+  padding: 0.8em 1.4em;
 }
 
 /**
@@ -9124,9 +8938,9 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 		 * <textarea class="form-textarea" placeholder="Hello world"></textarea>
 		 */
 .form-textarea {
-  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-  font-weight: normal;
-  padding: 0.8em 1em;
+  font-family: "Roboto";
+  font-weight: 400;
+  padding: 0.8em 1.4em;
   display: inline-block;
 }
 
@@ -9171,12 +8985,12 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 .form-addon {
   pointer-events: none;
   border-radius: 0;
-  padding: 0 1em;
+  padding: 0 1.4em;
   height: 2.6em;
 }
 
 .form-addon:not(input):not(select) {
-  padding: 0.8em 1em;
+  padding: 0.8em 1.4em;
 }
 
 .form-addon.vr,
@@ -9707,6 +9521,649 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 }
 
 /**
+		 * @name 	btn
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Btn
+		 * @example 	html
+		 * <a class="btn">
+		 * 	Default button
+		 * </a>
+		 */
+.btn {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  height: 2.6em;
+}
+
+/**
+		 * @name 	btn block
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Btn
+		 * @example 	html
+		 * <a class="btn btn--block">
+		 * 	Block button
+		 * </a>
+		 */
+.btn--block {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  height: 2.6em;
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: #848e91;
+  border-color: #848e91;
+  color: white;
+}
+
+.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
+  background-color: #5f676a;
+  border-color: #5f676a;
+}
+
+.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> btn
+			 * Primary button
+			 * @styleguide 	Components / Btn
+			 * @example 	html
+			 * <a class="btn btn--primary">
+			 * 	Primary button
+			 * </a>
+			 */
+.btn--primary {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+  /**
+				 * @name 	<span class="c-primary">Primary</span> outline btn
+				 * Outline primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--outline btn--primary">
+				 * 	Primary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-primary">Primary</span> link btn
+				 * Link primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--link btn--primary">
+				 * 	Primary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-primary">Primary</span> disabled btn
+				 * Disabled primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <button disabled class="btn btn--primary">
+				 * 	Primary disabled button
+				 * </button>
+				 */
+}
+
+.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+.btn--primary.btn--outline {
+  color: #f2bc2b;
+  background-color: transparent;
+  border-color: #f2bc2b;
+}
+
+.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
+:checked + .btn--primary.btn--outline:not(:disabled) {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--primary.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--primary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+.btn--primary.btn:disabled {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+.btn--hover-primary:hover {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> btn
+			 * Secondary button
+			 * @styleguide 	Components / Btn
+			 * @example 	html
+			 * <a class="btn btn--secondary">
+			 * 	Secondary button
+			 * </a>
+			 */
+.btn--secondary {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> outline btn
+				 * Outline secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--outline btn--secondary">
+				 * 	Secondary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> link btn
+				 * Link secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--link btn--secondary">
+				 * 	Secondary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
+				 * Disabled secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <button disabled class="btn btn--secondary">
+				 * 	Secondary disabled button
+				 * </button>
+				 */
+}
+
+.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.btn--secondary.btn--outline {
+  color: #2b3438;
+  background-color: transparent;
+  border-color: #2b3438;
+}
+
+.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
+:checked + .btn--secondary.btn--outline:not(:disabled) {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+}
+
+.btn--secondary.btn--link {
+  background-color: transparent !important;
+  color: #2b3438 !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--secondary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #2b3438;
+}
+
+.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+.btn--secondary.btn:disabled {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.btn--hover-secondary:hover {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+}
+
+.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.coffeekraken-logo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?>\a 	<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\a 	<svg version='1.2' baseProfile='tiny' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'\a 		 x='0px' y='0px' viewBox='0 0 954.1 288.7' xml:space='preserve'>\a 	<g fill='#fff'>\a 		<path fill='rgba(255, 255, 255, 0.5)' d='M932.9,217.2c0-18.7-11.6-26.9-25.2-26.9c-10.2,0-19.9,3.8-32.7,13.1V192l-65,0.5c-5.3-1.9-11-2.8-16.8-2.8\a 			c-5.1,0-10.2,0.8-15.1,2.4h-73.5v15.3h16L693.3,229h-8.4v-78.6h-36.3v16.5h17.3v103.5h-14.1v-52c0-15.3-9.5-29.1-37.6-29.1\a 			c-0.8,0-1.6,0-2.4,0l0,0l-32,1c-12,0-24.2,7-30.2,22.9H549V192h-34.2l0,0h-37.1v15.3h16L466.2,229h-8.4v-78.6h-36.3v16.5h17.3\a 			v103.4h-17.5v16.5h50.8v-16.5h-14.2l0.1-23h8.3l39.9,39.5h24.4l0,0h62.5c3.4,1.1,7.1,1.7,11,1.7c10.6,0,18.9-3.6,30.9-13.3v11.6h33\a 			l0,0h31v-16.3l-14.2-0.1l0.1-23.1h8.3l39.8,39.5l50.2,0.5c4.1,0.9,8.5,1.3,13.1,1.3c20.2,0,37.3-8.7,47.5-24.4l-16.4-7.1\a 			c-7,9.9-18.4,15.3-30.6,15.3c-17.6,0-29.6-10.5-32.5-28.7h79.5c0-14.5-4.4-26.4-11.4-35.4H856v61.9h-16.4v16.5h52v-16.5h-16.4\a 			v-50.8c9.7-7.6,19.9-12.1,27.6-12.1c7.7,0,11.2,5.2,11.2,17.3v62.1h35.5v-16.5h-16.4v-53H932.9z M534,270.2l-18.9,0.1v0.1h-1.2\a 			L480,236.8l35.9-29.5h14.8l0,0h3.3V270.2z M632.5,262.8c-7.7,7-17.3,11.2-25.8,11.2c-10.2,0-17.3-6.4-17.3-15.7\a 			c0-9.4,7.7-16.3,18.3-16.3c8.1,0,16.6,3.2,24.8,9.4V262.8z M632.5,235.7c-7.7-5-17.7-8-26.2-8c-19.7,0-34.9,13.5-34.9,30.7\a 			c0,4.3,0.9,8.4,2.6,12.1l-0.2-0.1h-20.7v-27.2c0-18.3,4.8-29.9,19.6-33.1l18,6.2c4.3-7.4,11.4-11.2,20.5-11.2\a 			c11.4,0,21.3,4.8,21.3,18.3L632.5,235.7L632.5,235.7z M707.1,236.8l35.9-29.5h12.1c-7,8.2-11.5,19.1-11.5,31.9\a 			c0,12.2,3.9,22.9,10.7,31.2H741L707.1,236.8z M764.9,230.2c2.8-15.7,14-25.8,28.8-25.8s28,10.9,31,25.8H764.9z'/>\a 		<path d='M135.9,229.7c26.3,0,46.1-9.9,58.9-27.1v27h58.1v-28.8h-29.1l-0.3-45.3l14.7-0.1l74.3,74.1l29.5-0.1v-28.8h-14l-61-59.7\a 			l52.6-53H342V59.1h-88.7v28.8h24.1l-39.2,38.9l-14.4-0.1l0.3-67.5L194.8,59v27.6c-15.1-19.6-37.7-27.5-56.7-27.5\a 			c-20.4,0-36.9,2.9-50.7,13.4v-13H58.7v59.2h28.9c8.2-21.3,22.4-31.9,42.6-31.9c16.7,0,29.3,5.6,37.9,16.8\a 			c8.5,11.2,12.8,24.6,12.8,40.3c0,16.4-4.5,29.6-13.6,39.7c-9,10.1-20.6,15.2-34.6,15.2c-20.2,0-37.1-7.2-45.3-28.4H58.5v59.2h28.9\a 			v-13.1c13.4,10.2,28.9,12.9,48.5,13.1V229.7z'/>\a 		<rect fill='#f2bc2b' x='87.7' y='2' width='225.1' height='28.8'/>\a 		<polygon points='29.3,30.8 58.5,30.8 58.5,2 0,2 0,287.3 58.5,287.3 58.5,258.5 29.3,258.5 	'/>\a 		<polygon points='342,30.8 371.3,30.8 371.3,258.5 342,258.5 342,287.3 400.6,287.3 400.6,2 342,2 	'/>\a 		<rect x='87.7' y='258.6' width='225.1' height='28.8'/>\a 		<g>\a 			<path d='M497.4,142c22.9,0,40.6-6.6,53.1-19.8c1.6,2,3.3,3.9,5.3,5.7c9.9,9,22.1,13.5,36.4,13.5c14.7,0,26.9-4.5,36.6-13.6\a 				c9.8-9.1,14.7-21.3,14.7-36.7c0-15.6-4.9-27.9-14.8-36.9c-9.9-9-22-13.5-36.5-13.5c-14.4,0-26.5,4.5-36.4,13.5\a 				c-7.3,6.6-11.9,15.1-13.9,25.4l0,0c-2.5,11.2-10.1,21.4-17.2,27.7c-7.1,6.3-15.3,9.4-24.7,9.4c-11.5,0-21-4.2-28.4-12.5\a 				S460.5,85,460.5,71.6c0-12.8,3.5-23.9,10.5-33.1s17.4-13.8,31.1-13.8c13.6,0,23.9,5.9,30.9,17.7c1.5,2.6,2.9,5.4,4.1,8.5\a 				l23.5-17.1l0.2-31.5h-23.7V13c-11.3-8.7-25.3-13-42-13c-13.4,0-25.8,2.8-37,8.3c-11.3,5.5-20.3,13.7-27,24.7\a 				c-6.7,10.9-10,23.7-10,38.2c0,20.4,6.4,37.4,19.2,50.7C453.2,135.3,472.2,142,497.4,142z M592.1,64.3c6,0,10.7,2.3,14.2,6.9\a 				s5.2,11,5.2,19.2c0,9.3-1.8,16.2-5.4,20.5c-3.6,4.4-8.3,6.6-14.1,6.6c-6.5,0-11.3-2.4-14.5-7.3s-4.8-11-4.8-18.5\a 				C572.9,73.4,579.3,64.3,592.1,64.3z'/>\a 			<path d='M906.1,121.5c-5.7,0-11.1-1.8-16.3-5.5c-5.1-3.6-7.9-9.8-8.4-18.6h72.7c0-10.2-1.6-19.4-4.7-27.7\a 				c-3.2-8.3-8.8-15.2-16.9-20.7c-8.1-5.6-17.8-8.3-28.9-8.3c-15.4,0-28.1,5-38,14.9c-3.4,3.4-6.2,7-8.4,10.9\a 				c-3.3-6.8-8.5-12.7-15.5-17.5c-8.1-5.6-17.8-8.3-28.9-8.3c-15.4,0-28.1,5-38,14.9s-14.9,22.3-14.9,37.1c0,14.6,4.8,26.3,14.5,35.2\a 				c9.6,8.9,23.1,13.4,40.3,13.4c19.8,0,34.7-6.6,44.9-19.8c1.7,2.3,3.5,4.4,5.7,6.4c9.6,8.9,23.1,13.4,40.3,13.4\a 				c21.6,0,37.4-7.8,47.6-23.5l-24.2-7.6C921.1,117.7,913.6,121.5,906.1,121.5z M901.9,61c6.1,0,10.9,1.9,14.5,5.7\a 				c3.5,3.8,5.7,8.3,6.4,13.7H882C883.8,67.5,890.5,61,901.9,61z M811.1,61c6.1,0,10.9,1.9,14.5,5.7c3.5,3.8,5.7,8.3,6.4,13.7h-40.8\a 				C793,67.5,799.6,61,811.1,61z M846.6,112.9l-8.7-2.7c-7.6,7.5-15.1,11.3-22.6,11.3c-5.7,0-11.1-1.8-16.3-5.5\a 				c-5.1-3.6-7.9-9.8-8.4-18.6h60.2c0.5,6.8,2.2,12.9,5,18.4C852.7,114.8,849,113.7,846.6,112.9z'/>\a 			<path d='M652.1,118.3l-14.2,0.4v21.8h43.4h17.2h64v-22.1h-15.3V66.6h15.3V44.4h-15.3V33.8c0-8.9,2.7-13.3,8.1-13.3\a 				c3.8,0,6.7,3.4,8.7,10.3l22.6-17.4C780.1,4.5,769.2,0,754,0c-12.6,0-22,3.4-28.4,10.2s-9.5,15.2-9.5,25.4v8.8H703v22.2h13.1v51.7\a 				h-17.5h-15.3V66.6h15.3V44.4h-15.3V33.8c0-8.9,2.7-13.3,8.1-13.3c3.8,0,6.7,3.4,8.7,10.3l22.6-17.4C716.1,4.5,705.2,0,690,0\a 				c-12.6,0-22,3.4-28.4,10.2s-9.5,15.2-9.5,25.4v8.8H639v22.2h13.1V118.3z'/>\a 		</g>\a 	</g>\a 	</svg>\a");
+  display: inline-block;
+}
+
+.coffeekraken-logo:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 30%;
+}
+
+.list {
+  counter-reset: s-list;
+}
+
+.list--footer {
+  font-size: .8em;
+}
+
+.list--footer .list__item {
+  margin-bottom: .5em;
+}
+
+.list--footer .list__item a {
+  text-decoration: none;
+  color: #848e91;
+}
+
+.list--footer .list__item a:hover {
+  text-decoration: underline;
+}
+
+.pill {
+  padding: .5em 1.5em;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  font-family: "Roboto";
+  font-weight: 800;
+  text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0;
+}
+
+.pill--primary {
+  background-color: #f2bc2b;
+}
+
+.pill--secondary {
+  background-color: #2b3438;
+}
+
+.pill--secondary-light {
+  background-color: #576a72;
+}
+
+/**
+		 * @name 	btn
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Btn
+		 * @example 	html
+		 * <a class="btn">
+		 * 	Default button
+		 * </a>
+		 */
+.btn {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  height: 2.6em;
+}
+
+/**
+		 * @name 	btn block
+		 * Lead paragraph styling
+		 * @styleguide 	Components / Btn
+		 * @example 	html
+		 * <a class="btn btn--block">
+		 * 	Block button
+		 * </a>
+		 */
+.btn--block {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  height: 2.6em;
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: #848e91;
+  border-color: #848e91;
+  color: white;
+}
+
+.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
+  background-color: #5f676a;
+  border-color: #5f676a;
+}
+
+.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> btn
+			 * Primary button
+			 * @styleguide 	Components / Btn
+			 * @example 	html
+			 * <a class="btn btn--primary">
+			 * 	Primary button
+			 * </a>
+			 */
+.btn--primary {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+  /**
+				 * @name 	<span class="c-primary">Primary</span> outline btn
+				 * Outline primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--outline btn--primary">
+				 * 	Primary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-primary">Primary</span> link btn
+				 * Link primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--link btn--primary">
+				 * 	Primary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-primary">Primary</span> disabled btn
+				 * Disabled primary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <button disabled class="btn btn--primary">
+				 * 	Primary disabled button
+				 * </button>
+				 */
+}
+
+.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+.btn--primary.btn--outline {
+  color: #f2bc2b;
+  background-color: transparent;
+  border-color: #f2bc2b;
+}
+
+.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
+:checked + .btn--primary.btn--outline:not(:disabled) {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--primary.btn--link {
+  background-color: transparent !important;
+  color: #f2bc2b !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--primary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #f2bc2b;
+}
+
+.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+.btn--primary.btn:disabled {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+.btn--hover-primary:hover {
+  background-color: #f2bc2b;
+  border-color: #f2bc2b;
+  color: white;
+}
+
+.btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) {
+  background-color: #c4920c;
+  border-color: #c4920c;
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> btn
+			 * Secondary button
+			 * @styleguide 	Components / Btn
+			 * @example 	html
+			 * <a class="btn btn--secondary">
+			 * 	Secondary button
+			 * </a>
+			 */
+.btn--secondary {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> outline btn
+				 * Outline secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--outline btn--secondary">
+				 * 	Secondary outlined button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> link btn
+				 * Link secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <a class="btn btn--link btn--secondary">
+				 * 	Secondary link button
+				 * </a>
+				 */
+  /**
+				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
+				 * Disabled secondary button
+				 * @styleguide 	Components / Btn
+				 * @example 	html
+				 * <button disabled class="btn btn--secondary">
+				 * 	Secondary disabled button
+				 * </button>
+				 */
+}
+
+.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.btn--secondary.btn--outline {
+  color: #2b3438;
+  background-color: transparent;
+  border-color: #2b3438;
+}
+
+.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
+:checked + .btn--secondary.btn--outline:not(:disabled) {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+}
+
+.btn--secondary.btn--link {
+  background-color: transparent !important;
+  color: #2b3438 !important;
+  border-color: transparent !important;
+  position: relative;
+}
+
+.btn--secondary.btn--link:after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0.32em;
+  left: 50%;
+  height: .2em;
+  width: 0;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background: #2b3438;
+}
+
+.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after {
+  width: calc(100% - 2.8em);
+}
+
+.btn--secondary.btn:disabled {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.btn--hover-secondary:hover {
+  background-color: #2b3438;
+  border-color: #2b3438;
+  color: white;
+}
+
+.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) {
+  background-color: #0a0c0d;
+  border-color: #0a0c0d;
+}
+
+.btn {
+  border-radius: 2em;
+}
+
+/**
  * Print out the datepicker sugar style
  * @param 		{List} 		[$colors=default primary secondary] 		The list of sugar registered colors wanted
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
@@ -10234,6 +10691,189 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   color: #2199e8;
 }
 
+/**
+		 * @name 	Dropdown
+		 * Provide a nice dropdown component
+		 * @styleguide 		Components / Dropdown
+		 * @example 	html
+		 * <div style="display:inline-block" class="dropdown">
+		 * 	<a>Display dropdown</a>
+		 * 	<ul class="dropdown__menu">
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 1
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 2
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 3
+		 *   		</a>
+		 *  	</li>
+		 *  </ul>
+		 * </div>
+		 */
+.dropdown {
+  position: relative;
+  /**
+			 * @name 	Dropdown right
+			 * Provide a nice dropdown component aligned to the right
+			 * @styleguide 		Components / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--right">
+			 * 	<a>Display right dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+}
+
+.dropdown:hover, .dropdown.active, .dropdown.dropdown--active {
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  top: 100%;
+}
+
+.dropdown.dropdown--right .dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+.dropdown.dropdown--up .dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.dropdown__menu {
+  transition: all, 0.2s, ease-in-out, 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.dropdown__item {
+  white-space: nowrap;
+}
+
+.dropdown__item > a {
+  display: block;
+}
+
+.dropdown__menu {
+  background: #848e91;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  overflow: hidden;
+}
+
+.dropdown__item {
+  border-top: solid 1px rgba(132, 142, 145, 0.2);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: white;
+  left: 0;
+  position: relative;
+  color: #848e91;
+  transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.dropdown__item:hover, .dropdown__item.active, .dropdown__item.dropdown--active {
+  left: 5px;
+}
+
+.dropdown__item > a {
+  padding: 0.8em 1.4em;
+  color: #848e91;
+  display: block;
+  width: 100%;
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> Dropdown
+			 * Provide a nice dropdown primary component
+			 * @styleguide 		Components / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--primary">
+			 * 	<a>Display primary dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.dropdown--primary .dropdown__menu {
+  background-color: #f2bc2b;
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> Dropdown
+			 * Provide a nice dropdown secondary component
+			 * @styleguide 		Components / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--secondary">
+			 * 	<a>Display secondary dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.dropdown--secondary .dropdown__menu {
+  background-color: #2b3438;
+}
+
 s-google-map {
   position: relative;
   overflow: hidden;
@@ -10297,7 +10937,7 @@ s-google-map:before {
 
 .table .th, .table th,
 .table .td, .table td {
-  padding: 0.8em 1em;
+  padding: 0.8em 1.4em;
   position: relative;
 }
 

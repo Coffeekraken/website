@@ -1,0 +1,10 @@
+@include s-setup((
+	spaces : (
+		smaller : 10px,
+		small : 20px,
+		default : 40px,
+		medium : 60px,
+		big : 100px,
+		bigger : 150px
+	)
+));

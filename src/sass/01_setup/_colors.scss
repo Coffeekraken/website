@@ -1,0 +1,19 @@
+@include s-setup((
+	colors : (
+		secondary : (
+			modifiers : (
+				dark : -darken 10%
+			)
+		),
+		'grey' : (
+			color : #FBFBFC,
+			modifiers : (
+				light : -lighten 10%,
+				dark : -darken 10%
+			)
+		),
+		'white' : (
+			color: #fff
+		)
+	)
+));

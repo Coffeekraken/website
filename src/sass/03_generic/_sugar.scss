@@ -2,14 +2,3 @@
 @include s-init();
 // classes
 @include s-classes();
-
-
-@include s-dropdown-classes(
-    $colors : default primary secondary
-);
-
-@include s-nav-justify-classes-bare();
-@include s-nav-inline-classes-bare();
-@include s-nav-tabs-classes(
-    $colors : default primary secondary
-);

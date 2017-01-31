@@ -2,3 +2,68 @@
  * Layout
  * All the layout level specific styling.
  */
+@import 'use', 'who';
+
+body {
+	padding-top:50px;
+}
+
+/**
+ * Topbar
+ */
+.topbar {
+	color: white;
+	position:fixed;
+	top:0; left:0;
+	width:100%;
+	z-index:10;
+
+	h1 {
+		color: inherit;
+	}
+	a,
+	.link {
+		text-decoration: none;
+
+		i {
+			margin-right: 5px;
+		}
+	}
+	// .link {
+	// 	&:hover {
+	// 		text-decoration: underline;
+	// 	}
+	// }
+}
+
+/**
+ * Header
+ */
+.header {
+	background-color: s-color(secondary);
+	background-image: url('../img/header-bkg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: s-space(big) 0;
+	color: white;
+
+	.h1 {
+		color: inherit;
+	}
+}
+	.header__img-editors {
+		position:relative;
+		left:100%;
+		transform:translateX(-100%);
+	}
+
+/**
+ * Footer
+ */
+.footer {
+	color: white;
+
+	.h1,.h2,.h3,.h4,.h5,.h6 {
+		color: inherit;
+	}
+}
