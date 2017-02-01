@@ -32,75 +32,75 @@
 	</head>
 	<body>
 
-		<section class="topbar bkg-secondary--dark p-small">
+		<section class="topbar bkg-secondary--dark p-small hide@mobile">
 			<div class="container">
-				<div class="gr-6">
-					<ul class="nav nav--topbar">
-						<li class="nav__item logo">
-							<div class="coffeekraken-logo" style="width:60px"></div>
-						</li>
-						<li class="nav__item">
-							<h1 class="h6">Join us</h1>
-						</li>
-						<li class="nav__item">
-							<a href="#" title="Join us on twitter" target="_blank">
-								<i class="fa fa-twitter"></i> <span class="link">Twitter</span>
-							</a>
-						</li>
-						<li class="nav__item">
-							<a href="#" title="Join us on github" target="_blank">
-								<i class="fa fa-github"></i> <span class="link">Github</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="gr-6">
-					<ul class="nav nav--topbar pull-right">
-						<li class="nav__item">
-							<div class="dropdown dropdown--primary">
-								<a href="#" title="Share the love" target="_blank">
-									<i class="fa fa-share"></i> <span class="link">Share</span>
+				<div class="row">
+					<div class="gr-6">
+						<ul class="nav nav--topbar">
+							<li class="nav__item logo">
+								<div class="coffeekraken-logo" style="width:60px"></div>
+							</li>
+							<li class="nav__item">
+								<h1 class="h6">Join us on</h1>
+							</li>
+							<li class="nav__item">
+								<a href="https://twitter.com/coffeekrakenio" title="Join us on twitter" target="_blank">
+									<i class="fa fa-twitter"></i> <span class="link">Twitter</span>
 								</a>
-								<ul class="dropdown__menu">
-									<li class="dropdown__item">
-										<a is="s-share" href="http://coffeekraken.io" platform="facebook" title="Share on facebook">
-											<i class="fa fa-facebook"></i> Facebook
-										</a>
-									</li>
-									<li class="dropdown__item">
-										<a is="s-share" href="http://coffeekraken.io" platform="twitter" title="Share on twitter">
-											<i class="fa fa-twitter"></i> Twitter
-										</a>
-									</li>
-									<li class="dropdown__item">
-										<a is="s-share" href="http://coffeekraken.io" platform="googleplus" title="Share on googleplus">
-											<i class="fa fa-google-plus"></i> Google+
-										</a>
-									</li>
-									<li class="dropdown__item">
-										<a is="s-share" href="http://coffeekraken.io" platform="linkedin" title="Share on linkedin">
-											<i class="fa fa-linkedin"></i> LinkedIn
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav__item">
-							<a href="#" title="Contact us" target="_blank">
-								<i class="fa fa-envelope-o"></i> <span class="link">Contact us</span>
-							</a>
-						</li>
-					</ul>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken" title="Join us on github" target="_blank">
+									<i class="fa fa-github"></i> <span class="link">Github</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="gr-6">
+						<ul class="nav nav--topbar pull-right">
+							<li class="nav__item">
+								<div class="dropdown dropdown--primary">
+									<i class="fa fa-share"></i> &nbsp;<span class="link">Share</span>
+									<ul class="dropdown__menu">
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="facebook" title="Share on facebook">
+												<i class="fa fa-facebook"></i> Facebook
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="twitter" title="Share on twitter">
+												<i class="fa fa-twitter"></i> Twitter
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="googleplus" title="Share on googleplus">
+												<i class="fa fa-google-plus"></i> Google+
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="linkedin" title="Share on linkedin">
+												<i class="fa fa-linkedin"></i> LinkedIn
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="nav__item">
+								<a href="mailto:hello@coffeekraken.io" title="Contact us">
+									<i class="fa fa-envelope-o"></i> <span class="link">Contact us</span>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
 		<section class="header">
 			<div class="container">
 				<div class="row row-align-middle">
-					<div class="gr-4 relative" style="min-height:1px;">
+					<div class="gr-4 relative hide@mobile" style="min-height:1px;">
 						<img class="header__img-editors" src="/dist/img/header-editors.png" alt="Atom editors" />
 					</div>
-					<div class="gr-7 prefix-1">
+					<div class="gr-7 prefix-1 prefix-0@mobile">
 						<div class="coffeekraken-logo m-b" style="width:200px"></div>
 						<h1 class="h1 m-b-smaller">
 							Make <span class="c-primary">team work</span> great again!
@@ -109,20 +109,42 @@
 							Working smoothly in team is as hard as working alone on a big project. <br>
 							<span class="c-primary">We think that it does not have to be like this anymore...</span>
 						</p>
-						<ul class="nav nav--inline">
-							<li class="list__item m-r-smaller">
-								<span class="pill pill--primary">Styleguide</span>
+						<ul class="nav nav--pills">
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									Carpenter is a tool that let you generate a styleguide directly from your codebase,<br>
+									as well as aggregating all the needed documentation in the same place.<br>
+									<strong>Very useful to work on the same project as one</strong>.
+								</div>
+								<span class="pill pill--primary">Styleguide / Documentation</span>
 							</li>
-							<li class="list__item m-r-smaller">
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									A collection of powerful daily use SASS & Javscript<br>
+									mixins, functions and classes.
+								</div>
 								<span class="pill pill--primary">JS/SCSS</span>
 							</li>
-							<li class="list__item m-r-smaller">
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									Gridle has been out there for quite a while now and<br>
+									is more and more used for his poweful features and highly<br>
+									customizable capabilities.
+								</div>
 								<span class="pill pill--primary">Grid system</span>
 							</li>
-							<li class="list__item m-r-smaller">
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									All the basics that you need for your websites are<br>
+									here. Choose which components you need and leave the rest aside...
+								</div>
 								<span class="pill pill--primary">CSS Components</span>
 							</li>
-							<li class="list__item">
+							<li class="nav__item">
+								<div class="tooltip tooltip--t tf t-center">
+									Webcomponents are the future. But guess what?<br>
+									<strong>The future is NOW!</strong>
+								</div>
 								<span class="pill pill--primary">Webcomponents</span>
 							</li>
 						</li>
@@ -131,7 +153,7 @@
 			</div>
 		</section>
 
-		<section class="who p-bigger">
+		<section class="who section">
 			<div class="container">
 				<div class="row">
 					<div class="gr-6">
@@ -142,7 +164,7 @@
 							We are a young collectve of front-end creative developers with a goal in mind. <strong>Build tools to make every team working day life better. This is our first and only concern.</strong> All our tools are build around that purpose.<br>
 All what we provide are some cool tools that you can use the way you want. These tools features cover a large scope of the front-end workflow (styleguide generation, colors/fonts management, etc...). <strong>You can use only the parts that you need and let the rest aside...</strong>
 						</p>
-						<a class="btn btn--primary s-medium" href="#" title="Discover more on Coffeekraken and how to join us" target="_blank">
+						<a class="btn btn--primary s-medium" href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/who-are-coffeekraken.md" title="Discover more on Coffeekraken and how to join us" target="_blank">
 							Discover more on Coffeekraken and how to join us
 						</a>
 					</div>
@@ -153,7 +175,7 @@ All what we provide are some cool tools that you can use the way you want. These
 			</div>
 		</section>
 
-		<section class="tools p-bigger bkg-grey bkg-kraken">
+		<section class="tools section bkg-grey bkg-kraken">
 			<div class="container">
 				<div class="row">
 					<div class="gr-12">
@@ -178,7 +200,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Nice web interface that <strong>display all your website styleguide</strong> by parsing directly your CSS codebase as well as <strong>aggregating all the documentations</strong> needed by your developers team to work as one.
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check Carpenter out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/carpenter" title="Check Carpenter out">
 										Check it out!
 									</a>
 								</div>
@@ -202,7 +224,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										<strong>Powerful toolkit</strong> that gives you access to a lot of <strong>SASS mixins, functions, colors and fonts management</strong> as well as a lot of <strong>javascript features</strong> like DOM helpers, classes, utils and webcomponents.
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check Sugar out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/sugar" title="Check Sugar out">
 										Check it out!
 									</a>
 								</div>
@@ -226,7 +248,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										<strong>Fully customizable SASS grid system</strong> that let you create from simple 12 columns layouts, to any columns numbers complexe ones with ease. <strong>Support both default (float) and flexbox based systems.</strong>
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check Gridle out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/gridle" title="Check Gridle out">
 										Check it out!
 									</a>
 								</div>
@@ -245,7 +267,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Clean and fully featured (webpack, babel, node-sass) boilerplate
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check HTML boilerplate out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/html-boilerplate" title="Check HTML boilerplate out">
 										Check it out!
 									</a>
 								</div>
@@ -263,7 +285,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Parse and convert docblocks from codebase to markdown
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check docblock to markdown out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/docblock-to-markdown" title="Check docblock to markdown out">
 										Check it out!
 									</a>
 								</div>
@@ -281,7 +303,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Integrate quicly javascript tests inside your project
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check testing stack out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/testing-stack" title="Check testing stack out">
 										Check it out!
 									</a>
 								</div>
@@ -299,7 +321,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Clean and growing library of webcomponents.
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="Check webcomponents out">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Check webcomponents out">
 										Check it out!
 									</a>
 								</div>
@@ -308,7 +330,7 @@ All what we provide are some cool tools that you can use the way you want. These
 					</div>
 
 					<div class="gr-12 m-t t-center">
-						<a class="btn btn--secondary s-medium" href="#" title="And more to discover on our Github">
+						<a class="btn btn--secondary s-medium" href="https://github.com/coffeekraken" title="And more to discover on our Github">
 							And more to discover on our Github
 						</a>
 					</div>
@@ -317,7 +339,7 @@ All what we provide are some cool tools that you can use the way you want. These
 			</div>
 		</section>
 
-		<section class="use p-bigger bkg-primary t-center">
+		<section class="use section bkg-primary t-center">
 			<div class="container">
 				<div class="row">
 					<div class="gr-12">
@@ -326,7 +348,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						</h1>
 						<ul class="nav nav--pills m-b">
 							<li class="nav__item">
-								<a href="#" title="Workflow" target="_blank">
+								<a href="https://github.com/coffeekraken/carpenter" title="Workflow" target="_blank">
 									<span class="pill pill--secondary-light">
 										Workflow
 									</span>
@@ -642,7 +664,7 @@ All what we provide are some cool tools that you can use the way you want. These
 			</div>
 		</section>
 
-		<section class="open-source p-bigger">
+		<section class="open-source section">
 			<div class="container">
 				<div class="row row-align-middle">
 					<div class="gr-9">
@@ -652,7 +674,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<p class="p p--lead m-b">
 							We strongly believe that <strong>the way to success is by helping each others</strong>. That’s why our primary target for our tools is to be published as fully open source projects that you can (and we hope you will) modify, enhance and share!
 						</p>
-						<a class="btn btn--primary s-medium" href="#" title="Check out how to contribute to our vision..." target="_blank">
+						<a class="btn btn--primary s-medium" href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md" title="Check out how to contribute to our vision..." target="_blank">
 							Check out how to contribute to our vision...
 						</a>
 					</div>
@@ -663,7 +685,7 @@ All what we provide are some cool tools that you can use the way you want. These
 			</div>
 		</section>
 
-		<section class="tools p-bigger bkg-grey bkg-kraken">
+		<section class="tools section bkg-grey bkg-kraken">
 			<div class="container">
 				<div class="row">
 					<div class="gr-12">
@@ -688,7 +710,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										This is the a starting contribution you can make to the project. No need to be an expert to contribute to coffeekraken. We just need you to stick to <strong>some simple rules in order to keep things clean</strong>...
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="How to declare/fix an issue...">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#declare-issues" title="How to declare/fix an issue...">
 										How to declare/fix an issue...
 									</a>
 								</div>
@@ -712,7 +734,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Adding features is another great way to contribute to our project. <strong>That's what make the tools better and better!</strong> By doing this, you will also be more confortable knowing how the tools are actually working...
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="How to add a feature...">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#add-some-features" title="How to add a feature...">
 										How to add a feature...
 									</a>
 								</div>
@@ -736,7 +758,7 @@ All what we provide are some cool tools that you can use the way you want. These
 										Not so much guidelines here. At least, if you want to share some thoughts about our work, positive or negative, try to stay constructive... <strong>Keep in mind that these tools are provided for free</strong>...
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="#" title="I love Coffeekraken!">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#share-the-love-️" title="I love Coffeekraken!">
 										I love Coffeekraken!
 									</a>
 								</div>
@@ -753,17 +775,17 @@ All what we provide are some cool tools that you can use the way you want. These
 					<div class="gr-8">
 						<ul class="nav nav--inline pull-right">
 							<li class="nav__item m-r-smaller">
-								<a href="#" class="btn btn--secondary" title="Build a webcomponent" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#contribute-build-web-component" class="btn btn--secondary" title="Build a webcomponent" target="_blank">
 									Build a webcomponent
 								</a>
 							</li>
 							<li class="nav__item m-r-smaller">
-								<a href="#" class="btn btn--secondary" title="Became an official maintainer" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#contribute-become-maintainer" class="btn btn--secondary" title="Became an official maintainer" target="_blank">
 									Became an official maintainer
 								</a>
 							</li>
 							<li class="nav__item">
-								<a href="#" class="btn btn--secondary" title="Make a small donation" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#contribute-donation" class="btn btn--secondary" title="Make a small donation" target="_blank">
 									Make a small donation
 								</a>
 							</li>
@@ -785,37 +807,37 @@ All what we provide are some cool tools that you can use the way you want. These
 						</h2>
 						<ul class="list list--footer">
 							<li class="list__item">
-								<a href="#" title="Sugar toolkit" target="_blank">
+								<a href="https://github.com/coffeekraken/sugar" title="Sugar toolkit" target="_blank">
 									Sugar toolkit
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Gridle grid system" target="_blank">
+								<a href="https://github.com/coffeekraken/gridle" title="Gridle grid system" target="_blank">
 									Gridle grid system
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Carpenter styleguide" target="_blank">
+								<a href="https://github.com/coffeekraken/carpenter" title="Carpenter styleguide" target="_blank">
 									Carpenter styleguide
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="HTML boilerplate" target="_blank">
+								<a href="https://github.com/coffeekraken/html-boilerplate" title="HTML boilerplate" target="_blank">
 									HTML boilerplate
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Testing stack" target="_blank">
+								<a href="https://github.com/coffeekraken/testing-stack" title="Testing stack" target="_blank">
 									Testing stack
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Docblock to markdown" target="_blank">
+								<a href="https://github.com/coffeekraken/docblock-to-markdown" title="Docblock to markdown" target="_blank">
 									Docblock to markdown
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Webcomponents" target="_blank">
+								<a href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Webcomponents" target="_blank">
 									Webcomponents
 								</a>
 							</li>
@@ -827,22 +849,22 @@ All what we provide are some cool tools that you can use the way you want. These
 						</h2>
 						<ul class="list list--footer">
 							<li class="list__item">
-								<a href="#" title="Declare/Fix an issue" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#declare-issues" title="Declare/Fix an issue" target="_blank">
 									Declare/Fix an issue
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Add a feature" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#add-some-features" title="Add a feature" target="_blank">
 									Add a feature
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Build a webcomponent" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#build-web-component" title="Build a webcomponent" target="_blank">
 									Build a webcomponent
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Share the love" target="_blank">
+								<a href="https://github.com/Coffeekraken/sugar/blob/release/0.0.1/doc/contribute.md#share-the-love-️" title="Share the love" target="_blank">
 									Share the love
 								</a>
 							</li>
@@ -854,12 +876,12 @@ All what we provide are some cool tools that you can use the way you want. These
 						</h2>
 						<ul class="list list--footer">
 							<li class="list__item">
-								<a href="#" title="Github" target="_blank">
+								<a href="https://github.com/coffeekraken" title="Github" target="_blank">
 									<i class="fa fa-github"></i> Github
 								</a>
 							</li>
 							<li class="list__item">
-								<a href="#" title="Twitter" target="_blank">
+								<a href="https://twitter.com/coffeekrakenio" title="Twitter" target="_blank">
 									<i class="fa fa-twitter"></i> Twitter
 								</a>
 							</li>
@@ -875,7 +897,7 @@ All what we provide are some cool tools that you can use the way you want. These
 					<div class="gr-12">
 						<div class="s-small">
 							© Coffeekraken 2017<br>
-							All our tools are published under <a class="link" href="" title="MIT License" target="_blank">MIT license</a>
+							All our tools are published under <a class="link" href="https://opensource.org/licenses/MIT" title="MIT License" target="_blank">MIT license</a>
 						</div>
 					</div>
 				</div>
@@ -885,10 +907,10 @@ All what we provide are some cool tools that you can use the way you want. These
 		<!-- Load scripts -->
 		<script src="/dist/js/app.js"></script>
 
-		<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+		<!-- Google Analytics -->
 		<script>
 			window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-			ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+			ga('create','UA-91271113-1','auto');ga('send','pageview')
 		</script>
 		<script src="https://www.google-analytics.com/analytics.js" async defer></script>
 	</body>

@@ -1,0 +1,7 @@
+.section {
+	padding: s-space(bigger) 0;
+
+	@include g-state(mobile) {
+		padding: s-space(medium) 0;
+	}
+}

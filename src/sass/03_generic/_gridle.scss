@@ -11,4 +11,7 @@
 	[class*="gr-"] {
 		@include gridle(12);
 	}
+	.container {
+		padding: 0 30px;
+	}
 }

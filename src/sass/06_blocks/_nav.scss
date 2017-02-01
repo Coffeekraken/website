@@ -5,9 +5,18 @@
  */
 .nav--pills {
 	@extend .nav--inline;
+	top:-5px;
+	position: relative;
 
 	.nav__item {
 		margin:5px;
+
+		&:first-child {
+			margin-left:0;
+		}
+		&:last-child {
+			margin-right:0;
+		}
 	}
 }
 

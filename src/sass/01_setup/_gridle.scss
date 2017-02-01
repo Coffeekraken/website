@@ -10,4 +10,9 @@
 @include g-register-column("1on5", 1, 5);
 
 // register some states
-@include g-register-default-states();
+@include g-register-state(mobile, (
+	max-width : 640px,
+	gutter-width : 40px,
+	gutter-height : 40px
+));
+// @include g-register-default-states();

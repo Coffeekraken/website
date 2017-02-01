@@ -6,6 +6,9 @@
 
 body {
 	padding-top:50px;
+	@include g-state(mobile) {
+		padding-top:0;
+	}
 }
 
 /**
@@ -44,17 +47,30 @@ body {
 	background-image: url('../img/header-bkg.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: top 50%;
+	background-attachment: fixed;
 	padding: s-space(big) 0;
 	color: white;
 
 	.h1 {
 		color: inherit;
 	}
+
+	@include g-state(mobile) {
+		text-align: center;
+	}
 }
 	.header__img-editors {
 		position:relative;
 		left:100%;
 		transform:translateX(-100%);
+
+		@include g-state(mobile) {
+			left:0;
+			transform:none;
+			width: 80%;
+			margin:s-space(default) 0;
+		}
 	}
 
 /**

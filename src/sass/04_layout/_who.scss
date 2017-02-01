@@ -4,4 +4,10 @@
 	.who__img-macbook-kraken {
 		position:absolute;
 		transform:translateY(-40%);
+
+		@include g-state(mobile) {
+			position:static;
+			transform:none;
+			width:100%;
+		}
 	}
