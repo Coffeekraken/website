@@ -1,3 +1,20 @@
+/**
+ * @name 		Card
+ * Display a content inside a nice card
+ * @styleguide 		Blocks / Card
+ * @example 		html
+ * <article class="card" style="max-width:300px; margin-bottom:100px;">
+ * 	<figure class="ratio-16-9">
+ * 		<img src="http://coffeekraken.io/dist/img/tool-gridle.jpg" class="abs-cover" />
+ * 	</figure>
+ * 	<div class="card__content tf vr">
+ * 		<h4>Card title</h4>
+ * 		<p class="p">
+ * 			Vestibulum a augue porta, maximus nibh in, ultricies lectus. Aliquam nisl purus, dapibus in lectus et, fermentum aliquet ipsum. Cras.
+ * 		</p>
+ * 	</div>
+ * </article>
+ */
 .card {
 	@include s-depth(10);
 	background: white;

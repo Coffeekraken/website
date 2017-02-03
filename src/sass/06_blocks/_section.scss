@@ -1,3 +1,12 @@
+/**
+ * @name 		Section
+ * Provide a simple padded section
+ * @styleguide 	Layout / Section
+ * @example 	html
+ * <section class="section tf">
+ * 	<h1>I'm a simple section</h1>
+ * </section>
+ */
 .section {
 	padding: s-space(bigger) 0;
 

@@ -1,22 +1,44 @@
+/**
+ * @name 		Default pill
+ * Display a simple pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill">I'm a cool pill</span>
+ * <span class="pill">Another cool pill</span>
+ */
 .pill {
 	padding:.5em 1.5em;
 	color: white;
 	border-radius: 20px;
 	font-size:12px;
 	display: inline-block;
+	background-color: s-color(default);
 	@include s-font(roboto-bold);
-	@include s-filter(text-shadow(rgba(0,0,0,.2) 1px 1px 0))
+	@include s-filter(text-shadow(rgba(0,0,0,.2) 1px 1px 0));
 
 	@include g-state(mobile) {
 		padding: 0.6em 1.8em;
 	}
 }
+/**
+ * @name 		Primary pill
+ * Display a primary colored pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill pill--primary">I'm a cool pill</span>
+ * <span class="pill pill--primary">Another cool pill</span>
+ */
 .pill--primary {
 	background-color: s-color(primary);
 }
+/**
+ * @name 		Secondary pill
+ * Display a secondary colored pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill pill--secondary">I'm a cool pill</span>
+ * <span class="pill pill--secondary">Another cool pill</span>
+ */
 .pill--secondary {
 	background-color: s-color(secondary);
-}
-.pill--secondary-light {
-	background-color: s-color(secondary, -lighten 20%);
 }

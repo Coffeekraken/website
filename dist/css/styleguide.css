@@ -5314,25 +5314,13 @@ table {
 		 * @display 	color
 		 */
 /**
-				 * @styleguide 	Colors / Swatches
-				 * @name 		grey--light
-				 * @color 		white
-				 * @display 	color
-				 */
-/**
-				 * @styleguide 	Colors / Swatches
-				 * @name 		grey--dark
-				 * @color 		#dedee6
-				 * @display 	color
-				 */
-/**
 		 * @styleguide 	Colors / Swatches
 		 * @name 		white
 		 * @color 		#fff
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC", "modifiers": {"light": "white", "dark": "#dedee6"}}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto", "font-weight": 400}, "roboto-light": {"font-family": "Roboto", "font-weight": 300}, "roboto-bold": {"font-family": "Roboto", "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto", "font-weight": 400}, "roboto-light": {"font-family": "Roboto", "font-weight": 300}, "roboto-bold": {"font-family": "Roboto", "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -6945,58 +6933,6 @@ body {
 }
 
 /**
-						 * @name 	```.c-grey--light```
-						 * Specify the color to **grey--light**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="c-grey--light">
-						 * 	I'm in "grey--light" color
-						 * </div>
-						 */
-.c-grey--light {
-  color: white;
-}
-
-/**
-						 * @name 	```.bkg-grey--light```
-						 * Specify the background color to **grey--light**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="bkg-grey--light p" style="color:white">
-						 * 	My background color is "grey--light"
-						 * </div>
-						 */
-.bkg-grey--light {
-  background-color: white;
-}
-
-/**
-						 * @name 	```.c-grey--dark```
-						 * Specify the color to **grey--dark**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="c-grey--dark">
-						 * 	I'm in "grey--dark" color
-						 * </div>
-						 */
-.c-grey--dark {
-  color: #dedee6;
-}
-
-/**
-						 * @name 	```.bkg-grey--dark```
-						 * Specify the background color to **grey--dark**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="bkg-grey--dark p" style="color:white">
-						 * 	My background color is "grey--dark"
-						 * </div>
-						 */
-.bkg-grey--dark {
-  background-color: #dedee6;
-}
-
-/**
 				 * @name 	```.c-white```
 				 * Specify the color to **white**
 				 * @styleguide  	Colors / Classes
@@ -7039,9 +6975,9 @@ body {
 }
 
 .h1.vr,
-.vr > .h1,
+.vr .h1,
 .tf h1.vr,
-.vr >
+.vr
 .tf h1 {
   margin-bottom: 1rem;
 }
@@ -7063,9 +6999,9 @@ body {
 }
 
 .h2.vr,
-.vr > .h2,
+.vr .h2,
 .tf h2.vr,
-.vr >
+.vr
 .tf h2 {
   margin-bottom: 1rem;
 }
@@ -7087,9 +7023,9 @@ body {
 }
 
 .h3.vr,
-.vr > .h3,
+.vr .h3,
 .tf h3.vr,
-.vr >
+.vr
 .tf h3 {
   margin-bottom: 1rem;
 }
@@ -7111,9 +7047,9 @@ body {
 }
 
 .h4.vr,
-.vr > .h4,
+.vr .h4,
 .tf h4.vr,
-.vr >
+.vr
 .tf h4 {
   margin-bottom: 1rem;
 }
@@ -7135,9 +7071,9 @@ body {
 }
 
 .h5.vr,
-.vr > .h5,
+.vr .h5,
 .tf h5.vr,
-.vr >
+.vr
 .tf h5 {
   margin-bottom: 1rem;
 }
@@ -7159,46 +7095,46 @@ body {
 }
 
 .h6.vr,
-.vr > .h6,
+.vr .h6,
 .tf h6.vr,
-.vr >
+.vr
 .tf h6 {
   margin-bottom: 1rem;
 }
 
 h1.vr,
-.vr > h1, h2.vr,
-.vr > h2, h3.vr,
-.vr > h3, h4.vr,
-.vr > h4, h5.vr,
-.vr > h5, h6.vr,
-.vr > h6,
+.vr h1, h2.vr,
+.vr h2, h3.vr,
+.vr h3, h4.vr,
+.vr h4, h5.vr,
+.vr h5, h6.vr,
+.vr h6,
 .h1.vr,
-.vr >
+.vr
 .h1, .h2.vr,
-.vr > .h2, .h3.vr,
-.vr > .h3, .h4.vr,
-.vr > .h4, .h5.vr,
-.vr > .h5, .h6.vr,
-.vr > .h6 {
+.vr .h2, .h3.vr,
+.vr .h3, .h4.vr,
+.vr .h4, .h5.vr,
+.vr .h5, .h6.vr,
+.vr .h6 {
   margin-bottom: 1em;
 }
 
 h1.vr:last-child,
-.vr > h1:last-child, h2.vr:last-child,
-.vr > h2:last-child, h3.vr:last-child,
-.vr > h3:last-child, h4.vr:last-child,
-.vr > h4:last-child, h5.vr:last-child,
-.vr > h5:last-child, h6.vr:last-child,
-.vr > h6:last-child,
+.vr h1:last-child, h2.vr:last-child,
+.vr h2:last-child, h3.vr:last-child,
+.vr h3:last-child, h4.vr:last-child,
+.vr h4:last-child, h5.vr:last-child,
+.vr h5:last-child, h6.vr:last-child,
+.vr h6:last-child,
 .h1.vr:last-child,
-.vr >
+.vr
 .h1:last-child, .h2.vr:last-child,
-.vr > .h2:last-child, .h3.vr:last-child,
-.vr > .h3:last-child, .h4.vr:last-child,
-.vr > .h4:last-child, .h5.vr:last-child,
-.vr > .h5:last-child, .h6.vr:last-child,
-.vr > .h6:last-child {
+.vr .h2:last-child, .h3.vr:last-child,
+.vr .h3:last-child, .h4.vr:last-child,
+.vr .h4:last-child, .h5.vr:last-child,
+.vr .h5:last-child, .h6.vr:last-child,
+.vr .h6:last-child {
   margin-bottom: 0;
 }
 
@@ -7253,9 +7189,9 @@ h1.vr:last-child,
 }
 
 .p.vr,
-.vr > .p,
+.vr .p,
 .tf p.vr,
-.vr >
+.vr
 .tf p {
   margin-bottom: 1rem;
 }
@@ -7281,19 +7217,19 @@ h1.vr:last-child,
 }
 
 p.vr,
-.vr > p, .p.vr,
-.vr > .p {
+.vr p, .p.vr,
+.vr .p {
   margin-bottom: 1em;
 }
 
 p.vr:last-child,
-.vr > p:last-child, .p.vr:last-child,
-.vr > .p:last-child {
+.vr p:last-child, .p.vr:last-child,
+.vr .p:last-child {
   margin-bottom: 0;
 }
 
 .link,
-.tf a {
+.tf a:not(.btn) {
   text-decoration: none;
   color: #f2bc2b;
 }
@@ -7440,9 +7376,9 @@ p.vr:last-child,
 }
 
 .dl.vr,
-.vr > .dl,
+.vr .dl,
 .tf dl.vr,
-.vr >
+.vr
 .tf dl {
   margin-bottom: 2em;
 }
@@ -7478,9 +7414,9 @@ p.vr:last-child,
 }
 
 .ul.vr,
-.vr > .ul,
+.vr .ul,
 .tf ul.vr,
-.vr >
+.vr
 .tf ul {
   margin-bottom: 2em;
 }
@@ -7547,9 +7483,9 @@ p.vr:last-child,
 }
 
 .ol.vr,
-.vr > .ol,
+.vr .ol,
 .tf ol.vr,
-.vr >
+.vr
 .tf ol {
   margin-bottom: 2em;
 }
@@ -7599,83 +7535,83 @@ p.vr:last-child,
 }
 
 dl.vr,
-.vr > dl, ul.vr,
-.vr > ul, ol.vr,
-.vr > ol,
+.vr dl, ul.vr,
+.vr ul, ol.vr,
+.vr ol,
 .dl.vr,
-.vr >
+.vr
 .dl, .ul.vr,
-.vr > .ul, .ol.vr,
-.vr > .ol {
+.vr .ul, .ol.vr,
+.vr .ol {
   margin-bottom: 1em;
 }
 
 dl.vr:last-child,
-.vr > dl:last-child, ul.vr:last-child,
-.vr > ul:last-child, ol.vr:last-child,
-.vr > ol:last-child,
+.vr dl:last-child, ul.vr:last-child,
+.vr ul:last-child, ol.vr:last-child,
+.vr ol:last-child,
 .dl.vr:last-child,
-.vr >
+.vr
 .dl:last-child, .ul.vr:last-child,
-.vr > .ul:last-child, .ol.vr:last-child,
-.vr > .ol:last-child {
+.vr .ul:last-child, .ol.vr:last-child,
+.vr .ol:last-child {
   margin-bottom: 0;
 }
 
 dl.vr dl, dl.vr ul, dl.vr ol,
 dl.vr .dl, dl.vr .ul, dl.vr .ol,
-.vr > dl dl,
-.vr > dl ul,
-.vr > dl ol,
-.vr > dl .dl,
-.vr > dl .ul,
-.vr > dl .ol, ul.vr dl, ul.vr ul, ul.vr ol,
+.vr dl dl,
+.vr dl ul,
+.vr dl ol,
+.vr dl .dl,
+.vr dl .ul,
+.vr dl .ol, ul.vr dl, ul.vr ul, ul.vr ol,
 ul.vr .dl, ul.vr .ul, ul.vr .ol,
-.vr > ul dl,
-.vr > ul ul,
-.vr > ul ol,
-.vr > ul .dl,
-.vr > ul .ul,
-.vr > ul .ol, ol.vr dl, ol.vr ul, ol.vr ol,
+.vr ul dl,
+.vr ul ul,
+.vr ul ol,
+.vr ul .dl,
+.vr ul .ul,
+.vr ul .ol, ol.vr dl, ol.vr ul, ol.vr ol,
 ol.vr .dl, ol.vr .ul, ol.vr .ol,
-.vr > ol dl,
-.vr > ol ul,
-.vr > ol ol,
-.vr > ol .dl,
-.vr > ol .ul,
-.vr > ol .ol,
+.vr ol dl,
+.vr ol ul,
+.vr ol ol,
+.vr ol .dl,
+.vr ol .ul,
+.vr ol .ol,
 .dl.vr dl,
 .dl.vr ul,
 .dl.vr ol,
 .dl.vr .dl,
 .dl.vr .ul,
 .dl.vr .ol,
-.vr >
+.vr
 .dl dl,
-.vr >
+.vr
 .dl ul,
-.vr >
+.vr
 .dl ol,
-.vr >
+.vr
 .dl .dl,
-.vr >
+.vr
 .dl .ul,
-.vr >
+.vr
 .dl .ol, .ul.vr dl, .ul.vr ul, .ul.vr ol,
 .ul.vr .dl, .ul.vr .ul, .ul.vr .ol,
-.vr > .ul dl,
-.vr > .ul ul,
-.vr > .ul ol,
-.vr > .ul .dl,
-.vr > .ul .ul,
-.vr > .ul .ol, .ol.vr dl, .ol.vr ul, .ol.vr ol,
+.vr .ul dl,
+.vr .ul ul,
+.vr .ul ol,
+.vr .ul .dl,
+.vr .ul .ul,
+.vr .ul .ol, .ol.vr dl, .ol.vr ul, .ol.vr ol,
 .ol.vr .dl, .ol.vr .ul, .ol.vr .ol,
-.vr > .ol dl,
-.vr > .ol ul,
-.vr > .ol ol,
-.vr > .ol .dl,
-.vr > .ol .ul,
-.vr > .ol .ol {
+.vr .ol dl,
+.vr .ol ul,
+.vr .ol ol,
+.vr .ol .dl,
+.vr .ol .ul,
+.vr .ol .ol {
   margin-top: .5em;
   margin-bottom: .5em;
 }
@@ -7789,23 +7725,23 @@ ol.vr .dl, ol.vr .ul, ol.vr .ol,
 }
 
 .caption.vr,
-.vr > .caption,
+.vr .caption,
 caption.vr,
-.vr >
+.vr
 caption,
 figcaption.vr,
-.vr >
+.vr
 figcaption {
   margin-bottom: 1em;
 }
 
 .caption.vr:last-child,
-.vr > .caption:last-child,
+.vr .caption:last-child,
 caption.vr:last-child,
-.vr >
+.vr
 caption:last-child,
 figcaption.vr:last-child,
-.vr >
+.vr
 figcaption:last-child {
   margin-bottom: 0;
 }
@@ -7843,29 +7779,29 @@ figcaption:last-child {
 }
 
 .quote.vr,
-.vr > .quote,
+.vr .quote,
 .blockquote.vr,
-.vr >
+.vr
 .blockquote,
 quote.vr,
-.vr >
+.vr
 quote,
 blockquote.vr,
-.vr >
+.vr
 blockquote {
   margin-bottom: 1em;
 }
 
 .quote.vr:last-child,
-.vr > .quote:last-child,
+.vr .quote:last-child,
 .blockquote.vr:last-child,
-.vr >
+.vr
 .blockquote:last-child,
 quote.vr:last-child,
-.vr >
+.vr
 quote:last-child,
 blockquote.vr:last-child,
-.vr >
+.vr
 blockquote:last-child {
   margin-bottom: 0;
 }
@@ -7937,16 +7873,6 @@ blockquote:last-child {
     position: static;
     transform: none;
     width: 100%;
-  }
-}
-
-body {
-  padding-top: 50px;
-}
-
-@media screen and (max-width: 640px) {
-  body {
-    padding-top: 0;
   }
 }
 
@@ -8046,6 +7972,23 @@ body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
+/**
+ * @name 		Card
+ * Display a content inside a nice card
+ * @styleguide 		Blocks / Card
+ * @example 		html
+ * <article class="card" style="max-width:300px; margin-bottom:100px;">
+ * 	<figure class="ratio-16-9">
+ * 		<img src="http://coffeekraken.io/dist/img/tool-gridle.jpg" class="abs-cover" />
+ * 	</figure>
+ * 	<div class="card__content tf vr">
+ * 		<h4>Card title</h4>
+ * 		<p class="p">
+ * 			Vestibulum a augue porta, maximus nibh in, ultricies lectus. Aliquam nisl purus, dapibus in lectus et, fermentum aliquet ipsum. Cras.
+ * 		</p>
+ * 	</div>
+ * </article>
+ */
 .card {
   box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
   background: white;
@@ -8072,7 +8015,7 @@ body {
 /**
 		 * @name 	Nav inline
 		 * Provide a simple inline navigation component
-		 * @styleguide 	Components / Nav
+		 * @styleguide 	Blocks / Nav
 		 * @example 	html
 		 * <ul class="nav nav--inline">
 		 * 	<li class="nav__item">
@@ -8121,7 +8064,7 @@ body {
 }
 
 /**
- * Nav topbar
+ * Nav toolbar
  */
 .nav--topbar .nav__item {
   vertical-align: middle;
@@ -8177,7 +8120,18 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Print out the
+ * Print out the scrollbar css bare and style
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Print out the scrollbar css bare
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Print out the scrollbar css style
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 s-custom-scrollbar .simplebar-scrollbar {
   background-color: #848e91 !important;
@@ -8186,7 +8140,7 @@ s-custom-scrollbar .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-primary">Primary</span> Scrollbar
 				 * Provide a way to display a nice primary custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="primary" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8206,7 +8160,7 @@ s-custom-scrollbar[color="primary"] .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-secondary">Secondary</span> Scrollbar
 				 * Provide a way to display a nice secondary custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="secondary" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8226,7 +8180,7 @@ s-custom-scrollbar[color="secondary"] .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-success">Success</span> Scrollbar
 				 * Provide a way to display a nice success custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="success" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8246,7 +8200,7 @@ s-custom-scrollbar[color="success"] .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-warning">Warning</span> Scrollbar
 				 * Provide a way to display a nice warning custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="warning" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8266,7 +8220,7 @@ s-custom-scrollbar[color="warning"] .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-error">Error</span> Scrollbar
 				 * Provide a way to display a nice error custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="error" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8286,7 +8240,7 @@ s-custom-scrollbar[color="error"] .simplebar-scrollbar {
 /**
 				 * @name 		 	<span class="c-info">Info</span> Scrollbar
 				 * Provide a way to display a nice info custom-scrollbar
-				 * @styleguide  	Components / Scrollbar
+				 * @styleguide  	Blocks / Scrollbar
 				 * @example 		html
 				 * <s-custom-scrollbar color="info" style="height:300px;">
 				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
@@ -8303,6 +8257,15 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   background-color: #2199e8 !important;
 }
 
+/**
+ * @name 		Section
+ * Provide a simple padded section
+ * @styleguide 	Layout / Section
+ * @example 	html
+ * <section class="section tf">
+ * 	<h1>I'm a simple section</h1>
+ * </section>
+ */
 .section {
   padding: 10.71429rem 0;
 }
@@ -8434,7 +8397,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 }
 
 .form-addon.vr,
-.vr > .form-addon {
+.vr .form-addon {
   margin-bottom: 1em;
 }
 
@@ -8961,295 +8924,14 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 }
 
 /**
-		 * @name 	btn
-		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
-		 * @example 	html
-		 * <a class="btn">
-		 * 	Default button
-		 * </a>
-		 */
-.btn {
-  border-radius: 0;
-  padding: 0.8em 1.4em;
-  height: 2.6em;
-}
-
-/**
-		 * @name 	btn block
-		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
-		 * @example 	html
-		 * <a class="btn btn--block">
-		 * 	Block button
-		 * </a>
-		 */
-.btn--block {
-  border-radius: 0;
-  padding: 0.8em 1.4em;
-  height: 2.6em;
-  display: block;
-  width: 100%;
-}
-
-.btn {
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background-color: #848e91;
-  border-color: #848e91;
-  color: white;
-}
-
-.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
-  background-color: #5f676a;
-  border-color: #5f676a;
-}
-
-.btn--link {
-  background-color: transparent !important;
-  color: #f2bc2b !important;
-  border-color: transparent !important;
-  position: relative;
-}
-
-.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #f2bc2b;
-}
-
-.btn--link[active]:not(:disabled):after, .btn--link.active:not(:disabled):after, .btn--link:active:not(:disabled):after, .btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2.8em);
-}
-
-/**
-			 * @name 	<span class="c-primary">Primary</span> btn
-			 * Primary button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--primary">
-			 * 	Primary button
-			 * </a>
-			 */
-.btn--primary {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-  /**
-				 * @name 	<span class="c-primary">Primary</span> outline btn
-				 * Outline primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--primary">
-				 * 	Primary outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-primary">Primary</span> link btn
-				 * Link primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--primary">
-				 * 	Primary link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-primary">Primary</span> disabled btn
-				 * Disabled primary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--primary">
-				 * 	Primary disabled button
-				 * </button>
-				 */
-}
-
-.btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-.btn--primary.btn--outline {
-  color: #f2bc2b;
-  background-color: transparent;
-  border-color: #f2bc2b;
-}
-
-.btn--primary.btn--outline:active:not(:disabled), .btn--primary.btn--outline:hover:not(:disabled), .btn--primary.btn--outline.active:not(:disabled),
-:checked + .btn--primary.btn--outline:not(:disabled) {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-}
-
-.btn--primary.btn--link {
-  background-color: transparent !important;
-  color: #f2bc2b !important;
-  border-color: transparent !important;
-  position: relative;
-}
-
-.btn--primary.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #f2bc2b;
-}
-
-.btn--primary.btn--link[active]:not(:disabled):after, .btn--primary.btn--link.active:not(:disabled):after, .btn--primary.btn--link:active:not(:disabled):after, .btn--primary.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2.8em);
-}
-
-.btn--primary.btn:disabled {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-.btn--hover-primary:hover {
-  background-color: #f2bc2b;
-  border-color: #f2bc2b;
-  color: white;
-}
-
-.btn--hover-primary:hover[active]:not(:disabled), .btn--hover-primary:hover.active:not(:disabled), .btn--hover-primary:hover:active:not(:disabled), .btn--hover-primary:hover:hover:not(:disabled) {
-  background-color: #c4920c;
-  border-color: #c4920c;
-}
-
-/**
-			 * @name 	<span class="c-secondary">Secondary</span> btn
-			 * Secondary button
-			 * @styleguide 	Components / Btn
-			 * @example 	html
-			 * <a class="btn btn--secondary">
-			 * 	Secondary button
-			 * </a>
-			 */
-.btn--secondary {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> outline btn
-				 * Outline secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--outline btn--secondary">
-				 * 	Secondary outlined button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> link btn
-				 * Link secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <a class="btn btn--link btn--secondary">
-				 * 	Secondary link button
-				 * </a>
-				 */
-  /**
-				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
-				 * Disabled secondary button
-				 * @styleguide 	Components / Btn
-				 * @example 	html
-				 * <button disabled class="btn btn--secondary">
-				 * 	Secondary disabled button
-				 * </button>
-				 */
-}
-
-.btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
-.btn--secondary.btn--outline {
-  color: #2b3438;
-  background-color: transparent;
-  border-color: #2b3438;
-}
-
-.btn--secondary.btn--outline:active:not(:disabled), .btn--secondary.btn--outline:hover:not(:disabled), .btn--secondary.btn--outline.active:not(:disabled),
-:checked + .btn--secondary.btn--outline:not(:disabled) {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-}
-
-.btn--secondary.btn--link {
-  background-color: transparent !important;
-  color: #2b3438 !important;
-  border-color: transparent !important;
-  position: relative;
-}
-
-.btn--secondary.btn--link:after {
-  content: '';
-  position: absolute;
-  display: block;
-  bottom: 0.32em;
-  left: 50%;
-  height: .2em;
-  width: 0;
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
-  background: #2b3438;
-}
-
-.btn--secondary.btn--link[active]:not(:disabled):after, .btn--secondary.btn--link.active:not(:disabled):after, .btn--secondary.btn--link:active:not(:disabled):after, .btn--secondary.btn--link:hover:not(:disabled):after {
-  width: calc(100% - 2.8em);
-}
-
-.btn--secondary.btn:disabled {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-  opacity: 0.5;
-  cursor: not-allowed !important;
-  pointer-events: none;
-}
-
-.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
-.btn--hover-secondary:hover {
-  background-color: #2b3438;
-  border-color: #2b3438;
-  color: white;
-}
-
-.btn--hover-secondary:hover[active]:not(:disabled), .btn--hover-secondary:hover.active:not(:disabled), .btn--hover-secondary:hover:active:not(:disabled), .btn--hover-secondary:hover:hover:not(:disabled) {
-  background-color: #0a0c0d;
-  border-color: #0a0c0d;
-}
-
+ * @name 	Coffeekraken logo
+ * Display the coffeekraken logo
+ * @styleguide 		Objects / Coffeekraken logo
+ * @example 	html
+ * <div class="bkg-secondary p">
+ * 	<div class="coffeekraken-logo" style="width:200px;"></div>
+ * </div>
+ */
 .coffeekraken-logo {
   background-repeat: no-repeat;
   background-size: cover;
@@ -9269,6 +8951,37 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   counter-reset: s-list;
 }
 
+/**
+ * @name 	List footer
+ * List that are displayed in the footer
+ * @styleguide 		Objects / List
+ * @example 	html
+ * <section class="footer bkg-secondary p">
+ * 	<ul class="list list--footer">
+ * 		<h5 class="h5 m-b-small">
+ * 			List title
+ * 		</h5>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 01</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 02</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 03</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 04</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 05</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 06</a>
+ * 		</li>
+ * 	</ul>
+ * </section>
+ */
 .list--footer {
   font-size: .8em;
 }
@@ -9286,12 +8999,21 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   text-decoration: underline;
 }
 
+/**
+ * @name 		Default pill
+ * Display a simple pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill">I'm a cool pill</span>
+ * <span class="pill">Another cool pill</span>
+ */
 .pill {
   padding: .5em 1.5em;
   color: white;
   border-radius: 20px;
   font-size: 12px;
   display: inline-block;
+  background-color: #848e91;
   font-family: "Roboto";
   font-weight: 800;
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0;
@@ -9303,22 +9025,34 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   }
 }
 
+/**
+ * @name 		Primary pill
+ * Display a primary colored pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill pill--primary">I'm a cool pill</span>
+ * <span class="pill pill--primary">Another cool pill</span>
+ */
 .pill--primary {
   background-color: #f2bc2b;
 }
 
+/**
+ * @name 		Secondary pill
+ * Display a secondary colored pill
+ * @styleguide 		Objects / Pills
+ * @example 	html
+ * <span class="pill pill--secondary">I'm a cool pill</span>
+ * <span class="pill pill--secondary">Another cool pill</span>
+ */
 .pill--secondary {
   background-color: #2b3438;
-}
-
-.pill--secondary-light {
-  background-color: #576a72;
 }
 
 /**
 		 * @name 	btn
 		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
+		 * @styleguide 	Objects / Btn
 		 * @example 	html
 		 * <a class="btn">
 		 * 	Default button
@@ -9333,7 +9067,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 		 * @name 	btn block
 		 * Lead paragraph styling
-		 * @styleguide 	Components / Btn
+		 * @styleguide 	Objects / Btn
 		 * @example 	html
 		 * <a class="btn btn--block">
 		 * 	Block button
@@ -9388,7 +9122,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 			 * @name 	<span class="c-primary">Primary</span> btn
 			 * Primary button
-			 * @styleguide 	Components / Btn
+			 * @styleguide 	Objects / Btn
 			 * @example 	html
 			 * <a class="btn btn--primary">
 			 * 	Primary button
@@ -9401,7 +9135,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-primary">Primary</span> outline btn
 				 * Outline primary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <a class="btn btn--outline btn--primary">
 				 * 	Primary outlined button
@@ -9410,7 +9144,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-primary">Primary</span> link btn
 				 * Link primary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <a class="btn btn--link btn--primary">
 				 * 	Primary link button
@@ -9419,7 +9153,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-primary">Primary</span> disabled btn
 				 * Disabled primary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <button disabled class="btn btn--primary">
 				 * 	Primary disabled button
@@ -9498,7 +9232,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> btn
 			 * Secondary button
-			 * @styleguide 	Components / Btn
+			 * @styleguide 	Objects / Btn
 			 * @example 	html
 			 * <a class="btn btn--secondary">
 			 * 	Secondary button
@@ -9511,7 +9245,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-secondary">Secondary</span> outline btn
 				 * Outline secondary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <a class="btn btn--outline btn--secondary">
 				 * 	Secondary outlined button
@@ -9520,7 +9254,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-secondary">Secondary</span> link btn
 				 * Link secondary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <a class="btn btn--link btn--secondary">
 				 * 	Secondary link button
@@ -9529,7 +9263,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
 				 * Disabled secondary button
-				 * @styleguide 	Components / Btn
+				 * @styleguide 	Objects / Btn
 				 * @example 	html
 				 * <button disabled class="btn btn--secondary">
 				 * 	Secondary disabled button
@@ -10140,7 +9874,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 		 * @name 	Dropdown
 		 * Provide a nice dropdown component
-		 * @styleguide 		Components / Dropdown
+		 * @styleguide 		Objects / Dropdown
 		 * @example 	html
 		 * <div style="display:inline-block" class="dropdown">
 		 * 	<a>Display dropdown</a>
@@ -10168,7 +9902,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
   /**
 			 * @name 	Dropdown right
 			 * Provide a nice dropdown component aligned to the right
-			 * @styleguide 		Components / Dropdown
+			 * @styleguide 		Objects / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--right">
 			 * 	<a>Display right dropdown</a>
@@ -10263,7 +9997,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 			 * @name 	<span class="c-primary">Primary</span> Dropdown
 			 * Provide a nice dropdown primary component
-			 * @styleguide 		Components / Dropdown
+			 * @styleguide 		Objects / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--primary">
 			 * 	<a>Display primary dropdown</a>
@@ -10293,7 +10027,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> Dropdown
 			 * Provide a nice dropdown secondary component
-			 * @styleguide 		Components / Dropdown
+			 * @styleguide 		Objects / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--secondary">
 			 * 	<a>Display secondary dropdown</a>
@@ -10351,6 +10085,7 @@ s-google-map:before {
 .tooltip {
   border-radius: 0;
   padding: 0.8em 1.4em;
+  line-height: 1.4;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
 }
@@ -10368,24 +10103,6 @@ s-google-map:before {
   }
 }
 
-@keyframes s-tooltip-component--c {
-  0% {
-    transform: scale(0.9, 0.9) translateX(-50%) translateY(-50%);
-  }
-  100% {
-    transform: scale(1, 1) translateX(-50%) translateY(-50%);
-  }
-}
-
-@keyframes s-tooltip-component--b {
-  0% {
-    transform: scale(0.9, 0.9) translateX(-50%);
-  }
-  100% {
-    transform: scale(1, 1) translateX(-50%);
-  }
-}
-
 @keyframes s-tooltip-component--t {
   0% {
     transform: scale(0.9, 0.9) translateX(-50%);
@@ -10395,40 +10112,20 @@ s-google-map:before {
   }
 }
 
-@keyframes s-tooltip-component--l {
-  0% {
-    transform: scale(0.9, 0.9) translateY(-50%);
-  }
-  100% {
-    transform: scale(1, 1) translateY(-50%);
-  }
-}
-
-@keyframes s-tooltip-component--r {
-  0% {
-    transform: scale(0.9, 0.9) translateY(-50%);
-  }
-  100% {
-    transform: scale(1, 1) translateY(-50%);
-  }
-}
-
 .tooltip {
   background-color: #848e91;
   color: white;
-}
-
-.tooltip.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip.tooltip--c, .tooltip.tooltip--c.active,
-.active > .tooltip.tooltip--c,
-:hover > .tooltip.tooltip--c {
-  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
+  /**
+					 * @name 		<span class="c-default">Default</span> top tooltip
+					 * Display a default top centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--t">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
 }
 
 .tooltip.tooltip--t {
@@ -10473,957 +10170,14 @@ s-google-map:before {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
-.tooltip.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--tl:after, .tooltip.tooltip--tl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--tl:after {
-  border-width: 0.5em;
-  border-top-color: #848e91;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip.tooltip--tl:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip.tooltip--tl, .tooltip.tooltip--tl.active,
-.active > .tooltip.tooltip--tl,
-:hover > .tooltip.tooltip--tl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--tr:after, .tooltip.tooltip--tr:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--tr:after {
-  border-width: 0.5em;
-  border-top-color: #848e91;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip.tooltip--tr:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip.tooltip--tr, .tooltip.tooltip--tr.active,
-.active > .tooltip.tooltip--tr,
-:hover > .tooltip.tooltip--tr {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--l:after, .tooltip.tooltip--l:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--l:after {
-  border-width: 0.5em;
-  border-left-color: #848e91;
-  right: -1em;
-}
-
-.tooltip.tooltip--l:before {
-  border-width: 0.5em;
-  right: -1em;
-}
-
-.tooltip--active > .tooltip.tooltip--l, .tooltip.tooltip--l.active,
-.active > .tooltip.tooltip--l,
-:hover > .tooltip.tooltip--l {
-  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--r:after, .tooltip.tooltip--r:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--r:after {
-  border-width: 0.5em;
-  border-right-color: #848e91;
-  left: -1em;
-}
-
-.tooltip.tooltip--r:before {
-  border-width: 0.5em;
-  left: -1em;
-}
-
-.tooltip--active > .tooltip.tooltip--r, .tooltip.tooltip--r.active,
-.active > .tooltip.tooltip--r,
-:hover > .tooltip.tooltip--r {
-  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--bl:after, .tooltip.tooltip--bl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--bl:after {
-  border-width: 0.5em;
-  border-bottom-color: #848e91;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip.tooltip--bl:before {
-  border-width: 0.5em;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip.tooltip--bl, .tooltip.tooltip--bl.active,
-.active > .tooltip.tooltip--bl,
-:hover > .tooltip.tooltip--bl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--b:after, .tooltip.tooltip--b:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--b:after {
-  border-width: 0.5em;
-  border-bottom-color: #848e91;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip.tooltip--b:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--active > .tooltip.tooltip--b, .tooltip.tooltip--b.active,
-.active > .tooltip.tooltip--b,
-:hover > .tooltip.tooltip--b {
-  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #848e91;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip.tooltip--br:after, .tooltip.tooltip--br:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip.tooltip--br:after {
-  border-width: 0.5em;
-  border-bottom-color: #848e91;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip.tooltip--br:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip.tooltip--br, .tooltip.tooltip--br.active,
-.active > .tooltip.tooltip--br,
-:hover > .tooltip.tooltip--br {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary {
-  background-color: #f2bc2b;
-  color: white;
-}
-
-.tooltip--primary.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip--primary.tooltip--c, .tooltip--primary.tooltip--c.active,
-.active > .tooltip--primary.tooltip--c,
-:hover > .tooltip--primary.tooltip--c {
-  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--t:after, .tooltip--primary.tooltip--t:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--t:after {
-  border-width: 0.5em;
-  border-top-color: #f2bc2b;
-  bottom: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--primary.tooltip--t:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--t, .tooltip--primary.tooltip--t.active,
-.active > .tooltip--primary.tooltip--t,
-:hover > .tooltip--primary.tooltip--t {
-  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--tl:after, .tooltip--primary.tooltip--tl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--tl:after {
-  border-width: 0.5em;
-  border-top-color: #f2bc2b;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip--primary.tooltip--tl:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--tl, .tooltip--primary.tooltip--tl.active,
-.active > .tooltip--primary.tooltip--tl,
-:hover > .tooltip--primary.tooltip--tl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--tr:after, .tooltip--primary.tooltip--tr:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--tr:after {
-  border-width: 0.5em;
-  border-top-color: #f2bc2b;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip--primary.tooltip--tr:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--tr, .tooltip--primary.tooltip--tr.active,
-.active > .tooltip--primary.tooltip--tr,
-:hover > .tooltip--primary.tooltip--tr {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--l:after, .tooltip--primary.tooltip--l:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--l:after {
-  border-width: 0.5em;
-  border-left-color: #f2bc2b;
-  right: -1em;
-}
-
-.tooltip--primary.tooltip--l:before {
-  border-width: 0.5em;
-  right: -1em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--l, .tooltip--primary.tooltip--l.active,
-.active > .tooltip--primary.tooltip--l,
-:hover > .tooltip--primary.tooltip--l {
-  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--r:after, .tooltip--primary.tooltip--r:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--r:after {
-  border-width: 0.5em;
-  border-right-color: #f2bc2b;
-  left: -1em;
-}
-
-.tooltip--primary.tooltip--r:before {
-  border-width: 0.5em;
-  left: -1em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--r, .tooltip--primary.tooltip--r.active,
-.active > .tooltip--primary.tooltip--r,
-:hover > .tooltip--primary.tooltip--r {
-  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--bl:after, .tooltip--primary.tooltip--bl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--bl:after {
-  border-width: 0.5em;
-  border-bottom-color: #f2bc2b;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip--primary.tooltip--bl:before {
-  border-width: 0.5em;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--bl, .tooltip--primary.tooltip--bl.active,
-.active > .tooltip--primary.tooltip--bl,
-:hover > .tooltip--primary.tooltip--bl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--b:after, .tooltip--primary.tooltip--b:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--b:after {
-  border-width: 0.5em;
-  border-bottom-color: #f2bc2b;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--primary.tooltip--b:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--b, .tooltip--primary.tooltip--b.active,
-.active > .tooltip--primary.tooltip--b,
-:hover > .tooltip--primary.tooltip--b {
-  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--primary.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #f2bc2b;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--primary.tooltip--br:after, .tooltip--primary.tooltip--br:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--primary.tooltip--br:after {
-  border-width: 0.5em;
-  border-bottom-color: #f2bc2b;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip--primary.tooltip--br:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip--primary.tooltip--br, .tooltip--primary.tooltip--br.active,
-.active > .tooltip--primary.tooltip--br,
-:hover > .tooltip--primary.tooltip--br {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary {
-  background-color: #2b3438;
-  color: white;
-}
-
-.tooltip--secondary.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--c, .tooltip--secondary.tooltip--c.active,
-.active > .tooltip--secondary.tooltip--c,
-:hover > .tooltip--secondary.tooltip--c {
-  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--t:after {
-  border-width: 0.5em;
-  border-top-color: #2b3438;
-  bottom: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--secondary.tooltip--t:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--t, .tooltip--secondary.tooltip--t.active,
-.active > .tooltip--secondary.tooltip--t,
-:hover > .tooltip--secondary.tooltip--t {
-  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--tl:after, .tooltip--secondary.tooltip--tl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--tl:after {
-  border-width: 0.5em;
-  border-top-color: #2b3438;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip--secondary.tooltip--tl:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--tl, .tooltip--secondary.tooltip--tl.active,
-.active > .tooltip--secondary.tooltip--tl,
-:hover > .tooltip--secondary.tooltip--tl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--tr:after, .tooltip--secondary.tooltip--tr:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--tr:after {
-  border-width: 0.5em;
-  border-top-color: #2b3438;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip--secondary.tooltip--tr:before {
-  border-width: 0.5em;
-  bottom: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--tr, .tooltip--secondary.tooltip--tr.active,
-.active > .tooltip--secondary.tooltip--tr,
-:hover > .tooltip--secondary.tooltip--tr {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--l:after, .tooltip--secondary.tooltip--l:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--l:after {
-  border-width: 0.5em;
-  border-left-color: #2b3438;
-  right: -1em;
-}
-
-.tooltip--secondary.tooltip--l:before {
-  border-width: 0.5em;
-  right: -1em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--l, .tooltip--secondary.tooltip--l.active,
-.active > .tooltip--secondary.tooltip--l,
-:hover > .tooltip--secondary.tooltip--l {
-  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--r:after, .tooltip--secondary.tooltip--r:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--r:after {
-  border-width: 0.5em;
-  border-right-color: #2b3438;
-  left: -1em;
-}
-
-.tooltip--secondary.tooltip--r:before {
-  border-width: 0.5em;
-  left: -1em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--r, .tooltip--secondary.tooltip--r.active,
-.active > .tooltip--secondary.tooltip--r,
-:hover > .tooltip--secondary.tooltip--r {
-  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--bl:after, .tooltip--secondary.tooltip--bl:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--bl:after {
-  border-width: 0.5em;
-  border-bottom-color: #2b3438;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip--secondary.tooltip--bl:before {
-  border-width: 0.5em;
-  top: -1em;
-  left: 0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--bl, .tooltip--secondary.tooltip--bl.active,
-.active > .tooltip--secondary.tooltip--bl,
-:hover > .tooltip--secondary.tooltip--bl {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--b:after, .tooltip--secondary.tooltip--b:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--b:after {
-  border-width: 0.5em;
-  border-bottom-color: #2b3438;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--secondary.tooltip--b:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 50%;
-  margin-right: -0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--b, .tooltip--secondary.tooltip--b.active,
-.active > .tooltip--secondary.tooltip--b,
-:hover > .tooltip--secondary.tooltip--b {
-  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
-}
-
-.tooltip--secondary.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
-  position: relative;
-  background: #2b3438;
-  border-style: solid;
-  border-width: 0;
-}
-
-.tooltip--secondary.tooltip--br:after, .tooltip--secondary.tooltip--br:before {
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  visibility: visible;
-}
-
-.tooltip--secondary.tooltip--br:after {
-  border-width: 0.5em;
-  border-bottom-color: #2b3438;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip--secondary.tooltip--br:before {
-  border-width: 0.5em;
-  top: -1em;
-  right: 0.5em;
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--br, .tooltip--secondary.tooltip--br.active,
-.active > .tooltip--secondary.tooltip--br,
-:hover > .tooltip--secondary.tooltip--br {
-  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
-}
-
 .tooltip {
-  font-size: .8em;
   white-space: nowrap;
 }
 
 /**
 		 * @name 		Default table
 		 * Display table contents
-		 * @styleguide 		Components / Table
+		 * @styleguide 		Objects / Table
 		 * @example 		html
 		 * <table class="table">
 		 * 	<tr>
@@ -11445,7 +10199,7 @@ s-google-map:before {
 }
 
 .table.vr,
-.vr > .table {
+.vr .table {
   margin-bottom: 2em;
 }
 
@@ -11536,7 +10290,7 @@ s-google-map:before {
 /**
 		 * @name 		Centered table
 		 * Display centered table contents
-		 * @styleguide 		Components / Table
+		 * @styleguide 		Objects / Table
 		 * @example 		html
 		 * <table class="table table--center">
 		 * 	<tr>
@@ -11561,7 +10315,7 @@ s-google-map:before {
 /**
 		 * @name 		Middle table
 		 * Display middle aligned table contents
-		 * @styleguide 		Components / Table
+		 * @styleguide 		Objects / Table
 		 * @example 		html
 		 * <table class="table table--middle">
 		 * 	<tr>
@@ -11591,7 +10345,7 @@ s-google-map:before {
   /**
 				 * @name 		<span class="c-default">Default</span> table
 				 * Display default table contents
-				 * @styleguide 		Components / Table
+				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--default">
 				 * 	<tr>
@@ -11611,7 +10365,7 @@ s-google-map:before {
   /**
 				 * @name 		<span class="c-primary">Primary</span> table
 				 * Display primary table contents
-				 * @styleguide 		Components / Table
+				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--primary">
 				 * 	<tr>
@@ -11631,7 +10385,7 @@ s-google-map:before {
   /**
 				 * @name 		<span class="c-secondary">Secondary</span> table
 				 * Display secondary table contents
-				 * @styleguide 		Components / Table
+				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--secondary">
 				 * 	<tr>
@@ -11662,7 +10416,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-default">Default</span> striped table
 					 * Display default striped table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--default table--striped">
 					 * 	<tr>
@@ -11682,7 +10436,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-default">Default</span> bordered table
 					 * Display default bordered table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--default table--bordered">
 					 * 	<tr>
@@ -11702,7 +10456,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-default">Default</span> hoverable table
 					 * Display default hoverable table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--default table--hover">
 					 * 	<tr>
@@ -11769,7 +10523,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-primary">Primary</span> striped table
 					 * Display primary striped table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--primary table--striped">
 					 * 	<tr>
@@ -11789,7 +10543,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-primary">Primary</span> bordered table
 					 * Display primary bordered table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--primary table--bordered">
 					 * 	<tr>
@@ -11809,7 +10563,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-primary">Primary</span> hoverable table
 					 * Display primary hoverable table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--primary table--hover">
 					 * 	<tr>
@@ -11876,7 +10630,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> striped table
 					 * Display secondary striped table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--secondary table--striped">
 					 * 	<tr>
@@ -11896,7 +10650,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> bordered table
 					 * Display secondary bordered table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--secondary table--bordered">
 					 * 	<tr>
@@ -11916,7 +10670,7 @@ s-google-map:before {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> hoverable table
 					 * Display secondary hoverable table contents
-					 * @styleguide 		Components / Table
+					 * @styleguide 		Objects / Table
 					 * @example 		html
 					 * <table class="table table--secondary table--hover">
 					 * 	<tr>

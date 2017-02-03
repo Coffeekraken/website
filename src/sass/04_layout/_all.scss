@@ -5,10 +5,10 @@
 @import 'use', 'who';
 
 body {
-	padding-top:50px;
-	@include g-state(mobile) {
-		padding-top:0;
-	}
+	// padding-top:50px;
+	// @include g-state(mobile) {
+	// 	padding-top:0;
+	// }
 }
 
 /**

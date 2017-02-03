@@ -2,6 +2,37 @@
 	@include s-list();
 }
 
+/**
+ * @name 	List footer
+ * List that are displayed in the footer
+ * @styleguide 		Objects / List
+ * @example 	html
+ * <section class="footer bkg-secondary p">
+ * 	<ul class="list list--footer">
+ * 		<h5 class="h5 m-b-small">
+ * 			List title
+ * 		</h5>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 01</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 02</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 03</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 04</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 05</a>
+ * 		</li>
+ * 		<li class="list__item">
+ * 			<a href="javascript:void(0);">List item 06</a>
+ * 		</li>
+ * 	</ul>
+ * </section>
+ */
 .list--footer {
 	font-size: .8em;
 

@@ -17,6 +17,7 @@ module.exports = {
 		alias : {
 			// 'coffeekraken-s-datepicker-component' : '/Users/olivierbossel/data/web/coffeekraken/s-datepicker-component/dist/index.js'
 			// 'coffeekraken-s-custom-scrollbar-component' : '/Users/olivierbossel/data/web/coffeekraken/s-custom-scrollbar-component/dist/index.js'
+			// 'coffeekraken-s-i-typed-component' : '/Users/olivierbossel/data/web/coffeekraken/s-i-typed-component/dist/index.js'
 		}
 	}
 }

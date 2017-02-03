@@ -1,3 +1,12 @@
+/**
+ * @name 	Coffeekraken logo
+ * Display the coffeekraken logo
+ * @styleguide 		Objects / Coffeekraken logo
+ * @example 	html
+ * <div class="bkg-secondary p">
+ * 	<div class="coffeekraken-logo" style="width:200px;"></div>
+ * </div>
+ */
 .coffeekraken-logo {
 	@include s-coffeekraken-logo(
 		$color : white,

@@ -36,6 +36,7 @@
     "coffeekraken-s-google-map-marker-component": "git+https://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
     "coffeekraken-s-equalize-component": "git+https://git@github.com/Coffeekraken/s-equalize-component.git#release/0.0.1",
     "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
+    "coffeekraken-s-i-typed-component": "git+ssh://git@github.com/Coffeekraken/s-i-typed-component.git#release/0.0.1",
     "coffeekraken-s-share-component": "git+ssh://git@github.com/Coffeekraken/s-share-component.git#release/0.0.1",
     "coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
     "coffeekraken-gridle": "git+https://git@github.com/Coffeekraken/gridle.git#release/3.0.0",

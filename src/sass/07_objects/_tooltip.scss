@@ -1,6 +1,8 @@
-@include s-tooltip-classes();
+@include s-tooltip-classes(
+	$colors : default,
+	$sides : t
+);
 
 .tooltip {
-	font-size: .8em;
 	white-space:nowrap;
 }

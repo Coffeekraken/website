@@ -1,4 +1,5 @@
 // main application entry point
+require('webcomponents.js/webcomponents-lite');
 require('./webcomponents.props');
 require('./webcomponents.import');
 
