@@ -90,7 +90,7 @@
 
 	function fetchRepos() {
 		var github = new _githubApi2.default({
-			token: "1edc64859e2672aeb942127b15c489f4e8259ace",
+			token: "421307ab0abcad55ff8168c65084cf4f5b610165",
 			auth: "oauth"
 		});
 		var user = github.getUser();
