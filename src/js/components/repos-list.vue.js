@@ -19,7 +19,7 @@ if (localRepos) {
 
 function fetchRepos() {
 	var github = new Github({
-	  token: "15cdb6ee3251b01f8a893646e2a9dac99360aff4",
+	  token: "1edc64859e2672aeb942127b15c489f4e8259ace",
 	  auth: "oauth"
 	});
 	var user = github.getUser();
