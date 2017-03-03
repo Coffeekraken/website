@@ -30,17 +30,19 @@
   "author": "Coffeekraken <hello@coffeekraken.io>",
   "license": "MIT",
   "dependencies": {
+    "coffeekraken-gridle": "git+ssh://git@github.com/Coffeekraken/gridle.git#release/3.0.0",
     "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
     "coffeekraken-s-datepicker-component": "git+ssh://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
+    "coffeekraken-s-equalize-component": "git+ssh://git@github.com/Coffeekraken/s-equalize-component.git#release/0.0.1",
     "coffeekraken-s-google-map-component": "git+ssh://git@github.com/Coffeekraken/s-google-map-component.git#release/0.0.1",
     "coffeekraken-s-google-map-marker-component": "git+ssh://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
-    "coffeekraken-s-equalize-component": "git+ssh://git@github.com/Coffeekraken/s-equalize-component.git#release/0.0.1",
-    "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
     "coffeekraken-s-i-typed-component": "git+ssh://git@github.com/Coffeekraken/s-i-typed-component.git#release/0.0.1",
+    "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
     "coffeekraken-s-share-component": "git+ssh://git@github.com/Coffeekraken/s-share-component.git#release/0.0.1",
     "coffeekraken-sugar": "git+ssh://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
-    "coffeekraken-gridle": "git+ssh://git@github.com/Coffeekraken/gridle.git#release/3.0.0",
-    "marked": "^0.3.6"
+    "github-api": "^3.0.0",
+    "marked": "^0.3.6",
+    "vue": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

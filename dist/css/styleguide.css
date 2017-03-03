@@ -213,13 +213,39 @@
 /**
  * Register some basics mobile first states:
  *
+ * - mobile : 320px to infinite
+ * - tablet : 640px to infinite
+ * - desktop : 992px to infinite
+ * - large : 1200px to infinite
+ *
+ * @example 	scss
+ * \@include g-register-mobile-first-states();
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register bootstrap 3 states
+ *
  * - xs : 0 to 750px
  * - sm : 750px to infinite
  * - md : 970px to infinite
  * - lg : 1170px to infinite
  *
  * @example 	scss
- * \@include g-register-default-mobile-first-states();
+ * \@include g-register-bootstrap3-states();
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Register bootstrap 4 states
+ *
+ * - xs : 0 to 576px
+ * - sm : 576px to infinite
+ * - md : 970px to infinite
+ * - lg : 1200px to infinite
+ *
+ * @example 	scss
+ * \@include g-register-bootstrap4-states();
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -1709,6 +1735,8 @@
  * - sugar.clear.left : .clear-left
  * - sugar.clear.right : .clear-right
  * - sugar.clear.both : .clear
+ * - sugar.pointer.events.all : .pointer-events-all
+ * - sugar.pointer.events.none : .pointer-events-none
  * - sugar.display.show : .show
  * - sugar.display.show-inline : .show-inline
  * - sugar.display.hidden : .hidden
@@ -2100,6 +2128,8 @@
  * - sugar.clear.left : ```.clear-left```
  * - sugar.clear.right : ```.clear-right```
  * - sugar.clear.both : ```.clear```
+ * - sugar.pointer.events.all : ```.pointer-events-all```
+ * - sugar.pointer.events.none : ```.pointer-events-none```
  * - sugar.display.show : ```.show```
  * - sugar.display.show-inline : ```.show-inline```
  * - sugar.display.hidden : ```.hidden```
@@ -2230,6 +2260,32 @@
 	 * </div>
 	 */
   clear: both;
+}
+
+.pointer-events-none {
+  /**
+	 * @name 		```.pointer-events-none```
+	 * Disable any pointer events
+	 * @styleguide 	Helpers / Pointer events
+	 * @example 	html
+	 * <div class="pointer-events-none">
+	 * 	I will not react to any pointer events
+	 * </div>
+	 */
+  pointer-events: none;
+}
+
+.pointer-events-all {
+  /**
+	 * @name 		```.pointer-events-all```
+	 * Disable any pointer events
+	 * @styleguide 	Helpers / Pointer events
+	 * @example 	html
+	 * <div class="pointer-events-all">
+	 * 	I will not react to any pointer events
+	 * </div>
+	 */
+  pointer-events: all;
 }
 
 .block {
@@ -2417,7 +2473,7 @@
 	 * 	I'm left aligned
 	 * </div>
 	 */
-  text-align: left !important;
+  text-align: left;
 }
 
 .t-right {
@@ -2430,7 +2486,7 @@
 	 * 	I'm right aligned
 	 * </div>
 	 */
-  text-align: right !important;
+  text-align: right;
 }
 
 .t-center {
@@ -2443,7 +2499,7 @@
 	 * 	I'm centered
 	 * </div>
 	 */
-  text-align: center !important;
+  text-align: center;
 }
 
 .t-justify {
@@ -2456,7 +2512,7 @@
 	 * 	Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu.
 	 * </div>
 	 */
-  text-align: justify !important;
+  text-align: justify;
 }
 
 .t-lowercase {
@@ -2469,7 +2525,7 @@
 	 * 	I'M LOWERCASE
 	 * </div>
 	 */
-  text-transform: lowercase !important;
+  text-transform: lowercase;
 }
 
 .t-uppercase {
@@ -2482,7 +2538,7 @@
 	 * 	I'm uppercase
 	 * </div>
 	 */
-  text-transform: uppercase !important;
+  text-transform: uppercase;
 }
 
 .t-capitalize {
@@ -2495,7 +2551,7 @@
 	 * 	I'm capitalized
 	 * </div>
 	 */
-  text-transform: capitalize !important;
+  text-transform: capitalize;
 }
 
 .f-bold {
@@ -5236,18 +5292,6 @@ table {
 		 * @display 	color
 		 */
 /**
-				 * @styleguide 	Colors / Swatches
-				 * @name 		default--light
-				 * @color 		#acb3b5
-				 * @display 	color
-				 */
-/**
-				 * @styleguide 	Colors / Swatches
-				 * @name 		default--dark
-				 * @color 		#5f676a
-				 * @display 	color
-				 */
-/**
 		 * @styleguide 	Colors / Swatches
 		 * @name 		title
 		 * @color 		#2b3438
@@ -5320,7 +5364,7 @@ table {
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto", "font-weight": 400}, "roboto-light": {"font-family": "Roboto", "font-weight": 300}, "roboto-bold": {"font-family": "Roboto", "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": "Roboto", "font-weight": 400}, "roboto-light": {"font-family": "Roboto", "font-weight": 300}, "roboto-bold": {"font-family": "Roboto", "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -6592,58 +6636,6 @@ body {
 				 */
 .bkg-default {
   background-color: #848e91;
-}
-
-/**
-						 * @name 	```.c-default--light```
-						 * Specify the color to **default--light**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="c-default--light">
-						 * 	I'm in "default--light" color
-						 * </div>
-						 */
-.c-default--light {
-  color: #acb3b5;
-}
-
-/**
-						 * @name 	```.bkg-default--light```
-						 * Specify the background color to **default--light**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="bkg-default--light p" style="color:white">
-						 * 	My background color is "default--light"
-						 * </div>
-						 */
-.bkg-default--light {
-  background-color: #acb3b5;
-}
-
-/**
-						 * @name 	```.c-default--dark```
-						 * Specify the color to **default--dark**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="c-default--dark">
-						 * 	I'm in "default--dark" color
-						 * </div>
-						 */
-.c-default--dark {
-  color: #5f676a;
-}
-
-/**
-						 * @name 	```.bkg-default--dark```
-						 * Specify the background color to **default--dark**
-						 * @styleguide  	Colors / Classes
-						 * @example 	html
-						 * <div class="bkg-default--dark p" style="color:white">
-						 * 	My background color is "default--dark"
-						 * </div>
-						 */
-.bkg-default--dark {
-  background-color: #5f676a;
 }
 
 /**
@@ -8409,7 +8401,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-input {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(132, 142, 145, 0.1);
 }
@@ -8460,7 +8452,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-select {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(132, 142, 145, 0.1);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23848e91"></polygon></svg>');
@@ -8508,7 +8500,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-textarea {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(132, 142, 145, 0.1);
 }
@@ -8583,7 +8575,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-input--primary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(242, 188, 43, 0.1);
 }
@@ -8634,7 +8626,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-select--primary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(242, 188, 43, 0.1);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23f2bc2b"></polygon></svg>');
@@ -8682,7 +8674,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-textarea--primary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(242, 188, 43, 0.1);
 }
@@ -8757,7 +8749,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-input--secondary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(43, 52, 56, 0.1);
 }
@@ -8808,7 +8800,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-select--secondary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(43, 52, 56, 0.1);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%232b3438"></polygon></svg>');
@@ -8856,7 +8848,7 @@ s-custom-scrollbar[color="info"] .simplebar-scrollbar {
 			 */
 .form-textarea--secondary {
   color: #848e91;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(43, 52, 56, 0.1);
 }
@@ -10078,6 +10070,18 @@ s-google-map:before {
 }
 
 .s-ripple__particle {
+  /**
+		 * @name 	Default ripple
+		 * Display a ripple on click
+		 * @styleguide 	Objects / Ripples
+		 * @example 	html
+		 * <div style="height:500px; position:relative;">
+		 * 	<s-ripple></s-ripple>
+		 * 	<div style="position:absolute; top:50%; left:50%; transform:translateX(-50%) translateY(-50%)">
+		 * 	 Click to see the ripple effect in action
+		 * 	</div>
+		 * </div>
+		 */
   background: rgba(0, 0, 0, 0.3);
   animation: s-ripple 0.3s 0s ease-out 1 normal forwards;
 }
@@ -10167,6 +10171,64 @@ s-google-map:before {
 .tooltip--active > .tooltip.tooltip--t, .tooltip.tooltip--t.active,
 .active > .tooltip.tooltip--t,
 :hover > .tooltip.tooltip--t {
+  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary {
+  background-color: #2b3438;
+  color: white;
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> top tooltip
+					 * Display a secondary top centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--t">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+}
+
+.tooltip--secondary.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--t:after {
+  border-width: 0.5em;
+  border-top-color: #2b3438;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--secondary.tooltip--t:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--t, .tooltip--secondary.tooltip--t.active,
+.active > .tooltip--secondary.tooltip--t,
+:hover > .tooltip--secondary.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
