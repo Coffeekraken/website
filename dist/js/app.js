@@ -74,7 +74,6 @@
 
 	// check if we have already some repos in the localstorage
 	var localRepos = localStorage.getItem('coffeekraken-repos');
-	localRepos = null;
 	if (localRepos) {
 		localRepos = JSON.parse(localRepos);
 		// check time
