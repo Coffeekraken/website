@@ -90,9 +90,10 @@
 	}
 
 	function fetchRepos() {
+		var token = 'd27c9ea77d47fd90da48720ebe98277a519ba262';
 		var github = new _githubApi2.default({
 			user: "olivierbossel",
-			token: "c56d102cebfb1ef65ed998ac31f775938fb49be2"
+			token: token.split('').reverse().join('')
 		});
 		var user = github.getUser();
 		user.listRepos({}, function (err, repos) {
