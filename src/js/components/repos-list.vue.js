@@ -3,6 +3,7 @@ import Github from 'github-api'
 
 // check if we have already some repos in the localstorage
 let localRepos = localStorage.getItem('coffeekraken-repos');
+localRepos = null;
 if (localRepos) {
 	localRepos = JSON.parse(localRepos);
 	// check time
@@ -19,9 +20,9 @@ if (localRepos) {
 
 function fetchRepos() {
 	var github = new Github({
-	  token: "421307ab0abcad55ff8168c65084cf4f5b610165",
-	  auth: "oauth"
-	});
+	  user: "olivierbossel",
+	  token: "66b981f618871e586e5cb3414752f32e9daf52c6"
+  	});
 	var user = github.getUser();
 	user.listRepos({}, function(err, repos) {
 		if ( ! repos) return;
