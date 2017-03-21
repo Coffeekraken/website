@@ -1,4 +1,4 @@
-# Coffeekraken Website
+# Coffeekraken Website v0.0.1
 
 This is the [coffeekraken.io](http://coffeekraken.io) website project. It's a quite simple website that present what and who are coffeekraken.
 
