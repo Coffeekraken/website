@@ -13,12 +13,12 @@ imagemin([process.env.PWD + '/src/img/**/*'], process.env.PWD + '/dist/img', {
 		imageminJpegRecompress({
 			accurate : true,
 			quality : 'veryhigh',
-			target : 0.65,
-			min : 50,
-			max : 75
+			target : 0.75,
+			min : 65,
+			max : 85
 		}),
 		imageminPngquant({
-			quality: '60-75'
+			quality: '65-85'
 		}),
 		imageminGifsicle({}),
 		imageminSvgo({})

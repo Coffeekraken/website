@@ -1,24 +1,33 @@
 .use {
-	background-image: url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg'),
-					  url('../img/package-icon.svg');
-	background-size: 120px auto,
-					 120px auto,
-					 120px auto,
-					 70px auto,
-					 70px auto,
-					 70px auto,
-					 70px auto;
-	background-position: top 50px right 50px,
-		 				 left 30% bottom -50px,
-		 				 left 50% top -70px,
-		 				 left 15% top 50px,
-		 				 right 25% bottom 100px,
-		 				 right -30px bottom 140px,
-		 				 left 5% top 60%;
+	// background-image: url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/package-icon.svg'),
+	// 				  url('../img/header-bkg.jpg');
+	// background-size: 120px auto,
+	// 				 120px auto,
+	// 				 120px auto,
+	// 				 70px auto,
+	// 				 70px auto,
+	// 				 70px auto,
+	// 				 70px auto,
+	// 				 cover;
+	// background-position: top 50px right 50px,
+	// 	 				 left 30% bottom -50px,
+	// 	 				 left 50% top -70px,
+	// 	 				 left 15% top 50px,
+	// 	 				 right 25% bottom 100px,
+	// 	 				 right -30px bottom 140px,
+	// 	 				 left 5% top 60%,
+	// 					 50% 50%;
+	// background-repeat: no-repeat;
+	background-color: s-color(primary);
+	background-image: url('../img/header-bkg.jpg');
 	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top 50%;
+	background-attachment: fixed;
 }

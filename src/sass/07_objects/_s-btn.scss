@@ -4,4 +4,5 @@
 
 .btn {
 	border-radius: 2em;
+	@include s-truncate-text();
 }

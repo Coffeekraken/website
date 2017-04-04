@@ -1,4 +1,4 @@
 @import 'node_modules/coffeekraken-s-datepicker-component/index';
-@include s-datepicker-component(
+@include s-datepicker-classes(
 	$colors : default primary secondary success warning error info
 );

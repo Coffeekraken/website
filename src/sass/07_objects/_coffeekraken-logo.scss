@@ -9,6 +9,12 @@
  */
 .coffeekraken-logo {
 	@include s-coffeekraken-logo(
+		$accent : white,
+		$color : s-color(secondary)
+	);
+}
+.coffeekraken-logo-footer {
+	@include s-coffeekraken-logo(
 		$color : white,
 		$accent : s-color(primary)
 	);

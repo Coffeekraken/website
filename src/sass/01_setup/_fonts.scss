@@ -1,15 +1,15 @@
 @include s-setup((
     fonts : (
         roboto : (
-            font-family : 'Roboto',
+            font-family : (Roboto, Helvetica),
 			font-weight: 400
         ),
 		roboto-light : (
-			font-family : 'Roboto',
+			font-family : (Roboto, Helvetica),
 			font-weight : 300
 		),
 		roboto-bold : (
-			font-family : 'Roboto',
+			font-family : (Roboto, Helvetica),
 			font-weight : 800
 		)
     )

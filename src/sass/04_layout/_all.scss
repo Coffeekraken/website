@@ -2,13 +2,13 @@
  * Layout
  * All the layout level specific styling.
  */
-@import 'use', 'who';
+@import 'repositories', 'use', 'who';
 
 body {
-	// padding-top:50px;
-	// @include g-state(mobile) {
-	// 	padding-top:0;
-	// }
+	padding-top:50px;
+	@include g-state(mobile) {
+		padding-top:0;
+	}
 }
 
 /**
@@ -43,7 +43,7 @@ body {
  * Header
  */
 .header {
-	background-color: s-color(secondary);
+	background-color: s-color(primary);
 	background-image: url('../img/header-bkg.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -51,6 +51,7 @@ body {
 	background-attachment: fixed;
 	padding: s-space(big) 0;
 	color: white;
+	position:relative;
 
 	.h1 {
 		color: inherit;
@@ -60,6 +61,23 @@ body {
 		text-align: center;
 	}
 }
+	.header__img-kraken {
+		position:absolute;
+		bottom:0; left:50%;
+		width: 50vw;
+		max-width: 800px;
+		height: auto;
+		@include s-translate(-115%, 12.5%);
+		z-index:10;
+		margin-left:-50px;
+		opacity:0;
+		@include s-transition(-delay .3s);
+
+		&[loaded] {
+			opacity:1;
+			margin-left:0;
+		}
+	}
 	.header__img-editors {
 		position:relative;
 		left:100%;
