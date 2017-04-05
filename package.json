@@ -25,7 +25,7 @@
     "dist.watch.fonts": "chokidar 'src/fonts/**/*' -c \"npm run dist.fonts\"",
     "dist.watch.html": "chokidar index.src.html -c \"npm run dist.html\"",
     "carpenter": "coffeekraken-carpenter",
-    "start": "concurrently --kill-others \"npm run dist.watch\" \"npm run server\"",
+    "start": "concurrently --kill-others \"npm run dist.watch\" \"npm run server\" \"npm run carpenter\"",
     "server": "http-server .",
     "test": "coffeekraken-testing-stack"
   },
@@ -63,6 +63,7 @@
     "chokidar-cli": "^1.2.0",
     "coffeekraken-testing-stack": "git+ssh://git@github.com/Coffeekraken/testing-stack.git#release/0.0.1",
     "coffeekraken-carpenter": "git+ssh://git@github.com/Coffeekraken/carpenter.git#release/0.0.1",
+    "coffeekraken-s-bodymovin-component": "git+ssh://git@github.com/Coffeekraken/s-bodymovin-component.git#release/0.0.1",
     "concurrently": "^3.1.0",
     "critical": "^0.8.4",
     "http-server": "^0.9.0",

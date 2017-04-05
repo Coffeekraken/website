@@ -5,4 +5,5 @@ import SCustomScrollbarComponent from 'coffeekraken-s-custom-scrollbar-component
 import SRippleComponent from 'coffeekraken-s-ripple-component'
 import SEqualizeComponent from 'coffeekraken-s-equalize-component'
 import SShareComponent from 'coffeekraken-s-share-component'
+import SBodymovinComponent from 'coffeekraken-s-bodymovin-component'
 import SITypedComponent from 'coffeekraken-s-i-typed-component'
