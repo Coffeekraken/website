@@ -1,0 +1,18 @@
+version: '2'
+services:
+  carpenter-demo:
+    build: .
+    container_name: coffeekraken-carpenter-demo
+    command: bash -c "./start.sh"
+    environment:
+      VIRTUAL_HOST: carpenter.coffeekraken.io,dev.carpenter.coffeekraken.io
+      VIRTUAL_PORT: 3333
+    ports:
+     - "3333:3333"
+    volumes:
+     - .:/code
+     - ~/.ssh:/root/.ssh
+networks:
+  default:
+    external:
+      name: coffeekraken-carpenter-demo-network

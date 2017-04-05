@@ -3,9 +3,12 @@ module.exports = {
 	index : 'documentation/README.md',
 	documentation : {
 		files : [
-			'node_modules/coffeekraken-sugar/**/*.md',
-			'node_modules/coffeekraken-gridle/**/*.md',
-			'node_modules/coffeekraken-s-*/**/*.md',
+			'node_modules/coffeekraken-sugar/!(node_modules)/**/*.md',
+			'node_modules/coffeekraken-sugar/*.md',
+			'node_modules/coffeekraken-gridle/!(node_modules)/**/*.md',
+			'node_modules/coffeekraken-gridle/*.md',
+			'node_modules/coffeekraken-s-*/!(node_modules)/**/*.md',
+			'node_modules/coffeekraken-s-*/*.md',
 			'README.md'
 		]
 	},

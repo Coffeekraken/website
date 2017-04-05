@@ -24,7 +24,7 @@
     "dist.watch.img": "chokidar 'src/img/**/*' -c \"npm run dist.img\"",
     "dist.watch.fonts": "chokidar 'src/fonts/**/*' -c \"npm run dist.fonts\"",
     "dist.watch.html": "chokidar index.src.html -c \"npm run dist.html\"",
-    "carpenter": "coffeekraken-carpenter",
+    "carpenter": "coffeekraken-carpenter -p 2222",
     "start": "concurrently --kill-others \"npm run dist.watch\" \"npm run server\" \"npm run carpenter\"",
     "server": "http-server .",
     "test": "coffeekraken-testing-stack"
