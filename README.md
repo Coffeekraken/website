@@ -13,7 +13,7 @@ This is the [coffeekraken.io](http://coffeekraken.io) website project. It's a qu
 To install the website, run these commands:
 
 1. ```npm install``` : Install dependencies
-2. ```npm dist``` : Build the distribution folder with images, etc...
+2. ```npm start``` : Start working
 
 ## Browser support
 

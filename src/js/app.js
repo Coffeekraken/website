@@ -1,6 +1,5 @@
 // main application entry point
 require('babel-polyfill');
-require('es6-object-assign').polyfill();
 require('./components/repos-list.vue');
 require('webcomponents.js/webcomponents-lite');
 require('./webcomponents.props');
