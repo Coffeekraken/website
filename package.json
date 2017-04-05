@@ -37,6 +37,7 @@
   "author": "Coffeekraken <hello@coffeekraken.io>",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "coffeekraken-gridle": "git+ssh://git@github.com/Coffeekraken/gridle.git#release/3.0.0",
     "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
     "coffeekraken-s-datepicker-component": "git+ssh://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
