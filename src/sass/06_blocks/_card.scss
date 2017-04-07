@@ -16,14 +16,14 @@
  * </article>
  */
 .card {
-	@include s-depth(10);
+	// @include s-depth(10);
 	background: white;
 	@include s-transition(fast);
 	position:relative;
 	transform: scale(1,1);
 
 	&:hover {
-		@include s-depth(20);
+		@include s-depth(10, #eee);
 		z-index:1;
 		transform: scale(1.01,1.01);
 	}
