@@ -20164,29 +20164,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -26972,29 +26981,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -30814,10 +30832,8 @@
 		}, {
 			key: 'componentWillReceiveProp',
 			value: function componentWillReceiveProp(name, newVal, oldVal) {
-				console.log('ddd', name, newVal);
 				switch (name) {
 					case 'skin':
-						console.log('coco', name, newVal);
 						this._map.setOptions({
 							styles: SGoogleMapComponent._registeredSkins[newVal]
 						});
@@ -30895,12 +30911,10 @@
 		}, {
 			key: '_initMap',
 			value: function _initMap() {
-
 				var styles = this.props.styles;
 				if (this.props.skin) {
 					styles = SGoogleMapComponent._registeredSkins[this.props.skin];
 				}
-
 				this._map = new this._google.maps.Map(this._mapElm, _extends({}, this.props, {
 					styles: styles
 				}));
@@ -32419,29 +32433,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -34791,7 +34814,17 @@
 	   * @protected
 	   */
 			get: function get() {
-				return {};
+				return {
+
+					/**
+	     * @name 	Google Map Marker API
+	     * Support all the google map marker API properties
+	     * @prop
+	     * @type 	{Google.Map.Marker}
+	     * @see 	https://developers.google.com/maps/documentation/javascript/3.exp/reference#MarkerOptions 	Google Map Marker Options
+	     */
+
+				};
 			}
 
 			/**
@@ -37273,29 +37306,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -40746,29 +40788,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -44210,29 +44261,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -47511,29 +47571,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -50111,6 +50180,7 @@
 	 * @extends 	SWebComponent
 	 * Simply made some equal height columns.
 	 *
+	 * @styleguide  	Layout / Equalize
 	 * @example 	html
 	 * <div style="overflow:hidden">
 	 * 	<div class="my-cool-column tf vr" style="width:400px; float:left;">
@@ -50136,37 +50206,6 @@
 	 * </div>
 	 *
 	 * @author 	Olivier Bossel <olivier.bossel@gmail.com>
-	 */
-
-	/**
-	 * @name 			Equalize
-	 * Simply made some equal height columns.
-	 * @styleguide  	Layout / Equalize
-	 * @example 		html
-	 * <div style="overflow:hidden">
-	 * <div class="my-cool-column tf vr" style="width:400px; float:left;">
-	 * 	<s-equalize group="cols">
-	 *  	<h4>Column 1</h4>
-	 *  	<p>Integer congue a nibh sed elementum. Mauris ligula sem, scelerisque.</p>
-	 *  	<s-equalize-equalizer></s-equalize-equalizer>
-	 *  	<a href="javascript:void(0);" class="btn btn--primary">
-	 *   		More infos...
-	 * 		</a>
-	 *  </s-equalize>
-	 * </div>
-	 * <div class="my-cool-column tf vr" style="width:400px; float:left;">
-	 * 	<s-equalize group="cols">
-	 *  	<h4>Column 2</h4>
-	 *  	<p>Donec scelerisque eu felis sit amet sodales. Nam sit amet lacus purus. Aliquam rutrum facilisis velit non egestas. Maecenas condimentum condimentum eleifend. Ut sed massa tempus, pellentesque orci id, facilisis dolor. Integer ac ligula convallis, egestas sem ut, luctus purus.</p>
-	 *  	<s-equalize-equalizer></s-equalize-equalizer>
-	 *  	<a href="javascript:void(0);" class="btn btn--primary">
-	 *   		More infos...
-	 * 		</a>
-	 *  </s-equalize>
-	 * </div>
-	 * </div>
-	 * @see 			https://github.com/Coffeekraken/s-google-map-component/tree/release/{version}
-	 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
 	 */
 
 	var SEqualizeComponent = function (_SWebComponent) {
@@ -51750,29 +51789,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -55350,29 +55398,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -59253,29 +59310,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
@@ -76041,29 +76107,38 @@
 				value: function _initPropsProxy() {
 					var _this6 = this;
 
-					var _loop = function _loop(key) {
-						if (_this6.hasOwnProperty(key)) {
-							console.warn('The component ' + _this6.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							return 'continue';
-						}
-						if (!key in _this6) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
+					// loop on each props
+					for (var key in this.defaultProps) {
+						// if (this.hasOwnProperty(key)) {
+						// 	console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+						// 	continue;
+						// }
+						(function (key) {
+							(0, _propertyProxy2.default)(_this6, key, {
+								get: function get(value) {
 									return _this6.props[key];
 								},
 								set: function set(value) {
-									_this6.setProp(key, value);
-								},
-								enumarable: true
-							});
-						}
-					};
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						var _ret2 = _loop(key);
-
-						if (_ret2 === 'continue') continue;
+									if (value !== undefined) {
+										_this6.setProp(key, value);
+										return value;
+									}
+								}
+							}, true);
+						})(key);
+						// if ( ! key in this) {
+						// 	Object.defineProperty(this, key, {
+						// 		get : () => {
+						// 			return this.props[key];
+						// 		},
+						// 		set : (value) => {
+						// 			this.setProp(key, value);
+						// 		},
+						// 		enumarable : true
+						// 	});
+						// } else {
+						//
+						// }
 					}
 				}
 
