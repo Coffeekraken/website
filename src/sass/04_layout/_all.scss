@@ -9,6 +9,7 @@ body {
 	@include g-state(mobile) {
 		padding-top:0;
 	}
+	overflow-x:hidden;
 }
 
 /**
