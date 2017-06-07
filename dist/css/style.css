@@ -8245,7 +8245,6 @@ blockquote:last-child {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 50%;
-  background-attachment: fixed;
 }
 
 .use {
@@ -8254,7 +8253,6 @@ blockquote:last-child {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 50%;
-  background-attachment: fixed;
 }
 
 .who__img-macbook-kraken {
@@ -8315,7 +8313,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 50%;
-  background-attachment: fixed;
   padding: 7.14286rem 0;
   color: white;
   position: relative;
@@ -8415,7 +8412,6 @@ body {
  * </article>
  */
 .card {
-  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
   background: white;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
@@ -8424,7 +8420,7 @@ body {
 }
 
 .card:hover {
-  box-shadow: rgba(0, 0, 0, 0.2) 0 40px 60px;
+  box-shadow: #eee 0 20px 30px;
   z-index: 1;
   transform: scale(1.01, 1.01);
 }
