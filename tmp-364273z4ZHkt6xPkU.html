@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Config -->
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Metas -->
+		<title>Coffeekraken.io</title>
+		<meta name="description" content="We are a young collectve of front-end creative developers with a goal in mind. Build tools to make every team working day life better. This is our first and only concern. All our tools are build around that purpose.">
+		<meta name="keywords" content="coffeekraken, coffee, kraken, styleguide, documentation, workflow, css, sass, js, es6, webpack, babel, html, boilerplate, webcomponent, component, markdown">
+
+		<!-- Sharings -->
+		<meta property="og:url" content="http://coffeekraken.io" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Coffeekraken.io" />
+		<meta property="og:description" content="We are a young collective of front-end creative developers with a goal in mind. Build tools to make every team working day life better. This is our first and only concern. All our tools are build around that purpose." />
+		<meta property="og:image" content="http://coffeekraken.io/dist/img/sharing.png" />
+
+		<!-- Icons -->
+		<link rel="icon" type="image/png" href="/dist/img/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/dist/img/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/dist/img/favicon-192x192.png" sizes="192x192">
+		<link rel="apple-touch-icon" href="/dist/img/apple-touch-icon-180x180.png" sizes="180x180">
+		<meta name="msapplication-config" content="/browserconfig.xml">
+
+		<!-- stylesheet -->
+		<link rel="stylesheet" href="/dist/css/style.css">
+
+	</head>
+	<body>
+
+		<section class="topbar bkg-secondary--dark p-small hide@mobile">
+			<div class="container">
+				<div class="row">
+					<div class="gr-6">
+						<ul class="nav nav--topbar">
+							<li class="nav__item logo">
+								<div class="coffeekraken-logo-footer" style="width:60px"></div>
+							</li>
+
+						</ul>
+					</div>
+					<div class="gr-6">
+						<ul class="nav nav--topbar pull-right">
+							<li class="nav__item">
+								<h1 class="h6">Join us on</h1>
+							</li>
+							<li class="nav__item">
+								<a href="https://twitter.com/coffeekrakenio" title="Join us on twitter" target="_blank">
+									<i class="fa fa-twitter"></i> <span class="link">Twitter</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken" title="Join us on github" target="_blank">
+									<i class="fa fa-github"></i> <span class="link">Github</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<div class="dropdown dropdown--primary">
+									<i class="fa fa-share"></i> &nbsp;<span class="link">Share</span>
+									<ul class="dropdown__menu">
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="facebook" title="Share on facebook">
+												<i class="fa fa-facebook"></i> Facebook
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="twitter" title="Share on twitter">
+												<i class="fa fa-twitter"></i> Twitter
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="googleplus" title="Share on googleplus">
+												<i class="fa fa-google-plus"></i> Google+
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" platform="linkedin" title="Share on linkedin">
+												<i class="fa fa-linkedin"></i> LinkedIn
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="nav__item">
+								<a href="mailto:hello@coffeekraken.io" title="Contact us">
+									<i class="fa fa-envelope-o"></i> <span class="link">Contact us</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="header">
+			<div class="container">
+				<div class="row row-align-middle">
+					<div class="gr-4 hide@mobile" style="min-height:1px;">
+						<!-- <img class="header__img-editors" src="/dist/img/header-editors.png" alt="Atom editors" /> -->
+						<img class="header__img-kraken" src="/dist/img/kraken.png" alt="Atom editors" />
+					</div>
+					<div class="gr-7 prefix-1 prefix-0@mobile">
+						<div class="coffeekraken-logo m-b" style="width:200px"></div>
+						<h1 class="h1 m-b-smaller">
+							<!-- Make <br> -->
+							<s-i-typed class="c-secondary" strings="['Workflow','Styleguide','Documentation','Layout']" loop="true" start-delay="59" back-delay="2000">Team work</s-i-typed><br>
+							made right!
+						</h1>
+						<p class="p p--lead m-b">
+							Working smoothly in team is as hard as working alone on a big project. <br>
+							<span class="c-secondary">We think that the right tool at the right place can solve this once and for all...</span>
+						</p>
+						<ul class="nav nav--pills">
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									Carpenter is a tool that let you generate a styleguide directly from your codebase,<br>
+									as well as aggregating all the needed documentation in the same place.<br>
+									<strong>Very useful to work on the same project as one</strong>.
+								</div>
+								<span class="pill pill--secondary">Styleguide / Documentation</span>
+							</li>
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									A collection of powerful daily use SASS & Javscript<br>
+									mixins, functions and classes.
+								</div>
+								<span class="pill pill--secondary">JS/SCSS</span>
+							</li>
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									Gridle has been out there for quite a while now and<br>
+									is more and more used for his poweful features and highly<br>
+									customizable capabilities.
+								</div>
+								<span class="pill pill--secondary">Grid system</span>
+							</li>
+							<li class="nav__item m-r-smaller">
+								<div class="tooltip tooltip--t tf t-center">
+									All the basics that you need for your websites are<br>
+									here. Choose which components you need and leave the rest aside...
+								</div>
+								<span class="pill pill--secondary">CSS Components</span>
+							</li>
+							<li class="nav__item">
+								<div class="tooltip tooltip--t tf t-center">
+									Webcomponents are the future. But guess what?<br>
+									<strong>The future is NOW!</strong>
+								</div>
+								<span class="pill pill--secondary">Webcomponents</span>
+							</li>
+						</li>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="who section">
+			<div class="container">
+				<div class="row">
+					<div class="gr-6">
+						<h1 class="h1 m-b">
+							Who is <span class="c-primary">Coffeekraken</span>
+						</h1>
+						<p class="p p--lead m-b tf">
+							We are a young collectve of front-end creative developers with one goal in mind. <strong>Build tools to make every team working day life better. This is our first and only concern.</strong> All our tools are build around that purpose.<br>
+All what we provide are some cool tools that you can use the way you want. These tools features cover a large scope of the front-end workflow (styleguide generation, colors/fonts management, etc...). <strong>You can use only the parts that you need and let the rest aside...</strong>
+						</p>
+						<a class="btn btn--primary s-medium" href="https://github.com/coffeekraken/coffeekraken" title="Discover more on Coffeekraken and how to join us" target="_blank">
+							Discover more on Coffeekraken and how to join us
+						</a>
+					</div>
+					<div class="gr-6">
+						<img class="who__img-macbook-kraken" src="/dist/img/macbook.png" alt="Who are Coffeekraken" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="tools section bkg-grey">
+			<div class="container">
+				<div class="row">
+					<div class="gr-12">
+						<h1 class="h1 m-b">
+							Our <span class="c-primary">tools</span>
+						</h1>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/tool-carpenter.jpg" alt="Carpenter - Styleguide and documentation" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Carpenter
+									</h1>
+									<h2 class="h6 m-b">
+										Styleguide/Documentation
+									</h2>
+									<p class="p m-b tf">
+										Nice web interface that <strong>display all your website styleguide</strong> by parsing directly your CSS codebase as well as <strong>aggregating all the documentations</strong> needed by your developers team to work as one.
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/carpenter" title="Check Carpenter out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/tool-sugar.jpg" alt="Sugar - Powerful SASS & JS toolkit" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Sugar
+									</h1>
+									<h2 class="h6 m-b">
+										SASS & JS toolkit
+									</h2>
+									<p class="p m-b tf">
+										<strong>Powerful toolkit</strong> that gives you access to a lot of <strong>SASS mixins, functions, colors and fonts management</strong> as well as a lot of <strong>javascript features</strong> like DOM helpers, classes, utils and webcomponents.
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/sugar" title="Check Sugar out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/tool-gridle.jpg" alt="Carpenter - Styleguide and documentation" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Gridle
+									</h1>
+									<h2 class="h6 m-b">
+										SASS grid system
+									</h2>
+									<p class="p m-b tf">
+										<strong>Fully customizable SASS grid system</strong> that let you create from simple 12 columns layouts, to any columns numbers complexe ones with ease. <strong>Support both default (float) and flexbox based systems.</strong>
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/gridle" title="Check Gridle out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+
+					<div class="gr-3 gutter clear">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										HTML Boilerplate
+									</h1>
+									<p class="p m-b-small">
+										Clean and fully featured (webpack, babel, node-sass) boilerplate
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/html-boilerplate" title="Check HTML boilerplate out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-3 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										Docblock to markdown
+									</h1>
+									<p class="p m-b-small">
+										Parse and convert docblocks from codebase to markdown
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/docblock-to-markdown" title="Check docblock to markdown out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-3 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										Testing stack
+									</h1>
+									<p class="p m-b-small">
+										Integrate quicly javascript tests inside your project
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/testing-stack" title="Check testing stack out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-3 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										Webcomponents
+									</h1>
+									<p class="p m-b-small">
+										Clean and growing library of webcomponents.
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Check webcomponents out" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+
+					<div class="gr-12 m-t t-center">
+						<a class="btn btn--secondary s-medium" href="https://github.com/coffeekraken" title="And more to discover on our Github" target="_blank">
+							And more to discover on our Github
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="use section bkg-primary t-center">
+			<div class="container">
+				<div class="row">
+					<div class="gr-12">
+						<h1 class="h1 m-b">
+							<span class="c-white">Use</span> only what you’re interested in...
+						</h1>
+						<ul class="nav nav--pills m-b">
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/carpenter" title="Workflow" target="_blank">
+									<span class="pill">
+										Workflow
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/carpenter" title="Workflow" target="_blank">
+									<span class="pill pill--secondary">
+										Styleguide
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/docblock-to-markdown" title="Doc Generator" target="_blank">
+									<span class="pill pill--secondary">
+										Doc Generator
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/html-boilerplate" title="HTML Boilerplate" target="_blank">
+									<span class="pill pill--secondary">
+										HTML Boilerplate
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/testing-stack" title="Testing Stack" target="_blank">
+									<span class="pill pill--secondary">
+										Testing Stack
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/sugar" title="Sugar Toolkit" target="_blank">
+									<span class="pill">
+										Sugar Toolkit
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/js/webcomponents.md" title="Webcomponents" target="_blank">
+									<span class="pill pill--secondary">
+										Webcomponents
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/helper-classes.md" title="Helper Classes" target="_blank">
+									<span class="pill pill--secondary">
+										Helper Classes
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/colors.md" title="Colors Management" target="_blank">
+									<span class="pill pill--secondary">
+										Colors Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/fonts.md" title="Fonts Management" target="_blank">
+									<span class="pill pill--secondary">
+										Fonts Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/spaces.md" title="Spaces Management" target="_blank">
+									<span class="pill pill--secondary">
+										Spaces Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/look-and-feel.md" title="Look & Feel Management" target="_blank">
+									<span class="pill pill--secondary">
+										Look & Feel Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/filters.md" title="Filters Management" target="_blank">
+									<span class="pill pill--secondary">
+										Filters Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/transitions.md" title="Transitions Management" target="_blank">
+									<span class="pill pill--secondary">
+										Transitions Management
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/tree/master/doc/src/sass" title="Useful SASS Mixins/Functions" target="_blank">
+									<span class="pill pill--secondary">
+										Useful SASS Mixins/Functions
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/tree/master/doc/src/js" title="Useful JS Functions/Classes" target="_blank">
+									<span class="pill pill--secondary">
+										Useful JS Functions/Classes
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/gridle" title="Gridle Grid System" target="_blank">
+									<span class="pill">
+										Gridle Grid System
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/gridle/blob/release/3.0.0/doc/01.setup.md" title="Fully Customizable" target="_blank">
+									<span class="pill pill--secondary">
+										Fully Customizable
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/gridle/blob/release/3.0.0/doc/01.setup.md#choose-a-driver" title="Float & Flex Support" target="_blank">
+									<span class="pill pill--secondary">
+										Float & Flex Support
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/gridle/tree/release/3.0.0#quick-start" title="Classes or Mixins Usage" target="_blank">
+									<span class="pill pill--secondary">
+										Classes or Mixins Usage
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/gridle/blob/release/3.0.0/doc/05.mixins.md" title="Helper Mixins" target="_blank">
+									<span class="pill pill--secondary">
+										Helper Mixins
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/gridle/blob/release/3.0.0/doc/03.mobile-first.md" title="Mobile First Ready" target="_blank">
+									<span class="pill pill--secondary">
+										Mobile First Ready
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/sass/components.md" title="CSS Components" target="_blank">
+									<span class="pill">
+										CSS Components
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/STypographyComponent/_index.md" title="Typography" target="_blank">
+									<span class="pill pill--secondary">
+										Typography
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/SButtonComponent/_index.md" title="Buttons" target="_blank">
+									<span class="pill pill--secondary">
+										Buttons
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/STableComponent/_index.md" title="Tables" target="_blank">
+									<span class="pill pill--secondary">
+										Tables
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/SFormComponent/_index.md" title="Forms" target="_blank">
+									<span class="pill pill--secondary">
+										Forms
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/SDropdownComponent/_index.md" title="Dropdowns" target="_blank">
+									<span class="pill pill--secondary">
+										Dropdowns
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/sugar/blob/master/doc/src/components/STypographyComponent/sass/_classes.md#s-typography-list-classes" title="Lists" target="_blank">
+									<span class="pill pill--secondary">
+										Lists
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Webcomponents" target="_blank">
+									<span class="pill">
+										Webcomponents
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/s-codemirror-component" title="Codemirror" target="_blank">
+									<span class="pill pill--secondary">
+										Codemirror
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/s-ripple-component" title="Ripple" target="_blank">
+									<span class="pill pill--secondary">
+										Ripple
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-google-map-component" title="Google Map" target="_blank">
+									<span class="pill pill--secondary">
+										Google Map
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-datepicker-component" title="Datepicker" target="_blank">
+									<span class="pill pill--secondary">
+										Datepicker
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-read-more-component" title="Read More" target="_blank">
+									<span class="pill pill--secondary">
+										Read More
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-interactive-demo-component" title="Interactive Component" target="_blank">
+									<span class="pill pill--secondary">
+										Interactive Component
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-activate-component" title="Activate" target="_blank">
+									<span class="pill pill--secondary">
+										Activate
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-share-component" title="Share" target="_blank">
+									<span class="pill pill--secondary">
+										Share
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-dialog-component" title="Dialog" target="_blank">
+									<span class="pill pill--secondary">
+										Dialog
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-drawer-component" title="Drawer" target="_blank">
+									<span class="pill pill--secondary">
+										Drawer
+									</span>
+								</a>
+							</li>
+							<!-- <li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-range-component" title="Range" target="_blank">
+									<span class="pill pill--secondary">
+										Range
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-responsive-image-component" title="Responsive Image" target="_blank">
+									<span class="pill pill--secondary">
+										Responsive Image
+									</span>
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-slideshow-component" title="Slideshow" target="_blank">
+									<span class="pill pill--secondary">
+										Slideshow
+									</span>
+								</a>
+							</li> -->
+							<li class="nav__item">
+								<a href="https://github.com/coffeekraken/s-validator-component" title="Validator" target="_blank">
+									<span class="pill pill--secondary">
+										Validator
+									</span>
+								</a>
+							</li>
+						</ul>
+						<h2 class="h4">
+							...and leave the rest aside...
+						</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="open-source section">
+			<div class="container">
+				<div class="row row-align-middle">
+					<div class="gr-9">
+						<h1 class="h1 m-b">
+							<span class="c-primary">Open source</span> is our roadmap
+						</h1>
+						<p class="p p--lead m-b">
+							We strongly believe that <strong>the way to success is by helping each others</strong>. That’s why our primary target for our tools is to be published as fully open source projects that you can (and we hope you will) modify, enhance and share!
+						</p>
+						<a class="btn btn--primary s-medium" href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md" title="Check out how to contribute to our vision..." target="_blank">
+							Check out how to contribute to our vision...
+						</a>
+					</div>
+					<div class="gr-3 t-center">
+						<s-bodymovin src="/data/logo-osi.json" autoplay></s-bodymovin>
+						<!-- <img class="open-source__img" src="/dist/img/open-source.jpg" alt="Open source is our roadmap" /> -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="tools section bkg-grey">
+			<div class="container">
+				<div class="row">
+					<div class="gr-12">
+						<h1 class="h1 m-b">
+							<span class="c-primary">Contribute</span> to Coffeekraken
+						</h1>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="contribute">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/contribute-issues.jpg" alt="Delare/Fix issues" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Declare/Fix issues
+									</h1>
+									<h2 class="h6 m-b">
+										Everyone will be greatful to you
+									</h2>
+									<p class="p m-b tf">
+										This is the a starting contribution you can make to the project. No need to be an expert to contribute to coffeekraken. We just need you to stick to <strong>some simple rules in order to keep things clean</strong>...
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#declare-issues" title="How to declare/fix an issue..." target="_blank">
+										How to declare/fix an issue...
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="contribute">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/contribute-features.jpg" alt="Add features" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Add features
+									</h1>
+									<h2 class="h6 m-b">
+										Every step forward is important
+									</h2>
+									<p class="p m-b tf">
+										Adding features is another great way to contribute to our project. <strong>That's what make the tools better and better!</strong> By doing this, you will also be more confortable knowing how the tools are actually working...
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#add-some-features" title="How to add a feature..." target="_blank">
+										How to add a feature...
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="contribute">
+								<figure class="ratio-16-9">
+									<img class="abs-cover" src="/dist/img/contribute-share.jpg" alt="Share the love" />
+								</figure>
+								<div class="card__content">
+									<h1 class="h5 m-b-smaller">
+										Share the love
+									</h1>
+									<h2 class="h6 m-b">
+										The more we are, the better we become
+									</h2>
+									<p class="p m-b tf">
+										Not so much guidelines here. At least, if you want to share some thoughts about our work, positive or negative, try to stay constructive... <strong>Keep in mind that these tools are provided for free</strong>...
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#share-the-love-️" title="I love Coffeekraken!" target="_blank">
+										I love Coffeekraken!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+				</div>
+				<div class="row m-t">
+					<div class="gr-4 clear">
+						<h2 class="h4">
+							Other possible contributions
+						</h2>
+					</div>
+					<div class="gr-8">
+						<ul class="nav nav--inline pull-right">
+							<li class="nav__item m-r-smaller">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#contribute-build-web-component" class="btn btn--secondary" title="Build a webcomponent" target="_blank">
+									Build a webcomponent
+								</a>
+							</li>
+							<li class="nav__item m-r-smaller">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#contribute-become-maintainer" class="btn btn--secondary" title="Became an official maintainer" target="_blank">
+									Became an official maintainer
+								</a>
+							</li>
+							<li class="nav__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#contribute-donation" class="btn btn--secondary" title="Make a small donation" target="_blank">
+									Make a small donation
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="repositories section t-center" vue-coffeekraken-repos>
+			<div class="container">
+				<div class="row">
+					<div class="gr-12">
+						<h1 class="h1 m-b">
+							Here's <span class="c-white">all our repositories</span>
+						</h1>
+						<coffeekraken-repos>
+							<p class="c-white">Please wait while loading...</p>
+						</coffeekraken-repos
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="footer bkg-secondary p">
+			<div class="container">
+				<div class="row">
+					<div class="gr-3">
+						<div class="coffeekraken-logo-footer" style="width:120px;"></div>
+					</div>
+					<div class="gr-3">
+						<h2 class="h5 m-b-small">
+							Our tools
+						</h2>
+						<ul class="list list--footer">
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/sugar" title="Sugar toolkit" target="_blank">
+									Sugar toolkit
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/gridle" title="Gridle grid system" target="_blank">
+									Gridle grid system
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/carpenter" title="Carpenter styleguide" target="_blank">
+									Carpenter styleguide
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/html-boilerplate" title="HTML boilerplate" target="_blank">
+									HTML boilerplate
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/testing-stack" title="Testing stack" target="_blank">
+									Testing stack
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken/docblock-to-markdown" title="Docblock to markdown" target="_blank">
+									Docblock to markdown
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Webcomponents" target="_blank">
+									Webcomponents
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="gr-3">
+						<h2 class="h5 m-b-small">
+							Contribute
+						</h2>
+						<ul class="list list--footer">
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#declare-issues" title="Declare/Fix an issue" target="_blank">
+									Declare/Fix an issue
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#add-some-features" title="Add a feature" target="_blank">
+									Add a feature
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#build-web-component" title="Build a webcomponent" target="_blank">
+									Build a webcomponent
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#share-the-love-️" title="Share the love" target="_blank">
+									Share the love
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#become-an-official-maintainer" title="Become an official maintainer" target="_blank">
+									Become an official maintainer
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://github.com/Coffeekraken/coffeekraken/blob/master/contribute.md#make-a-small-donation" title="Make a small donation" target="_blank">
+									Make a small donation
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="gr-3">
+						<h2 class="h5 m-b-small">
+							Join us
+						</h2>
+						<ul class="list list--footer">
+							<li class="list__item">
+								<a href="https://github.com/coffeekraken" title="Github" target="_blank">
+									<i class="fa fa-github"></i> Github
+								</a>
+							</li>
+							<li class="list__item">
+								<a href="https://twitter.com/coffeekrakenio" title="Twitter" target="_blank">
+									<i class="fa fa-twitter"></i> Twitter
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="copy bkg-secondary--dark p-small">
+			<div class="container">
+				<div class="row">
+					<div class="gr-12">
+						<div class="s-small">
+							© Coffeekraken 2017<br>
+							All our tools are published under <a class="link" href="https://opensource.org/licenses/MIT" title="MIT License" target="_blank">MIT license</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Load scripts -->
+		<script src="https://use.fontawesome.com/e5d2c7c643.js" async></script>
+		<script src="/dist/js/app.js" async></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+		<script>
+			WebFont.load({
+				google: {
+					families: ['Roboto:300,400,800']
+				}
+			});
+		</script>
+
+		<!-- Google Analytics -->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-91271113-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>
