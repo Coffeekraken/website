@@ -24,7 +24,7 @@
     "dist.watch.img": "chokidar 'src/img/**/*' -c \"npm run dist.img\"",
     "dist.watch.fonts": "chokidar 'src/fonts/**/*' -c \"npm run dist.fonts\"",
     "dist.watch.html": "chokidar index.src.html -c \"npm run dist.html\"",
-    "carpenter": "coffeekraken-carpenter -p 2222",
+    "carpenter": "coffeekraken-carpenter",
     "start": "concurrently --kill-others \"npm run dist.watch\" \"npm run server\" \"npm run carpenter\"",
     "server": "http-server .",
     "test": "coffeekraken-testing-stack"
@@ -35,18 +35,26 @@
     "coffeekraken"
   ],
   "author": "Coffeekraken <hello@coffeekraken.io>",
+  "contributors": [
+    {
+      "name": "Olivier Bossel",
+      "email": "olivier.bossel@gmail.com",
+      "url": "http://olivierbossel.com"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
-    "coffeekraken-gridle": "git+ssh://git@github.com/Coffeekraken/gridle.git#release/3.0.0",
-    "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
-    "coffeekraken-s-datepicker-component": "git+ssh://git@github.com/Coffeekraken/s-datepicker-component.git#release/0.0.1",
-    "coffeekraken-s-equalize-component": "git+ssh://git@github.com/Coffeekraken/s-equalize-component.git#release/0.0.1",
-    "coffeekraken-s-google-map-component": "git+ssh://git@github.com/Coffeekraken/s-google-map-component.git#release/0.0.1",
-    "coffeekraken-s-google-map-marker-component": "git+ssh://git@github.com/Coffeekraken/s-google-map-marker-component.git#release/0.0.1",
-    "coffeekraken-s-i-typed-component": "git+ssh://git@github.com/Coffeekraken/s-i-typed-component.git#release/0.0.1",
-    "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
-    "coffeekraken-s-share-component": "git+ssh://git@github.com/Coffeekraken/s-share-component.git#release/0.0.1",
-    "coffeekraken-sugar": "git+ssh://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
+    "babel-polyfill": "^6.23.0",
+    "coffeekraken-gridle": "^3.0.0-rc.1",
+    "coffeekraken-s-datepicker-component": "^1.0.0",
+    "coffeekraken-s-equalize-component": "^1.0.0",
+    "coffeekraken-s-google-map-component": "^1.0.0",
+    "coffeekraken-s-google-map-marker-component": "^1.0.0",
+    "coffeekraken-s-i-typed-component": "^1.0.0",
+    "coffeekraken-s-ripple-component": "^1.0.0",
+    "coffeekraken-s-bodymovin-component": "^1.0.0",
+    "coffeekraken-s-share-component": "^1.0.0",
+    "coffeekraken-sugar": "^1.0.0",
     "github-api": "^3.0.0",
     "marked": "^0.3.6",
     "vue": "^2.2.1"
@@ -61,9 +69,8 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "chokidar-cli": "^1.2.0",
-    "coffeekraken-testing-stack": "git+ssh://git@github.com/Coffeekraken/testing-stack.git#release/0.0.1",
-    "coffeekraken-carpenter": "git+ssh://git@github.com/Coffeekraken/carpenter.git#release/0.0.1",
-    "coffeekraken-s-bodymovin-component": "git+ssh://git@github.com/Coffeekraken/s-bodymovin-component.git#release/0.0.1",
+    "coffeekraken-testing-stack": "0.0.2",
+    "coffeekraken-carpenter": "^1.0.0",
     "concurrently": "^3.1.0",
     "critical": "^0.8.4",
     "http-server": "^0.9.0",
