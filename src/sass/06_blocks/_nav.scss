@@ -1,4 +1,12 @@
-@include s-nav-inline-classes();
+// @include s-nav-inline-classes();
+
+.nav--inline {
+
+	.nav__item {
+		display: inline-block;
+		position: relative;
+	}
+}
 
 /**
  * Nav pills

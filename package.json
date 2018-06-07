@@ -8,24 +8,35 @@
     "url": "https://github.com/Coffeekraken/website"
   },
   "main": "dist/index.js",
+  "watch": {
+    "dist:js": {
+      "paths": "src/js/**/*.js"
+    },
+    "dist:css": {
+      "paths": "src/sass/**/*.scss"
+    },
+    "dist:img": {
+      "paths": "src/img/**/*"
+    },
+    "dist:fonts": {
+      "paths": "src/fonts/**/*"
+    },
+    "dist:html": {
+      "paths": "index.src.html"
+    }
+  },
   "scripts": {
-    "dist": "npm run dist.css && npm run dist.js && npm run dist.img && npm run dist.fonts && npm run dist.html",
-    "dist.js": "webpack",
-    "dist.css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style expanded",
-    "dist.img": "rm -rf dist/img && node ./.scripts/imagemin.js",
-    "dist.html": "cat index.src.html | critical --minify true --inline > index.html",
-    "dist.fonts": "rm -rf dist/fonts && cp -R src/fonts dist/fonts",
-    "dist.prod": "npm run dist.prod.css && npm run dist.prod.js && npm run dist.img && npm run dist.fonts && npm run dist.html",
-    "dist.prod.js": "webpack --config webpack.prod.config.js",
-    "dist.prod.css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style compressed",
-    "dist.watch": "concurrently --kill-others \"npm run dist.watch.css\" \"npm run dist.watch.js\" \"npm run dist.watch.img\" \"npm run dist.watch.fonts\" \"npm run dist.watch.html\"",
-    "dist.watch.js": "nodemon -w src -e js -x \"npm run dist.js\"",
-    "dist.watch.css": "nodemon -w src -e scss -x \"npm run dist.css\"",
-    "dist.watch.img": "chokidar 'src/img/**/*' -c \"npm run dist.img\"",
-    "dist.watch.fonts": "chokidar 'src/fonts/**/*' -c \"npm run dist.fonts\"",
-    "dist.watch.html": "chokidar index.src.html -c \"npm run dist.html\"",
+    "dist": "npm run dist:css && npm run dist:js && npm run dist:img && npm run dist:fonts && npm run dist:html",
+    "dist:js": "webpack",
+    "dist:css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style expanded",
+    "dist:img": "rm -rf dist/img && node ./.scripts/imagemin.js",
+    "dist:html": "cat index.src.html | critical --minify true --inline > index.html",
+    "dist:fonts": "rm -rf dist/fonts && cp -R src/fonts dist/fonts",
+    "dist:prod": "npm run dist:prod:css && npm run dist:prod:js && npm run dist:img && npm run dist:fonts && npm run dist:html",
+    "dist:prod:js": "webpack --config webpack.prod.config.js",
+    "dist:prod:css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style compressed",
     "carpenter": "coffeekraken-carpenter",
-    "start": "concurrently --kill-others \"npm run dist.watch\" \"npm run server\" \"npm run carpenter\"",
+    "start": "coffeekraken-scripts-stack server -i start -i dist",
     "server": "http-server .",
     "test": "coffeekraken-testing-stack"
   },
@@ -46,14 +57,20 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "coffeekraken-gridle": "^3.0.0-rc.1",
+    "coffeekraken-s-bodymovin-component": "^1.0.0",
+    "coffeekraken-s-button-component": "^1.0.0",
     "coffeekraken-s-datepicker-component": "^1.0.0",
+    "coffeekraken-s-dropdown-component": "^1.0.1",
     "coffeekraken-s-equalize-component": "^1.0.0",
+    "coffeekraken-s-form-component": "^1.0.0",
     "coffeekraken-s-google-map-component": "^1.0.0",
     "coffeekraken-s-google-map-marker-component": "^1.0.0",
     "coffeekraken-s-i-typed-component": "^1.0.0",
     "coffeekraken-s-ripple-component": "^1.0.0",
-    "coffeekraken-s-bodymovin-component": "^1.0.0",
     "coffeekraken-s-share-component": "^1.0.0",
+    "coffeekraken-s-table-component": "^1.0.0",
+    "coffeekraken-s-tooltip-component": "^1.0.0",
+    "coffeekraken-s-typography-component": "^1.0.0",
     "coffeekraken-sugar": "^1.0.0",
     "github-api": "^3.0.0",
     "marked": "^0.3.6",
@@ -69,8 +86,9 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "chokidar-cli": "^1.2.0",
-    "coffeekraken-testing-stack": "0.0.2",
     "coffeekraken-carpenter": "^1.0.0",
+    "coffeekraken-scripts-stack": "^1.0.1",
+    "coffeekraken-testing-stack": "0.0.2",
     "concurrently": "^3.1.0",
     "critical": "^0.8.4",
     "http-server": "^0.9.0",
@@ -79,7 +97,7 @@
     "imagemin-jpeg-recompress": "^5.1.0",
     "imagemin-pngquant": "^5.0.0",
     "imagemin-svgo": "^5.2.0",
-    "node-sass": "4.3.0",
+    "node-sass": "^4.9.0",
     "nodemon": "^1.11.0",
     "open": "0.0.5",
     "webcomponents.js": "^0.7.23",

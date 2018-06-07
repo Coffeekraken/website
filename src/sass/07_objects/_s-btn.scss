@@ -1,3 +1,4 @@
+@import 'node_modules/coffeekraken-s-button-component/index';
 @include s-button-classes(
 	$colors : primary secondary
 );

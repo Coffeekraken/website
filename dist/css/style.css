@@ -632,11 +632,11 @@
  *
  * @example 	scss
  * // generate all the classes
- * \@include g-generate-classes();
+ * \@include g-classes();
  * // generate only certain states
- * \@include g-generate-classes(mobile tablet);
+ * \@include g-classes(mobile tablet);
  * // generate only the helpers for all the states
- * \@include g-generate-classes(all, helpers);
+ * \@include g-classes(all, helpers);
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -772,7 +772,7 @@
  * @return 		{Map} 								The Map represenration of the border
  *
  * @example
- * s-border(1px solid white);
+ * s-border-map(1px solid white);
  * // return
  * // (
  * // 	width : 1px,
@@ -796,7 +796,7 @@
  * @return 		{Map} 										The map representation or the columns properties
  *
  * @example
- * s-columns(2, 20px);
+ * s-columns-map(2, 20px);
  * // return
  * // (
  * // 	column-count : 2,
@@ -813,9 +813,9 @@
  * @return 			{Map} 										The map representation
  *
  * @example
- * s-margin(10px); // => ( top:10px, right:10px, bottom:10px, left:10px )
- * s-margin(10px 20px); // => ( top:10px, right:20px, bottom:10px, left:20px )
- * s-margin(5px 10px 15px 20px); // => ( top:5px, right:10px, bottom:15px, left:20px )
+ * s-margin-map(10px); // => ( top:10px, right:10px, bottom:10px, left:10px )
+ * s-margin-map(10px 20px); // => ( top:10px, right:20px, bottom:10px, left:20px )
+ * s-margin-map(5px 10px 15px 20px); // => ( top:5px, right:10px, bottom:15px, left:20px )
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -833,10 +833,10 @@
  * @return 		{Map} 												The map representation of the position wanted
  *
  * @example
- * s-position(absolute, top, right);
- * s-position(absolute, middle, center);
- * s-position(relative, bottom, right);
- * s-position(absolute, bottom, center);
+ * s-position-map(absolute, top, right);
+ * s-position-map(absolute, middle, center);
+ * s-position-map(relative, bottom, right);
+ * s-position-map(absolute, bottom, center);
  * // etc...
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -849,7 +849,7 @@
  * @return 			{Map} 																		The Map properties representation
  *
  * @example
- * s-rhythme-width(50);
+ * s-rhythm-width(50);
  * // return
  * // (
  * // 	display : block,
@@ -867,18 +867,11 @@
  * @return 			{Map} 								The translate Map representation
  *
  * @example
- * s-translate(10px,20px);
+ * s-translate-map(10px,20px);
  * // return
  * // (
  * // 	transform: translateX(10px) translateY(20px) translateZ(0)
  * // )
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the settings.vertical-rhythme.scope-class value
- *
- * @return 			{String} 			The settings.vertical-rhythme.scope-class value
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -911,51 +904,6 @@
  * }
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	BEM mixins
- * Some useful mixins to work with BEM methodology
- */
-/**
- * BEM block selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @example 	scss
- * \@include s-Bem('card') {
- *  	background: white;
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * BEM element selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @example 	scss
- * \@include s-Bem(card) {
- * 	background:white;
- *
- * 	\@include s-bEm(title) {
- * 		font-size:20px;
- * 	}
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * BEM modifier selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @param 		{Boolean} 				[$standelone=s-setting('BEM.standelone')] 		If true, will automatically extends the base element
- * @example 	scss
- * \@include s-Bem(card) {
- * 	background:white;
- *
- * 	\@include s-beM(blue) {
- * 		background: blue;
- * 	}
- * }
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Apply some border radius
@@ -1097,15 +1045,6 @@
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
-@keyframes s-DOMNodeInserted {
-  from {
-    opacity: .99;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /**
  * Make the element fit his container.
  * @param 	{String} 			[$position=null] 		The position how to fit the element.
@@ -1274,7 +1213,7 @@
  *
  * @example 	scss
  * h1 {
- * 	\@include s-rhythme-width(45);
+ * 	\@include s-rhythm-width(45);
  * }
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
@@ -1394,34 +1333,6 @@
  * $my-color : s-color-modifier(outline primary); // => primary
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the css class selector for the current component setted by the [core/mixins/_s-component.scss] mixin
- * and build with the passed arguments.
- *
- * @param 			{String} 			[$element=null] 		The element name of the class selector | '&' if target the same element like `&s-component-selector("&", ) {}`
- * @param 			{String} 			[$modifier=null] 		The modifier name of the class selector
- * @param 			{String} 			[$state=null] 			The state name of the class selector
- * @return 			{String} 									The generated class selector
- *
- * @example
- * \@incluse s-component('my-component') {
- * 		// if settings.selector.method === 'BEM'
- * 		s-component-selector('item') // => '.my-component__item'
- * 		s-component-selector(null, 'red') // => '.my-component--red'
- * 		s-component-selector('coco',null,'active') // => '.my-component__coco--active'
- * }
- *
- * // if target the same element with & :
- * \@include s-component('my-component') {
- * 		s-component-selector(, red, , "color") {
- * 			&s-component-selector("&", , "active") {
- * 				// something here...
- * 			}
- * 		}
- * }
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Return the name of the top level component setted with the [../mixins/_s-component.scss] mixin
@@ -2025,33 +1936,8 @@
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Return the generated vertical rhythme properties map calculated depending on the passed arguments
- *
- * @param 			{Number} 				[$font-size=settings.typography.font-size] 			The font size wanted
- * @param 			{String} 				[$font-family=settings.typography.font-family] 		The font family to use
- * @param 			{Number} 				[$line-height=null] 							The line height to use
- * @param 			{Number} 				[$margin-top=0] 								The targeted margin-top
- * @param 			{Number} 				[$margin-bottom=0] 								The targeted margin-bottom
- * @param 			{Number} 				[$padding-top=0] 								The targeted padding-top
- * @param 			{Number} 				[$padding-bottom=0] 							The targeted padding-bottom
- * @param 			{List} 					[$margin=null] 									The targeted margin property
- * @param 			{List} 					[$padding=null] 								The targeted padding property
- * @param 			{List} 					[$border-top=null] 								The targeted border-top property
- * @param 			{List} 					[$border-bottom=null] 							The targeted border-bottom property
- * @param 			{Number} 				[$border-top-width=0] 							The targeted border-top-width property
- * @param 			{Number} 				[$border-bottom-width=0] 						The targeted border-bottom-width property
- * @param 			{Number} 				[$border=null] 									The targeted border property
- * @param 			{Number} 				[$cap-height=null] 								The font cap-height used to calculate the vertical ryhthme
- * @param 			{Boolean|String} 		[$calculate-height=false] 						If true|min-height|max-height|height, will return the corresponding absolute height value in the map
- *
- * @TODO example
- *
- * @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the vertical-rhythme setting scope class
- * @return 		{String} 		The vertical-rhythme scope class from settings.vertical-rhythme.scope-class
+ * Return the vertical-rhythm setting scope class
+ * @return 		{String} 		The vertical-rhythm scope class from settings.vertical-rhythm.scope-class
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
@@ -2395,10 +2281,10 @@
  * @param 			{String} 		$namespace 		The dots separated namespace under which the class will live
  *
  * @example
- * \@include s-register-class(my-cool-class, 'my.cool.namespace') {
+ * \@include s-register-helper-class(my-cool-class, 'my.cool.namespace') {
  * 		background : pink;
  * }
- * \@include s-register-class(another-cool-class, 'my.another.namespace') {
+ * \@include s-register-helper-class(another-cool-class, 'my.another.namespace') {
  * 		background : red;
  * }
  *
@@ -2436,7 +2322,7 @@
  *
  * @example
  * body {
- * 		@include s-show-vertical-rhythme();
+ * 		@include s-show-vertical-rhythm();
  * }
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -2489,27 +2375,14 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * @name 	s-vertical-rhythme
- * Print out the vertical rhythme properties map calculated depending on the passed arguments
+ * @name 	s-vertical-rhythm
+ * Scope the content inside the `settings.vertical-rhythm.scope-class` class
  *
- * @param 			{Number} 				[$font-size=settings.typography.font-size] 			The font size wanted
- * @param 			{String} 				[$font-family=settings.typography.font-family] 		The font family to use
- * @param 			{Number} 				[$line-height=null] 							The line height to use
- * @param 			{Number} 				[$margin-top=0] 								The targeted margin-top
- * @param 			{Number} 				[$margin-bottom=0] 								The targeted margin-bottom
- * @param 			{Number} 				[$padding-top=0] 								The targeted padding-top
- * @param 			{Number} 				[$padding-bottom=0] 							The targeted padding-bottom
- * @param 			{List} 					[$margin=null] 									The targeted margin property
- * @param 			{List} 					[$padding=null] 								The targeted padding property
- * @param 			{List} 					[$border-top=null] 								The targeted border-top property
- * @param 			{List} 					[$border-bottom=null] 							The targeted border-bottom property
- * @param 			{Number} 				[$border-top-width=0] 							The targeted border-top-width property
- * @param 			{Number} 				[$border-bottom-width=0] 						The targeted border-bottom-width property
- * @param 			{Number} 				[$border=null] 									The targeted border property
- * @param 			{Number} 				[$cap-height=null] 								The font cap-height used to calculate the vertical ryhthme
- * @param 			{Boolean|String} 		[$calculate-height=false] 						If true|min-height|max-height|height, will return the corresponding absolute height value in the map
- *
- * @TODO example
+ * .my-cool-item {
+ * 	@include s-vertical-rhythm() {
+ * 		margin-bottom: 2em; // will be applied only if .my-cool-item is in the .vr scope
+ * 	}
+ * }
  *
  * @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -3282,7 +3155,8 @@
 	 */
 }
 
-.clear-transitions, .clear-transitions:before, .clear-transitions:after, .clear-transitions *, .clear-transitions *:before, .clear-transitions *:after {
+.clear-transitions, .clear-transitions:before, .clear-transitions:after,
+.clear-transitions *, .clear-transitions *:before, .clear-transitions *:after {
   transition: none !important;
 }
 
@@ -3316,7 +3190,8 @@
 	 */
 }
 
-.clear-animations, .clear-animations:before, .clear-animations:after, .clear-animations *, .clear-animations *:before, .clear-animations *:after {
+.clear-animations, .clear-animations:before, .clear-animations:after,
+.clear-animations *, .clear-animations *:before, .clear-animations *:after {
   animation: none !important;
 }
 
@@ -3351,7 +3226,8 @@
 	 */
 }
 
-.clear-transmations, .clear-transmations:before, .clear-transmations:after, .clear-transmations *, .clear-transmations *:before, .clear-transmations *:after {
+.clear-transmations, .clear-transmations:before, .clear-transmations:after,
+.clear-transmations *, .clear-transmations *:before, .clear-transmations *:after {
   transition: none !important;
   animation: none !important;
 }
@@ -3550,679 +3426,6 @@
  * }
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent
- * Provide ability to generate buttons that follow your settings like colors, look and feel, etc...
- *
- * - ```.btn```
- * - ```.btn--block```
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn:disabled```
- * - ```.btn--hover-{$color}```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the button bare and style to my custom element
- * .my-cool-element {
- * 	\@include s-button();
- * }
- * // apply only the bare styling to my custom element
- * .my-cool-element {
- * 	\@include s-button-bare();
- * }
- * // apply only the style styling to my custom element
- * .my-cool-element {
- * 	\@include s-button-style();
- * }
-
- * // will print out classes for the button including bare and style part
- * \@include s-button-classes(
- * 	$colors : default primary secondary
- * );
- * // will print out classes for the button including only bare part
- * \@include s-button-classes-bare();
- * // will print out classes for the button including only style part
- * \@include s-button-classes-style(
- * 	$colors : default primary secondary
- * );
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent
- * This file provide the mixins to create buttons
- */
-.btn, .btn--block {
-  display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-color: transparent;
-  cursor: pointer;
-  outline-width: 0;
-  -webkit-appearance: none;
-  line-height: 0;
-  text-decoration: none;
-  font-size: 1em;
-  user-select: none;
-}
-
-.btn:not(button):not(input), .btn--block:not(button):not(input) {
-  line-height: 0.9;
-}
-
-.btn > *, .btn--block > * {
-  vertical-align: middle;
-}
-
-button {
-  line-height: 1;
-}
-
-/**
- * Apply the button css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the button bare css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the button style css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent Classes
- * This file provide the mixins to generate button classes
- */
-/**
- * Provide all the classes of the button component like .btn, .btn--outline, etc...
- * - ```.btn```
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn--block```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the buttons classes
- * - ```.btn```
- * - ```.btn--block```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the buttons classes
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn:disabled```
- * - ```.btn--hover-{$color}```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent
- * Provide ability to generate corner badges that follow your settings like colors.
- *
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- * - ```.corner-badge--{color}```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the corner badge bare and style to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge(primary tr);
- * }
- * // apply only the bare styling to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge-bare(tr);
- * }
- * // apply only the style styling to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge-style(primary);
- * }
-
- * // will print out classes for the corner badges including bare and style part
- * \@include s-corner-badge-classes(
- * 	$corners : tr tl br bl,
- * 	$colors : default primary secondary
- * );
- * // will print out classes for the button including only bare part
- * \@include s-button-classes-bare(
- * 	$corners : tr tl br bl
- * );
- * // will print out classes for the button including only style part
- * \@include s-button-classes-style(
- * 	$colors : default primary secondary
- * );
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent
- * This file provide the mixins to create corner badges
- */
-/**
- * Apply the corner badge css
- * @param 		{Number} 		[$modifiers=default tr] 			The modifiers that represent the corner badge you want. Available : {color} tl tr bl br
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the corner badge bare css
- * @param 		{Number} 		[$modifiers=tr] 			The modifiers that represent the corner badge you want. Available : tl tr bl br
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the corner badge style css
- * @param 		{Number} 		[$modifiers=default] 			The modifiers that represent the corner badge you want. Available : {color}
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent Classes
- * This file provide the mixins to generate corner badge classes
- */
-/**
- * Provide all the classes of the corner badge component like:
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- * - ```.corner-badge--{color}```
- *
- * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the bare classes of the corner badge component like:
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- *
- * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the style classes of the corner badge component like:
- * - ```.corner-badge--{color}```
- *
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SDropdownComponent
- * Documentation coming soon...
- */
-.dropdown__menu {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 100%;
-  pointer-events: none;
-}
-
-.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: all;
-}
-
-/**
- * @name 	SFormComponent
- * Documentation coming soon...
- */
-.form-input, .form-select, .form-textarea, .form-addon {
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 1em;
-}
-
-.form-input, .form-select, .form-textarea, .form-input--primary, .form-select--primary, .form-textarea--primary, .form-input--secondary, .form-select--secondary, .form-textarea--secondary {
-  border-width: 1px;
-  border-style: solid;
-}
-
-.form-input:disabled, .form-select:disabled, .form-textarea:disabled, .form-input--primary:disabled, .form-select--primary:disabled, .form-textarea--primary:disabled, .form-input--secondary:disabled, .form-select--secondary:disabled, .form-textarea--secondary:disabled {
-  cursor: not-allowed;
-}
-
-/**
- * @name 	SNavComponent
- * Documentation coming soon...
- */
-.nav--inline, .nav--pills, .nav--topbar {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  user-select: none;
-}
-
-/**
- * @name 	STableComponent
- * Documentation coming soon...
- */
-/**
- * Print out the responsive style for a table.
- * This responsive style make the table display as block and take the "label" attribute on the td to display correctly the line label
- */
-/**
- * @name 	STableComponent Classes
- * This file provide the mixins to generate table classes
- */
-/**
- * Provide all the classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the style classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the bare classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-.tooltip {
-  position: absolute !important;
-  pointer-events: none;
-  opacity: 0;
-}
-
-:hover > .tooltip,
-.active > .tooltip {
-  opacity: 1;
-}
-
-/**
- * @name 	STypographyComponent
- * Provide ability to generate base typography classes for:
- * - Titles:
- * 	- ```.h1-h6```
- * 	- ```.tf h1-h6```
- * - Paragraphs
- * 	- ```.p```, ```.tf p```
- * 	- ```.p--lead```, ```.tf p.p--lead```
- * - Links
- * 	- ```.link```, ```.tf a```
- * - Inline text elements
- *  - ```.mark```, ```.tf mark```
- *  - ```.del```, ```.tf del```
- *  - ```.s```, ```.tf s```
- *  - ```.ins```, ```.tf ins```
- *  - ```.u```, ```.tf u```
- *  - ```.small```, ```.tf small```
- *  - ```.strong```, ```.tf strong```
- *  - ```.em```, ```.tf em```
- * - Lists
- * 	- ```.dl```, ```.tf dl```
- * 		- ```.dt```, ```.tf dt```
- * 		- ```.dd```, ```.tf dd```
- * 	- ```.ul```, ```.tf ul```
- * 		- ```.li```, ```.tf li```
- * 	- ```.ol```, ```.tf ol```
- * 		- ```.li```, ```.tf li```
- * - Captions
- * 	- ```.caption```, ```.tf caption```, ```.tf figcaption```
- * - Quotes
- * 	- ```.quote```, ```.tf quote```
- * 	- ```.blockquote```, ```.tf blockquote```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the title bare and style to my custom element
- * h1 {
- * 	\@include s-typography-title(4em);
- * }
- * // apply only the bare styling to my custom title
- * h1 {
- * 	\@include s-typography-title-bare(4em);
- * }
- * // apply only the style styling to my custom title
- * h1 {
- * 	\@include s-typography-title-style(4em);
- * }
- *
- * // provide classes for all the typography elements
- * \@include s-typography-classes();
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	STypographyComponent
- * This file provide the mixins to create typography elements
- */
-/**
- * Apply the title css
- * @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the title bare css
- * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the title style css
- * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the paragraph bare css
- * @param 		{Number} 		$size 				The size wanted
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the paragraph style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link css
- * @param 		{Color} 		[$color=primary] 		The color used to style link
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link style css
- * @param 		{Color} 		[$color=primary] 		The color used to style link
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text bare css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list bare css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list style css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	STypographyComponent Classes
- * This file provide the mixins to generate typography classes
- */
-/**
- * Provide all the classes of the typography component like titles, paragraphs, lists, etc..
- * @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the titles classes:
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the titles classes
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the titles classes
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the paragraphs classes
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the ```.p``` and ```.p--lead``` classes
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the ```.p``` class
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the links classes
- * - ```.link```, ```.tf a```
- * @param 		{Color} 		[$color=primary] 		The color used to style links
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the links classes
- * - ```.link```, ```.tf a```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the links classes
- * - ```.link```, ```.tf a```
- * @param 		{Color} 		[$color=primary] 		The color used to style links
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @param 		{Color} 		[$color=primary] 		The color used to style bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @param 		{Color} 		[$color=primary] 		The color used to style bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Setup
@@ -4820,6 +4023,269 @@ button {
   margin-right: 100%;
 }
 
+body {
+  direction: ltr;
+}
+
+@media screen and (max-width: 640px) {
+  .gr-1on5\@mobile {
+    width: 20%;
+  }
+  .push-1on5\@mobile {
+    left: 20%;
+    right: auto;
+  }
+  .pull-1on5\@mobile {
+    right: 20%;
+    left: auto;
+  }
+  .prefix-1on5\@mobile {
+    margin-left: 20%;
+  }
+  .suffix-1on5\@mobile {
+    margin-right: 20%;
+  }
+  .gr-0\@mobile {
+    width: 0%;
+  }
+  .push-0\@mobile {
+    left: 0%;
+    right: auto;
+  }
+  .pull-0\@mobile {
+    right: 0%;
+    left: auto;
+  }
+  .prefix-0\@mobile {
+    margin-left: 0%;
+  }
+  .suffix-0\@mobile {
+    margin-right: 0%;
+  }
+  .gr-1\@mobile {
+    width: 8.33333%;
+  }
+  .push-1\@mobile {
+    left: 8.33333%;
+    right: auto;
+  }
+  .pull-1\@mobile {
+    right: 8.33333%;
+    left: auto;
+  }
+  .prefix-1\@mobile {
+    margin-left: 8.33333%;
+  }
+  .suffix-1\@mobile {
+    margin-right: 8.33333%;
+  }
+  .gr-2\@mobile {
+    width: 16.66667%;
+  }
+  .push-2\@mobile {
+    left: 16.66667%;
+    right: auto;
+  }
+  .pull-2\@mobile {
+    right: 16.66667%;
+    left: auto;
+  }
+  .prefix-2\@mobile {
+    margin-left: 16.66667%;
+  }
+  .suffix-2\@mobile {
+    margin-right: 16.66667%;
+  }
+  .gr-3\@mobile {
+    width: 25%;
+  }
+  .push-3\@mobile {
+    left: 25%;
+    right: auto;
+  }
+  .pull-3\@mobile {
+    right: 25%;
+    left: auto;
+  }
+  .prefix-3\@mobile {
+    margin-left: 25%;
+  }
+  .suffix-3\@mobile {
+    margin-right: 25%;
+  }
+  .gr-4\@mobile {
+    width: 33.33333%;
+  }
+  .push-4\@mobile {
+    left: 33.33333%;
+    right: auto;
+  }
+  .pull-4\@mobile {
+    right: 33.33333%;
+    left: auto;
+  }
+  .prefix-4\@mobile {
+    margin-left: 33.33333%;
+  }
+  .suffix-4\@mobile {
+    margin-right: 33.33333%;
+  }
+  .gr-5\@mobile {
+    width: 41.66667%;
+  }
+  .push-5\@mobile {
+    left: 41.66667%;
+    right: auto;
+  }
+  .pull-5\@mobile {
+    right: 41.66667%;
+    left: auto;
+  }
+  .prefix-5\@mobile {
+    margin-left: 41.66667%;
+  }
+  .suffix-5\@mobile {
+    margin-right: 41.66667%;
+  }
+  .gr-6\@mobile {
+    width: 50%;
+  }
+  .push-6\@mobile {
+    left: 50%;
+    right: auto;
+  }
+  .pull-6\@mobile {
+    right: 50%;
+    left: auto;
+  }
+  .prefix-6\@mobile {
+    margin-left: 50%;
+  }
+  .suffix-6\@mobile {
+    margin-right: 50%;
+  }
+  .gr-7\@mobile {
+    width: 58.33333%;
+  }
+  .push-7\@mobile {
+    left: 58.33333%;
+    right: auto;
+  }
+  .pull-7\@mobile {
+    right: 58.33333%;
+    left: auto;
+  }
+  .prefix-7\@mobile {
+    margin-left: 58.33333%;
+  }
+  .suffix-7\@mobile {
+    margin-right: 58.33333%;
+  }
+  .gr-8\@mobile {
+    width: 66.66667%;
+  }
+  .push-8\@mobile {
+    left: 66.66667%;
+    right: auto;
+  }
+  .pull-8\@mobile {
+    right: 66.66667%;
+    left: auto;
+  }
+  .prefix-8\@mobile {
+    margin-left: 66.66667%;
+  }
+  .suffix-8\@mobile {
+    margin-right: 66.66667%;
+  }
+  .gr-9\@mobile {
+    width: 75%;
+  }
+  .push-9\@mobile {
+    left: 75%;
+    right: auto;
+  }
+  .pull-9\@mobile {
+    right: 75%;
+    left: auto;
+  }
+  .prefix-9\@mobile {
+    margin-left: 75%;
+  }
+  .suffix-9\@mobile {
+    margin-right: 75%;
+  }
+  .gr-10\@mobile {
+    width: 83.33333%;
+  }
+  .push-10\@mobile {
+    left: 83.33333%;
+    right: auto;
+  }
+  .pull-10\@mobile {
+    right: 83.33333%;
+    left: auto;
+  }
+  .prefix-10\@mobile {
+    margin-left: 83.33333%;
+  }
+  .suffix-10\@mobile {
+    margin-right: 83.33333%;
+  }
+  .gr-11\@mobile {
+    width: 91.66667%;
+  }
+  .push-11\@mobile {
+    left: 91.66667%;
+    right: auto;
+  }
+  .pull-11\@mobile {
+    right: 91.66667%;
+    left: auto;
+  }
+  .prefix-11\@mobile {
+    margin-left: 91.66667%;
+  }
+  .suffix-11\@mobile {
+    margin-right: 91.66667%;
+  }
+  .gr-12\@mobile {
+    width: 100%;
+  }
+  .push-12\@mobile {
+    left: 100%;
+    right: auto;
+  }
+  .pull-12\@mobile {
+    right: 100%;
+    left: auto;
+  }
+  .prefix-12\@mobile {
+    margin-left: 100%;
+  }
+  .suffix-12\@mobile {
+    margin-right: 100%;
+  }
+  body {
+    direction: ltr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .gr-grow, .gr-grow\@mobile {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .gr-adapt, .gr-adapt\@mobile {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
 .float-left {
   float: left;
 }
@@ -5143,254 +4609,12 @@ button {
   left: 0;
   width: 100%;
   height: 99999px;
-  background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
   background-size: 16.66667% 100%;
   z-index: 99999;
 }
 
-body {
-  direction: ltr;
-}
-
 @media screen and (max-width: 640px) {
-  .gr-1on5\@mobile {
-    width: 20%;
-  }
-  .push-1on5\@mobile {
-    left: 20%;
-    right: auto;
-  }
-  .pull-1on5\@mobile {
-    right: 20%;
-    left: auto;
-  }
-  .prefix-1on5\@mobile {
-    margin-left: 20%;
-  }
-  .suffix-1on5\@mobile {
-    margin-right: 20%;
-  }
-  .gr-0\@mobile {
-    width: 0%;
-  }
-  .push-0\@mobile {
-    left: 0%;
-    right: auto;
-  }
-  .pull-0\@mobile {
-    right: 0%;
-    left: auto;
-  }
-  .prefix-0\@mobile {
-    margin-left: 0%;
-  }
-  .suffix-0\@mobile {
-    margin-right: 0%;
-  }
-  .gr-1\@mobile {
-    width: 8.33333%;
-  }
-  .push-1\@mobile {
-    left: 8.33333%;
-    right: auto;
-  }
-  .pull-1\@mobile {
-    right: 8.33333%;
-    left: auto;
-  }
-  .prefix-1\@mobile {
-    margin-left: 8.33333%;
-  }
-  .suffix-1\@mobile {
-    margin-right: 8.33333%;
-  }
-  .gr-2\@mobile {
-    width: 16.66667%;
-  }
-  .push-2\@mobile {
-    left: 16.66667%;
-    right: auto;
-  }
-  .pull-2\@mobile {
-    right: 16.66667%;
-    left: auto;
-  }
-  .prefix-2\@mobile {
-    margin-left: 16.66667%;
-  }
-  .suffix-2\@mobile {
-    margin-right: 16.66667%;
-  }
-  .gr-3\@mobile {
-    width: 25%;
-  }
-  .push-3\@mobile {
-    left: 25%;
-    right: auto;
-  }
-  .pull-3\@mobile {
-    right: 25%;
-    left: auto;
-  }
-  .prefix-3\@mobile {
-    margin-left: 25%;
-  }
-  .suffix-3\@mobile {
-    margin-right: 25%;
-  }
-  .gr-4\@mobile {
-    width: 33.33333%;
-  }
-  .push-4\@mobile {
-    left: 33.33333%;
-    right: auto;
-  }
-  .pull-4\@mobile {
-    right: 33.33333%;
-    left: auto;
-  }
-  .prefix-4\@mobile {
-    margin-left: 33.33333%;
-  }
-  .suffix-4\@mobile {
-    margin-right: 33.33333%;
-  }
-  .gr-5\@mobile {
-    width: 41.66667%;
-  }
-  .push-5\@mobile {
-    left: 41.66667%;
-    right: auto;
-  }
-  .pull-5\@mobile {
-    right: 41.66667%;
-    left: auto;
-  }
-  .prefix-5\@mobile {
-    margin-left: 41.66667%;
-  }
-  .suffix-5\@mobile {
-    margin-right: 41.66667%;
-  }
-  .gr-6\@mobile {
-    width: 50%;
-  }
-  .push-6\@mobile {
-    left: 50%;
-    right: auto;
-  }
-  .pull-6\@mobile {
-    right: 50%;
-    left: auto;
-  }
-  .prefix-6\@mobile {
-    margin-left: 50%;
-  }
-  .suffix-6\@mobile {
-    margin-right: 50%;
-  }
-  .gr-7\@mobile {
-    width: 58.33333%;
-  }
-  .push-7\@mobile {
-    left: 58.33333%;
-    right: auto;
-  }
-  .pull-7\@mobile {
-    right: 58.33333%;
-    left: auto;
-  }
-  .prefix-7\@mobile {
-    margin-left: 58.33333%;
-  }
-  .suffix-7\@mobile {
-    margin-right: 58.33333%;
-  }
-  .gr-8\@mobile {
-    width: 66.66667%;
-  }
-  .push-8\@mobile {
-    left: 66.66667%;
-    right: auto;
-  }
-  .pull-8\@mobile {
-    right: 66.66667%;
-    left: auto;
-  }
-  .prefix-8\@mobile {
-    margin-left: 66.66667%;
-  }
-  .suffix-8\@mobile {
-    margin-right: 66.66667%;
-  }
-  .gr-9\@mobile {
-    width: 75%;
-  }
-  .push-9\@mobile {
-    left: 75%;
-    right: auto;
-  }
-  .pull-9\@mobile {
-    right: 75%;
-    left: auto;
-  }
-  .prefix-9\@mobile {
-    margin-left: 75%;
-  }
-  .suffix-9\@mobile {
-    margin-right: 75%;
-  }
-  .gr-10\@mobile {
-    width: 83.33333%;
-  }
-  .push-10\@mobile {
-    left: 83.33333%;
-    right: auto;
-  }
-  .pull-10\@mobile {
-    right: 83.33333%;
-    left: auto;
-  }
-  .prefix-10\@mobile {
-    margin-left: 83.33333%;
-  }
-  .suffix-10\@mobile {
-    margin-right: 83.33333%;
-  }
-  .gr-11\@mobile {
-    width: 91.66667%;
-  }
-  .push-11\@mobile {
-    left: 91.66667%;
-    right: auto;
-  }
-  .pull-11\@mobile {
-    right: 91.66667%;
-    left: auto;
-  }
-  .prefix-11\@mobile {
-    margin-left: 91.66667%;
-  }
-  .suffix-11\@mobile {
-    margin-right: 91.66667%;
-  }
-  .gr-12\@mobile {
-    width: 100%;
-  }
-  .push-12\@mobile {
-    left: 100%;
-    right: auto;
-  }
-  .pull-12\@mobile {
-    right: 100%;
-    left: auto;
-  }
-  .prefix-12\@mobile {
-    margin-left: 100%;
-  }
-  .suffix-12\@mobile {
-    margin-right: 100%;
-  }
   .float-left\@mobile {
     float: left;
   }
@@ -5658,33 +4882,9 @@ body {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.66667% 100%;
     z-index: 99999;
-  }
-  body {
-    direction: ltr;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-  }
-  .gr-grow, .gr-grow\@mobile {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-  }
-  .gr-adapt, .gr-adapt\@mobile {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
   }
 }
 
@@ -5715,9 +4915,7 @@ body {
 
 @media screen and (max-width: 640px) {
   [class*="gr-"] {
-    padding-top: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
     padding-left: 20px;
   }
 }
@@ -5847,7 +5045,7 @@ table {
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": ["Roboto", "Helvetica"], "font-weight": 400}, "roboto-light": {"font-family": ["Roboto", "Helvetica"], "font-weight": 300}, "roboto-bold": {"font-family": ["Roboto", "Helvetica"], "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythm": {"scope-class": "vr"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": ["Roboto", "Helvetica"], "font-weight": 400}, "roboto-light": {"font-family": ["Roboto", "Helvetica"], "font-weight": 300}, "roboto-bold": {"font-family": ["Roboto", "Helvetica"], "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -7434,6 +6632,277 @@ body {
 }
 
 /**
+ * @name 	STypographyComponent
+ * This file provide the mixins to create typography elements
+ */
+/**
+ * Apply the title css
+ * @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the title bare css
+ * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the title style css
+ * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the paragraph bare css
+ * @param 		{Number} 		$size 				The size wanted
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the paragraph style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link css
+ * @param 		{Color} 		[$color=primary] 		The color used to style link
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link style css
+ * @param 		{Color} 		[$color=primary] 		The color used to style link
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text bare css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list bare css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list style css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	STypographyComponent Classes
+ * This file provide the mixins to generate typography classes
+ */
+/**
+ * Provide all the classes of the typography component like titles, paragraphs, lists, etc..
+ * @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the titles classes:
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the paragraphs classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the ```.p``` and ```.p--lead``` classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the ```.p``` class
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @param 		{Color} 		[$color=primary] 		The color used to style links
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @param 		{Color} 		[$color=primary] 		The color used to style links
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @param 		{Color} 		[$color=primary] 		The color used to style bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @param 		{Color} 		[$color=primary] 		The color used to style bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 	 * @name 	```.h1```
 	 * h1 title styling
 	 * @styleguide 	Typography / Titles
@@ -7565,45 +7034,15 @@ h1.vr:last-child,
   margin-bottom: 0;
 }
 
-.h1,
-.tf h1 {
-  color: #2b3438;
-}
-
-.h2,
-.tf h2 {
-  color: #2b3438;
-}
-
-.h3,
-.tf h3 {
-  color: #2b3438;
-}
-
-.h4,
-.tf h4 {
-  color: #2b3438;
-}
-
-.h5,
-.tf h5 {
-  color: #2b3438;
-}
-
-.h6,
-.tf h6 {
-  color: #2b3438;
-}
-
 /**
 	 * @name 	```.p```
 	 * Default paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p vr">
+	 * <p class="p ">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf vr">
+	 * <div class="tf ">
 	 * 	<p>
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -7620,10 +7059,10 @@ h1.vr:last-child,
 	 * Lead paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p p--lead vr">
+	 * <p class="p p--lead ">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf vr">
+	 * <div class="tf ">
 	 * 	<p class="lead">
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -7631,7 +7070,7 @@ h1.vr:last-child,
 	 */
 .p--lead,
 .tf p.lead {
-  font-size: 1.3em;
+  font-size: 1.3em !important;
   font-weight: lighter;
 }
 
@@ -8161,6 +7600,23 @@ ol.vr .dl, ol.vr .ul, ol.vr .ol,
   display: block;
 }
 
+.quote cite,
+.blockquote cite,
+.tf quote cite,
+.tf blockquote cite {
+  font-size: .5em;
+  font-style: italic;
+  display: block;
+  margin-top: 2.85714rem;
+}
+
+.quote cite:before,
+.blockquote cite:before,
+.tf quote cite:before,
+.tf blockquote cite:before {
+  content: "\2014 \0020";
+}
+
 .quote.vr,
 .vr .quote,
 .blockquote.vr,
@@ -8433,35 +7889,9 @@ body {
   padding: 2.85714rem;
 }
 
-/**
-		 * @name 	```.nav--inline```
-		 * Provide a simple inline navigation component
-		 * @styleguide 	Blocks / Nav
-		 * @example 	html
-		 * <ul class="nav nav--inline">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--inline, .nav--pills, .nav--topbar {
-  display: block;
-}
-
-.nav--inline > li, .nav--pills > li, .nav--topbar > li,
-.nav--inline > .nav__item, .nav--pills > .nav__item, .nav--topbar > .nav__item {
-  position: relative;
+.nav--inline .nav__item, .nav--pills .nav__item, .nav--topbar .nav__item {
   display: inline-block;
-}
-
-.nav--right {
-  text-align: right;
+  position: relative;
 }
 
 /**
@@ -8548,6 +7978,155 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
  * Form styling
  */
 /**
+ * @name 	SFormComponent
+ * This file provide the mixins and functions to create form elements
+ */
+.form-input, .form-select, .form-textarea, .form-addon {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+}
+
+.form-input, .form-select, .form-textarea, .form-input--primary, .form-select--primary, .form-textarea--primary, .form-input--secondary, .form-select--secondary, .form-textarea--secondary {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.form-input:disabled, .form-select:disabled, .form-textarea:disabled, .form-input--primary:disabled, .form-select--primary:disabled, .form-textarea--primary:disabled, .form-input--secondary:disabled, .form-select--secondary:disabled, .form-textarea--secondary:disabled {
+  cursor: not-allowed;
+}
+
+/**
+ * Set the styling for field sizes like padding, height, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for field color like borders
+ * @param 		{Color} 		$color 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for input field (text, email, etc...)
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for textarea sizes like padding, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare and style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * Set the styling for select colors like background arrow, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare css for select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form addon
+* @param 		{Color} 		[$color=default] 		The color wanted for the form addon
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * @name 	SFormComponent Classes
+ * This file provide the mixins to generate form classes
+ */
+/**
+ * Provide all the classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-textarea```
+ * - ```.form-select```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 		 * @name 	```.form-input```
 		 * @styleguide 		Forms / Input
 		 * @example 	html
@@ -8563,6 +8142,18 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 
 .form-input:not(input):not(select) {
   padding: 0.8em 1.4em;
+}
+
+.form-input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.form-input::-ms-clear {
+  display: none;
 }
 
 /**
@@ -8590,6 +8181,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 
 .form-select:not(input):not(select) {
   padding: 0.8em 1.4em;
+}
+
+.form-select::-ms-expand {
+  display: none;
 }
 
 /**
@@ -8645,7 +8240,6 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 		 * </div>
 		 */
 .form-addon {
-  pointer-events: none;
   border-radius: 0;
   padding: 0 1.4em;
   height: 2.6em;
@@ -8707,6 +8301,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(132, 142, 145, 0.6);
 }
 
+.form-input:invalid, .form-input[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
 			 * @name 	<span class="c-default">Default</span> ```.form-select--default```
 			 * @styleguide 		Forms / Select
@@ -8722,7 +8320,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(132, 142, 145, 0.1);
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23848e91"></polygon></svg>');
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23848e91'%3E%3C/polygon%3E%3C/svg%3E");
 }
 
 .form-select::-webkit-input-placeholder {
@@ -8759,8 +8357,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(132, 142, 145, 0.6);
 }
 
+.form-select:invalid, .form-select[invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.form-select:invalid, .form-select[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
-			 * @name 	<span class="c-default">Default</span> ```.form-textear--default```
+			 * @name 	<span class="c-default">Default</span> ```.form-textarea--default```
 			 * @styleguide 		Forms / Textarea
 			 * @example 	html
 			 * <textarea class="form-textarea form-textarea--default" placeholder="Hello world"></textarea>
@@ -8804,6 +8410,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 [data-input-activator]:focus ~ .form-textarea,
 [data-input-activator]:checked ~ .form-textarea, .form-textarea:focus:not(:disabled), .form-textarea.active:not(:disabled) {
   border-color: rgba(132, 142, 145, 0.6);
+}
+
+.form-textarea:invalid, .form-textarea[invalid] {
+  border-color: #d9534f !important;
 }
 
 /**
@@ -8881,6 +8491,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(242, 188, 43, 0.6);
 }
 
+.form-input--primary:invalid, .form-input--primary[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
 			 * @name 	<span class="c-primary">Primary</span> ```.form-select--primary```
 			 * @styleguide 		Forms / Select
@@ -8896,7 +8510,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(242, 188, 43, 0.1);
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%23f2bc2b"></polygon></svg>');
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23f2bc2b'%3E%3C/polygon%3E%3C/svg%3E");
 }
 
 .form-select--primary::-webkit-input-placeholder {
@@ -8933,8 +8547,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(242, 188, 43, 0.6);
 }
 
+.form-select--primary:invalid, .form-select--primary[invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.form-select--primary:invalid, .form-select--primary[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
-			 * @name 	<span class="c-primary">Primary</span> ```.form-textear--primary```
+			 * @name 	<span class="c-primary">Primary</span> ```.form-textarea--primary```
 			 * @styleguide 		Forms / Textarea
 			 * @example 	html
 			 * <textarea class="form-textarea form-textarea--primary" placeholder="Hello world"></textarea>
@@ -8978,6 +8600,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 [data-input-activator]:focus ~ .form-textarea--primary,
 [data-input-activator]:checked ~ .form-textarea--primary, .form-textarea--primary:focus:not(:disabled), .form-textarea--primary.active:not(:disabled) {
   border-color: rgba(242, 188, 43, 0.6);
+}
+
+.form-textarea--primary:invalid, .form-textarea--primary[invalid] {
+  border-color: #d9534f !important;
 }
 
 /**
@@ -9055,6 +8681,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(43, 52, 56, 0.6);
 }
 
+.form-input--secondary:invalid, .form-input--secondary[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> ```.form-select--secondary```
 			 * @styleguide 		Forms / Select
@@ -9070,7 +8700,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   border-color: rgba(43, 52, 56, 0.1);
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill%3A%232b3438"></polygon></svg>');
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%232b3438'%3E%3C/polygon%3E%3C/svg%3E");
 }
 
 .form-select--secondary::-webkit-input-placeholder {
@@ -9107,8 +8737,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: rgba(43, 52, 56, 0.6);
 }
 
+.form-select--secondary:invalid, .form-select--secondary[invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.form-select--secondary:invalid, .form-select--secondary[invalid] {
+  border-color: #d9534f !important;
+}
+
 /**
-			 * @name 	<span class="c-secondary">Secondary</span> ```.form-textear--secondary```
+			 * @name 	<span class="c-secondary">Secondary</span> ```.form-textarea--secondary```
 			 * @styleguide 		Forms / Textarea
 			 * @example 	html
 			 * <textarea class="form-textarea form-textarea--secondary" placeholder="Hello world"></textarea>
@@ -9152,6 +8790,10 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 [data-input-activator]:focus ~ .form-textarea--secondary,
 [data-input-activator]:checked ~ .form-textarea--secondary, .form-textarea--secondary:focus:not(:disabled), .form-textarea--secondary.active:not(:disabled) {
   border-color: rgba(43, 52, 56, 0.6);
+}
+
+.form-textarea--secondary:invalid, .form-textarea--secondary[invalid] {
+  border-color: #d9534f !important;
 }
 
 /**
@@ -9324,9 +8966,86 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 /**
+ * @name 	SButtonComponent
+ * This file provide the mixins to create buttons
+ */
+.btn, .btn--block {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  outline-width: 0;
+  -webkit-appearance: none;
+  line-height: 0;
+  text-decoration: none;
+  font-size: 1em;
+  user-select: none;
+}
+
+.btn:not(button):not(input), .btn--block:not(button):not(input) {
+  line-height: 0.9;
+}
+
+button {
+  line-height: 1;
+}
+
+/**
+ * Apply the button css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button bare css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button style css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SButtonComponent Classes
+ * This file provide the mixins to generate button classes
+ */
+/**
+ * Provide all the classes of the button component like .btn, .btn--outline, etc...
+ * - ```.btn```
+ * - ```.btn--{color}```
+ * - ```.btn--outline```
+ * - ```.btn--link```
+ * - ```.btn--block```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the buttons classes
+ * - ```.btn```
+ * - ```.btn--block```
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the buttons classes
+ * - ```.button--{color}```
+ * - ```.button--outline```
+ * - ```.button--link```
+ * - ```.button:disabled```
+ * - ```.button--hover-{$color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 		 * @name 	```.btn```
 		 * Lead paragraph styling
-		 * @styleguide 	Objects / Buttons
+		 * @styleguide 	Atoms / Buttons
 		 * @example 	html
 		 * <a class="btn">
 		 * 	Default button
@@ -9339,14 +9058,14 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 /**
-		 * @name 	```.btn--block```
-		 * Lead paragraph styling
-		 * @styleguide 	Objects / Buttons
-		 * @example 	html
-		 * <a class="btn btn--block">
-		 * 	Block button
-		 * </a>
-		 */
+			* @name 	```.btn--block```
+			* Lead paragraph styling
+			* @styleguide 	Atoms / Buttons
+			* @example 	html
+			* <a class="btn btn--block">
+			* 	Block button
+			* </a>
+			*/
 .btn--block {
   border-radius: 0;
   padding: 0.8em 1.4em;
@@ -9371,7 +9090,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 .btn--link {
   background-color: transparent !important;
   color: #f2bc2b !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9396,7 +9115,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 	<span class="c-primary">Primary</span> ```.btn```
 			 * Primary button
-			 * @styleguide 	Objects / Buttons
+			 * @styleguide 	Atoms / Buttons
 			 * @example 	html
 			 * <a class="btn btn--primary">
 			 * 	Primary button
@@ -9407,32 +9126,32 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: #f2bc2b;
   color: white;
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn--outline```
-				 * Outline primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--outline btn--primary">
-				 * 	Primary outlined button
-				 * </a>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn--outline```
+					* Outline primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--outline btn--primary">
+					* 	Primary outlined button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn--link```
-				 * Link primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--link btn--primary">
-				 * 	Primary link button
-				 * </a>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn--link```
+					* Link primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--link btn--primary">
+					* 	Primary link button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn:disabled```
-				 * Disabled primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <button disabled class="btn btn--primary">
-				 * 	Primary disabled button
-				 * </button>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn:disabled```
+					* Disabled primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <button disabled class="btn btn--primary">
+					* 	Primary disabled button
+					* </button>
+					*/
 }
 
 .btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
@@ -9456,7 +9175,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 .btn--primary.btn--link {
   background-color: transparent !important;
   color: #f2bc2b !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9506,7 +9225,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> ```.btn```
 			 * Secondary button
-			 * @styleguide 	Objects / Buttons
+			 * @styleguide 	Atoms / Buttons
 			 * @example 	html
 			 * <a class="btn btn--secondary">
 			 * 	Secondary button
@@ -9517,32 +9236,32 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   border-color: #2b3438;
   color: white;
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--outline```
-				 * Outline secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--outline btn--secondary">
-				 * 	Secondary outlined button
-				 * </a>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn--outline```
+					* Outline secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--outline btn--secondary">
+					* 	Secondary outlined button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--link```
-				 * Link secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--link btn--secondary">
-				 * 	Secondary link button
-				 * </a>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn--link```
+					* Link secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--link btn--secondary">
+					* 	Secondary link button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn:disabled```
-				 * Disabled secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <button disabled class="btn btn--secondary">
-				 * 	Secondary disabled button
-				 * </button>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn:disabled```
+					* Disabled secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <button disabled class="btn btn--secondary">
+					* 	Secondary disabled button
+					* </button>
+					*/
 }
 
 .btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
@@ -9566,7 +9285,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 .btn--secondary.btn--link {
   background-color: transparent !important;
   color: #2b3438 !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9628,9 +9347,56 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 /**
+ * This file provide the mixins to generate dropdown classes
+ */
+.dropdown__menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/**
+ * Print out the bare and style dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown--up`
+ * - `.dropdown--right`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+/**
+ * Print out the bare dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown--up`
+ * - `.dropdown--right`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ */
+/**
+ * Print out the style dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+/**
 		 * @name 	```.dropdown```
 		 * Provide a nice dropdown component
-		 * @styleguide 		Objects / Dropdown
+		 * @styleguide 		Atoms / Dropdown
 		 * @example 	html
 		 * <div style="display:inline-block" class="dropdown">
 		 * 	<a>Display dropdown</a>
@@ -9655,10 +9421,11 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 		 */
 .dropdown {
   position: relative;
+  display: inline-block;
   /**
 			 * @name 	```.dropdown--right```
 			 * Provide a nice dropdown component aligned to the right
-			 * @styleguide 		Objects / Dropdown
+			 * @styleguide 		Atoms / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--right">
 			 * 	<a>Display right dropdown</a>
@@ -9681,13 +9448,39 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 			 *  </ul>
 			 * </div>
 			 */
+  /**
+			 * @name 	```.dropdown--up```
+			 * Provide a nice dropup component
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--up">
+			 * 	<a>Display dropup</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
 }
 
-.dropdown:hover, .dropdown.active, .dropdown.dropdown--active {
+.dropdown:hover, .dropdown.active, .dropdown[active], .dropdown:active, .dropdown.dropdown--active {
   z-index: 1;
 }
 
-.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
   top: 100%;
 }
 
@@ -9701,14 +9494,9 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   bottom: 100%;
 }
 
-.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up[active] .dropdown__menu, .dropdown.dropdown--up:active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
   top: auto;
   bottom: 100%;
-}
-
-.dropdown__menu {
-  transition: all 0.2s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
 }
 
 .dropdown__item {
@@ -9719,12 +9507,25 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   display: block;
 }
 
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  transform: translateY(0);
+}
+
+.dropdown.dropdown--up .dropdown__menu {
+  transform: translateY(-1em);
+}
+
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up[active] .dropdown__menu, .dropdown.dropdown--up:active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
+  transform: translateY(0);
+}
+
 .dropdown__menu {
   background: #848e91;
   box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
   overflow: hidden;
+  transform: translateY(1em);
 }
 
 .dropdown__item {
@@ -9739,7 +9540,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   outline-color: black;
 }
 
-.dropdown__item:hover, .dropdown__item.active, .dropdown__item.dropdown--active {
+.dropdown__item:hover, .dropdown__item.active, .dropdown__item[active], .dropdown__item:active, .dropdown__item.dropdown--active {
   left: 5px;
 }
 
@@ -9753,7 +9554,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 	<span class="c-primary">Primary</span> ```.dropdown--primary```
 			 * Provide a nice dropdown primary component
-			 * @styleguide 		Objects / Dropdown
+			 * @styleguide 		Atoms / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--primary">
 			 * 	<a>Display primary dropdown</a>
@@ -9783,7 +9584,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> ```.dropdown--secondary```
 			 * Provide a nice dropdown secondary component
-			 * @styleguide 		Objects / Dropdown
+			 * @styleguide 		Atoms / Dropdown
 			 * @example 	html
 			 * <div style="display:inline-block" class="dropdown dropdown--secondary">
 			 * 	<a>Display secondary dropdown</a>
@@ -9864,16 +9665,104 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   animation: s-ripple 0.3s 0s ease-out 1 normal forwards;
 }
 
+/**
+ * @name 	STooltipComponent Classes
+ * This file provide the mixins to generate tooltip classes
+ */
+/**
+ * Print out the bare and style tooltip css
+ * Generated classes:
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip--{color}`
+ * - `.tooltip--active, .tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
+/**
+ * Print out the bare tooltip css
+ * Generated classed
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
+/**
+ * Print out the style tooltip css
+ * Generated classes:
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip--{color}`
+ * - `.tooltip--active, .tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
 .tooltip {
-  border-radius: 0;
+  position: absolute !important;
+  pointer-events: none;
+  opacity: 0;
   padding: 0.8em 1.4em;
   line-height: 1.4;
-  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
-  outline-color: black;
+}
+
+.tooltip.tooltip--active,
+:hover > .tooltip,
+[active] > .tooltip,
+.active > .tooltip, .tooltip.active, .tooltip[active] {
+  opacity: 1;
+  z-index: 1;
+}
+
+/**
+			 * @name 		```.tooltip--t```
+			 * Display a top centered tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--t">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  top: auto;
+  right: auto;
+  transform: translateX(-50%) translateY(0) translateZ(0);
 }
 
 .tooltip {
   box-shadow: rgba(0, 0, 0, 0.2) 0 10px 15px;
+  border-radius: 0;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
 }
 
 @keyframes s-tooltip-component {
@@ -9900,7 +9789,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--t.tooltip--default```
 					 * Display a default top centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--t">
@@ -9910,18 +9799,14 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 					 */
 }
 
-.tooltip.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip.tooltip--t {
   position: relative;
   background: #848e91;
   border-style: solid;
   border-width: 0;
 }
 
-.tooltip.tooltip--t:after, .tooltip.tooltip--t:before {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip.tooltip--t:after, .tooltip.tooltip--t:before {
   border: solid transparent;
   content: " ";
   height: 0;
@@ -9931,7 +9816,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   visibility: visible;
 }
 
-.tooltip.tooltip--t:after {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip.tooltip--t:after {
   border-width: 0.5em;
   border-top-color: #848e91;
   bottom: -1em;
@@ -9939,16 +9824,22 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   margin-right: -0.5em;
 }
 
-.tooltip.tooltip--t:before {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip.tooltip--t:before {
   border-width: 0.5em;
   bottom: -1em;
   right: 50%;
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--t, .tooltip.tooltip--t.active,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).tooltip--active, .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).active,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.active > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+:hover > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip.tooltip--t.tooltip--active, .tooltip.tooltip--t.active,
+.tooltip.tooltip--t[active] [active] > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
 .active > .tooltip.tooltip--t,
-:hover > .tooltip.tooltip--t {
+:hover > .tooltip.tooltip--t,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip.tooltip--t,
+.tooltip.tooltip--t[active] [active] > .tooltip.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
@@ -9958,7 +9849,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--t.tooltip--secondary```
 					 * Display a secondary top centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--t">
@@ -9968,18 +9859,14 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 					 */
 }
 
-.tooltip--secondary.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--secondary.tooltip--t {
   position: relative;
   background: #2b3438;
   border-style: solid;
   border-width: 0;
 }
 
-.tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
   border: solid transparent;
   content: " ";
   height: 0;
@@ -9989,7 +9876,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   visibility: visible;
 }
 
-.tooltip--secondary.tooltip--t:after {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--secondary.tooltip--t:after {
   border-width: 0.5em;
   border-top-color: #2b3438;
   bottom: -1em;
@@ -9997,16 +9884,22 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   margin-right: -0.5em;
 }
 
-.tooltip--secondary.tooltip--t:before {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--secondary.tooltip--t:before {
   border-width: 0.5em;
   bottom: -1em;
   right: 50%;
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--t, .tooltip--secondary.tooltip--t.active,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).tooltip--active, .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).active,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.active > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+:hover > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--secondary.tooltip--t.tooltip--active, .tooltip--secondary.tooltip--t.active,
+.tooltip--secondary.tooltip--t[active] [active] > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
 .active > .tooltip--secondary.tooltip--t,
-:hover > .tooltip--secondary.tooltip--t {
+:hover > .tooltip--secondary.tooltip--t,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--secondary.tooltip--t,
+.tooltip--secondary.tooltip--t[active] [active] > .tooltip--secondary.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
@@ -10016,9 +9909,67 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 /**
+ * Print out the responsive style for a table.
+ * This responsive style make the table display as block and take the "label" attribute on the td to display correctly the line label
+ */
+/**
+ * @name 	STableComponent Classes
+ * This file provide the mixins to generate table classes
+ */
+/**
+ * Provide all the classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 		 * @name 		```.table```
 		 * Display table contents
-		 * @styleguide 		Objects / Table
+		 * @styleguide 		Atoms / Table
 		 * @example 		html
 		 * <table class="table">
 		 * 	<thead>
@@ -10128,7 +10079,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 			```.table--responsive-overflow```
 			 * Display responsive overflow table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--responsive-overflow">
 			 * 	<thead>
@@ -10159,7 +10110,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 			```.table--responsive```
 			 * Display responsive table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--responsive">
 			 * 	<thead>
@@ -10180,7 +10131,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 			 * 	</tbody>
 			 * </table>
 			 */
-@media (max-width: 640px) {
+@media all and (max-width: 640px) {
   .table--responsive {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
@@ -10208,13 +10159,14 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
     padding: 0.8em 1.4em;
     white-space: nowrap;
     content: attr(label);
+    font-weight: bold;
   }
 }
 
 /**
 			 * @name 		```.table--center```
 			 * Display centered table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--center">
 			 * 	<thead>
@@ -10243,7 +10195,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 		```.table--middle```
 			 * Display middle aligned table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--middle">
 			 * 	<thead>
@@ -10278,7 +10230,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 /**
 			 * @name 		```.table--interactive```
 			 * Display cursor on table rows contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--interactive">
 			 * 	<thead>
@@ -10316,7 +10268,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 				 * @name 		<span class="c-default">Default</span> ```.table--default```
 				 * Display default table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--default">
 				 * 	<thead>
@@ -10340,7 +10292,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 				 * @name 		<span class="c-primary">Primary</span> ```.table--primary```
 				 * Display primary table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--primary">
 				 * 	<thead>
@@ -10364,7 +10316,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 				 * @name 		<span class="c-secondary">Secondary</span> ```.table--secondary```
 				 * Display secondary table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--secondary">
 				 * 	<thead>
@@ -10399,7 +10351,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--striped.table--default```
 						 * Display default striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--striped">
 						 * 	<thead>
@@ -10423,7 +10375,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--bordered.table--default```
 						 * Display default bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--bordered">
 						 * 	<thead>
@@ -10447,7 +10399,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--hover.table--default```
 						 * Display default hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--hover">
 						 * 	<thead>
@@ -10489,20 +10441,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 .table.table.table--bordered {
-  border: 1px solid rgba(132, 142, 145, 0.1);
+  border: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--bordered tr {
-  border-bottom: 1px solid rgba(132, 142, 145, 0.1);
-}
-
-.table.table.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--bordered td,
 .table.table.table--bordered th {
-  border-right: 1px solid rgba(132, 142, 145, 0.1);
+  border-right: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--hover > tbody > .tr:hover td, .table.table.table--hover > tbody > .tr:hover .td,
@@ -10518,7 +10466,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--striped.table--primary```
 						 * Display primary striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--striped">
 						 * 	<thead>
@@ -10542,7 +10490,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--bordered.table--primary```
 						 * Display primary bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--bordered">
 						 * 	<thead>
@@ -10566,7 +10514,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--hover.table--primary```
 						 * Display primary hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--hover">
 						 * 	<thead>
@@ -10608,20 +10556,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 .table.table--primary.table--bordered {
-  border: 1px solid rgba(242, 188, 43, 0.1);
+  border: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--bordered tr {
-  border-bottom: 1px solid rgba(242, 188, 43, 0.1);
-}
-
-.table.table--primary.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--bordered td,
 .table.table--primary.table--bordered th {
-  border-right: 1px solid rgba(242, 188, 43, 0.1);
+  border-right: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--hover > tbody > .tr:hover td, .table.table--primary.table--hover > tbody > .tr:hover .td,
@@ -10637,7 +10581,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--striped.table--secondary```
 						 * Display secondary striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--striped">
 						 * 	<thead>
@@ -10661,7 +10605,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--bordered.table--secondary```
 						 * Display secondary bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--bordered">
 						 * 	<thead>
@@ -10685,7 +10629,7 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--hover.table--secondary```
 						 * Display secondary hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--hover">
 						 * 	<thead>
@@ -10727,20 +10671,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
 }
 
 .table.table--secondary.table--bordered {
-  border: 1px solid rgba(43, 52, 56, 0.1);
+  border: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--bordered tr {
-  border-bottom: 1px solid rgba(43, 52, 56, 0.1);
-}
-
-.table.table--secondary.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--bordered td,
 .table.table--secondary.table--bordered th {
-  border-right: 1px solid rgba(43, 52, 56, 0.1);
+  border-right: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--hover > tbody > .tr:hover td, .table.table--secondary.table--hover > tbody > .tr:hover .td,
