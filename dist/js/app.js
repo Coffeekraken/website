@@ -8945,9 +8945,9 @@
 	           * @name 	imagesLoadedAttribute
 	           * Add on every images the attribute "loaded" when it has been fully loaded. This is useful
 	           * for styling purposes and for others thinks as well.
-	           * @exemple 	js
-	           * import 'coffeekraken-sugar/features/imagesLoadedAttribute'
-	           * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	           * @example 	js
+	           * import 'coffeekraken-sugar/js/features/imagesLoadedAttribute'
+	           * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	           */
 
 	[].forEach.call(document.querySelectorAll('img'), function (img) {
@@ -8981,7 +8981,7 @@
 	 * 		// do something when the image is loaded
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function imageLoaded(img) {
 		var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -9033,9 +9033,9 @@
 	 * - `has-value`: When the input has a value in it
 	 * - `empty`: When the input is has no value in it
 	 * - `dirty`: When the input has been touched
-	 * @exemple 	js
-	 * import 'coffeekraken-sugar/features/inputAdditionalAttributes'
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @example 	js
+	 * import 'coffeekraken-sugar/js/features/inputAdditionalAttributes'
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 
 	function handleInputAttributes(eOrElm) {
@@ -9378,7 +9378,7 @@
 	 * 	// do something here with the detected node
 	 * });
 	 *
-	 * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 	Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function querySelectorLive(selector, cb) {
 		var settings = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -9468,13 +9468,6 @@
 		// update uniqid idx
 		window.sugar._uniqid++;
 		return "s" + window.sugar._uniqid.toString();
-		// uniqidIdx++;
-
-		// let ts=String(new Date().getTime()), i = 0, out = '';
-		// for(i=0;i<ts.length;i+=2) {
-		// 	out+=Number(ts.substr(i, 2)).toString(36);
-		// }
-		// return ('s' + out + (uniqidIdx * Math.round(Math.random()*9999999)));
 	}
 
 /***/ }),
@@ -9502,7 +9495,7 @@
 	 * }
 	 *
 	 * @see 		https://developer.mozilla.org/en/docs/Web/API/Element/matches
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function matches(el, selector) {
 	  if (el.nodeName == '#comment' || el.nodeName == '#text') {
@@ -9535,9 +9528,9 @@
 	 * @name 	inputAdditionalEvents
 	 * Add some events on some DOM Elements. Here's the list:
 	 * **input/textarea**: `onenter`, `onescape`
-	 * @exemple 	js
-	 * import 'coffeekraken-sugar/features/inputAdditionalEvents'
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @example 	js
+	 * import 'coffeekraken-sugar/js/features/inputAdditionalEvents'
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 
 	function handleInputAttributes(e) {
@@ -9603,7 +9596,7 @@
 	 * 		var1 : 'value1'
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function dispatchEvent(target, name) {
 	  var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -21270,7 +21263,7 @@
 	 * 	- componentWillUnmount
 	 * 	- componentUnmount
 	 * 	- componentDidUnmount
-	 * - **Mount dependencies** : This will allows you to set some promises that havwe to be resolved before mounting the component
+	 * - **Mount dependencies** : This will allows you to set some promises that have to be resolved before mounting the component
 	 *
 	 * @example 	js
 	 * import SWebComponent from 'coffeekraken-sugar/js/core/SWebComponent'
@@ -21349,7 +21342,7 @@
 	 * // define your component
 	 * MyCoolComponent.define('my-cool-component', MyCoolComponent);
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 
 	if (!window.sugar) window.sugar = {};
@@ -21680,7 +21673,7 @@
 	    * Set some default props for a specific component
 	    * @param 		{Object} 		props 			A props object to set
 	    * @param 		{String} 		[tagname=null] 	The tagname of the component you want to setting up
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 				value: function setDefaultProps(props) {
 					var tagname = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -21721,7 +21714,7 @@
 	    * 		});
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 				get: function get() {
 					return {
@@ -21800,13 +21793,17 @@
 					if (window.Proxy) {
 						this.props = new Proxy(this._props, {
 							set: function set(target, property, value) {
+								// get the old value
+								var oldVal = target[property];
 								// apply the new value
 								target[property] = value;
-								// call setProp
-								_this3.setProp(property, value, false);
+								// handle the new property value
+								_this3._handleNewPropValue(property, value, oldVal);
+								// notify the proxy that the property has been updated
 								return true;
 							},
 							get: function get(target, property) {
+								// simply return the property value from the target
 								return target[property];
 							}
 						});
@@ -21923,7 +21920,7 @@
 					newVal = (0, _autoCast2.default)(newVal);
 
 					// handle the case when newVal is undefined (added attribute whithout any value)
-					if (newVal === undefined && this.hasAttribute(_attribute)) {
+					if ((newVal === undefined || newVal === null || newVal === '') && this.hasAttribute(_attribute)) {
 						newVal = true;
 					} else if (newVal === null && !this.hasAttribute(_attribute) && this.props[attribute] === false) {
 						// the attribute has been removed and
@@ -21948,7 +21945,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -21966,7 +21963,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22015,7 +22012,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22040,7 +22037,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22071,7 +22068,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22092,7 +22089,7 @@
 	    * 		// in order to reflect the props object state
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22116,7 +22113,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22136,7 +22133,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22159,7 +22156,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22182,7 +22179,7 @@
 	    * 		// do something here...
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22364,6 +22361,7 @@
 					for (var key in props) {
 						this.setProp(key, props[key]);
 					}
+					// return the component
 					return this;
 				}
 
@@ -22383,14 +22381,15 @@
 					var oldVal = this.props[prop];
 
 					// stop if same value
-					if (oldVal === value && set) return;
+					if (oldVal === value) return;
 
 					// set the prop
-					if (set) this._props[prop] = value;
+					this._props[prop] = value;
 
 					// handle new value
 					this._handleNewPropValue(prop, value, oldVal);
 
+					// return the component
 					return this;
 				}
 
@@ -22487,7 +22486,7 @@
 	    *  	}
 	    * }
 	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22536,7 +22535,7 @@
 	    * on the dom element as attribute
 	    * @param 			{String} 			prop 			The property to handle
 	    * @param 			{Mixed} 			value 			The property value
-	    * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+	    * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	    */
 
 			}, {
@@ -22769,7 +22768,6 @@
 	// Export the mixin class
 	exports.default = SWebComponentMixin;
 
-
 /***/ }),
 /* 397 */
 /***/ (function(module, exports) {
@@ -22791,6 +22789,11 @@
 		// handle the single quotes strings like '"hello world"'
 		if (string.substr(0, 1) === '\'' && string.substr(-1) === '\'') {
 			return string.substr(1, string.length - 2);
+		}
+
+		// avoid getting item from the window object
+		if (window[string]) {
+			return string;
 		}
 
 		// try to eval the passed string
@@ -24532,7 +24535,7 @@
 	 * 		// do something with your element that has entered the viewport...
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function whenInViewport(elm) {
 		var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
@@ -24651,7 +24654,7 @@
 	 * 		// do something with your element that is now visible
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function whenVisible(elm) {
 		var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -24802,7 +24805,7 @@
 	 * 		// i'm visible
 	 * }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function isVisible(elm) {
 
@@ -24854,7 +24857,7 @@
 	 * 		// we have found en element is not visible
 	 * }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function closestNotVisible(elm) {
 	  elm = elm.parentNode;
@@ -24895,7 +24898,7 @@
 	 * 		// i'm in the viewport
 	 * }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function isInViewport(elm) {
 		var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
@@ -24947,7 +24950,7 @@
 	 * 		myThrottledFn();
 	 * });
 	 *
-	 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function throttle(fn, threshhold) {
 	    threshhold || (threshhold = 250);
@@ -25003,7 +25006,7 @@
 	 * 		// we have found en element that matches the selector
 	 * }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function closest(elm, selector) {
 	  elm = elm.parentNode;
@@ -25039,7 +25042,7 @@
 	 * import prependChild from 'sugarcss/js/dom/prependChild'
 	 * prependChild(myElementToInsert, theReferenceElement);
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function prependChild(elm, refElm) {
 	  if (!refElm.firstChild) {
@@ -25098,7 +25101,7 @@
 	 * // update the title
 	 * myObject.title = 'Hello Universe';
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	var SWatcher = function () {
 
@@ -25116,12 +25119,6 @@
 	  */
 
 
-		// static setters = {
-		// 	CSSStyleDeclaration : (obj, property, value) => {
-		// 		obj.setProperty(property, value);
-		// 	}
-		// }
-
 		/**
 	  * Watch stack
 	  * @type 		{Object}
@@ -25130,9 +25127,10 @@
 
 		_createClass(SWatcher, [{
 			key: 'destroy',
-			value: function destroy() {}
-			// @TODO watcher destroy implementation
-
+			value: function destroy() {
+				// destroy the watchStack
+				this._watchStack = {};
+			}
 
 			/**
 	   * Internal implementation of the defineProp
@@ -25159,11 +25157,6 @@
 
 				// custom setter check
 				var _set = function _set(value) {
-					// check if have a custom setter for this object
-					// if (customSetter) {
-					// 	customSetter(obj, property, value);
-					// 	val = value;
-					// }
 					// descriptor
 					if (currentDescriptor && currentDescriptor.set) {
 						var ret = currentDescriptor.set(value);
@@ -25181,15 +25174,6 @@
 						val = newVal;
 					});
 				};
-
-				// get the setter
-				// let customSetter;
-				// for (let name in SWatcher.setters) {
-				// 	if (__constructorName(obj) === name) {
-				// 		customSetter = SWatcher.setters[name];
-				// 		break;
-				// 	}
-				// }
 
 				// set the value
 				_set(value);
@@ -25306,7 +25290,7 @@
 					path = path.split(',');
 				}
 				if (!path instanceof Array) {
-					throw "The 'path' parameter has to be a string or an array...";
+					throw "The 'path' parameter has to be an array...";
 				}
 				// loop on each path to watch
 				path.forEach(function (p) {
@@ -25406,7 +25390,7 @@
 	 * const myObj = new MyCoolClass();
 	 * console.log(constructorName(myObj)); => MyCoolClass
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function constructorName(obj) {
 	  var funcNameRegex = /function (.{1,})\(/;
@@ -26609,7 +26593,7 @@
 	 * myObject.title = 'Universe';
 	 * console.log(myObject.title) => 'Hello Youhou Universe';
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function propertyProxy(obj, property, descriptor) {
 		var applySetterAtStart = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
@@ -26765,6 +26749,8 @@
 /* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -26780,6 +26766,8 @@
 /***/ }),
 /* 502 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -28951,7 +28939,7 @@
 	 * isInteger(10) => true
 	 * isInteger('hello') => false
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function isInteger(data) {
 	  return !isNaN(data) && function (x) {
@@ -28962,6 +28950,8 @@
 /***/ }),
 /* 505 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28978,6 +28968,8 @@
 /***/ }),
 /* 506 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -29756,6 +29748,8 @@
 /* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -29771,6 +29765,8 @@
 /***/ }),
 /* 511 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -30054,7 +30050,7 @@
 	 * 		// do something with your number value...
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function whenAttribute(elm, attrName) {
 		var checkFn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -30121,7 +30117,7 @@
 	 * });
 	 *
 	 * @see 		https://developer.mozilla.org/en/docs/Web/API/MutationObserver
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 
 
@@ -31188,6 +31184,8 @@
 /* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -31203,6 +31201,8 @@
 /***/ }),
 /* 531 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -31478,6 +31478,8 @@
 /* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -31493,6 +31495,8 @@
 /***/ }),
 /* 533 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -31799,6 +31803,8 @@
 /* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -31814,6 +31820,8 @@
 /***/ }),
 /* 535 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -31984,7 +31992,7 @@
 	 * // 	totalDuration : 200
 	 * // }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 
 	function splitIfNeeded(what, separator) {
@@ -32065,7 +32073,7 @@
 	 * const opacity = getStyleProperty(myCoolHTMLElement, 'opacity');
 	 *
 	 * @see 		https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function getStyleProperty(elm, property) {
 
@@ -32562,12 +32570,8 @@
 	 * 		display : null
 	 * });
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
-
-	if (!window.sugar) window.sugar = {};
-	window.sugar._styles = new Map();
-
 	function style(elm, styleObj) {
 
 	  // convert style string to object
@@ -32621,7 +32625,7 @@
 	 * // 		display : 'block'
 	 * // }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function styleString2Object(style) {
 	  if (!style || style === '') return {};
@@ -32671,7 +32675,7 @@
 	 * });
 	 * // output => padding-left:20px; display:block;
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function styleObject2String(styleObj) {
 	  // process the style object
@@ -32714,7 +32718,7 @@
 	 * const offsetElm = offset(myCoolElement);
 	 * // output : { top : 200, left : 300 }
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function offset(elm) {
 		var body = void 0,
@@ -32751,6 +32755,8 @@
 /* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -32766,6 +32772,8 @@
 /***/ }),
 /* 545 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -33177,6 +33185,8 @@
 /* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -33192,6 +33202,8 @@
 /***/ }),
 /* 547 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -33832,6 +33844,8 @@
 /* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -33847,6 +33861,8 @@
 /***/ }),
 /* 551 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -48679,7 +48695,7 @@
 	 * 		myObj.title = 'Hello World';
 	 * },1000);
 	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function whenProperty(object, property) {
 	  var checkFn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -48718,6 +48734,8 @@
 /* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -48733,6 +48751,8 @@
 /***/ }),
 /* 555 */
 /***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
