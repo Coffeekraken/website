@@ -941,10 +941,14 @@ All what we provide are some cool tools that you can use the way you want. These
 
 		<!-- Load scripts -->
 		<script src="https://use.fontawesome.com/e5d2c7c643.js" async></script>
+		<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
 		<script src="/dist/js/app.js" async></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 		<script>
+			// raven
+			Raven.config('https://c1c0ec5aec0641aa8c919ce9ca23821e@sentry.io/1273399').install();
+			// webfont
 			WebFont.load({
 				google: {
 					families: ['Roboto:300,400,800']
