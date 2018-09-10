@@ -32,6 +32,7 @@
 		<link rel="preload" href="https://coffeekrakenio-d078.kxcdn.com/dist/css/style.css" as="style" onload="this.rel='stylesheet'">
 		<noscript><link rel="stylesheet" href="https://coffeekrakenio-d078.kxcdn.com/dist/css/style.css"></noscript>
 		<script>!function(u){"use strict";var e=function(e,t,n){var r,o=u.document,a=o.createElement("link");if(t)r=t;else{var l=(o.body||o.getElementsByTagName("head")[0]).childNodes;r=l[l.length-1]}var i=o.styleSheets;a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(o.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(a,t?r:r.nextSibling)});var d=function(e){for(var t=a.href,n=i.length;n--;)if(i[n].href===t)return e();setTimeout(function(){d(e)})};function s(){a.addEventListener&&a.removeEventListener("load",s),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",s),(a.onloadcssdefined=d)(s),a};"undefined"!=typeof exports?exports.loadCSS=e:u.loadCSS=e}("undefined"!=typeof global?global:this),function(r){if(r.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return r.document.createElement("link").relList.supports("preload")}catch(e){return!1}},e.poly=function(){for(var e=r.document.getElementsByTagName("link"),t=0;t<e.length;t++){var n=e[t];"preload"===n.rel&&"style"===n.getAttribute("as")&&(r.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var t=r.setInterval(e.poly,300);r.addEventListener&&r.addEventListener("load",function(){e.poly(),r.clearInterval(t)}),r.attachEvent&&r.attachEvent("onload",function(){r.clearInterval(t)})}}}(this);</script>
+		<!-- <link rel="stylesheet" href="/dist/css/style.css"> -->
 
 	</head>
 	<body>
@@ -103,7 +104,7 @@
 				<div class="row row-align-middle">
 					<div class="gr-4 hide@mobile" style="min-height:1px;">
 						<!-- <img class="header__img-editors" src="/dist/img/header-editors.png" alt="Atom editors" /> -->
-						<img class="header__img-kraken" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/kraken.png" alt="Atom editors">
+						<img class="header__img-kraken" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/kraken01.png" alt="Atom editors">
 					</div>
 					<div class="gr-7 prefix-1 prefix-0@mobile">
 						<div class="coffeekraken-logo m-b" style="width:200px"></div>
@@ -171,12 +172,12 @@
 							We are a young collective of front-end creative developers with one goal in mind. <strong>Build tools to make every team working day life better. This is our first and only concern.</strong> All our tools are build around that purpose.<br>
 All what we provide are some cool tools that you can use the way you want. These tools features cover a large scope of the front-end workflow (styleguide generation, colors/fonts management, etc...). <strong>You can use only the parts that you need and let the rest aside...</strong>
 						</p>
-						<a class="btn btn--primary s-medium" href="https://github.com/coffeekraken/coffeekraken" title="Discover more on Coffeekraken and how to join us" target="_blank">
+						<a class="btn btn--primary s-medium m-b" href="https://github.com/coffeekraken/coffeekraken" title="Discover more on Coffeekraken and how to join us" target="_blank">
 							Discover more on Coffeekraken and how to join us
 						</a>
 					</div>
 					<div class="gr-6">
-						<img class="who__img-macbook-kraken" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/macbook.png" alt="Who are Coffeekraken">
+						<img class="who__img-macbook-kraken" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/macbook.png" alt="Who are Coffeekraken">
 					</div>
 				</div>
 			</div>
@@ -194,7 +195,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/tool-carpenter.jpg" alt="Carpenter - Styleguide and documentation">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-carpenter.jpg" alt="Carpenter - Styleguide and documentation">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -218,7 +219,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/tool-sugar.jpg" alt="Sugar - Powerful SASS & JS toolkit">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-sugar.jpg" alt="Sugar - Powerful SASS & JS toolkit">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -242,7 +243,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/tool-gridle.jpg" alt="Carpenter - Styleguide and documentation">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-gridle.jpg" alt="Carpenter - Styleguide and documentation">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -705,7 +706,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/contribute-issues.jpg" alt="Delare/Fix issues">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-issues.jpg" alt="Delare/Fix issues">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -729,7 +730,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/contribute-features.jpg" alt="Add features">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-features.jpg" alt="Add features">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -753,7 +754,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" src="https://coffeekrakenio-d078.kxcdn.com/dist/img/contribute-share.jpg" alt="Share the love">
+									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-share.jpg" alt="Share the love">
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -946,6 +947,7 @@ All what we provide are some cool tools that you can use the way you want. These
 		<!-- Load scripts -->
 		<script src="https://use.fontawesome.com/e5d2c7c643.js" async></script>
 		<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+		<!-- <script src="/dist/js/app.js" async></script> -->
 		<script src="https://coffeekrakenio-d078.kxcdn.com/dist/js/app.js" async></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>

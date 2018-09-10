@@ -20935,12 +20935,31 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_SWebComponent2.default.setDefaultProps({
+		widths: [{
+			width: 300,
+			name: 'extra-small'
+		}, {
+			width: 600,
+			name: 'small'
+		}, {
+			width: 800,
+			name: 'medium'
+		}, {
+			width: 1280,
+			name: 'large'
+		}],
+		computeSrc: function computeSrc(src, widthObj) {
+			return src + '?w={width}&auto=compress';
+		}
+	}, 's-responsive-img');
+
+	_SWebComponent2.default.setDefaultProps({
 		apiKey: 'AIzaSyDCD2MPJFbXBkc5hNB5p8v21XcpeIo_5Mw'
 	}, ['s-google-map', 's-google-map-marker']);
 
 	_SWebComponent2.default.setDefaultProps({
 		mountWhen: 'isInViewport'
-	}, 's-bodymovin');
+	}, ['s-bodymovin', 's-responsive-img']);
 
 /***/ }),
 /* 393 */
@@ -26742,6 +26761,10 @@
 	var _coffeekrakenSITypedComponent = __webpack_require__(554);
 
 	var _coffeekrakenSITypedComponent2 = _interopRequireDefault(_coffeekrakenSITypedComponent);
+
+	var _coffeekrakenSResponsiveImgComponent = __webpack_require__(557);
+
+	var _coffeekrakenSResponsiveImgComponent2 = _interopRequireDefault(_coffeekrakenSResponsiveImgComponent);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48888,6 +48911,400 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&"function"==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?"symbol":typeof a};!function(a,b){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"===("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports={init:b.init,destroy:b.destroy}:a.ityped=b}(this,function(a){function b(a){var b=a;return b.strings=a.strings||["Put your string here...","and Enjoy!"],b.typeSpeed=a.typeSpeed||100,b.backSpeed=a.backSpeed||50,b.backDelay=a.backDelay||500,b.startDelay=a.startDelay||500,b.showCursor=a.showCursor,b.loop=a.loop||!1,void 0===b.showCursor&&(b.showCursor=!0),Promise.resolve(b)}function c(a,c){a="string"==typeof a?document.querySelector(a):a,b(c).then(function(b){m=b,a._props=m,m.showCursor&&d(a,m.cursorChar||"|"),e(a)})}function d(a,b){var c=n.cloneNode();a.insertAdjacentElement("afterend",c),c.textContent=b}function e(a){l(a._props.strings,function(b,c,d){var e=a._props.typeSpeed*b.length-1;a._props.backSpeed<a._props.typeSpeed?e-=(a._props.typeSpeed-a._props.backSpeed)*b.length:a._props.backSpeed>a._props.typeSpeed&&(e+=(a._props.backSpeed-a._props.typeSpeed)*b.length);var f=this.async(),g=a._props.strings.length;h(a,b,c,g).then(function(){setTimeout(function(){f()},e)})},function(){a._props.loop&&e(a)})}function f(a,b){return new Promise(function(c,d){for(var e=0,f=0;f<b.length;f++)!function(d){var f=d,h=b.length;setTimeout(function(d){g(a,b.charAt(f)),++e===h-1&&c()},a._props.typeSpeed*d)}(f)})}function g(a,b){a.innerHTML+=b}function h(a,b,c,d){return new Promise(function(e,g){f(a,b).then(function(){setTimeout(function(){j(a,b,c,d).then(function(){setTimeout(function(){e()},a._props.startDelay)})},a._props.backDelay)})})}function i(a,b,c,d){for(var e=c;e>0;e--)!function(e){var f=e,g=c;setTimeout(function(e){a.innerHTML=b.substring(0,c-f),g--,1===f&&d()},a._props.backSpeed*e)}(e)}function j(a,b,c,d){return new Promise(function(e,f){var g=b.length;c+1===d?a._props.loop?a._props.loop&&i(a,b,g,e):(void 0!==a._props.onFinished&&"function"==typeof a._props.onFinished&&a._props.onFinished(),a.innerHTML=b):c+1!==d&&i(a,b,g,e)})}function k(a){a._props.onFinished=function(){}}var l=function(a,b,c){var d=-1,e=a.length>>>0;!function f(g){var h,i=g===!1;do{++d}while(!(d in a)&&d!==e);if(i||d===e)return void(c&&c(!i,a));g=b.call({async:function(){return h=!0,f}},a[d],d,a),h||f(g)}()},m=void 0,n=document.createElement("span");return n.classList.add("ityped-cursor"),n.textContent="|",{init:c,destroy:k}}());
+
+/***/ }),
+/* 557 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SResponsiveImgComponent = __webpack_require__(558);
+
+	var _SResponsiveImgComponent2 = _interopRequireDefault(_SResponsiveImgComponent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _SResponsiveImgComponent2.default.define('s-responsive-img', _SResponsiveImgComponent2.default, 'img');
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _sNativeWebComponent = __webpack_require__(394);
+
+	var _sNativeWebComponent2 = _interopRequireDefault(_sNativeWebComponent);
+
+	var _debounce = __webpack_require__(559);
+
+	var _debounce2 = _interopRequireDefault(_debounce);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// store the properties by name
+	var __responsiveProperties = {};
+
+	/**
+	 * Provide a nice way to make images responsive without using srcset and sizes attributes.
+	 * Register a preset first
+	 * ```js
+	 * SResponsiveImgComponent.registerPreset('banner', {
+	 *   widths: [{
+	 *     width: 340,
+	 *     name: 'mobile',
+	 *     pixelRatios: [1,2]
+	 *   }, {
+	 *     width: 640,
+	 *     name: 'tablet',
+	 *     pixelRatios: [1,2]
+	 *   }, {
+	 *     width: 1280,
+	 *     name: 'desktop',
+	 *     pixelRatios: [1,2]
+	 *   }],
+	 *   computeSrc: (src, widthObj) => {
+	 *     return src + `?auto=compress&w={width}&fit=crop&fm=png&dpr={pixelRatio}`
+	 *   }
+	 * })
+	 * ```
+	 * @example    html
+	 * <img lazy-src="https://assets.imgix.net/hp/snowshoe.jpg" is="s-responsive-img" preset="banner" />
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+
+	var SResponsiveImgComponent = function (_native) {
+	  _inherits(SResponsiveImgComponent, _native);
+
+	  function SResponsiveImgComponent() {
+	    _classCallCheck(this, SResponsiveImgComponent);
+
+	    return _possibleConstructorReturn(this, (SResponsiveImgComponent.__proto__ || Object.getPrototypeOf(SResponsiveImgComponent)).apply(this, arguments));
+	  }
+
+	  _createClass(SResponsiveImgComponent, [{
+	    key: 'componentMount',
+
+
+	    /**
+	     * Mount component
+	     * @definition    SWebComponent.componentMount
+	     */
+	    value: function componentMount() {
+	      _get(SResponsiveImgComponent.prototype.__proto__ || Object.getPrototypeOf(SResponsiveImgComponent.prototype), 'componentMount', this).call(this);
+
+	      // get the original src
+	      this._originalSrc = this.getAttribute('src') || this.getAttribute('data-src') || this.getAttribute('lazy-src');
+
+	      // stop here if the image has no src
+	      if (!this._originalSrc) return;
+
+	      // check if has a responsive properties name
+	      if (this.props.preset && __responsiveProperties[this.props.preset]) {
+	        // merge the props
+	        this.props = _extends({}, this.props, __responsiveProperties[this.props.preset]);
+	      }
+
+	      // throttle the window resize function to avoid to much
+	      // calls
+	      this._onWindowResize = (0, _debounce2.default)(this.__onWindowResize.bind(this), 500);
+
+	      // listen for window resize
+	      window.addEventListener('resize', this._onWindowResize);
+
+	      // first resize
+	      this.__onWindowResize();
+	    }
+
+	    /**
+	     * Component unmount
+	     * @definition    SWebComponent.componentUnmount
+	     */
+
+	  }, {
+	    key: 'componentUnmount',
+	    value: function componentUnmount() {
+	      _get(SResponsiveImgComponent.prototype.__proto__ || Object.getPrototypeOf(SResponsiveImgComponent.prototype), 'componentUnmount', this).call(this);
+	      // stop listening for window resize
+	      window.removeEventListener('resize', this._onWindowResize);
+	    }
+
+	    /**
+	     * Component will receive prop
+	     * @definition    SWebComponent.componentWillReceiveProp
+	     */
+
+	  }, {
+	    key: 'componentWillReceiveProp',
+	    value: function componentWillReceiveProp(name, newVal, oldVal) {
+	      switch (name) {
+	        case 'lazySrc':
+	        case 'dataSrc':
+	          if (!newVal) return;
+	          if (!newVal.toString().match(/^[a-zA-Z0-9_/]/)) return;
+	          // save the new original src
+	          this._originalSrc = newVal;
+	          // apply the new src
+	          this._applySrc();
+	          break;
+	      }
+	    }
+
+	    /**
+	     * Apply the good src to the image
+	     * @return    {void}
+	     */
+
+	  }, {
+	    key: '_applySrc',
+	    value: function _applySrc() {
+	      // calculate the width of the image
+	      var imageWidth = this.offsetWidth;
+	      var appliedWidth = this.props.widths[0] || 0;
+
+	      // grab the best available width
+	      for (var i = 0; i < this.props.widths.length; i++) {
+	        var widthObj = this.props.widths[i];
+	        appliedWidth = widthObj;
+	        if (imageWidth < widthObj.width) {
+	          // that mean that the image is larger
+	          // that the current applied width
+	          // so we stop the loop
+	          break;
+	        }
+	      }
+
+	      // make sure we have a name
+	      if (!appliedWidth.name) {
+	        appliedWidth.name = appliedWidth.width.toString();
+	      }
+
+	      // set the exactWidth property
+	      appliedWidth.exactWidth = imageWidth;
+
+	      // check pixel ratios
+	      if (window.devicePixelRatio && appliedWidth.pixelRatios) {
+	        if (appliedWidth.pixelRatios.indexOf(window.devicePixelRatio) !== -1) {
+	          appliedWidth.pixelRatio = window.devicePixelRatio;
+	        } else {
+	          appliedWidth.pixelRatio = 1;
+	        }
+	      } else {
+	        appliedWidth.pixelRatio = 1;
+	      }
+
+	      // conpute the src
+	      var src = this._computeSrc(appliedWidth);
+
+	      // load and set the src
+	      this._loadAndSetSrc(src);
+	    }
+
+	    /**
+	     * Load the new image and set the src
+	     * @param    {String}    src    The src to set
+	     * @return    {void}
+	     */
+
+	  }, {
+	    key: '_loadAndSetSrc',
+	    value: function _loadAndSetSrc(src) {
+	      var _this2 = this;
+
+	      // load the new image
+	      var img = new window.Image();
+	      img.onload = function () {
+	        // set the new src
+	        _this2.setAttribute('src', src);
+	      };
+	      img.src = src;
+	    }
+
+	    /**
+	     * Compute the new src
+	     * @param    {Object}    widthObj    The width object that will be applied
+	     * @return    {String}    The new src to apply
+	     */
+
+	  }, {
+	    key: '_computeSrc',
+	    value: function _computeSrc(widthObj) {
+	      // store the new src
+	      var src = this._originalSrc;
+	      // check if has a computeSrc setting
+	      if (this.props.computeSrc) {
+	        src = this.props.computeSrc.apply(this, [src, widthObj]);
+	      }
+	      // compute the tokens
+	      src = src.replace(/\{[a-zA-Z0-9_-]+\}/g, function (match) {
+	        var key = match.replace('{', '').replace('}', '');
+	        if (widthObj[key]) {
+	          return widthObj[key];
+	        }
+	        return match;
+	      });
+
+	      // return the computed src
+	      return src;
+	    }
+
+	    /**
+	     * When the window is resized
+	     * @param    {Event}    e    The event
+	     * @return    {void}
+	     */
+
+	  }, {
+	    key: '__onWindowResize',
+	    value: function __onWindowResize(e) {
+	      // apply the good image src
+	      this._applySrc();
+	    }
+	  }], [{
+	    key: 'registerPreset',
+
+	    /**
+	     * Register an image responsive properties by preset name
+	     * @param    {String}    preset    The responsive properties preset name
+	     * @param    {Object}    options    The responsive properties options
+	     */
+	    value: function registerPreset(preset, options) {
+	      __responsiveProperties[preset] = options;
+	    }
+
+	    /**
+	     * Default props
+	     * @definition    SWebComponent.defaultProps
+	     */
+
+	  }, {
+	    key: 'defaultCss',
+
+
+	    /**
+	     * Default css
+	     * @protected
+	     */
+	    value: function defaultCss(componentName, componentNameDash) {
+	      return '\n      img[is="' + componentNameDash + '"] {\n        width: 100%;\n      }\n    ';
+	    }
+	  }, {
+	    key: 'defaultProps',
+	    get: function get() {
+	      return {
+
+	        /**
+	         * Specify a registered preset to use as properties
+	         * @prop
+	         * @type    {String}
+	         */
+	        preset: null,
+
+	        /**
+	         * Store the available widths object for this image in an array.
+	         * A width object has to be shaped like so at least:
+	         * ```
+	         * {
+	         *   width: 1200,
+	         *   name: 'tablet'
+	         * }
+	         * ```
+	         * @type    {String|Array}
+	         */
+	        widths: [],
+
+	        /**
+	         * Data src to delay the download of the image. Same as lazySrc
+	         * @prop
+	         * @type    {String}
+	         */
+	        dataSrc: null,
+
+	        /**
+	         * Lazy src to delay the download of the image. Same as dataSrc.
+	         * @prop
+	         * @type    {String}
+	         */
+	        lazySrc: null,
+
+	        /**
+	         * Specify a function that will compute the src before applying it.
+	         * Will have as parameters the original src and the best suited width object.
+	         * @prop
+	         * @type    {Function}
+	         */
+	        computeSrc: null
+	      };
+	    }
+	  }]);
+
+	  return SResponsiveImgComponent;
+	}((0, _sNativeWebComponent2.default)(window.HTMLImageElement));
+
+	exports.default = SResponsiveImgComponent;
+
+
+/***/ }),
+/* 559 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = debounce;
+	/**
+	 * This utils function allows you to make sure that a function that will normally be called
+	 * several times, for example during a scroll event, to be called only once after
+	 * the delay passed
+	 *
+	 * @name 			debounce
+	 * @example 		js
+	 * const myDebouncedFn = debounce(() => {
+	 * 		// my function content that will be
+	 * 		// executed only once after the 1 second delay
+	 * }, 1000);
+	 *
+	 * document.addEventListener('scroll', (e) => {
+	 * 		// call my debounced function
+	 * 		myDebouncedFn();
+	 * });
+	 *
+	 * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	function debounce(fn, delay) {
+	  var timer = null;
+	  return function () {
+	    var context = this,
+	        args = arguments;
+	    clearTimeout(timer);
+	    timer = setTimeout(function () {
+	      fn.apply(context, args);
+	    }, delay);
+	  };
+	}
 
 /***/ })
 /******/ ]);

@@ -3,11 +3,12 @@
 }
 	.who__img-macbook-kraken {
 		position:absolute;
+		width: 100% !important;
+		max-width: s-rem(799px);
 		// @include s-translate(0, -50%);
 
 		@include g-state(mobile) {
 			position:static;
 			transform:none;
-			width:100%;
 		}
 	}

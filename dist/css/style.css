@@ -7687,13 +7687,14 @@ blockquote:last-child {
 
 .who__img-macbook-kraken {
   position: absolute;
+  width: 100% !important;
+  max-width: 57.07143rem;
 }
 
 @media screen and (max-width: 640px) {
   .who__img-macbook-kraken {
     position: static;
     transform: none;
-    width: 100%;
   }
 }
 
@@ -8835,6 +8836,16 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
   width: 100%;
   height: 0;
   padding-bottom: 30%;
+}
+
+img[lazy-src] {
+  opacity: 0.001;
+  transition: all 0.2s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+img[lazy-src][loaded] {
+  opacity: 1;
 }
 
 .list {

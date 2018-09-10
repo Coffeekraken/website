@@ -2128,6 +2128,12 @@ coffeekraken-s-particles-system-component@^1.0.0:
     coffeekraken-s-particle-component "^1.0.0"
     coffeekraken-sugar "^1.0.0"
 
+coffeekraken-s-responsive-img-component@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/coffeekraken-s-responsive-img-component/-/coffeekraken-s-responsive-img-component-1.0.0.tgz#59ebdbe2be4e8a46f4cb1cd199b2cd8306709090"
+  dependencies:
+    coffeekraken-sugar "^1.0.5"
+
 coffeekraken-s-ripple-component@^1.0.0, coffeekraken-s-ripple-component@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/coffeekraken-s-ripple-component/-/coffeekraken-s-ripple-component-1.0.2.tgz#2343d75d55f5421862c03aeb99ebaa692c2fbdac"
