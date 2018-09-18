@@ -49264,7 +49264,6 @@
 
 	exports.default = SResponsiveImgComponent;
 
-
 /***/ }),
 /* 559 */
 /***/ (function(module, exports) {
