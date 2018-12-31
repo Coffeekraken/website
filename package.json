@@ -56,6 +56,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "coffeekraken-carpenter": "^1.0.0",
     "coffeekraken-gridle": "^3.0.0-rc.1",
     "coffeekraken-s-bodymovin-component": "^1.0.0",
     "coffeekraken-s-button-component": "^1.0.0",
@@ -87,7 +88,6 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "chokidar-cli": "^1.2.0",
-    "coffeekraken-carpenter": "^1.0.0",
     "coffeekraken-scripts-stack": "^1.0.1",
     "coffeekraken-testing-stack": "0.0.2",
     "concurrently": "^3.1.0",
