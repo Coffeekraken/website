@@ -15,4 +15,4 @@ services:
 networks:
   default:
     external:
-      name: coffeekraken-carpenter-demo-network
+      name: nginx-proxy-network
