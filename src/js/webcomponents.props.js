@@ -29,3 +29,13 @@ SWebComponent.setDefaultProps({
 	's-bodymovin',
 	's-responsive-img'
 ]);
+
+SWebComponent.setDefaultProps({
+	driver: 'fontawesome'
+}, 's-icon')
+
+SWebComponent.setDefaultProps({
+	timeout: 2000,
+	characters: '#',
+	duration: 200
+}, 's-characters-slideshow')

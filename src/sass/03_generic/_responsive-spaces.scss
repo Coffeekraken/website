@@ -1,0 +1,286 @@
+/**
+ * Responsive spaces if gridle is available
+ */
+ @if function-exists("g-get-states-names") {
+	@each $stateName in g-get-states-names() {
+	  @if $stateName != "default" {
+		@each $spaceName, $spaceValue in s-setting("spaces") {
+		  $spaceNameForClassname: "-#{$spaceName}";
+
+		  @if $spaceName == default {
+			$spaceNameForClassname: "";
+		  }
+
+		  @include g-state($stateName) {
+			/**
+			 * @name  			```.m-b#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin bottom "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-b#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m-b#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-bottom: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.m-t#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-t#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m-t#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-top: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.m-l#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin left "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-l#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m-l#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-left: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.m-r#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin right "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-r#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m-r#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-right: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.m-s#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin side "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-s#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m-s#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-left: s-space($spaceName);
+			  margin-right: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.m#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the margin "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.m#{$spaceNameForClassname}\@#{$stateName} {
+			  margin: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.no-m-b#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the margin bottom "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-b#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-m-b#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-bottom: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-m-t#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the margin top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-t#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-m-t#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-top: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-m-l#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the margin left "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-l#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-m-l#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-left: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-m-r#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the margin top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-r#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-m-r#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-right: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-m-s#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the margin side "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-s#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-m-s#{$spaceNameForClassname}\@#{$stateName} {
+			  margin-left: 0 !important;
+			  margin-right: 0 !important;
+			}
+
+			/**
+			 * @name  			```.p-b#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding bottom "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-b#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p-b#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-bottom: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.p-t#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-t#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p-t#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-top: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.p-l#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding left "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-l#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p-l#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-left: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.p-r#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding right "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-r#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p-r#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-right: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.p-s#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding side "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-s#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p-s#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-left: s-space($spaceName);
+			  padding-right: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.p#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Apply the padding "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p#{$spaceNameForClassname}@#{g-current-state-name()}" style="display:inline-block; background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.p#{$spaceNameForClassname}\@#{$stateName} {
+			  padding: s-space($spaceName);
+			}
+
+			/**
+			 * @name  			```.no-p-b#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the padding bottom "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-b#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-p-b#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-bottom: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-p-t#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the padding top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-t#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-p-t#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-top: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-p-l#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the padding left "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-l#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-p-l#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-left: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-p-r#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the padding top "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-r#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-p-r#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-right: 0 !important;
+			}
+
+			/**
+			 * @name  			```.no-p-s#{$spaceNameForClassname}@#{g-current-state-name()}```
+			 * Remove the padding side "#{$spaceName}" on the "#{g-current-state-name()}" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-s#{$spaceNameForClassname}@#{g-current-state-name()}" style="background:#{s-color(primary)}; width:100px; height:5px"></div>
+			 * <div style="background:#{s-color(secondary)}; width:100px; height:5px"></div>
+			 */
+			.no-p-s#{$spaceNameForClassname}\@#{$stateName} {
+			  padding-left: 0 !important;
+			  padding-right: 0 !important;
+			}
+		  }
+		}
+	  }
+	}
+  }

@@ -2,7 +2,9 @@
  * Generic
  * All the generic codebase for the project like typography, resets, etc...
  */
-@import 'bkg',
+@import 'animation',
+		'bkg',
 		'gridle',
+		'responsive-spaces',
 		'sugar',
         'typography';

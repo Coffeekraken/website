@@ -19,15 +19,14 @@
 		<meta property="og:image" content="http://coffeekraken.io/dist/img/sharing.png" />
 
 		<!-- Icons -->
-		<link rel="icon" type="image/png" href="https://coffeekrakenio-d078.kxcdn.com/dist/img/favicon-16x16.png" sizes="16x16">
-		<link rel="icon" type="image/png" href="https://coffeekrakenio-d078.kxcdn.com/dist/img/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="https://coffeekrakenio-d078.kxcdn.com/dist/img/favicon-192x192.png" sizes="192x192">
-		<link rel="apple-touch-icon" href="https://coffeekrakenio-d078.kxcdn.com/dist/img/apple-touch-icon-180x180.png" sizes="180x180">
+		<link rel="icon" type="image/png" href="/dist/img/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/dist/img/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/dist/img/favicon-192x192.png" sizes="192x192">
+		<link rel="apple-touch-icon" href="/dist/img/apple-touch-icon-180x180.png" sizes="180x180">
 		<meta name="msapplication-config" content="/browserconfig.xml">
 
 		<!-- stylesheet -->
-		<link rel="stylesheet" href="https://coffeekrakenio-d078.kxcdn.com/dist/css/style.css">
-		<!-- <link rel="stylesheet" href="/dist/css/style.css"> -->
+		<link rel="stylesheet" href="/dist/css/style.css">
 
 	</head>
 	<body>
@@ -49,36 +48,40 @@
 							</li>
 							<li class="nav__item">
 								<a href="https://twitter.com/coffeekrakenio" title="Join us on twitter" target="_blank">
-									<i class="fa fa-twitter"></i> <span class="link">Twitter</span>
+									<s-icon icon="fab fa-twitter"></s-icon> <span class="link">Twitter</span>
 								</a>
 							</li>
 							<li class="nav__item">
 								<a href="https://github.com/coffeekraken" title="Join us on github" target="_blank">
-									<i class="fa fa-github"></i> <span class="link">Github</span>
+									<s-icon icon="fab fa-github"></s-icon> <span class="link">Github</span>
 								</a>
 							</li>
 							<li class="nav__item">
 								<div class="dropdown dropdown--primary">
-									<i class="fa fa-share"></i> &nbsp;<span class="link">Share</span>
+									<s-icon icon="fas fa-share"></s-icon> &nbsp;<span class="link">Share</span>
 									<ul class="dropdown__menu">
 										<li class="dropdown__item">
 											<a is="s-share" href="http://coffeekraken.io" network="facebook" title="Share on facebook">
-												<i class="fa fa-facebook"></i> Facebook
+												<s-icon icon="fab fa-facebook"></s-icon>
+												Facebook
 											</a>
 										</li>
 										<li class="dropdown__item">
 											<a is="s-share" href="http://coffeekraken.io" network="twitter" title="Share on twitter">
-												<i class="fa fa-twitter"></i> Twitter
-											</a>
-										</li>
-										<li class="dropdown__item">
-											<a is="s-share" href="http://coffeekraken.io" network="googleplus" title="Share on googleplus">
-												<i class="fa fa-google-plus"></i> Google+
+												<s-icon icon="fab fa-twitter"></s-icon>
+												Twitter
 											</a>
 										</li>
 										<li class="dropdown__item">
 											<a is="s-share" href="http://coffeekraken.io" network="linkedin" title="Share on linkedin">
-												<i class="fa fa-linkedin"></i> LinkedIn
+												<s-icon icon="fab fa-linkedin"></s-icon>
+												LinkedIn
+											</a>
+										</li>
+										<li class="dropdown__item">
+											<a is="s-share" href="http://coffeekraken.io" network="reddit" title="Share on reddit">
+												<s-icon icon="fab fa-reddit-alien"></s-icon>
+												Reddit
 											</a>
 										</li>
 									</ul>
@@ -86,7 +89,8 @@
 							</li>
 							<li class="nav__item">
 								<a href="mailto:hello@coffeekraken.io" title="Contact us">
-									<i class="fa fa-envelope-o"></i> <span class="link">Contact us</span>
+									<s-icon icon="far fa-envelope"></s-icon>
+									<span class="link">Contact us</span>
 								</a>
 							</li>
 						</ul>
@@ -98,21 +102,20 @@
 			<div class="container">
 				<div class="row row-align-middle">
 					<div class="gr-4 hide@mobile" style="min-height:1px;">
-						<!-- <img class="header__img-editors" src="/dist/img/header-editors.png" alt="Atom editors" /> -->
-						<img class="header__img-kraken" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/kraken01.png" alt="Atom editors" />
+						<img class="header__img-kraken" src="/dist/img/kraken.png" alt="Coffeekraken Kraken" />
 					</div>
 					<div class="gr-7 prefix-1 prefix-0@mobile">
-						<div class="coffeekraken-logo m-b" style="width:200px"></div>
-						<h1 class="h1 m-b-smaller">
+						<div class="coffeekraken-logo m-b" style="width:200px" anim="slide-in-down"></div>
+						<h1 class="h1 m-b-smaller" anim="slide-in-up">
 							<!-- Make <br> -->
-							<s-i-typed class="c-secondary" strings="['Workflow','Styleguide','Documentation','Layout','Webcomponents']" loop="true" start-delay="59" back-delay="2000">Team work</s-i-typed><br>
+							<s-characters-slideshow class="c-secondary" values="['Workflow','Styleguide','Documentation','Layout','Webcomponents']">Workflow</s-characters-slideshow><br>
 							made right!
 						</h1>
-						<p class="p p--lead m-b">
+						<p class="p p--lead m-b" anim="slide-in-up">
 							Working smoothly in team is as hard as working alone on a big project. <br>
 							<span class="c-secondary">We think that the right tool at the right place can solve this once and for all...</span>
 						</p>
-						<ul class="nav nav--pills">
+						<ul class="nav nav--pills" anim="slide-in-up">
 							<li class="nav__item m-r-smaller">
 								<div class="tooltip tooltip--t tf t-center">
 									Carpenter is a tool that let you generate a styleguide directly from your codebase,<br>
@@ -159,8 +162,8 @@
 		<section class="who section">
 			<div class="container">
 				<div class="row">
-					<div class="gr-6">
-						<h1 class="h1 m-b">
+					<div class="gr-6" anim="slide-in-up">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
 							Who is <span class="c-primary">Coffeekraken</span>
 						</h1>
 						<p class="p p--lead m-b tf">
@@ -171,8 +174,8 @@ All what we provide are some cool tools that you can use the way you want. These
 							Discover more on Coffeekraken and how to join us
 						</a>
 					</div>
-					<div class="gr-6">
-						<img class="who__img-macbook-kraken" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/macbook.png" alt="Who are Coffeekraken" />
+					<div class="gr-6" anim="slide-in-left">
+						<img class="who__img-macbook-kraken" src="/dist/img/macbook.png" alt="Who are Coffeekraken" />
 					</div>
 				</div>
 			</div>
@@ -180,9 +183,9 @@ All what we provide are some cool tools that you can use the way you want. These
 
 		<section class="tools section bkg-grey">
 			<div class="container">
-				<div class="row">
+				<div class="row" anim="slide-in-up">
 					<div class="gr-12">
-						<h1 class="h1 m-b">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
 							Our <span class="c-primary">tools</span>
 						</h1>
 					</div>
@@ -190,20 +193,20 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-carpenter.jpg" alt="Carpenter - Styleguide and documentation" />
+									<img class="abs-cover" src="/dist/img/tool-webcomponents.jpg" alt="Webcomponents illustration" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
-										Carpenter
+										Webcomponents
 									</h1>
 									<h2 class="h6 m-b">
-										Styleguide/Documentation
+										Building blocks
 									</h2>
 									<p class="p m-b tf">
-										Nice web interface that <strong>display all your website styleguide</strong> by parsing directly your CSS codebase as well as <strong>aggregating all the documentations</strong> needed by your developers team to work as one.
+										Coffeekraken provide a bunch of webcomponents that cover multiple areas like <strong>datepicker, sticky, google maps, form validation, dropdown, drawer and more...</strong> Some say that webcomponents are the future, we say that <strong>the future is NOW</strong>.
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/carpenter" title="Check Carpenter out" target="_blank">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Check Carpenter out" target="_blank">
 										Check it out!
 									</a>
 								</div>
@@ -214,7 +217,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-sugar.jpg" alt="Sugar - Powerful SASS & JS toolkit" />
+									<img class="abs-cover" src="/dist/img/tool-sugar.jpg" alt="Sugar - Powerful SASS & JS toolkit" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -238,7 +241,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="tools">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/tool-gridle.jpg" alt="Carpenter - Styleguide and documentation" />
+									<img class="abs-cover" src="/dist/img/tool-gridle.jpg" alt="Carpenter - Styleguide and documentation" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -318,13 +321,68 @@ All what we provide are some cool tools that you can use the way you want. These
 							<s-equalize group="tools">
 								<div class="card__content">
 									<h1 class="h5 m-b-small">
-										Webcomponents
+										Carpenter
 									</h1>
 									<p class="p m-b-small">
-										Clean and growing library of webcomponents.
+										Nice web interface that <strong>display all your website styleguide</strong>.
 									</p>
 									<s-equalize-equalizer></s-equalize-equalizer>
-									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/search?q=org%3ACoffeekraken+s-" title="Check webcomponents out" target="_blank">
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/carpenter" title="Check out Carpenter" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										React boilerplate
+									</h1>
+									<p class="p m-b-small">
+										React boilerplate based on react-scripts, sugar, gridle, redux, and more...
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/react-boilerplate" title="Check out React boilerplate" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										React native boilerplate
+									</h1>
+									<p class="p m-b-small">
+										React native boilerplate based on expo, redux, redux-thunk, redux-saga and more...
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/react-native-boilerplate" title="Check out React native boilerplate" target="_blank">
+										Check it out!
+									</a>
+								</div>
+							</s-equalize>
+						</article>
+					</div>
+					<div class="gr-4 gutter">
+						<article class="card">
+							<s-equalize group="tools">
+								<div class="card__content">
+									<h1 class="h5 m-b-small">
+										Redux Web Worker
+									</h1>
+									<p class="p m-b-small">
+										Redux middleware that let you run your tasks inside a web worker with ease.
+									</p>
+									<s-equalize-equalizer></s-equalize-equalizer>
+									<a class="btn btn--primary btn--block btn--outline" href="https://github.com/coffeekraken/redux-web-worker" title="Check out Redux web worker" target="_blank">
 										Check it out!
 									</a>
 								</div>
@@ -342,12 +400,35 @@ All what we provide are some cool tools that you can use the way you want. These
 			</div>
 		</section>
 
+		<section class="codebook section">
+			<div class="container">
+				<div class="row">
+					<div class="gr-4" anim="slide-in-up">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
+							Coffeekraken <span class="c-primary">codebook</span>
+						</h1>
+						<p class="p p--lead m-b tf">
+							Discover all the Coffeekraken packages with ease using our codebook interface that provide demos, documentation, etc...
+						</p>
+						<a class="btn btn--primary s-medium m-b" href="http://codebook.coffeekraken.io" title="Discover the Coffeekraken ecosystem" target="_blank">
+							Let's get started!
+						</a>
+					</div>
+					<div class="gr-8">
+						<figure class="codebook__img" anim="slide-in-up">
+							<img src="/dist/img/codebook.jpg" title="Coffeekraken codebook" alt="Screenshot of codebook.coffeekraken.io" />
+						</figure>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="use section bkg-primary t-center">
 			<div class="container">
 				<div class="row">
-					<div class="gr-12">
-						<h1 class="h1 m-b">
-							<span class="c-white">Use</span> <span class="c-secondary">only what you’re interested in...</span>
+					<div class="gr-12" anim="slide-in-up">
+						<h1 class="h1 m-b" anim="slide-in-up">
+							<span class="c-white">Use</span> <span class="c-secondary">only what <s-characters-slideshow timeout="10000" values="['you\'re interested in','you want','you need']">you’re interested in</s-characters-slideshow>...</span>
 						</h1>
 						<ul class="nav nav--pills m-b">
 							<li class="nav__item">
@@ -670,8 +751,8 @@ All what we provide are some cool tools that you can use the way you want. These
 		<section class="open-source section">
 			<div class="container">
 				<div class="row row-align-middle">
-					<div class="gr-9">
-						<h1 class="h1 m-b">
+					<div class="gr-9" anim="slide-in-up">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
 							<span class="c-primary">Open source</span> is our roadmap
 						</h1>
 						<p class="p p--lead m-b">
@@ -681,7 +762,7 @@ All what we provide are some cool tools that you can use the way you want. These
 							Check out how to contribute to our vision...
 						</a>
 					</div>
-					<div class="gr-3 t-center">
+					<div class="gr-3 t-center" anim="slide-in-left">
 						<s-bodymovin src="/data/logo-osi.json" autoplay></s-bodymovin>
 						<!-- <img class="open-source__img" src="/dist/img/open-source.jpg" alt="Open source is our roadmap" /> -->
 					</div>
@@ -691,9 +772,9 @@ All what we provide are some cool tools that you can use the way you want. These
 
 		<section class="tools section bkg-grey">
 			<div class="container">
-				<div class="row">
+				<div class="row" anim="slide-in-up">
 					<div class="gr-12">
-						<h1 class="h1 m-b">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
 							<span class="c-primary">Contribute</span> to Coffeekraken
 						</h1>
 					</div>
@@ -701,7 +782,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-issues.jpg" alt="Delare/Fix issues" />
+									<img class="abs-cover" src="/dist/img/contribute-issues.jpg" alt="Delare/Fix issues" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -725,7 +806,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-features.jpg" alt="Add features" />
+									<img class="abs-cover" src="/dist/img/contribute-features.jpg" alt="Add features" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -749,7 +830,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<article class="card">
 							<s-equalize group="contribute">
 								<figure class="ratio-16-9">
-									<img class="abs-cover" is="s-responsive-img" lazy-src="https://coffeekraken.imgix.net/contribute-share.jpg" alt="Share the love" />
+									<img class="abs-cover" src="/dist/img/contribute-share.jpg" alt="Share the love" />
 								</figure>
 								<div class="card__content">
 									<h1 class="h5 m-b-smaller">
@@ -772,7 +853,7 @@ All what we provide are some cool tools that you can use the way you want. These
 				</div>
 				<div class="row m-t">
 					<div class="gr-4 clear">
-						<h2 class="h4">
+						<h2 class="h4 m-b@mobile">
 							Other possible contributions
 						</h2>
 					</div>
@@ -802,8 +883,8 @@ All what we provide are some cool tools that you can use the way you want. These
 		<section class="repositories section t-center" vue-coffeekraken-repos>
 			<div class="container">
 				<div class="row">
-					<div class="gr-12">
-						<h1 class="h1 m-b">
+					<div class="gr-12" anim="slide-in-up">
+						<h1 class="h1 m-b" anim="letters-in-reveal">
 							<span class="c-secondary">Here's</span> <span class="c-white">all our repositories</span>
 						</h1>
 						<coffeekraken-repos>
@@ -821,7 +902,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						<div class="coffeekraken-logo-footer" style="width:120px;"></div>
 					</div>
 					<div class="gr-3">
-						<h2 class="h5 m-b-small">
+						<h2 class="h5 m-b-small m-t@mobile">
 							Our tools
 						</h2>
 						<ul class="list list--footer">
@@ -863,7 +944,7 @@ All what we provide are some cool tools that you can use the way you want. These
 						</ul>
 					</div>
 					<div class="gr-3">
-						<h2 class="h5 m-b-small">
+						<h2 class="h5 m-b-small m-t@mobile">
 							Contribute
 						</h2>
 						<ul class="list list--footer">
@@ -900,18 +981,18 @@ All what we provide are some cool tools that you can use the way you want. These
 						</ul>
 					</div>
 					<div class="gr-3">
-						<h2 class="h5 m-b-small">
+						<h2 class="h5 m-b-small m-t@mobile">
 							Join us
 						</h2>
 						<ul class="list list--footer">
 							<li class="list__item">
 								<a href="https://github.com/coffeekraken" title="Github" target="_blank">
-									<i class="fa fa-github"></i> Github
+									<s-icon icon="fab fa-github"></s-icon> Github
 								</a>
 							</li>
 							<li class="list__item">
 								<a href="https://twitter.com/coffeekrakenio" title="Twitter" target="_blank">
-									<i class="fa fa-twitter"></i> Twitter
+									<s-icon icon="fab fa-twitter"></s-icon> Twitter
 								</a>
 							</li>
 						</ul>
@@ -930,35 +1011,21 @@ All what we provide are some cool tools that you can use the way you want. These
 						</div>
 					</div>
 					<div class="gr-6">
-						<div class="s-small t-right">
+						<!-- <div class="s-small t-right">
 							Accelerated by <a href="https://www.keycdn.com" title="KeyCDN" target="_blank">
 								<img src="https://db-7.kxcdn.com/img/logo-white.png" style="width:60px; position:relative; top:5px" />
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Load scripts -->
-		<script src="https://use.fontawesome.com/e5d2c7c643.js" async></script>
-		<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
-		<!-- <script src="/dist/js/app.js" async></script> -->
-		<script src="https://coffeekrakenio-d078.kxcdn.com/dist/js/app.js" async></script>
+		<script src="/dist/js/app.js" async></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 		<script>
-			// raven
-			Raven.config('https://c1c0ec5aec0641aa8c919ce9ca23821e@sentry.io/1273399').install();
-			// hotjar
-			(function(h,o,t,j,a,r){
-				h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-				h._hjSettings={hjid:1018671,hjsv:6};
-				a=o.getElementsByTagName('head')[0];
-				r=o.createElement('script');r.async=1;
-				r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-				a.appendChild(r);
-			})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 			// webfont
 			WebFont.load({
 				google: {

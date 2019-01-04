@@ -2,7 +2,7 @@
 require('babel-polyfill');
 require('coffeekraken-sugar/js/features/all');
 require('./components/repos-list.vue');
-require('webcomponents.js/webcomponents-lite');
+require('./features/animation');
 require('./webcomponents.props');
 require('./webcomponents.import');
 
