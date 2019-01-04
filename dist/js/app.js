@@ -35696,6 +35696,7 @@
 
 				// init bodymovin
 				this.bodymovin = _bodymovin2.default.loadAnimation(_extends({}, this.props, {
+					autoplay: false,
 					container: this,
 					loop: !this.props.yoyo ? this.props.loop : false,
 					path: this.props.path || this.props.src
@@ -35789,54 +35790,43 @@
 				// remove the loading class
 				this.classList.remove(this.props.loadingClass);
 
-				// reactiveClass
-				if (this.props.reactive && this.classList.contains(this.props.reactiveClass)) {
-					this.bodymovin.goToAndStop(this.bodymovin.totalFrames, true);
-				}
+				// autoplay delay
+				setTimeout(function () {
 
-				// check the play on prop
-				if (this.props.playOn) {
-					this.addEventListener(this.props.playOn, function (e) {
-						_this3.bodymovin.goToAndPlay(0, true);
-					});
-				}
+					if (_this3.props.autoplay) {
+						_this3.bodymovin.play();
+					}
 
-				// handle yoyo
-				if (this.props.yoyo) {
-					this.bodymovin.addEventListener('complete', function (e) {
-						if (_this3.bodymovin.currentFrame <= 0) {
-							_this3.bodymovin.setSpeed(_this3.props.speed);
-							_this3.bodymovin.setDirection(1);
-						} else {
-							setTimeout(function () {
-								_this3.bodymovin.setSpeed(_this3.props.yoyoSpeed);
-								_this3.bodymovin.setDirection(-1);
-							}, _this3.props.yoyoTimeout);
-						}
-						if (_this3.props.loop || _this3.bodymovin.currentFrame > 0) {
-							_this3.bodymovin.play();
-						}
-					});
-				}
+					// reactiveClass
+					if (_this3.props.reactive && _this3.classList.contains(_this3.props.reactiveClass)) {
+						_this3.bodymovin.goToAndStop(_this3.bodymovin.totalFrames, true);
+					}
 
-				// this.props.queuePoints = {
-				// 	0 : 'one',
-				// 	35 : 'two',
-				// 	52 : 'three'
-				// }
-				//
-				// if (this.props.queuePoints) {
-				//
-				// 	this.bodymovin.addEventListener('enterFrame', (e) => {
-				// 		console.log('enterframe', e);
-				// 		if (this.__bodymovinPlayTimeout) return
-				// 		if (this.props.queuePoints[Math.round(e.currentTime)]) {
-				// 			console.log('seg');
-				// 			this.bodymovin.pause();
-				// 		}
-				//
-				// 	});
-				// }
+					// check the play on prop
+					if (_this3.props.playOn) {
+						_this3.addEventListener(_this3.props.playOn, function (e) {
+							_this3.bodymovin.goToAndPlay(0, true);
+						});
+					}
+
+					// handle yoyo
+					if (_this3.props.yoyo) {
+						_this3.bodymovin.addEventListener('complete', function (e) {
+							if (_this3.bodymovin.currentFrame <= 0) {
+								_this3.bodymovin.setSpeed(_this3.props.speed);
+								_this3.bodymovin.setDirection(1);
+							} else {
+								setTimeout(function () {
+									_this3.bodymovin.setSpeed(_this3.props.yoyoSpeed);
+									_this3.bodymovin.setDirection(-1);
+								}, _this3.props.yoyoTimeout);
+							}
+							if (_this3.props.loop || _this3.bodymovin.currentFrame > 0) {
+								_this3.bodymovin.play();
+							}
+						});
+					}
+				}, this.props.autoplayDelay);
 			}
 
 			/**
@@ -35931,6 +35921,13 @@
 	     * @see 	http://github.coffeekraken.io/bodymovin/bodymovin/^4.0.0
 	     */
 					autoplay: false,
+
+					/**
+	     * Specify a delay in ms to autoplay the animation
+	     * @prop
+	     * @type    {Integer}
+	     */
+					autoplayDelay: 0,
 
 					/**
 	     * Specify the direction of the animation
