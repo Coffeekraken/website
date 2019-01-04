@@ -3,6 +3,7 @@ require('babel-polyfill');
 require('coffeekraken-sugar/js/features/all');
 require('./components/repos-list.vue');
 require('./features/animation');
+require('./features/layers-transition');
 require('./webcomponents.props');
 require('./webcomponents.import');
 

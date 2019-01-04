@@ -17,6 +17,7 @@
 	@include s-filter(text-shadow(rgba(0,0,0,.2) 1px 1px 0));
 
 	@include g-state(mobile) {
+		@include s-font(roboto);
 		padding: 0.6em 1.8em;
 	}
 }

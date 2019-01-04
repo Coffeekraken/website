@@ -30,4 +30,24 @@
 	background-size: cover;
 	background-position: top 50%;
 	// background-attachment: fixed;
+	position: relative;
+
+	s-layers-transition {
+		@include s-fit(absolute);
+
+		@include g-state(mobile) {
+			display: none;
+		}
+	}
 }
+	.use__content {
+		opacity: 0.0001;
+
+		@include g-state(mobile) {
+			opacity: 1;
+		}
+
+		.active & {
+			opacity: 1;
+		}
+	}
