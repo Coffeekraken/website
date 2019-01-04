@@ -23,13 +23,13 @@
     }
   },
   "scripts": {
-    "dist": "npm run dist:css && npm run dist:js && npm run dist:img && npm run dist:fonts && npm run dist:html",
+    "dist": "npm run dist:css && npm run dist:js && npm run dist:img && npm run dist:fonts",
     "dist:js": "webpack",
     "dist:css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style expanded",
     "dist:img": "rm -rf dist/img && node ./.scripts/imagemin.js",
     "dist:html": "cat index.src.html | critical --minify true --inline > index.html",
     "dist:fonts": "rm -rf dist/fonts && cp -R src/fonts dist/fonts",
-    "dist:prod": "npm run dist:prod:css && npm run dist:prod:js && npm run dist:img && npm run dist:fonts && npm run dist:html",
+    "dist:prod": "npm run dist:prod:css && npm run dist:prod:js && npm run dist:img && npm run dist:fonts",
     "dist:prod:js": "webpack --config webpack.prod.config.js",
     "dist:prod:css": "node-sass src/sass/style.scss dist/css/style.css  --include-path node_modules --output-style compressed",
     "carpenter": "coffeekraken-carpenter",
