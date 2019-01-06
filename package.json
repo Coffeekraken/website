@@ -74,7 +74,7 @@
     "coffeekraken-s-table-component": "^1.0.0",
     "coffeekraken-s-tooltip-component": "^1.0.0",
     "coffeekraken-s-typography-component": "^1.0.2",
-    "coffeekraken-sugar": "^1.0.34",
+    "coffeekraken-sugar": "^1.0.36",
     "github-api": "^3.0.0",
     "marked": "^0.3.6",
     "vue": "^2.5.21"
