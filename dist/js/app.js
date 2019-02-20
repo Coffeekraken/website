@@ -51,7 +51,7 @@
 	__webpack_require__(395);
 	__webpack_require__(531);
 	__webpack_require__(532);
-	__webpack_require__(569);
+	__webpack_require__(567);
 
 	window.addEventListener('scroll', function (e) {
 		var scrollTop = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop;
@@ -9422,7 +9422,7 @@
 /* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _fastdom = __webpack_require__(335);
 
@@ -9448,28 +9448,29 @@
 
 	function handleInputAttributes(eOrElm) {
 		var setDirty = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+		var forceDirty = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
 		var field = eOrElm.target ? eOrElm.target : eOrElm;
 		if (!field || !field.tagName) return;
 		switch (field.tagName) {
-			case 'INPUT':
-			case 'TEXTAREA':
-			case 'SELECT':
+			case "INPUT":
+			case "TEXTAREA":
+			case "SELECT":
 				_fastdom2.default.mutate(function () {
-					if (field.type && (field.type === 'checkbox' || field.type === 'radio')) return;
-					if (field.value && !field.hasAttribute('has-value')) {
-						field.setAttribute('has-value', true);
-						field.removeAttribute('empty');
-					} else if (field.value === undefined || field.value === null || field.value === '') {
-						field.removeAttribute('has-value');
-						field.removeAttribute('value');
-						if (!field.hasAttribute('empty')) {
-							field.setAttribute('empty', true);
+					if (field.type && (field.type === "checkbox" || field.type === "radio")) return;
+					if (field.value && !field.hasAttribute("has-value")) {
+						field.setAttribute("has-value", true);
+						field.removeAttribute("empty");
+					} else if (field.value === undefined || field.value === null || field.value === "") {
+						field.removeAttribute("has-value");
+						field.removeAttribute("value");
+						if (!field.hasAttribute("empty")) {
+							field.setAttribute("empty", true);
 						}
 					}
 					if (setDirty) {
-						if (!field.hasAttribute('dirty')) {
-							field.setAttribute('dirty', true);
+						if (!field.hasAttribute("dirty") && (field.value || forceDirty)) {
+							field.setAttribute("dirty", true);
 						}
 					}
 				});
@@ -9481,12 +9482,12 @@
 		// loop on each form elements
 		[].forEach.call(e.target.elements, function (field) {
 			// reset the field attributes
-			handleInputAttributes(field);
+			handleInputAttributes(field, true, true);
 			// stop here if is a submit
-			if (e.type === 'submit') return;
+			if (e.type === "submit") return;
 			// remove dirty attribute
 			_fastdom2.default.mutate(function () {
-				field.removeAttribute('dirty');
+				field.removeAttribute("dirty");
 			});
 		});
 	}
@@ -9495,10 +9496,10 @@
 		handleInputAttributes(elm, false);
 	});
 
-	document.addEventListener('change', handleInputAttributes);
-	document.addEventListener('keyup', handleInputAttributes);
-	document.addEventListener('reset', handleFormSubmitOrReset);
-	document.addEventListener('submit', handleFormSubmitOrReset);
+	document.addEventListener("change", handleInputAttributes);
+	document.addEventListener("keyup", handleInputAttributes);
+	document.addEventListener("reset", handleFormSubmitOrReset);
+	document.addEventListener("submit", handleFormSubmitOrReset);
 
 /***/ }),
 /* 335 */
@@ -9862,7 +9863,7 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = uniqid;
 	var uniqidIdx = 0;
@@ -9870,12 +9871,17 @@
 	if (!window.sugar._uniqid) window.sugar._uniqid = 0;
 
 	/**
-	 * Get a uniq id
+	 * Generate a uniq id
+	 * @example    js
+	 * import uniqid from 'coffeekraken-sugar/js/utils/uniqid'
+	 * uniqid() // s2
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function uniqid() {
-		// update uniqid idx
-		window.sugar._uniqid++;
-		return "s" + window.sugar._uniqid.toString();
+	  // update uniqid idx
+	  window.sugar._uniqid++;
+	  return "s" + window.sugar._uniqid.toString();
 	}
 
 /***/ }),
@@ -10217,11 +10223,11 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
-	 * Vue.js v2.5.21
-	 * (c) 2014-2018 Evan You
+	 * Vue.js v2.6.6
+	 * (c) 2014-2019 Evan You
 	 * Released under the MIT License.
 	 */
-	!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define(t):e.Vue=t()}(this,function(){"use strict";var e=Object.freeze({});function t(e){return null==e}function n(e){return null!=e}function r(e){return!0===e}function i(e){return"string"==typeof e||"number"==typeof e||"symbol"==typeof e||"boolean"==typeof e}function o(e){return null!==e&&"object"==typeof e}var a=Object.prototype.toString;function s(e){return"[object Object]"===a.call(e)}function c(e){var t=parseFloat(String(e));return t>=0&&Math.floor(t)===t&&isFinite(e)}function u(e){return null==e?"":"object"==typeof e?JSON.stringify(e,null,2):String(e)}function l(e){var t=parseFloat(e);return isNaN(t)?e:t}function f(e,t){for(var n=Object.create(null),r=e.split(","),i=0;i<r.length;i++)n[r[i]]=!0;return t?function(e){return n[e.toLowerCase()]}:function(e){return n[e]}}var p=f("slot,component",!0),d=f("key,ref,slot,slot-scope,is");function v(e,t){if(e.length){var n=e.indexOf(t);if(n>-1)return e.splice(n,1)}}var h=Object.prototype.hasOwnProperty;function m(e,t){return h.call(e,t)}function y(e){var t=Object.create(null);return function(n){return t[n]||(t[n]=e(n))}}var g=/-(\w)/g,_=y(function(e){return e.replace(g,function(e,t){return t?t.toUpperCase():""})}),b=y(function(e){return e.charAt(0).toUpperCase()+e.slice(1)}),$=/\B([A-Z])/g,w=y(function(e){return e.replace($,"-$1").toLowerCase()});var C=Function.prototype.bind?function(e,t){return e.bind(t)}:function(e,t){function n(n){var r=arguments.length;return r?r>1?e.apply(t,arguments):e.call(t,n):e.call(t)}return n._length=e.length,n};function x(e,t){t=t||0;for(var n=e.length-t,r=new Array(n);n--;)r[n]=e[n+t];return r}function k(e,t){for(var n in t)e[n]=t[n];return e}function A(e){for(var t={},n=0;n<e.length;n++)e[n]&&k(t,e[n]);return t}function O(e,t,n){}var S=function(e,t,n){return!1},T=function(e){return e};function N(e,t){if(e===t)return!0;var n=o(e),r=o(t);if(!n||!r)return!n&&!r&&String(e)===String(t);try{var i=Array.isArray(e),a=Array.isArray(t);if(i&&a)return e.length===t.length&&e.every(function(e,n){return N(e,t[n])});if(e instanceof Date&&t instanceof Date)return e.getTime()===t.getTime();if(i||a)return!1;var s=Object.keys(e),c=Object.keys(t);return s.length===c.length&&s.every(function(n){return N(e[n],t[n])})}catch(e){return!1}}function j(e,t){for(var n=0;n<e.length;n++)if(N(e[n],t))return n;return-1}function E(e){var t=!1;return function(){t||(t=!0,e.apply(this,arguments))}}var I="data-server-rendered",L=["component","directive","filter"],M=["beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeDestroy","destroyed","activated","deactivated","errorCaptured"],D={optionMergeStrategies:Object.create(null),silent:!1,productionTip:!1,devtools:!1,performance:!1,errorHandler:null,warnHandler:null,ignoredElements:[],keyCodes:Object.create(null),isReservedTag:S,isReservedAttr:S,isUnknownElement:S,getTagNamespace:O,parsePlatformTagName:T,mustUseProp:S,async:!0,_lifecycleHooks:M};function P(e,t,n,r){Object.defineProperty(e,t,{value:n,enumerable:!!r,writable:!0,configurable:!0})}var F=/[^\w.$]/;var R,H="__proto__"in{},B="undefined"!=typeof window,U="undefined"!=typeof WXEnvironment&&!!WXEnvironment.platform,V=U&&WXEnvironment.platform.toLowerCase(),z=B&&window.navigator.userAgent.toLowerCase(),K=z&&/msie|trident/.test(z),J=z&&z.indexOf("msie 9.0")>0,q=z&&z.indexOf("edge/")>0,W=(z&&z.indexOf("android"),z&&/iphone|ipad|ipod|ios/.test(z)||"ios"===V),G=(z&&/chrome\/\d+/.test(z),{}.watch),Z=!1;if(B)try{var X={};Object.defineProperty(X,"passive",{get:function(){Z=!0}}),window.addEventListener("test-passive",null,X)}catch(e){}var Y=function(){return void 0===R&&(R=!B&&!U&&"undefined"!=typeof global&&(global.process&&"server"===global.process.env.VUE_ENV)),R},Q=B&&window.__VUE_DEVTOOLS_GLOBAL_HOOK__;function ee(e){return"function"==typeof e&&/native code/.test(e.toString())}var te,ne="undefined"!=typeof Symbol&&ee(Symbol)&&"undefined"!=typeof Reflect&&ee(Reflect.ownKeys);te="undefined"!=typeof Set&&ee(Set)?Set:function(){function e(){this.set=Object.create(null)}return e.prototype.has=function(e){return!0===this.set[e]},e.prototype.add=function(e){this.set[e]=!0},e.prototype.clear=function(){this.set=Object.create(null)},e}();var re=O,ie=0,oe=function(){this.id=ie++,this.subs=[]};oe.prototype.addSub=function(e){this.subs.push(e)},oe.prototype.removeSub=function(e){v(this.subs,e)},oe.prototype.depend=function(){oe.target&&oe.target.addDep(this)},oe.prototype.notify=function(){for(var e=this.subs.slice(),t=0,n=e.length;t<n;t++)e[t].update()},oe.target=null;var ae=[];function se(e){ae.push(e),oe.target=e}function ce(){ae.pop(),oe.target=ae[ae.length-1]}var ue=function(e,t,n,r,i,o,a,s){this.tag=e,this.data=t,this.children=n,this.text=r,this.elm=i,this.ns=void 0,this.context=o,this.fnContext=void 0,this.fnOptions=void 0,this.fnScopeId=void 0,this.key=t&&t.key,this.componentOptions=a,this.componentInstance=void 0,this.parent=void 0,this.raw=!1,this.isStatic=!1,this.isRootInsert=!0,this.isComment=!1,this.isCloned=!1,this.isOnce=!1,this.asyncFactory=s,this.asyncMeta=void 0,this.isAsyncPlaceholder=!1},le={child:{configurable:!0}};le.child.get=function(){return this.componentInstance},Object.defineProperties(ue.prototype,le);var fe=function(e){void 0===e&&(e="");var t=new ue;return t.text=e,t.isComment=!0,t};function pe(e){return new ue(void 0,void 0,void 0,String(e))}function de(e){var t=new ue(e.tag,e.data,e.children&&e.children.slice(),e.text,e.elm,e.context,e.componentOptions,e.asyncFactory);return t.ns=e.ns,t.isStatic=e.isStatic,t.key=e.key,t.isComment=e.isComment,t.fnContext=e.fnContext,t.fnOptions=e.fnOptions,t.fnScopeId=e.fnScopeId,t.asyncMeta=e.asyncMeta,t.isCloned=!0,t}var ve=Array.prototype,he=Object.create(ve);["push","pop","shift","unshift","splice","sort","reverse"].forEach(function(e){var t=ve[e];P(he,e,function(){for(var n=[],r=arguments.length;r--;)n[r]=arguments[r];var i,o=t.apply(this,n),a=this.__ob__;switch(e){case"push":case"unshift":i=n;break;case"splice":i=n.slice(2)}return i&&a.observeArray(i),a.dep.notify(),o})});var me=Object.getOwnPropertyNames(he),ye=!0;function ge(e){ye=e}var _e=function(e){var t;this.value=e,this.dep=new oe,this.vmCount=0,P(e,"__ob__",this),Array.isArray(e)?(H?(t=he,e.__proto__=t):function(e,t,n){for(var r=0,i=n.length;r<i;r++){var o=n[r];P(e,o,t[o])}}(e,he,me),this.observeArray(e)):this.walk(e)};function be(e,t){var n;if(o(e)&&!(e instanceof ue))return m(e,"__ob__")&&e.__ob__ instanceof _e?n=e.__ob__:ye&&!Y()&&(Array.isArray(e)||s(e))&&Object.isExtensible(e)&&!e._isVue&&(n=new _e(e)),t&&n&&n.vmCount++,n}function $e(e,t,n,r,i){var o=new oe,a=Object.getOwnPropertyDescriptor(e,t);if(!a||!1!==a.configurable){var s=a&&a.get,c=a&&a.set;s&&!c||2!==arguments.length||(n=e[t]);var u=!i&&be(n);Object.defineProperty(e,t,{enumerable:!0,configurable:!0,get:function(){var t=s?s.call(e):n;return oe.target&&(o.depend(),u&&(u.dep.depend(),Array.isArray(t)&&function e(t){for(var n=void 0,r=0,i=t.length;r<i;r++)(n=t[r])&&n.__ob__&&n.__ob__.dep.depend(),Array.isArray(n)&&e(n)}(t))),t},set:function(t){var r=s?s.call(e):n;t===r||t!=t&&r!=r||s&&!c||(c?c.call(e,t):n=t,u=!i&&be(t),o.notify())}})}}function we(e,t,n){if(Array.isArray(e)&&c(t))return e.length=Math.max(e.length,t),e.splice(t,1,n),n;if(t in e&&!(t in Object.prototype))return e[t]=n,n;var r=e.__ob__;return e._isVue||r&&r.vmCount?n:r?($e(r.value,t,n),r.dep.notify(),n):(e[t]=n,n)}function Ce(e,t){if(Array.isArray(e)&&c(t))e.splice(t,1);else{var n=e.__ob__;e._isVue||n&&n.vmCount||m(e,t)&&(delete e[t],n&&n.dep.notify())}}_e.prototype.walk=function(e){for(var t=Object.keys(e),n=0;n<t.length;n++)$e(e,t[n])},_e.prototype.observeArray=function(e){for(var t=0,n=e.length;t<n;t++)be(e[t])};var xe=D.optionMergeStrategies;function ke(e,t){if(!t)return e;for(var n,r,i,o=Object.keys(t),a=0;a<o.length;a++)r=e[n=o[a]],i=t[n],m(e,n)?r!==i&&s(r)&&s(i)&&ke(r,i):we(e,n,i);return e}function Ae(e,t,n){return n?function(){var r="function"==typeof t?t.call(n,n):t,i="function"==typeof e?e.call(n,n):e;return r?ke(r,i):i}:t?e?function(){return ke("function"==typeof t?t.call(this,this):t,"function"==typeof e?e.call(this,this):e)}:t:e}function Oe(e,t){return t?e?e.concat(t):Array.isArray(t)?t:[t]:e}function Se(e,t,n,r){var i=Object.create(e||null);return t?k(i,t):i}xe.data=function(e,t,n){return n?Ae(e,t,n):t&&"function"!=typeof t?e:Ae(e,t)},M.forEach(function(e){xe[e]=Oe}),L.forEach(function(e){xe[e+"s"]=Se}),xe.watch=function(e,t,n,r){if(e===G&&(e=void 0),t===G&&(t=void 0),!t)return Object.create(e||null);if(!e)return t;var i={};for(var o in k(i,e),t){var a=i[o],s=t[o];a&&!Array.isArray(a)&&(a=[a]),i[o]=a?a.concat(s):Array.isArray(s)?s:[s]}return i},xe.props=xe.methods=xe.inject=xe.computed=function(e,t,n,r){if(!e)return t;var i=Object.create(null);return k(i,e),t&&k(i,t),i},xe.provide=Ae;var Te=function(e,t){return void 0===t?e:t};function Ne(e,t,n){if("function"==typeof t&&(t=t.options),function(e,t){var n=e.props;if(n){var r,i,o={};if(Array.isArray(n))for(r=n.length;r--;)"string"==typeof(i=n[r])&&(o[_(i)]={type:null});else if(s(n))for(var a in n)i=n[a],o[_(a)]=s(i)?i:{type:i};e.props=o}}(t),function(e,t){var n=e.inject;if(n){var r=e.inject={};if(Array.isArray(n))for(var i=0;i<n.length;i++)r[n[i]]={from:n[i]};else if(s(n))for(var o in n){var a=n[o];r[o]=s(a)?k({from:o},a):{from:a}}}}(t),function(e){var t=e.directives;if(t)for(var n in t){var r=t[n];"function"==typeof r&&(t[n]={bind:r,update:r})}}(t),!t._base&&(t.extends&&(e=Ne(e,t.extends,n)),t.mixins))for(var r=0,i=t.mixins.length;r<i;r++)e=Ne(e,t.mixins[r],n);var o,a={};for(o in e)c(o);for(o in t)m(e,o)||c(o);function c(r){var i=xe[r]||Te;a[r]=i(e[r],t[r],n,r)}return a}function je(e,t,n,r){if("string"==typeof n){var i=e[t];if(m(i,n))return i[n];var o=_(n);if(m(i,o))return i[o];var a=b(o);return m(i,a)?i[a]:i[n]||i[o]||i[a]}}function Ee(e,t,n,r){var i=t[e],o=!m(n,e),a=n[e],s=Me(Boolean,i.type);if(s>-1)if(o&&!m(i,"default"))a=!1;else if(""===a||a===w(e)){var c=Me(String,i.type);(c<0||s<c)&&(a=!0)}if(void 0===a){a=function(e,t,n){if(!m(t,"default"))return;var r=t.default;if(e&&e.$options.propsData&&void 0===e.$options.propsData[n]&&void 0!==e._props[n])return e._props[n];return"function"==typeof r&&"Function"!==Ie(t.type)?r.call(e):r}(r,i,e);var u=ye;ge(!0),be(a),ge(u)}return a}function Ie(e){var t=e&&e.toString().match(/^\s*function (\w+)/);return t?t[1]:""}function Le(e,t){return Ie(e)===Ie(t)}function Me(e,t){if(!Array.isArray(t))return Le(t,e)?0:-1;for(var n=0,r=t.length;n<r;n++)if(Le(t[n],e))return n;return-1}function De(e,t,n){if(t)for(var r=t;r=r.$parent;){var i=r.$options.errorCaptured;if(i)for(var o=0;o<i.length;o++)try{if(!1===i[o].call(r,e,t,n))return}catch(e){Pe(e,r,"errorCaptured hook")}}Pe(e,t,n)}function Pe(e,t,n){if(D.errorHandler)try{return D.errorHandler.call(null,e,t,n)}catch(e){Fe(e,null,"config.errorHandler")}Fe(e,t,n)}function Fe(e,t,n){if(!B&&!U||"undefined"==typeof console)throw e;console.error(e)}var Re,He,Be=[],Ue=!1;function Ve(){Ue=!1;var e=Be.slice(0);Be.length=0;for(var t=0;t<e.length;t++)e[t]()}var ze=!1;if("undefined"!=typeof setImmediate&&ee(setImmediate))He=function(){setImmediate(Ve)};else if("undefined"==typeof MessageChannel||!ee(MessageChannel)&&"[object MessageChannelConstructor]"!==MessageChannel.toString())He=function(){setTimeout(Ve,0)};else{var Ke=new MessageChannel,Je=Ke.port2;Ke.port1.onmessage=Ve,He=function(){Je.postMessage(1)}}if("undefined"!=typeof Promise&&ee(Promise)){var qe=Promise.resolve();Re=function(){qe.then(Ve),W&&setTimeout(O)}}else Re=He;function We(e,t){var n;if(Be.push(function(){if(e)try{e.call(t)}catch(e){De(e,t,"nextTick")}else n&&n(t)}),Ue||(Ue=!0,ze?He():Re()),!e&&"undefined"!=typeof Promise)return new Promise(function(e){n=e})}var Ge=new te;function Ze(e){!function e(t,n){var r,i;var a=Array.isArray(t);if(!a&&!o(t)||Object.isFrozen(t)||t instanceof ue)return;if(t.__ob__){var s=t.__ob__.dep.id;if(n.has(s))return;n.add(s)}if(a)for(r=t.length;r--;)e(t[r],n);else for(i=Object.keys(t),r=i.length;r--;)e(t[i[r]],n)}(e,Ge),Ge.clear()}var Xe,Ye=y(function(e){var t="&"===e.charAt(0),n="~"===(e=t?e.slice(1):e).charAt(0),r="!"===(e=n?e.slice(1):e).charAt(0);return{name:e=r?e.slice(1):e,once:n,capture:r,passive:t}});function Qe(e){function t(){var e=arguments,n=t.fns;if(!Array.isArray(n))return n.apply(null,arguments);for(var r=n.slice(),i=0;i<r.length;i++)r[i].apply(null,e)}return t.fns=e,t}function et(e,n,i,o,a,s){var c,u,l,f;for(c in e)u=e[c],l=n[c],f=Ye(c),t(u)||(t(l)?(t(u.fns)&&(u=e[c]=Qe(u)),r(f.once)&&(u=e[c]=a(f.name,u,f.capture)),i(f.name,u,f.capture,f.passive,f.params)):u!==l&&(l.fns=u,e[c]=l));for(c in n)t(e[c])&&o((f=Ye(c)).name,n[c],f.capture)}function tt(e,i,o){var a;e instanceof ue&&(e=e.data.hook||(e.data.hook={}));var s=e[i];function c(){o.apply(this,arguments),v(a.fns,c)}t(s)?a=Qe([c]):n(s.fns)&&r(s.merged)?(a=s).fns.push(c):a=Qe([s,c]),a.merged=!0,e[i]=a}function nt(e,t,r,i,o){if(n(t)){if(m(t,r))return e[r]=t[r],o||delete t[r],!0;if(m(t,i))return e[r]=t[i],o||delete t[i],!0}return!1}function rt(e){return i(e)?[pe(e)]:Array.isArray(e)?function e(o,a){var s=[];var c,u,l,f;for(c=0;c<o.length;c++)t(u=o[c])||"boolean"==typeof u||(l=s.length-1,f=s[l],Array.isArray(u)?u.length>0&&(it((u=e(u,(a||"")+"_"+c))[0])&&it(f)&&(s[l]=pe(f.text+u[0].text),u.shift()),s.push.apply(s,u)):i(u)?it(f)?s[l]=pe(f.text+u):""!==u&&s.push(pe(u)):it(u)&&it(f)?s[l]=pe(f.text+u.text):(r(o._isVList)&&n(u.tag)&&t(u.key)&&n(a)&&(u.key="__vlist"+a+"_"+c+"__"),s.push(u)));return s}(e):void 0}function it(e){return n(e)&&n(e.text)&&!1===e.isComment}function ot(e,t){return(e.__esModule||ne&&"Module"===e[Symbol.toStringTag])&&(e=e.default),o(e)?t.extend(e):e}function at(e){return e.isComment&&e.asyncFactory}function st(e){if(Array.isArray(e))for(var t=0;t<e.length;t++){var r=e[t];if(n(r)&&(n(r.componentOptions)||at(r)))return r}}function ct(e,t){Xe.$on(e,t)}function ut(e,t){Xe.$off(e,t)}function lt(e,t){var n=Xe;return function r(){null!==t.apply(null,arguments)&&n.$off(e,r)}}function ft(e,t,n){Xe=e,et(t,n||{},ct,ut,lt),Xe=void 0}function pt(e,t){var n={};if(!e)return n;for(var r=0,i=e.length;r<i;r++){var o=e[r],a=o.data;if(a&&a.attrs&&a.attrs.slot&&delete a.attrs.slot,o.context!==t&&o.fnContext!==t||!a||null==a.slot)(n.default||(n.default=[])).push(o);else{var s=a.slot,c=n[s]||(n[s]=[]);"template"===o.tag?c.push.apply(c,o.children||[]):c.push(o)}}for(var u in n)n[u].every(dt)&&delete n[u];return n}function dt(e){return e.isComment&&!e.asyncFactory||" "===e.text}function vt(e,t){t=t||{};for(var n=0;n<e.length;n++)Array.isArray(e[n])?vt(e[n],t):t[e[n].key]=e[n].fn;return t}var ht=null;function mt(e){var t=ht;return ht=e,function(){ht=t}}function yt(e){for(;e&&(e=e.$parent);)if(e._inactive)return!0;return!1}function gt(e,t){if(t){if(e._directInactive=!1,yt(e))return}else if(e._directInactive)return;if(e._inactive||null===e._inactive){e._inactive=!1;for(var n=0;n<e.$children.length;n++)gt(e.$children[n]);_t(e,"activated")}}function _t(e,t){se();var n=e.$options[t];if(n)for(var r=0,i=n.length;r<i;r++)try{n[r].call(e)}catch(n){De(n,e,t+" hook")}e._hasHookEvent&&e.$emit("hook:"+t),ce()}var bt=[],$t=[],wt={},Ct=!1,xt=!1,kt=0;function At(){var e,t;for(xt=!0,bt.sort(function(e,t){return e.id-t.id}),kt=0;kt<bt.length;kt++)(e=bt[kt]).before&&e.before(),t=e.id,wt[t]=null,e.run();var n=$t.slice(),r=bt.slice();kt=bt.length=$t.length=0,wt={},Ct=xt=!1,function(e){for(var t=0;t<e.length;t++)e[t]._inactive=!0,gt(e[t],!0)}(n),function(e){var t=e.length;for(;t--;){var n=e[t],r=n.vm;r._watcher===n&&r._isMounted&&!r._isDestroyed&&_t(r,"updated")}}(r),Q&&D.devtools&&Q.emit("flush")}var Ot=0,St=function(e,t,n,r,i){this.vm=e,i&&(e._watcher=this),e._watchers.push(this),r?(this.deep=!!r.deep,this.user=!!r.user,this.lazy=!!r.lazy,this.sync=!!r.sync,this.before=r.before):this.deep=this.user=this.lazy=this.sync=!1,this.cb=n,this.id=++Ot,this.active=!0,this.dirty=this.lazy,this.deps=[],this.newDeps=[],this.depIds=new te,this.newDepIds=new te,this.expression="","function"==typeof t?this.getter=t:(this.getter=function(e){if(!F.test(e)){var t=e.split(".");return function(e){for(var n=0;n<t.length;n++){if(!e)return;e=e[t[n]]}return e}}}(t),this.getter||(this.getter=O)),this.value=this.lazy?void 0:this.get()};St.prototype.get=function(){var e;se(this);var t=this.vm;try{e=this.getter.call(t,t)}catch(e){if(!this.user)throw e;De(e,t,'getter for watcher "'+this.expression+'"')}finally{this.deep&&Ze(e),ce(),this.cleanupDeps()}return e},St.prototype.addDep=function(e){var t=e.id;this.newDepIds.has(t)||(this.newDepIds.add(t),this.newDeps.push(e),this.depIds.has(t)||e.addSub(this))},St.prototype.cleanupDeps=function(){for(var e=this.deps.length;e--;){var t=this.deps[e];this.newDepIds.has(t.id)||t.removeSub(this)}var n=this.depIds;this.depIds=this.newDepIds,this.newDepIds=n,this.newDepIds.clear(),n=this.deps,this.deps=this.newDeps,this.newDeps=n,this.newDeps.length=0},St.prototype.update=function(){this.lazy?this.dirty=!0:this.sync?this.run():function(e){var t=e.id;if(null==wt[t]){if(wt[t]=!0,xt){for(var n=bt.length-1;n>kt&&bt[n].id>e.id;)n--;bt.splice(n+1,0,e)}else bt.push(e);Ct||(Ct=!0,We(At))}}(this)},St.prototype.run=function(){if(this.active){var e=this.get();if(e!==this.value||o(e)||this.deep){var t=this.value;if(this.value=e,this.user)try{this.cb.call(this.vm,e,t)}catch(e){De(e,this.vm,'callback for watcher "'+this.expression+'"')}else this.cb.call(this.vm,e,t)}}},St.prototype.evaluate=function(){this.value=this.get(),this.dirty=!1},St.prototype.depend=function(){for(var e=this.deps.length;e--;)this.deps[e].depend()},St.prototype.teardown=function(){if(this.active){this.vm._isBeingDestroyed||v(this.vm._watchers,this);for(var e=this.deps.length;e--;)this.deps[e].removeSub(this);this.active=!1}};var Tt={enumerable:!0,configurable:!0,get:O,set:O};function Nt(e,t,n){Tt.get=function(){return this[t][n]},Tt.set=function(e){this[t][n]=e},Object.defineProperty(e,n,Tt)}function jt(e){e._watchers=[];var t=e.$options;t.props&&function(e,t){var n=e.$options.propsData||{},r=e._props={},i=e.$options._propKeys=[];e.$parent&&ge(!1);var o=function(o){i.push(o);var a=Ee(o,t,n,e);$e(r,o,a),o in e||Nt(e,"_props",o)};for(var a in t)o(a);ge(!0)}(e,t.props),t.methods&&function(e,t){e.$options.props;for(var n in t)e[n]="function"!=typeof t[n]?O:C(t[n],e)}(e,t.methods),t.data?function(e){var t=e.$options.data;s(t=e._data="function"==typeof t?function(e,t){se();try{return e.call(t,t)}catch(e){return De(e,t,"data()"),{}}finally{ce()}}(t,e):t||{})||(t={});var n=Object.keys(t),r=e.$options.props,i=(e.$options.methods,n.length);for(;i--;){var o=n[i];r&&m(r,o)||(void 0,36!==(a=(o+"").charCodeAt(0))&&95!==a&&Nt(e,"_data",o))}var a;be(t,!0)}(e):be(e._data={},!0),t.computed&&function(e,t){var n=e._computedWatchers=Object.create(null),r=Y();for(var i in t){var o=t[i],a="function"==typeof o?o:o.get;r||(n[i]=new St(e,a||O,O,Et)),i in e||It(e,i,o)}}(e,t.computed),t.watch&&t.watch!==G&&function(e,t){for(var n in t){var r=t[n];if(Array.isArray(r))for(var i=0;i<r.length;i++)Dt(e,n,r[i]);else Dt(e,n,r)}}(e,t.watch)}var Et={lazy:!0};function It(e,t,n){var r=!Y();"function"==typeof n?(Tt.get=r?Lt(t):Mt(n),Tt.set=O):(Tt.get=n.get?r&&!1!==n.cache?Lt(t):Mt(n.get):O,Tt.set=n.set||O),Object.defineProperty(e,t,Tt)}function Lt(e){return function(){var t=this._computedWatchers&&this._computedWatchers[e];if(t)return t.dirty&&t.evaluate(),oe.target&&t.depend(),t.value}}function Mt(e){return function(){return e.call(this,this)}}function Dt(e,t,n,r){return s(n)&&(r=n,n=n.handler),"string"==typeof n&&(n=e[n]),e.$watch(t,n,r)}function Pt(e,t){if(e){for(var n=Object.create(null),r=ne?Reflect.ownKeys(e).filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}):Object.keys(e),i=0;i<r.length;i++){for(var o=r[i],a=e[o].from,s=t;s;){if(s._provided&&m(s._provided,a)){n[o]=s._provided[a];break}s=s.$parent}if(!s&&"default"in e[o]){var c=e[o].default;n[o]="function"==typeof c?c.call(t):c}}return n}}function Ft(e,t){var r,i,a,s,c;if(Array.isArray(e)||"string"==typeof e)for(r=new Array(e.length),i=0,a=e.length;i<a;i++)r[i]=t(e[i],i);else if("number"==typeof e)for(r=new Array(e),i=0;i<e;i++)r[i]=t(i+1,i);else if(o(e))for(s=Object.keys(e),r=new Array(s.length),i=0,a=s.length;i<a;i++)c=s[i],r[i]=t(e[c],c,i);return n(r)||(r=[]),r._isVList=!0,r}function Rt(e,t,n,r){var i,o=this.$scopedSlots[e];o?(n=n||{},r&&(n=k(k({},r),n)),i=o(n)||t):i=this.$slots[e]||t;var a=n&&n.slot;return a?this.$createElement("template",{slot:a},i):i}function Ht(e){return je(this.$options,"filters",e)||T}function Bt(e,t){return Array.isArray(e)?-1===e.indexOf(t):e!==t}function Ut(e,t,n,r,i){var o=D.keyCodes[t]||n;return i&&r&&!D.keyCodes[t]?Bt(i,r):o?Bt(o,e):r?w(r)!==t:void 0}function Vt(e,t,n,r,i){if(n)if(o(n)){var a;Array.isArray(n)&&(n=A(n));var s=function(o){if("class"===o||"style"===o||d(o))a=e;else{var s=e.attrs&&e.attrs.type;a=r||D.mustUseProp(t,s,o)?e.domProps||(e.domProps={}):e.attrs||(e.attrs={})}var c=_(o);o in a||c in a||(a[o]=n[o],i&&((e.on||(e.on={}))["update:"+c]=function(e){n[o]=e}))};for(var c in n)s(c)}else;return e}function zt(e,t){var n=this._staticTrees||(this._staticTrees=[]),r=n[e];return r&&!t?r:(Jt(r=n[e]=this.$options.staticRenderFns[e].call(this._renderProxy,null,this),"__static__"+e,!1),r)}function Kt(e,t,n){return Jt(e,"__once__"+t+(n?"_"+n:""),!0),e}function Jt(e,t,n){if(Array.isArray(e))for(var r=0;r<e.length;r++)e[r]&&"string"!=typeof e[r]&&qt(e[r],t+"_"+r,n);else qt(e,t,n)}function qt(e,t,n){e.isStatic=!0,e.key=t,e.isOnce=n}function Wt(e,t){if(t)if(s(t)){var n=e.on=e.on?k({},e.on):{};for(var r in t){var i=n[r],o=t[r];n[r]=i?[].concat(i,o):o}}else;return e}function Gt(e){e._o=Kt,e._n=l,e._s=u,e._l=Ft,e._t=Rt,e._q=N,e._i=j,e._m=zt,e._f=Ht,e._k=Ut,e._b=Vt,e._v=pe,e._e=fe,e._u=vt,e._g=Wt}function Zt(t,n,i,o,a){var s,c=a.options;m(o,"_uid")?(s=Object.create(o))._original=o:(s=o,o=o._original);var u=r(c._compiled),l=!u;this.data=t,this.props=n,this.children=i,this.parent=o,this.listeners=t.on||e,this.injections=Pt(c.inject,o),this.slots=function(){return pt(i,o)},u&&(this.$options=c,this.$slots=this.slots(),this.$scopedSlots=t.scopedSlots||e),c._scopeId?this._c=function(e,t,n,r){var i=an(s,e,t,n,r,l);return i&&!Array.isArray(i)&&(i.fnScopeId=c._scopeId,i.fnContext=o),i}:this._c=function(e,t,n,r){return an(s,e,t,n,r,l)}}function Xt(e,t,n,r,i){var o=de(e);return o.fnContext=n,o.fnOptions=r,t.slot&&((o.data||(o.data={})).slot=t.slot),o}function Yt(e,t){for(var n in t)e[_(n)]=t[n]}Gt(Zt.prototype);var Qt={init:function(e,t){if(e.componentInstance&&!e.componentInstance._isDestroyed&&e.data.keepAlive){var r=e;Qt.prepatch(r,r)}else{(e.componentInstance=function(e,t){var r={_isComponent:!0,_parentVnode:e,parent:t},i=e.data.inlineTemplate;n(i)&&(r.render=i.render,r.staticRenderFns=i.staticRenderFns);return new e.componentOptions.Ctor(r)}(e,ht)).$mount(t?e.elm:void 0,t)}},prepatch:function(t,n){var r=n.componentOptions;!function(t,n,r,i,o){var a=!!(o||t.$options._renderChildren||i.data.scopedSlots||t.$scopedSlots!==e);if(t.$options._parentVnode=i,t.$vnode=i,t._vnode&&(t._vnode.parent=i),t.$options._renderChildren=o,t.$attrs=i.data.attrs||e,t.$listeners=r||e,n&&t.$options.props){ge(!1);for(var s=t._props,c=t.$options._propKeys||[],u=0;u<c.length;u++){var l=c[u],f=t.$options.props;s[l]=Ee(l,f,n,t)}ge(!0),t.$options.propsData=n}r=r||e;var p=t.$options._parentListeners;t.$options._parentListeners=r,ft(t,r,p),a&&(t.$slots=pt(o,i.context),t.$forceUpdate())}(n.componentInstance=t.componentInstance,r.propsData,r.listeners,n,r.children)},insert:function(e){var t,n=e.context,r=e.componentInstance;r._isMounted||(r._isMounted=!0,_t(r,"mounted")),e.data.keepAlive&&(n._isMounted?((t=r)._inactive=!1,$t.push(t)):gt(r,!0))},destroy:function(e){var t=e.componentInstance;t._isDestroyed||(e.data.keepAlive?function e(t,n){if(!(n&&(t._directInactive=!0,yt(t))||t._inactive)){t._inactive=!0;for(var r=0;r<t.$children.length;r++)e(t.$children[r]);_t(t,"deactivated")}}(t,!0):t.$destroy())}},en=Object.keys(Qt);function tn(i,a,s,c,u){if(!t(i)){var l=s.$options._base;if(o(i)&&(i=l.extend(i)),"function"==typeof i){var f;if(t(i.cid)&&void 0===(i=function(e,i,a){if(r(e.error)&&n(e.errorComp))return e.errorComp;if(n(e.resolved))return e.resolved;if(r(e.loading)&&n(e.loadingComp))return e.loadingComp;if(!n(e.contexts)){var s=e.contexts=[a],c=!0,u=function(e){for(var t=0,n=s.length;t<n;t++)s[t].$forceUpdate();e&&(s.length=0)},l=E(function(t){e.resolved=ot(t,i),c||u(!0)}),f=E(function(t){n(e.errorComp)&&(e.error=!0,u(!0))}),p=e(l,f);return o(p)&&("function"==typeof p.then?t(e.resolved)&&p.then(l,f):n(p.component)&&"function"==typeof p.component.then&&(p.component.then(l,f),n(p.error)&&(e.errorComp=ot(p.error,i)),n(p.loading)&&(e.loadingComp=ot(p.loading,i),0===p.delay?e.loading=!0:setTimeout(function(){t(e.resolved)&&t(e.error)&&(e.loading=!0,u(!1))},p.delay||200)),n(p.timeout)&&setTimeout(function(){t(e.resolved)&&f(null)},p.timeout))),c=!1,e.loading?e.loadingComp:e.resolved}e.contexts.push(a)}(f=i,l,s)))return function(e,t,n,r,i){var o=fe();return o.asyncFactory=e,o.asyncMeta={data:t,context:n,children:r,tag:i},o}(f,a,s,c,u);a=a||{},cn(i),n(a.model)&&function(e,t){var r=e.model&&e.model.prop||"value",i=e.model&&e.model.event||"input";(t.props||(t.props={}))[r]=t.model.value;var o=t.on||(t.on={}),a=o[i],s=t.model.callback;n(a)?(Array.isArray(a)?-1===a.indexOf(s):a!==s)&&(o[i]=[s].concat(a)):o[i]=s}(i.options,a);var p=function(e,r,i){var o=r.options.props;if(!t(o)){var a={},s=e.attrs,c=e.props;if(n(s)||n(c))for(var u in o){var l=w(u);nt(a,c,u,l,!0)||nt(a,s,u,l,!1)}return a}}(a,i);if(r(i.options.functional))return function(t,r,i,o,a){var s=t.options,c={},u=s.props;if(n(u))for(var l in u)c[l]=Ee(l,u,r||e);else n(i.attrs)&&Yt(c,i.attrs),n(i.props)&&Yt(c,i.props);var f=new Zt(i,c,a,o,t),p=s.render.call(null,f._c,f);if(p instanceof ue)return Xt(p,i,f.parent,s);if(Array.isArray(p)){for(var d=rt(p)||[],v=new Array(d.length),h=0;h<d.length;h++)v[h]=Xt(d[h],i,f.parent,s);return v}}(i,p,a,s,c);var d=a.on;if(a.on=a.nativeOn,r(i.options.abstract)){var v=a.slot;a={},v&&(a.slot=v)}!function(e){for(var t=e.hook||(e.hook={}),n=0;n<en.length;n++){var r=en[n],i=t[r],o=Qt[r];i===o||i&&i._merged||(t[r]=i?nn(o,i):o)}}(a);var h=i.options.name||u;return new ue("vue-component-"+i.cid+(h?"-"+h:""),a,void 0,void 0,void 0,s,{Ctor:i,propsData:p,listeners:d,tag:u,children:c},f)}}}function nn(e,t){var n=function(n,r){e(n,r),t(n,r)};return n._merged=!0,n}var rn=1,on=2;function an(e,a,s,c,u,l){return(Array.isArray(s)||i(s))&&(u=c,c=s,s=void 0),r(l)&&(u=on),function(e,i,a,s,c){if(n(a)&&n(a.__ob__))return fe();n(a)&&n(a.is)&&(i=a.is);if(!i)return fe();Array.isArray(s)&&"function"==typeof s[0]&&((a=a||{}).scopedSlots={default:s[0]},s.length=0);c===on?s=rt(s):c===rn&&(s=function(e){for(var t=0;t<e.length;t++)if(Array.isArray(e[t]))return Array.prototype.concat.apply([],e);return e}(s));var u,l;if("string"==typeof i){var f;l=e.$vnode&&e.$vnode.ns||D.getTagNamespace(i),u=D.isReservedTag(i)?new ue(D.parsePlatformTagName(i),a,s,void 0,void 0,e):a&&a.pre||!n(f=je(e.$options,"components",i))?new ue(i,a,s,void 0,void 0,e):tn(f,a,e,s,i)}else u=tn(i,a,e,s);return Array.isArray(u)?u:n(u)?(n(l)&&function e(i,o,a){i.ns=o;"foreignObject"===i.tag&&(o=void 0,a=!0);if(n(i.children))for(var s=0,c=i.children.length;s<c;s++){var u=i.children[s];n(u.tag)&&(t(u.ns)||r(a)&&"svg"!==u.tag)&&e(u,o,a)}}(u,l),n(a)&&function(e){o(e.style)&&Ze(e.style);o(e.class)&&Ze(e.class)}(a),u):fe()}(e,a,s,c,u)}var sn=0;function cn(e){var t=e.options;if(e.super){var n=cn(e.super);if(n!==e.superOptions){e.superOptions=n;var r=function(e){var t,n=e.options,r=e.extendOptions,i=e.sealedOptions;for(var o in n)n[o]!==i[o]&&(t||(t={}),t[o]=un(n[o],r[o],i[o]));return t}(e);r&&k(e.extendOptions,r),(t=e.options=Ne(n,e.extendOptions)).name&&(t.components[t.name]=e)}}return t}function un(e,t,n){if(Array.isArray(e)){var r=[];n=Array.isArray(n)?n:[n],t=Array.isArray(t)?t:[t];for(var i=0;i<e.length;i++)(t.indexOf(e[i])>=0||n.indexOf(e[i])<0)&&r.push(e[i]);return r}return e}function ln(e){this._init(e)}function fn(e){e.cid=0;var t=1;e.extend=function(e){e=e||{};var n=this,r=n.cid,i=e._Ctor||(e._Ctor={});if(i[r])return i[r];var o=e.name||n.options.name,a=function(e){this._init(e)};return(a.prototype=Object.create(n.prototype)).constructor=a,a.cid=t++,a.options=Ne(n.options,e),a.super=n,a.options.props&&function(e){var t=e.options.props;for(var n in t)Nt(e.prototype,"_props",n)}(a),a.options.computed&&function(e){var t=e.options.computed;for(var n in t)It(e.prototype,n,t[n])}(a),a.extend=n.extend,a.mixin=n.mixin,a.use=n.use,L.forEach(function(e){a[e]=n[e]}),o&&(a.options.components[o]=a),a.superOptions=n.options,a.extendOptions=e,a.sealedOptions=k({},a.options),i[r]=a,a}}function pn(e){return e&&(e.Ctor.options.name||e.tag)}function dn(e,t){return Array.isArray(e)?e.indexOf(t)>-1:"string"==typeof e?e.split(",").indexOf(t)>-1:(n=e,"[object RegExp]"===a.call(n)&&e.test(t));var n}function vn(e,t){var n=e.cache,r=e.keys,i=e._vnode;for(var o in n){var a=n[o];if(a){var s=pn(a.componentOptions);s&&!t(s)&&hn(n,o,r,i)}}}function hn(e,t,n,r){var i=e[t];!i||r&&i.tag===r.tag||i.componentInstance.$destroy(),e[t]=null,v(n,t)}!function(t){t.prototype._init=function(t){var n=this;n._uid=sn++,n._isVue=!0,t&&t._isComponent?function(e,t){var n=e.$options=Object.create(e.constructor.options),r=t._parentVnode;n.parent=t.parent,n._parentVnode=r;var i=r.componentOptions;n.propsData=i.propsData,n._parentListeners=i.listeners,n._renderChildren=i.children,n._componentTag=i.tag,t.render&&(n.render=t.render,n.staticRenderFns=t.staticRenderFns)}(n,t):n.$options=Ne(cn(n.constructor),t||{},n),n._renderProxy=n,n._self=n,function(e){var t=e.$options,n=t.parent;if(n&&!t.abstract){for(;n.$options.abstract&&n.$parent;)n=n.$parent;n.$children.push(e)}e.$parent=n,e.$root=n?n.$root:e,e.$children=[],e.$refs={},e._watcher=null,e._inactive=null,e._directInactive=!1,e._isMounted=!1,e._isDestroyed=!1,e._isBeingDestroyed=!1}(n),function(e){e._events=Object.create(null),e._hasHookEvent=!1;var t=e.$options._parentListeners;t&&ft(e,t)}(n),function(t){t._vnode=null,t._staticTrees=null;var n=t.$options,r=t.$vnode=n._parentVnode,i=r&&r.context;t.$slots=pt(n._renderChildren,i),t.$scopedSlots=e,t._c=function(e,n,r,i){return an(t,e,n,r,i,!1)},t.$createElement=function(e,n,r,i){return an(t,e,n,r,i,!0)};var o=r&&r.data;$e(t,"$attrs",o&&o.attrs||e,null,!0),$e(t,"$listeners",n._parentListeners||e,null,!0)}(n),_t(n,"beforeCreate"),function(e){var t=Pt(e.$options.inject,e);t&&(ge(!1),Object.keys(t).forEach(function(n){$e(e,n,t[n])}),ge(!0))}(n),jt(n),function(e){var t=e.$options.provide;t&&(e._provided="function"==typeof t?t.call(e):t)}(n),_t(n,"created"),n.$options.el&&n.$mount(n.$options.el)}}(ln),function(e){var t={get:function(){return this._data}},n={get:function(){return this._props}};Object.defineProperty(e.prototype,"$data",t),Object.defineProperty(e.prototype,"$props",n),e.prototype.$set=we,e.prototype.$delete=Ce,e.prototype.$watch=function(e,t,n){if(s(t))return Dt(this,e,t,n);(n=n||{}).user=!0;var r=new St(this,e,t,n);if(n.immediate)try{t.call(this,r.value)}catch(e){De(e,this,'callback for immediate watcher "'+r.expression+'"')}return function(){r.teardown()}}}(ln),function(e){var t=/^hook:/;e.prototype.$on=function(e,n){var r=this;if(Array.isArray(e))for(var i=0,o=e.length;i<o;i++)r.$on(e[i],n);else(r._events[e]||(r._events[e]=[])).push(n),t.test(e)&&(r._hasHookEvent=!0);return r},e.prototype.$once=function(e,t){var n=this;function r(){n.$off(e,r),t.apply(n,arguments)}return r.fn=t,n.$on(e,r),n},e.prototype.$off=function(e,t){var n=this;if(!arguments.length)return n._events=Object.create(null),n;if(Array.isArray(e)){for(var r=0,i=e.length;r<i;r++)n.$off(e[r],t);return n}var o=n._events[e];if(!o)return n;if(!t)return n._events[e]=null,n;if(t)for(var a,s=o.length;s--;)if((a=o[s])===t||a.fn===t){o.splice(s,1);break}return n},e.prototype.$emit=function(e){var t=this._events[e];if(t){t=t.length>1?x(t):t;for(var n=x(arguments,1),r=0,i=t.length;r<i;r++)try{t[r].apply(this,n)}catch(t){De(t,this,'event handler for "'+e+'"')}}return this}}(ln),function(e){e.prototype._update=function(e,t){var n=this,r=n.$el,i=n._vnode,o=mt(n);n._vnode=e,n.$el=i?n.__patch__(i,e):n.__patch__(n.$el,e,t,!1),o(),r&&(r.__vue__=null),n.$el&&(n.$el.__vue__=n),n.$vnode&&n.$parent&&n.$vnode===n.$parent._vnode&&(n.$parent.$el=n.$el)},e.prototype.$forceUpdate=function(){this._watcher&&this._watcher.update()},e.prototype.$destroy=function(){var e=this;if(!e._isBeingDestroyed){_t(e,"beforeDestroy"),e._isBeingDestroyed=!0;var t=e.$parent;!t||t._isBeingDestroyed||e.$options.abstract||v(t.$children,e),e._watcher&&e._watcher.teardown();for(var n=e._watchers.length;n--;)e._watchers[n].teardown();e._data.__ob__&&e._data.__ob__.vmCount--,e._isDestroyed=!0,e.__patch__(e._vnode,null),_t(e,"destroyed"),e.$off(),e.$el&&(e.$el.__vue__=null),e.$vnode&&(e.$vnode.parent=null)}}}(ln),function(t){Gt(t.prototype),t.prototype.$nextTick=function(e){return We(e,this)},t.prototype._render=function(){var t,n=this,r=n.$options,i=r.render,o=r._parentVnode;o&&(n.$scopedSlots=o.data.scopedSlots||e),n.$vnode=o;try{t=i.call(n._renderProxy,n.$createElement)}catch(e){De(e,n,"render"),t=n._vnode}return t instanceof ue||(t=fe()),t.parent=o,t}}(ln);var mn=[String,RegExp,Array],yn={KeepAlive:{name:"keep-alive",abstract:!0,props:{include:mn,exclude:mn,max:[String,Number]},created:function(){this.cache=Object.create(null),this.keys=[]},destroyed:function(){for(var e in this.cache)hn(this.cache,e,this.keys)},mounted:function(){var e=this;this.$watch("include",function(t){vn(e,function(e){return dn(t,e)})}),this.$watch("exclude",function(t){vn(e,function(e){return!dn(t,e)})})},render:function(){var e=this.$slots.default,t=st(e),n=t&&t.componentOptions;if(n){var r=pn(n),i=this.include,o=this.exclude;if(i&&(!r||!dn(i,r))||o&&r&&dn(o,r))return t;var a=this.cache,s=this.keys,c=null==t.key?n.Ctor.cid+(n.tag?"::"+n.tag:""):t.key;a[c]?(t.componentInstance=a[c].componentInstance,v(s,c),s.push(c)):(a[c]=t,s.push(c),this.max&&s.length>parseInt(this.max)&&hn(a,s[0],s,this._vnode)),t.data.keepAlive=!0}return t||e&&e[0]}}};!function(e){var t={get:function(){return D}};Object.defineProperty(e,"config",t),e.util={warn:re,extend:k,mergeOptions:Ne,defineReactive:$e},e.set=we,e.delete=Ce,e.nextTick=We,e.options=Object.create(null),L.forEach(function(t){e.options[t+"s"]=Object.create(null)}),e.options._base=e,k(e.options.components,yn),function(e){e.use=function(e){var t=this._installedPlugins||(this._installedPlugins=[]);if(t.indexOf(e)>-1)return this;var n=x(arguments,1);return n.unshift(this),"function"==typeof e.install?e.install.apply(e,n):"function"==typeof e&&e.apply(null,n),t.push(e),this}}(e),function(e){e.mixin=function(e){return this.options=Ne(this.options,e),this}}(e),fn(e),function(e){L.forEach(function(t){e[t]=function(e,n){return n?("component"===t&&s(n)&&(n.name=n.name||e,n=this.options._base.extend(n)),"directive"===t&&"function"==typeof n&&(n={bind:n,update:n}),this.options[t+"s"][e]=n,n):this.options[t+"s"][e]}})}(e)}(ln),Object.defineProperty(ln.prototype,"$isServer",{get:Y}),Object.defineProperty(ln.prototype,"$ssrContext",{get:function(){return this.$vnode&&this.$vnode.ssrContext}}),Object.defineProperty(ln,"FunctionalRenderContext",{value:Zt}),ln.version="2.5.21";var gn=f("style,class"),_n=f("input,textarea,option,select,progress"),bn=function(e,t,n){return"value"===n&&_n(e)&&"button"!==t||"selected"===n&&"option"===e||"checked"===n&&"input"===e||"muted"===n&&"video"===e},$n=f("contenteditable,draggable,spellcheck"),wn=f("allowfullscreen,async,autofocus,autoplay,checked,compact,controls,declare,default,defaultchecked,defaultmuted,defaultselected,defer,disabled,enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,required,reversed,scoped,seamless,selected,sortable,translate,truespeed,typemustmatch,visible"),Cn="http://www.w3.org/1999/xlink",xn=function(e){return":"===e.charAt(5)&&"xlink"===e.slice(0,5)},kn=function(e){return xn(e)?e.slice(6,e.length):""},An=function(e){return null==e||!1===e};function On(e){for(var t=e.data,r=e,i=e;n(i.componentInstance);)(i=i.componentInstance._vnode)&&i.data&&(t=Sn(i.data,t));for(;n(r=r.parent);)r&&r.data&&(t=Sn(t,r.data));return function(e,t){if(n(e)||n(t))return Tn(e,Nn(t));return""}(t.staticClass,t.class)}function Sn(e,t){return{staticClass:Tn(e.staticClass,t.staticClass),class:n(e.class)?[e.class,t.class]:t.class}}function Tn(e,t){return e?t?e+" "+t:e:t||""}function Nn(e){return Array.isArray(e)?function(e){for(var t,r="",i=0,o=e.length;i<o;i++)n(t=Nn(e[i]))&&""!==t&&(r&&(r+=" "),r+=t);return r}(e):o(e)?function(e){var t="";for(var n in e)e[n]&&(t&&(t+=" "),t+=n);return t}(e):"string"==typeof e?e:""}var jn={svg:"http://www.w3.org/2000/svg",math:"http://www.w3.org/1998/Math/MathML"},En=f("html,body,base,head,link,meta,style,title,address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,s,samp,small,span,strong,sub,sup,time,u,var,wbr,area,audio,map,track,video,embed,object,param,source,canvas,script,noscript,del,ins,caption,col,colgroup,table,thead,tbody,td,th,tr,button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,output,progress,select,textarea,details,dialog,menu,menuitem,summary,content,element,shadow,template,blockquote,iframe,tfoot"),In=f("svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view",!0),Ln=function(e){return En(e)||In(e)};function Mn(e){return In(e)?"svg":"math"===e?"math":void 0}var Dn=Object.create(null);var Pn=f("text,number,password,search,email,tel,url");function Fn(e){if("string"==typeof e){var t=document.querySelector(e);return t||document.createElement("div")}return e}var Rn=Object.freeze({createElement:function(e,t){var n=document.createElement(e);return"select"!==e?n:(t.data&&t.data.attrs&&void 0!==t.data.attrs.multiple&&n.setAttribute("multiple","multiple"),n)},createElementNS:function(e,t){return document.createElementNS(jn[e],t)},createTextNode:function(e){return document.createTextNode(e)},createComment:function(e){return document.createComment(e)},insertBefore:function(e,t,n){e.insertBefore(t,n)},removeChild:function(e,t){e.removeChild(t)},appendChild:function(e,t){e.appendChild(t)},parentNode:function(e){return e.parentNode},nextSibling:function(e){return e.nextSibling},tagName:function(e){return e.tagName},setTextContent:function(e,t){e.textContent=t},setStyleScope:function(e,t){e.setAttribute(t,"")}}),Hn={create:function(e,t){Bn(t)},update:function(e,t){e.data.ref!==t.data.ref&&(Bn(e,!0),Bn(t))},destroy:function(e){Bn(e,!0)}};function Bn(e,t){var r=e.data.ref;if(n(r)){var i=e.context,o=e.componentInstance||e.elm,a=i.$refs;t?Array.isArray(a[r])?v(a[r],o):a[r]===o&&(a[r]=void 0):e.data.refInFor?Array.isArray(a[r])?a[r].indexOf(o)<0&&a[r].push(o):a[r]=[o]:a[r]=o}}var Un=new ue("",{},[]),Vn=["create","activate","update","remove","destroy"];function zn(e,i){return e.key===i.key&&(e.tag===i.tag&&e.isComment===i.isComment&&n(e.data)===n(i.data)&&function(e,t){if("input"!==e.tag)return!0;var r,i=n(r=e.data)&&n(r=r.attrs)&&r.type,o=n(r=t.data)&&n(r=r.attrs)&&r.type;return i===o||Pn(i)&&Pn(o)}(e,i)||r(e.isAsyncPlaceholder)&&e.asyncFactory===i.asyncFactory&&t(i.asyncFactory.error))}function Kn(e,t,r){var i,o,a={};for(i=t;i<=r;++i)n(o=e[i].key)&&(a[o]=i);return a}var Jn={create:qn,update:qn,destroy:function(e){qn(e,Un)}};function qn(e,t){(e.data.directives||t.data.directives)&&function(e,t){var n,r,i,o=e===Un,a=t===Un,s=Gn(e.data.directives,e.context),c=Gn(t.data.directives,t.context),u=[],l=[];for(n in c)r=s[n],i=c[n],r?(i.oldValue=r.value,Xn(i,"update",t,e),i.def&&i.def.componentUpdated&&l.push(i)):(Xn(i,"bind",t,e),i.def&&i.def.inserted&&u.push(i));if(u.length){var f=function(){for(var n=0;n<u.length;n++)Xn(u[n],"inserted",t,e)};o?tt(t,"insert",f):f()}l.length&&tt(t,"postpatch",function(){for(var n=0;n<l.length;n++)Xn(l[n],"componentUpdated",t,e)});if(!o)for(n in s)c[n]||Xn(s[n],"unbind",e,e,a)}(e,t)}var Wn=Object.create(null);function Gn(e,t){var n,r,i=Object.create(null);if(!e)return i;for(n=0;n<e.length;n++)(r=e[n]).modifiers||(r.modifiers=Wn),i[Zn(r)]=r,r.def=je(t.$options,"directives",r.name);return i}function Zn(e){return e.rawName||e.name+"."+Object.keys(e.modifiers||{}).join(".")}function Xn(e,t,n,r,i){var o=e.def&&e.def[t];if(o)try{o(n.elm,e,n,r,i)}catch(r){De(r,n.context,"directive "+e.name+" "+t+" hook")}}var Yn=[Hn,Jn];function Qn(e,r){var i=r.componentOptions;if(!(n(i)&&!1===i.Ctor.options.inheritAttrs||t(e.data.attrs)&&t(r.data.attrs))){var o,a,s=r.elm,c=e.data.attrs||{},u=r.data.attrs||{};for(o in n(u.__ob__)&&(u=r.data.attrs=k({},u)),u)a=u[o],c[o]!==a&&er(s,o,a);for(o in(K||q)&&u.value!==c.value&&er(s,"value",u.value),c)t(u[o])&&(xn(o)?s.removeAttributeNS(Cn,kn(o)):$n(o)||s.removeAttribute(o))}}function er(e,t,n){e.tagName.indexOf("-")>-1?tr(e,t,n):wn(t)?An(n)?e.removeAttribute(t):(n="allowfullscreen"===t&&"EMBED"===e.tagName?"true":t,e.setAttribute(t,n)):$n(t)?e.setAttribute(t,An(n)||"false"===n?"false":"true"):xn(t)?An(n)?e.removeAttributeNS(Cn,kn(t)):e.setAttributeNS(Cn,t,n):tr(e,t,n)}function tr(e,t,n){if(An(n))e.removeAttribute(t);else{if(K&&!J&&("TEXTAREA"===e.tagName||"INPUT"===e.tagName)&&"placeholder"===t&&!e.__ieph){var r=function(t){t.stopImmediatePropagation(),e.removeEventListener("input",r)};e.addEventListener("input",r),e.__ieph=!0}e.setAttribute(t,n)}}var nr={create:Qn,update:Qn};function rr(e,r){var i=r.elm,o=r.data,a=e.data;if(!(t(o.staticClass)&&t(o.class)&&(t(a)||t(a.staticClass)&&t(a.class)))){var s=On(r),c=i._transitionClasses;n(c)&&(s=Tn(s,Nn(c))),s!==i._prevClass&&(i.setAttribute("class",s),i._prevClass=s)}}var ir,or,ar,sr,cr,ur,lr={create:rr,update:rr},fr=/[\w).+\-_$\]]/;function pr(e){var t,n,r,i,o,a=!1,s=!1,c=!1,u=!1,l=0,f=0,p=0,d=0;for(r=0;r<e.length;r++)if(n=t,t=e.charCodeAt(r),a)39===t&&92!==n&&(a=!1);else if(s)34===t&&92!==n&&(s=!1);else if(c)96===t&&92!==n&&(c=!1);else if(u)47===t&&92!==n&&(u=!1);else if(124!==t||124===e.charCodeAt(r+1)||124===e.charCodeAt(r-1)||l||f||p){switch(t){case 34:s=!0;break;case 39:a=!0;break;case 96:c=!0;break;case 40:p++;break;case 41:p--;break;case 91:f++;break;case 93:f--;break;case 123:l++;break;case 125:l--}if(47===t){for(var v=r-1,h=void 0;v>=0&&" "===(h=e.charAt(v));v--);h&&fr.test(h)||(u=!0)}}else void 0===i?(d=r+1,i=e.slice(0,r).trim()):m();function m(){(o||(o=[])).push(e.slice(d,r).trim()),d=r+1}if(void 0===i?i=e.slice(0,r).trim():0!==d&&m(),o)for(r=0;r<o.length;r++)i=dr(i,o[r]);return i}function dr(e,t){var n=t.indexOf("(");if(n<0)return'_f("'+t+'")('+e+")";var r=t.slice(0,n),i=t.slice(n+1);return'_f("'+r+'")('+e+(")"!==i?","+i:i)}function vr(e){console.error("[Vue compiler]: "+e)}function hr(e,t){return e?e.map(function(e){return e[t]}).filter(function(e){return e}):[]}function mr(e,t,n){(e.props||(e.props=[])).push({name:t,value:n}),e.plain=!1}function yr(e,t,n){(e.attrs||(e.attrs=[])).push({name:t,value:n}),e.plain=!1}function gr(e,t,n){e.attrsMap[t]=n,e.attrsList.push({name:t,value:n})}function _r(e,t,n,r,i,o){(e.directives||(e.directives=[])).push({name:t,rawName:n,value:r,arg:i,modifiers:o}),e.plain=!1}function br(t,n,r,i,o,a){var s;i=i||e,"click"===n&&(i.right?(n="contextmenu",delete i.right):i.middle&&(n="mouseup")),i.capture&&(delete i.capture,n="!"+n),i.once&&(delete i.once,n="~"+n),i.passive&&(delete i.passive,n="&"+n),i.native?(delete i.native,s=t.nativeEvents||(t.nativeEvents={})):s=t.events||(t.events={});var c={value:r.trim()};i!==e&&(c.modifiers=i);var u=s[n];Array.isArray(u)?o?u.unshift(c):u.push(c):s[n]=u?o?[c,u]:[u,c]:c,t.plain=!1}function $r(e,t,n){var r=wr(e,":"+t)||wr(e,"v-bind:"+t);if(null!=r)return pr(r);if(!1!==n){var i=wr(e,t);if(null!=i)return JSON.stringify(i)}}function wr(e,t,n){var r;if(null!=(r=e.attrsMap[t]))for(var i=e.attrsList,o=0,a=i.length;o<a;o++)if(i[o].name===t){i.splice(o,1);break}return n&&delete e.attrsMap[t],r}function Cr(e,t,n){var r=n||{},i=r.number,o="$$v";r.trim&&(o="(typeof $$v === 'string'? $$v.trim(): $$v)"),i&&(o="_n("+o+")");var a=xr(t,o);e.model={value:"("+t+")",expression:JSON.stringify(t),callback:"function ($$v) {"+a+"}"}}function xr(e,t){var n=function(e){if(e=e.trim(),ir=e.length,e.indexOf("[")<0||e.lastIndexOf("]")<ir-1)return(sr=e.lastIndexOf("."))>-1?{exp:e.slice(0,sr),key:'"'+e.slice(sr+1)+'"'}:{exp:e,key:null};or=e,sr=cr=ur=0;for(;!Ar();)Or(ar=kr())?Tr(ar):91===ar&&Sr(ar);return{exp:e.slice(0,cr),key:e.slice(cr+1,ur)}}(e);return null===n.key?e+"="+t:"$set("+n.exp+", "+n.key+", "+t+")"}function kr(){return or.charCodeAt(++sr)}function Ar(){return sr>=ir}function Or(e){return 34===e||39===e}function Sr(e){var t=1;for(cr=sr;!Ar();)if(Or(e=kr()))Tr(e);else if(91===e&&t++,93===e&&t--,0===t){ur=sr;break}}function Tr(e){for(var t=e;!Ar()&&(e=kr())!==t;);}var Nr,jr="__r",Er="__c";function Ir(e,t,n){var r=Nr;return function i(){null!==t.apply(null,arguments)&&Mr(e,i,n,r)}}function Lr(e,t,n,r){var i;t=(i=t)._withTask||(i._withTask=function(){ze=!0;try{return i.apply(null,arguments)}finally{ze=!1}}),Nr.addEventListener(e,t,Z?{capture:n,passive:r}:n)}function Mr(e,t,n,r){(r||Nr).removeEventListener(e,t._withTask||t,n)}function Dr(e,r){if(!t(e.data.on)||!t(r.data.on)){var i=r.data.on||{},o=e.data.on||{};Nr=r.elm,function(e){if(n(e[jr])){var t=K?"change":"input";e[t]=[].concat(e[jr],e[t]||[]),delete e[jr]}n(e[Er])&&(e.change=[].concat(e[Er],e.change||[]),delete e[Er])}(i),et(i,o,Lr,Mr,Ir,r.context),Nr=void 0}}var Pr={create:Dr,update:Dr};function Fr(e,r){if(!t(e.data.domProps)||!t(r.data.domProps)){var i,o,a=r.elm,s=e.data.domProps||{},c=r.data.domProps||{};for(i in n(c.__ob__)&&(c=r.data.domProps=k({},c)),s)t(c[i])&&(a[i]="");for(i in c){if(o=c[i],"textContent"===i||"innerHTML"===i){if(r.children&&(r.children.length=0),o===s[i])continue;1===a.childNodes.length&&a.removeChild(a.childNodes[0])}if("value"===i){a._value=o;var u=t(o)?"":String(o);Rr(a,u)&&(a.value=u)}else a[i]=o}}}function Rr(e,t){return!e.composing&&("OPTION"===e.tagName||function(e,t){var n=!0;try{n=document.activeElement!==e}catch(e){}return n&&e.value!==t}(e,t)||function(e,t){var r=e.value,i=e._vModifiers;if(n(i)){if(i.lazy)return!1;if(i.number)return l(r)!==l(t);if(i.trim)return r.trim()!==t.trim()}return r!==t}(e,t))}var Hr={create:Fr,update:Fr},Br=y(function(e){var t={},n=/:(.+)/;return e.split(/;(?![^(]*\))/g).forEach(function(e){if(e){var r=e.split(n);r.length>1&&(t[r[0].trim()]=r[1].trim())}}),t});function Ur(e){var t=Vr(e.style);return e.staticStyle?k(e.staticStyle,t):t}function Vr(e){return Array.isArray(e)?A(e):"string"==typeof e?Br(e):e}var zr,Kr=/^--/,Jr=/\s*!important$/,qr=function(e,t,n){if(Kr.test(t))e.style.setProperty(t,n);else if(Jr.test(n))e.style.setProperty(t,n.replace(Jr,""),"important");else{var r=Gr(t);if(Array.isArray(n))for(var i=0,o=n.length;i<o;i++)e.style[r]=n[i];else e.style[r]=n}},Wr=["Webkit","Moz","ms"],Gr=y(function(e){if(zr=zr||document.createElement("div").style,"filter"!==(e=_(e))&&e in zr)return e;for(var t=e.charAt(0).toUpperCase()+e.slice(1),n=0;n<Wr.length;n++){var r=Wr[n]+t;if(r in zr)return r}});function Zr(e,r){var i=r.data,o=e.data;if(!(t(i.staticStyle)&&t(i.style)&&t(o.staticStyle)&&t(o.style))){var a,s,c=r.elm,u=o.staticStyle,l=o.normalizedStyle||o.style||{},f=u||l,p=Vr(r.data.style)||{};r.data.normalizedStyle=n(p.__ob__)?k({},p):p;var d=function(e,t){var n,r={};if(t)for(var i=e;i.componentInstance;)(i=i.componentInstance._vnode)&&i.data&&(n=Ur(i.data))&&k(r,n);(n=Ur(e.data))&&k(r,n);for(var o=e;o=o.parent;)o.data&&(n=Ur(o.data))&&k(r,n);return r}(r,!0);for(s in f)t(d[s])&&qr(c,s,"");for(s in d)(a=d[s])!==f[s]&&qr(c,s,null==a?"":a)}}var Xr={create:Zr,update:Zr},Yr=/\s+/;function Qr(e,t){if(t&&(t=t.trim()))if(e.classList)t.indexOf(" ")>-1?t.split(Yr).forEach(function(t){return e.classList.add(t)}):e.classList.add(t);else{var n=" "+(e.getAttribute("class")||"")+" ";n.indexOf(" "+t+" ")<0&&e.setAttribute("class",(n+t).trim())}}function ei(e,t){if(t&&(t=t.trim()))if(e.classList)t.indexOf(" ")>-1?t.split(Yr).forEach(function(t){return e.classList.remove(t)}):e.classList.remove(t),e.classList.length||e.removeAttribute("class");else{for(var n=" "+(e.getAttribute("class")||"")+" ",r=" "+t+" ";n.indexOf(r)>=0;)n=n.replace(r," ");(n=n.trim())?e.setAttribute("class",n):e.removeAttribute("class")}}function ti(e){if(e){if("object"==typeof e){var t={};return!1!==e.css&&k(t,ni(e.name||"v")),k(t,e),t}return"string"==typeof e?ni(e):void 0}}var ni=y(function(e){return{enterClass:e+"-enter",enterToClass:e+"-enter-to",enterActiveClass:e+"-enter-active",leaveClass:e+"-leave",leaveToClass:e+"-leave-to",leaveActiveClass:e+"-leave-active"}}),ri=B&&!J,ii="transition",oi="animation",ai="transition",si="transitionend",ci="animation",ui="animationend";ri&&(void 0===window.ontransitionend&&void 0!==window.onwebkittransitionend&&(ai="WebkitTransition",si="webkitTransitionEnd"),void 0===window.onanimationend&&void 0!==window.onwebkitanimationend&&(ci="WebkitAnimation",ui="webkitAnimationEnd"));var li=B?window.requestAnimationFrame?window.requestAnimationFrame.bind(window):setTimeout:function(e){return e()};function fi(e){li(function(){li(e)})}function pi(e,t){var n=e._transitionClasses||(e._transitionClasses=[]);n.indexOf(t)<0&&(n.push(t),Qr(e,t))}function di(e,t){e._transitionClasses&&v(e._transitionClasses,t),ei(e,t)}function vi(e,t,n){var r=mi(e,t),i=r.type,o=r.timeout,a=r.propCount;if(!i)return n();var s=i===ii?si:ui,c=0,u=function(){e.removeEventListener(s,l),n()},l=function(t){t.target===e&&++c>=a&&u()};setTimeout(function(){c<a&&u()},o+1),e.addEventListener(s,l)}var hi=/\b(transform|all)(,|$)/;function mi(e,t){var n,r=window.getComputedStyle(e),i=(r[ai+"Delay"]||"").split(", "),o=(r[ai+"Duration"]||"").split(", "),a=yi(i,o),s=(r[ci+"Delay"]||"").split(", "),c=(r[ci+"Duration"]||"").split(", "),u=yi(s,c),l=0,f=0;return t===ii?a>0&&(n=ii,l=a,f=o.length):t===oi?u>0&&(n=oi,l=u,f=c.length):f=(n=(l=Math.max(a,u))>0?a>u?ii:oi:null)?n===ii?o.length:c.length:0,{type:n,timeout:l,propCount:f,hasTransform:n===ii&&hi.test(r[ai+"Property"])}}function yi(e,t){for(;e.length<t.length;)e=e.concat(e);return Math.max.apply(null,t.map(function(t,n){return gi(t)+gi(e[n])}))}function gi(e){return 1e3*Number(e.slice(0,-1).replace(",","."))}function _i(e,r){var i=e.elm;n(i._leaveCb)&&(i._leaveCb.cancelled=!0,i._leaveCb());var a=ti(e.data.transition);if(!t(a)&&!n(i._enterCb)&&1===i.nodeType){for(var s=a.css,c=a.type,u=a.enterClass,f=a.enterToClass,p=a.enterActiveClass,d=a.appearClass,v=a.appearToClass,h=a.appearActiveClass,m=a.beforeEnter,y=a.enter,g=a.afterEnter,_=a.enterCancelled,b=a.beforeAppear,$=a.appear,w=a.afterAppear,C=a.appearCancelled,x=a.duration,k=ht,A=ht.$vnode;A&&A.parent;)k=(A=A.parent).context;var O=!k._isMounted||!e.isRootInsert;if(!O||$||""===$){var S=O&&d?d:u,T=O&&h?h:p,N=O&&v?v:f,j=O&&b||m,I=O&&"function"==typeof $?$:y,L=O&&w||g,M=O&&C||_,D=l(o(x)?x.enter:x),P=!1!==s&&!J,F=wi(I),R=i._enterCb=E(function(){P&&(di(i,N),di(i,T)),R.cancelled?(P&&di(i,S),M&&M(i)):L&&L(i),i._enterCb=null});e.data.show||tt(e,"insert",function(){var t=i.parentNode,n=t&&t._pending&&t._pending[e.key];n&&n.tag===e.tag&&n.elm._leaveCb&&n.elm._leaveCb(),I&&I(i,R)}),j&&j(i),P&&(pi(i,S),pi(i,T),fi(function(){di(i,S),R.cancelled||(pi(i,N),F||($i(D)?setTimeout(R,D):vi(i,c,R)))})),e.data.show&&(r&&r(),I&&I(i,R)),P||F||R()}}}function bi(e,r){var i=e.elm;n(i._enterCb)&&(i._enterCb.cancelled=!0,i._enterCb());var a=ti(e.data.transition);if(t(a)||1!==i.nodeType)return r();if(!n(i._leaveCb)){var s=a.css,c=a.type,u=a.leaveClass,f=a.leaveToClass,p=a.leaveActiveClass,d=a.beforeLeave,v=a.leave,h=a.afterLeave,m=a.leaveCancelled,y=a.delayLeave,g=a.duration,_=!1!==s&&!J,b=wi(v),$=l(o(g)?g.leave:g),w=i._leaveCb=E(function(){i.parentNode&&i.parentNode._pending&&(i.parentNode._pending[e.key]=null),_&&(di(i,f),di(i,p)),w.cancelled?(_&&di(i,u),m&&m(i)):(r(),h&&h(i)),i._leaveCb=null});y?y(C):C()}function C(){w.cancelled||(!e.data.show&&i.parentNode&&((i.parentNode._pending||(i.parentNode._pending={}))[e.key]=e),d&&d(i),_&&(pi(i,u),pi(i,p),fi(function(){di(i,u),w.cancelled||(pi(i,f),b||($i($)?setTimeout(w,$):vi(i,c,w)))})),v&&v(i,w),_||b||w())}}function $i(e){return"number"==typeof e&&!isNaN(e)}function wi(e){if(t(e))return!1;var r=e.fns;return n(r)?wi(Array.isArray(r)?r[0]:r):(e._length||e.length)>1}function Ci(e,t){!0!==t.data.show&&_i(t)}var xi=function(e){var o,a,s={},c=e.modules,u=e.nodeOps;for(o=0;o<Vn.length;++o)for(s[Vn[o]]=[],a=0;a<c.length;++a)n(c[a][Vn[o]])&&s[Vn[o]].push(c[a][Vn[o]]);function l(e){var t=u.parentNode(e);n(t)&&u.removeChild(t,e)}function p(e,t,i,o,a,c,l){if(n(e.elm)&&n(c)&&(e=c[l]=de(e)),e.isRootInsert=!a,!function(e,t,i,o){var a=e.data;if(n(a)){var c=n(e.componentInstance)&&a.keepAlive;if(n(a=a.hook)&&n(a=a.init)&&a(e,!1),n(e.componentInstance))return d(e,t),v(i,e.elm,o),r(c)&&function(e,t,r,i){for(var o,a=e;a.componentInstance;)if(a=a.componentInstance._vnode,n(o=a.data)&&n(o=o.transition)){for(o=0;o<s.activate.length;++o)s.activate[o](Un,a);t.push(a);break}v(r,e.elm,i)}(e,t,i,o),!0}}(e,t,i,o)){var f=e.data,p=e.children,m=e.tag;n(m)?(e.elm=e.ns?u.createElementNS(e.ns,m):u.createElement(m,e),g(e),h(e,p,t),n(f)&&y(e,t),v(i,e.elm,o)):r(e.isComment)?(e.elm=u.createComment(e.text),v(i,e.elm,o)):(e.elm=u.createTextNode(e.text),v(i,e.elm,o))}}function d(e,t){n(e.data.pendingInsert)&&(t.push.apply(t,e.data.pendingInsert),e.data.pendingInsert=null),e.elm=e.componentInstance.$el,m(e)?(y(e,t),g(e)):(Bn(e),t.push(e))}function v(e,t,r){n(e)&&(n(r)?u.parentNode(r)===e&&u.insertBefore(e,t,r):u.appendChild(e,t))}function h(e,t,n){if(Array.isArray(t))for(var r=0;r<t.length;++r)p(t[r],n,e.elm,null,!0,t,r);else i(e.text)&&u.appendChild(e.elm,u.createTextNode(String(e.text)))}function m(e){for(;e.componentInstance;)e=e.componentInstance._vnode;return n(e.tag)}function y(e,t){for(var r=0;r<s.create.length;++r)s.create[r](Un,e);n(o=e.data.hook)&&(n(o.create)&&o.create(Un,e),n(o.insert)&&t.push(e))}function g(e){var t;if(n(t=e.fnScopeId))u.setStyleScope(e.elm,t);else for(var r=e;r;)n(t=r.context)&&n(t=t.$options._scopeId)&&u.setStyleScope(e.elm,t),r=r.parent;n(t=ht)&&t!==e.context&&t!==e.fnContext&&n(t=t.$options._scopeId)&&u.setStyleScope(e.elm,t)}function _(e,t,n,r,i,o){for(;r<=i;++r)p(n[r],o,e,t,!1,n,r)}function b(e){var t,r,i=e.data;if(n(i))for(n(t=i.hook)&&n(t=t.destroy)&&t(e),t=0;t<s.destroy.length;++t)s.destroy[t](e);if(n(t=e.children))for(r=0;r<e.children.length;++r)b(e.children[r])}function $(e,t,r,i){for(;r<=i;++r){var o=t[r];n(o)&&(n(o.tag)?(w(o),b(o)):l(o.elm))}}function w(e,t){if(n(t)||n(e.data)){var r,i=s.remove.length+1;for(n(t)?t.listeners+=i:t=function(e,t){function n(){0==--n.listeners&&l(e)}return n.listeners=t,n}(e.elm,i),n(r=e.componentInstance)&&n(r=r._vnode)&&n(r.data)&&w(r,t),r=0;r<s.remove.length;++r)s.remove[r](e,t);n(r=e.data.hook)&&n(r=r.remove)?r(e,t):t()}else l(e.elm)}function C(e,t,r,i){for(var o=r;o<i;o++){var a=t[o];if(n(a)&&zn(e,a))return o}}function x(e,i,o,a,c,l){if(e!==i){n(i.elm)&&n(a)&&(i=a[c]=de(i));var f=i.elm=e.elm;if(r(e.isAsyncPlaceholder))n(i.asyncFactory.resolved)?O(e.elm,i,o):i.isAsyncPlaceholder=!0;else if(r(i.isStatic)&&r(e.isStatic)&&i.key===e.key&&(r(i.isCloned)||r(i.isOnce)))i.componentInstance=e.componentInstance;else{var d,v=i.data;n(v)&&n(d=v.hook)&&n(d=d.prepatch)&&d(e,i);var h=e.children,y=i.children;if(n(v)&&m(i)){for(d=0;d<s.update.length;++d)s.update[d](e,i);n(d=v.hook)&&n(d=d.update)&&d(e,i)}t(i.text)?n(h)&&n(y)?h!==y&&function(e,r,i,o,a){for(var s,c,l,f=0,d=0,v=r.length-1,h=r[0],m=r[v],y=i.length-1,g=i[0],b=i[y],w=!a;f<=v&&d<=y;)t(h)?h=r[++f]:t(m)?m=r[--v]:zn(h,g)?(x(h,g,o,i,d),h=r[++f],g=i[++d]):zn(m,b)?(x(m,b,o,i,y),m=r[--v],b=i[--y]):zn(h,b)?(x(h,b,o,i,y),w&&u.insertBefore(e,h.elm,u.nextSibling(m.elm)),h=r[++f],b=i[--y]):zn(m,g)?(x(m,g,o,i,d),w&&u.insertBefore(e,m.elm,h.elm),m=r[--v],g=i[++d]):(t(s)&&(s=Kn(r,f,v)),t(c=n(g.key)?s[g.key]:C(g,r,f,v))?p(g,o,e,h.elm,!1,i,d):zn(l=r[c],g)?(x(l,g,o,i,d),r[c]=void 0,w&&u.insertBefore(e,l.elm,h.elm)):p(g,o,e,h.elm,!1,i,d),g=i[++d]);f>v?_(e,t(i[y+1])?null:i[y+1].elm,i,d,y,o):d>y&&$(0,r,f,v)}(f,h,y,o,l):n(y)?(n(e.text)&&u.setTextContent(f,""),_(f,null,y,0,y.length-1,o)):n(h)?$(0,h,0,h.length-1):n(e.text)&&u.setTextContent(f,""):e.text!==i.text&&u.setTextContent(f,i.text),n(v)&&n(d=v.hook)&&n(d=d.postpatch)&&d(e,i)}}}function k(e,t,i){if(r(i)&&n(e.parent))e.parent.data.pendingInsert=t;else for(var o=0;o<t.length;++o)t[o].data.hook.insert(t[o])}var A=f("attrs,class,staticClass,staticStyle,key");function O(e,t,i,o){var a,s=t.tag,c=t.data,u=t.children;if(o=o||c&&c.pre,t.elm=e,r(t.isComment)&&n(t.asyncFactory))return t.isAsyncPlaceholder=!0,!0;if(n(c)&&(n(a=c.hook)&&n(a=a.init)&&a(t,!0),n(a=t.componentInstance)))return d(t,i),!0;if(n(s)){if(n(u))if(e.hasChildNodes())if(n(a=c)&&n(a=a.domProps)&&n(a=a.innerHTML)){if(a!==e.innerHTML)return!1}else{for(var l=!0,f=e.firstChild,p=0;p<u.length;p++){if(!f||!O(f,u[p],i,o)){l=!1;break}f=f.nextSibling}if(!l||f)return!1}else h(t,u,i);if(n(c)){var v=!1;for(var m in c)if(!A(m)){v=!0,y(t,i);break}!v&&c.class&&Ze(c.class)}}else e.data!==t.text&&(e.data=t.text);return!0}return function(e,i,o,a){if(!t(i)){var c,l=!1,f=[];if(t(e))l=!0,p(i,f);else{var d=n(e.nodeType);if(!d&&zn(e,i))x(e,i,f,null,null,a);else{if(d){if(1===e.nodeType&&e.hasAttribute(I)&&(e.removeAttribute(I),o=!0),r(o)&&O(e,i,f))return k(i,f,!0),e;c=e,e=new ue(u.tagName(c).toLowerCase(),{},[],void 0,c)}var v=e.elm,h=u.parentNode(v);if(p(i,f,v._leaveCb?null:h,u.nextSibling(v)),n(i.parent))for(var y=i.parent,g=m(i);y;){for(var _=0;_<s.destroy.length;++_)s.destroy[_](y);if(y.elm=i.elm,g){for(var w=0;w<s.create.length;++w)s.create[w](Un,y);var C=y.data.hook.insert;if(C.merged)for(var A=1;A<C.fns.length;A++)C.fns[A]()}else Bn(y);y=y.parent}n(h)?$(0,[e],0,0):n(e.tag)&&b(e)}}return k(i,f,l),i.elm}n(e)&&b(e)}}({nodeOps:Rn,modules:[nr,lr,Pr,Hr,Xr,B?{create:Ci,activate:Ci,remove:function(e,t){!0!==e.data.show?bi(e,t):t()}}:{}].concat(Yn)});J&&document.addEventListener("selectionchange",function(){var e=document.activeElement;e&&e.vmodel&&Ei(e,"input")});var ki={inserted:function(e,t,n,r){"select"===n.tag?(r.elm&&!r.elm._vOptions?tt(n,"postpatch",function(){ki.componentUpdated(e,t,n)}):Ai(e,t,n.context),e._vOptions=[].map.call(e.options,Ti)):("textarea"===n.tag||Pn(e.type))&&(e._vModifiers=t.modifiers,t.modifiers.lazy||(e.addEventListener("compositionstart",Ni),e.addEventListener("compositionend",ji),e.addEventListener("change",ji),J&&(e.vmodel=!0)))},componentUpdated:function(e,t,n){if("select"===n.tag){Ai(e,t,n.context);var r=e._vOptions,i=e._vOptions=[].map.call(e.options,Ti);if(i.some(function(e,t){return!N(e,r[t])}))(e.multiple?t.value.some(function(e){return Si(e,i)}):t.value!==t.oldValue&&Si(t.value,i))&&Ei(e,"change")}}};function Ai(e,t,n){Oi(e,t,n),(K||q)&&setTimeout(function(){Oi(e,t,n)},0)}function Oi(e,t,n){var r=t.value,i=e.multiple;if(!i||Array.isArray(r)){for(var o,a,s=0,c=e.options.length;s<c;s++)if(a=e.options[s],i)o=j(r,Ti(a))>-1,a.selected!==o&&(a.selected=o);else if(N(Ti(a),r))return void(e.selectedIndex!==s&&(e.selectedIndex=s));i||(e.selectedIndex=-1)}}function Si(e,t){return t.every(function(t){return!N(t,e)})}function Ti(e){return"_value"in e?e._value:e.value}function Ni(e){e.target.composing=!0}function ji(e){e.target.composing&&(e.target.composing=!1,Ei(e.target,"input"))}function Ei(e,t){var n=document.createEvent("HTMLEvents");n.initEvent(t,!0,!0),e.dispatchEvent(n)}function Ii(e){return!e.componentInstance||e.data&&e.data.transition?e:Ii(e.componentInstance._vnode)}var Li={model:ki,show:{bind:function(e,t,n){var r=t.value,i=(n=Ii(n)).data&&n.data.transition,o=e.__vOriginalDisplay="none"===e.style.display?"":e.style.display;r&&i?(n.data.show=!0,_i(n,function(){e.style.display=o})):e.style.display=r?o:"none"},update:function(e,t,n){var r=t.value;!r!=!t.oldValue&&((n=Ii(n)).data&&n.data.transition?(n.data.show=!0,r?_i(n,function(){e.style.display=e.__vOriginalDisplay}):bi(n,function(){e.style.display="none"})):e.style.display=r?e.__vOriginalDisplay:"none")},unbind:function(e,t,n,r,i){i||(e.style.display=e.__vOriginalDisplay)}}},Mi={name:String,appear:Boolean,css:Boolean,mode:String,type:String,enterClass:String,leaveClass:String,enterToClass:String,leaveToClass:String,enterActiveClass:String,leaveActiveClass:String,appearClass:String,appearActiveClass:String,appearToClass:String,duration:[Number,String,Object]};function Di(e){var t=e&&e.componentOptions;return t&&t.Ctor.options.abstract?Di(st(t.children)):e}function Pi(e){var t={},n=e.$options;for(var r in n.propsData)t[r]=e[r];var i=n._parentListeners;for(var o in i)t[_(o)]=i[o];return t}function Fi(e,t){if(/\d-keep-alive$/.test(t.tag))return e("keep-alive",{props:t.componentOptions.propsData})}var Ri=function(e){return e.tag||at(e)},Hi=function(e){return"show"===e.name},Bi={name:"transition",props:Mi,abstract:!0,render:function(e){var t=this,n=this.$slots.default;if(n&&(n=n.filter(Ri)).length){var r=this.mode,o=n[0];if(function(e){for(;e=e.parent;)if(e.data.transition)return!0}(this.$vnode))return o;var a=Di(o);if(!a)return o;if(this._leaving)return Fi(e,o);var s="__transition-"+this._uid+"-";a.key=null==a.key?a.isComment?s+"comment":s+a.tag:i(a.key)?0===String(a.key).indexOf(s)?a.key:s+a.key:a.key;var c=(a.data||(a.data={})).transition=Pi(this),u=this._vnode,l=Di(u);if(a.data.directives&&a.data.directives.some(Hi)&&(a.data.show=!0),l&&l.data&&!function(e,t){return t.key===e.key&&t.tag===e.tag}(a,l)&&!at(l)&&(!l.componentInstance||!l.componentInstance._vnode.isComment)){var f=l.data.transition=k({},c);if("out-in"===r)return this._leaving=!0,tt(f,"afterLeave",function(){t._leaving=!1,t.$forceUpdate()}),Fi(e,o);if("in-out"===r){if(at(a))return u;var p,d=function(){p()};tt(c,"afterEnter",d),tt(c,"enterCancelled",d),tt(f,"delayLeave",function(e){p=e})}}return o}}},Ui=k({tag:String,moveClass:String},Mi);function Vi(e){e.elm._moveCb&&e.elm._moveCb(),e.elm._enterCb&&e.elm._enterCb()}function zi(e){e.data.newPos=e.elm.getBoundingClientRect()}function Ki(e){var t=e.data.pos,n=e.data.newPos,r=t.left-n.left,i=t.top-n.top;if(r||i){e.data.moved=!0;var o=e.elm.style;o.transform=o.WebkitTransform="translate("+r+"px,"+i+"px)",o.transitionDuration="0s"}}delete Ui.mode;var Ji={Transition:Bi,TransitionGroup:{props:Ui,beforeMount:function(){var e=this,t=this._update;this._update=function(n,r){var i=mt(e);e.__patch__(e._vnode,e.kept,!1,!0),e._vnode=e.kept,i(),t.call(e,n,r)}},render:function(e){for(var t=this.tag||this.$vnode.data.tag||"span",n=Object.create(null),r=this.prevChildren=this.children,i=this.$slots.default||[],o=this.children=[],a=Pi(this),s=0;s<i.length;s++){var c=i[s];c.tag&&null!=c.key&&0!==String(c.key).indexOf("__vlist")&&(o.push(c),n[c.key]=c,(c.data||(c.data={})).transition=a)}if(r){for(var u=[],l=[],f=0;f<r.length;f++){var p=r[f];p.data.transition=a,p.data.pos=p.elm.getBoundingClientRect(),n[p.key]?u.push(p):l.push(p)}this.kept=e(t,null,u),this.removed=l}return e(t,null,o)},updated:function(){var e=this.prevChildren,t=this.moveClass||(this.name||"v")+"-move";e.length&&this.hasMove(e[0].elm,t)&&(e.forEach(Vi),e.forEach(zi),e.forEach(Ki),this._reflow=document.body.offsetHeight,e.forEach(function(e){if(e.data.moved){var n=e.elm,r=n.style;pi(n,t),r.transform=r.WebkitTransform=r.transitionDuration="",n.addEventListener(si,n._moveCb=function e(r){r&&r.target!==n||r&&!/transform$/.test(r.propertyName)||(n.removeEventListener(si,e),n._moveCb=null,di(n,t))})}}))},methods:{hasMove:function(e,t){if(!ri)return!1;if(this._hasMove)return this._hasMove;var n=e.cloneNode();e._transitionClasses&&e._transitionClasses.forEach(function(e){ei(n,e)}),Qr(n,t),n.style.display="none",this.$el.appendChild(n);var r=mi(n);return this.$el.removeChild(n),this._hasMove=r.hasTransform}}}};ln.config.mustUseProp=bn,ln.config.isReservedTag=Ln,ln.config.isReservedAttr=gn,ln.config.getTagNamespace=Mn,ln.config.isUnknownElement=function(e){if(!B)return!0;if(Ln(e))return!1;if(e=e.toLowerCase(),null!=Dn[e])return Dn[e];var t=document.createElement(e);return e.indexOf("-")>-1?Dn[e]=t.constructor===window.HTMLUnknownElement||t.constructor===window.HTMLElement:Dn[e]=/HTMLUnknownElement/.test(t.toString())},k(ln.options.directives,Li),k(ln.options.components,Ji),ln.prototype.__patch__=B?xi:O,ln.prototype.$mount=function(e,t){return function(e,t,n){var r;return e.$el=t,e.$options.render||(e.$options.render=fe),_t(e,"beforeMount"),r=function(){e._update(e._render(),n)},new St(e,r,O,{before:function(){e._isMounted&&!e._isDestroyed&&_t(e,"beforeUpdate")}},!0),n=!1,null==e.$vnode&&(e._isMounted=!0,_t(e,"mounted")),e}(this,e=e&&B?Fn(e):void 0,t)},B&&setTimeout(function(){D.devtools&&Q&&Q.emit("init",ln)},0);var qi=/\{\{((?:.|\r?\n)+?)\}\}/g,Wi=/[-.*+?^${}()|[\]\/\\]/g,Gi=y(function(e){var t=e[0].replace(Wi,"\\$&"),n=e[1].replace(Wi,"\\$&");return new RegExp(t+"((?:.|\\n)+?)"+n,"g")});var Zi={staticKeys:["staticClass"],transformNode:function(e,t){t.warn;var n=wr(e,"class");n&&(e.staticClass=JSON.stringify(n));var r=$r(e,"class",!1);r&&(e.classBinding=r)},genData:function(e){var t="";return e.staticClass&&(t+="staticClass:"+e.staticClass+","),e.classBinding&&(t+="class:"+e.classBinding+","),t}};var Xi,Yi={staticKeys:["staticStyle"],transformNode:function(e,t){t.warn;var n=wr(e,"style");n&&(e.staticStyle=JSON.stringify(Br(n)));var r=$r(e,"style",!1);r&&(e.styleBinding=r)},genData:function(e){var t="";return e.staticStyle&&(t+="staticStyle:"+e.staticStyle+","),e.styleBinding&&(t+="style:("+e.styleBinding+"),"),t}},Qi=function(e){return(Xi=Xi||document.createElement("div")).innerHTML=e,Xi.textContent},eo=f("area,base,br,col,embed,frame,hr,img,input,isindex,keygen,link,meta,param,source,track,wbr"),to=f("colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source"),no=f("address,article,aside,base,blockquote,body,caption,col,colgroup,dd,details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,title,tr,track"),ro=/^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/,io="[a-zA-Z_][\\w\\-\\.]*",oo="((?:"+io+"\\:)?"+io+")",ao=new RegExp("^<"+oo),so=/^\s*(\/?)>/,co=new RegExp("^<\\/"+oo+"[^>]*>"),uo=/^<!DOCTYPE [^>]+>/i,lo=/^<!\--/,fo=/^<!\[/,po=f("script,style,textarea",!0),vo={},ho={"&lt;":"<","&gt;":">","&quot;":'"',"&amp;":"&","&#10;":"\n","&#9;":"\t"},mo=/&(?:lt|gt|quot|amp);/g,yo=/&(?:lt|gt|quot|amp|#10|#9);/g,go=f("pre,textarea",!0),_o=function(e,t){return e&&go(e)&&"\n"===t[0]};function bo(e,t){var n=t?yo:mo;return e.replace(n,function(e){return ho[e]})}var $o,wo,Co,xo,ko,Ao,Oo,So,To=/^@|^v-on:/,No=/^v-|^@|^:/,jo=/([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/,Eo=/,([^,\}\]]*)(?:,([^,\}\]]*))?$/,Io=/^\(|\)$/g,Lo=/:(.*)$/,Mo=/^:|^v-bind:/,Do=/\.[^.]+/g,Po=y(Qi);function Fo(e,t,n){return{type:1,tag:e,attrsList:t,attrsMap:function(e){for(var t={},n=0,r=e.length;n<r;n++)t[e[n].name]=e[n].value;return t}(t),parent:n,children:[]}}function Ro(e,t){$o=t.warn||vr,Ao=t.isPreTag||S,Oo=t.mustUseProp||S,So=t.getTagNamespace||S,Co=hr(t.modules,"transformNode"),xo=hr(t.modules,"preTransformNode"),ko=hr(t.modules,"postTransformNode"),wo=t.delimiters;var n,r,i=[],o=!1!==t.preserveWhitespace,a=!1,s=!1;function c(e){e.pre&&(a=!1),Ao(e.tag)&&(s=!1);for(var n=0;n<ko.length;n++)ko[n](e,t)}return function(e,t){for(var n,r,i=[],o=t.expectHTML,a=t.isUnaryTag||S,s=t.canBeLeftOpenTag||S,c=0;e;){if(n=e,r&&po(r)){var u=0,l=r.toLowerCase(),f=vo[l]||(vo[l]=new RegExp("([\\s\\S]*?)(</"+l+"[^>]*>)","i")),p=e.replace(f,function(e,n,r){return u=r.length,po(l)||"noscript"===l||(n=n.replace(/<!\--([\s\S]*?)-->/g,"$1").replace(/<!\[CDATA\[([\s\S]*?)]]>/g,"$1")),_o(l,n)&&(n=n.slice(1)),t.chars&&t.chars(n),""});c+=e.length-p.length,e=p,A(l,c-u,c)}else{var d=e.indexOf("<");if(0===d){if(lo.test(e)){var v=e.indexOf("--\x3e");if(v>=0){t.shouldKeepComment&&t.comment(e.substring(4,v)),C(v+3);continue}}if(fo.test(e)){var h=e.indexOf("]>");if(h>=0){C(h+2);continue}}var m=e.match(uo);if(m){C(m[0].length);continue}var y=e.match(co);if(y){var g=c;C(y[0].length),A(y[1],g,c);continue}var _=x();if(_){k(_),_o(_.tagName,e)&&C(1);continue}}var b=void 0,$=void 0,w=void 0;if(d>=0){for($=e.slice(d);!(co.test($)||ao.test($)||lo.test($)||fo.test($)||(w=$.indexOf("<",1))<0);)d+=w,$=e.slice(d);b=e.substring(0,d),C(d)}d<0&&(b=e,e=""),t.chars&&b&&t.chars(b)}if(e===n){t.chars&&t.chars(e);break}}function C(t){c+=t,e=e.substring(t)}function x(){var t=e.match(ao);if(t){var n,r,i={tagName:t[1],attrs:[],start:c};for(C(t[0].length);!(n=e.match(so))&&(r=e.match(ro));)C(r[0].length),i.attrs.push(r);if(n)return i.unarySlash=n[1],C(n[0].length),i.end=c,i}}function k(e){var n=e.tagName,c=e.unarySlash;o&&("p"===r&&no(n)&&A(r),s(n)&&r===n&&A(n));for(var u=a(n)||!!c,l=e.attrs.length,f=new Array(l),p=0;p<l;p++){var d=e.attrs[p],v=d[3]||d[4]||d[5]||"",h="a"===n&&"href"===d[1]?t.shouldDecodeNewlinesForHref:t.shouldDecodeNewlines;f[p]={name:d[1],value:bo(v,h)}}u||(i.push({tag:n,lowerCasedTag:n.toLowerCase(),attrs:f}),r=n),t.start&&t.start(n,f,u,e.start,e.end)}function A(e,n,o){var a,s;if(null==n&&(n=c),null==o&&(o=c),e)for(s=e.toLowerCase(),a=i.length-1;a>=0&&i[a].lowerCasedTag!==s;a--);else a=0;if(a>=0){for(var u=i.length-1;u>=a;u--)t.end&&t.end(i[u].tag,n,o);i.length=a,r=a&&i[a-1].tag}else"br"===s?t.start&&t.start(e,[],!0,n,o):"p"===s&&(t.start&&t.start(e,[],!1,n,o),t.end&&t.end(e,n,o))}A()}(e,{warn:$o,expectHTML:t.expectHTML,isUnaryTag:t.isUnaryTag,canBeLeftOpenTag:t.canBeLeftOpenTag,shouldDecodeNewlines:t.shouldDecodeNewlines,shouldDecodeNewlinesForHref:t.shouldDecodeNewlinesForHref,shouldKeepComment:t.comments,start:function(e,o,u){var l=r&&r.ns||So(e);K&&"svg"===l&&(o=function(e){for(var t=[],n=0;n<e.length;n++){var r=e[n];zo.test(r.name)||(r.name=r.name.replace(Ko,""),t.push(r))}return t}(o));var f,p=Fo(e,o,r);l&&(p.ns=l),"style"!==(f=p).tag&&("script"!==f.tag||f.attrsMap.type&&"text/javascript"!==f.attrsMap.type)||Y()||(p.forbidden=!0);for(var d=0;d<xo.length;d++)p=xo[d](p,t)||p;if(a||(!function(e){null!=wr(e,"v-pre")&&(e.pre=!0)}(p),p.pre&&(a=!0)),Ao(p.tag)&&(s=!0),a?function(e){var t=e.attrsList.length;if(t)for(var n=e.attrs=new Array(t),r=0;r<t;r++)n[r]={name:e.attrsList[r].name,value:JSON.stringify(e.attrsList[r].value)};else e.pre||(e.plain=!0)}(p):p.processed||(Bo(p),function(e){var t=wr(e,"v-if");if(t)e.if=t,Uo(e,{exp:t,block:e});else{null!=wr(e,"v-else")&&(e.else=!0);var n=wr(e,"v-else-if");n&&(e.elseif=n)}}(p),function(e){null!=wr(e,"v-once")&&(e.once=!0)}(p),Ho(p,t)),n?i.length||n.if&&(p.elseif||p.else)&&Uo(n,{exp:p.elseif,block:p}):n=p,r&&!p.forbidden)if(p.elseif||p.else)!function(e,t){var n=function(e){var t=e.length;for(;t--;){if(1===e[t].type)return e[t];e.pop()}}(t.children);n&&n.if&&Uo(n,{exp:e.elseif,block:e})}(p,r);else if(p.slotScope){r.plain=!1;var v=p.slotTarget||'"default"';(r.scopedSlots||(r.scopedSlots={}))[v]=p}else r.children.push(p),p.parent=r;u?c(p):(r=p,i.push(p))},end:function(){var e=i[i.length-1],t=e.children[e.children.length-1];t&&3===t.type&&" "===t.text&&!s&&e.children.pop(),i.length-=1,r=i[i.length-1],c(e)},chars:function(e){if(r&&(!K||"textarea"!==r.tag||r.attrsMap.placeholder!==e)){var t,n,i=r.children;if(e=s||e.trim()?"script"===(t=r).tag||"style"===t.tag?e:Po(e):o&&i.length?" ":"")!a&&" "!==e&&(n=function(e,t){var n=t?Gi(t):qi;if(n.test(e)){for(var r,i,o,a=[],s=[],c=n.lastIndex=0;r=n.exec(e);){(i=r.index)>c&&(s.push(o=e.slice(c,i)),a.push(JSON.stringify(o)));var u=pr(r[1].trim());a.push("_s("+u+")"),s.push({"@binding":u}),c=i+r[0].length}return c<e.length&&(s.push(o=e.slice(c)),a.push(JSON.stringify(o))),{expression:a.join("+"),tokens:s}}}(e,wo))?i.push({type:2,expression:n.expression,tokens:n.tokens,text:e}):" "===e&&i.length&&" "===i[i.length-1].text||i.push({type:3,text:e})}},comment:function(e){r.children.push({type:3,text:e,isComment:!0})}}),n}function Ho(e,t){var n,r;(r=$r(n=e,"key"))&&(n.key=r),e.plain=!e.key&&!e.attrsList.length,function(e){var t=$r(e,"ref");t&&(e.ref=t,e.refInFor=function(e){var t=e;for(;t;){if(void 0!==t.for)return!0;t=t.parent}return!1}(e))}(e),function(e){if("slot"===e.tag)e.slotName=$r(e,"name");else{var t;"template"===e.tag?(t=wr(e,"scope"),e.slotScope=t||wr(e,"slot-scope")):(t=wr(e,"slot-scope"))&&(e.slotScope=t);var n=$r(e,"slot");n&&(e.slotTarget='""'===n?'"default"':n,"template"===e.tag||e.slotScope||yr(e,"slot",n))}}(e),function(e){var t;(t=$r(e,"is"))&&(e.component=t);null!=wr(e,"inline-template")&&(e.inlineTemplate=!0)}(e);for(var i=0;i<Co.length;i++)e=Co[i](e,t)||e;!function(e){var t,n,r,i,o,a,s,c=e.attrsList;for(t=0,n=c.length;t<n;t++)if(r=i=c[t].name,o=c[t].value,No.test(r))if(e.hasBindings=!0,(a=Vo(r))&&(r=r.replace(Do,"")),Mo.test(r))r=r.replace(Mo,""),o=pr(o),s=!1,a&&(a.prop&&(s=!0,"innerHtml"===(r=_(r))&&(r="innerHTML")),a.camel&&(r=_(r)),a.sync&&br(e,"update:"+_(r),xr(o,"$event"))),s||!e.component&&Oo(e.tag,e.attrsMap.type,r)?mr(e,r,o):yr(e,r,o);else if(To.test(r))r=r.replace(To,""),br(e,r,o,a,!1);else{var u=(r=r.replace(No,"")).match(Lo),l=u&&u[1];l&&(r=r.slice(0,-(l.length+1))),_r(e,r,i,o,l,a)}else yr(e,r,JSON.stringify(o)),!e.component&&"muted"===r&&Oo(e.tag,e.attrsMap.type,r)&&mr(e,r,"true")}(e)}function Bo(e){var t;if(t=wr(e,"v-for")){var n=function(e){var t=e.match(jo);if(!t)return;var n={};n.for=t[2].trim();var r=t[1].trim().replace(Io,""),i=r.match(Eo);i?(n.alias=r.replace(Eo,"").trim(),n.iterator1=i[1].trim(),i[2]&&(n.iterator2=i[2].trim())):n.alias=r;return n}(t);n&&k(e,n)}}function Uo(e,t){e.ifConditions||(e.ifConditions=[]),e.ifConditions.push(t)}function Vo(e){var t=e.match(Do);if(t){var n={};return t.forEach(function(e){n[e.slice(1)]=!0}),n}}var zo=/^xmlns:NS\d+/,Ko=/^NS\d+:/;function Jo(e){return Fo(e.tag,e.attrsList.slice(),e.parent)}var qo=[Zi,Yi,{preTransformNode:function(e,t){if("input"===e.tag){var n,r=e.attrsMap;if(!r["v-model"])return;if((r[":type"]||r["v-bind:type"])&&(n=$r(e,"type")),r.type||n||!r["v-bind"]||(n="("+r["v-bind"]+").type"),n){var i=wr(e,"v-if",!0),o=i?"&&("+i+")":"",a=null!=wr(e,"v-else",!0),s=wr(e,"v-else-if",!0),c=Jo(e);Bo(c),gr(c,"type","checkbox"),Ho(c,t),c.processed=!0,c.if="("+n+")==='checkbox'"+o,Uo(c,{exp:c.if,block:c});var u=Jo(e);wr(u,"v-for",!0),gr(u,"type","radio"),Ho(u,t),Uo(c,{exp:"("+n+")==='radio'"+o,block:u});var l=Jo(e);return wr(l,"v-for",!0),gr(l,":type",n),Ho(l,t),Uo(c,{exp:i,block:l}),a?c.else=!0:s&&(c.elseif=s),c}}}}];var Wo,Go,Zo={expectHTML:!0,modules:qo,directives:{model:function(e,t,n){var r=t.value,i=t.modifiers,o=e.tag,a=e.attrsMap.type;if(e.component)return Cr(e,r,i),!1;if("select"===o)!function(e,t,n){var r='var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return '+(n&&n.number?"_n(val)":"val")+"});";r=r+" "+xr(t,"$event.target.multiple ? $$selectedVal : $$selectedVal[0]"),br(e,"change",r,null,!0)}(e,r,i);else if("input"===o&&"checkbox"===a)!function(e,t,n){var r=n&&n.number,i=$r(e,"value")||"null",o=$r(e,"true-value")||"true",a=$r(e,"false-value")||"false";mr(e,"checked","Array.isArray("+t+")?_i("+t+","+i+")>-1"+("true"===o?":("+t+")":":_q("+t+","+o+")")),br(e,"change","var $$a="+t+",$$el=$event.target,$$c=$$el.checked?("+o+"):("+a+");if(Array.isArray($$a)){var $$v="+(r?"_n("+i+")":i)+",$$i=_i($$a,$$v);if($$el.checked){$$i<0&&("+xr(t,"$$a.concat([$$v])")+")}else{$$i>-1&&("+xr(t,"$$a.slice(0,$$i).concat($$a.slice($$i+1))")+")}}else{"+xr(t,"$$c")+"}",null,!0)}(e,r,i);else if("input"===o&&"radio"===a)!function(e,t,n){var r=n&&n.number,i=$r(e,"value")||"null";mr(e,"checked","_q("+t+","+(i=r?"_n("+i+")":i)+")"),br(e,"change",xr(t,i),null,!0)}(e,r,i);else if("input"===o||"textarea"===o)!function(e,t,n){var r=e.attrsMap.type,i=n||{},o=i.lazy,a=i.number,s=i.trim,c=!o&&"range"!==r,u=o?"change":"range"===r?jr:"input",l="$event.target.value";s&&(l="$event.target.value.trim()"),a&&(l="_n("+l+")");var f=xr(t,l);c&&(f="if($event.target.composing)return;"+f),mr(e,"value","("+t+")"),br(e,u,f,null,!0),(s||a)&&br(e,"blur","$forceUpdate()")}(e,r,i);else if(!D.isReservedTag(o))return Cr(e,r,i),!1;return!0},text:function(e,t){t.value&&mr(e,"textContent","_s("+t.value+")")},html:function(e,t){t.value&&mr(e,"innerHTML","_s("+t.value+")")}},isPreTag:function(e){return"pre"===e},isUnaryTag:eo,mustUseProp:bn,canBeLeftOpenTag:to,isReservedTag:Ln,getTagNamespace:Mn,staticKeys:function(e){return e.reduce(function(e,t){return e.concat(t.staticKeys||[])},[]).join(",")}(qo)},Xo=y(function(e){return f("type,tag,attrsList,attrsMap,plain,parent,children,attrs"+(e?","+e:""))});function Yo(e,t){e&&(Wo=Xo(t.staticKeys||""),Go=t.isReservedTag||S,function e(t){t.static=function(e){if(2===e.type)return!1;if(3===e.type)return!0;return!(!e.pre&&(e.hasBindings||e.if||e.for||p(e.tag)||!Go(e.tag)||function(e){for(;e.parent;){if("template"!==(e=e.parent).tag)return!1;if(e.for)return!0}return!1}(e)||!Object.keys(e).every(Wo)))}(t);if(1===t.type){if(!Go(t.tag)&&"slot"!==t.tag&&null==t.attrsMap["inline-template"])return;for(var n=0,r=t.children.length;n<r;n++){var i=t.children[n];e(i),i.static||(t.static=!1)}if(t.ifConditions)for(var o=1,a=t.ifConditions.length;o<a;o++){var s=t.ifConditions[o].block;e(s),s.static||(t.static=!1)}}}(e),function e(t,n){if(1===t.type){if((t.static||t.once)&&(t.staticInFor=n),t.static&&t.children.length&&(1!==t.children.length||3!==t.children[0].type))return void(t.staticRoot=!0);if(t.staticRoot=!1,t.children)for(var r=0,i=t.children.length;r<i;r++)e(t.children[r],n||!!t.for);if(t.ifConditions)for(var o=1,a=t.ifConditions.length;o<a;o++)e(t.ifConditions[o].block,n)}}(e,!1))}var Qo=/^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/,ea=/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/,ta={esc:27,tab:9,enter:13,space:32,up:38,left:37,right:39,down:40,delete:[8,46]},na={esc:["Esc","Escape"],tab:"Tab",enter:"Enter",space:[" ","Spacebar"],up:["Up","ArrowUp"],left:["Left","ArrowLeft"],right:["Right","ArrowRight"],down:["Down","ArrowDown"],delete:["Backspace","Delete","Del"]},ra=function(e){return"if("+e+")return null;"},ia={stop:"$event.stopPropagation();",prevent:"$event.preventDefault();",self:ra("$event.target !== $event.currentTarget"),ctrl:ra("!$event.ctrlKey"),shift:ra("!$event.shiftKey"),alt:ra("!$event.altKey"),meta:ra("!$event.metaKey"),left:ra("'button' in $event && $event.button !== 0"),middle:ra("'button' in $event && $event.button !== 1"),right:ra("'button' in $event && $event.button !== 2")};function oa(e,t){var n=t?"nativeOn:{":"on:{";for(var r in e)n+='"'+r+'":'+aa(r,e[r])+",";return n.slice(0,-1)+"}"}function aa(e,t){if(!t)return"function(){}";if(Array.isArray(t))return"["+t.map(function(t){return aa(e,t)}).join(",")+"]";var n=ea.test(t.value),r=Qo.test(t.value);if(t.modifiers){var i="",o="",a=[];for(var s in t.modifiers)if(ia[s])o+=ia[s],ta[s]&&a.push(s);else if("exact"===s){var c=t.modifiers;o+=ra(["ctrl","shift","alt","meta"].filter(function(e){return!c[e]}).map(function(e){return"$event."+e+"Key"}).join("||"))}else a.push(s);return a.length&&(i+=function(e){return"if(!('button' in $event)&&"+e.map(sa).join("&&")+")return null;"}(a)),o&&(i+=o),"function($event){"+i+(n?"return "+t.value+"($event)":r?"return ("+t.value+")($event)":t.value)+"}"}return n||r?t.value:"function($event){"+t.value+"}"}function sa(e){var t=parseInt(e,10);if(t)return"$event.keyCode!=="+t;var n=ta[e],r=na[e];return"_k($event.keyCode,"+JSON.stringify(e)+","+JSON.stringify(n)+",$event.key,"+JSON.stringify(r)+")"}var ca={on:function(e,t){e.wrapListeners=function(e){return"_g("+e+","+t.value+")"}},bind:function(e,t){e.wrapData=function(n){return"_b("+n+",'"+e.tag+"',"+t.value+","+(t.modifiers&&t.modifiers.prop?"true":"false")+(t.modifiers&&t.modifiers.sync?",true":"")+")"}},cloak:O},ua=function(e){this.options=e,this.warn=e.warn||vr,this.transforms=hr(e.modules,"transformCode"),this.dataGenFns=hr(e.modules,"genData"),this.directives=k(k({},ca),e.directives);var t=e.isReservedTag||S;this.maybeComponent=function(e){return!(t(e.tag)&&!e.component)},this.onceId=0,this.staticRenderFns=[],this.pre=!1};function la(e,t){var n=new ua(t);return{render:"with(this){return "+(e?fa(e,n):'_c("div")')+"}",staticRenderFns:n.staticRenderFns}}function fa(e,t){if(e.parent&&(e.pre=e.pre||e.parent.pre),e.staticRoot&&!e.staticProcessed)return pa(e,t);if(e.once&&!e.onceProcessed)return da(e,t);if(e.for&&!e.forProcessed)return function(e,t,n,r){var i=e.for,o=e.alias,a=e.iterator1?","+e.iterator1:"",s=e.iterator2?","+e.iterator2:"";return e.forProcessed=!0,(r||"_l")+"(("+i+"),function("+o+a+s+"){return "+(n||fa)(e,t)+"})"}(e,t);if(e.if&&!e.ifProcessed)return va(e,t);if("template"!==e.tag||e.slotTarget||t.pre){if("slot"===e.tag)return function(e,t){var n=e.slotName||'"default"',r=ya(e,t),i="_t("+n+(r?","+r:""),o=e.attrs&&"{"+e.attrs.map(function(e){return _(e.name)+":"+e.value}).join(",")+"}",a=e.attrsMap["v-bind"];!o&&!a||r||(i+=",null");o&&(i+=","+o);a&&(i+=(o?"":",null")+","+a);return i+")"}(e,t);var n;if(e.component)n=function(e,t,n){var r=t.inlineTemplate?null:ya(t,n,!0);return"_c("+e+","+ha(t,n)+(r?","+r:"")+")"}(e.component,e,t);else{var r;(!e.plain||e.pre&&t.maybeComponent(e))&&(r=ha(e,t));var i=e.inlineTemplate?null:ya(e,t,!0);n="_c('"+e.tag+"'"+(r?","+r:"")+(i?","+i:"")+")"}for(var o=0;o<t.transforms.length;o++)n=t.transforms[o](e,n);return n}return ya(e,t)||"void 0"}function pa(e,t){e.staticProcessed=!0;var n=t.pre;return e.pre&&(t.pre=e.pre),t.staticRenderFns.push("with(this){return "+fa(e,t)+"}"),t.pre=n,"_m("+(t.staticRenderFns.length-1)+(e.staticInFor?",true":"")+")"}function da(e,t){if(e.onceProcessed=!0,e.if&&!e.ifProcessed)return va(e,t);if(e.staticInFor){for(var n="",r=e.parent;r;){if(r.for){n=r.key;break}r=r.parent}return n?"_o("+fa(e,t)+","+t.onceId+++","+n+")":fa(e,t)}return pa(e,t)}function va(e,t,n,r){return e.ifProcessed=!0,function e(t,n,r,i){if(!t.length)return i||"_e()";var o=t.shift();return o.exp?"("+o.exp+")?"+a(o.block)+":"+e(t,n,r,i):""+a(o.block);function a(e){return r?r(e,n):e.once?da(e,n):fa(e,n)}}(e.ifConditions.slice(),t,n,r)}function ha(e,t){var n="{",r=function(e,t){var n=e.directives;if(!n)return;var r,i,o,a,s="directives:[",c=!1;for(r=0,i=n.length;r<i;r++){o=n[r],a=!0;var u=t.directives[o.name];u&&(a=!!u(e,o,t.warn)),a&&(c=!0,s+='{name:"'+o.name+'",rawName:"'+o.rawName+'"'+(o.value?",value:("+o.value+"),expression:"+JSON.stringify(o.value):"")+(o.arg?',arg:"'+o.arg+'"':"")+(o.modifiers?",modifiers:"+JSON.stringify(o.modifiers):"")+"},")}if(c)return s.slice(0,-1)+"]"}(e,t);r&&(n+=r+","),e.key&&(n+="key:"+e.key+","),e.ref&&(n+="ref:"+e.ref+","),e.refInFor&&(n+="refInFor:true,"),e.pre&&(n+="pre:true,"),e.component&&(n+='tag:"'+e.tag+'",');for(var i=0;i<t.dataGenFns.length;i++)n+=t.dataGenFns[i](e);if(e.attrs&&(n+="attrs:{"+ba(e.attrs)+"},"),e.props&&(n+="domProps:{"+ba(e.props)+"},"),e.events&&(n+=oa(e.events,!1)+","),e.nativeEvents&&(n+=oa(e.nativeEvents,!0)+","),e.slotTarget&&!e.slotScope&&(n+="slot:"+e.slotTarget+","),e.scopedSlots&&(n+=function(e,t){return"scopedSlots:_u(["+Object.keys(e).map(function(n){return ma(n,e[n],t)}).join(",")+"])"}(e.scopedSlots,t)+","),e.model&&(n+="model:{value:"+e.model.value+",callback:"+e.model.callback+",expression:"+e.model.expression+"},"),e.inlineTemplate){var o=function(e,t){var n=e.children[0];if(1===n.type){var r=la(n,t.options);return"inlineTemplate:{render:function(){"+r.render+"},staticRenderFns:["+r.staticRenderFns.map(function(e){return"function(){"+e+"}"}).join(",")+"]}"}}(e,t);o&&(n+=o+",")}return n=n.replace(/,$/,"")+"}",e.wrapData&&(n=e.wrapData(n)),e.wrapListeners&&(n=e.wrapListeners(n)),n}function ma(e,t,n){return t.for&&!t.forProcessed?function(e,t,n){var r=t.for,i=t.alias,o=t.iterator1?","+t.iterator1:"",a=t.iterator2?","+t.iterator2:"";return t.forProcessed=!0,"_l(("+r+"),function("+i+o+a+"){return "+ma(e,t,n)+"})"}(e,t,n):"{key:"+e+",fn:"+("function("+String(t.slotScope)+"){return "+("template"===t.tag?t.if?"("+t.if+")?"+(ya(t,n)||"undefined")+":undefined":ya(t,n)||"undefined":fa(t,n))+"}")+"}"}function ya(e,t,n,r,i){var o=e.children;if(o.length){var a=o[0];if(1===o.length&&a.for&&"template"!==a.tag&&"slot"!==a.tag){var s=n?t.maybeComponent(a)?",1":",0":"";return""+(r||fa)(a,t)+s}var c=n?function(e,t){for(var n=0,r=0;r<e.length;r++){var i=e[r];if(1===i.type){if(ga(i)||i.ifConditions&&i.ifConditions.some(function(e){return ga(e.block)})){n=2;break}(t(i)||i.ifConditions&&i.ifConditions.some(function(e){return t(e.block)}))&&(n=1)}}return n}(o,t.maybeComponent):0,u=i||_a;return"["+o.map(function(e){return u(e,t)}).join(",")+"]"+(c?","+c:"")}}function ga(e){return void 0!==e.for||"template"===e.tag||"slot"===e.tag}function _a(e,t){return 1===e.type?fa(e,t):3===e.type&&e.isComment?(r=e,"_e("+JSON.stringify(r.text)+")"):"_v("+(2===(n=e).type?n.expression:$a(JSON.stringify(n.text)))+")";var n,r}function ba(e){for(var t="",n=0;n<e.length;n++){var r=e[n];t+='"'+r.name+'":'+$a(r.value)+","}return t.slice(0,-1)}function $a(e){return e.replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029")}new RegExp("\\b"+"do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,super,throw,while,yield,delete,export,import,return,switch,default,extends,finally,continue,debugger,function,arguments".split(",").join("\\b|\\b")+"\\b");function wa(e,t){try{return new Function(e)}catch(n){return t.push({err:n,code:e}),O}}var Ca,xa,ka=(Ca=function(e,t){var n=Ro(e.trim(),t);!1!==t.optimize&&Yo(n,t);var r=la(n,t);return{ast:n,render:r.render,staticRenderFns:r.staticRenderFns}},function(e){function t(t,n){var r=Object.create(e),i=[],o=[];if(r.warn=function(e,t){(t?o:i).push(e)},n)for(var a in n.modules&&(r.modules=(e.modules||[]).concat(n.modules)),n.directives&&(r.directives=k(Object.create(e.directives||null),n.directives)),n)"modules"!==a&&"directives"!==a&&(r[a]=n[a]);var s=Ca(t,r);return s.errors=i,s.tips=o,s}return{compile:t,compileToFunctions:function(e){var t=Object.create(null);return function(n,r,i){(r=k({},r)).warn,delete r.warn;var o=r.delimiters?String(r.delimiters)+n:n;if(t[o])return t[o];var a=e(n,r),s={},c=[];return s.render=wa(a.render,c),s.staticRenderFns=a.staticRenderFns.map(function(e){return wa(e,c)}),t[o]=s}}(t)}})(Zo),Aa=(ka.compile,ka.compileToFunctions);function Oa(e){return(xa=xa||document.createElement("div")).innerHTML=e?'<a href="\n"/>':'<div a="\n"/>',xa.innerHTML.indexOf("&#10;")>0}var Sa=!!B&&Oa(!1),Ta=!!B&&Oa(!0),Na=y(function(e){var t=Fn(e);return t&&t.innerHTML}),ja=ln.prototype.$mount;return ln.prototype.$mount=function(e,t){if((e=e&&Fn(e))===document.body||e===document.documentElement)return this;var n=this.$options;if(!n.render){var r=n.template;if(r)if("string"==typeof r)"#"===r.charAt(0)&&(r=Na(r));else{if(!r.nodeType)return this;r=r.innerHTML}else e&&(r=function(e){if(e.outerHTML)return e.outerHTML;var t=document.createElement("div");return t.appendChild(e.cloneNode(!0)),t.innerHTML}(e));if(r){var i=Aa(r,{shouldDecodeNewlines:Sa,shouldDecodeNewlinesForHref:Ta,delimiters:n.delimiters,comments:n.comments},this),o=i.render,a=i.staticRenderFns;n.render=o,n.staticRenderFns=a}}return ja.call(this,e,t)},ln.compile=Aa,ln});
+	!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define(t):(e=e||self).Vue=t()}(this,function(){"use strict";var e=Object.freeze({});function t(e){return null==e}function n(e){return null!=e}function r(e){return!0===e}function i(e){return"string"==typeof e||"number"==typeof e||"symbol"==typeof e||"boolean"==typeof e}function o(e){return null!==e&&"object"==typeof e}var a=Object.prototype.toString;function s(e){return"[object Object]"===a.call(e)}function c(e){var t=parseFloat(String(e));return t>=0&&Math.floor(t)===t&&isFinite(e)}function u(e){return n(e)&&"function"==typeof e.then&&"function"==typeof e.catch}function l(e){return null==e?"":Array.isArray(e)||s(e)&&e.toString===a?JSON.stringify(e,null,2):String(e)}function f(e){var t=parseFloat(e);return isNaN(t)?e:t}function p(e,t){for(var n=Object.create(null),r=e.split(","),i=0;i<r.length;i++)n[r[i]]=!0;return t?function(e){return n[e.toLowerCase()]}:function(e){return n[e]}}var d=p("slot,component",!0),v=p("key,ref,slot,slot-scope,is");function h(e,t){if(e.length){var n=e.indexOf(t);if(n>-1)return e.splice(n,1)}}var m=Object.prototype.hasOwnProperty;function y(e,t){return m.call(e,t)}function g(e){var t=Object.create(null);return function(n){return t[n]||(t[n]=e(n))}}var _=/-(\w)/g,b=g(function(e){return e.replace(_,function(e,t){return t?t.toUpperCase():""})}),$=g(function(e){return e.charAt(0).toUpperCase()+e.slice(1)}),w=/\B([A-Z])/g,x=g(function(e){return e.replace(w,"-$1").toLowerCase()});var C=Function.prototype.bind?function(e,t){return e.bind(t)}:function(e,t){function n(n){var r=arguments.length;return r?r>1?e.apply(t,arguments):e.call(t,n):e.call(t)}return n._length=e.length,n};function A(e,t){t=t||0;for(var n=e.length-t,r=new Array(n);n--;)r[n]=e[n+t];return r}function k(e,t){for(var n in t)e[n]=t[n];return e}function O(e){for(var t={},n=0;n<e.length;n++)e[n]&&k(t,e[n]);return t}function S(e,t,n){}var T=function(e,t,n){return!1},E=function(e){return e};function j(e,t){if(e===t)return!0;var n=o(e),r=o(t);if(!n||!r)return!n&&!r&&String(e)===String(t);try{var i=Array.isArray(e),a=Array.isArray(t);if(i&&a)return e.length===t.length&&e.every(function(e,n){return j(e,t[n])});if(e instanceof Date&&t instanceof Date)return e.getTime()===t.getTime();if(i||a)return!1;var s=Object.keys(e),c=Object.keys(t);return s.length===c.length&&s.every(function(n){return j(e[n],t[n])})}catch(e){return!1}}function N(e,t){for(var n=0;n<e.length;n++)if(j(e[n],t))return n;return-1}function L(e){var t=!1;return function(){t||(t=!0,e.apply(this,arguments))}}var M="data-server-rendered",I=["component","directive","filter"],D=["beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeDestroy","destroyed","activated","deactivated","errorCaptured","serverPrefetch"],P={optionMergeStrategies:Object.create(null),silent:!1,productionTip:!1,devtools:!1,performance:!1,errorHandler:null,warnHandler:null,ignoredElements:[],keyCodes:Object.create(null),isReservedTag:T,isReservedAttr:T,isUnknownElement:T,getTagNamespace:S,parsePlatformTagName:E,mustUseProp:T,async:!0,_lifecycleHooks:D};function R(e,t,n,r){Object.defineProperty(e,t,{value:n,enumerable:!!r,writable:!0,configurable:!0})}var F=new RegExp("[^a-zA-Z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u037f-\u1fff\u200c-\u200d\u203f-\u2040\u2070-\u218f\u2c00-\u2fef\u3001-\ud7ff\uf900-\ufdcf\ufdf0-\ufffd.$_\\d]");var H,B="__proto__"in{},U="undefined"!=typeof window,z="undefined"!=typeof WXEnvironment&&!!WXEnvironment.platform,V=z&&WXEnvironment.platform.toLowerCase(),K=U&&window.navigator.userAgent.toLowerCase(),J=K&&/msie|trident/.test(K),q=K&&K.indexOf("msie 9.0")>0,W=K&&K.indexOf("edge/")>0,Z=(K&&K.indexOf("android"),K&&/iphone|ipad|ipod|ios/.test(K)||"ios"===V),G=(K&&/chrome\/\d+/.test(K),K&&/phantomjs/.test(K),K&&K.match(/firefox\/(\d+)/)),X={}.watch,Y=!1;if(U)try{var Q={};Object.defineProperty(Q,"passive",{get:function(){Y=!0}}),window.addEventListener("test-passive",null,Q)}catch(e){}var ee=function(){return void 0===H&&(H=!U&&!z&&"undefined"!=typeof global&&(global.process&&"server"===global.process.env.VUE_ENV)),H},te=U&&window.__VUE_DEVTOOLS_GLOBAL_HOOK__;function ne(e){return"function"==typeof e&&/native code/.test(e.toString())}var re,ie="undefined"!=typeof Symbol&&ne(Symbol)&&"undefined"!=typeof Reflect&&ne(Reflect.ownKeys);re="undefined"!=typeof Set&&ne(Set)?Set:function(){function e(){this.set=Object.create(null)}return e.prototype.has=function(e){return!0===this.set[e]},e.prototype.add=function(e){this.set[e]=!0},e.prototype.clear=function(){this.set=Object.create(null)},e}();var oe=S,ae=0,se=function(){this.id=ae++,this.subs=[]};se.prototype.addSub=function(e){this.subs.push(e)},se.prototype.removeSub=function(e){h(this.subs,e)},se.prototype.depend=function(){se.target&&se.target.addDep(this)},se.prototype.notify=function(){for(var e=this.subs.slice(),t=0,n=e.length;t<n;t++)e[t].update()},se.target=null;var ce=[];function ue(e){ce.push(e),se.target=e}function le(){ce.pop(),se.target=ce[ce.length-1]}var fe=function(e,t,n,r,i,o,a,s){this.tag=e,this.data=t,this.children=n,this.text=r,this.elm=i,this.ns=void 0,this.context=o,this.fnContext=void 0,this.fnOptions=void 0,this.fnScopeId=void 0,this.key=t&&t.key,this.componentOptions=a,this.componentInstance=void 0,this.parent=void 0,this.raw=!1,this.isStatic=!1,this.isRootInsert=!0,this.isComment=!1,this.isCloned=!1,this.isOnce=!1,this.asyncFactory=s,this.asyncMeta=void 0,this.isAsyncPlaceholder=!1},pe={child:{configurable:!0}};pe.child.get=function(){return this.componentInstance},Object.defineProperties(fe.prototype,pe);var de=function(e){void 0===e&&(e="");var t=new fe;return t.text=e,t.isComment=!0,t};function ve(e){return new fe(void 0,void 0,void 0,String(e))}function he(e){var t=new fe(e.tag,e.data,e.children&&e.children.slice(),e.text,e.elm,e.context,e.componentOptions,e.asyncFactory);return t.ns=e.ns,t.isStatic=e.isStatic,t.key=e.key,t.isComment=e.isComment,t.fnContext=e.fnContext,t.fnOptions=e.fnOptions,t.fnScopeId=e.fnScopeId,t.asyncMeta=e.asyncMeta,t.isCloned=!0,t}var me=Array.prototype,ye=Object.create(me);["push","pop","shift","unshift","splice","sort","reverse"].forEach(function(e){var t=me[e];R(ye,e,function(){for(var n=[],r=arguments.length;r--;)n[r]=arguments[r];var i,o=t.apply(this,n),a=this.__ob__;switch(e){case"push":case"unshift":i=n;break;case"splice":i=n.slice(2)}return i&&a.observeArray(i),a.dep.notify(),o})});var ge=Object.getOwnPropertyNames(ye),_e=!0;function be(e){_e=e}var $e=function(e){var t;this.value=e,this.dep=new se,this.vmCount=0,R(e,"__ob__",this),Array.isArray(e)?(B?(t=ye,e.__proto__=t):function(e,t,n){for(var r=0,i=n.length;r<i;r++){var o=n[r];R(e,o,t[o])}}(e,ye,ge),this.observeArray(e)):this.walk(e)};function we(e,t){var n;if(o(e)&&!(e instanceof fe))return y(e,"__ob__")&&e.__ob__ instanceof $e?n=e.__ob__:_e&&!ee()&&(Array.isArray(e)||s(e))&&Object.isExtensible(e)&&!e._isVue&&(n=new $e(e)),t&&n&&n.vmCount++,n}function xe(e,t,n,r,i){var o=new se,a=Object.getOwnPropertyDescriptor(e,t);if(!a||!1!==a.configurable){var s=a&&a.get,c=a&&a.set;s&&!c||2!==arguments.length||(n=e[t]);var u=!i&&we(n);Object.defineProperty(e,t,{enumerable:!0,configurable:!0,get:function(){var t=s?s.call(e):n;return se.target&&(o.depend(),u&&(u.dep.depend(),Array.isArray(t)&&function e(t){for(var n=void 0,r=0,i=t.length;r<i;r++)(n=t[r])&&n.__ob__&&n.__ob__.dep.depend(),Array.isArray(n)&&e(n)}(t))),t},set:function(t){var r=s?s.call(e):n;t===r||t!=t&&r!=r||s&&!c||(c?c.call(e,t):n=t,u=!i&&we(t),o.notify())}})}}function Ce(e,t,n){if(Array.isArray(e)&&c(t))return e.length=Math.max(e.length,t),e.splice(t,1,n),n;if(t in e&&!(t in Object.prototype))return e[t]=n,n;var r=e.__ob__;return e._isVue||r&&r.vmCount?n:r?(xe(r.value,t,n),r.dep.notify(),n):(e[t]=n,n)}function Ae(e,t){if(Array.isArray(e)&&c(t))e.splice(t,1);else{var n=e.__ob__;e._isVue||n&&n.vmCount||y(e,t)&&(delete e[t],n&&n.dep.notify())}}$e.prototype.walk=function(e){for(var t=Object.keys(e),n=0;n<t.length;n++)xe(e,t[n])},$e.prototype.observeArray=function(e){for(var t=0,n=e.length;t<n;t++)we(e[t])};var ke=P.optionMergeStrategies;function Oe(e,t){if(!t)return e;for(var n,r,i,o=ie?Reflect.ownKeys(t):Object.keys(t),a=0;a<o.length;a++)"__ob__"!==(n=o[a])&&(r=e[n],i=t[n],y(e,n)?r!==i&&s(r)&&s(i)&&Oe(r,i):Ce(e,n,i));return e}function Se(e,t,n){return n?function(){var r="function"==typeof t?t.call(n,n):t,i="function"==typeof e?e.call(n,n):e;return r?Oe(r,i):i}:t?e?function(){return Oe("function"==typeof t?t.call(this,this):t,"function"==typeof e?e.call(this,this):e)}:t:e}function Te(e,t){var n=t?e?e.concat(t):Array.isArray(t)?t:[t]:e;return n?function(e){for(var t=[],n=0;n<e.length;n++)-1===t.indexOf(e[n])&&t.push(e[n]);return t}(n):n}function Ee(e,t,n,r){var i=Object.create(e||null);return t?k(i,t):i}ke.data=function(e,t,n){return n?Se(e,t,n):t&&"function"!=typeof t?e:Se(e,t)},D.forEach(function(e){ke[e]=Te}),I.forEach(function(e){ke[e+"s"]=Ee}),ke.watch=function(e,t,n,r){if(e===X&&(e=void 0),t===X&&(t=void 0),!t)return Object.create(e||null);if(!e)return t;var i={};for(var o in k(i,e),t){var a=i[o],s=t[o];a&&!Array.isArray(a)&&(a=[a]),i[o]=a?a.concat(s):Array.isArray(s)?s:[s]}return i},ke.props=ke.methods=ke.inject=ke.computed=function(e,t,n,r){if(!e)return t;var i=Object.create(null);return k(i,e),t&&k(i,t),i},ke.provide=Se;var je=function(e,t){return void 0===t?e:t};function Ne(e,t,n){if("function"==typeof t&&(t=t.options),function(e,t){var n=e.props;if(n){var r,i,o={};if(Array.isArray(n))for(r=n.length;r--;)"string"==typeof(i=n[r])&&(o[b(i)]={type:null});else if(s(n))for(var a in n)i=n[a],o[b(a)]=s(i)?i:{type:i};e.props=o}}(t),function(e,t){var n=e.inject;if(n){var r=e.inject={};if(Array.isArray(n))for(var i=0;i<n.length;i++)r[n[i]]={from:n[i]};else if(s(n))for(var o in n){var a=n[o];r[o]=s(a)?k({from:o},a):{from:a}}}}(t),function(e){var t=e.directives;if(t)for(var n in t){var r=t[n];"function"==typeof r&&(t[n]={bind:r,update:r})}}(t),!t._base&&(t.extends&&(e=Ne(e,t.extends,n)),t.mixins))for(var r=0,i=t.mixins.length;r<i;r++)e=Ne(e,t.mixins[r],n);var o,a={};for(o in e)c(o);for(o in t)y(e,o)||c(o);function c(r){var i=ke[r]||je;a[r]=i(e[r],t[r],n,r)}return a}function Le(e,t,n,r){if("string"==typeof n){var i=e[t];if(y(i,n))return i[n];var o=b(n);if(y(i,o))return i[o];var a=$(o);return y(i,a)?i[a]:i[n]||i[o]||i[a]}}function Me(e,t,n,r){var i=t[e],o=!y(n,e),a=n[e],s=Pe(Boolean,i.type);if(s>-1)if(o&&!y(i,"default"))a=!1;else if(""===a||a===x(e)){var c=Pe(String,i.type);(c<0||s<c)&&(a=!0)}if(void 0===a){a=function(e,t,n){if(!y(t,"default"))return;var r=t.default;if(e&&e.$options.propsData&&void 0===e.$options.propsData[n]&&void 0!==e._props[n])return e._props[n];return"function"==typeof r&&"Function"!==Ie(t.type)?r.call(e):r}(r,i,e);var u=_e;be(!0),we(a),be(u)}return a}function Ie(e){var t=e&&e.toString().match(/^\s*function (\w+)/);return t?t[1]:""}function De(e,t){return Ie(e)===Ie(t)}function Pe(e,t){if(!Array.isArray(t))return De(t,e)?0:-1;for(var n=0,r=t.length;n<r;n++)if(De(t[n],e))return n;return-1}function Re(e,t,n){if(t)for(var r=t;r=r.$parent;){var i=r.$options.errorCaptured;if(i)for(var o=0;o<i.length;o++)try{if(!1===i[o].call(r,e,t,n))return}catch(e){He(e,r,"errorCaptured hook")}}He(e,t,n)}function Fe(e,t,n,r,i){var o;try{(o=n?e.apply(t,n):e.call(t))&&!o._isVue&&u(o)&&o.catch(function(e){return Re(e,r,i+" (Promise/async)")})}catch(e){Re(e,r,i)}return o}function He(e,t,n){if(P.errorHandler)try{return P.errorHandler.call(null,e,t,n)}catch(t){t!==e&&Be(t,null,"config.errorHandler")}Be(e,t,n)}function Be(e,t,n){if(!U&&!z||"undefined"==typeof console)throw e;console.error(e)}var Ue,ze=!1,Ve=[],Ke=!1;function Je(){Ke=!1;var e=Ve.slice(0);Ve.length=0;for(var t=0;t<e.length;t++)e[t]()}if("undefined"!=typeof Promise&&ne(Promise)){var qe=Promise.resolve();Ue=function(){qe.then(Je),Z&&setTimeout(S)},ze=!0}else if(J||"undefined"==typeof MutationObserver||!ne(MutationObserver)&&"[object MutationObserverConstructor]"!==MutationObserver.toString())Ue="undefined"!=typeof setImmediate&&ne(setImmediate)?function(){setImmediate(Je)}:function(){setTimeout(Je,0)};else{var We=1,Ze=new MutationObserver(Je),Ge=document.createTextNode(String(We));Ze.observe(Ge,{characterData:!0}),Ue=function(){We=(We+1)%2,Ge.data=String(We)},ze=!0}function Xe(e,t){var n;if(Ve.push(function(){if(e)try{e.call(t)}catch(e){Re(e,t,"nextTick")}else n&&n(t)}),Ke||(Ke=!0,Ue()),!e&&"undefined"!=typeof Promise)return new Promise(function(e){n=e})}var Ye=new re;function Qe(e){!function e(t,n){var r,i;var a=Array.isArray(t);if(!a&&!o(t)||Object.isFrozen(t)||t instanceof fe)return;if(t.__ob__){var s=t.__ob__.dep.id;if(n.has(s))return;n.add(s)}if(a)for(r=t.length;r--;)e(t[r],n);else for(i=Object.keys(t),r=i.length;r--;)e(t[i[r]],n)}(e,Ye),Ye.clear()}var et=g(function(e){var t="&"===e.charAt(0),n="~"===(e=t?e.slice(1):e).charAt(0),r="!"===(e=n?e.slice(1):e).charAt(0);return{name:e=r?e.slice(1):e,once:n,capture:r,passive:t}});function tt(e,t){function n(){var e=arguments,r=n.fns;if(!Array.isArray(r))return Fe(r,null,arguments,t,"v-on handler");for(var i=r.slice(),o=0;o<i.length;o++)Fe(i[o],null,e,t,"v-on handler")}return n.fns=e,n}function nt(e,n,i,o,a,s){var c,u,l,f;for(c in e)u=e[c],l=n[c],f=et(c),t(u)||(t(l)?(t(u.fns)&&(u=e[c]=tt(u,s)),r(f.once)&&(u=e[c]=a(f.name,u,f.capture)),i(f.name,u,f.capture,f.passive,f.params)):u!==l&&(l.fns=u,e[c]=l));for(c in n)t(e[c])&&o((f=et(c)).name,n[c],f.capture)}function rt(e,i,o){var a;e instanceof fe&&(e=e.data.hook||(e.data.hook={}));var s=e[i];function c(){o.apply(this,arguments),h(a.fns,c)}t(s)?a=tt([c]):n(s.fns)&&r(s.merged)?(a=s).fns.push(c):a=tt([s,c]),a.merged=!0,e[i]=a}function it(e,t,r,i,o){if(n(t)){if(y(t,r))return e[r]=t[r],o||delete t[r],!0;if(y(t,i))return e[r]=t[i],o||delete t[i],!0}return!1}function ot(e){return i(e)?[ve(e)]:Array.isArray(e)?function e(o,a){var s=[];var c,u,l,f;for(c=0;c<o.length;c++)t(u=o[c])||"boolean"==typeof u||(l=s.length-1,f=s[l],Array.isArray(u)?u.length>0&&(at((u=e(u,(a||"")+"_"+c))[0])&&at(f)&&(s[l]=ve(f.text+u[0].text),u.shift()),s.push.apply(s,u)):i(u)?at(f)?s[l]=ve(f.text+u):""!==u&&s.push(ve(u)):at(u)&&at(f)?s[l]=ve(f.text+u.text):(r(o._isVList)&&n(u.tag)&&t(u.key)&&n(a)&&(u.key="__vlist"+a+"_"+c+"__"),s.push(u)));return s}(e):void 0}function at(e){return n(e)&&n(e.text)&&!1===e.isComment}function st(e,t){if(e){for(var n=Object.create(null),r=ie?Reflect.ownKeys(e):Object.keys(e),i=0;i<r.length;i++){var o=r[i];if("__ob__"!==o){for(var a=e[o].from,s=t;s;){if(s._provided&&y(s._provided,a)){n[o]=s._provided[a];break}s=s.$parent}if(!s&&"default"in e[o]){var c=e[o].default;n[o]="function"==typeof c?c.call(t):c}}}return n}}function ct(e,t){if(!e||!e.length)return{};for(var n={},r=0,i=e.length;r<i;r++){var o=e[r],a=o.data;if(a&&a.attrs&&a.attrs.slot&&delete a.attrs.slot,o.context!==t&&o.fnContext!==t||!a||null==a.slot)(n.default||(n.default=[])).push(o);else{var s=a.slot,c=n[s]||(n[s]=[]);"template"===o.tag?c.push.apply(c,o.children||[]):c.push(o)}}for(var u in n)n[u].every(ut)&&delete n[u];return n}function ut(e){return e.isComment&&!e.asyncFactory||" "===e.text}function lt(t,n,r){var i;if(t){if(t._normalized)return t._normalized;if(t.$stable&&r&&r!==e&&0===Object.keys(n).length)return r;for(var o in i={},t)t[o]&&"$"!==o[0]&&(i[o]=ft(n,o,t[o]))}else i={};for(var a in n)a in i||(i[a]=pt(n,a));return t&&Object.isExtensible(t)&&(t._normalized=i),R(i,"$stable",!t||!!t.$stable),i}function ft(e,t,n){var r=function(){var e=arguments.length?n.apply(null,arguments):n({});return(e=e&&"object"==typeof e&&!Array.isArray(e)?[e]:ot(e))&&0===e.length?void 0:e};return n.proxy&&Object.defineProperty(e,t,{get:r,enumerable:!0,configurable:!0}),r}function pt(e,t){return function(){return e[t]}}function dt(e,t){var r,i,a,s,c;if(Array.isArray(e)||"string"==typeof e)for(r=new Array(e.length),i=0,a=e.length;i<a;i++)r[i]=t(e[i],i);else if("number"==typeof e)for(r=new Array(e),i=0;i<e;i++)r[i]=t(i+1,i);else if(o(e))if(ie&&e[Symbol.iterator]){r=[];for(var u=e[Symbol.iterator](),l=u.next();!l.done;)r.push(t(l.value,r.length)),l=u.next()}else for(s=Object.keys(e),r=new Array(s.length),i=0,a=s.length;i<a;i++)c=s[i],r[i]=t(e[c],c,i);return n(r)||(r=[]),r._isVList=!0,r}function vt(e,t,n,r){var i,o=this.$scopedSlots[e];o?(n=n||{},r&&(n=k(k({},r),n)),i=o(n)||t):i=this.$slots[e]||t;var a=n&&n.slot;return a?this.$createElement("template",{slot:a},i):i}function ht(e){return Le(this.$options,"filters",e)||E}function mt(e,t){return Array.isArray(e)?-1===e.indexOf(t):e!==t}function yt(e,t,n,r,i){var o=P.keyCodes[t]||n;return i&&r&&!P.keyCodes[t]?mt(i,r):o?mt(o,e):r?x(r)!==t:void 0}function gt(e,t,n,r,i){if(n)if(o(n)){var a;Array.isArray(n)&&(n=O(n));var s=function(o){if("class"===o||"style"===o||v(o))a=e;else{var s=e.attrs&&e.attrs.type;a=r||P.mustUseProp(t,s,o)?e.domProps||(e.domProps={}):e.attrs||(e.attrs={})}var c=b(o);o in a||c in a||(a[o]=n[o],i&&((e.on||(e.on={}))["update:"+c]=function(e){n[o]=e}))};for(var c in n)s(c)}else;return e}function _t(e,t){var n=this._staticTrees||(this._staticTrees=[]),r=n[e];return r&&!t?r:($t(r=n[e]=this.$options.staticRenderFns[e].call(this._renderProxy,null,this),"__static__"+e,!1),r)}function bt(e,t,n){return $t(e,"__once__"+t+(n?"_"+n:""),!0),e}function $t(e,t,n){if(Array.isArray(e))for(var r=0;r<e.length;r++)e[r]&&"string"!=typeof e[r]&&wt(e[r],t+"_"+r,n);else wt(e,t,n)}function wt(e,t,n){e.isStatic=!0,e.key=t,e.isOnce=n}function xt(e,t){if(t)if(s(t)){var n=e.on=e.on?k({},e.on):{};for(var r in t){var i=n[r],o=t[r];n[r]=i?[].concat(i,o):o}}else;return e}function Ct(e,t,n){n=n||{$stable:!t};for(var r=0;r<e.length;r++){var i=e[r];Array.isArray(i)?Ct(i,t,n):i&&(i.proxy&&(i.fn.proxy=!0),n[i.key]=i.fn)}return n}function At(e,t){for(var n=0;n<t.length;n+=2){var r=t[n];"string"==typeof r&&r&&(e[t[n]]=t[n+1])}return e}function kt(e,t){return"string"==typeof e?t+e:e}function Ot(e){e._o=bt,e._n=f,e._s=l,e._l=dt,e._t=vt,e._q=j,e._i=N,e._m=_t,e._f=ht,e._k=yt,e._b=gt,e._v=ve,e._e=de,e._u=Ct,e._g=xt,e._d=At,e._p=kt}function St(t,n,i,o,a){var s,c=this,u=a.options;y(o,"_uid")?(s=Object.create(o))._original=o:(s=o,o=o._original);var l=r(u._compiled),f=!l;this.data=t,this.props=n,this.children=i,this.parent=o,this.listeners=t.on||e,this.injections=st(u.inject,o),this.slots=function(){return c.$slots||lt(t.scopedSlots,c.$slots=ct(i,o)),c.$slots},Object.defineProperty(this,"scopedSlots",{enumerable:!0,get:function(){return lt(t.scopedSlots,this.slots())}}),l&&(this.$options=u,this.$slots=this.slots(),this.$scopedSlots=lt(t.scopedSlots,this.$slots)),u._scopeId?this._c=function(e,t,n,r){var i=Pt(s,e,t,n,r,f);return i&&!Array.isArray(i)&&(i.fnScopeId=u._scopeId,i.fnContext=o),i}:this._c=function(e,t,n,r){return Pt(s,e,t,n,r,f)}}function Tt(e,t,n,r,i){var o=he(e);return o.fnContext=n,o.fnOptions=r,t.slot&&((o.data||(o.data={})).slot=t.slot),o}function Et(e,t){for(var n in t)e[b(n)]=t[n]}Ot(St.prototype);var jt={init:function(e,t){if(e.componentInstance&&!e.componentInstance._isDestroyed&&e.data.keepAlive){var r=e;jt.prepatch(r,r)}else{(e.componentInstance=function(e,t){var r={_isComponent:!0,_parentVnode:e,parent:t},i=e.data.inlineTemplate;n(i)&&(r.render=i.render,r.staticRenderFns=i.staticRenderFns);return new e.componentOptions.Ctor(r)}(e,qt)).$mount(t?e.elm:void 0,t)}},prepatch:function(t,n){var r=n.componentOptions;!function(t,n,r,i,o){var a=!!(i.data.scopedSlots&&!i.data.scopedSlots.$stable||t.$scopedSlots!==e&&!t.$scopedSlots.$stable),s=!!(o||t.$options._renderChildren||a);t.$options._parentVnode=i,t.$vnode=i,t._vnode&&(t._vnode.parent=i);if(t.$options._renderChildren=o,t.$attrs=i.data.attrs||e,t.$listeners=r||e,n&&t.$options.props){be(!1);for(var c=t._props,u=t.$options._propKeys||[],l=0;l<u.length;l++){var f=u[l],p=t.$options.props;c[f]=Me(f,p,n,t)}be(!0),t.$options.propsData=n}r=r||e;var d=t.$options._parentListeners;t.$options._parentListeners=r,Jt(t,r,d),s&&(t.$slots=ct(o,i.context),t.$forceUpdate())}(n.componentInstance=t.componentInstance,r.propsData,r.listeners,n,r.children)},insert:function(e){var t,n=e.context,r=e.componentInstance;r._isMounted||(r._isMounted=!0,Xt(r,"mounted")),e.data.keepAlive&&(n._isMounted?((t=r)._inactive=!1,Qt.push(t)):Gt(r,!0))},destroy:function(e){var t=e.componentInstance;t._isDestroyed||(e.data.keepAlive?function e(t,n){if(n&&(t._directInactive=!0,Zt(t)))return;if(!t._inactive){t._inactive=!0;for(var r=0;r<t.$children.length;r++)e(t.$children[r]);Xt(t,"deactivated")}}(t,!0):t.$destroy())}},Nt=Object.keys(jt);function Lt(i,a,s,c,l){if(!t(i)){var f=s.$options._base;if(o(i)&&(i=f.extend(i)),"function"==typeof i){var p;if(t(i.cid)&&void 0===(i=function(e,i){if(r(e.error)&&n(e.errorComp))return e.errorComp;if(n(e.resolved))return e.resolved;if(r(e.loading)&&n(e.loadingComp))return e.loadingComp;var a=Ft;if(!n(e.owners)){var s=e.owners=[a],c=!0,l=function(e){for(var t=0,n=s.length;t<n;t++)s[t].$forceUpdate();e&&(s.length=0)},f=L(function(t){e.resolved=Ht(t,i),c?s.length=0:l(!0)}),p=L(function(t){n(e.errorComp)&&(e.error=!0,l(!0))}),d=e(f,p);return o(d)&&(u(d)?t(e.resolved)&&d.then(f,p):u(d.component)&&(d.component.then(f,p),n(d.error)&&(e.errorComp=Ht(d.error,i)),n(d.loading)&&(e.loadingComp=Ht(d.loading,i),0===d.delay?e.loading=!0:setTimeout(function(){t(e.resolved)&&t(e.error)&&(e.loading=!0,l(!1))},d.delay||200)),n(d.timeout)&&setTimeout(function(){t(e.resolved)&&p(null)},d.timeout))),c=!1,e.loading?e.loadingComp:e.resolved}e.owners.push(a)}(p=i,f)))return function(e,t,n,r,i){var o=de();return o.asyncFactory=e,o.asyncMeta={data:t,context:n,children:r,tag:i},o}(p,a,s,c,l);a=a||{},_n(i),n(a.model)&&function(e,t){var r=e.model&&e.model.prop||"value",i=e.model&&e.model.event||"input";(t.attrs||(t.attrs={}))[r]=t.model.value;var o=t.on||(t.on={}),a=o[i],s=t.model.callback;n(a)?(Array.isArray(a)?-1===a.indexOf(s):a!==s)&&(o[i]=[s].concat(a)):o[i]=s}(i.options,a);var d=function(e,r,i){var o=r.options.props;if(!t(o)){var a={},s=e.attrs,c=e.props;if(n(s)||n(c))for(var u in o){var l=x(u);it(a,c,u,l,!0)||it(a,s,u,l,!1)}return a}}(a,i);if(r(i.options.functional))return function(t,r,i,o,a){var s=t.options,c={},u=s.props;if(n(u))for(var l in u)c[l]=Me(l,u,r||e);else n(i.attrs)&&Et(c,i.attrs),n(i.props)&&Et(c,i.props);var f=new St(i,c,a,o,t),p=s.render.call(null,f._c,f);if(p instanceof fe)return Tt(p,i,f.parent,s);if(Array.isArray(p)){for(var d=ot(p)||[],v=new Array(d.length),h=0;h<d.length;h++)v[h]=Tt(d[h],i,f.parent,s);return v}}(i,d,a,s,c);var v=a.on;if(a.on=a.nativeOn,r(i.options.abstract)){var h=a.slot;a={},h&&(a.slot=h)}!function(e){for(var t=e.hook||(e.hook={}),n=0;n<Nt.length;n++){var r=Nt[n],i=t[r],o=jt[r];i===o||i&&i._merged||(t[r]=i?Mt(o,i):o)}}(a);var m=i.options.name||l;return new fe("vue-component-"+i.cid+(m?"-"+m:""),a,void 0,void 0,void 0,s,{Ctor:i,propsData:d,listeners:v,tag:l,children:c},p)}}}function Mt(e,t){var n=function(n,r){e(n,r),t(n,r)};return n._merged=!0,n}var It=1,Dt=2;function Pt(e,a,s,c,u,l){return(Array.isArray(s)||i(s))&&(u=c,c=s,s=void 0),r(l)&&(u=Dt),function(e,i,a,s,c){if(n(a)&&n(a.__ob__))return de();n(a)&&n(a.is)&&(i=a.is);if(!i)return de();Array.isArray(s)&&"function"==typeof s[0]&&((a=a||{}).scopedSlots={default:s[0]},s.length=0);c===Dt?s=ot(s):c===It&&(s=function(e){for(var t=0;t<e.length;t++)if(Array.isArray(e[t]))return Array.prototype.concat.apply([],e);return e}(s));var u,l;if("string"==typeof i){var f;l=e.$vnode&&e.$vnode.ns||P.getTagNamespace(i),u=P.isReservedTag(i)?new fe(P.parsePlatformTagName(i),a,s,void 0,void 0,e):a&&a.pre||!n(f=Le(e.$options,"components",i))?new fe(i,a,s,void 0,void 0,e):Lt(f,a,e,s,i)}else u=Lt(i,a,e,s);return Array.isArray(u)?u:n(u)?(n(l)&&function e(i,o,a){i.ns=o;"foreignObject"===i.tag&&(o=void 0,a=!0);if(n(i.children))for(var s=0,c=i.children.length;s<c;s++){var u=i.children[s];n(u.tag)&&(t(u.ns)||r(a)&&"svg"!==u.tag)&&e(u,o,a)}}(u,l),n(a)&&function(e){o(e.style)&&Qe(e.style);o(e.class)&&Qe(e.class)}(a),u):de()}(e,a,s,c,u)}var Rt,Ft=null;function Ht(e,t){return(e.__esModule||ie&&"Module"===e[Symbol.toStringTag])&&(e=e.default),o(e)?t.extend(e):e}function Bt(e){return e.isComment&&e.asyncFactory}function Ut(e){if(Array.isArray(e))for(var t=0;t<e.length;t++){var r=e[t];if(n(r)&&(n(r.componentOptions)||Bt(r)))return r}}function zt(e,t){Rt.$on(e,t)}function Vt(e,t){Rt.$off(e,t)}function Kt(e,t){var n=Rt;return function r(){null!==t.apply(null,arguments)&&n.$off(e,r)}}function Jt(e,t,n){Rt=e,nt(t,n||{},zt,Vt,Kt,e),Rt=void 0}var qt=null;function Wt(e){var t=qt;return qt=e,function(){qt=t}}function Zt(e){for(;e&&(e=e.$parent);)if(e._inactive)return!0;return!1}function Gt(e,t){if(t){if(e._directInactive=!1,Zt(e))return}else if(e._directInactive)return;if(e._inactive||null===e._inactive){e._inactive=!1;for(var n=0;n<e.$children.length;n++)Gt(e.$children[n]);Xt(e,"activated")}}function Xt(e,t){ue();var n=e.$options[t],r=t+" hook";if(n)for(var i=0,o=n.length;i<o;i++)Fe(n[i],e,null,e,r);e._hasHookEvent&&e.$emit("hook:"+t),le()}var Yt=[],Qt=[],en={},tn=!1,nn=!1,rn=0;var on=0,an=Date.now;function sn(){var e,t;for(on=an(),nn=!0,Yt.sort(function(e,t){return e.id-t.id}),rn=0;rn<Yt.length;rn++)(e=Yt[rn]).before&&e.before(),t=e.id,en[t]=null,e.run();var n=Qt.slice(),r=Yt.slice();rn=Yt.length=Qt.length=0,en={},tn=nn=!1,function(e){for(var t=0;t<e.length;t++)e[t]._inactive=!0,Gt(e[t],!0)}(n),function(e){var t=e.length;for(;t--;){var n=e[t],r=n.vm;r._watcher===n&&r._isMounted&&!r._isDestroyed&&Xt(r,"updated")}}(r),te&&P.devtools&&te.emit("flush")}U&&an()>document.createEvent("Event").timeStamp&&(an=function(){return performance.now()});var cn=0,un=function(e,t,n,r,i){this.vm=e,i&&(e._watcher=this),e._watchers.push(this),r?(this.deep=!!r.deep,this.user=!!r.user,this.lazy=!!r.lazy,this.sync=!!r.sync,this.before=r.before):this.deep=this.user=this.lazy=this.sync=!1,this.cb=n,this.id=++cn,this.active=!0,this.dirty=this.lazy,this.deps=[],this.newDeps=[],this.depIds=new re,this.newDepIds=new re,this.expression="","function"==typeof t?this.getter=t:(this.getter=function(e){if(!F.test(e)){var t=e.split(".");return function(e){for(var n=0;n<t.length;n++){if(!e)return;e=e[t[n]]}return e}}}(t),this.getter||(this.getter=S)),this.value=this.lazy?void 0:this.get()};un.prototype.get=function(){var e;ue(this);var t=this.vm;try{e=this.getter.call(t,t)}catch(e){if(!this.user)throw e;Re(e,t,'getter for watcher "'+this.expression+'"')}finally{this.deep&&Qe(e),le(),this.cleanupDeps()}return e},un.prototype.addDep=function(e){var t=e.id;this.newDepIds.has(t)||(this.newDepIds.add(t),this.newDeps.push(e),this.depIds.has(t)||e.addSub(this))},un.prototype.cleanupDeps=function(){for(var e=this.deps.length;e--;){var t=this.deps[e];this.newDepIds.has(t.id)||t.removeSub(this)}var n=this.depIds;this.depIds=this.newDepIds,this.newDepIds=n,this.newDepIds.clear(),n=this.deps,this.deps=this.newDeps,this.newDeps=n,this.newDeps.length=0},un.prototype.update=function(){this.lazy?this.dirty=!0:this.sync?this.run():function(e){var t=e.id;if(null==en[t]){if(en[t]=!0,nn){for(var n=Yt.length-1;n>rn&&Yt[n].id>e.id;)n--;Yt.splice(n+1,0,e)}else Yt.push(e);tn||(tn=!0,Xe(sn))}}(this)},un.prototype.run=function(){if(this.active){var e=this.get();if(e!==this.value||o(e)||this.deep){var t=this.value;if(this.value=e,this.user)try{this.cb.call(this.vm,e,t)}catch(e){Re(e,this.vm,'callback for watcher "'+this.expression+'"')}else this.cb.call(this.vm,e,t)}}},un.prototype.evaluate=function(){this.value=this.get(),this.dirty=!1},un.prototype.depend=function(){for(var e=this.deps.length;e--;)this.deps[e].depend()},un.prototype.teardown=function(){if(this.active){this.vm._isBeingDestroyed||h(this.vm._watchers,this);for(var e=this.deps.length;e--;)this.deps[e].removeSub(this);this.active=!1}};var ln={enumerable:!0,configurable:!0,get:S,set:S};function fn(e,t,n){ln.get=function(){return this[t][n]},ln.set=function(e){this[t][n]=e},Object.defineProperty(e,n,ln)}function pn(e){e._watchers=[];var t=e.$options;t.props&&function(e,t){var n=e.$options.propsData||{},r=e._props={},i=e.$options._propKeys=[];e.$parent&&be(!1);var o=function(o){i.push(o);var a=Me(o,t,n,e);xe(r,o,a),o in e||fn(e,"_props",o)};for(var a in t)o(a);be(!0)}(e,t.props),t.methods&&function(e,t){e.$options.props;for(var n in t)e[n]="function"!=typeof t[n]?S:C(t[n],e)}(e,t.methods),t.data?function(e){var t=e.$options.data;s(t=e._data="function"==typeof t?function(e,t){ue();try{return e.call(t,t)}catch(e){return Re(e,t,"data()"),{}}finally{le()}}(t,e):t||{})||(t={});var n=Object.keys(t),r=e.$options.props,i=(e.$options.methods,n.length);for(;i--;){var o=n[i];r&&y(r,o)||(a=void 0,36!==(a=(o+"").charCodeAt(0))&&95!==a&&fn(e,"_data",o))}var a;we(t,!0)}(e):we(e._data={},!0),t.computed&&function(e,t){var n=e._computedWatchers=Object.create(null),r=ee();for(var i in t){var o=t[i],a="function"==typeof o?o:o.get;r||(n[i]=new un(e,a||S,S,dn)),i in e||vn(e,i,o)}}(e,t.computed),t.watch&&t.watch!==X&&function(e,t){for(var n in t){var r=t[n];if(Array.isArray(r))for(var i=0;i<r.length;i++)yn(e,n,r[i]);else yn(e,n,r)}}(e,t.watch)}var dn={lazy:!0};function vn(e,t,n){var r=!ee();"function"==typeof n?(ln.get=r?hn(t):mn(n),ln.set=S):(ln.get=n.get?r&&!1!==n.cache?hn(t):mn(n.get):S,ln.set=n.set||S),Object.defineProperty(e,t,ln)}function hn(e){return function(){var t=this._computedWatchers&&this._computedWatchers[e];if(t)return t.dirty&&t.evaluate(),se.target&&t.depend(),t.value}}function mn(e){return function(){return e.call(this,this)}}function yn(e,t,n,r){return s(n)&&(r=n,n=n.handler),"string"==typeof n&&(n=e[n]),e.$watch(t,n,r)}var gn=0;function _n(e){var t=e.options;if(e.super){var n=_n(e.super);if(n!==e.superOptions){e.superOptions=n;var r=function(e){var t,n=e.options,r=e.sealedOptions;for(var i in n)n[i]!==r[i]&&(t||(t={}),t[i]=n[i]);return t}(e);r&&k(e.extendOptions,r),(t=e.options=Ne(n,e.extendOptions)).name&&(t.components[t.name]=e)}}return t}function bn(e){this._init(e)}function $n(e){e.cid=0;var t=1;e.extend=function(e){e=e||{};var n=this,r=n.cid,i=e._Ctor||(e._Ctor={});if(i[r])return i[r];var o=e.name||n.options.name,a=function(e){this._init(e)};return(a.prototype=Object.create(n.prototype)).constructor=a,a.cid=t++,a.options=Ne(n.options,e),a.super=n,a.options.props&&function(e){var t=e.options.props;for(var n in t)fn(e.prototype,"_props",n)}(a),a.options.computed&&function(e){var t=e.options.computed;for(var n in t)vn(e.prototype,n,t[n])}(a),a.extend=n.extend,a.mixin=n.mixin,a.use=n.use,I.forEach(function(e){a[e]=n[e]}),o&&(a.options.components[o]=a),a.superOptions=n.options,a.extendOptions=e,a.sealedOptions=k({},a.options),i[r]=a,a}}function wn(e){return e&&(e.Ctor.options.name||e.tag)}function xn(e,t){return Array.isArray(e)?e.indexOf(t)>-1:"string"==typeof e?e.split(",").indexOf(t)>-1:(n=e,"[object RegExp]"===a.call(n)&&e.test(t));var n}function Cn(e,t){var n=e.cache,r=e.keys,i=e._vnode;for(var o in n){var a=n[o];if(a){var s=wn(a.componentOptions);s&&!t(s)&&An(n,o,r,i)}}}function An(e,t,n,r){var i=e[t];!i||r&&i.tag===r.tag||i.componentInstance.$destroy(),e[t]=null,h(n,t)}!function(t){t.prototype._init=function(t){var n=this;n._uid=gn++,n._isVue=!0,t&&t._isComponent?function(e,t){var n=e.$options=Object.create(e.constructor.options),r=t._parentVnode;n.parent=t.parent,n._parentVnode=r;var i=r.componentOptions;n.propsData=i.propsData,n._parentListeners=i.listeners,n._renderChildren=i.children,n._componentTag=i.tag,t.render&&(n.render=t.render,n.staticRenderFns=t.staticRenderFns)}(n,t):n.$options=Ne(_n(n.constructor),t||{},n),n._renderProxy=n,n._self=n,function(e){var t=e.$options,n=t.parent;if(n&&!t.abstract){for(;n.$options.abstract&&n.$parent;)n=n.$parent;n.$children.push(e)}e.$parent=n,e.$root=n?n.$root:e,e.$children=[],e.$refs={},e._watcher=null,e._inactive=null,e._directInactive=!1,e._isMounted=!1,e._isDestroyed=!1,e._isBeingDestroyed=!1}(n),function(e){e._events=Object.create(null),e._hasHookEvent=!1;var t=e.$options._parentListeners;t&&Jt(e,t)}(n),function(t){t._vnode=null,t._staticTrees=null;var n=t.$options,r=t.$vnode=n._parentVnode,i=r&&r.context;t.$slots=ct(n._renderChildren,i),t.$scopedSlots=e,t._c=function(e,n,r,i){return Pt(t,e,n,r,i,!1)},t.$createElement=function(e,n,r,i){return Pt(t,e,n,r,i,!0)};var o=r&&r.data;xe(t,"$attrs",o&&o.attrs||e,null,!0),xe(t,"$listeners",n._parentListeners||e,null,!0)}(n),Xt(n,"beforeCreate"),function(e){var t=st(e.$options.inject,e);t&&(be(!1),Object.keys(t).forEach(function(n){xe(e,n,t[n])}),be(!0))}(n),pn(n),function(e){var t=e.$options.provide;t&&(e._provided="function"==typeof t?t.call(e):t)}(n),Xt(n,"created"),n.$options.el&&n.$mount(n.$options.el)}}(bn),function(e){var t={get:function(){return this._data}},n={get:function(){return this._props}};Object.defineProperty(e.prototype,"$data",t),Object.defineProperty(e.prototype,"$props",n),e.prototype.$set=Ce,e.prototype.$delete=Ae,e.prototype.$watch=function(e,t,n){if(s(t))return yn(this,e,t,n);(n=n||{}).user=!0;var r=new un(this,e,t,n);if(n.immediate)try{t.call(this,r.value)}catch(e){Re(e,this,'callback for immediate watcher "'+r.expression+'"')}return function(){r.teardown()}}}(bn),function(e){var t=/^hook:/;e.prototype.$on=function(e,n){var r=this;if(Array.isArray(e))for(var i=0,o=e.length;i<o;i++)r.$on(e[i],n);else(r._events[e]||(r._events[e]=[])).push(n),t.test(e)&&(r._hasHookEvent=!0);return r},e.prototype.$once=function(e,t){var n=this;function r(){n.$off(e,r),t.apply(n,arguments)}return r.fn=t,n.$on(e,r),n},e.prototype.$off=function(e,t){var n=this;if(!arguments.length)return n._events=Object.create(null),n;if(Array.isArray(e)){for(var r=0,i=e.length;r<i;r++)n.$off(e[r],t);return n}var o,a=n._events[e];if(!a)return n;if(!t)return n._events[e]=null,n;for(var s=a.length;s--;)if((o=a[s])===t||o.fn===t){a.splice(s,1);break}return n},e.prototype.$emit=function(e){var t=this._events[e];if(t){t=t.length>1?A(t):t;for(var n=A(arguments,1),r='event handler for "'+e+'"',i=0,o=t.length;i<o;i++)Fe(t[i],this,n,this,r)}return this}}(bn),function(e){e.prototype._update=function(e,t){var n=this,r=n.$el,i=n._vnode,o=Wt(n);n._vnode=e,n.$el=i?n.__patch__(i,e):n.__patch__(n.$el,e,t,!1),o(),r&&(r.__vue__=null),n.$el&&(n.$el.__vue__=n),n.$vnode&&n.$parent&&n.$vnode===n.$parent._vnode&&(n.$parent.$el=n.$el)},e.prototype.$forceUpdate=function(){this._watcher&&this._watcher.update()},e.prototype.$destroy=function(){var e=this;if(!e._isBeingDestroyed){Xt(e,"beforeDestroy"),e._isBeingDestroyed=!0;var t=e.$parent;!t||t._isBeingDestroyed||e.$options.abstract||h(t.$children,e),e._watcher&&e._watcher.teardown();for(var n=e._watchers.length;n--;)e._watchers[n].teardown();e._data.__ob__&&e._data.__ob__.vmCount--,e._isDestroyed=!0,e.__patch__(e._vnode,null),Xt(e,"destroyed"),e.$off(),e.$el&&(e.$el.__vue__=null),e.$vnode&&(e.$vnode.parent=null)}}}(bn),function(e){Ot(e.prototype),e.prototype.$nextTick=function(e){return Xe(e,this)},e.prototype._render=function(){var e,t=this,n=t.$options,r=n.render,i=n._parentVnode;i&&(t.$scopedSlots=lt(i.data.scopedSlots,t.$slots,t.$scopedSlots)),t.$vnode=i;try{Ft=t,e=r.call(t._renderProxy,t.$createElement)}catch(n){Re(n,t,"render"),e=t._vnode}finally{Ft=null}return Array.isArray(e)&&1===e.length&&(e=e[0]),e instanceof fe||(e=de()),e.parent=i,e}}(bn);var kn=[String,RegExp,Array],On={KeepAlive:{name:"keep-alive",abstract:!0,props:{include:kn,exclude:kn,max:[String,Number]},created:function(){this.cache=Object.create(null),this.keys=[]},destroyed:function(){for(var e in this.cache)An(this.cache,e,this.keys)},mounted:function(){var e=this;this.$watch("include",function(t){Cn(e,function(e){return xn(t,e)})}),this.$watch("exclude",function(t){Cn(e,function(e){return!xn(t,e)})})},render:function(){var e=this.$slots.default,t=Ut(e),n=t&&t.componentOptions;if(n){var r=wn(n),i=this.include,o=this.exclude;if(i&&(!r||!xn(i,r))||o&&r&&xn(o,r))return t;var a=this.cache,s=this.keys,c=null==t.key?n.Ctor.cid+(n.tag?"::"+n.tag:""):t.key;a[c]?(t.componentInstance=a[c].componentInstance,h(s,c),s.push(c)):(a[c]=t,s.push(c),this.max&&s.length>parseInt(this.max)&&An(a,s[0],s,this._vnode)),t.data.keepAlive=!0}return t||e&&e[0]}}};!function(e){var t={get:function(){return P}};Object.defineProperty(e,"config",t),e.util={warn:oe,extend:k,mergeOptions:Ne,defineReactive:xe},e.set=Ce,e.delete=Ae,e.nextTick=Xe,e.observable=function(e){return we(e),e},e.options=Object.create(null),I.forEach(function(t){e.options[t+"s"]=Object.create(null)}),e.options._base=e,k(e.options.components,On),function(e){e.use=function(e){var t=this._installedPlugins||(this._installedPlugins=[]);if(t.indexOf(e)>-1)return this;var n=A(arguments,1);return n.unshift(this),"function"==typeof e.install?e.install.apply(e,n):"function"==typeof e&&e.apply(null,n),t.push(e),this}}(e),function(e){e.mixin=function(e){return this.options=Ne(this.options,e),this}}(e),$n(e),function(e){I.forEach(function(t){e[t]=function(e,n){return n?("component"===t&&s(n)&&(n.name=n.name||e,n=this.options._base.extend(n)),"directive"===t&&"function"==typeof n&&(n={bind:n,update:n}),this.options[t+"s"][e]=n,n):this.options[t+"s"][e]}})}(e)}(bn),Object.defineProperty(bn.prototype,"$isServer",{get:ee}),Object.defineProperty(bn.prototype,"$ssrContext",{get:function(){return this.$vnode&&this.$vnode.ssrContext}}),Object.defineProperty(bn,"FunctionalRenderContext",{value:St}),bn.version="2.6.6";var Sn=p("style,class"),Tn=p("input,textarea,option,select,progress"),En=function(e,t,n){return"value"===n&&Tn(e)&&"button"!==t||"selected"===n&&"option"===e||"checked"===n&&"input"===e||"muted"===n&&"video"===e},jn=p("contenteditable,draggable,spellcheck"),Nn=p("events,caret,typing,plaintext-only"),Ln=function(e,t){return Rn(t)||"false"===t?"false":"contenteditable"===e&&Nn(t)?t:"true"},Mn=p("allowfullscreen,async,autofocus,autoplay,checked,compact,controls,declare,default,defaultchecked,defaultmuted,defaultselected,defer,disabled,enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,required,reversed,scoped,seamless,selected,sortable,translate,truespeed,typemustmatch,visible"),In="http://www.w3.org/1999/xlink",Dn=function(e){return":"===e.charAt(5)&&"xlink"===e.slice(0,5)},Pn=function(e){return Dn(e)?e.slice(6,e.length):""},Rn=function(e){return null==e||!1===e};function Fn(e){for(var t=e.data,r=e,i=e;n(i.componentInstance);)(i=i.componentInstance._vnode)&&i.data&&(t=Hn(i.data,t));for(;n(r=r.parent);)r&&r.data&&(t=Hn(t,r.data));return function(e,t){if(n(e)||n(t))return Bn(e,Un(t));return""}(t.staticClass,t.class)}function Hn(e,t){return{staticClass:Bn(e.staticClass,t.staticClass),class:n(e.class)?[e.class,t.class]:t.class}}function Bn(e,t){return e?t?e+" "+t:e:t||""}function Un(e){return Array.isArray(e)?function(e){for(var t,r="",i=0,o=e.length;i<o;i++)n(t=Un(e[i]))&&""!==t&&(r&&(r+=" "),r+=t);return r}(e):o(e)?function(e){var t="";for(var n in e)e[n]&&(t&&(t+=" "),t+=n);return t}(e):"string"==typeof e?e:""}var zn={svg:"http://www.w3.org/2000/svg",math:"http://www.w3.org/1998/Math/MathML"},Vn=p("html,body,base,head,link,meta,style,title,address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,s,samp,small,span,strong,sub,sup,time,u,var,wbr,area,audio,map,track,video,embed,object,param,source,canvas,script,noscript,del,ins,caption,col,colgroup,table,thead,tbody,td,th,tr,button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,output,progress,select,textarea,details,dialog,menu,menuitem,summary,content,element,shadow,template,blockquote,iframe,tfoot"),Kn=p("svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view",!0),Jn=function(e){return Vn(e)||Kn(e)};function qn(e){return Kn(e)?"svg":"math"===e?"math":void 0}var Wn=Object.create(null);var Zn=p("text,number,password,search,email,tel,url");function Gn(e){if("string"==typeof e){var t=document.querySelector(e);return t||document.createElement("div")}return e}var Xn=Object.freeze({createElement:function(e,t){var n=document.createElement(e);return"select"!==e?n:(t.data&&t.data.attrs&&void 0!==t.data.attrs.multiple&&n.setAttribute("multiple","multiple"),n)},createElementNS:function(e,t){return document.createElementNS(zn[e],t)},createTextNode:function(e){return document.createTextNode(e)},createComment:function(e){return document.createComment(e)},insertBefore:function(e,t,n){e.insertBefore(t,n)},removeChild:function(e,t){e.removeChild(t)},appendChild:function(e,t){e.appendChild(t)},parentNode:function(e){return e.parentNode},nextSibling:function(e){return e.nextSibling},tagName:function(e){return e.tagName},setTextContent:function(e,t){e.textContent=t},setStyleScope:function(e,t){e.setAttribute(t,"")}}),Yn={create:function(e,t){Qn(t)},update:function(e,t){e.data.ref!==t.data.ref&&(Qn(e,!0),Qn(t))},destroy:function(e){Qn(e,!0)}};function Qn(e,t){var r=e.data.ref;if(n(r)){var i=e.context,o=e.componentInstance||e.elm,a=i.$refs;t?Array.isArray(a[r])?h(a[r],o):a[r]===o&&(a[r]=void 0):e.data.refInFor?Array.isArray(a[r])?a[r].indexOf(o)<0&&a[r].push(o):a[r]=[o]:a[r]=o}}var er=new fe("",{},[]),tr=["create","activate","update","remove","destroy"];function nr(e,i){return e.key===i.key&&(e.tag===i.tag&&e.isComment===i.isComment&&n(e.data)===n(i.data)&&function(e,t){if("input"!==e.tag)return!0;var r,i=n(r=e.data)&&n(r=r.attrs)&&r.type,o=n(r=t.data)&&n(r=r.attrs)&&r.type;return i===o||Zn(i)&&Zn(o)}(e,i)||r(e.isAsyncPlaceholder)&&e.asyncFactory===i.asyncFactory&&t(i.asyncFactory.error))}function rr(e,t,r){var i,o,a={};for(i=t;i<=r;++i)n(o=e[i].key)&&(a[o]=i);return a}var ir={create:or,update:or,destroy:function(e){or(e,er)}};function or(e,t){(e.data.directives||t.data.directives)&&function(e,t){var n,r,i,o=e===er,a=t===er,s=sr(e.data.directives,e.context),c=sr(t.data.directives,t.context),u=[],l=[];for(n in c)r=s[n],i=c[n],r?(i.oldValue=r.value,i.oldArg=r.arg,ur(i,"update",t,e),i.def&&i.def.componentUpdated&&l.push(i)):(ur(i,"bind",t,e),i.def&&i.def.inserted&&u.push(i));if(u.length){var f=function(){for(var n=0;n<u.length;n++)ur(u[n],"inserted",t,e)};o?rt(t,"insert",f):f()}l.length&&rt(t,"postpatch",function(){for(var n=0;n<l.length;n++)ur(l[n],"componentUpdated",t,e)});if(!o)for(n in s)c[n]||ur(s[n],"unbind",e,e,a)}(e,t)}var ar=Object.create(null);function sr(e,t){var n,r,i=Object.create(null);if(!e)return i;for(n=0;n<e.length;n++)(r=e[n]).modifiers||(r.modifiers=ar),i[cr(r)]=r,r.def=Le(t.$options,"directives",r.name);return i}function cr(e){return e.rawName||e.name+"."+Object.keys(e.modifiers||{}).join(".")}function ur(e,t,n,r,i){var o=e.def&&e.def[t];if(o)try{o(n.elm,e,n,r,i)}catch(r){Re(r,n.context,"directive "+e.name+" "+t+" hook")}}var lr=[Yn,ir];function fr(e,r){var i=r.componentOptions;if(!(n(i)&&!1===i.Ctor.options.inheritAttrs||t(e.data.attrs)&&t(r.data.attrs))){var o,a,s=r.elm,c=e.data.attrs||{},u=r.data.attrs||{};for(o in n(u.__ob__)&&(u=r.data.attrs=k({},u)),u)a=u[o],c[o]!==a&&pr(s,o,a);for(o in(J||W)&&u.value!==c.value&&pr(s,"value",u.value),c)t(u[o])&&(Dn(o)?s.removeAttributeNS(In,Pn(o)):jn(o)||s.removeAttribute(o))}}function pr(e,t,n){e.tagName.indexOf("-")>-1?dr(e,t,n):Mn(t)?Rn(n)?e.removeAttribute(t):(n="allowfullscreen"===t&&"EMBED"===e.tagName?"true":t,e.setAttribute(t,n)):jn(t)?e.setAttribute(t,Ln(t,n)):Dn(t)?Rn(n)?e.removeAttributeNS(In,Pn(t)):e.setAttributeNS(In,t,n):dr(e,t,n)}function dr(e,t,n){if(Rn(n))e.removeAttribute(t);else{if(J&&!q&&"TEXTAREA"===e.tagName&&"placeholder"===t&&""!==n&&!e.__ieph){var r=function(t){t.stopImmediatePropagation(),e.removeEventListener("input",r)};e.addEventListener("input",r),e.__ieph=!0}e.setAttribute(t,n)}}var vr={create:fr,update:fr};function hr(e,r){var i=r.elm,o=r.data,a=e.data;if(!(t(o.staticClass)&&t(o.class)&&(t(a)||t(a.staticClass)&&t(a.class)))){var s=Fn(r),c=i._transitionClasses;n(c)&&(s=Bn(s,Un(c))),s!==i._prevClass&&(i.setAttribute("class",s),i._prevClass=s)}}var mr,yr,gr,_r,br,$r,wr={create:hr,update:hr},xr=/[\w).+\-_$\]]/;function Cr(e){var t,n,r,i,o,a=!1,s=!1,c=!1,u=!1,l=0,f=0,p=0,d=0;for(r=0;r<e.length;r++)if(n=t,t=e.charCodeAt(r),a)39===t&&92!==n&&(a=!1);else if(s)34===t&&92!==n&&(s=!1);else if(c)96===t&&92!==n&&(c=!1);else if(u)47===t&&92!==n&&(u=!1);else if(124!==t||124===e.charCodeAt(r+1)||124===e.charCodeAt(r-1)||l||f||p){switch(t){case 34:s=!0;break;case 39:a=!0;break;case 96:c=!0;break;case 40:p++;break;case 41:p--;break;case 91:f++;break;case 93:f--;break;case 123:l++;break;case 125:l--}if(47===t){for(var v=r-1,h=void 0;v>=0&&" "===(h=e.charAt(v));v--);h&&xr.test(h)||(u=!0)}}else void 0===i?(d=r+1,i=e.slice(0,r).trim()):m();function m(){(o||(o=[])).push(e.slice(d,r).trim()),d=r+1}if(void 0===i?i=e.slice(0,r).trim():0!==d&&m(),o)for(r=0;r<o.length;r++)i=Ar(i,o[r]);return i}function Ar(e,t){var n=t.indexOf("(");if(n<0)return'_f("'+t+'")('+e+")";var r=t.slice(0,n),i=t.slice(n+1);return'_f("'+r+'")('+e+(")"!==i?","+i:i)}function kr(e,t){console.error("[Vue compiler]: "+e)}function Or(e,t){return e?e.map(function(e){return e[t]}).filter(function(e){return e}):[]}function Sr(e,t,n,r,i){(e.props||(e.props=[])).push(Pr({name:t,value:n,dynamic:i},r)),e.plain=!1}function Tr(e,t,n,r,i){(i?e.dynamicAttrs||(e.dynamicAttrs=[]):e.attrs||(e.attrs=[])).push(Pr({name:t,value:n,dynamic:i},r)),e.plain=!1}function Er(e,t,n,r){e.attrsMap[t]=n,e.attrsList.push(Pr({name:t,value:n},r))}function jr(e,t,n,r,i,o,a,s){(e.directives||(e.directives=[])).push(Pr({name:t,rawName:n,value:r,arg:i,isDynamicArg:o,modifiers:a},s)),e.plain=!1}function Nr(e,t,n){return n?"_p("+t+',"'+e+'")':e+t}function Lr(t,n,r,i,o,a,s,c){var u;(i=i||e).right?c?n="("+n+")==='click'?'contextmenu':("+n+")":"click"===n&&(n="contextmenu",delete i.right):i.middle&&(c?n="("+n+")==='click'?'mouseup':("+n+")":"click"===n&&(n="mouseup")),i.capture&&(delete i.capture,n=Nr("!",n,c)),i.once&&(delete i.once,n=Nr("~",n,c)),i.passive&&(delete i.passive,n=Nr("&",n,c)),i.native?(delete i.native,u=t.nativeEvents||(t.nativeEvents={})):u=t.events||(t.events={});var l=Pr({value:r.trim(),dynamic:c},s);i!==e&&(l.modifiers=i);var f=u[n];Array.isArray(f)?o?f.unshift(l):f.push(l):u[n]=f?o?[l,f]:[f,l]:l,t.plain=!1}function Mr(e,t,n){var r=Ir(e,":"+t)||Ir(e,"v-bind:"+t);if(null!=r)return Cr(r);if(!1!==n){var i=Ir(e,t);if(null!=i)return JSON.stringify(i)}}function Ir(e,t,n){var r;if(null!=(r=e.attrsMap[t]))for(var i=e.attrsList,o=0,a=i.length;o<a;o++)if(i[o].name===t){i.splice(o,1);break}return n&&delete e.attrsMap[t],r}function Dr(e,t){for(var n=e.attrsList,r=0,i=n.length;r<i;r++){var o=n[r];if(t.test(o.name))return n.splice(r,1),o}}function Pr(e,t){return t&&(null!=t.start&&(e.start=t.start),null!=t.end&&(e.end=t.end)),e}function Rr(e,t,n){var r=n||{},i=r.number,o="$$v";r.trim&&(o="(typeof $$v === 'string'? $$v.trim(): $$v)"),i&&(o="_n("+o+")");var a=Fr(t,o);e.model={value:"("+t+")",expression:JSON.stringify(t),callback:"function ($$v) {"+a+"}"}}function Fr(e,t){var n=function(e){if(e=e.trim(),mr=e.length,e.indexOf("[")<0||e.lastIndexOf("]")<mr-1)return(_r=e.lastIndexOf("."))>-1?{exp:e.slice(0,_r),key:'"'+e.slice(_r+1)+'"'}:{exp:e,key:null};yr=e,_r=br=$r=0;for(;!Br();)Ur(gr=Hr())?Vr(gr):91===gr&&zr(gr);return{exp:e.slice(0,br),key:e.slice(br+1,$r)}}(e);return null===n.key?e+"="+t:"$set("+n.exp+", "+n.key+", "+t+")"}function Hr(){return yr.charCodeAt(++_r)}function Br(){return _r>=mr}function Ur(e){return 34===e||39===e}function zr(e){var t=1;for(br=_r;!Br();)if(Ur(e=Hr()))Vr(e);else if(91===e&&t++,93===e&&t--,0===t){$r=_r;break}}function Vr(e){for(var t=e;!Br()&&(e=Hr())!==t;);}var Kr,Jr="__r",qr="__c";function Wr(e,t,n){var r=Kr;return function i(){null!==t.apply(null,arguments)&&Xr(e,i,n,r)}}var Zr=ze&&!(G&&Number(G[1])<=53);function Gr(e,t,n,r){if(Zr){var i=on,o=t;t=o._wrapper=function(e){if(e.target===e.currentTarget||e.timeStamp>=i||0===e.timeStamp||e.target.ownerDocument!==document)return o.apply(this,arguments)}}Kr.addEventListener(e,t,Y?{capture:n,passive:r}:n)}function Xr(e,t,n,r){(r||Kr).removeEventListener(e,t._wrapper||t,n)}function Yr(e,r){if(!t(e.data.on)||!t(r.data.on)){var i=r.data.on||{},o=e.data.on||{};Kr=r.elm,function(e){if(n(e[Jr])){var t=J?"change":"input";e[t]=[].concat(e[Jr],e[t]||[]),delete e[Jr]}n(e[qr])&&(e.change=[].concat(e[qr],e.change||[]),delete e[qr])}(i),nt(i,o,Gr,Xr,Wr,r.context),Kr=void 0}}var Qr,ei={create:Yr,update:Yr};function ti(e,r){if(!t(e.data.domProps)||!t(r.data.domProps)){var i,o,a=r.elm,s=e.data.domProps||{},c=r.data.domProps||{};for(i in n(c.__ob__)&&(c=r.data.domProps=k({},c)),s)t(c[i])&&(a[i]="");for(i in c){if(o=c[i],"textContent"===i||"innerHTML"===i){if(r.children&&(r.children.length=0),o===s[i])continue;1===a.childNodes.length&&a.removeChild(a.childNodes[0])}if("value"===i||o!==s[i])if("value"===i){a._value=o;var u=t(o)?"":String(o);ni(a,u)&&(a.value=u)}else if("innerHTML"===i&&Kn(a.tagName)&&t(a.innerHTML)){(Qr=Qr||document.createElement("div")).innerHTML="<svg>"+o+"</svg>";for(var l=Qr.firstChild;a.firstChild;)a.removeChild(a.firstChild);for(;l.firstChild;)a.appendChild(l.firstChild)}else a[i]=o}}}function ni(e,t){return!e.composing&&("OPTION"===e.tagName||function(e,t){var n=!0;try{n=document.activeElement!==e}catch(e){}return n&&e.value!==t}(e,t)||function(e,t){var r=e.value,i=e._vModifiers;if(n(i)){if(i.number)return f(r)!==f(t);if(i.trim)return r.trim()!==t.trim()}return r!==t}(e,t))}var ri={create:ti,update:ti},ii=g(function(e){var t={},n=/:(.+)/;return e.split(/;(?![^(]*\))/g).forEach(function(e){if(e){var r=e.split(n);r.length>1&&(t[r[0].trim()]=r[1].trim())}}),t});function oi(e){var t=ai(e.style);return e.staticStyle?k(e.staticStyle,t):t}function ai(e){return Array.isArray(e)?O(e):"string"==typeof e?ii(e):e}var si,ci=/^--/,ui=/\s*!important$/,li=function(e,t,n){if(ci.test(t))e.style.setProperty(t,n);else if(ui.test(n))e.style.setProperty(x(t),n.replace(ui,""),"important");else{var r=pi(t);if(Array.isArray(n))for(var i=0,o=n.length;i<o;i++)e.style[r]=n[i];else e.style[r]=n}},fi=["Webkit","Moz","ms"],pi=g(function(e){if(si=si||document.createElement("div").style,"filter"!==(e=b(e))&&e in si)return e;for(var t=e.charAt(0).toUpperCase()+e.slice(1),n=0;n<fi.length;n++){var r=fi[n]+t;if(r in si)return r}});function di(e,r){var i=r.data,o=e.data;if(!(t(i.staticStyle)&&t(i.style)&&t(o.staticStyle)&&t(o.style))){var a,s,c=r.elm,u=o.staticStyle,l=o.normalizedStyle||o.style||{},f=u||l,p=ai(r.data.style)||{};r.data.normalizedStyle=n(p.__ob__)?k({},p):p;var d=function(e,t){var n,r={};if(t)for(var i=e;i.componentInstance;)(i=i.componentInstance._vnode)&&i.data&&(n=oi(i.data))&&k(r,n);(n=oi(e.data))&&k(r,n);for(var o=e;o=o.parent;)o.data&&(n=oi(o.data))&&k(r,n);return r}(r,!0);for(s in f)t(d[s])&&li(c,s,"");for(s in d)(a=d[s])!==f[s]&&li(c,s,null==a?"":a)}}var vi={create:di,update:di},hi=/\s+/;function mi(e,t){if(t&&(t=t.trim()))if(e.classList)t.indexOf(" ")>-1?t.split(hi).forEach(function(t){return e.classList.add(t)}):e.classList.add(t);else{var n=" "+(e.getAttribute("class")||"")+" ";n.indexOf(" "+t+" ")<0&&e.setAttribute("class",(n+t).trim())}}function yi(e,t){if(t&&(t=t.trim()))if(e.classList)t.indexOf(" ")>-1?t.split(hi).forEach(function(t){return e.classList.remove(t)}):e.classList.remove(t),e.classList.length||e.removeAttribute("class");else{for(var n=" "+(e.getAttribute("class")||"")+" ",r=" "+t+" ";n.indexOf(r)>=0;)n=n.replace(r," ");(n=n.trim())?e.setAttribute("class",n):e.removeAttribute("class")}}function gi(e){if(e){if("object"==typeof e){var t={};return!1!==e.css&&k(t,_i(e.name||"v")),k(t,e),t}return"string"==typeof e?_i(e):void 0}}var _i=g(function(e){return{enterClass:e+"-enter",enterToClass:e+"-enter-to",enterActiveClass:e+"-enter-active",leaveClass:e+"-leave",leaveToClass:e+"-leave-to",leaveActiveClass:e+"-leave-active"}}),bi=U&&!q,$i="transition",wi="animation",xi="transition",Ci="transitionend",Ai="animation",ki="animationend";bi&&(void 0===window.ontransitionend&&void 0!==window.onwebkittransitionend&&(xi="WebkitTransition",Ci="webkitTransitionEnd"),void 0===window.onanimationend&&void 0!==window.onwebkitanimationend&&(Ai="WebkitAnimation",ki="webkitAnimationEnd"));var Oi=U?window.requestAnimationFrame?window.requestAnimationFrame.bind(window):setTimeout:function(e){return e()};function Si(e){Oi(function(){Oi(e)})}function Ti(e,t){var n=e._transitionClasses||(e._transitionClasses=[]);n.indexOf(t)<0&&(n.push(t),mi(e,t))}function Ei(e,t){e._transitionClasses&&h(e._transitionClasses,t),yi(e,t)}function ji(e,t,n){var r=Li(e,t),i=r.type,o=r.timeout,a=r.propCount;if(!i)return n();var s=i===$i?Ci:ki,c=0,u=function(){e.removeEventListener(s,l),n()},l=function(t){t.target===e&&++c>=a&&u()};setTimeout(function(){c<a&&u()},o+1),e.addEventListener(s,l)}var Ni=/\b(transform|all)(,|$)/;function Li(e,t){var n,r=window.getComputedStyle(e),i=(r[xi+"Delay"]||"").split(", "),o=(r[xi+"Duration"]||"").split(", "),a=Mi(i,o),s=(r[Ai+"Delay"]||"").split(", "),c=(r[Ai+"Duration"]||"").split(", "),u=Mi(s,c),l=0,f=0;return t===$i?a>0&&(n=$i,l=a,f=o.length):t===wi?u>0&&(n=wi,l=u,f=c.length):f=(n=(l=Math.max(a,u))>0?a>u?$i:wi:null)?n===$i?o.length:c.length:0,{type:n,timeout:l,propCount:f,hasTransform:n===$i&&Ni.test(r[xi+"Property"])}}function Mi(e,t){for(;e.length<t.length;)e=e.concat(e);return Math.max.apply(null,t.map(function(t,n){return Ii(t)+Ii(e[n])}))}function Ii(e){return 1e3*Number(e.slice(0,-1).replace(",","."))}function Di(e,r){var i=e.elm;n(i._leaveCb)&&(i._leaveCb.cancelled=!0,i._leaveCb());var a=gi(e.data.transition);if(!t(a)&&!n(i._enterCb)&&1===i.nodeType){for(var s=a.css,c=a.type,u=a.enterClass,l=a.enterToClass,p=a.enterActiveClass,d=a.appearClass,v=a.appearToClass,h=a.appearActiveClass,m=a.beforeEnter,y=a.enter,g=a.afterEnter,_=a.enterCancelled,b=a.beforeAppear,$=a.appear,w=a.afterAppear,x=a.appearCancelled,C=a.duration,A=qt,k=qt.$vnode;k&&k.parent;)A=(k=k.parent).context;var O=!A._isMounted||!e.isRootInsert;if(!O||$||""===$){var S=O&&d?d:u,T=O&&h?h:p,E=O&&v?v:l,j=O&&b||m,N=O&&"function"==typeof $?$:y,M=O&&w||g,I=O&&x||_,D=f(o(C)?C.enter:C),P=!1!==s&&!q,R=Fi(N),F=i._enterCb=L(function(){P&&(Ei(i,E),Ei(i,T)),F.cancelled?(P&&Ei(i,S),I&&I(i)):M&&M(i),i._enterCb=null});e.data.show||rt(e,"insert",function(){var t=i.parentNode,n=t&&t._pending&&t._pending[e.key];n&&n.tag===e.tag&&n.elm._leaveCb&&n.elm._leaveCb(),N&&N(i,F)}),j&&j(i),P&&(Ti(i,S),Ti(i,T),Si(function(){Ei(i,S),F.cancelled||(Ti(i,E),R||(Ri(D)?setTimeout(F,D):ji(i,c,F)))})),e.data.show&&(r&&r(),N&&N(i,F)),P||R||F()}}}function Pi(e,r){var i=e.elm;n(i._enterCb)&&(i._enterCb.cancelled=!0,i._enterCb());var a=gi(e.data.transition);if(t(a)||1!==i.nodeType)return r();if(!n(i._leaveCb)){var s=a.css,c=a.type,u=a.leaveClass,l=a.leaveToClass,p=a.leaveActiveClass,d=a.beforeLeave,v=a.leave,h=a.afterLeave,m=a.leaveCancelled,y=a.delayLeave,g=a.duration,_=!1!==s&&!q,b=Fi(v),$=f(o(g)?g.leave:g),w=i._leaveCb=L(function(){i.parentNode&&i.parentNode._pending&&(i.parentNode._pending[e.key]=null),_&&(Ei(i,l),Ei(i,p)),w.cancelled?(_&&Ei(i,u),m&&m(i)):(r(),h&&h(i)),i._leaveCb=null});y?y(x):x()}function x(){w.cancelled||(!e.data.show&&i.parentNode&&((i.parentNode._pending||(i.parentNode._pending={}))[e.key]=e),d&&d(i),_&&(Ti(i,u),Ti(i,p),Si(function(){Ei(i,u),w.cancelled||(Ti(i,l),b||(Ri($)?setTimeout(w,$):ji(i,c,w)))})),v&&v(i,w),_||b||w())}}function Ri(e){return"number"==typeof e&&!isNaN(e)}function Fi(e){if(t(e))return!1;var r=e.fns;return n(r)?Fi(Array.isArray(r)?r[0]:r):(e._length||e.length)>1}function Hi(e,t){!0!==t.data.show&&Di(t)}var Bi=function(e){var o,a,s={},c=e.modules,u=e.nodeOps;for(o=0;o<tr.length;++o)for(s[tr[o]]=[],a=0;a<c.length;++a)n(c[a][tr[o]])&&s[tr[o]].push(c[a][tr[o]]);function l(e){var t=u.parentNode(e);n(t)&&u.removeChild(t,e)}function f(e,t,i,o,a,c,l){if(n(e.elm)&&n(c)&&(e=c[l]=he(e)),e.isRootInsert=!a,!function(e,t,i,o){var a=e.data;if(n(a)){var c=n(e.componentInstance)&&a.keepAlive;if(n(a=a.hook)&&n(a=a.init)&&a(e,!1),n(e.componentInstance))return d(e,t),v(i,e.elm,o),r(c)&&function(e,t,r,i){for(var o,a=e;a.componentInstance;)if(a=a.componentInstance._vnode,n(o=a.data)&&n(o=o.transition)){for(o=0;o<s.activate.length;++o)s.activate[o](er,a);t.push(a);break}v(r,e.elm,i)}(e,t,i,o),!0}}(e,t,i,o)){var f=e.data,p=e.children,m=e.tag;n(m)?(e.elm=e.ns?u.createElementNS(e.ns,m):u.createElement(m,e),g(e),h(e,p,t),n(f)&&y(e,t),v(i,e.elm,o)):r(e.isComment)?(e.elm=u.createComment(e.text),v(i,e.elm,o)):(e.elm=u.createTextNode(e.text),v(i,e.elm,o))}}function d(e,t){n(e.data.pendingInsert)&&(t.push.apply(t,e.data.pendingInsert),e.data.pendingInsert=null),e.elm=e.componentInstance.$el,m(e)?(y(e,t),g(e)):(Qn(e),t.push(e))}function v(e,t,r){n(e)&&(n(r)?u.parentNode(r)===e&&u.insertBefore(e,t,r):u.appendChild(e,t))}function h(e,t,n){if(Array.isArray(t))for(var r=0;r<t.length;++r)f(t[r],n,e.elm,null,!0,t,r);else i(e.text)&&u.appendChild(e.elm,u.createTextNode(String(e.text)))}function m(e){for(;e.componentInstance;)e=e.componentInstance._vnode;return n(e.tag)}function y(e,t){for(var r=0;r<s.create.length;++r)s.create[r](er,e);n(o=e.data.hook)&&(n(o.create)&&o.create(er,e),n(o.insert)&&t.push(e))}function g(e){var t;if(n(t=e.fnScopeId))u.setStyleScope(e.elm,t);else for(var r=e;r;)n(t=r.context)&&n(t=t.$options._scopeId)&&u.setStyleScope(e.elm,t),r=r.parent;n(t=qt)&&t!==e.context&&t!==e.fnContext&&n(t=t.$options._scopeId)&&u.setStyleScope(e.elm,t)}function _(e,t,n,r,i,o){for(;r<=i;++r)f(n[r],o,e,t,!1,n,r)}function b(e){var t,r,i=e.data;if(n(i))for(n(t=i.hook)&&n(t=t.destroy)&&t(e),t=0;t<s.destroy.length;++t)s.destroy[t](e);if(n(t=e.children))for(r=0;r<e.children.length;++r)b(e.children[r])}function $(e,t,r,i){for(;r<=i;++r){var o=t[r];n(o)&&(n(o.tag)?(w(o),b(o)):l(o.elm))}}function w(e,t){if(n(t)||n(e.data)){var r,i=s.remove.length+1;for(n(t)?t.listeners+=i:t=function(e,t){function n(){0==--n.listeners&&l(e)}return n.listeners=t,n}(e.elm,i),n(r=e.componentInstance)&&n(r=r._vnode)&&n(r.data)&&w(r,t),r=0;r<s.remove.length;++r)s.remove[r](e,t);n(r=e.data.hook)&&n(r=r.remove)?r(e,t):t()}else l(e.elm)}function x(e,t,r,i){for(var o=r;o<i;o++){var a=t[o];if(n(a)&&nr(e,a))return o}}function C(e,i,o,a,c,l){if(e!==i){n(i.elm)&&n(a)&&(i=a[c]=he(i));var p=i.elm=e.elm;if(r(e.isAsyncPlaceholder))n(i.asyncFactory.resolved)?O(e.elm,i,o):i.isAsyncPlaceholder=!0;else if(r(i.isStatic)&&r(e.isStatic)&&i.key===e.key&&(r(i.isCloned)||r(i.isOnce)))i.componentInstance=e.componentInstance;else{var d,v=i.data;n(v)&&n(d=v.hook)&&n(d=d.prepatch)&&d(e,i);var h=e.children,y=i.children;if(n(v)&&m(i)){for(d=0;d<s.update.length;++d)s.update[d](e,i);n(d=v.hook)&&n(d=d.update)&&d(e,i)}t(i.text)?n(h)&&n(y)?h!==y&&function(e,r,i,o,a){for(var s,c,l,p=0,d=0,v=r.length-1,h=r[0],m=r[v],y=i.length-1,g=i[0],b=i[y],w=!a;p<=v&&d<=y;)t(h)?h=r[++p]:t(m)?m=r[--v]:nr(h,g)?(C(h,g,o,i,d),h=r[++p],g=i[++d]):nr(m,b)?(C(m,b,o,i,y),m=r[--v],b=i[--y]):nr(h,b)?(C(h,b,o,i,y),w&&u.insertBefore(e,h.elm,u.nextSibling(m.elm)),h=r[++p],b=i[--y]):nr(m,g)?(C(m,g,o,i,d),w&&u.insertBefore(e,m.elm,h.elm),m=r[--v],g=i[++d]):(t(s)&&(s=rr(r,p,v)),t(c=n(g.key)?s[g.key]:x(g,r,p,v))?f(g,o,e,h.elm,!1,i,d):nr(l=r[c],g)?(C(l,g,o,i,d),r[c]=void 0,w&&u.insertBefore(e,l.elm,h.elm)):f(g,o,e,h.elm,!1,i,d),g=i[++d]);p>v?_(e,t(i[y+1])?null:i[y+1].elm,i,d,y,o):d>y&&$(0,r,p,v)}(p,h,y,o,l):n(y)?(n(e.text)&&u.setTextContent(p,""),_(p,null,y,0,y.length-1,o)):n(h)?$(0,h,0,h.length-1):n(e.text)&&u.setTextContent(p,""):e.text!==i.text&&u.setTextContent(p,i.text),n(v)&&n(d=v.hook)&&n(d=d.postpatch)&&d(e,i)}}}function A(e,t,i){if(r(i)&&n(e.parent))e.parent.data.pendingInsert=t;else for(var o=0;o<t.length;++o)t[o].data.hook.insert(t[o])}var k=p("attrs,class,staticClass,staticStyle,key");function O(e,t,i,o){var a,s=t.tag,c=t.data,u=t.children;if(o=o||c&&c.pre,t.elm=e,r(t.isComment)&&n(t.asyncFactory))return t.isAsyncPlaceholder=!0,!0;if(n(c)&&(n(a=c.hook)&&n(a=a.init)&&a(t,!0),n(a=t.componentInstance)))return d(t,i),!0;if(n(s)){if(n(u))if(e.hasChildNodes())if(n(a=c)&&n(a=a.domProps)&&n(a=a.innerHTML)){if(a!==e.innerHTML)return!1}else{for(var l=!0,f=e.firstChild,p=0;p<u.length;p++){if(!f||!O(f,u[p],i,o)){l=!1;break}f=f.nextSibling}if(!l||f)return!1}else h(t,u,i);if(n(c)){var v=!1;for(var m in c)if(!k(m)){v=!0,y(t,i);break}!v&&c.class&&Qe(c.class)}}else e.data!==t.text&&(e.data=t.text);return!0}return function(e,i,o,a){if(!t(i)){var c,l=!1,p=[];if(t(e))l=!0,f(i,p);else{var d=n(e.nodeType);if(!d&&nr(e,i))C(e,i,p,null,null,a);else{if(d){if(1===e.nodeType&&e.hasAttribute(M)&&(e.removeAttribute(M),o=!0),r(o)&&O(e,i,p))return A(i,p,!0),e;c=e,e=new fe(u.tagName(c).toLowerCase(),{},[],void 0,c)}var v=e.elm,h=u.parentNode(v);if(f(i,p,v._leaveCb?null:h,u.nextSibling(v)),n(i.parent))for(var y=i.parent,g=m(i);y;){for(var _=0;_<s.destroy.length;++_)s.destroy[_](y);if(y.elm=i.elm,g){for(var w=0;w<s.create.length;++w)s.create[w](er,y);var x=y.data.hook.insert;if(x.merged)for(var k=1;k<x.fns.length;k++)x.fns[k]()}else Qn(y);y=y.parent}n(h)?$(0,[e],0,0):n(e.tag)&&b(e)}}return A(i,p,l),i.elm}n(e)&&b(e)}}({nodeOps:Xn,modules:[vr,wr,ei,ri,vi,U?{create:Hi,activate:Hi,remove:function(e,t){!0!==e.data.show?Pi(e,t):t()}}:{}].concat(lr)});q&&document.addEventListener("selectionchange",function(){var e=document.activeElement;e&&e.vmodel&&Zi(e,"input")});var Ui={inserted:function(e,t,n,r){"select"===n.tag?(r.elm&&!r.elm._vOptions?rt(n,"postpatch",function(){Ui.componentUpdated(e,t,n)}):zi(e,t,n.context),e._vOptions=[].map.call(e.options,Ji)):("textarea"===n.tag||Zn(e.type))&&(e._vModifiers=t.modifiers,t.modifiers.lazy||(e.addEventListener("compositionstart",qi),e.addEventListener("compositionend",Wi),e.addEventListener("change",Wi),q&&(e.vmodel=!0)))},componentUpdated:function(e,t,n){if("select"===n.tag){zi(e,t,n.context);var r=e._vOptions,i=e._vOptions=[].map.call(e.options,Ji);if(i.some(function(e,t){return!j(e,r[t])}))(e.multiple?t.value.some(function(e){return Ki(e,i)}):t.value!==t.oldValue&&Ki(t.value,i))&&Zi(e,"change")}}};function zi(e,t,n){Vi(e,t,n),(J||W)&&setTimeout(function(){Vi(e,t,n)},0)}function Vi(e,t,n){var r=t.value,i=e.multiple;if(!i||Array.isArray(r)){for(var o,a,s=0,c=e.options.length;s<c;s++)if(a=e.options[s],i)o=N(r,Ji(a))>-1,a.selected!==o&&(a.selected=o);else if(j(Ji(a),r))return void(e.selectedIndex!==s&&(e.selectedIndex=s));i||(e.selectedIndex=-1)}}function Ki(e,t){return t.every(function(t){return!j(t,e)})}function Ji(e){return"_value"in e?e._value:e.value}function qi(e){e.target.composing=!0}function Wi(e){e.target.composing&&(e.target.composing=!1,Zi(e.target,"input"))}function Zi(e,t){var n=document.createEvent("HTMLEvents");n.initEvent(t,!0,!0),e.dispatchEvent(n)}function Gi(e){return!e.componentInstance||e.data&&e.data.transition?e:Gi(e.componentInstance._vnode)}var Xi={model:Ui,show:{bind:function(e,t,n){var r=t.value,i=(n=Gi(n)).data&&n.data.transition,o=e.__vOriginalDisplay="none"===e.style.display?"":e.style.display;r&&i?(n.data.show=!0,Di(n,function(){e.style.display=o})):e.style.display=r?o:"none"},update:function(e,t,n){var r=t.value;!r!=!t.oldValue&&((n=Gi(n)).data&&n.data.transition?(n.data.show=!0,r?Di(n,function(){e.style.display=e.__vOriginalDisplay}):Pi(n,function(){e.style.display="none"})):e.style.display=r?e.__vOriginalDisplay:"none")},unbind:function(e,t,n,r,i){i||(e.style.display=e.__vOriginalDisplay)}}},Yi={name:String,appear:Boolean,css:Boolean,mode:String,type:String,enterClass:String,leaveClass:String,enterToClass:String,leaveToClass:String,enterActiveClass:String,leaveActiveClass:String,appearClass:String,appearActiveClass:String,appearToClass:String,duration:[Number,String,Object]};function Qi(e){var t=e&&e.componentOptions;return t&&t.Ctor.options.abstract?Qi(Ut(t.children)):e}function eo(e){var t={},n=e.$options;for(var r in n.propsData)t[r]=e[r];var i=n._parentListeners;for(var o in i)t[b(o)]=i[o];return t}function to(e,t){if(/\d-keep-alive$/.test(t.tag))return e("keep-alive",{props:t.componentOptions.propsData})}var no=function(e){return e.tag||Bt(e)},ro=function(e){return"show"===e.name},io={name:"transition",props:Yi,abstract:!0,render:function(e){var t=this,n=this.$slots.default;if(n&&(n=n.filter(no)).length){var r=this.mode,o=n[0];if(function(e){for(;e=e.parent;)if(e.data.transition)return!0}(this.$vnode))return o;var a=Qi(o);if(!a)return o;if(this._leaving)return to(e,o);var s="__transition-"+this._uid+"-";a.key=null==a.key?a.isComment?s+"comment":s+a.tag:i(a.key)?0===String(a.key).indexOf(s)?a.key:s+a.key:a.key;var c=(a.data||(a.data={})).transition=eo(this),u=this._vnode,l=Qi(u);if(a.data.directives&&a.data.directives.some(ro)&&(a.data.show=!0),l&&l.data&&!function(e,t){return t.key===e.key&&t.tag===e.tag}(a,l)&&!Bt(l)&&(!l.componentInstance||!l.componentInstance._vnode.isComment)){var f=l.data.transition=k({},c);if("out-in"===r)return this._leaving=!0,rt(f,"afterLeave",function(){t._leaving=!1,t.$forceUpdate()}),to(e,o);if("in-out"===r){if(Bt(a))return u;var p,d=function(){p()};rt(c,"afterEnter",d),rt(c,"enterCancelled",d),rt(f,"delayLeave",function(e){p=e})}}return o}}},oo=k({tag:String,moveClass:String},Yi);function ao(e){e.elm._moveCb&&e.elm._moveCb(),e.elm._enterCb&&e.elm._enterCb()}function so(e){e.data.newPos=e.elm.getBoundingClientRect()}function co(e){var t=e.data.pos,n=e.data.newPos,r=t.left-n.left,i=t.top-n.top;if(r||i){e.data.moved=!0;var o=e.elm.style;o.transform=o.WebkitTransform="translate("+r+"px,"+i+"px)",o.transitionDuration="0s"}}delete oo.mode;var uo={Transition:io,TransitionGroup:{props:oo,beforeMount:function(){var e=this,t=this._update;this._update=function(n,r){var i=Wt(e);e.__patch__(e._vnode,e.kept,!1,!0),e._vnode=e.kept,i(),t.call(e,n,r)}},render:function(e){for(var t=this.tag||this.$vnode.data.tag||"span",n=Object.create(null),r=this.prevChildren=this.children,i=this.$slots.default||[],o=this.children=[],a=eo(this),s=0;s<i.length;s++){var c=i[s];c.tag&&null!=c.key&&0!==String(c.key).indexOf("__vlist")&&(o.push(c),n[c.key]=c,(c.data||(c.data={})).transition=a)}if(r){for(var u=[],l=[],f=0;f<r.length;f++){var p=r[f];p.data.transition=a,p.data.pos=p.elm.getBoundingClientRect(),n[p.key]?u.push(p):l.push(p)}this.kept=e(t,null,u),this.removed=l}return e(t,null,o)},updated:function(){var e=this.prevChildren,t=this.moveClass||(this.name||"v")+"-move";e.length&&this.hasMove(e[0].elm,t)&&(e.forEach(ao),e.forEach(so),e.forEach(co),this._reflow=document.body.offsetHeight,e.forEach(function(e){if(e.data.moved){var n=e.elm,r=n.style;Ti(n,t),r.transform=r.WebkitTransform=r.transitionDuration="",n.addEventListener(Ci,n._moveCb=function e(r){r&&r.target!==n||r&&!/transform$/.test(r.propertyName)||(n.removeEventListener(Ci,e),n._moveCb=null,Ei(n,t))})}}))},methods:{hasMove:function(e,t){if(!bi)return!1;if(this._hasMove)return this._hasMove;var n=e.cloneNode();e._transitionClasses&&e._transitionClasses.forEach(function(e){yi(n,e)}),mi(n,t),n.style.display="none",this.$el.appendChild(n);var r=Li(n);return this.$el.removeChild(n),this._hasMove=r.hasTransform}}}};bn.config.mustUseProp=En,bn.config.isReservedTag=Jn,bn.config.isReservedAttr=Sn,bn.config.getTagNamespace=qn,bn.config.isUnknownElement=function(e){if(!U)return!0;if(Jn(e))return!1;if(e=e.toLowerCase(),null!=Wn[e])return Wn[e];var t=document.createElement(e);return e.indexOf("-")>-1?Wn[e]=t.constructor===window.HTMLUnknownElement||t.constructor===window.HTMLElement:Wn[e]=/HTMLUnknownElement/.test(t.toString())},k(bn.options.directives,Xi),k(bn.options.components,uo),bn.prototype.__patch__=U?Bi:S,bn.prototype.$mount=function(e,t){return function(e,t,n){var r;return e.$el=t,e.$options.render||(e.$options.render=de),Xt(e,"beforeMount"),r=function(){e._update(e._render(),n)},new un(e,r,S,{before:function(){e._isMounted&&!e._isDestroyed&&Xt(e,"beforeUpdate")}},!0),n=!1,null==e.$vnode&&(e._isMounted=!0,Xt(e,"mounted")),e}(this,e=e&&U?Gn(e):void 0,t)},U&&setTimeout(function(){P.devtools&&te&&te.emit("init",bn)},0);var lo=/\{\{((?:.|\r?\n)+?)\}\}/g,fo=/[-.*+?^${}()|[\]\/\\]/g,po=g(function(e){var t=e[0].replace(fo,"\\$&"),n=e[1].replace(fo,"\\$&");return new RegExp(t+"((?:.|\\n)+?)"+n,"g")});var vo={staticKeys:["staticClass"],transformNode:function(e,t){t.warn;var n=Ir(e,"class");n&&(e.staticClass=JSON.stringify(n));var r=Mr(e,"class",!1);r&&(e.classBinding=r)},genData:function(e){var t="";return e.staticClass&&(t+="staticClass:"+e.staticClass+","),e.classBinding&&(t+="class:"+e.classBinding+","),t}};var ho,mo={staticKeys:["staticStyle"],transformNode:function(e,t){t.warn;var n=Ir(e,"style");n&&(e.staticStyle=JSON.stringify(ii(n)));var r=Mr(e,"style",!1);r&&(e.styleBinding=r)},genData:function(e){var t="";return e.staticStyle&&(t+="staticStyle:"+e.staticStyle+","),e.styleBinding&&(t+="style:("+e.styleBinding+"),"),t}},yo=function(e){return(ho=ho||document.createElement("div")).innerHTML=e,ho.textContent},go=p("area,base,br,col,embed,frame,hr,img,input,isindex,keygen,link,meta,param,source,track,wbr"),_o=p("colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source"),bo=p("address,article,aside,base,blockquote,body,caption,col,colgroup,dd,details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,title,tr,track"),$o=/^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/,wo=/^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/,xo="[a-zA-Z_][\\-\\.0-9_a-zA-Za-zA-Z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u037f-\u1fff\u200c-\u200d\u203f-\u2040\u2070-\u218f\u2c00-\u2fef\u3001-\ud7ff\uf900-\ufdcf\ufdf0-\ufffd]*",Co="((?:"+xo+"\\:)?"+xo+")",Ao=new RegExp("^<"+Co),ko=/^\s*(\/?)>/,Oo=new RegExp("^<\\/"+Co+"[^>]*>"),So=/^<!DOCTYPE [^>]+>/i,To=/^<!\--/,Eo=/^<!\[/,jo=p("script,style,textarea",!0),No={},Lo={"&lt;":"<","&gt;":">","&quot;":'"',"&amp;":"&","&#10;":"\n","&#9;":"\t","&#39;":"'"},Mo=/&(?:lt|gt|quot|amp|#39);/g,Io=/&(?:lt|gt|quot|amp|#39|#10|#9);/g,Do=p("pre,textarea",!0),Po=function(e,t){return e&&Do(e)&&"\n"===t[0]};function Ro(e,t){var n=t?Io:Mo;return e.replace(n,function(e){return Lo[e]})}var Fo,Ho,Bo,Uo,zo,Vo,Ko,Jo,qo=/^@|^v-on:/,Wo=/^v-|^@|^:/,Zo=/([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/,Go=/,([^,\}\]]*)(?:,([^,\}\]]*))?$/,Xo=/^\(|\)$/g,Yo=/^\[.*\]$/,Qo=/:(.*)$/,ea=/^:|^\.|^v-bind:/,ta=/\.[^.]+/g,na=/^v-slot(:|$)|^#/,ra=/[\r\n]/,ia=/\s+/g,oa=g(yo),aa="_empty_";function sa(e,t,n){return{type:1,tag:e,attrsList:t,attrsMap:va(t),rawAttrsMap:{},parent:n,children:[]}}function ca(e,t){Fo=t.warn||kr,Vo=t.isPreTag||T,Ko=t.mustUseProp||T,Jo=t.getTagNamespace||T;t.isReservedTag;Bo=Or(t.modules,"transformNode"),Uo=Or(t.modules,"preTransformNode"),zo=Or(t.modules,"postTransformNode"),Ho=t.delimiters;var n,r,i=[],o=!1!==t.preserveWhitespace,a=t.whitespace,s=!1,c=!1;function u(e){if(l(e),s||e.processed||(e=ua(e,t)),i.length||e===n||n.if&&(e.elseif||e.else)&&fa(n,{exp:e.elseif,block:e}),r&&!e.forbidden)if(e.elseif||e.else)a=e,(u=function(e){var t=e.length;for(;t--;){if(1===e[t].type)return e[t];e.pop()}}(r.children))&&u.if&&fa(u,{exp:a.elseif,block:a});else{if(e.slotScope){var o=e.slotTarget||'"default"';(r.scopedSlots||(r.scopedSlots={}))[o]=e}r.children.push(e),e.parent=r}var a,u;e.children=e.children.filter(function(e){return!e.slotScope}),l(e),e.pre&&(s=!1),Vo(e.tag)&&(c=!1);for(var f=0;f<zo.length;f++)zo[f](e,t)}function l(e){if(!c)for(var t;(t=e.children[e.children.length-1])&&3===t.type&&" "===t.text;)e.children.pop()}return function(e,t){for(var n,r,i=[],o=t.expectHTML,a=t.isUnaryTag||T,s=t.canBeLeftOpenTag||T,c=0;e;){if(n=e,r&&jo(r)){var u=0,l=r.toLowerCase(),f=No[l]||(No[l]=new RegExp("([\\s\\S]*?)(</"+l+"[^>]*>)","i")),p=e.replace(f,function(e,n,r){return u=r.length,jo(l)||"noscript"===l||(n=n.replace(/<!\--([\s\S]*?)-->/g,"$1").replace(/<!\[CDATA\[([\s\S]*?)]]>/g,"$1")),Po(l,n)&&(n=n.slice(1)),t.chars&&t.chars(n),""});c+=e.length-p.length,e=p,k(l,c-u,c)}else{var d=e.indexOf("<");if(0===d){if(To.test(e)){var v=e.indexOf("--\x3e");if(v>=0){t.shouldKeepComment&&t.comment(e.substring(4,v),c,c+v+3),x(v+3);continue}}if(Eo.test(e)){var h=e.indexOf("]>");if(h>=0){x(h+2);continue}}var m=e.match(So);if(m){x(m[0].length);continue}var y=e.match(Oo);if(y){var g=c;x(y[0].length),k(y[1],g,c);continue}var _=C();if(_){A(_),Po(_.tagName,e)&&x(1);continue}}var b=void 0,$=void 0,w=void 0;if(d>=0){for($=e.slice(d);!(Oo.test($)||Ao.test($)||To.test($)||Eo.test($)||(w=$.indexOf("<",1))<0);)d+=w,$=e.slice(d);b=e.substring(0,d)}d<0&&(b=e),b&&x(b.length),t.chars&&b&&t.chars(b,c-b.length,c)}if(e===n){t.chars&&t.chars(e);break}}function x(t){c+=t,e=e.substring(t)}function C(){var t=e.match(Ao);if(t){var n,r,i={tagName:t[1],attrs:[],start:c};for(x(t[0].length);!(n=e.match(ko))&&(r=e.match(wo)||e.match($o));)r.start=c,x(r[0].length),r.end=c,i.attrs.push(r);if(n)return i.unarySlash=n[1],x(n[0].length),i.end=c,i}}function A(e){var n=e.tagName,c=e.unarySlash;o&&("p"===r&&bo(n)&&k(r),s(n)&&r===n&&k(n));for(var u=a(n)||!!c,l=e.attrs.length,f=new Array(l),p=0;p<l;p++){var d=e.attrs[p],v=d[3]||d[4]||d[5]||"",h="a"===n&&"href"===d[1]?t.shouldDecodeNewlinesForHref:t.shouldDecodeNewlines;f[p]={name:d[1],value:Ro(v,h)}}u||(i.push({tag:n,lowerCasedTag:n.toLowerCase(),attrs:f,start:e.start,end:e.end}),r=n),t.start&&t.start(n,f,u,e.start,e.end)}function k(e,n,o){var a,s;if(null==n&&(n=c),null==o&&(o=c),e)for(s=e.toLowerCase(),a=i.length-1;a>=0&&i[a].lowerCasedTag!==s;a--);else a=0;if(a>=0){for(var u=i.length-1;u>=a;u--)t.end&&t.end(i[u].tag,n,o);i.length=a,r=a&&i[a-1].tag}else"br"===s?t.start&&t.start(e,[],!0,n,o):"p"===s&&(t.start&&t.start(e,[],!1,n,o),t.end&&t.end(e,n,o))}k()}(e,{warn:Fo,expectHTML:t.expectHTML,isUnaryTag:t.isUnaryTag,canBeLeftOpenTag:t.canBeLeftOpenTag,shouldDecodeNewlines:t.shouldDecodeNewlines,shouldDecodeNewlinesForHref:t.shouldDecodeNewlinesForHref,shouldKeepComment:t.comments,outputSourceRange:t.outputSourceRange,start:function(e,o,a,l){var f=r&&r.ns||Jo(e);J&&"svg"===f&&(o=function(e){for(var t=[],n=0;n<e.length;n++){var r=e[n];ha.test(r.name)||(r.name=r.name.replace(ma,""),t.push(r))}return t}(o));var p,d=sa(e,o,r);f&&(d.ns=f),"style"!==(p=d).tag&&("script"!==p.tag||p.attrsMap.type&&"text/javascript"!==p.attrsMap.type)||ee()||(d.forbidden=!0);for(var v=0;v<Uo.length;v++)d=Uo[v](d,t)||d;s||(!function(e){null!=Ir(e,"v-pre")&&(e.pre=!0)}(d),d.pre&&(s=!0)),Vo(d.tag)&&(c=!0),s?function(e){var t=e.attrsList,n=t.length;if(n)for(var r=e.attrs=new Array(n),i=0;i<n;i++)r[i]={name:t[i].name,value:JSON.stringify(t[i].value)},null!=t[i].start&&(r[i].start=t[i].start,r[i].end=t[i].end);else e.pre||(e.plain=!0)}(d):d.processed||(la(d),function(e){var t=Ir(e,"v-if");if(t)e.if=t,fa(e,{exp:t,block:e});else{null!=Ir(e,"v-else")&&(e.else=!0);var n=Ir(e,"v-else-if");n&&(e.elseif=n)}}(d),function(e){null!=Ir(e,"v-once")&&(e.once=!0)}(d)),n||(n=d),a?u(d):(r=d,i.push(d))},end:function(e,t,n){var o=i[i.length-1];i.length-=1,r=i[i.length-1],u(o)},chars:function(e,t,n){if(r&&(!J||"textarea"!==r.tag||r.attrsMap.placeholder!==e)){var i,u,l,f=r.children;if(e=c||e.trim()?"script"===(i=r).tag||"style"===i.tag?e:oa(e):f.length?a?"condense"===a&&ra.test(e)?"":" ":o?" ":"":"")"condense"===a&&(e=e.replace(ia," ")),!s&&" "!==e&&(u=function(e,t){var n=t?po(t):lo;if(n.test(e)){for(var r,i,o,a=[],s=[],c=n.lastIndex=0;r=n.exec(e);){(i=r.index)>c&&(s.push(o=e.slice(c,i)),a.push(JSON.stringify(o)));var u=Cr(r[1].trim());a.push("_s("+u+")"),s.push({"@binding":u}),c=i+r[0].length}return c<e.length&&(s.push(o=e.slice(c)),a.push(JSON.stringify(o))),{expression:a.join("+"),tokens:s}}}(e,Ho))?l={type:2,expression:u.expression,tokens:u.tokens,text:e}:" "===e&&f.length&&" "===f[f.length-1].text||(l={type:3,text:e}),l&&f.push(l)}},comment:function(e,t,n){if(r){var i={type:3,text:e,isComment:!0};r.children.push(i)}}}),n}function ua(e,t){var n,r;(r=Mr(n=e,"key"))&&(n.key=r),e.plain=!e.key&&!e.scopedSlots&&!e.attrsList.length,function(e){var t=Mr(e,"ref");t&&(e.ref=t,e.refInFor=function(e){var t=e;for(;t;){if(void 0!==t.for)return!0;t=t.parent}return!1}(e))}(e),function(e){var t;"template"===e.tag?(t=Ir(e,"scope"),e.slotScope=t||Ir(e,"slot-scope")):(t=Ir(e,"slot-scope"))&&(e.slotScope=t);var n=Mr(e,"slot");n&&(e.slotTarget='""'===n?'"default"':n,e.slotTargetDynamic=!(!e.attrsMap[":slot"]&&!e.attrsMap["v-bind:slot"]),"template"===e.tag||e.slotScope||Tr(e,"slot",n,function(e,t){return e.rawAttrsMap[":"+t]||e.rawAttrsMap["v-bind:"+t]||e.rawAttrsMap[t]}(e,"slot")));if("template"===e.tag){var r=Dr(e,na);if(r){var i=pa(r),o=i.name,a=i.dynamic;e.slotTarget=o,e.slotTargetDynamic=a,e.slotScope=r.value||aa}}else{var s=Dr(e,na);if(s){var c=e.scopedSlots||(e.scopedSlots={}),u=pa(s),l=u.name,f=u.dynamic,p=c[l]=sa("template",[],e);p.slotTarget=l,p.slotTargetDynamic=f,p.children=e.children.filter(function(e){if(!e.slotScope)return e.parent=p,!0}),p.slotScope=s.value||aa,e.children=[],e.plain=!1}}}(e),function(e){"slot"===e.tag&&(e.slotName=Mr(e,"name"))}(e),function(e){var t;(t=Mr(e,"is"))&&(e.component=t);null!=Ir(e,"inline-template")&&(e.inlineTemplate=!0)}(e);for(var i=0;i<Bo.length;i++)e=Bo[i](e,t)||e;return function(e){var t,n,r,i,o,a,s,c,u=e.attrsList;for(t=0,n=u.length;t<n;t++)if(r=i=u[t].name,o=u[t].value,Wo.test(r))if(e.hasBindings=!0,(a=da(r.replace(Wo,"")))&&(r=r.replace(ta,"")),ea.test(r))r=r.replace(ea,""),o=Cr(o),(c=Yo.test(r))&&(r=r.slice(1,-1)),a&&(a.prop&&!c&&"innerHtml"===(r=b(r))&&(r="innerHTML"),a.camel&&!c&&(r=b(r)),a.sync&&(s=Fr(o,"$event"),c?Lr(e,'"update:"+('+r+")",s,null,!1,0,u[t],!0):(Lr(e,"update:"+b(r),s,null,!1,0,u[t]),x(r)!==b(r)&&Lr(e,"update:"+x(r),s,null,!1,0,u[t])))),a&&a.prop||!e.component&&Ko(e.tag,e.attrsMap.type,r)?Sr(e,r,o,u[t],c):Tr(e,r,o,u[t],c);else if(qo.test(r))r=r.replace(qo,""),(c=Yo.test(r))&&(r=r.slice(1,-1)),Lr(e,r,o,a,!1,0,u[t],c);else{var l=(r=r.replace(Wo,"")).match(Qo),f=l&&l[1];c=!1,f&&(r=r.slice(0,-(f.length+1)),Yo.test(f)&&(f=f.slice(1,-1),c=!0)),jr(e,r,i,o,f,c,a,u[t])}else Tr(e,r,JSON.stringify(o),u[t]),!e.component&&"muted"===r&&Ko(e.tag,e.attrsMap.type,r)&&Sr(e,r,"true",u[t])}(e),e}function la(e){var t;if(t=Ir(e,"v-for")){var n=function(e){var t=e.match(Zo);if(!t)return;var n={};n.for=t[2].trim();var r=t[1].trim().replace(Xo,""),i=r.match(Go);i?(n.alias=r.replace(Go,"").trim(),n.iterator1=i[1].trim(),i[2]&&(n.iterator2=i[2].trim())):n.alias=r;return n}(t);n&&k(e,n)}}function fa(e,t){e.ifConditions||(e.ifConditions=[]),e.ifConditions.push(t)}function pa(e){var t=e.name.replace(na,"");return t||"#"!==e.name[0]&&(t="default"),Yo.test(t)?{name:t.slice(1,-1),dynamic:!0}:{name:'"'+t+'"',dynamic:!1}}function da(e){var t=e.match(ta);if(t){var n={};return t.forEach(function(e){n[e.slice(1)]=!0}),n}}function va(e){for(var t={},n=0,r=e.length;n<r;n++)t[e[n].name]=e[n].value;return t}var ha=/^xmlns:NS\d+/,ma=/^NS\d+:/;function ya(e){return sa(e.tag,e.attrsList.slice(),e.parent)}var ga=[vo,mo,{preTransformNode:function(e,t){if("input"===e.tag){var n,r=e.attrsMap;if(!r["v-model"])return;if((r[":type"]||r["v-bind:type"])&&(n=Mr(e,"type")),r.type||n||!r["v-bind"]||(n="("+r["v-bind"]+").type"),n){var i=Ir(e,"v-if",!0),o=i?"&&("+i+")":"",a=null!=Ir(e,"v-else",!0),s=Ir(e,"v-else-if",!0),c=ya(e);la(c),Er(c,"type","checkbox"),ua(c,t),c.processed=!0,c.if="("+n+")==='checkbox'"+o,fa(c,{exp:c.if,block:c});var u=ya(e);Ir(u,"v-for",!0),Er(u,"type","radio"),ua(u,t),fa(c,{exp:"("+n+")==='radio'"+o,block:u});var l=ya(e);return Ir(l,"v-for",!0),Er(l,":type",n),ua(l,t),fa(c,{exp:i,block:l}),a?c.else=!0:s&&(c.elseif=s),c}}}}];var _a,ba,$a={expectHTML:!0,modules:ga,directives:{model:function(e,t,n){var r=t.value,i=t.modifiers,o=e.tag,a=e.attrsMap.type;if(e.component)return Rr(e,r,i),!1;if("select"===o)!function(e,t,n){var r='var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return '+(n&&n.number?"_n(val)":"val")+"});";r=r+" "+Fr(t,"$event.target.multiple ? $$selectedVal : $$selectedVal[0]"),Lr(e,"change",r,null,!0)}(e,r,i);else if("input"===o&&"checkbox"===a)!function(e,t,n){var r=n&&n.number,i=Mr(e,"value")||"null",o=Mr(e,"true-value")||"true",a=Mr(e,"false-value")||"false";Sr(e,"checked","Array.isArray("+t+")?_i("+t+","+i+")>-1"+("true"===o?":("+t+")":":_q("+t+","+o+")")),Lr(e,"change","var $$a="+t+",$$el=$event.target,$$c=$$el.checked?("+o+"):("+a+");if(Array.isArray($$a)){var $$v="+(r?"_n("+i+")":i)+",$$i=_i($$a,$$v);if($$el.checked){$$i<0&&("+Fr(t,"$$a.concat([$$v])")+")}else{$$i>-1&&("+Fr(t,"$$a.slice(0,$$i).concat($$a.slice($$i+1))")+")}}else{"+Fr(t,"$$c")+"}",null,!0)}(e,r,i);else if("input"===o&&"radio"===a)!function(e,t,n){var r=n&&n.number,i=Mr(e,"value")||"null";Sr(e,"checked","_q("+t+","+(i=r?"_n("+i+")":i)+")"),Lr(e,"change",Fr(t,i),null,!0)}(e,r,i);else if("input"===o||"textarea"===o)!function(e,t,n){var r=e.attrsMap.type,i=n||{},o=i.lazy,a=i.number,s=i.trim,c=!o&&"range"!==r,u=o?"change":"range"===r?Jr:"input",l="$event.target.value";s&&(l="$event.target.value.trim()"),a&&(l="_n("+l+")");var f=Fr(t,l);c&&(f="if($event.target.composing)return;"+f),Sr(e,"value","("+t+")"),Lr(e,u,f,null,!0),(s||a)&&Lr(e,"blur","$forceUpdate()")}(e,r,i);else if(!P.isReservedTag(o))return Rr(e,r,i),!1;return!0},text:function(e,t){t.value&&Sr(e,"textContent","_s("+t.value+")",t)},html:function(e,t){t.value&&Sr(e,"innerHTML","_s("+t.value+")",t)}},isPreTag:function(e){return"pre"===e},isUnaryTag:go,mustUseProp:En,canBeLeftOpenTag:_o,isReservedTag:Jn,getTagNamespace:qn,staticKeys:function(e){return e.reduce(function(e,t){return e.concat(t.staticKeys||[])},[]).join(",")}(ga)},wa=g(function(e){return p("type,tag,attrsList,attrsMap,plain,parent,children,attrs,start,end,rawAttrsMap"+(e?","+e:""))});function xa(e,t){e&&(_a=wa(t.staticKeys||""),ba=t.isReservedTag||T,function e(t){t.static=function(e){if(2===e.type)return!1;if(3===e.type)return!0;return!(!e.pre&&(e.hasBindings||e.if||e.for||d(e.tag)||!ba(e.tag)||function(e){for(;e.parent;){if("template"!==(e=e.parent).tag)return!1;if(e.for)return!0}return!1}(e)||!Object.keys(e).every(_a)))}(t);if(1===t.type){if(!ba(t.tag)&&"slot"!==t.tag&&null==t.attrsMap["inline-template"])return;for(var n=0,r=t.children.length;n<r;n++){var i=t.children[n];e(i),i.static||(t.static=!1)}if(t.ifConditions)for(var o=1,a=t.ifConditions.length;o<a;o++){var s=t.ifConditions[o].block;e(s),s.static||(t.static=!1)}}}(e),function e(t,n){if(1===t.type){if((t.static||t.once)&&(t.staticInFor=n),t.static&&t.children.length&&(1!==t.children.length||3!==t.children[0].type))return void(t.staticRoot=!0);if(t.staticRoot=!1,t.children)for(var r=0,i=t.children.length;r<i;r++)e(t.children[r],n||!!t.for);if(t.ifConditions)for(var o=1,a=t.ifConditions.length;o<a;o++)e(t.ifConditions[o].block,n)}}(e,!1))}var Ca=/^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/,Aa=/\([^)]*?\);*$/,ka=/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/,Oa={esc:27,tab:9,enter:13,space:32,up:38,left:37,right:39,down:40,delete:[8,46]},Sa={esc:["Esc","Escape"],tab:"Tab",enter:"Enter",space:[" ","Spacebar"],up:["Up","ArrowUp"],left:["Left","ArrowLeft"],right:["Right","ArrowRight"],down:["Down","ArrowDown"],delete:["Backspace","Delete","Del"]},Ta=function(e){return"if("+e+")return null;"},Ea={stop:"$event.stopPropagation();",prevent:"$event.preventDefault();",self:Ta("$event.target !== $event.currentTarget"),ctrl:Ta("!$event.ctrlKey"),shift:Ta("!$event.shiftKey"),alt:Ta("!$event.altKey"),meta:Ta("!$event.metaKey"),left:Ta("'button' in $event && $event.button !== 0"),middle:Ta("'button' in $event && $event.button !== 1"),right:Ta("'button' in $event && $event.button !== 2")};function ja(e,t){var n=t?"nativeOn:":"on:",r="",i="";for(var o in e){var a=Na(e[o]);e[o]&&e[o].dynamic?i+=o+","+a+",":r+='"'+o+'":'+a+","}return r="{"+r.slice(0,-1)+"}",i?n+"_d("+r+",["+i.slice(0,-1)+"])":n+r}function Na(e){if(!e)return"function(){}";if(Array.isArray(e))return"["+e.map(function(e){return Na(e)}).join(",")+"]";var t=ka.test(e.value),n=Ca.test(e.value),r=ka.test(e.value.replace(Aa,""));if(e.modifiers){var i="",o="",a=[];for(var s in e.modifiers)if(Ea[s])o+=Ea[s],Oa[s]&&a.push(s);else if("exact"===s){var c=e.modifiers;o+=Ta(["ctrl","shift","alt","meta"].filter(function(e){return!c[e]}).map(function(e){return"$event."+e+"Key"}).join("||"))}else a.push(s);return a.length&&(i+=function(e){return"if(!$event.type.indexOf('key')&&"+e.map(La).join("&&")+")return null;"}(a)),o&&(i+=o),"function($event){"+i+(t?"return "+e.value+"($event)":n?"return ("+e.value+")($event)":r?"return "+e.value:e.value)+"}"}return t||n?e.value:"function($event){"+(r?"return "+e.value:e.value)+"}"}function La(e){var t=parseInt(e,10);if(t)return"$event.keyCode!=="+t;var n=Oa[e],r=Sa[e];return"_k($event.keyCode,"+JSON.stringify(e)+","+JSON.stringify(n)+",$event.key,"+JSON.stringify(r)+")"}var Ma={on:function(e,t){e.wrapListeners=function(e){return"_g("+e+","+t.value+")"}},bind:function(e,t){e.wrapData=function(n){return"_b("+n+",'"+e.tag+"',"+t.value+","+(t.modifiers&&t.modifiers.prop?"true":"false")+(t.modifiers&&t.modifiers.sync?",true":"")+")"}},cloak:S},Ia=function(e){this.options=e,this.warn=e.warn||kr,this.transforms=Or(e.modules,"transformCode"),this.dataGenFns=Or(e.modules,"genData"),this.directives=k(k({},Ma),e.directives);var t=e.isReservedTag||T;this.maybeComponent=function(e){return!!e.component||!t(e.tag)},this.onceId=0,this.staticRenderFns=[],this.pre=!1};function Da(e,t){var n=new Ia(t);return{render:"with(this){return "+(e?Pa(e,n):'_c("div")')+"}",staticRenderFns:n.staticRenderFns}}function Pa(e,t){if(e.parent&&(e.pre=e.pre||e.parent.pre),e.staticRoot&&!e.staticProcessed)return Ra(e,t);if(e.once&&!e.onceProcessed)return Fa(e,t);if(e.for&&!e.forProcessed)return Ba(e,t);if(e.if&&!e.ifProcessed)return Ha(e,t);if("template"!==e.tag||e.slotTarget||t.pre){if("slot"===e.tag)return function(e,t){var n=e.slotName||'"default"',r=Ka(e,t),i="_t("+n+(r?","+r:""),o=e.attrs||e.dynamicAttrs?Wa((e.attrs||[]).concat(e.dynamicAttrs||[]).map(function(e){return{name:b(e.name),value:e.value,dynamic:e.dynamic}})):null,a=e.attrsMap["v-bind"];!o&&!a||r||(i+=",null");o&&(i+=","+o);a&&(i+=(o?"":",null")+","+a);return i+")"}(e,t);var n;if(e.component)n=function(e,t,n){var r=t.inlineTemplate?null:Ka(t,n,!0);return"_c("+e+","+Ua(t,n)+(r?","+r:"")+")"}(e.component,e,t);else{var r;(!e.plain||e.pre&&t.maybeComponent(e))&&(r=Ua(e,t));var i=e.inlineTemplate?null:Ka(e,t,!0);n="_c('"+e.tag+"'"+(r?","+r:"")+(i?","+i:"")+")"}for(var o=0;o<t.transforms.length;o++)n=t.transforms[o](e,n);return n}return Ka(e,t)||"void 0"}function Ra(e,t){e.staticProcessed=!0;var n=t.pre;return e.pre&&(t.pre=e.pre),t.staticRenderFns.push("with(this){return "+Pa(e,t)+"}"),t.pre=n,"_m("+(t.staticRenderFns.length-1)+(e.staticInFor?",true":"")+")"}function Fa(e,t){if(e.onceProcessed=!0,e.if&&!e.ifProcessed)return Ha(e,t);if(e.staticInFor){for(var n="",r=e.parent;r;){if(r.for){n=r.key;break}r=r.parent}return n?"_o("+Pa(e,t)+","+t.onceId+++","+n+")":Pa(e,t)}return Ra(e,t)}function Ha(e,t,n,r){return e.ifProcessed=!0,function e(t,n,r,i){if(!t.length)return i||"_e()";var o=t.shift();return o.exp?"("+o.exp+")?"+a(o.block)+":"+e(t,n,r,i):""+a(o.block);function a(e){return r?r(e,n):e.once?Fa(e,n):Pa(e,n)}}(e.ifConditions.slice(),t,n,r)}function Ba(e,t,n,r){var i=e.for,o=e.alias,a=e.iterator1?","+e.iterator1:"",s=e.iterator2?","+e.iterator2:"";return e.forProcessed=!0,(r||"_l")+"(("+i+"),function("+o+a+s+"){return "+(n||Pa)(e,t)+"})"}function Ua(e,t){var n="{",r=function(e,t){var n=e.directives;if(!n)return;var r,i,o,a,s="directives:[",c=!1;for(r=0,i=n.length;r<i;r++){o=n[r],a=!0;var u=t.directives[o.name];u&&(a=!!u(e,o,t.warn)),a&&(c=!0,s+='{name:"'+o.name+'",rawName:"'+o.rawName+'"'+(o.value?",value:("+o.value+"),expression:"+JSON.stringify(o.value):"")+(o.arg?",arg:"+(o.isDynamicArg?o.arg:'"'+o.arg+'"'):"")+(o.modifiers?",modifiers:"+JSON.stringify(o.modifiers):"")+"},")}if(c)return s.slice(0,-1)+"]"}(e,t);r&&(n+=r+","),e.key&&(n+="key:"+e.key+","),e.ref&&(n+="ref:"+e.ref+","),e.refInFor&&(n+="refInFor:true,"),e.pre&&(n+="pre:true,"),e.component&&(n+='tag:"'+e.tag+'",');for(var i=0;i<t.dataGenFns.length;i++)n+=t.dataGenFns[i](e);if(e.attrs&&(n+="attrs:"+Wa(e.attrs)+","),e.props&&(n+="domProps:"+Wa(e.props)+","),e.events&&(n+=ja(e.events,!1)+","),e.nativeEvents&&(n+=ja(e.nativeEvents,!0)+","),e.slotTarget&&!e.slotScope&&(n+="slot:"+e.slotTarget+","),e.scopedSlots&&(n+=function(e,t,n){var r=Object.keys(t).some(function(e){var n=t[e];return n.slotTargetDynamic||n.if||n.for||za(n)});if(!r)for(var i=e.parent;i;){if(i.slotScope&&i.slotScope!==aa){r=!0;break}i=i.parent}return"scopedSlots:_u(["+Object.keys(t).map(function(e){return Va(t[e],n)}).join(",")+"]"+(r?",true":"")+")"}(e,e.scopedSlots,t)+","),e.model&&(n+="model:{value:"+e.model.value+",callback:"+e.model.callback+",expression:"+e.model.expression+"},"),e.inlineTemplate){var o=function(e,t){var n=e.children[0];if(n&&1===n.type){var r=Da(n,t.options);return"inlineTemplate:{render:function(){"+r.render+"},staticRenderFns:["+r.staticRenderFns.map(function(e){return"function(){"+e+"}"}).join(",")+"]}"}}(e,t);o&&(n+=o+",")}return n=n.replace(/,$/,"")+"}",e.dynamicAttrs&&(n="_b("+n+',"'+e.tag+'",'+Wa(e.dynamicAttrs)+")"),e.wrapData&&(n=e.wrapData(n)),e.wrapListeners&&(n=e.wrapListeners(n)),n}function za(e){return 1===e.type&&("slot"===e.tag||e.children.some(za))}function Va(e,t){var n=e.attrsMap["slot-scope"];if(e.if&&!e.ifProcessed&&!n)return Ha(e,t,Va,"null");if(e.for&&!e.forProcessed)return Ba(e,t,Va);var r=e.slotScope===aa?"":String(e.slotScope),i="function("+r+"){return "+("template"===e.tag?e.if&&n?"("+e.if+")?"+(Ka(e,t)||"undefined")+":undefined":Ka(e,t)||"undefined":Pa(e,t))+"}",o=r?"":",proxy:true";return"{key:"+(e.slotTarget||'"default"')+",fn:"+i+o+"}"}function Ka(e,t,n,r,i){var o=e.children;if(o.length){var a=o[0];if(1===o.length&&a.for&&"template"!==a.tag&&"slot"!==a.tag){var s=n?t.maybeComponent(a)?",1":",0":"";return""+(r||Pa)(a,t)+s}var c=n?function(e,t){for(var n=0,r=0;r<e.length;r++){var i=e[r];if(1===i.type){if(Ja(i)||i.ifConditions&&i.ifConditions.some(function(e){return Ja(e.block)})){n=2;break}(t(i)||i.ifConditions&&i.ifConditions.some(function(e){return t(e.block)}))&&(n=1)}}return n}(o,t.maybeComponent):0,u=i||qa;return"["+o.map(function(e){return u(e,t)}).join(",")+"]"+(c?","+c:"")}}function Ja(e){return void 0!==e.for||"template"===e.tag||"slot"===e.tag}function qa(e,t){return 1===e.type?Pa(e,t):3===e.type&&e.isComment?(r=e,"_e("+JSON.stringify(r.text)+")"):"_v("+(2===(n=e).type?n.expression:Za(JSON.stringify(n.text)))+")";var n,r}function Wa(e){for(var t="",n="",r=0;r<e.length;r++){var i=e[r],o=Za(i.value);i.dynamic?n+=i.name+","+o+",":t+='"'+i.name+'":'+o+","}return t="{"+t.slice(0,-1)+"}",n?"_d("+t+",["+n.slice(0,-1)+"])":t}function Za(e){return e.replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029")}new RegExp("\\b"+"do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,super,throw,while,yield,delete,export,import,return,switch,default,extends,finally,continue,debugger,function,arguments".split(",").join("\\b|\\b")+"\\b");function Ga(e,t){try{return new Function(e)}catch(n){return t.push({err:n,code:e}),S}}function Xa(e){var t=Object.create(null);return function(n,r,i){(r=k({},r)).warn;delete r.warn;var o=r.delimiters?String(r.delimiters)+n:n;if(t[o])return t[o];var a=e(n,r),s={},c=[];return s.render=Ga(a.render,c),s.staticRenderFns=a.staticRenderFns.map(function(e){return Ga(e,c)}),t[o]=s}}var Ya,Qa,es=(Ya=function(e,t){var n=ca(e.trim(),t);!1!==t.optimize&&xa(n,t);var r=Da(n,t);return{ast:n,render:r.render,staticRenderFns:r.staticRenderFns}},function(e){function t(t,n){var r=Object.create(e),i=[],o=[];if(n)for(var a in n.modules&&(r.modules=(e.modules||[]).concat(n.modules)),n.directives&&(r.directives=k(Object.create(e.directives||null),n.directives)),n)"modules"!==a&&"directives"!==a&&(r[a]=n[a]);r.warn=function(e,t,n){(n?o:i).push(e)};var s=Ya(t.trim(),r);return s.errors=i,s.tips=o,s}return{compile:t,compileToFunctions:Xa(t)}})($a),ts=(es.compile,es.compileToFunctions);function ns(e){return(Qa=Qa||document.createElement("div")).innerHTML=e?'<a href="\n"/>':'<div a="\n"/>',Qa.innerHTML.indexOf("&#10;")>0}var rs=!!U&&ns(!1),is=!!U&&ns(!0),os=g(function(e){var t=Gn(e);return t&&t.innerHTML}),as=bn.prototype.$mount;return bn.prototype.$mount=function(e,t){if((e=e&&Gn(e))===document.body||e===document.documentElement)return this;var n=this.$options;if(!n.render){var r=n.template;if(r)if("string"==typeof r)"#"===r.charAt(0)&&(r=os(r));else{if(!r.nodeType)return this;r=r.innerHTML}else e&&(r=function(e){if(e.outerHTML)return e.outerHTML;var t=document.createElement("div");return t.appendChild(e.cloneNode(!0)),t.innerHTML}(e));if(r){var i=ts(r,{outputSourceRange:!1,shouldDecodeNewlines:rs,shouldDecodeNewlinesForHref:is,delimiters:n.delimiters,comments:n.comments},this),o=i.render,a=i.staticRenderFns;n.render=o,n.staticRenderFns=a}}return as.call(this,e,t)},bn.compile=ts,bn});
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(345).setImmediate))
 
 /***/ }),
@@ -24714,7 +24720,7 @@
 /* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -24735,14 +24741,24 @@
 
 	var _SWebComponentMixin2 = _interopRequireDefault(_SWebComponentMixin);
 
+	var _samsungBrowser = __webpack_require__(565);
+
+	var _samsungBrowser2 = _interopRequireDefault(_samsungBrowser);
+
+	var _ucBrowser = __webpack_require__(566);
+
+	var _ucBrowser2 = _interopRequireDefault(_ucBrowser);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var extendsStack = {};
 	function sNativeWebComponent(HTMLElementToExtend) {
-
-		if (!(0, _safari2.default)()) {
+		if (!(0, _safari2.default)() && !(0, _samsungBrowser2.default)() && !(0, _ucBrowser2.default)()) {
 			HTMLElementToExtend = function (OriginalHTMLElement) {
+				if (!window[OriginalHTMLElement.name]) return OriginalHTMLElement;
+				if (extendsStack[OriginalHTMLElement.name]) return extendsStack[OriginalHTMLElement.name];
 				function BabelHTMLElement() {
-					if (typeof Reflect == 'undefined' || typeof Reflect.construct != 'function' || typeof customElements == 'undefined') {
+					if (typeof Reflect == "undefined" || typeof Reflect.construct != "function" || typeof customElements == "undefined") {
 						// Use your favorite polyfill.
 					}
 					var newTarget = this.__proto__.constructor;
@@ -24750,15 +24766,16 @@
 				}
 				Object.setPrototypeOf(BabelHTMLElement, OriginalHTMLElement);
 				Object.setPrototypeOf(BabelHTMLElement.prototype, OriginalHTMLElement.prototype);
+				extendsStack[HTMLElementToExtend.name] = BabelHTMLElement;
 				return BabelHTMLElement;
 			}(HTMLElementToExtend);
 		}
 
-		if (typeof HTMLElementToExtend !== 'function') {
-			var _HTMLElementToExtend = function _HTMLElementToExtend() {};
-			_HTMLElementToExtend.prototype = HTMLElementToExtend.prototype;
-			HTMLElementToExtend = _HTMLElementToExtend;
-		}
+		// if (typeof HTMLElementToExtend !== "function") {
+		// 	var _HTMLElementToExtend = function() {};
+		// 	_HTMLElementToExtend.prototype = HTMLElementToExtend.prototype;
+		// 	HTMLElementToExtend = _HTMLElementToExtend;
+		// }
 
 		return (0, _mixwith.mix)(HTMLElementToExtend).with(_SWebComponentMixin2.default);
 	}
@@ -26709,11 +26726,7 @@
 
 	var _prependChild2 = _interopRequireDefault(_prependChild);
 
-	var _SWatcher = __webpack_require__(563);
-
-	var _SWatcher2 = _interopRequireDefault(_SWatcher);
-
-	var _propertyProxy = __webpack_require__(567);
+	var _propertyProxy = __webpack_require__(563);
 
 	var _propertyProxy2 = _interopRequireDefault(_propertyProxy);
 
@@ -26725,7 +26738,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(568).polyfill();
+	__webpack_require__(564).polyfill();
 
 	/**
 	 * @name 		SWebComponent
@@ -26742,15 +26755,10 @@
 	 * 	- componentCreated
 	 * 	- componentWillMount
 	 * 	- componentMount
-	 * 	- componentDidMount
 	 * 	- componentWillReceiveProp
 	 * 	- componentWillReceiveProps
-	 * 	- componentWillUpdate
 	 * 	- render
-	 * 	- componentDidUpdate
-	 * 	- componentWillUnmount
 	 * 	- componentUnmount
-	 * 	- componentDidUnmount
 	 * - **Mount dependencies** : This will allows you to set some promises that have to be resolved before mounting the component
 	 *
 	 * @example 	js
@@ -26814,16 +26822,6 @@
 	 * 	componentWillReceiveProp(name, newVal, oldVal) {
 	 * 		switch(name) {
 	 * 		}
-	 * 	}
-	 *
-	 * 	\/**
-	 * 	 * Render the component
-	 * 	 * Here goes the code that reflect the this.props state on the actual html element
-	 * 	 * @definition 		SWebComponent.render
-	 * 	 * @protected
-	 * 	 *\/
-	 * 	render() {
-	 * 		super.render();
 	 * 	}
 	 * }
 	 *
@@ -27263,20 +27261,14 @@
 				value: function createdCallback() {
 
 					// props
-					this.props = {};
+					this.props = this.props || {};
 
 					// track the lifecyle
 					this._lifecycle = {
 						componentWillMount: false,
 						componentMount: false,
-						componentDidMount: false,
-						componentWillUnmount: false,
-						componentUnmount: false,
-						componentDidUnmount: false
+						componentUnmount: false
 					};
-
-					// init watcher
-					this._sWatcher = new _SWatcher2.default();
 
 					// created callback
 					this.componentCreated();
@@ -27295,13 +27287,25 @@
 					// if not already passed through the created process
 					if (!this._lifecycle) this.createdCallback();
 
+					// update attached status
+					this._componentAttached = true;
+
+					// clear the unmount timeout
+					clearTimeout(this._unmountTimeout);
+
+					// stop here if already mounted once
+					if (this._lifecycle.componentMount || this._lifecycle.componentWillMount) return;
+
 					// set the componentName
 					var sourceName = this.getAttribute('is') || this.tagName.toLowerCase();
 					this.componentNameDash = this._componentNameDash = sourceName;
 					this.componentName = this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 
 					// default props init
-					this._props = Object.assign({}, this.defaultProps, this.props);
+					this._props = Object.assign({}, this.defaultProps, this._props || {}, this.props);
+
+					// if we have some initial props, we set them now
+					if (this._initialProps) this.setProps(this._initialProps);
 
 					// init properties proxy object
 					if (window.Proxy) {
@@ -27344,14 +27348,23 @@
 						attributeOldValue: true
 					});
 
-					// update attached status
-					this._componentAttached = true;
+					// internal properties
+					this._nextPropsStack = {};
+					this._prevPropsStack = {};
+					this._fastdomSetProp = null;
 
-					// clear the unmount timeout
-					clearTimeout(this._unmountTimeout);
+					// compute props
+					this._initInitialAttributes();
 
-					// stop here if already mounted once
-					if (this._lifecycle.componentMount || this._lifecycle.componentWillMount) return;
+					// props proxy
+					// this._initPropsProxy();
+
+					// check the required props
+					this.requiredProps.forEach(function (prop) {
+						if (!_this3.props[prop]) {
+							throw 'The "' + _this3.componentNameDash + '" component need the "' + prop + '" property in order to work';
+						}
+					});
 
 					// component will mount only if part of the active document
 					this.componentWillMount();
@@ -27466,34 +27479,11 @@
 			}, {
 				key: 'componentWillMount',
 				value: function componentWillMount() {
-					var _this4 = this;
-
 					// protect from mounting multiple times when unecessary
 					if (this._lifecycle.componentWillMount) return;
 
 					// update lifecycle state
 					this._lifecycle.componentWillMount = true;
-
-					// dispatch event
-					this.onComponentWillMount && this.onComponentWillMount();
-
-					// internal properties
-					this._nextPropsStack = {};
-					this._prevPropsStack = {};
-					this._fastdomSetProp = null;
-
-					// compute props
-					this._initInitialAttributes();
-
-					// props proxy
-					this._initPropsProxy();
-
-					// check the required props
-					this.requiredProps.forEach(function (prop) {
-						if (!_this4.props[prop]) {
-							throw 'The "' + _this4.componentNameDash + '" component need the "' + prop + '" property in order to work';
-						}
-					});
 				}
 
 				/**
@@ -27517,61 +27507,8 @@
 					if (this._lifecycle.componentMount) return;
 					// update the lifecycle state
 					this._lifecycle.componentMount = true;
-					// dispatch event
-					this.onComponentMount && this.onComponentMount();
 					// mark the component as mounted
 					this.setAttribute('mounted', true);
-				}
-
-				/**
-	    * Method called after the initial component render
-	    *
-	    * @example
-	    * componentDidMount() {
-	    * 		// call parent method
-	    * 		super.componentDidMount();
-	    * 		// do something here...
-	    * }
-	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	    */
-
-			}, {
-				key: 'componentDidMount',
-				value: function componentDidMount() {
-					if (this._lifecycle.componentDidMount) return;
-					// update lifecycle state
-					this._lifecycle.componentDidMount = true;
-					// dispatch event
-					this.onComponentDidMount && this.onComponentDidMount();
-					// update lifecycle
-					this._lifecycle.componentWillUnmount = false;
-					this._lifecycle.componentUnmount = false;
-					this._lifecycle.componentDidUnmount = false;
-				}
-
-				/**
-	    * Method called right before the render when some props have been updated.
-	    * This method is not called before the initial render
-	    *
-	    * @param 		{Object} 		nextProps 			An object that represent the props that have been updated
-	    * @param 		{Array} 		nextPropsArray 		An array representation of the nextProps object [{name:...,value:...}]
-	    *
-	    * @example
-	    * componentWillUpdate(nextProps, nextPropsArray) {
-	    * 		// call parent method
-	    * 		super.componentWillUpdate(nextProps, nextPropsArray);
-	    * 		// do something here...
-	    * }
-	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	    */
-
-			}, {
-				key: 'componentWillUpdate',
-				value: function componentWillUpdate(nextProps) {
-					// dispatch event
-					this.onComponentWillUpdate && this.onComponentWillUpdate(nextProps);
 				}
 
 				/**
@@ -27590,57 +27527,7 @@
 
 			}, {
 				key: 'render',
-				value: function render() {
-					// dispatch event
-					this.onComponentRender && this.onComponentRender();
-				}
-
-				/**
-	    * Method called right after the render when some props have been updated.
-	    * This method is not called after the initial render
-	    *
-	    * @param 		{Object} 		prevProps 			An object that represent the props that have been updated
-	    * @param 		{Array} 		prevPropsArray 		An array representation of the prevProps object [{name:...,value:...}]
-	    *
-	    * @example
-	    * componentDidUpdate(prevProps, prevPropsArray) {
-	    * 		// call parent method
-	    * 		super.componentDidUpdate(prevProps, prevPropsArray);
-	    * 		// do something here...
-	    * }
-	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	    */
-
-			}, {
-				key: 'componentDidUpdate',
-				value: function componentDidUpdate(prevProps, prevPropsArray) {
-					// dispatch event
-					this.onComponentDidUpdate && this.onComponentDidUpdate(prevProps, prevPropsArray);
-				}
-
-				/**
-	    * Method called before the component will unmount cause it has been removed from the DOM tree and that the props.unmountTimeout is passed.
-	    *
-	    * @example
-	    * componentWillUnmount() {
-	    * 		// call parent method
-	    * 		super.componentWillUnmount();
-	    * 		// do something here...
-	    * }
-	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	    */
-
-			}, {
-				key: 'componentWillUnmount',
-				value: function componentWillUnmount() {
-					if (this._lifecycle.componentWillUnmount) return;
-					// update lifecycle state
-					this._lifecycle.componentWillUnmount = true;
-					// dispatch event
-					this.onComponentWillUnmount && this.onComponentWillUnmount();
-				}
+				value: function render() {}
 
 				/**
 	    * Method called when the component need to unmount itself cause it has been removed from the DOM tree and the props.unmountTimeout is passed.
@@ -27661,33 +27548,8 @@
 					if (this._lifecycle.componentUnmount) return;
 					// update lifecycle state
 					this._lifecycle.componentUnmount = true;
-					// dispatch event
-					this.onComponentUnmount && this.onComponentUnmount();
-				}
-
-				/**
-	    * Method called when the component has been unmounted
-	    *
-	    * @example
-	    * componentDidUnmount() {
-	    * 		// call parent method
-	    * 		super.componentDidUnmount();
-	    * 		// do something here...
-	    * }
-	    *
-	    * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	    */
-
-			}, {
-				key: 'componentDidUnmount',
-				value: function componentDidUnmount() {
-					if (this._lifecycle.componentDidMount) return;
-					// update lifecycle state
-					this._lifecycle.componentDidUnmount = true;
-					// destroy things
-					this._sWatcher.destroy();
-					// dispatch event
-					this.onComponentDidUnmount && this.onComponentDidUnmount();
+					// remove the component mounted attribute
+					this.removeAttribute('mounted');
 				}
 
 				/**
@@ -27698,10 +27560,10 @@
 			}, {
 				key: '_whenMountDependenciesAreOk',
 				value: function _whenMountDependenciesAreOk() {
-					var _this5 = this;
+					var _this4 = this;
 
 					var promise = new Promise(function (resolve, reject) {
-						var deps = _this5.mountDependencies;
+						var deps = _this4.mountDependencies;
 						if (!deps.length) {
 							resolve();
 						} else {
@@ -27719,33 +27581,28 @@
 	    * This will create a getter/setter accessor on the item itself
 	    * that get and update his corresponding props.{name} property
 	    */
-
-			}, {
-				key: '_initPropsProxy',
-				value: function _initPropsProxy() {
-					var _this6 = this;
-
-					// loop on each props
-					for (var key in this.defaultProps) {
-						if (this.hasOwnProperty(key) || key in this) {
-							if (this.props.debug) {
-								console.warn('The component ' + this.componentNameDash + ' has already an "' + key + '" property... This property will not reflect the this.props[\'' + key + '\'] value... Try to use a property name that does not already exist on an HTMLElement...');
-							}
-							continue;
-						}
-						(function (key) {
-							Object.defineProperty(_this6, key, {
-								get: function get() {
-									return _this6.props[key];
-								},
-								set: function set(value) {
-									_this6.setProp(key, (0, _autoCast2.default)(value));
-								},
-								enumarable: true
-							});
-						})(key);
-					}
-				}
+				// _initPropsProxy() {
+				// 	// loop on each props
+				// 	for(let key in this.defaultProps) {
+				// 		if (this.hasOwnProperty(key) || key in this) {
+				// 			if (this.props.debug) {
+				// 				console.warn(`The component ${this.componentNameDash} has already an "${key}" property... This property will not reflect the this.props['${key}'] value... Try to use a property name that does not already exist on an HTMLElement...`);
+				// 			}
+				// 			continue;
+				// 		}
+				// 		((key) => {
+				// 			Object.defineProperty(this, key, {
+				// 				get : () => {
+				// 					return this.props[key];
+				// 				},
+				// 				set : (value) => {
+				// 					this.setProp(key, __autoCast(value));
+				// 				},
+				// 				enumarable : true
+				// 			});
+				// 		})(key);
+				// 	}
+				// }
 
 				/**
 	    * On mouse over
@@ -27765,20 +27622,18 @@
 			}, {
 				key: '_mountComponent',
 				value: function _mountComponent() {
-					var _this7 = this;
+					var _this5 = this;
 
 					// wait next frame
 					_fastdom2.default.clear(this._fastdomSetProp);
 					this._fastdomSetProp = this.mutate(function () {
 						// sometimes, the component has been unmounted between the
 						// fastdom execution, so we stop here if it's the case
-						if (!_this7._componentAttached) return;
+						if (!_this5._componentAttached) return;
 						// init
-						_this7.componentMount();
+						_this5.componentMount();
 						// render
-						_this7.render();
-						// component did mount
-						_this7.componentDidMount();
+						_this5.render();
 					});
 				}
 
@@ -27790,7 +27645,7 @@
 			}, {
 				key: 'disconnectedCallback',
 				value: function disconnectedCallback() {
-					var _this8 = this;
+					var _this6 = this;
 
 					// update attached status
 					this._componentAttached = false;
@@ -27798,22 +27653,15 @@
 					// unmount timeout
 					clearTimeout(this._unmountTimeout);
 					this._unmountTimeout = setTimeout(function () {
-
-						// will unmount
-						_this8.componentWillUnmount();
 						// wait next frame
-						_fastdom2.default.clear(_this8._fastdomSetProp);
-						_this8._fastdomSetProp = _this8.mutate(function () {
+						_fastdom2.default.clear(_this6._fastdomSetProp);
+						_this6._fastdomSetProp = _this6.mutate(function () {
 							// unmount only if the component is mounted
-							if (!_this8._lifecycle.componentMount) return;
+							if (!_this6._lifecycle.componentMount) return;
 							// unmount
-							_this8.componentUnmount();
-							// did unmount
-							_this8.componentDidUnmount();
+							_this6.componentUnmount();
 							// update lifecycle
-							_this8._lifecycle.componentWillMount = false;
-							_this8._lifecycle.componentMount = false;
-							_this8._lifecycle.componentDidUnmount = false;
+							_this6._lifecycle.componentMount = false;
 						});
 					}, this.props.unmountTimeout);
 				}
@@ -27873,6 +27721,14 @@
 					var set = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
 
+					// if the component is not attached to the dom, we don't have the props etc
+					// so we save them inside an object that we will merge later in the props
+					if (!this._componentAttached) {
+						if (!this._initialProps) this._initialProps = {};
+						this._initialProps[prop] = value;
+						return;
+					}
+
 					// save the oldVal
 					var oldVal = this.props[prop];
 
@@ -27911,7 +27767,7 @@
 			}, {
 				key: '_handleNewPropValue',
 				value: function _handleNewPropValue(prop, newVal, oldVal) {
-					var _this9 = this;
+					var _this7 = this;
 
 					// if the component is not mounted
 					// we do nothing here...
@@ -27931,18 +27787,18 @@
 						// create array version of each stacks
 						var nextPropsArray = [],
 						    prevPropsArray = [];
-						for (var key in _this9._nextPropsStack) {
-							var val = _this9._nextPropsStack[key];
+						for (var key in _this7._nextPropsStack) {
+							var val = _this7._nextPropsStack[key];
 							nextPropsArray.push({
 								name: key,
 								value: val
 							});
 
 							// handle physical props
-							_this9._handlePhysicalProp(key, val);
+							_this7._handlePhysicalProp(key, val);
 						}
-						for (var _key2 in _this9._prevPropsStack) {
-							var _val = _this9._prevPropsStack[_key2];
+						for (var _key2 in _this7._prevPropsStack) {
+							var _val = _this7._prevPropsStack[_key2];
 							prevPropsArray.push({
 								name: _key2,
 								value: _val
@@ -27950,22 +27806,38 @@
 						}
 
 						// call the will reveiveProps if exist
-						if (_this9.componentWillReceiveProps) {
-							_this9.componentWillReceiveProps(_this9._nextPropsStack, nextPropsArray);
+						if (_this7.componentWillReceiveProps) {
+							_this7.componentWillReceiveProps(_this7._nextPropsStack, nextPropsArray);
 						}
 
 						// should component update
-						if (_this9.shouldComponentUpdate && !_this9.shouldComponentUpdate(_this9._nextPropsStack, _this9._prevPropsStack)) return;
-
-						// component will update
-						_this9.componentWillUpdate(_this9._nextPropsStack, nextPropsArray);
+						if (_this7.shouldComponentUpdate && !_this7.shouldComponentUpdate(_this7._nextPropsStack, _this7._prevPropsStack)) return;
 
 						// render the component
-						_this9.render();
-
-						// component did update
-						_this9.componentDidUpdate(_this9._prevPropsStack, prevPropsArray);
+						_this7.render();
 					});
+				}
+
+				/**
+	    * Get the previous props stack
+	    * @return    {Object}    The previous props stack
+	    */
+
+			}, {
+				key: 'getPreviousPropsStack',
+				value: function getPreviousPropsStack() {
+					return this._prevPropsStack;
+				}
+
+				/**
+	    * Get the next props stack
+	    * @return    {Object}    The next props stack
+	    */
+
+			}, {
+				key: 'getNextPropsStack',
+				value: function getNextPropsStack() {
+					return this._nextPropsStack;
 				}
 
 				/**
@@ -28012,18 +27884,6 @@
 				key: 'isComponentMounted',
 				value: function isComponentMounted() {
 					return this._lifecycle.componentMount;
-				}
-
-				/**
-	    * Watch any data of the component
-	    * @param 		{String} 		path 		The path from the component root to watch like "props.myCoolProp"
-	    * @param 		{Function}		cb 			The callback to call when the item has changed
-	    */
-
-			}, {
-				key: 'watch',
-				value: function watch(path, cb) {
-					this._sWatcher.watch(this, path, cb);
 				}
 
 				/**
@@ -28188,7 +28048,7 @@
 				value: function addComponentClass(elm) {
 					var element = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-					var _this10 = this;
+					var _this8 = this;
 
 					var modifier = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 					var state = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
@@ -28196,7 +28056,7 @@
 					// if is an array
 					if (elm instanceof Array || elm instanceof NodeList) {
 						[].forEach.call(elm, function (el) {
-							_this10.addComponentClass(el, element, modifier, state);
+							_this8.addComponentClass(el, element, modifier, state);
 						});
 						return this;
 					}
@@ -28206,7 +28066,7 @@
 					// loop on each classes to add
 					cls.split('.').forEach(function (cl) {
 						if (cl && cl !== '') {
-							_this10.mutate(function () {
+							_this8.mutate(function () {
 								elm.classList.add(cl);
 							});
 						}
@@ -28229,7 +28089,7 @@
 				value: function removeComponentClass(elm) {
 					var element = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-					var _this11 = this;
+					var _this9 = this;
 
 					var modifier = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 					var state = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
@@ -28237,7 +28097,7 @@
 					// if is an array
 					if (elm instanceof Array || elm instanceof NodeList) {
 						[].forEach.call(elm, function (el) {
-							_this11.removeComponentClass(el, element, modifier, state);
+							_this9.removeComponentClass(el, element, modifier, state);
 						});
 						return this;
 					}
@@ -28247,7 +28107,7 @@
 					// loop on each classes to add
 					cls.split('.').forEach(function (cl) {
 						if (cl && cl !== '') {
-							_this11.mutate(function () {
+							_this9.mutate(function () {
 								elm.classList.remove(cl);
 							});
 						}
@@ -28920,23 +28780,32 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = uncamelize;
 	/**
 	 * Uncamelize a string
+	 * @param    {String}    string    The string to uncamelize
+	 * @param    {String}    [separator='-']    The separator to use
+	 * @return    {String}    The uncamelized string
+	 *
+	 * @example    js
+	 * import uncamelize from 'coffeekraken-sugar/js/utils/strings/uncamelize'
+	 * uncamelize('helloWorldAndUniverse') // hello-world-and-universe
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function uncamelize(text) {
-		var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
+	  var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
 
-		// Replace all capital letters by separator followed by lowercase one
-		var res = '';
-		res = text.replace(/[A-Z]/g, function (letter) {
-			return separator + letter.toLowerCase();
-		});
+	  // Replace all capital letters by separator followed by lowercase one
+	  var res = '';
+	  res = text.replace(/[A-Z]/g, function (letter) {
+	    return separator + letter.toLowerCase();
+	  });
 
-		// Remove first separator (to avoid _hello_world name)
-		return res.replace("/^" + separator + "/", '').trim();
+	  // Remove first separator (to avoid _hello_world name)
+	  return res.replace("/^" + separator + "/", '').trim();
 	}
 
 /***/ }),
@@ -28951,6 +28820,14 @@
 	exports.default = upperFirst;
 	/**
 	 * Upper first
+	 * @param    {String}    string    The string to process
+	 * @return    {String}    The processed string with first letter uppercase
+	 *
+	 * @example    js
+	 * import upperFirst from 'coffeekraken-sugar/js/utils/strings/upperFirst'
+	 * upperFirst('hello world') // Hello world
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
 	 */
 	function upperFirst(string) {
 	  return string.charAt(0).toUpperCase() + string.slice(1);
@@ -28988,450 +28865,6 @@
 
 /***/ }),
 /* 563 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _constructorName = __webpack_require__(564);
-
-	var _constructorName2 = _interopRequireDefault(_constructorName);
-
-	var _get2 = __webpack_require__(495);
-
-	var _get3 = _interopRequireDefault(_get2);
-
-	var _set2 = __webpack_require__(565);
-
-	var _set3 = _interopRequireDefault(_set2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @name 		SWatcher
-	 * This class allows you to easily monitor some object properties and get the new and old value of it
-	 *
-	 * @example 	js
-	 * // create the watcher instance
-	 * const watcher = new SWatcher();
-	 *
-	 * // object to watch
-	 * let myObject = {
-	 * 		title : 'Hello World'
-	 * };
-	 *
-	 * // watch the object
-	 * watcher.watch(myObject, 'title', (newVal, oldVal) => {
-	 *  	// do something when the title changes
-	 * });
-	 *
-	 * // update the title
-	 * myObject.title = 'Hello Universe';
-	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	 */
-	var SWatcher = function () {
-
-		/**
-	  * @constructor
-	  */
-		function SWatcher() {
-			_classCallCheck(this, SWatcher);
-
-			this._watchStack = {};
-		}
-
-		/**
-	  * Destroy the watcher
-	  */
-
-
-		/**
-	  * Watch stack
-	  * @type 		{Object}
-	  */
-
-
-		_createClass(SWatcher, [{
-			key: 'destroy',
-			value: function destroy() {
-				// destroy the watchStack
-				this._watchStack = {};
-			}
-
-			/**
-	   * Internal implementation of the defineProp
-	   * @param 		{Object} 	obj 		The object to watch
-	   * @param 		{String} 	property 	The property of the object to watch
-	   * @param 		{Mixed} 	value 		The initial value of the property
-	   * @param 		{String} 	objPath 	The object property path to watch
-	   */
-
-		}, {
-			key: '_defineProp',
-			value: function _defineProp(obj, property, value, objPath) {
-				var _this2 = this;
-
-				var descriptor = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-
-
-				// do not define multiple time the description
-				if (this._watchStack[objPath]) return;
-
-				// store the current value
-				var val = value;
-				var currentDescriptor = Object.getOwnPropertyDescriptor(obj.prototype || obj, property);
-
-				// custom setter check
-				var _set = function _set(value) {
-					// descriptor
-					if (currentDescriptor && currentDescriptor.set) {
-						var ret = currentDescriptor.set(value);
-						if (ret) {
-							val = ret;
-						} else {
-							val = currentDescriptor.get();
-						}
-					} else {
-						val = value;
-					}
-
-					// apply the proxy for arrays, etc...
-					val = _this2._applyProxy(val, objPath, function (newVal) {
-						val = newVal;
-					});
-				};
-
-				// set the value
-				_set(value);
-
-				// make sure we have the good currentDescriptor
-				var d = Object.getOwnPropertyDescriptor(obj, property);
-				Object.defineProperty(obj, property, {
-					get: function get() {
-						var _val = val;
-						if (currentDescriptor && currentDescriptor.get) {
-							_val = currentDescriptor.get();
-						}
-						if (descriptor && descriptor.get) {
-							_val = descriptor.get(_val);
-						}
-						return _val;
-					},
-					set: function set(v) {
-						var oldValue = val;
-						if (descriptor && descriptor.set) {
-							v = descriptor.set(v);
-						}
-						// internal set to use the good setter
-						_set(v);
-						// _notify of new update
-						_this2._notify(objPath, val, oldValue);
-					},
-					configurable: descriptor && descriptor.configurable !== undefined ? descriptor.configurable : currentDescriptor && currentDescriptor.configurable !== undefined ? currentDescriptor.configurable : false,
-					enumarable: descriptor && descriptor.enumarable !== undefined ? descriptor.enumarable : currentDescriptor && currentDescriptor.enumarable !== undefined ? currentDescriptor.enumarable : true
-					// writable : currentDescriptor && currentDescriptor.writable !== undefined ? currentDescriptor.writable : true
-				});
-			}
-
-			/**
-	   * Override some array methods to be able to notify of changes
-	   * @param 		{Array} 	array 			The array to process
-	   * @param 		{Array} 	methods 		The methods to override
-	   * @param 		{String} 	objPath 		The object property path to watch
-	   * @param 		{Function} 	setValueCb 		A callback function that will set the updated value
-	   */
-
-		}, {
-			key: '_overrideArrayMethod',
-			value: function _overrideArrayMethod(array, methods, objPath, setValueCb) {
-				var _this = this;
-
-				// grab the old value
-				var oldVal = array.slice(0);
-
-				// loop on each methods to override
-				methods.forEach(function (method) {
-					array[method] = function () {
-						// array items info object
-						var updateInfo = {
-							type: Array,
-							method: method
-						};
-						if (method === 'push' || method === 'unshift' || method === 'concat') {
-							updateInfo.addedItems = Array.prototype.slice.call(arguments);
-						} else if (method === 'pop') {
-							updateInfo.removedItems = [oldVal[oldVal.length - 1]];
-						} else if (method === 'shift') {
-							updateInfo.removedItems = [oldVal[0]];
-						}
-						// @TODO Check and add missed methods to watch array
-						// apply the push
-						var ret = Array.prototype[method].apply(this, arguments);
-						// set value callback
-						setValueCb(this);
-						// _notify
-						_this._notify(objPath, this, oldVal, updateInfo);
-						// return the new value
-						return ret;
-					};
-				});
-			}
-
-			/**
-	   * Apply a proxy on the variable to detect changes
-	   * on arrays, etc...
-	   * @param 		{Mixed} 	value 		The value on which to apply the proxy
-	   * @param 		{String} 	objPath 	The object property path to watch
-	   * @param 		{Function} 	setValueCb 	A function that will be responsible to set the new value intarnally
-	   * @return 		{Mixed} 				Return the value
-	   */
-
-		}, {
-			key: '_applyProxy',
-			value: function _applyProxy(value, objPath, setValueCb) {
-				// if is an array
-				if (value instanceof Array) {
-					// override methods
-					this._overrideArrayMethod(value, ['push', 'splice', 'pop', 'shift', 'unshift', 'reverse', 'sort', 'concat'], objPath, setValueCb);
-				}
-				return value;
-			}
-
-			/**
-	   * Watch something on an object
-	   * @param 		{Object} 		object 		The object to watch
-	   * @param 		{String} 		path 		The property path to watch on the object
-	   * @param 		{Function} 		cb 			The callback called when the property is updated
-	   */
-
-		}, {
-			key: 'watch',
-			value: function watch(object, path, cb) {
-				var _this3 = this;
-
-				var descriptor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-				// split the path by ',' to watch multiple properties
-				if (typeof path === 'string') {
-					path = path.split(',');
-				}
-				if (!path instanceof Array) {
-					throw "The 'path' parameter has to be an array...";
-				}
-				// loop on each path to watch
-				path.forEach(function (p) {
-					_this3._watch(object, p.trim(), cb, descriptor);
-				});
-			}
-
-			/**
-	   * Internal watch$
-	   * @param 		{Object} 		object 		The object to watch
-	   * @param 		{String} 		path 		The property path to watch on the object
-	   * @param 		{Function} 		cb 			The callback called when the property is updated
-	   */
-
-		}, {
-			key: '_watch',
-			value: function _watch(object, path, cb) {
-				var descriptor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-				// check if the path parameter has already a descriptor
-				var split = path.split('.');
-				var obj = object;
-				var property = null;
-				if (split.length > 1) {
-					property = split.pop();
-					obj = (0, _get3.default)(object, split.join('.'));
-				} else {
-					property = split[0];
-				}
-				var currentValue = null;
-				currentValue = (0, _get3.default)(object, path);
-
-				// if is undefined, create the value at null
-				if (obj === undefined || currentValue === undefined) {
-					(0, _set3.default)(obj, path, null);
-					// _set(this, split.join('.'),null);
-					// throw `It's not possible to watch the property ${path} cause it does not exist...`;
-				};
-
-				// define the property proxy
-				this._defineProp(obj, property, currentValue, path, descriptor);
-
-				// register new watch
-				if (!this._watchStack[path]) {
-					this._watchStack[path] = [];
-				}
-				this._watchStack[path].push(cb);
-			}
-
-			/**
-	   * Tell that something has changed
-	   * @param 		{String} 		path 		The object property path that has been updated
-	   * @param 		{Mixed} 		newValue 	The new property value
-	   * @param 		{Mixed} 		oldValue 	The old property value
-	   * @param 		{Object} 		[updateInfo=null] 	An object that add information about the update like addedItems for array, etc...
-	   */
-
-		}, {
-			key: '_notify',
-			value: function _notify(path, newValue, oldValue) {
-				var updateInfo = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-				if (this._watchStack[path] !== undefined && newValue !== oldValue) {
-					this._watchStack[path].forEach(function (cb) {
-						cb(newValue, oldValue, updateInfo);
-					});
-				}
-			}
-		}]);
-
-		return SWatcher;
-	}();
-
-	exports.default = SWatcher;
-
-/***/ }),
-/* 564 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = constructorName;
-	/**
-	 * Return the constructor name of the passed object
-	 *
-	 * @name 		constructorName
-	 * @param 		{Object} 			obj 		The object to get the constructor name from
-	 * @return 		{String}						The constructor name
-	 *
-	 * @example 	js
-	 * class MyCoolClass {
-	 * 		// class implementation...
-	 * }
-	 * const myObj = new MyCoolClass();
-	 * console.log(constructorName(myObj)); => MyCoolClass
-	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	 */
-	function constructorName(obj) {
-	  var funcNameRegex = /function (.{1,})\(/;
-
-	  var res = funcNameRegex.exec(obj.toString());
-	  if (res && res[1]) return res[1];
-
-	  var results = funcNameRegex.exec(obj.constructor.toString());
-	  return results && results.length > 1 ? results[1] : "";
-	}
-
-/***/ }),
-/* 565 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var baseSet = __webpack_require__(566);
-
-	/**
-	 * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
-	 * it's created. Arrays are created for missing index properties while objects
-	 * are created for all other missing properties. Use `_.setWith` to customize
-	 * `path` creation.
-	 *
-	 * **Note:** This method mutates `object`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 3.7.0
-	 * @category Object
-	 * @param {Object} object The object to modify.
-	 * @param {Array|string} path The path of the property to set.
-	 * @param {*} value The value to set.
-	 * @returns {Object} Returns `object`.
-	 * @example
-	 *
-	 * var object = { 'a': [{ 'b': { 'c': 3 } }] };
-	 *
-	 * _.set(object, 'a[0].b.c', 4);
-	 * console.log(object.a[0].b.c);
-	 * // => 4
-	 *
-	 * _.set(object, ['x', '0', 'y', 'z'], 5);
-	 * console.log(object.x[0].y.z);
-	 * // => 5
-	 */
-	function set(object, path, value) {
-	  return object == null ? object : baseSet(object, path, value);
-	}
-
-	module.exports = set;
-
-
-/***/ }),
-/* 566 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var assignValue = __webpack_require__(544),
-	    castPath = __webpack_require__(497),
-	    isIndex = __webpack_require__(475),
-	    isObject = __webpack_require__(427),
-	    toKey = __webpack_require__(505);
-
-	/**
-	 * The base implementation of `_.set`.
-	 *
-	 * @private
-	 * @param {Object} object The object to modify.
-	 * @param {Array|string} path The path of the property to set.
-	 * @param {*} value The value to set.
-	 * @param {Function} [customizer] The function to customize path creation.
-	 * @returns {Object} Returns `object`.
-	 */
-	function baseSet(object, path, value, customizer) {
-	  if (!isObject(object)) {
-	    return object;
-	  }
-	  path = castPath(path, object);
-
-	  var index = -1,
-	      length = path.length,
-	      lastIndex = length - 1,
-	      nested = object;
-
-	  while (nested != null && ++index < length) {
-	    var key = toKey(path[index]),
-	        newValue = value;
-
-	    if (index != lastIndex) {
-	      var objValue = nested[key];
-	      newValue = customizer ? customizer(objValue, key, nested) : undefined;
-	      if (newValue === undefined) {
-	        newValue = isObject(objValue)
-	          ? objValue
-	          : (isIndex(path[index + 1]) ? [] : {});
-	      }
-	    }
-	    assignValue(nested, key, newValue);
-	    nested = nested[key];
-	  }
-	  return object;
-	}
-
-	module.exports = baseSet;
-
-
-/***/ }),
-/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29538,7 +28971,7 @@
 	}
 
 /***/ }),
-/* 568 */
+/* 564 */
 /***/ (function(module, exports) {
 
 	/**
@@ -29590,61 +29023,116 @@
 
 
 /***/ }),
-/* 569 */
+/* 565 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var _coffeekrakenSDatepickerComponent = __webpack_require__(570);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = isSamsumgBrowser;
+
+	var _mobileDetect = __webpack_require__(528);
+
+	var _mobileDetect2 = _interopRequireDefault(_mobileDetect);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Detect if is the samsung stock browser that is running the page
+	 * @example    js
+	 * import isSamsumgBrowser from 'coffeekraken-sugar/js/utils/is/samsungBrowser'
+	 * if (isSamsumgBrowser()) {
+	 *   // do something
+	 * }
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	function isSamsumgBrowser() {
+	  return window.navigator.userAgent.match(/SamsungBrowser/i) !== null;
+	}
+
+/***/ }),
+/* 566 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = isUcBrowser;
+	/**
+	 * Detect if is the UC stock browser that is running the page
+	 * @example    js
+	 * import isUcBrowser from 'coffeekraken-sugar/js/utils/is/ucBrowser'
+	 * if (isUcBrowser()) {
+	 *   // do something
+	 * }
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	function isUcBrowser() {
+	  return window.navigator.userAgent.match(/UCBrowser/i) !== null;
+	}
+
+/***/ }),
+/* 567 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var _coffeekrakenSDatepickerComponent = __webpack_require__(568);
 
 	var _coffeekrakenSDatepickerComponent2 = _interopRequireDefault(_coffeekrakenSDatepickerComponent);
 
-	var _coffeekrakenSGoogleMapComponent = __webpack_require__(574);
+	var _coffeekrakenSGoogleMapComponent = __webpack_require__(571);
 
 	var _coffeekrakenSGoogleMapComponent2 = _interopRequireDefault(_coffeekrakenSGoogleMapComponent);
 
-	var _coffeekrakenSGoogleMapMarkerComponent = __webpack_require__(579);
+	var _coffeekrakenSGoogleMapMarkerComponent = __webpack_require__(576);
 
 	var _coffeekrakenSGoogleMapMarkerComponent2 = _interopRequireDefault(_coffeekrakenSGoogleMapMarkerComponent);
 
-	var _coffeekrakenSRippleComponent = __webpack_require__(599);
+	var _coffeekrakenSRippleComponent = __webpack_require__(596);
 
 	var _coffeekrakenSRippleComponent2 = _interopRequireDefault(_coffeekrakenSRippleComponent);
 
-	var _coffeekrakenSEqualizeComponent = __webpack_require__(613);
+	var _coffeekrakenSEqualizeComponent = __webpack_require__(610);
 
 	var _coffeekrakenSEqualizeComponent2 = _interopRequireDefault(_coffeekrakenSEqualizeComponent);
 
-	var _coffeekrakenSShareComponent = __webpack_require__(615);
+	var _coffeekrakenSShareComponent = __webpack_require__(612);
 
 	var _coffeekrakenSShareComponent2 = _interopRequireDefault(_coffeekrakenSShareComponent);
 
-	var _coffeekrakenSBodymovinComponent = __webpack_require__(619);
+	var _coffeekrakenSBodymovinComponent = __webpack_require__(616);
 
 	var _coffeekrakenSBodymovinComponent2 = _interopRequireDefault(_coffeekrakenSBodymovinComponent);
 
-	var _coffeekrakenSITypedComponent = __webpack_require__(623);
+	var _coffeekrakenSITypedComponent = __webpack_require__(624);
 
 	var _coffeekrakenSITypedComponent2 = _interopRequireDefault(_coffeekrakenSITypedComponent);
 
-	var _coffeekrakenSResponsiveImgComponent = __webpack_require__(626);
+	var _coffeekrakenSResponsiveImgComponent = __webpack_require__(627);
 
 	var _coffeekrakenSResponsiveImgComponent2 = _interopRequireDefault(_coffeekrakenSResponsiveImgComponent);
 
-	var _coffeekrakenSCharactersSlideshowComponent = __webpack_require__(629);
+	var _coffeekrakenSCharactersSlideshowComponent = __webpack_require__(630);
 
 	var _coffeekrakenSCharactersSlideshowComponent2 = _interopRequireDefault(_coffeekrakenSCharactersSlideshowComponent);
 
-	var _coffeekrakenSIconComponent = __webpack_require__(631);
+	var _coffeekrakenSIconComponent = __webpack_require__(632);
 
 	var _coffeekrakenSIconComponent2 = _interopRequireDefault(_coffeekrakenSIconComponent);
 
-	var _coffeekrakenSLayersTransitionComponent = __webpack_require__(659);
+	var _coffeekrakenSLayersTransitionComponent = __webpack_require__(660);
 
 	var _coffeekrakenSLayersTransitionComponent2 = _interopRequireDefault(_coffeekrakenSLayersTransitionComponent);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 570 */
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29653,7 +29141,7 @@
 	  value: true
 	});
 
-	var _SDatepickerComponent = __webpack_require__(571);
+	var _SDatepickerComponent = __webpack_require__(569);
 
 	var _SDatepickerComponent2 = _interopRequireDefault(_SDatepickerComponent);
 
@@ -29662,14 +29150,16 @@
 	exports.default = _SDatepickerComponent2.default.define('s-datepicker', _SDatepickerComponent2.default);
 
 /***/ }),
-/* 571 */
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -29679,17 +29169,9 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _flatpickr = __webpack_require__(572);
+	var _flatpickr = __webpack_require__(570);
 
 	var _flatpickr2 = _interopRequireDefault(_flatpickr);
-
-	var _integer = __webpack_require__(573);
-
-	var _integer2 = _interopRequireDefault(_integer);
-
-	var _autoCast = __webpack_require__(540);
-
-	var _autoCast2 = _interopRequireDefault(_autoCast);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29708,11 +29190,10 @@
 	 * - Ability to display inline as well as on field focus
 	 * - Timepicker support
 	 * - And more...
-	 * @styleguide  	Form / Datepicker
 	 * @example 	html
 	 * <input name="my-cool-date" class="form-input" />
 	 * <s-datepicker for="my-cool-date"></s-datepicker>
-	 * @see 	http://github.coffeekraken.io/chmln/flatpickr/^v2.0.0 		Flatpickr documentation
+	 * @see 	https://flatpickr.js.org/options/ 		Flatpickr documentation
 	 * @author 	Olivier Bossel <olivier.bossel@gmail.com>
 	 */
 
@@ -29726,22 +29207,34 @@
 		}
 
 		_createClass(SDatepickerComponent, [{
-			key: 'componentMount',
+			key: "shouldComponentAcceptProp",
 
+
+			/**
+	   * Should component accept prop
+	   * @definition    SWebComponent.shouldComponentAcceptProp
+	   * @protected
+	   */
+			value: function shouldComponentAcceptProp(name) {
+				return name !== "mounted";
+			}
 
 			/**
 	   * Mount component
 	   * @definition 		SWebComponent.componentMount
 	   * @protected
 	   */
+
+		}, {
+			key: "componentMount",
 			value: function componentMount() {
-				_get(SDatepickerComponent.prototype.__proto__ || Object.getPrototypeOf(SDatepickerComponent.prototype), 'componentMount', this).call(this);
+				_get(SDatepickerComponent.prototype.__proto__ || Object.getPrototypeOf(SDatepickerComponent.prototype), "componentMount", this).call(this);
 
 				// get the datepicker input target
 				this._targetInput = this;
 				if (this.props.for) {
 					// try to get the input
-					var input = document.querySelector('[name="' + this.props.for + '"],input#' + this.props.for);
+					var input = document.querySelector("[name=\"" + this.props.for + "\"],input#" + this.props.for);
 					if (input) {
 						this._targetInput = input;
 					}
@@ -29758,13 +29251,14 @@
 	   */
 
 		}, {
-			key: 'componentWillReceiveProp',
+			key: "componentWillReceiveProp",
 			value: function componentWillReceiveProp(name, newVal, oldVal) {
 				switch (name) {
-					case 'color':
+					case "color":
 						break;
 					default:
 						// destroy and recreate the datepicker
+						this._inputValue = this._targetInput.value;
 						this._flatpickr.destroy();
 						this._instanciateDatepicker();
 						break;
@@ -29779,12 +29273,12 @@
 	   */
 
 		}, {
-			key: 'render',
+			key: "render",
 			value: function render() {
-				_get(SDatepickerComponent.prototype.__proto__ || Object.getPrototypeOf(SDatepickerComponent.prototype), 'render', this).call(this);
+				_get(SDatepickerComponent.prototype.__proto__ || Object.getPrototypeOf(SDatepickerComponent.prototype), "render", this).call(this);
 				// copy props
 				if (this.props.color) {
-					this._flatpickr.calendarContainer.setAttribute('color', this.props.color);
+					this._flatpickr.calendarContainer.setAttribute("color", this.props.color);
 				}
 			}
 
@@ -29793,65 +29287,43 @@
 	   */
 
 		}, {
-			key: '_instanciateDatepicker',
+			key: "_instanciateDatepicker",
 			value: function _instanciateDatepicker() {
 				var _this2 = this;
 
-				this._flatpickr = new _flatpickr2.default(this._targetInput, {
-					clickOpens: this.props.openOnClick,
-					dateFormat: this.props.dateFormat,
-					defaultDate: this._targetInput.value || this.props.defaultDate,
-					disable: this.props.disabledDates,
-					enable: this.props.enabledDates,
-					enableTime: this.props.enableTime,
-					enableSeconds: this.props.enableSeconds,
-					hourIncrement: this.props.hourIncrement,
-					inline: this.props.inline,
-					maxDate: this.props.maxDate,
-					minDate: this.props.minDate,
-					minuteIncrement: this.props.minuteIncrement,
-					noCalendar: this.props.noCalendar,
+				this._flatpickr = new _flatpickr2.default(this._targetInput, _extends({
+					disableMobile: true
+				}, this.props, {
+					defaultDate: this._inputValue || this._targetInput.value || this.props.defaultDate,
 					onChange: function onChange(dateObj, dateStr, instance) {
 						_this2.props.onChange && _this2.props.onChange(dateObj, dateStr, instance);
-						_this2.dispatchComponentEvent('change', {
+						/**
+	      * @name    change
+	      * @event
+	      * Dispatched on date change
+	      */
+						_this2.dispatchComponentEvent("change", {
 							dateObj: dateObj,
 							dateStr: dateStr,
 							instance: instance
 						});
 					},
-					onClose: this.props.onClose,
-					onOpen: function onOpen(dateObj, dateStr, instance) {
-						_this2.props.onOpen && _this2.props.onOpen(dateObj, dateStr, instance);
-					},
-					onReady: function onReady(dateObj, dateStr, instance) {
-						_this2.props.onReady && _this2.props.onReady(dateObj, dateStr, instance);
-						if (_this2._targetInput.tagName.toLowerCase() === 'input') {
-							if (!_this2._targetInput.value) {
-								instance.setDate(_this2.props.minDate || new Date());
-							}
-							instance.triggerChange();
-						}
-					},
 					parseDate: this.props.parseDate ? this.props.parseDate.bind(this) : function (date) {
+						var dateInt = parseInt(date).toString();
 						// if the date is a time only
 						if (this.props.noCalendar && this.props.enableTime) {
-							return new Date(Date.parse('2000.01.01 ' + date));
-						} else if ((0, _integer2.default)((0, _autoCast2.default)(date))) {
+							return new Date(Date.parse("2000.01.01 " + date));
+						} else if (dateInt === date) {
 							// it's a timestamp
 							return new Date(parseInt(date) * 1000);
 						}
 						return new Date(Date.parse(date));
 					}.bind(this),
-					shorthandCurrentMonth: this.props.shorthandCurrentMonth,
-					time_24hr: this.props.time24hr,
-					utc: this.props.utc,
-					weekNumbers: this.props.weekNumbers,
-					wrap: this.props.wrap,
 					appendTo: this
-				});
+				}));
 			}
 		}], [{
-			key: 'defaultCss',
+			key: "defaultCss",
 
 
 			/**
@@ -29859,11 +29331,10 @@
 	   * @protected
 	   */
 			value: function defaultCss(componentName, componentNameDash) {
-				return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay:inline-block;\n\t\t\t}\n\t\t\t.flatpickr-input {\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1\n\t\t\t}\n\t\t\t.flatpickr-mobileInput {\n\t\t\t\topacity: 0;\n\t\t\t\tvisibility: hidden;\n\t\t\t\tposition: absolute;\n\t\t\t\twidth: 0;\n\t\t\t\theight: 0;\n\t\t\t\tbox-sizing: border-box;\n\t\t\t\tpadding: 0\n\t\t\t}\n\t\t\t.flatpickr-calendar {\n\t\t\t\tbackground: #fff;\n\t\t\t\topacity:0;\n\t\t\t\tpointer-events: none;\n\t\t\t\tmargin-top:-20px;\n\t\t\t\ttext-align: center;\n\t\t\t\tpadding:1em;\n\t\t\t\tposition: absolute;\n\t\t\t\ttop:0; left: -200vw;\n\t\t\t\tuser-select:none;\n\t\t\t}\n\t\t\t.flatpickr-calendar.open {\n\t\t\t\topacity: 1;\n\t\t\t\tz-index: 99999;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\ttop:0; left:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.inline {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tposition: relative;\n\t\t\t\topacity:1;\n\t\t\t\tmargin-top:0;\n\t\t\t\tpadding:0;\n\t\t\t\tpointer-events: all;\n\t\t\t\tleft:0;\n\t\t\t}\n\t\t\t.flatpickr-calendar.static {\n\t\t\t\tposition: relative\n\t\t\t}\n\t\t\t.flatpickr-calendar.static.open {\n\t\t\t\tdisplay: block\n\t\t\t}\n\t\t\t.flatpickr-calendar.hasWeeks {\n\t\t\t}\n\n\t\t\t.flatpickr-month,\n\t\t\t.flatpickr-next-month i,\n\t\t\t.flatpickr-prev-month i {\n\t\t\t\tposition: relative\n\t\t\t}\n\n\t\t\t.flatpickr-month {\n\t\t\t\tuser-select:none;\n\t\t\t\twidth:100%;\n\t\t\t\tdisplay: flex;\n\t\t\t\tpadding: 1em 0;\n\t\t\t}\n\t\t\t.flatpickr-month > span {\n\t\t\t\tvertical-align: middle;\n\t\t\t}\n\n\t\t\t.flatpickr-next-month,\n\t\t\t.flatpickr-prev-month {\n\t\t\t\ttext-decoration: none;\n\t\t\t\tcursor: pointer;\n\t\t\t\twidth: 3em;\n\t\t\t\tdisplay : inline-block !important;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-next-month[style*="none"],\n\t\t\t.flatpickr-prev-month[style*="none"] {\n\t\t\t\tpointer-events:none;\n\t\t\t\topacity: .4;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg,\n\t\t\t.flatpickr-prev-month svg {\n\t\t\t\theight: 1em;\n\t\t\t}\n\t\t\t.flatpickr-next-month svg path,\n\t\t\t.flatpickr-prev-month svg path {\n\t\t\t\tfill: inherit\n\t\t\t}\n\t\t\t.flatpickr-current-month {\n\t\t\t\tflex: 1 auto;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-month {\n\t\t\t\tfont-weight: bold;\n\t\t\t}\n\t\t\t.flatpickr-current-month .numInputWrapper {\n\t\t\t\tdisplay:inline;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year {\n\t\t\t\tpadding: 0;\n\t\t\t\tmargin: 0;\n\t\t\t\twidth: 3.2em;\n\t\t\t\tdisplay: inline;\n\t\t\t\tfont-size: inherit;\n\t\t\t\tline-height: 0;\n\t\t\t\theight: initial;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tvertical-align: initial;\n\t\t\t\toutline:none;\n\t\t\t}\n\t\t\t.flatpickr-current-month .cur-year:hover {\n\t\t\t\tbackground: rgba(0, 0, 0, .05)\n\t\t\t}\n\t\t\t.flatpickr-weekdays {\n\t\t\t\tpadding:.5em 0;\n\t\t\t\toverflow: hidden;\n\t\t\t}\n\t\t\tspan.flatpickr-weekday {\n\t\t\t\tcursor: default;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t\tdisplay:inline-block;\n\t\t\t\twidth: 5em;\n\t\t\t\tfont-size:.6em;\n\t\t\t\tpadding:.5em 0;\n\t\t\t}\n\n\t\t\t.flatpickr-rContainer {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\twidth: 21em;\n\t\t\t}\n\t\t\t.flatpickr-days {\n\t\t\t\toutline: 0;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\t\t\t.flatpickr-day {\n\t\t\t\twidth: 3em;\n\t\t\t\theight: 3em;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcursor: pointer;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tmargin: 0;\n\t\t\t\ttext-align: center;\n\t\t\t}\n\t\t\t.flatpickr-day.disabled,\n\t\t\t.flatpickr-day.disabled:hover,\n\t\t\t.flatpickr-day.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed,\n\t\t\t.flatpickr-day.notAllowed.nextMonthDay,\n\t\t\t.flatpickr-day.notAllowed.prevMonthDay,\n\t\t\t.flatpickr-day.prevMonthDay {\n\t\t\t\tcolor: rgba(57, 57, 57, .3);\n\t\t\t\tbackground: 0 0;\n\t\t\t\tborder-color: transparent;\n\t\t\t\tcursor: default\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper {\n\t\t\t\tpadding-top:.5em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tfloat: left\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weeks {\n\t\t\t\tpadding: .5em .25rem 0 .25em;\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper .flatpickr-weekday {\n\t\t\t\tfloat: none;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-weekwrapper span.flatpickr-day {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%\n\t\t\t}\n\t\t\t.flatpickr-time {\n\t\t\t\toverflow: auto;\n\t\t\t\ttext-align: center;\n\t\t\t\tborder-top: 0;\n\t\t\t\toutline: 0;\n\t\t\t\tdisplay: block;\n\t\t\t\tdisplay: flex;\n\t\t\t\tmin-width:10em;\n\t\t\t}\n\t\t\t.flatpickr-am-pm {\n\t\t\t\tuser-select:none;\n\t\t\t}\n\t\t\t.flatpickr-am-pm,\n\t\t\t.flatpickr-time input,\n\t\t\t.flatpickr-time-separator {\n\t\t\t\theight: 3em;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tline-height: 3em;\n\t\t\t\tcolor: #393939\n\t\t\t}\n\t\t\t.flatpickr-time input {\n\t\t\t\tfont-size: 1em;\n\t\t\t\tbackground: 0 0;\n\t\t\t\tbox-shadow: none;\n\t\t\t\tborder: 0;\n\t\t\t\tborder-radius: 0;\n\t\t\t\tflex: 1;\n\t\t\t\twidth: 33%;\n\t\t\t\tmin-width: 33%;\n\t\t\t\ttext-align: center;\n\t\t\t\tmargin: 0;\n\t\t\t\tpadding: 0;\n\t\t\t\tcursor: pointer;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-minute {\n\t\t\t\twidth: 26%;\n\t\t\t}\n\t\t\t.flatpickr-time input.flatpickr-second {\n\t\t\t}\n\t\t\t.flatpickr-time input:focus {\n\t\t\t\toutline: 0;\n\t\t\t\tborder: 0\n\t\t\t}\n\n\t\t\t.flatpickr-time.has-seconds input[type=number] {\n\t\t\t\twidth: 25%;\n\t\t\t\tmin-width: 25%\n\t\t\t}\n\t\t\t.hasTime .flatpickr-days,\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-bottom: 0;\n\t\t\t\tborder-bottom-right-radius: 0;\n\t\t\t\tborder-bottom-left-radius: 0\n\t\t\t}\n\t\t\t.hasWeeks .flatpickr-days {\n\t\t\t\tborder-left: 0\n\t\t\t}\n\n\t\t\t.flatpickr-am-pm {\n\t\t\t\toutline: 0;\n\t\t\t\twidth: 21%;\n\t\t\t\tpadding: 0 2%;\n\t\t\t\tcursor: pointer;\n\t\t\t\ttext-align: left;\n\t\t\t}\n\n\t\t\t@media all and (-ms-high-contrast: none) {\n\t\t\t\t.flatpickr-month {\n\t\t\t\t\tpadding: 0\n\t\t\t\t}\n\t\t\t\t.flatpickr-month svg {\n\t\t\t\t\ttop: 0 !important\n\t\t\t\t}\n\t\t\t}\n\t\t';
+				return "\n\t\t\t" + componentNameDash + " {\n\t\t\t\tdisplay:inline-block;\n\t\t\t}\n\t\t\t.flatpickr-calendar{background:transparent;opacity:0;display:none;text-align:center;visibility:hidden;padding:0;-webkit-animation:none;animation:none;direction:ltr;border:0;font-size:14px;line-height:24px;border-radius:5px;position:absolute;width:307.875px;-webkit-box-sizing:border-box;box-sizing:border-box;-ms-touch-action:manipulation;touch-action:manipulation;background:#fff;-webkit-box-shadow:1px 0 0 #e6e6e6,-1px 0 0 #e6e6e6,0 1px 0 #e6e6e6,0 -1px 0 #e6e6e6,0 3px 13px rgba(0,0,0,0.08);box-shadow:1px 0 0 #e6e6e6,-1px 0 0 #e6e6e6,0 1px 0 #e6e6e6,0 -1px 0 #e6e6e6,0 3px 13px rgba(0,0,0,0.08);}.flatpickr-calendar.open,.flatpickr-calendar.inline{opacity:1;max-height:640px;visibility:visible}.flatpickr-calendar.open{display:inline-block;z-index:99999}.flatpickr-calendar.animate.open{-webkit-animation:fpFadeInDown 300ms cubic-bezier(.23,1,.32,1);animation:fpFadeInDown 300ms cubic-bezier(.23,1,.32,1)}.flatpickr-calendar.inline{display:block;position:relative;top:2px}.flatpickr-calendar.static{position:absolute;top:calc(100% + 2px);}.flatpickr-calendar.static.open{z-index:999;display:block}.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+1) .flatpickr-day.inRange:nth-child(7n+7){-webkit-box-shadow:none !important;box-shadow:none !important}.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1){-webkit-box-shadow:-2px 0 0 #e6e6e6,5px 0 0 #e6e6e6;box-shadow:-2px 0 0 #e6e6e6,5px 0 0 #e6e6e6}.flatpickr-calendar .hasWeeks .dayContainer,.flatpickr-calendar .hasTime .dayContainer{border-bottom:0;border-bottom-right-radius:0;border-bottom-left-radius:0}.flatpickr-calendar .hasWeeks .dayContainer{border-left:0}.flatpickr-calendar.showTimeInput.hasTime .flatpickr-time{height:40px;border-top:1px solid #e6e6e6}.flatpickr-calendar.noCalendar.hasTime .flatpickr-time{height:auto}.flatpickr-calendar:before,.flatpickr-calendar:after{position:absolute;display:block;pointer-events:none;border:solid transparent;content:'';height:0;width:0;left:22px}.flatpickr-calendar.rightMost:before,.flatpickr-calendar.rightMost:after{left:auto;right:22px}.flatpickr-calendar:before{border-width:5px;margin:0 -5px}.flatpickr-calendar:after{border-width:4px;margin:0 -4px}.flatpickr-calendar.arrowTop:before,.flatpickr-calendar.arrowTop:after{bottom:100%}.flatpickr-calendar.arrowTop:before{border-bottom-color:#e6e6e6}.flatpickr-calendar.arrowTop:after{border-bottom-color:#fff}.flatpickr-calendar.arrowBottom:before,.flatpickr-calendar.arrowBottom:after{top:100%}.flatpickr-calendar.arrowBottom:before{border-top-color:#e6e6e6}.flatpickr-calendar.arrowBottom:after{border-top-color:#fff}.flatpickr-calendar:focus{outline:0}.flatpickr-wrapper{position:relative;display:inline-block}.flatpickr-months{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.flatpickr-months .flatpickr-month{background:transparent;color:rgba(0,0,0,0.9);fill:rgba(0,0,0,0.9);height:28px;line-height:1;text-align:center;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;overflow:hidden;-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1}.flatpickr-months .flatpickr-prev-month,.flatpickr-months .flatpickr-next-month{text-decoration:none;cursor:pointer;position:absolute;top:0;line-height:16px;height:28px;padding:10px;z-index:3;color:rgba(0,0,0,0.9);fill:rgba(0,0,0,0.9);}.flatpickr-months .flatpickr-prev-month.disabled,.flatpickr-months .flatpickr-next-month.disabled{display:none}.flatpickr-months .flatpickr-prev-month i,.flatpickr-months .flatpickr-next-month i{position:relative}.flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,.flatpickr-months .flatpickr-next-month.flatpickr-prev-month{/*\n      /*rtl:begin:ignore*/left:0;/*\n      /*rtl:end:ignore*/}/*\n      /*rtl:begin:ignore*/\n/*\n      /*rtl:end:ignore*/\n.flatpickr-months .flatpickr-prev-month.flatpickr-next-month,.flatpickr-months .flatpickr-next-month.flatpickr-next-month{/*\n      /*rtl:begin:ignore*/right:0;/*\n      /*rtl:end:ignore*/}/*\n      /*rtl:begin:ignore*/\n/*\n      /*rtl:end:ignore*/\n.flatpickr-months .flatpickr-prev-month:hover,.flatpickr-months .flatpickr-next-month:hover{color:#959ea9;}.flatpickr-months .flatpickr-prev-month:hover svg,.flatpickr-months .flatpickr-next-month:hover svg{fill:#f64747}.flatpickr-months .flatpickr-prev-month svg,.flatpickr-months .flatpickr-next-month svg{width:14px;height:14px;}.flatpickr-months .flatpickr-prev-month svg path,.flatpickr-months .flatpickr-next-month svg path{-webkit-transition:fill .1s;transition:fill .1s;fill:inherit}.numInputWrapper{position:relative;height:auto;}.numInputWrapper input,.numInputWrapper span{display:inline-block}.numInputWrapper input{width:100%;}.numInputWrapper input::-ms-clear{display:none}.numInputWrapper span{position:absolute;right:0;width:14px;padding:0 4px 0 2px;height:50%;line-height:50%;opacity:0;cursor:pointer;border:1px solid rgba(57,57,57,0.15);-webkit-box-sizing:border-box;box-sizing:border-box;}.numInputWrapper span:hover{background:rgba(0,0,0,0.1)}.numInputWrapper span:active{background:rgba(0,0,0,0.2)}.numInputWrapper span:after{display:block;content:\"\";position:absolute}.numInputWrapper span.arrowUp{top:0;border-bottom:0;}.numInputWrapper span.arrowUp:after{border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:4px solid rgba(57,57,57,0.6);top:26%}.numInputWrapper span.arrowDown{top:50%;}.numInputWrapper span.arrowDown:after{border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid rgba(57,57,57,0.6);top:40%}.numInputWrapper span svg{width:inherit;height:auto;}.numInputWrapper span svg path{fill:rgba(0,0,0,0.5)}.numInputWrapper:hover{background:rgba(0,0,0,0.05);}.numInputWrapper:hover span{opacity:1}.flatpickr-current-month{font-size:135%;line-height:inherit;font-weight:300;color:inherit;position:absolute;width:75%;left:12.5%;padding:6.16px 0 0 0;line-height:1;height:28px;display:inline-block;text-align:center;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}.flatpickr-current-month span.cur-month{font-family:inherit;font-weight:700;color:inherit;display:inline-block;margin-left:.5ch;padding:0;}.flatpickr-current-month span.cur-month:hover{background:rgba(0,0,0,0.05)}.flatpickr-current-month .numInputWrapper{width:6ch;width:7ch\0;display:inline-block;}.flatpickr-current-month .numInputWrapper span.arrowUp:after{border-bottom-color:rgba(0,0,0,0.9)}.flatpickr-current-month .numInputWrapper span.arrowDown:after{border-top-color:rgba(0,0,0,0.9)}.flatpickr-current-month input.cur-year{background:transparent;-webkit-box-sizing:border-box;box-sizing:border-box;color:inherit;cursor:text;padding:0 0 0 .5ch;margin:0;display:inline-block;font-size:inherit;font-family:inherit;font-weight:300;line-height:inherit;height:auto;border:0;border-radius:0;vertical-align:initial;}.flatpickr-current-month input.cur-year:focus{outline:0}.flatpickr-current-month input.cur-year[disabled],.flatpickr-current-month input.cur-year[disabled]:hover{font-size:100%;color:rgba(0,0,0,0.5);background:transparent;pointer-events:none}.flatpickr-weekdays{background:transparent;text-align:center;overflow:hidden;width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;height:28px;}.flatpickr-weekdays .flatpickr-weekdaycontainer{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1}span.flatpickr-weekday{cursor:default;font-size:90%;background:transparent;color:rgba(0,0,0,0.54);line-height:1;margin:0;text-align:center;display:block;-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;font-weight:bolder}.dayContainer,.flatpickr-weeks{padding:1px 0 0 0}.flatpickr-days{position:relative;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;width:307.875px;}.flatpickr-days:focus{outline:0}.dayContainer{padding:0;outline:0;text-align:left;width:307.875px;min-width:307.875px;max-width:307.875px;-webkit-box-sizing:border-box;box-sizing:border-box;display:inline-block;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-wrap:wrap;-ms-flex-pack:justify;-webkit-justify-content:space-around;justify-content:space-around;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1;}.dayContainer + .dayContainer{-webkit-box-shadow:-1px 0 0 #e6e6e6;box-shadow:-1px 0 0 #e6e6e6}.flatpickr-day{background:none;border:1px solid transparent;border-radius:150px;-webkit-box-sizing:border-box;box-sizing:border-box;color:#393939;cursor:pointer;font-weight:400;width:14.2857143%;-webkit-flex-basis:14.2857143%;-ms-flex-preferred-size:14.2857143%;flex-basis:14.2857143%;max-width:39px;height:39px;line-height:39px;margin:0;display:inline-block;position:relative;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;text-align:center;}.flatpickr-day.inRange,.flatpickr-day.prevMonthDay.inRange,.flatpickr-day.nextMonthDay.inRange,.flatpickr-day.today.inRange,.flatpickr-day.prevMonthDay.today.inRange,.flatpickr-day.nextMonthDay.today.inRange,.flatpickr-day:hover,.flatpickr-day.prevMonthDay:hover,.flatpickr-day.nextMonthDay:hover,.flatpickr-day:focus,.flatpickr-day.prevMonthDay:focus,.flatpickr-day.nextMonthDay:focus{cursor:pointer;outline:0;background:#e6e6e6;border-color:#e6e6e6}.flatpickr-day.today{border-color:#959ea9;}.flatpickr-day.today:hover,.flatpickr-day.today:focus{border-color:#959ea9;background:#959ea9;color:#fff}.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange,.flatpickr-day.selected.inRange,.flatpickr-day.startRange.inRange,.flatpickr-day.endRange.inRange,.flatpickr-day.selected:focus,.flatpickr-day.startRange:focus,.flatpickr-day.endRange:focus,.flatpickr-day.selected:hover,.flatpickr-day.startRange:hover,.flatpickr-day.endRange:hover,.flatpickr-day.selected.prevMonthDay,.flatpickr-day.startRange.prevMonthDay,.flatpickr-day.endRange.prevMonthDay,.flatpickr-day.selected.nextMonthDay,.flatpickr-day.startRange.nextMonthDay,.flatpickr-day.endRange.nextMonthDay{background:#569ff7;-webkit-box-shadow:none;box-shadow:none;color:#fff;border-color:#569ff7}.flatpickr-day.selected.startRange,.flatpickr-day.startRange.startRange,.flatpickr-day.endRange.startRange{border-radius:50px 0 0 50px}.flatpickr-day.selected.endRange,.flatpickr-day.startRange.endRange,.flatpickr-day.endRange.endRange{border-radius:0 50px 50px 0}.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)),.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)),.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)){-webkit-box-shadow:-10px 0 0 #569ff7;box-shadow:-10px 0 0 #569ff7}.flatpickr-day.selected.startRange.endRange,.flatpickr-day.startRange.startRange.endRange,.flatpickr-day.endRange.startRange.endRange{border-radius:50px}.flatpickr-day.inRange{border-radius:0;-webkit-box-shadow:-5px 0 0 #e6e6e6,5px 0 0 #e6e6e6;box-shadow:-5px 0 0 #e6e6e6,5px 0 0 #e6e6e6}.flatpickr-day.disabled,.flatpickr-day.disabled:hover,.flatpickr-day.prevMonthDay,.flatpickr-day.nextMonthDay,.flatpickr-day.notAllowed,.flatpickr-day.notAllowed.prevMonthDay,.flatpickr-day.notAllowed.nextMonthDay{color:rgba(57,57,57,0.3);background:transparent;border-color:transparent;cursor:default}.flatpickr-day.disabled,.flatpickr-day.disabled:hover{cursor:not-allowed;color:rgba(57,57,57,0.1)}.flatpickr-day.week.selected{border-radius:0;-webkit-box-shadow:-5px 0 0 #569ff7,5px 0 0 #569ff7;box-shadow:-5px 0 0 #569ff7,5px 0 0 #569ff7}.flatpickr-day.hidden{visibility:hidden}.rangeMode .flatpickr-day{margin-top:1px}.flatpickr-weekwrapper{display:inline-block;float:left;}.flatpickr-weekwrapper .flatpickr-weeks{padding:0 12px;-webkit-box-shadow:1px 0 0 #e6e6e6;box-shadow:1px 0 0 #e6e6e6}.flatpickr-weekwrapper .flatpickr-weekday{float:none;width:100%;line-height:28px}.flatpickr-weekwrapper span.flatpickr-day,.flatpickr-weekwrapper span.flatpickr-day:hover{display:block;width:100%;max-width:none;color:rgba(57,57,57,0.3);background:transparent;cursor:default;border:none}.flatpickr-innerContainer{display:block;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;}.flatpickr-rContainer{display:inline-block;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box}.flatpickr-time{text-align:center;outline:0;display:block;height:0;line-height:40px;max-height:40px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.flatpickr-time:after{content:\"\";display:table;clear:both}.flatpickr-time .numInputWrapper{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;width:40%;height:40px;float:left;}.flatpickr-time .numInputWrapper span.arrowUp:after{border-bottom-color:#393939}.flatpickr-time .numInputWrapper span.arrowDown:after{border-top-color:#393939}.flatpickr-time.hasSeconds .numInputWrapper{width:26%}.flatpickr-time.time24hr .numInputWrapper{width:49%}.flatpickr-time input{background:transparent;-webkit-box-shadow:none;box-shadow:none;border:0;border-radius:0;text-align:center;margin:0;padding:0;height:inherit;line-height:inherit;color:#393939;font-size:14px;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;}.flatpickr-time input.flatpickr-hour{font-weight:bold}.flatpickr-time input.flatpickr-minute,.flatpickr-time input.flatpickr-second{font-weight:400}.flatpickr-time input:focus{outline:0;border:0}.flatpickr-time .flatpickr-time-separator,.flatpickr-time .flatpickr-am-pm{height:inherit;display:inline-block;float:left;line-height:inherit;color:#393939;font-weight:bold;width:2%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center}.flatpickr-time .flatpickr-am-pm{outline:0;width:18%;cursor:pointer;text-align:center;font-weight:400}.flatpickr-time input:hover,.flatpickr-time .flatpickr-am-pm:hover,.flatpickr-time input:focus,.flatpickr-time .flatpickr-am-pm:focus{background:#f3f3f3}.flatpickr-input[readonly]{cursor:pointer}@-webkit-keyframes fpFadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}@keyframes fpFadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}\n\t\t";
 			}
 		}, {
-			key: 'defaultProps',
-
+			key: "defaultProps",
 
 			/**
 	   * Default props
@@ -29873,203 +29344,27 @@
 			get: function get() {
 				return {
 					/**
-	    * Specify the name or id of the field to link the datepicker to
-	    * @prop
-	    * @type  		{String}
-	    */
+	     * Specify the name or id of the field to link the datepicker to
+	     * @prop
+	     * @type  		{String}
+	     */
 					for: null,
 
 					/**
-	     * Displays the calendar inline
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					inline: false,
-
-					/**
 	     * Specify the color to use to skin the datepicker.
-	     * @physicalProp
-	     * @observed
 	     * @prop
 	     * @type		{String}
 	     */
-					color: null,
+					color: null
 
 					/**
-	     * Allows the user to enter a date directly input the input field. By default, direct entry is disabled.
+	     * @name    flatpickr
+	     * All the option that propose the flatpickr library.
+	     * You can find these options [here](https://flatpickr.js.org/options/).
+	     * This component uses the flatpickr v4.x
 	     * @prop
-	     * @type 		{Boolean}
+	     * @type    {Mixed}
 	     */
-					allowInput: false,
-
-					/**
-	     * Clicking on the input opens the date (time) picker. Disable this if you wish to open the calendar manually with `.open()`
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					openOnClick: true,
-
-					/**
-	     * A string of characters which are used to define how the date will be displayed in the input box. The supported characters are defined in the table below.
-	     * @prop
-	     * @type 		{String}
-	     */
-					dateFormat: 'Y-m-d',
-
-					/**
-	     * Set the initial selected date. Same as preloading a date string into an input's value attribute, but can also handle a Date object.
-	     * @prop
-	     * @type 		{Date|String}
-	     */
-					defaultDate: null,
-
-					/**
-	     * Disable some dates
-	     * @see 		https://chmln.github.io/flatpickr/#disable
-	     * @prop
-	     * @type 		{Array}
-	     */
-					disabledDates: [],
-
-					/**
-	     * Specify if the datepicker is disabled or not
-	     * @physicalProp
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					disabled: false,
-
-					/**
-	     * Disable all dates except the ones you specify.
-	     * @see 		https://chmln.github.io/flatpickr/#enable
-	     * @prop
-	     * @type 		{Array}
-	     */
-					enabledDates: [],
-
-					/**
-	     * Enables time picker
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					enableTime: false,
-
-					/**
-	     * Enables seconds in the time picker.
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					enableSeconds: false,
-
-					/**
-	     * Adjusts the step for the hour input (incl. scrolling)
-	     * @prop
-	     * @type 		{Integer}
-	     */
-					hourIncrement: 1,
-
-					/**
-	     * Adjusts the step for the minute input (incl. scrolling)
-	     * @prop
-	     * @type 		{Integer}
-	     */
-					minuteIncrement: 5,
-
-					/**
-	     * The maximum date that a user can pick to.
-	     * @prop
-	     * @type 		{Date|String}
-	     */
-					maxDate: null,
-
-					/**
-	     * The minimum date that a user can start picking from
-	     * @prop
-	     * @type 		{Date|String}
-	     */
-					minDate: null,
-
-					/**
-	     * Hides the calendar. For use along with enableTime.
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					noCalendar: false,
-
-					/**
-	     * Function(s) to trigger on every date selection
-	     * @see 		https://chmln.github.io/flatpickr/#eventsAPI
-	     * @prop
-	     * @type 		{Function}
-	     */
-					onChange: null,
-
-					/**
-	     * Function(s) to trigger on every time the calendar is closed
-	     * @see 		https://chmln.github.io/flatpickr/#eventsAPI
-	     * @prop
-	     * @type 		{Function}
-	     */
-					onClose: null,
-
-					/**
-	     * Function(s) to trigger on every time the calendar is opened
-	     * @see 		https://chmln.github.io/flatpickr/#eventsAPI
-	     * @prop
-	     * @type 		{Function}
-	     */
-					onOpen: null,
-
-					/**
-	     * Function to trigger when the calendar is ready
-	     * @see 		https://chmln.github.io/flatpickr/#eventsAPI
-	     * @prop
-	     * @type 		{Function}
-	     */
-					onReady: null,
-
-					/**
-	     * Function that expects a date string and must return a Date object
-	     * @prop
-	     * @type 		{Function}
-	     */
-					parseDate: false,
-
-					/**
-	     * Show the month using the shorthand version (ie, Sep instead of September).
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					shorthandCurrentMonth: false,
-
-					/**
-	     * Displays time picker in 24 hour mode without AM/PM selection when enabled.
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					time24hr: true,
-
-					/**
-	     * When true, dates will parsed, formatted, and displayed in UTC. It's recommended that date strings contain the timezone, but not necessary
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					utc: false,
-
-					/**
-	     * Enables display of week numbers in calendar
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					weekNumbers: false,
-
-					/**
-	     * flatpickr can parse an input group of textboxes and buttons, common in Bootstrap and other frameworks.
-	     * @see 		https://chmln.github.io/flatpickr/#strap
-	     * @prop
-	     * @type 		{Boolean}
-	     */
-					wrap: false
 				};
 			}
 
@@ -30080,9 +29375,9 @@
 	   */
 
 		}, {
-			key: 'physicalProps',
+			key: "physicalProps",
 			get: function get() {
-				return ['color'];
+				return [];
 			}
 		}]);
 
@@ -30092,1761 +29387,2187 @@
 	exports.default = SDatepickerComponent;
 
 /***/ }),
-/* 572 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	/*! flatpickr v2.3.3, @license MIT */
-	function Flatpickr(element, config) {
-		var self = this;
-
-		function init() {
-			if (element._flatpickr) destroy(element._flatpickr);
-
-			element._flatpickr = self;
-
-			self.element = element;
-			self.instanceConfig = config || {};
-
-			setupFormats();
-
-			parseConfig();
-			setupLocale();
-			setupInputs();
-			setupDates();
-			setupHelperFunctions();
-
-			self.isOpen = self.config.inline;
-			self.changeMonth = changeMonth;
-			self.clear = clear;
-			self.close = close;
-			self.destroy = destroy;
-			self.formatDate = formatDate;
-			self.jumpToDate = jumpToDate;
-			self.open = open;
-			self.redraw = redraw;
-			self.set = set;
-			self.setDate = setDate;
-			self.toggle = toggle;
-
-			self.isMobile = !self.config.disableMobile && !self.config.inline && self.config.mode === "single" && !self.config.disable.length && !self.config.enable.length && !self.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-			if (!self.isMobile) build();
-
-			bind();
-
-			if (!self.isMobile) {
-				Object.defineProperty(self, "dateIsPicked", {
-					set: function set(bool) {
-						if (bool) return self.calendarContainer.classList.add("dateIsPicked");
-						self.calendarContainer.classList.remove("dateIsPicked");
-					}
-				});
-			}
-
-			self.dateIsPicked = self.selectedDates.length > 0 || self.config.noCalendar;
-
-			if (self.selectedDates.length) {
-				if (self.config.enableTime) setHoursFromDate();
-				updateValue();
-			}
-
-			if (self.config.weekNumbers) {
-				self.calendarContainer.style.width = self.days.clientWidth + self.weekWrapper.clientWidth + "px";
-			}
-
-			triggerEvent("Ready");
-		}
-
-		function updateTime(e) {
-			if (self.config.noCalendar && !self.selectedDates.length)
-				// picking time only
-				self.selectedDates = [self.now];
-
-			timeWrapper(e);
-
-			if (!self.selectedDates.length) return;
-
-			if (!self.minDateHasTime || e.type !== "input" || e.target.value.length >= 2) {
-				setHoursFromInputs();
-				updateValue();
-			} else {
-				setTimeout(function () {
-					setHoursFromInputs();
-					updateValue();
-				}, 1000);
-			}
-		}
-
-		function setHoursFromInputs() {
-			if (!self.config.enableTime) return;
-
-			var hours = parseInt(self.hourElement.value, 10) || 0,
-			    minutes = parseInt(self.minuteElement.value, 10) || 0,
-			    seconds = self.config.enableSeconds ? parseInt(self.secondElement.value, 10) || 0 : 0;
-
-			if (self.amPM) hours = hours % 12 + 12 * (self.amPM.textContent === "PM");
-
-			if (self.minDateHasTime && compareDates(self.latestSelectedDateObj, self.config.minDate) === 0) {
-
-				hours = Math.max(hours, self.config.minDate.getHours());
-				if (hours === self.config.minDate.getHours()) minutes = Math.max(minutes, self.config.minDate.getMinutes());
-			} else if (self.maxDateHasTime && compareDates(self.latestSelectedDateObj, self.config.maxDate) === 0) {
-				hours = Math.min(hours, self.config.maxDate.getHours());
-				if (hours === self.config.maxDate.getHours()) minutes = Math.min(minutes, self.config.maxDate.getMinutes());
-			}
-
-			setHours(hours, minutes, seconds);
-		}
-
-		function setHoursFromDate(dateObj) {
-			var date = dateObj || self.latestSelectedDateObj;
-
-			if (date) setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-		}
-
-		function setHours(hours, minutes, seconds) {
-			if (self.selectedDates.length) {
-				self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
-			}
-
-			if (!self.config.enableTime || self.isMobile) return;
-
-			self.hourElement.value = self.pad(!self.config.time_24hr ? (12 + hours) % 12 + 12 * (hours % 12 === 0) : hours);
-
-			self.minuteElement.value = self.pad(minutes);
-
-			if (!self.config.time_24hr && self.selectedDates.length) self.amPM.textContent = self.latestSelectedDateObj.getHours() >= 12 ? "PM" : "AM";
-
-			if (self.config.enableSeconds) self.secondElement.value = self.pad(seconds);
-		}
-
-		function onYearInput(event) {
-			if (event.target.value.length === 4) {
-				self.currentYearElement.blur();
-				handleYearChange(event.target.value);
-				event.target.value = self.currentYear;
-			}
-		}
-
-		function bind() {
-			if (self.config.wrap) {
-				["open", "close", "toggle", "clear"].forEach(function (el) {
-					try {
-						self.element.querySelector("[data-" + el + "]").addEventListener("click", self[el]);
-					} catch (e) {
-						//
-					}
-				});
-			}
-
-			if (window.document.createEvent !== undefined) {
-				self.changeEvent = window.document.createEvent("HTMLEvents");
-				self.changeEvent.initEvent("change", false, true);
-			}
-
-			if (self.isMobile) return setupMobile();
-
-			self.debouncedResize = debounce(onResize, 50);
-			self.triggerChange = function () {
-				return triggerEvent("Change");
-			};
-			self.debouncedChange = debounce(self.triggerChange, 1000);
-
-			if (self.config.mode === "range" && self.days) self.days.addEventListener("mouseover", onMouseOver);
-
-			window.document.addEventListener("keydown", onKeyDown);
-
-			if (!self.config.inline && !self.config.static) window.addEventListener("resize", self.debouncedResize);
-
-			if (window.ontouchstart) window.document.addEventListener("touchstart", documentClick);
-
-			window.document.addEventListener("click", documentClick);
-			window.document.addEventListener("blur", documentClick);
-
-			if (self.config.clickOpens) (self.altInput || self.input).addEventListener("focus", open);
-
-			if (!self.config.noCalendar) {
-				self.prevMonthNav.addEventListener("click", function () {
-					return changeMonth(-1);
-				});
-				self.nextMonthNav.addEventListener("click", function () {
-					return changeMonth(1);
-				});
-
-				self.currentYearElement.addEventListener("wheel", function (e) {
-					return debounce(yearScroll(e), 50);
-				});
-				self.currentYearElement.addEventListener("focus", function () {
-					self.currentYearElement.select();
-				});
-
-				self.currentYearElement.addEventListener("input", onYearInput);
-				self.currentYearElement.addEventListener("increment", onYearInput);
-
-				self.days.addEventListener("click", selectDate);
-			}
-
-			if (self.config.enableTime) {
-				self.timeContainer.addEventListener("transitionend", positionCalendar);
-				self.timeContainer.addEventListener("wheel", function (e) {
-					return debounce(updateTime(e), 5);
-				});
-				self.timeContainer.addEventListener("input", updateTime);
-				self.timeContainer.addEventListener("increment", updateTime);
-
-				self.timeContainer.addEventListener("wheel", self.debouncedChange);
-				self.timeContainer.addEventListener("input", self.triggerChange);
-
-				self.hourElement.addEventListener("focus", function () {
-					self.hourElement.select();
-				});
-				self.minuteElement.addEventListener("focus", function () {
-					self.minuteElement.select();
-				});
-
-				if (self.secondElement) {
-					self.secondElement.addEventListener("focus", function () {
-						self.secondElement.select();
-					});
-				}
-
-				if (self.amPM) {
-					self.amPM.addEventListener("click", function (e) {
-						updateTime(e);
-						self.triggerChange(e);
-					});
-				}
-			}
-		}
-
-		function jumpToDate(jumpDate) {
-			jumpDate = jumpDate ? self.parseDate(jumpDate) : self.latestSelectedDateObj || (self.config.minDate > self.now ? self.config.minDate : self.config.maxDate && self.config.maxDate < self.now ? self.config.maxDate : self.now);
-
-			try {
-				self.currentYear = jumpDate.getFullYear();
-				self.currentMonth = jumpDate.getMonth();
-			} catch (e) {
-				console.error(e.stack);
-				console.warn("Invalid date supplied: " + jumpDate);
-			}
-
-			self.redraw();
-		}
-
-		function incrementNumInput(e, delta) {
-			var input = e.target.parentNode.childNodes[0];
-			input.value = parseInt(input.value, 10) + delta * (input.step || 1);
-
-			try {
-				input.dispatchEvent(new Event("increment", { "bubbles": true }));
-			} catch (e) {
-				var ev = window.document.createEvent("CustomEvent");
-				ev.initCustomEvent("increment", true, true, {});
-				input.dispatchEvent(ev);
-			}
-		}
-
-		function createNumberInput(inputClassName) {
-			var wrapper = createElement("div", "numInputWrapper"),
-			    numInput = createElement("input", "numInput " + inputClassName),
-			    arrowUp = createElement("span", "arrowUp"),
-			    arrowDown = createElement("span", "arrowDown");
-
-			numInput.type = "text";
-			wrapper.appendChild(numInput);
-			wrapper.appendChild(arrowUp);
-			wrapper.appendChild(arrowDown);
-
-			arrowUp.addEventListener("click", function (e) {
-				return incrementNumInput(e, 1);
-			});
-			arrowDown.addEventListener("click", function (e) {
-				return incrementNumInput(e, -1);
-			});
-			return wrapper;
-		}
-
-		function build() {
-			var fragment = window.document.createDocumentFragment();
-			self.calendarContainer = createElement("div", "flatpickr-calendar");
-			self.numInputType = navigator.userAgent.indexOf("MSIE 9.0") > 0 ? "text" : "number";
-
-			if (!self.config.noCalendar) {
-				fragment.appendChild(buildMonthNav());
-				self.innerContainer = createElement("div", "flatpickr-innerContainer");
-
-				if (self.config.weekNumbers) self.innerContainer.appendChild(buildWeeks());
-
-				self.rContainer = createElement("div", "flatpickr-rContainer");
-				self.rContainer.appendChild(buildWeekdays());
-				self.rContainer.appendChild(buildDays());
-				self.innerContainer.appendChild(self.rContainer);
-				fragment.appendChild(self.innerContainer);
-			}
-
-			if (self.config.enableTime) fragment.appendChild(buildTime());
-
-			if (self.config.mode === "range") self.calendarContainer.classList.add("rangeMode");
-
-			self.calendarContainer.appendChild(fragment);
-
-			if (self.config.inline || self.config.static) {
-				self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
-				positionCalendar();
-
-				if (self.config.appendTo && self.config.appendTo.nodeType) self.config.appendTo.appendChild(self.calendarContainer);else {
-					self.element.parentNode.insertBefore(self.calendarContainer, (self.altInput || self.input).nextSibling);
-				}
-			} else window.document.body.appendChild(self.calendarContainer);
-		}
-
-		function createDay(className, date, dayNumber) {
-			var dateIsEnabled = isEnabled(date, true),
-			    dayElement = createElement("span", "flatpickr-day " + className, date.getDate());
-
-			dayElement.dateObj = date;
-
-			if (compareDates(date, self.now) === 0) dayElement.classList.add("today");
-
-			if (dateIsEnabled) {
-				dayElement.tabIndex = 0;
-
-				if (isDateSelected(date)) {
-					dayElement.classList.add("selected");
-
-					if (self.config.mode === "range") {
-						dayElement.classList.add(compareDates(date, self.selectedDates[0]) === 0 ? "startRange" : "endRange");
-					} else self.selectedDateElem = dayElement;
-				}
-			} else {
-				dayElement.classList.add("disabled");
-				if (self.selectedDates[0] && date > self.minRangeDate && date < self.selectedDates[0]) self.minRangeDate = date;else if (self.selectedDates[0] && date < self.maxRangeDate && date > self.selectedDates[0]) self.maxRangeDate = date;
-			}
-
-			if (self.config.mode === "range") {
-				if (isDateInRange(date) && !isDateSelected(date)) dayElement.classList.add("inRange");
-
-				if (self.selectedDates.length === 1 && (date < self.minRangeDate || date > self.maxRangeDate)) dayElement.classList.add("notAllowed");
-			}
-
-			if (self.config.weekNumbers && className !== "prevMonthDay" && dayNumber % 7 === 1) {
-				self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='disabled flatpickr-day'>" + self.config.getWeek(date) + "</span>");
-			}
-
-			triggerEvent("DayCreate", dayElement);
-
-			return dayElement;
-		}
-
-		function buildDays() {
-			if (!self.days) {
-				self.days = createElement("div", "flatpickr-days");
-				self.days.tabIndex = -1;
-			}
-
-			self.firstOfMonth = (new Date(self.currentYear, self.currentMonth, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
-
-			self.prevMonthDays = self.utils.getDaysinMonth((self.currentMonth - 1 + 12) % 12);
-
-			var daysInMonth = self.utils.getDaysinMonth(),
-			    days = window.document.createDocumentFragment();
-
-			var dayNumber = self.prevMonthDays + 1 - self.firstOfMonth;
-
-			if (self.config.weekNumbers && self.weekNumbers.firstChild) self.weekNumbers.textContent = "";
-
-			if (self.config.mode === "range") {
-				// const dateLimits = self.config.enable.length || self.config.disable.length || self.config.mixDate || self.config.maxDate;
-				self.minRangeDate = new Date(self.currentYear, self.currentMonth - 1, dayNumber);
-				self.maxRangeDate = new Date(self.currentYear, self.currentMonth + 1, (42 - self.firstOfMonth) % daysInMonth);
-			}
-
-			if (self.days.firstChild) self.days.textContent = "";
-
-			// prepend days from the ending of previous month
-			for (var i = 0; dayNumber <= self.prevMonthDays; i++, dayNumber++) {
-				days.appendChild(createDay("prevMonthDay", new Date(self.currentYear, self.currentMonth - 1, dayNumber), dayNumber));
-			}
-
-			// Start at 1 since there is no 0th day
-			for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++) {
-				days.appendChild(createDay("", new Date(self.currentYear, self.currentMonth, dayNumber), dayNumber));
-			}
-
-			// append days from the next month
-			for (var dayNum = daysInMonth + 1; dayNum <= 42 - self.firstOfMonth; dayNum++) {
-				days.appendChild(createDay("nextMonthDay", new Date(self.currentYear, self.currentMonth + 1, dayNum % daysInMonth), dayNum));
-			}
-
-			self.days.appendChild(days);
-			return self.days;
-		}
-
-		function buildMonthNav() {
-			var monthNavFragment = window.document.createDocumentFragment();
-			self.monthNav = createElement("div", "flatpickr-month");
-
-			self.prevMonthNav = createElement("span", "flatpickr-prev-month");
-			self.prevMonthNav.innerHTML = self.config.prevArrow;
-
-			self.currentMonthElement = createElement("span", "cur-month");
-
-			var yearInput = createNumberInput("cur-year");
-			self.currentYearElement = yearInput.childNodes[0];
-			self.currentYearElement.title = self.l10n.scrollTitle;
-
-			if (self.config.minDate) self.currentYearElement.min = self.config.minDate.getFullYear();
-
-			if (self.config.maxDate) {
-				self.currentYearElement.max = self.config.maxDate.getFullYear();
-
-				self.currentYearElement.disabled = self.config.minDate && self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
-			}
-
-			self.nextMonthNav = createElement("span", "flatpickr-next-month");
-			self.nextMonthNav.innerHTML = self.config.nextArrow;
-
-			self.navigationCurrentMonth = createElement("span", "flatpickr-current-month");
-			self.navigationCurrentMonth.appendChild(self.currentMonthElement);
-			self.navigationCurrentMonth.appendChild(yearInput);
-
-			monthNavFragment.appendChild(self.prevMonthNav);
-			monthNavFragment.appendChild(self.navigationCurrentMonth);
-			monthNavFragment.appendChild(self.nextMonthNav);
-			self.monthNav.appendChild(monthNavFragment);
-
-			updateNavigationCurrentMonth();
-
-			return self.monthNav;
-		}
-
-		function buildTime() {
-			self.calendarContainer.classList.add("hasTime");
-			if (self.config.noCalendar) self.calendarContainer.classList.add("noCalendar");
-			self.timeContainer = createElement("div", "flatpickr-time");
-			self.timeContainer.tabIndex = -1;
-			var separator = createElement("span", "flatpickr-time-separator", ":");
-
-			var hourInput = createNumberInput("flatpickr-hour");
-			self.hourElement = hourInput.childNodes[0];
-
-			var minuteInput = createNumberInput("flatpickr-minute");
-			self.minuteElement = minuteInput.childNodes[0];
-
-			self.hourElement.tabIndex = self.minuteElement.tabIndex = 0;
-			self.hourElement.pattern = self.minuteElement.pattern = "\\d*";
-
-			self.hourElement.value = self.pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getHours() : self.config.defaultHour);
-
-			self.minuteElement.value = self.pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getMinutes() : self.config.defaultMinute);
-
-			self.hourElement.step = self.config.hourIncrement;
-			self.minuteElement.step = self.config.minuteIncrement;
-
-			self.hourElement.min = self.config.time_24hr ? 0 : 1;
-			self.hourElement.max = self.config.time_24hr ? 23 : 12;
-
-			self.minuteElement.min = 0;
-			self.minuteElement.max = 59;
-
-			self.hourElement.title = self.minuteElement.title = self.l10n.scrollTitle;
-
-			self.timeContainer.appendChild(hourInput);
-			self.timeContainer.appendChild(separator);
-			self.timeContainer.appendChild(minuteInput);
-
-			if (self.config.time_24hr) self.timeContainer.classList.add("time24hr");
-
-			if (self.config.enableSeconds) {
-				self.timeContainer.classList.add("hasSeconds");
-
-				var secondInput = createNumberInput("flatpickr-second");
-				self.secondElement = secondInput.childNodes[0];
-
-				self.secondElement.pattern = self.hourElement.pattern;
-				self.secondElement.value = self.latestSelectedDateObj ? self.pad(self.latestSelectedDateObj.getSeconds()) : "00";
-
-				self.secondElement.step = self.minuteElement.step;
-				self.secondElement.min = self.minuteElement.min;
-				self.secondElement.max = self.minuteElement.max;
-
-				self.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
-				self.timeContainer.appendChild(secondInput);
-			}
-
-			if (!self.config.time_24hr) {
-				// add self.amPM if appropriate
-				self.amPM = createElement("span", "flatpickr-am-pm", ["AM", "PM"][self.hourElement.value > 11 | 0]);
-				self.amPM.title = self.l10n.toggleTitle;
-				self.amPM.tabIndex = 0;
-				self.timeContainer.appendChild(self.amPM);
-			}
-
-			return self.timeContainer;
-		}
-
-		function buildWeekdays() {
-			if (!self.weekdayContainer) self.weekdayContainer = createElement("div", "flatpickr-weekdays");
-
-			var firstDayOfWeek = self.l10n.firstDayOfWeek;
-			var weekdays = self.l10n.weekdays.shorthand.slice();
-
-			if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
-				weekdays = [].concat(weekdays.splice(firstDayOfWeek, weekdays.length), weekdays.splice(0, firstDayOfWeek));
-			}
-
-			self.weekdayContainer.innerHTML = "\n\t\t<span class=flatpickr-weekday>\n\t\t\t" + weekdays.join("</span><span class=flatpickr-weekday>") + "\n\t\t</span>\n\t\t";
-
-			return self.weekdayContainer;
-		}
-
-		/* istanbul ignore next */
-		function buildWeeks() {
-			self.calendarContainer.classList.add("hasWeeks");
-			self.weekWrapper = createElement("div", "flatpickr-weekwrapper");
-			self.weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
-			self.weekNumbers = createElement("div", "flatpickr-weeks");
-			self.weekWrapper.appendChild(self.weekNumbers);
-
-			return self.weekWrapper;
-		}
-
-		function changeMonth(value, is_offset) {
-			self.currentMonth = typeof is_offset === "undefined" || is_offset ? self.currentMonth + value : value;
-
-			handleYearChange();
-			updateNavigationCurrentMonth();
-			buildDays();
-
-			if (!self.config.noCalendar) self.days.focus();
-
-			triggerEvent("MonthChange");
-		}
-
-		function clear(triggerChangeEvent) {
-			self.input.value = "";
-
-			if (self.altInput) self.altInput.value = "";
-
-			if (self.mobileInput) self.mobileInput.value = "";
-
-			self.selectedDates = [];
-			self.latestSelectedDateObj = null;
-			self.dateIsPicked = false;
-
-			self.redraw();
-
-			if (triggerChangeEvent !== false)
-				// triggerChangeEvent is true (default) or an Event
-				triggerEvent("Change");
-		}
-
-		function close() {
-			self.isOpen = false;
-
-			if (!self.isMobile) {
-				self.calendarContainer.classList.remove("open");
-				(self.altInput || self.input).classList.remove("active");
-			}
-
-			triggerEvent("Close");
-		}
-
-		function destroy(instance) {
-			instance = instance || self;
-			instance.clear(false);
-
-			window.document.removeEventListener("keydown", onKeyDown);
-			window.removeEventListener("resize", instance.debouncedResize);
-
-			window.document.removeEventListener("click", documentClick);
-			window.document.removeEventListener("touchstart", documentClick);
-			window.document.removeEventListener("blur", documentClick);
-
-			if (instance.timeContainer) instance.timeContainer.removeEventListener("transitionend", positionCalendar);
-
-			if (instance.mobileInput && instance.mobileInput.parentNode) instance.mobileInput.parentNode.removeChild(instance.mobileInput);else if (instance.calendarContainer && instance.calendarContainer.parentNode) instance.calendarContainer.parentNode.removeChild(instance.calendarContainer);
-
-			if (instance.altInput) {
-				instance.input.type = "text";
-				if (instance.altInput.parentNode) instance.altInput.parentNode.removeChild(instance.altInput);
-			}
-
-			instance.input.type = instance.input._type;
-			instance.input.classList.remove("flatpickr-input");
-			instance.input.removeEventListener("focus", open);
-			instance.input.removeAttribute("readonly");
-
-			delete instance.input._flatpickr;
-		}
-
-		function isCalendarElem(elem) {
-			var e = elem;
-			while (e) {
-				if (/flatpickr-day|flatpickr-calendar/.test(e.className)) return true;
-				e = e.parentNode;
-			}
-
-			return false;
-		}
-
-		function documentClick(e) {
-			var isInput = self.element.contains(e.target) || e.target === self.input || e.target === self.altInput || e.path && (~e.path.indexOf(self.input) || ~e.path.indexOf(self.altInput));
-
-			if (self.isOpen && !self.config.inline && !isCalendarElem(e.target) && !isInput) {
-				e.preventDefault();
-				self.close();
-
-				if (self.config.mode === "range" && self.selectedDates.length === 1) {
-					self.clear();
-					self.redraw();
-				}
-			}
-		}
-
-		function formatDate(frmt, dateObj) {
-			if (self.config.formatDate) return self.config.formatDate(frmt, dateObj);
-
-			var chars = frmt.split("");
-			return chars.map(function (c, i) {
-				return self.formats[c] && chars[i - 1] !== "\\" ? self.formats[c](dateObj) : c !== "\\" ? c : "";
-			}).join("");
-		}
-
-		function handleYearChange(newYear) {
-			if (self.currentMonth < 0 || self.currentMonth > 11) {
-				self.currentYear += self.currentMonth % 11;
-				self.currentMonth = (self.currentMonth + 12) % 12;
-
-				triggerEvent("YearChange");
-			} else if (newYear && (!self.currentYearElement.min || newYear >= self.currentYearElement.min) && (!self.currentYearElement.max || newYear <= self.currentYearElement.max)) {
-				self.currentYear = parseInt(newYear, 10) || self.currentYear;
-
-				if (self.config.maxDate && self.currentYear === self.config.maxDate.getFullYear()) {
-					self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
-				} else if (self.config.minDate && self.currentYear === self.config.minDate.getFullYear()) {
-					self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
-				}
-
-				self.redraw();
-				triggerEvent("YearChange");
-			}
-		}
-
-		function isEnabled(date, timeless) {
-			var ltmin = compareDates(date, self.config.minDate, typeof timeless !== "undefined" ? timeless : !self.minDateHasTime) < 0;
-			var gtmax = compareDates(date, self.config.maxDate, typeof timeless !== "undefined" ? timeless : !self.maxDateHasTime) > 0;
-
-			if (ltmin || gtmax) return false;
-
-			if (!self.config.enable.length && !self.config.disable.length) return true;
-
-			var dateToCheck = self.parseDate(date, true); // timeless
-
-			var bool = self.config.enable.length > 0,
-			    array = bool ? self.config.enable : self.config.disable;
-
-			for (var i = 0, d; i < array.length; i++) {
-				d = array[i];
-
-				if (d instanceof Function && d(dateToCheck)) // disabled by function
-					return bool;else if (d instanceof Date && d.getTime() === dateToCheck.getTime())
-					// disabled by date string
-					return bool;else if ( // disabled by range
-				(typeof d === "undefined" ? "undefined" : _typeof(d)) === "object" && d.from && d.to && dateToCheck >= d.from && dateToCheck <= d.to) return bool;
-			}
-
-			return !bool;
-		}
-
-		function onKeyDown(e) {
-			if (self.isOpen) {
-				switch (e.which) {
-					case 13:
-						if (self.timeContainer && self.timeContainer.contains(e.target)) updateValue();else selectDate(e);
-
-						break;
-
-					case 27:
-						// escape
-						self.clear();
-						self.redraw();
-						self.close();
-						break;
-
-					case 37:
-						if (e.target !== self.input & e.target !== self.altInput) changeMonth(-1);
-						break;
-
-					case 38:
-						e.preventDefault();
-
-						if (self.timeContainer && self.timeContainer.contains(e.target)) updateTime(e);else {
-							self.currentYear++;
-							self.redraw();
-						}
-
-						break;
-
-					case 39:
-						if (e.target !== self.input & e.target !== self.altInput) changeMonth(1);
-						break;
-
-					case 40:
-						e.preventDefault();
-						if (self.timeContainer && self.timeContainer.contains(e.target)) updateTime(e);else {
-							self.currentYear--;
-							self.redraw();
-						}
-
-						break;
-
-					default:
-						break;
-				}
-			}
-		}
-
-		function onMouseOver(e) {
-			if (self.selectedDates.length !== 1 || !e.target.classList.contains("flatpickr-day")) return;
-
-			var hoverDate = e.target.dateObj,
-			    initialDate = self.parseDate(self.selectedDates[0], true),
-			    rangeStartDate = Math.min(hoverDate.getTime(), self.selectedDates[0].getTime()),
-			    rangeEndDate = Math.max(hoverDate.getTime(), self.selectedDates[0].getTime()),
-			    containsDisabled = false;
-
-			for (var t = rangeStartDate; t < rangeEndDate; t += self.utils.duration.DAY) {
-				if (!isEnabled(new Date(t))) {
-					containsDisabled = true;
-					break;
-				}
-			}
-
-			for (var timestamp = self.days.childNodes[0].dateObj.getTime(), i = 0; i < 42; i++, timestamp += self.utils.duration.DAY) {
-				var outOfRange = timestamp < self.minRangeDate.getTime() || timestamp > self.maxRangeDate.getTime();
-
-				if (outOfRange) {
-					self.days.childNodes[i].classList.add("notAllowed");
-					self.days.childNodes[i].classList.remove("inRange", "startRange", "endRange");
-					continue;
-				} else if (containsDisabled && !outOfRange) continue;
-
-				self.days.childNodes[i].classList.remove("startRange", "inRange", "endRange", "notAllowed");
-
-				var minRangeDate = Math.max(self.minRangeDate.getTime(), rangeStartDate),
-				    maxRangeDate = Math.min(self.maxRangeDate.getTime(), rangeEndDate);
-
-				e.target.classList.add(hoverDate < self.selectedDates[0] ? "startRange" : "endRange");
-
-				if (initialDate > hoverDate && timestamp === initialDate.getTime()) self.days.childNodes[i].classList.add("endRange");else if (initialDate < hoverDate && timestamp === initialDate.getTime()) self.days.childNodes[i].classList.add("startRange");else if (timestamp > minRangeDate && timestamp < maxRangeDate) self.days.childNodes[i].classList.add("inRange");
-			}
-		}
-
-		function onResize() {
-			if (self.isOpen && !self.config.static && !self.config.inline) positionCalendar();
-		}
-
-		function open(e) {
-			if (self.isMobile) {
-				if (e) {
-					e.preventDefault();
-					e.target.blur();
-				}
-
-				setTimeout(function () {
-					self.mobileInput.click();
-				}, 0);
-
-				triggerEvent("Open");
-				return;
-			} else if (self.isOpen || (self.altInput || self.input).disabled || self.config.inline) return;
-
-			self.calendarContainer.classList.add("open");
-
-			if (!self.config.static && !self.config.inline) positionCalendar();
-
-			self.isOpen = true;
-
-			if (!self.config.allowInput) {
-				(self.altInput || self.input).blur();
-				(self.config.noCalendar ? self.timeContainer : self.selectedDateElem ? self.selectedDateElem : self.days).focus();
-			}
-
-			(self.altInput || self.input).classList.add("active");
-			triggerEvent("Open");
-		}
-
-		function minMaxDateSetter(type) {
-			return function (date) {
-				var dateObj = self.config["_" + type + "Date"] = self.parseDate(date);
-				var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
-
-				if (self.selectedDates) {
-					self.selectedDates = self.selectedDates.filter(isEnabled);
-					updateValue();
-				}
-
-				if (self.days) redraw();
-
-				if (!self.currentYearElement) return;
-
-				if (date && dateObj instanceof Date) {
-					self[type + "DateHasTime"] = dateObj.getHours() || dateObj.getMinutes() || dateObj.getSeconds();
-
-					self.currentYearElement[type] = dateObj.getFullYear();
-				} else self.currentYearElement.removeAttribute(type);
-
-				self.currentYearElement.disabled = inverseDateObj && dateObj && inverseDateObj.getFullYear() === dateObj.getFullYear();
-			};
-		}
-
-		function parseConfig() {
-			var boolOpts = ["utc", "wrap", "weekNumbers", "allowInput", "clickOpens", "time_24hr", "enableTime", "noCalendar", "altInput", "shorthandCurrentMonth", "inline", "static", "enableSeconds", "disableMobile"];
-			self.config = Object.create(Flatpickr.defaultConfig);
-
-			Object.defineProperty(self.config, "minDate", {
-				get: function get() {
-					return this._minDate;
-				},
-				set: minMaxDateSetter("min")
-			});
-
-			Object.defineProperty(self.config, "maxDate", {
-				get: function get() {
-					return this._maxDate;
-				},
-				set: minMaxDateSetter("max")
-			});
-
-			var userConfig = _extends({}, self.instanceConfig, JSON.parse(JSON.stringify(self.element.dataset || {})));
-
-			_extends(self.config, userConfig);
-
-			for (var i = 0; i < boolOpts.length; i++) {
-				self.config[boolOpts[i]] = self.config[boolOpts[i]] === true || self.config[boolOpts[i]] === "true";
-			}if (!userConfig.dateFormat && userConfig.enableTime) {
-				self.config.dateFormat = self.config.noCalendar ? "H:i" + (self.config.enableSeconds ? ":S" : "") : Flatpickr.defaultConfig.dateFormat + " H:i" + (self.config.enableSeconds ? ":S" : "");
-			}
-
-			if (userConfig.altInput && userConfig.enableTime && !userConfig.altFormat) {
-				self.config.altFormat = self.config.noCalendar ? "h:i" + (self.config.enableSeconds ? ":S K" : " K") : Flatpickr.defaultConfig.altFormat + (" h:i" + (self.config.enableSeconds ? ":S" : "") + " K");
-			}
-		}
-
-		function setupLocale() {
-			if (_typeof(self.config.locale) !== "object" && typeof Flatpickr.l10ns[self.config.locale] === "undefined") console.warn("flatpickr: invalid locale " + self.config.locale);
-
-			self.l10n = _extends(Object.create(Flatpickr.l10ns.default), _typeof(self.config.locale) === "object" ? self.config.locale : self.config.locale !== "default" ? Flatpickr.l10ns[self.config.locale] || {} : {});
-		}
-
-		function positionCalendar(e) {
-			if (e && e.target !== self.timeContainer) return;
-
-			var calendarHeight = self.calendarContainer.offsetHeight,
-			    calendarWidth = self.calendarContainer.offsetWidth,
-			    input = self.altInput || self.input,
-			    inputBounds = input.getBoundingClientRect(),
-			    distanceFromBottom = window.innerHeight - inputBounds.bottom + input.offsetHeight;
-
-			var top = void 0;
-
-			if (distanceFromBottom < calendarHeight + 60) {
-				top = window.pageYOffset - calendarHeight + inputBounds.top - 2;
-				self.calendarContainer.classList.remove("arrowTop");
-				self.calendarContainer.classList.add("arrowBottom");
-			} else {
-				top = window.pageYOffset + input.offsetHeight + inputBounds.top + 2;
-				self.calendarContainer.classList.remove("arrowBottom");
-				self.calendarContainer.classList.add("arrowTop");
-			}
-
-			if (!self.config.static && !self.config.inline) {
-				self.calendarContainer.style.top = top + "px";
-
-				var left = window.pageXOffset + inputBounds.left;
-				var right = window.document.body.offsetWidth - inputBounds.right;
-
-				if (left + calendarWidth <= window.document.body.offsetWidth) {
-					self.calendarContainer.style.left = left + "px";
-					self.calendarContainer.style.right = "auto";
-
-					self.calendarContainer.classList.remove("rightMost");
-				} else {
-					self.calendarContainer.style.left = "auto";
-					self.calendarContainer.style.right = right + "px";
-
-					self.calendarContainer.classList.add("rightMost");
-				}
-			}
-		}
-
-		function redraw() {
-			if (self.config.noCalendar || self.isMobile) return;
-
-			buildWeekdays();
-			updateNavigationCurrentMonth();
-			buildDays();
-		}
-
-		function selectDate(e) {
-			e.preventDefault();
-			if (self.config.allowInput && e.which === 13 && e.target === (self.altInput || self.input)) return self.setDate((self.altInput || self.input).value), e.target.blur();
-
-			if (!e.target.classList.contains("flatpickr-day") || e.target.classList.contains("disabled") || e.target.classList.contains("notAllowed")) return;
-
-			var selectedDate = self.latestSelectedDateObj = new Date(e.target.dateObj.getTime());
-
-			self.selectedDateElem = e.target;
-
-			if (self.config.mode === "single") self.selectedDates = [selectedDate];else if (self.config.mode === "multiple") {
-				var selectedIndex = isDateSelected(selectedDate);
-				if (selectedIndex) self.selectedDates.splice(selectedIndex, 1);else self.selectedDates.push(selectedDate);
-			} else if (self.config.mode === "range") {
-				if (self.selectedDates.length === 2) self.clear();
-
-				self.selectedDates.push(selectedDate);
-				self.selectedDates.sort(function (a, b) {
-					return a.getTime() - b.getTime();
-				});
-			}
-
-			setHoursFromInputs();
-
-			if (selectedDate.getMonth() !== self.currentMonth && self.config.mode !== "range") {
-				self.currentYear = selectedDate.getFullYear();
-				self.currentMonth = selectedDate.getMonth();
-				updateNavigationCurrentMonth();
-			}
-
-			buildDays();
-
-			if (self.minDateHasTime && self.config.enableTime && compareDates(selectedDate, self.config.minDate) === 0) setHoursFromDate(self.config.minDate);
-
-			updateValue();
-
-			setTimeout(function () {
-				return self.dateIsPicked = true;
-			}, 50);
-
-			if (self.config.mode === "range" && self.selectedDates.length === 1) onMouseOver(e);
-
-			if (self.config.mode === "single" && !self.config.enableTime) self.close();
-
-			triggerEvent("Change");
-		}
-
-		function set(option, value) {
-			self.config[option] = value;
-			self.redraw();
-			jumpToDate();
-		}
-
-		function setDate(date, triggerChange) {
-			if (!date) return self.clear();
-
-			self.selectedDates = (Array.isArray(date) ? date.map(self.parseDate) : [self.parseDate(date)]).filter(function (d) {
-				return d instanceof Date && isEnabled(d);
-			});
-
-			if (self.selectedDates.length > 0) {
-				self.dateIsPicked = true;
-				self.latestSelectedDateObj = self.selectedDates[0];
-			} else self.latestSelectedDateObj = null;
-
-			self.redraw();
-			jumpToDate();
-
-			setHoursFromDate();
-			updateValue();
-
-			if (triggerChange === true) triggerEvent("Change");
-		}
-
-		function setupDates() {
-			function parseDateRules(arr) {
-				for (var i = arr.length; i--;) {
-					if (typeof arr[i] === "string" || +arr[i]) arr[i] = self.parseDate(arr[i], true);else if (arr[i] && arr[i].from && arr[i].to) {
-						arr[i].from = self.parseDate(arr[i].from);
-						arr[i].to = self.parseDate(arr[i].to);
-					}
-				}
-
-				return arr.filter(function (x) {
-					return x;
-				}); // remove falsy values
-			}
-
-			self.selectedDates = [];
-			self.now = new Date();
-			var inputDate = self.config.defaultDate || self.input.value;
-
-			if (Array.isArray(inputDate)) self.selectedDates = inputDate.map(self.parseDate);else if (inputDate) {
-				switch (self.config.mode) {
-					case "single":
-						self.selectedDates = [self.parseDate(inputDate)];
-						break;
-
-					case "multiple":
-						self.selectedDates = inputDate.split("; ").map(self.parseDate);
-						break;
-
-					case "range":
-						self.selectedDates = inputDate.split(self.l10n.rangeSeparator).map(self.parseDate);
-						break;
-
-					default:
-						break;
-				}
-			}
-
-			if (self.config.disable.length) self.config.disable = parseDateRules(self.config.disable);
-
-			if (self.config.enable.length) self.config.enable = parseDateRules(self.config.enable);
-
-			self.selectedDates = self.selectedDates.filter(function (d) {
-				return d instanceof Date && d.getTime() && isEnabled(d, false);
-			});
-
-			self.selectedDates.sort(function (a, b) {
-				return a.getTime() - b.getTime();
-			});
-
-			var initialDate = self.selectedDates.length ? self.selectedDates[0] : self.config.minDate && self.config.minDate.getTime() > self.now ? self.config.minDate : self.config.maxDate && self.config.maxDate.getTime() < self.now ? self.config.maxDate : self.now;
-
-			self.currentYear = initialDate.getFullYear();
-			self.currentMonth = initialDate.getMonth();
-
-			if (self.selectedDates.length) self.latestSelectedDateObj = self.selectedDates[0];
-
-			self.minDateHasTime = self.config.minDate && (self.config.minDate.getHours() || self.config.minDate.getMinutes() || self.config.minDate.getSeconds());
-
-			self.maxDateHasTime = self.config.maxDate && (self.config.maxDate.getHours() || self.config.maxDate.getMinutes() || self.config.maxDate.getSeconds());
-
-			Object.defineProperty(self, "latestSelectedDateObj", {
-				get: function get() {
-					return self._selectedDateObj || self.selectedDates[self.selectedDates.length - 1] || null;
-				},
-				set: function set(date) {
-					self._selectedDateObj = date;
-				}
-			});
-		}
-
-		function setupHelperFunctions() {
-			self.utils = {
-				duration: {
-					DAY: 86400000
-				},
-				getDaysinMonth: function getDaysinMonth(month, yr) {
-					month = typeof month === "undefined" ? self.currentMonth : month;
-
-					yr = typeof yr === "undefined" ? self.currentYear : yr;
-
-					if (month === 1 && (yr % 4 === 0 && yr % 100 !== 0 || yr % 400 === 0)) return 29;
-
-					return self.l10n.daysInMonth[month];
-				},
-				monthToStr: function monthToStr(monthNumber, shorthand) {
-					shorthand = typeof shorthand === "undefined" ? self.config.shorthandCurrentMonth : shorthand;
-
-					return self.l10n.months[(shorthand ? "short" : "long") + "hand"][monthNumber];
-				}
-			};
-		}
-
-		/* istanbul ignore next */
-		function setupFormats() {
-			self.formats = {
-				// weekday name, short, e.g. Thu
-				D: function D(date) {
-					return self.l10n.weekdays.shorthand[self.formats.w(date)];
-				},
-
-				// full month name e.g. January
-				F: function F(date) {
-					return self.utils.monthToStr(self.formats.n(date) - 1, false);
-				},
-
-				// hours with leading zero e.g. 03
-				H: function H(date) {
-					return Flatpickr.prototype.pad(date.getHours());
-				},
-
-				// day (1-30) with ordinal suffix e.g. 1st, 2nd
-				J: function J(date) {
-					return date.getDate() + self.l10n.ordinal(date.getDate());
-				},
-
-				// AM/PM
-				K: function K(date) {
-					return date.getHours() > 11 ? "PM" : "AM";
-				},
-
-				// shorthand month e.g. Jan, Sep, Oct, etc
-				M: function M(date) {
-					return self.utils.monthToStr(date.getMonth(), true);
-				},
-
-				// seconds 00-59
-				S: function S(date) {
-					return Flatpickr.prototype.pad(date.getSeconds());
-				},
-
-				// unix timestamp
-				U: function U(date) {
-					return date.getTime() / 1000;
-				},
-
-				// full year e.g. 2016
-				Y: function Y(date) {
-					return date.getFullYear();
-				},
-
-				// day in month, padded (01-30)
-				d: function d(date) {
-					return Flatpickr.prototype.pad(self.formats.j(date));
-				},
-
-				// hour from 1-12 (am/pm)
-				h: function h(date) {
-					return date.getHours() % 12 ? date.getHours() % 12 : 12;
-				},
-
-				// minutes, padded with leading zero e.g. 09
-				i: function i(date) {
-					return Flatpickr.prototype.pad(date.getMinutes());
-				},
-
-				// day in month (1-30)
-				j: function j(date) {
-					return date.getDate();
-				},
-
-				// weekday name, full, e.g. Thursday
-				l: function l(date) {
-					return self.l10n.weekdays.longhand[self.formats.w(date)];
-				},
-
-				// padded month number (01-12)
-				m: function m(date) {
-					return Flatpickr.prototype.pad(self.formats.n(date));
-				},
-
-				// the month number (1-12)
-				n: function n(date) {
-					return date.getMonth() + 1;
-				},
-
-				// seconds 0-59
-				s: function s(date) {
-					return date.getSeconds();
-				},
-
-				// number of the day of the week
-				w: function w(date) {
-					return date.getDay();
-				},
-
-				// last two digits of year e.g. 16 for 2016
-				y: function y(date) {
-					return String(self.formats.Y(date)).substring(2);
-				}
-			};
-		}
-
-		function setupInputs() {
-			self.input = self.config.wrap ? self.element.querySelector("[data-input]") : self.element;
-
-			if (!self.input) return console.warn("Error: invalid input element specified", self.input);
-
-			self.input._type = self.input.type;
-			self.input.type = "text";
-			self.input.classList.add("flatpickr-input");
-
-			if (self.config.altInput) {
-				// replicate self.element
-				self.altInput = createElement(self.input.nodeName, self.input.className + " " + self.config.altInputClass);
-				self.altInput.placeholder = self.input.placeholder;
-				self.altInput.type = "text";
-
-				self.input.type = "hidden";
-				if (self.input.parentNode) self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
-			}
-
-			if (!self.config.allowInput) (self.altInput || self.input).setAttribute("readonly", "readonly");
-		}
-
-		function setupMobile() {
-			var inputType = self.config.enableTime ? self.config.noCalendar ? "time" : "datetime-local" : "date";
-
-			self.mobileInput = createElement("input", self.input.className + " flatpickr-mobile");
-			self.mobileInput.step = "any";
-			self.mobileInput.tabIndex = 1;
-			self.mobileInput.type = inputType;
-			self.mobileInput.disabled = self.input.disabled;
-
-			self.mobileFormatStr = inputType === "datetime-local" ? "Y-m-d\\TH:i:S" : inputType === "date" ? "Y-m-d" : "H:i:S";
-
-			if (self.selectedDates.length) {
-				self.mobileInput.defaultValue = self.mobileInput.value = formatDate(self.mobileFormatStr, self.selectedDates[0]);
-			}
-
-			if (self.config.minDate) self.mobileInput.min = formatDate("Y-m-d", self.config.minDate);
-
-			if (self.config.maxDate) self.mobileInput.max = formatDate("Y-m-d", self.config.maxDate);
-
-			self.input.type = "hidden";
-			if (self.config.altInput) self.altInput.type = "hidden";
-
-			try {
-				self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
-			} catch (e) {
-				//
-			}
-
-			self.mobileInput.addEventListener("change", function (e) {
-				self.latestSelectedDateObj = self.parseDate(e.target.value);
-				self.setDate(self.latestSelectedDateObj);
-				triggerEvent("Change");
-				triggerEvent("Close");
-			});
-		}
-
-		function toggle() {
-			if (self.isOpen) self.close();else self.open();
-		}
-
-		function triggerEvent(event, data) {
-			if (self.config["on" + event]) {
-				var hooks = Array.isArray(self.config["on" + event]) ? self.config["on" + event] : [self.config["on" + event]];
-
-				for (var i = 0; i < hooks.length; i++) {
-					hooks[i](self.selectedDates, self.input.value, self, data);
-				}
-			}
-
-			if (event === "Change") {
-				try {
-					self.input.dispatchEvent(new Event("change", { "bubbles": true }));
-
-					// many front-end frameworks bind to the input event
-					self.input.dispatchEvent(new Event("input", { "bubbles": true }));
-				} catch (e) {
-					if (window.document.createEvent !== undefined) return self.input.dispatchEvent(self.changeEvent);
-
-					self.input.fireEvent("onchange");
-				}
-			}
-		}
-
-		function isDateSelected(date) {
-			for (var i = 0; i < self.selectedDates.length; i++) {
-				if (compareDates(self.selectedDates[i], date) === 0) return "" + i;
-			}
-
-			return false;
-		}
-
-		function isDateInRange(date) {
-			if (self.config.mode !== "range" || self.selectedDates.length < 2) return false;
-			return compareDates(date, self.selectedDates[0]) >= 0 && compareDates(date, self.selectedDates[1]) <= 0;
-		}
-
-		function updateNavigationCurrentMonth() {
-			if (self.config.noCalendar || self.isMobile || !self.monthNav) return;
-
-			self.currentMonthElement.textContent = self.utils.monthToStr(self.currentMonth) + " ";
-			self.currentYearElement.value = self.currentYear;
-
-			if (self.config.minDate) {
-				var hidePrevMonthArrow = self.currentYear === self.config.minDate.getFullYear() ? self.currentMonth <= self.config.minDate.getMonth() : self.currentYear < self.config.minDate.getFullYear();
-
-				self.prevMonthNav.style.display = hidePrevMonthArrow ? "none" : "block";
-			} else self.prevMonthNav.style.display = "block";
-
-			if (self.config.maxDate) {
-				var hideNextMonthArrow = self.currentYear === self.config.maxDate.getFullYear() ? self.currentMonth + 1 > self.config.maxDate.getMonth() : self.currentYear > self.config.maxDate.getFullYear();
-
-				self.nextMonthNav.style.display = hideNextMonthArrow ? "none" : "block";
-			} else self.nextMonthNav.style.display = "block";
-		}
-
-		function updateValue() {
-			if (!self.selectedDates.length) return self.clear();
-
-			if (self.isMobile) {
-				self.mobileInput.value = self.selectedDates.length ? formatDate(self.mobileFormatStr, self.latestSelectedDateObj) : "";
-			}
-
-			var joinChar = self.config.mode !== "range" ? "; " : self.l10n.rangeSeparator;
-
-			self.input.value = self.selectedDates.map(function (dObj) {
-				return formatDate(self.config.dateFormat, dObj);
-			}).join(joinChar);
-
-			if (self.config.altInput) {
-				self.altInput.value = self.selectedDates.map(function (dObj) {
-					return formatDate(self.config.altFormat, dObj);
-				}).join(joinChar);
-			}
-
-			triggerEvent("ValueUpdate");
-		}
-
-		function yearScroll(e) {
-			e.preventDefault();
-
-			var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)),
-			    newYear = parseInt(e.target.value, 10) + delta;
-
-			handleYearChange(newYear);
-			e.target.value = self.currentYear;
-		}
-
-		function createElement(tag, className, content) {
-			var e = window.document.createElement(tag);
-			className = className || "";
-			content = content || "";
-
-			e.className = className;
-
-			if (content) e.textContent = content;
-
-			return e;
-		}
-
-		/* istanbul ignore next */
-		function debounce(func, wait, immediate) {
-			var timeout = void 0;
-			return function () {
-				for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-					args[_key] = arguments[_key];
-				}
-
-				var context = this;
-				var later = function later() {
-					timeout = null;
-					if (!immediate) func.apply(context, args);
-				};
-
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-				if (immediate && !timeout) func.apply(context, args);
-			};
-		}
-
-		function compareDates(date1, date2, timeless) {
-			if (!(date1 instanceof Date) || !(date2 instanceof Date)) return false;
-
-			if (timeless !== false) {
-				return new Date(date1.getTime()).setHours(0, 0, 0, 0) - new Date(date2.getTime()).setHours(0, 0, 0, 0);
-			}
-
-			return date1.getTime() - date2.getTime();
-		}
-
-		function timeWrapper(e) {
-			e.preventDefault();
-			if (e && ((e.target.value || e.target.textContent).length >= 2 || // typed two digits
-			e.type !== "keydown" && e.type !== "input" // scroll event
-			)) e.target.blur();
-
-			if (self.amPM && e.target === self.amPM) return e.target.textContent = ["AM", "PM"][e.target.textContent === "AM" | 0];
-
-			var min = Number(e.target.min),
-			    max = Number(e.target.max),
-			    step = Number(e.target.step),
-			    curValue = parseInt(e.target.value, 10),
-			    delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY));
-
-			var newValue = Number(curValue);
-
-			switch (e.type) {
-				case "wheel":
-					newValue = curValue + step * delta;
-					break;
-
-				case "keydown":
-					newValue = curValue + step * (e.which === 38 ? 1 : -1);
-					break;
-			}
-
-			if (e.type !== "input" || e.target.value.length === 2) {
-				if (newValue < min) {
-					newValue = max + newValue + (e.target !== self.hourElement) + (e.target === self.hourElement && !self.amPM);
-				} else if (newValue > max) {
-					newValue = e.target === self.hourElement ? newValue - max - !self.amPM : min;
-				}
-
-				if (self.amPM && e.target === self.hourElement && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) self.amPM.textContent = self.amPM.textContent === "PM" ? "AM" : "PM";
-
-				e.target.value = self.pad(newValue);
-			} else e.target.value = newValue;
-		}
-
-		init();
-		return self;
-	}
-
-	/* istanbul ignore next */
-	Flatpickr.defaultConfig = {
-
-		mode: "single",
-
-		/* if true, dates will be parsed, formatted, and displayed in UTC.
-	 preloading date strings w/ timezones is recommended but not necessary */
-		utc: false,
-
-		// wrap: see https://chmln.github.io/flatpickr/#strap
-		wrap: false,
-
-		// enables week numbers
-		weekNumbers: false,
-
-		// allow manual datetime input
-		allowInput: false,
-
-		/*
-	 	clicking on input opens the date(time)picker.
-	 	disable if you wish to open the calendar manually with .open()
-	 */
-		clickOpens: true,
-
-		// display time picker in 24 hour mode
-		time_24hr: false,
-
-		// enables the time picker functionality
-		enableTime: false,
-
-		// noCalendar: true will hide the calendar. use for a time picker along w/ enableTime
-		noCalendar: false,
-
-		// more date format chars at https://chmln.github.io/flatpickr/#dateformat
-		dateFormat: "Y-m-d",
-
-		// altInput - see https://chmln.github.io/flatpickr/#altinput
-		altInput: false,
-
-		// the created altInput element will have this class.
-		altInputClass: "flatpickr-input form-control input",
-
-		// same as dateFormat, but for altInput
-		altFormat: "F j, Y", // defaults to e.g. June 10, 2016
-
-		// defaultDate - either a datestring or a date object. used for datetimepicker"s initial value
-		defaultDate: null,
-
-		// the minimum date that user can pick (inclusive)
-		minDate: null,
-
-		// the maximum date that user can pick (inclusive)
-		maxDate: null,
-
-		// dateparser that transforms a given string to a date object
-		parseDate: null,
-
-		// dateformatter that transforms a given date object to a string, according to passed format
-		formatDate: null,
-
-		getWeek: function getWeek(givenDate) {
-			var date = new Date(givenDate.getTime());
-			date.setHours(0, 0, 0, 0);
-
-			// Thursday in current week decides the year.
-			date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-			// January 4 is always in week 1.
-			var week1 = new Date(date.getFullYear(), 0, 4);
-			// Adjust to Thursday in week 1 and count number of weeks from date to week1.
-			return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-		},
-
-		// see https://chmln.github.io/flatpickr/#disable
-		enable: [],
-
-		// see https://chmln.github.io/flatpickr/#disable
-		disable: [],
-
-		// display the short version of month names - e.g. Sep instead of September
-		shorthandCurrentMonth: false,
-
-		// displays calendar inline. see https://chmln.github.io/flatpickr/#inline-calendar
-		inline: false,
-
-		// position calendar inside wrapper and next to the input element
-		// leave at false unless you know what you"re doing
-		static: false,
-
-		// DOM node to append the calendar to in *static* mode
-		appendTo: null,
-
-		// code for previous/next icons. this is where you put your custom icon code e.g. fontawesome
-		prevArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",
-		nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
-
-		// enables seconds in the time picker
-		enableSeconds: false,
-
-		// step size used when scrolling/incrementing the hour element
-		hourIncrement: 1,
-
-		// step size used when scrolling/incrementing the minute element
-		minuteIncrement: 5,
-
-		// initial value in the hour element
-		defaultHour: 12,
-
-		// initial value in the minute element
-		defaultMinute: 0,
-
-		// disable native mobile datetime input support
-		disableMobile: false,
-
-		// default locale
-		locale: "default",
-
-		// onChange callback when user selects a date or time
-		onChange: null, // function (dateObj, dateStr) {}
-
-		// called every time calendar is opened
-		onOpen: null, // function (dateObj, dateStr) {}
-
-		// called every time calendar is closed
-		onClose: null, // function (dateObj, dateStr) {}
-
-		// called after calendar is ready
-		onReady: null, // function (dateObj, dateStr) {}
-
-		onValueUpdate: null,
-
-		onDayCreate: null
-	};
-
-	/* istanbul ignore next */
-	Flatpickr.l10ns = {
-		en: {
-			weekdays: {
-				shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-				longhand: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-			},
-			months: {
-				shorthand: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-				longhand: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-			},
-			daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-			firstDayOfWeek: 0,
-			ordinal: function ordinal(nth) {
-				var s = nth % 100;
-				if (s > 3 && s < 21) return "th";
-				switch (s % 10) {
-					case 1:
-						return "st";
-					case 2:
-						return "nd";
-					case 3:
-						return "rd";
-					default:
-						return "th";
-				}
-			},
-			rangeSeparator: " to ",
-			weekAbbreviation: "Wk",
-			scrollTitle: "Scroll to increment",
-			toggleTitle: "Click to toggle"
-		}
-	};
-
-	Flatpickr.l10ns.default = Object.create(Flatpickr.l10ns.en);
-	Flatpickr.localize = function (l10n) {
-		return _extends(Flatpickr.l10ns.default, l10n || {});
-	};
-	Flatpickr.setDefaults = function (config) {
-		return _extends(Flatpickr.defaultConfig, config || {});
-	};
-
-	Flatpickr.prototype = {
-		pad: function pad(number) {
-			return ("0" + number).slice(-2);
-		},
-		parseDate: function parseDate(date, timeless) {
-			if (!date) return null;
-
-			var dateTimeRegex = /(\d+)/g,
-			    timeRegex = /^(\d{1,2})[:\s](\d\d)?[:\s]?(\d\d)?\s?(a|p)?/i,
-			    timestamp = /^(\d+)$/g,
-			    date_orig = date;
-
-			if (date.toFixed || timestamp.test(date)) // timestamp
-				date = new Date(date);else if (typeof date === "string") {
-				date = date.trim();
-
-				if (date === "today") {
-					date = new Date();
-					timeless = true;
-				} else if (this.config && this.config.parseDate) date = this.config.parseDate(date);else if (timeRegex.test(date)) {
-					// time picker
-					var m = date.match(timeRegex),
-					    hours = !m[4] ? m[1] // military time, no conversion needed
-					: m[1] % 12 + (m[4].toLowerCase() === "p" ? 12 : 0); // am/pm
-
-					date = new Date();
-					date.setHours(hours, m[2] || 0, m[3] || 0);
-				} else if (/Z$/.test(date) || /GMT$/.test(date)) // datestrings w/ timezone
-					date = new Date(date);else if (dateTimeRegex.test(date) && /^[0-9]/.test(date)) {
-					var d = date.match(dateTimeRegex);
-					date = new Date(d[0] + "/" + (d[1] || 1) + "/" + (d[2] || 1) + " " + (d[3] || 0) + ":" + (d[4] || 0) + ":" + (d[5] || 0));
-				} else // fallback
-					date = new Date(date);
-			} else if (date instanceof Date) date = new Date(date.getTime()); // create a copy
-
-			if (!(date instanceof Date)) {
-				console.warn("flatpickr: invalid date " + date_orig);
-				console.info(this.element);
-				return null;
-			}
-
-			if (this.config && this.config.utc && !date.fp_isUTC) date = date.fp_toUTC();
-
-			if (timeless === true) date.setHours(0, 0, 0, 0);
-
-			return date;
-		}
-	};
-
-	function _flatpickr(nodeList, config) {
-		var nodes = Array.prototype.slice.call(nodeList); // static list
-		var instances = [];
-		for (var i = 0; i < nodes.length; i++) {
-			try {
-				nodes[i]._flatpickr = new Flatpickr(nodes[i], config || {});
-				instances.push(nodes[i]._flatpickr);
-			} catch (e) {
-				console.warn(e, e.stack);
-			}
-		}
-
-		return instances.length === 1 ? instances[0] : instances;
-	}
-	if (typeof HTMLElement !== "undefined") {
-		// browser env
-		HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
-			return _flatpickr(this, config);
-		};
-
-		HTMLElement.prototype.flatpickr = function (config) {
-			return _flatpickr([this], config);
-		};
-	}
-
-	function flatpickr(selector, config) {
-		return _flatpickr(window.document.querySelectorAll(selector), config);
-	}
-
-	if (typeof jQuery !== "undefined") {
-		jQuery.fn.flatpickr = function (config) {
-			return _flatpickr(this, config);
-		};
-	}
-
-	Date.prototype.fp_incr = function (days) {
-		return new Date(this.getFullYear(), this.getMonth(), this.getDate() + parseInt(days, 10));
-	};
-
-	Date.prototype.fp_isUTC = false;
-	Date.prototype.fp_toUTC = function () {
-		var newDate = new Date(this.getUTCFullYear(), this.getUTCMonth(), this.getUTCDate(), this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds());
-
-		newDate.fp_isUTC = true;
-		return newDate;
-	};
-
-	// IE9 classList polyfill
-	/* istanbul ignore next */
-	if (!window.document.documentElement.classList && Object.defineProperty && typeof HTMLElement !== "undefined") {
-		Object.defineProperty(HTMLElement.prototype, "classList", {
-			get: function get() {
-				var self = this;
-				function update(fn) {
-					return function (value) {
-						var classes = self.className.split(/\s+/),
-						    index = classes.indexOf(value);
-
-						fn(classes, index, value);
-						self.className = classes.join(" ");
-					};
-				}
-
-				var ret = {
-					add: update(function (classes, index, value) {
-						if (!~index) classes.push(value);
-					}),
-
-					remove: update(function (classes, index) {
-						if (~index) classes.splice(index, 1);
-					}),
-
-					toggle: update(function (classes, index, value) {
-						if (~index) classes.splice(index, 1);else classes.push(value);
-					}),
-
-					contains: function contains(value) {
-						return !!~self.className.split(/\s+/).indexOf(value);
-					},
-
-					item: function item(i) {
-						return self.className.split(/\s+/)[i] || null;
-					}
-				};
-
-				Object.defineProperty(ret, "length", {
-					get: function get() {
-						return self.className.split(/\s+/).length;
-					}
-				});
-
-				return ret;
-			}
-		});
-	}
-
-	if (true) module.exports = Flatpickr;
+	/* flatpickr v4.5.2, @license MIT */
+	(function (global, factory) {
+	     true ? module.exports = factory() :
+	    typeof define === 'function' && define.amd ? define(factory) :
+	    (global.flatpickr = factory());
+	}(this, (function () { 'use strict';
+
+	    var pad = function pad(number) {
+	      return ("0" + number).slice(-2);
+	    };
+	    var int = function int(bool) {
+	      return bool === true ? 1 : 0;
+	    };
+	    function debounce(func, wait, immediate) {
+	      if (immediate === void 0) {
+	        immediate = false;
+	      }
+
+	      var timeout;
+	      return function () {
+	        var context = this,
+	            args = arguments;
+	        timeout !== null && clearTimeout(timeout);
+	        timeout = window.setTimeout(function () {
+	          timeout = null;
+	          if (!immediate) func.apply(context, args);
+	        }, wait);
+	        if (immediate && !timeout) func.apply(context, args);
+	      };
+	    }
+	    var arrayify = function arrayify(obj) {
+	      return obj instanceof Array ? obj : [obj];
+	    };
+
+	    var do_nothing = function do_nothing() {
+	      return undefined;
+	    };
+
+	    var monthToStr = function monthToStr(monthNumber, shorthand, locale) {
+	      return locale.months[shorthand ? "shorthand" : "longhand"][monthNumber];
+	    };
+	    var revFormat = {
+	      D: do_nothing,
+	      F: function F(dateObj, monthName, locale) {
+	        dateObj.setMonth(locale.months.longhand.indexOf(monthName));
+	      },
+	      G: function G(dateObj, hour) {
+	        dateObj.setHours(parseFloat(hour));
+	      },
+	      H: function H(dateObj, hour) {
+	        dateObj.setHours(parseFloat(hour));
+	      },
+	      J: function J(dateObj, day) {
+	        dateObj.setDate(parseFloat(day));
+	      },
+	      K: function K(dateObj, amPM, locale) {
+	        dateObj.setHours(dateObj.getHours() % 12 + 12 * int(new RegExp(locale.amPM[1], "i").test(amPM)));
+	      },
+	      M: function M(dateObj, shortMonth, locale) {
+	        dateObj.setMonth(locale.months.shorthand.indexOf(shortMonth));
+	      },
+	      S: function S(dateObj, seconds) {
+	        dateObj.setSeconds(parseFloat(seconds));
+	      },
+	      U: function U(_, unixSeconds) {
+	        return new Date(parseFloat(unixSeconds) * 1000);
+	      },
+	      W: function W(dateObj, weekNum) {
+	        var weekNumber = parseInt(weekNum);
+	        return new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
+	      },
+	      Y: function Y(dateObj, year) {
+	        dateObj.setFullYear(parseFloat(year));
+	      },
+	      Z: function Z(_, ISODate) {
+	        return new Date(ISODate);
+	      },
+	      d: function d(dateObj, day) {
+	        dateObj.setDate(parseFloat(day));
+	      },
+	      h: function h(dateObj, hour) {
+	        dateObj.setHours(parseFloat(hour));
+	      },
+	      i: function i(dateObj, minutes) {
+	        dateObj.setMinutes(parseFloat(minutes));
+	      },
+	      j: function j(dateObj, day) {
+	        dateObj.setDate(parseFloat(day));
+	      },
+	      l: do_nothing,
+	      m: function m(dateObj, month) {
+	        dateObj.setMonth(parseFloat(month) - 1);
+	      },
+	      n: function n(dateObj, month) {
+	        dateObj.setMonth(parseFloat(month) - 1);
+	      },
+	      s: function s(dateObj, seconds) {
+	        dateObj.setSeconds(parseFloat(seconds));
+	      },
+	      w: do_nothing,
+	      y: function y(dateObj, year) {
+	        dateObj.setFullYear(2000 + parseFloat(year));
+	      }
+	    };
+	    var tokenRegex = {
+	      D: "(\\w+)",
+	      F: "(\\w+)",
+	      G: "(\\d\\d|\\d)",
+	      H: "(\\d\\d|\\d)",
+	      J: "(\\d\\d|\\d)\\w+",
+	      K: "",
+	      M: "(\\w+)",
+	      S: "(\\d\\d|\\d)",
+	      U: "(.+)",
+	      W: "(\\d\\d|\\d)",
+	      Y: "(\\d{4})",
+	      Z: "(.+)",
+	      d: "(\\d\\d|\\d)",
+	      h: "(\\d\\d|\\d)",
+	      i: "(\\d\\d|\\d)",
+	      j: "(\\d\\d|\\d)",
+	      l: "(\\w+)",
+	      m: "(\\d\\d|\\d)",
+	      n: "(\\d\\d|\\d)",
+	      s: "(\\d\\d|\\d)",
+	      w: "(\\d\\d|\\d)",
+	      y: "(\\d{2})"
+	    };
+	    var formats = {
+	      Z: function Z(date) {
+	        return date.toISOString();
+	      },
+	      D: function D(date, locale, options) {
+	        return locale.weekdays.shorthand[formats.w(date, locale, options)];
+	      },
+	      F: function F(date, locale, options) {
+	        return monthToStr(formats.n(date, locale, options) - 1, false, locale);
+	      },
+	      G: function G(date, locale, options) {
+	        return pad(formats.h(date, locale, options));
+	      },
+	      H: function H(date) {
+	        return pad(date.getHours());
+	      },
+	      J: function J(date, locale) {
+	        return locale.ordinal !== undefined ? date.getDate() + locale.ordinal(date.getDate()) : date.getDate();
+	      },
+	      K: function K(date, locale) {
+	        return locale.amPM[int(date.getHours() > 11)];
+	      },
+	      M: function M(date, locale) {
+	        return monthToStr(date.getMonth(), true, locale);
+	      },
+	      S: function S(date) {
+	        return pad(date.getSeconds());
+	      },
+	      U: function U(date) {
+	        return date.getTime() / 1000;
+	      },
+	      W: function W(date, _, options) {
+	        return options.getWeek(date);
+	      },
+	      Y: function Y(date) {
+	        return date.getFullYear();
+	      },
+	      d: function d(date) {
+	        return pad(date.getDate());
+	      },
+	      h: function h(date) {
+	        return date.getHours() % 12 ? date.getHours() % 12 : 12;
+	      },
+	      i: function i(date) {
+	        return pad(date.getMinutes());
+	      },
+	      j: function j(date) {
+	        return date.getDate();
+	      },
+	      l: function l(date, locale) {
+	        return locale.weekdays.longhand[date.getDay()];
+	      },
+	      m: function m(date) {
+	        return pad(date.getMonth() + 1);
+	      },
+	      n: function n(date) {
+	        return date.getMonth() + 1;
+	      },
+	      s: function s(date) {
+	        return date.getSeconds();
+	      },
+	      w: function w(date) {
+	        return date.getDay();
+	      },
+	      y: function y(date) {
+	        return String(date.getFullYear()).substring(2);
+	      }
+	    };
+
+	    var english = {
+	      weekdays: {
+	        shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+	        longhand: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+	      },
+	      months: {
+	        shorthand: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+	        longhand: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	      },
+	      daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+	      firstDayOfWeek: 0,
+	      ordinal: function ordinal(nth) {
+	        var s = nth % 100;
+	        if (s > 3 && s < 21) return "th";
+
+	        switch (s % 10) {
+	          case 1:
+	            return "st";
+
+	          case 2:
+	            return "nd";
+
+	          case 3:
+	            return "rd";
+
+	          default:
+	            return "th";
+	        }
+	      },
+	      rangeSeparator: " to ",
+	      weekAbbreviation: "Wk",
+	      scrollTitle: "Scroll to increment",
+	      toggleTitle: "Click to toggle",
+	      amPM: ["AM", "PM"],
+	      yearAriaLabel: "Year"
+	    };
+
+	    var createDateFormatter = function createDateFormatter(_ref) {
+	      var _ref$config = _ref.config,
+	          config = _ref$config === void 0 ? defaults : _ref$config,
+	          _ref$l10n = _ref.l10n,
+	          l10n = _ref$l10n === void 0 ? english : _ref$l10n;
+	      return function (dateObj, frmt, overrideLocale) {
+	        var locale = overrideLocale || l10n;
+
+	        if (config.formatDate !== undefined) {
+	          return config.formatDate(dateObj, frmt, locale);
+	        }
+
+	        return frmt.split("").map(function (c, i, arr) {
+	          return formats[c] && arr[i - 1] !== "\\" ? formats[c](dateObj, locale, config) : c !== "\\" ? c : "";
+	        }).join("");
+	      };
+	    };
+	    var createDateParser = function createDateParser(_ref2) {
+	      var _ref2$config = _ref2.config,
+	          config = _ref2$config === void 0 ? defaults : _ref2$config,
+	          _ref2$l10n = _ref2.l10n,
+	          l10n = _ref2$l10n === void 0 ? english : _ref2$l10n;
+	      return function (date, givenFormat, timeless, customLocale) {
+	        if (date !== 0 && !date) return undefined;
+	        var locale = customLocale || l10n;
+	        var parsedDate;
+	        var date_orig = date;
+	        if (date instanceof Date) parsedDate = new Date(date.getTime());else if (typeof date !== "string" && date.toFixed !== undefined) parsedDate = new Date(date);else if (typeof date === "string") {
+	          var format = givenFormat || (config || defaults).dateFormat;
+	          var datestr = String(date).trim();
+
+	          if (datestr === "today") {
+	            parsedDate = new Date();
+	            timeless = true;
+	          } else if (/Z$/.test(datestr) || /GMT$/.test(datestr)) parsedDate = new Date(date);else if (config && config.parseDate) parsedDate = config.parseDate(date, format);else {
+	            parsedDate = !config || !config.noCalendar ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0) : new Date(new Date().setHours(0, 0, 0, 0));
+	            var matched,
+	                ops = [];
+
+	            for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
+	              var token = format[i];
+	              var isBackSlash = token === "\\";
+	              var escaped = format[i - 1] === "\\" || isBackSlash;
+
+	              if (tokenRegex[token] && !escaped) {
+	                regexStr += tokenRegex[token];
+	                var match = new RegExp(regexStr).exec(date);
+
+	                if (match && (matched = true)) {
+	                  ops[token !== "Y" ? "push" : "unshift"]({
+	                    fn: revFormat[token],
+	                    val: match[++matchIndex]
+	                  });
+	                }
+	              } else if (!isBackSlash) regexStr += ".";
+
+	              ops.forEach(function (_ref3) {
+	                var fn = _ref3.fn,
+	                    val = _ref3.val;
+	                return parsedDate = fn(parsedDate, val, locale) || parsedDate;
+	              });
+	            }
+
+	            parsedDate = matched ? parsedDate : undefined;
+	          }
+	        }
+
+	        if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
+	          config.errorHandler(new Error("Invalid date provided: " + date_orig));
+	          return undefined;
+	        }
+
+	        if (timeless === true) parsedDate.setHours(0, 0, 0, 0);
+	        return parsedDate;
+	      };
+	    };
+	    function compareDates(date1, date2, timeless) {
+	      if (timeless === void 0) {
+	        timeless = true;
+	      }
+
+	      if (timeless !== false) {
+	        return new Date(date1.getTime()).setHours(0, 0, 0, 0) - new Date(date2.getTime()).setHours(0, 0, 0, 0);
+	      }
+
+	      return date1.getTime() - date2.getTime();
+	    }
+	    var getWeek = function getWeek(givenDate) {
+	      var date = new Date(givenDate.getTime());
+	      date.setHours(0, 0, 0, 0);
+	      date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+	      var week1 = new Date(date.getFullYear(), 0, 4);
+	      return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+	    };
+	    var isBetween = function isBetween(ts, ts1, ts2) {
+	      return ts > Math.min(ts1, ts2) && ts < Math.max(ts1, ts2);
+	    };
+	    var duration = {
+	      DAY: 86400000
+	    };
+
+	    var HOOKS = ["onChange", "onClose", "onDayCreate", "onDestroy", "onKeyDown", "onMonthChange", "onOpen", "onParseConfig", "onReady", "onValueUpdate", "onYearChange", "onPreCalendarPosition"];
+	    var defaults = {
+	      _disable: [],
+	      _enable: [],
+	      allowInput: false,
+	      altFormat: "F j, Y",
+	      altInput: false,
+	      altInputClass: "form-control input",
+	      animate: typeof window === "object" && window.navigator.userAgent.indexOf("MSIE") === -1,
+	      ariaDateFormat: "F j, Y",
+	      clickOpens: true,
+	      closeOnSelect: true,
+	      conjunction: ", ",
+	      dateFormat: "Y-m-d",
+	      defaultHour: 12,
+	      defaultMinute: 0,
+	      defaultSeconds: 0,
+	      disable: [],
+	      disableMobile: false,
+	      enable: [],
+	      enableSeconds: false,
+	      enableTime: false,
+	      errorHandler: function errorHandler(err) {
+	        return typeof console !== "undefined" && console.warn(err);
+	      },
+	      getWeek: getWeek,
+	      hourIncrement: 1,
+	      ignoredFocusElements: [],
+	      inline: false,
+	      locale: "default",
+	      minuteIncrement: 5,
+	      mode: "single",
+	      nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
+	      noCalendar: false,
+	      now: new Date(),
+	      onChange: [],
+	      onClose: [],
+	      onDayCreate: [],
+	      onDestroy: [],
+	      onKeyDown: [],
+	      onMonthChange: [],
+	      onOpen: [],
+	      onParseConfig: [],
+	      onReady: [],
+	      onValueUpdate: [],
+	      onYearChange: [],
+	      onPreCalendarPosition: [],
+	      plugins: [],
+	      position: "auto",
+	      positionElement: undefined,
+	      prevArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",
+	      shorthandCurrentMonth: false,
+	      showMonths: 1,
+	      static: false,
+	      time_24hr: false,
+	      weekNumbers: false,
+	      wrap: false
+	    };
+
+	    function toggleClass(elem, className, bool) {
+	      if (bool === true) return elem.classList.add(className);
+	      elem.classList.remove(className);
+	    }
+	    function createElement(tag, className, content) {
+	      var e = window.document.createElement(tag);
+	      className = className || "";
+	      content = content || "";
+	      e.className = className;
+	      if (content !== undefined) e.textContent = content;
+	      return e;
+	    }
+	    function clearNode(node) {
+	      while (node.firstChild) {
+	        node.removeChild(node.firstChild);
+	      }
+	    }
+	    function findParent(node, condition) {
+	      if (condition(node)) return node;else if (node.parentNode) return findParent(node.parentNode, condition);
+	      return undefined;
+	    }
+	    function createNumberInput(inputClassName, opts) {
+	      var wrapper = createElement("div", "numInputWrapper"),
+	          numInput = createElement("input", "numInput " + inputClassName),
+	          arrowUp = createElement("span", "arrowUp"),
+	          arrowDown = createElement("span", "arrowDown");
+	      numInput.type = "text";
+	      numInput.pattern = "\\d*";
+	      if (opts !== undefined) for (var key in opts) {
+	        numInput.setAttribute(key, opts[key]);
+	      }
+	      wrapper.appendChild(numInput);
+	      wrapper.appendChild(arrowUp);
+	      wrapper.appendChild(arrowDown);
+	      return wrapper;
+	    }
+
+	    if (typeof Object.assign !== "function") {
+	      Object.assign = function (target) {
+	        if (!target) {
+	          throw TypeError("Cannot convert undefined or null to object");
+	        }
+
+	        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	          args[_key - 1] = arguments[_key];
+	        }
+
+	        var _loop = function _loop() {
+	          var source = args[_i];
+
+	          if (source) {
+	            Object.keys(source).forEach(function (key) {
+	              return target[key] = source[key];
+	            });
+	          }
+	        };
+
+	        for (var _i = 0; _i < args.length; _i++) {
+	          _loop();
+	        }
+
+	        return target;
+	      };
+	    }
+
+	    var DEBOUNCED_CHANGE_MS = 300;
+
+	    function FlatpickrInstance(element, instanceConfig) {
+	      var self = {
+	        config: Object.assign({}, flatpickr.defaultConfig),
+	        l10n: english
+	      };
+	      self.parseDate = createDateParser({
+	        config: self.config,
+	        l10n: self.l10n
+	      });
+	      self._handlers = [];
+	      self._bind = bind;
+	      self._setHoursFromDate = setHoursFromDate;
+	      self._positionCalendar = positionCalendar;
+	      self.changeMonth = changeMonth;
+	      self.changeYear = changeYear;
+	      self.clear = clear;
+	      self.close = close;
+	      self._createElement = createElement;
+	      self.destroy = destroy;
+	      self.isEnabled = isEnabled;
+	      self.jumpToDate = jumpToDate;
+	      self.open = open;
+	      self.redraw = redraw;
+	      self.set = set;
+	      self.setDate = setDate;
+	      self.toggle = toggle;
+
+	      function setupHelperFunctions() {
+	        self.utils = {
+	          getDaysInMonth: function getDaysInMonth(month, yr) {
+	            if (month === void 0) {
+	              month = self.currentMonth;
+	            }
+
+	            if (yr === void 0) {
+	              yr = self.currentYear;
+	            }
+
+	            if (month === 1 && (yr % 4 === 0 && yr % 100 !== 0 || yr % 400 === 0)) return 29;
+	            return self.l10n.daysInMonth[month];
+	          }
+	        };
+	      }
+
+	      function init() {
+	        self.element = self.input = element;
+	        self.isOpen = false;
+	        parseConfig();
+	        setupLocale();
+	        setupInputs();
+	        setupDates();
+	        setupHelperFunctions();
+	        if (!self.isMobile) build();
+	        bindEvents();
+
+	        if (self.selectedDates.length || self.config.noCalendar) {
+	          if (self.config.enableTime) {
+	            setHoursFromDate(self.config.noCalendar ? self.latestSelectedDateObj || self.config.minDate : undefined);
+	          }
+
+	          updateValue(false);
+	        }
+
+	        setCalendarWidth();
+	        self.showTimeInput = self.selectedDates.length > 0 || self.config.noCalendar;
+	        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+	        if (!self.isMobile && isSafari) {
+	          positionCalendar();
+	        }
+
+	        triggerEvent("onReady");
+	      }
+
+	      function bindToInstance(fn) {
+	        return fn.bind(self);
+	      }
+
+	      function setCalendarWidth() {
+	        var config = self.config;
+	        if (config.weekNumbers === false && config.showMonths === 1) return;else if (config.noCalendar !== true) {
+	          window.requestAnimationFrame(function () {
+	            self.calendarContainer.style.visibility = "hidden";
+	            self.calendarContainer.style.display = "block";
+
+	            if (self.daysContainer !== undefined) {
+	              var daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
+	              self.daysContainer.style.width = daysWidth + "px";
+	              self.calendarContainer.style.width = daysWidth + (self.weekWrapper !== undefined ? self.weekWrapper.offsetWidth : 0) + "px";
+	              self.calendarContainer.style.removeProperty("visibility");
+	              self.calendarContainer.style.removeProperty("display");
+	            }
+	          });
+	        }
+	      }
+
+	      function updateTime(e) {
+	        if (self.selectedDates.length === 0) return;
+
+	        if (e !== undefined && e.type !== "blur") {
+	          timeWrapper(e);
+	        }
+
+	        var prevValue = self._input.value;
+	        setHoursFromInputs();
+	        updateValue();
+
+	        if (self._input.value !== prevValue) {
+	          self._debouncedChange();
+	        }
+	      }
+
+	      function ampm2military(hour, amPM) {
+	        return hour % 12 + 12 * int(amPM === self.l10n.amPM[1]);
+	      }
+
+	      function military2ampm(hour) {
+	        switch (hour % 24) {
+	          case 0:
+	          case 12:
+	            return 12;
+
+	          default:
+	            return hour % 12;
+	        }
+	      }
+
+	      function setHoursFromInputs() {
+	        if (self.hourElement === undefined || self.minuteElement === undefined) return;
+	        var hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24,
+	            minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60,
+	            seconds = self.secondElement !== undefined ? (parseInt(self.secondElement.value, 10) || 0) % 60 : 0;
+
+	        if (self.amPM !== undefined) {
+	          hours = ampm2military(hours, self.amPM.textContent);
+	        }
+
+	        var limitMinHours = self.config.minTime !== undefined || self.config.minDate && self.minDateHasTime && self.latestSelectedDateObj && compareDates(self.latestSelectedDateObj, self.config.minDate, true) === 0;
+	        var limitMaxHours = self.config.maxTime !== undefined || self.config.maxDate && self.maxDateHasTime && self.latestSelectedDateObj && compareDates(self.latestSelectedDateObj, self.config.maxDate, true) === 0;
+
+	        if (limitMaxHours) {
+	          var maxTime = self.config.maxTime !== undefined ? self.config.maxTime : self.config.maxDate;
+	          hours = Math.min(hours, maxTime.getHours());
+	          if (hours === maxTime.getHours()) minutes = Math.min(minutes, maxTime.getMinutes());
+	          if (minutes === maxTime.getMinutes()) seconds = Math.min(seconds, maxTime.getSeconds());
+	        }
+
+	        if (limitMinHours) {
+	          var minTime = self.config.minTime !== undefined ? self.config.minTime : self.config.minDate;
+	          hours = Math.max(hours, minTime.getHours());
+	          if (hours === minTime.getHours()) minutes = Math.max(minutes, minTime.getMinutes());
+	          if (minutes === minTime.getMinutes()) seconds = Math.max(seconds, minTime.getSeconds());
+	        }
+
+	        setHours(hours, minutes, seconds);
+	      }
+
+	      function setHoursFromDate(dateObj) {
+	        var date = dateObj || self.latestSelectedDateObj;
+	        if (date) setHours(date.getHours(), date.getMinutes(), date.getSeconds());
+	      }
+
+	      function setDefaultHours() {
+	        var hours = self.config.defaultHour;
+	        var minutes = self.config.defaultMinute;
+	        var seconds = self.config.defaultSeconds;
+
+	        if (self.config.minDate !== undefined) {
+	          var min_hr = self.config.minDate.getHours();
+	          var min_minutes = self.config.minDate.getMinutes();
+	          hours = Math.max(hours, min_hr);
+	          if (hours === min_hr) minutes = Math.max(min_minutes, minutes);
+	          if (hours === min_hr && minutes === min_minutes) seconds = self.config.minDate.getSeconds();
+	        }
+
+	        if (self.config.maxDate !== undefined) {
+	          var max_hr = self.config.maxDate.getHours();
+	          var max_minutes = self.config.maxDate.getMinutes();
+	          hours = Math.min(hours, max_hr);
+	          if (hours === max_hr) minutes = Math.min(max_minutes, minutes);
+	          if (hours === max_hr && minutes === max_minutes) seconds = self.config.maxDate.getSeconds();
+	        }
+
+	        setHours(hours, minutes, seconds);
+	      }
+
+	      function setHours(hours, minutes, seconds) {
+	        if (self.latestSelectedDateObj !== undefined) {
+	          self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
+	        }
+
+	        if (!self.hourElement || !self.minuteElement || self.isMobile) return;
+	        self.hourElement.value = pad(!self.config.time_24hr ? (12 + hours) % 12 + 12 * int(hours % 12 === 0) : hours);
+	        self.minuteElement.value = pad(minutes);
+	        if (self.amPM !== undefined) self.amPM.textContent = self.l10n.amPM[int(hours >= 12)];
+	        if (self.secondElement !== undefined) self.secondElement.value = pad(seconds);
+	      }
+
+	      function onYearInput(event) {
+	        var year = parseInt(event.target.value) + (event.delta || 0);
+
+	        if (year / 1000 > 1 || event.key === "Enter" && !/[^\d]/.test(year.toString())) {
+	          changeYear(year);
+	        }
+	      }
+
+	      function bind(element, event, handler, options) {
+	        if (event instanceof Array) return event.forEach(function (ev) {
+	          return bind(element, ev, handler, options);
+	        });
+	        if (element instanceof Array) return element.forEach(function (el) {
+	          return bind(el, event, handler, options);
+	        });
+	        element.addEventListener(event, handler, options);
+
+	        self._handlers.push({
+	          element: element,
+	          event: event,
+	          handler: handler,
+	          options: options
+	        });
+	      }
+
+	      function onClick(handler) {
+	        return function (evt) {
+	          evt.which === 1 && handler(evt);
+	        };
+	      }
+
+	      function triggerChange() {
+	        triggerEvent("onChange");
+	      }
+
+	      function bindEvents() {
+	        if (self.config.wrap) {
+	          ["open", "close", "toggle", "clear"].forEach(function (evt) {
+	            Array.prototype.forEach.call(self.element.querySelectorAll("[data-" + evt + "]"), function (el) {
+	              return bind(el, "click", self[evt]);
+	            });
+	          });
+	        }
+
+	        if (self.isMobile) {
+	          setupMobile();
+	          return;
+	        }
+
+	        var debouncedResize = debounce(onResize, 50);
+	        self._debouncedChange = debounce(triggerChange, DEBOUNCED_CHANGE_MS);
+	        if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent)) bind(self.daysContainer, "mouseover", function (e) {
+	          if (self.config.mode === "range") onMouseOver(e.target);
+	        });
+	        bind(window.document.body, "keydown", onKeyDown);
+	        if (!self.config.static) bind(self._input, "keydown", onKeyDown);
+	        if (!self.config.inline && !self.config.static) bind(window, "resize", debouncedResize);
+	        if (window.ontouchstart !== undefined) bind(window.document, "click", documentClick);else bind(window.document, "mousedown", onClick(documentClick));
+	        bind(window.document, "focus", documentClick, {
+	          capture: true
+	        });
+
+	        if (self.config.clickOpens === true) {
+	          bind(self._input, "focus", self.open);
+	          bind(self._input, "mousedown", onClick(self.open));
+	        }
+
+	        if (self.daysContainer !== undefined) {
+	          bind(self.monthNav, "mousedown", onClick(onMonthNavClick));
+	          bind(self.monthNav, ["keyup", "increment"], onYearInput);
+	          bind(self.daysContainer, "mousedown", onClick(selectDate));
+	        }
+
+	        if (self.timeContainer !== undefined && self.minuteElement !== undefined && self.hourElement !== undefined) {
+	          var selText = function selText(e) {
+	            return e.target.select();
+	          };
+
+	          bind(self.timeContainer, ["increment"], updateTime);
+	          bind(self.timeContainer, "blur", updateTime, {
+	            capture: true
+	          });
+	          bind(self.timeContainer, "mousedown", onClick(timeIncrement));
+	          bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
+	          if (self.secondElement !== undefined) bind(self.secondElement, "focus", function () {
+	            return self.secondElement && self.secondElement.select();
+	          });
+
+	          if (self.amPM !== undefined) {
+	            bind(self.amPM, "mousedown", onClick(function (e) {
+	              updateTime(e);
+	              triggerChange();
+	            }));
+	          }
+	        }
+	      }
+
+	      function jumpToDate(jumpDate) {
+	        var jumpTo = jumpDate !== undefined ? self.parseDate(jumpDate) : self.latestSelectedDateObj || (self.config.minDate && self.config.minDate > self.now ? self.config.minDate : self.config.maxDate && self.config.maxDate < self.now ? self.config.maxDate : self.now);
+
+	        try {
+	          if (jumpTo !== undefined) {
+	            self.currentYear = jumpTo.getFullYear();
+	            self.currentMonth = jumpTo.getMonth();
+	          }
+	        } catch (e) {
+	          e.message = "Invalid date supplied: " + jumpTo;
+	          self.config.errorHandler(e);
+	        }
+
+	        self.redraw();
+	      }
+
+	      function timeIncrement(e) {
+	        if (~e.target.className.indexOf("arrow")) incrementNumInput(e, e.target.classList.contains("arrowUp") ? 1 : -1);
+	      }
+
+	      function incrementNumInput(e, delta, inputElem) {
+	        var target = e && e.target;
+	        var input = inputElem || target && target.parentNode && target.parentNode.firstChild;
+	        var event = createEvent("increment");
+	        event.delta = delta;
+	        input && input.dispatchEvent(event);
+	      }
+
+	      function build() {
+	        var fragment = window.document.createDocumentFragment();
+	        self.calendarContainer = createElement("div", "flatpickr-calendar");
+	        self.calendarContainer.tabIndex = -1;
+
+	        if (!self.config.noCalendar) {
+	          fragment.appendChild(buildMonthNav());
+	          self.innerContainer = createElement("div", "flatpickr-innerContainer");
+
+	          if (self.config.weekNumbers) {
+	            var _buildWeeks = buildWeeks(),
+	                weekWrapper = _buildWeeks.weekWrapper,
+	                weekNumbers = _buildWeeks.weekNumbers;
+
+	            self.innerContainer.appendChild(weekWrapper);
+	            self.weekNumbers = weekNumbers;
+	            self.weekWrapper = weekWrapper;
+	          }
+
+	          self.rContainer = createElement("div", "flatpickr-rContainer");
+	          self.rContainer.appendChild(buildWeekdays());
+
+	          if (!self.daysContainer) {
+	            self.daysContainer = createElement("div", "flatpickr-days");
+	            self.daysContainer.tabIndex = -1;
+	          }
+
+	          buildDays();
+	          self.rContainer.appendChild(self.daysContainer);
+	          self.innerContainer.appendChild(self.rContainer);
+	          fragment.appendChild(self.innerContainer);
+	        }
+
+	        if (self.config.enableTime) {
+	          fragment.appendChild(buildTime());
+	        }
+
+	        toggleClass(self.calendarContainer, "rangeMode", self.config.mode === "range");
+	        toggleClass(self.calendarContainer, "animate", self.config.animate === true);
+	        toggleClass(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
+	        self.calendarContainer.appendChild(fragment);
+	        var customAppend = self.config.appendTo !== undefined && self.config.appendTo.nodeType !== undefined;
+
+	        if (self.config.inline || self.config.static) {
+	          self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
+
+	          if (self.config.inline) {
+	            if (!customAppend && self.element.parentNode) self.element.parentNode.insertBefore(self.calendarContainer, self._input.nextSibling);else if (self.config.appendTo !== undefined) self.config.appendTo.appendChild(self.calendarContainer);
+	          }
+
+	          if (self.config.static) {
+	            var wrapper = createElement("div", "flatpickr-wrapper");
+	            if (self.element.parentNode) self.element.parentNode.insertBefore(wrapper, self.element);
+	            wrapper.appendChild(self.element);
+	            if (self.altInput) wrapper.appendChild(self.altInput);
+	            wrapper.appendChild(self.calendarContainer);
+	          }
+	        }
+
+	        if (!self.config.static && !self.config.inline) (self.config.appendTo !== undefined ? self.config.appendTo : window.document.body).appendChild(self.calendarContainer);
+	      }
+
+	      function createDay(className, date, dayNumber, i) {
+	        var dateIsEnabled = isEnabled(date, true),
+	            dayElement = createElement("span", "flatpickr-day " + className, date.getDate().toString());
+	        dayElement.dateObj = date;
+	        dayElement.$i = i;
+	        dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
+
+	        if (className.indexOf("hidden") === -1 && compareDates(date, self.now) === 0) {
+	          self.todayDateElem = dayElement;
+	          dayElement.classList.add("today");
+	          dayElement.setAttribute("aria-current", "date");
+	        }
+
+	        if (dateIsEnabled) {
+	          dayElement.tabIndex = -1;
+
+	          if (isDateSelected(date)) {
+	            dayElement.classList.add("selected");
+	            self.selectedDateElem = dayElement;
+
+	            if (self.config.mode === "range") {
+	              toggleClass(dayElement, "startRange", self.selectedDates[0] && compareDates(date, self.selectedDates[0], true) === 0);
+	              toggleClass(dayElement, "endRange", self.selectedDates[1] && compareDates(date, self.selectedDates[1], true) === 0);
+	              if (className === "nextMonthDay") dayElement.classList.add("inRange");
+	            }
+	          }
+	        } else {
+	          dayElement.classList.add("disabled");
+	        }
+
+	        if (self.config.mode === "range") {
+	          if (isDateInRange(date) && !isDateSelected(date)) dayElement.classList.add("inRange");
+	        }
+
+	        if (self.weekNumbers && self.config.showMonths === 1 && className !== "prevMonthDay" && dayNumber % 7 === 1) {
+	          self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
+	        }
+
+	        triggerEvent("onDayCreate", dayElement);
+	        return dayElement;
+	      }
+
+	      function focusOnDayElem(targetNode) {
+	        targetNode.focus();
+	        if (self.config.mode === "range") onMouseOver(targetNode);
+	      }
+
+	      function getFirstAvailableDay(delta) {
+	        var startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
+	        var endMonth = delta > 0 ? self.config.showMonths : -1;
+
+	        for (var m = startMonth; m != endMonth; m += delta) {
+	          var month = self.daysContainer.children[m];
+	          var startIndex = delta > 0 ? 0 : month.children.length - 1;
+	          var endIndex = delta > 0 ? month.children.length : -1;
+
+	          for (var i = startIndex; i != endIndex; i += delta) {
+	            var c = month.children[i];
+	            if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj)) return c;
+	          }
+	        }
+
+	        return undefined;
+	      }
+
+	      function getNextAvailableDay(current, delta) {
+	        var givenMonth = current.className.indexOf("Month") === -1 ? current.dateObj.getMonth() : self.currentMonth;
+	        var endMonth = delta > 0 ? self.config.showMonths : -1;
+	        var loopDelta = delta > 0 ? 1 : -1;
+
+	        for (var m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
+	          var month = self.daysContainer.children[m];
+	          var startIndex = givenMonth - self.currentMonth === m ? current.$i + delta : delta < 0 ? month.children.length - 1 : 0;
+	          var numMonthDays = month.children.length;
+
+	          for (var i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
+	            var c = month.children[i];
+	            if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj) && Math.abs(current.$i - i) >= Math.abs(delta)) return focusOnDayElem(c);
+	          }
+	        }
+
+	        self.changeMonth(loopDelta);
+	        focusOnDay(getFirstAvailableDay(loopDelta), 0);
+	        return undefined;
+	      }
+
+	      function focusOnDay(current, offset) {
+	        var dayFocused = isInView(document.activeElement || document.body);
+	        var startElem = current !== undefined ? current : dayFocused ? document.activeElement : self.selectedDateElem !== undefined && isInView(self.selectedDateElem) ? self.selectedDateElem : self.todayDateElem !== undefined && isInView(self.todayDateElem) ? self.todayDateElem : getFirstAvailableDay(offset > 0 ? 1 : -1);
+	        if (startElem === undefined) return self._input.focus();
+	        if (!dayFocused) return focusOnDayElem(startElem);
+	        getNextAvailableDay(startElem, offset);
+	      }
+
+	      function buildMonthDays(year, month) {
+	        var firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
+	        var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12);
+	        var daysInMonth = self.utils.getDaysInMonth(month),
+	            days = window.document.createDocumentFragment(),
+	            isMultiMonth = self.config.showMonths > 1,
+	            prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay",
+	            nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
+	        var dayNumber = prevMonthDays + 1 - firstOfMonth,
+	            dayIndex = 0;
+
+	        for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
+	          days.appendChild(createDay(prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
+	        }
+
+	        for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
+	          days.appendChild(createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex));
+	        }
+
+	        for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth && (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
+	          days.appendChild(createDay(nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
+	        }
+
+	        var dayContainer = createElement("div", "dayContainer");
+	        dayContainer.appendChild(days);
+	        return dayContainer;
+	      }
+
+	      function buildDays() {
+	        if (self.daysContainer === undefined) {
+	          return;
+	        }
+
+	        clearNode(self.daysContainer);
+	        if (self.weekNumbers) clearNode(self.weekNumbers);
+	        var frag = document.createDocumentFragment();
+
+	        for (var i = 0; i < self.config.showMonths; i++) {
+	          var d = new Date(self.currentYear, self.currentMonth, 1);
+	          d.setMonth(self.currentMonth + i);
+	          frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
+	        }
+
+	        self.daysContainer.appendChild(frag);
+	        self.days = self.daysContainer.firstChild;
+
+	        if (self.config.mode === "range" && self.selectedDates.length === 1) {
+	          onMouseOver();
+	        }
+	      }
+
+	      function buildMonth() {
+	        var container = createElement("div", "flatpickr-month");
+	        var monthNavFragment = window.document.createDocumentFragment();
+	        var monthElement = createElement("span", "cur-month");
+	        var yearInput = createNumberInput("cur-year", {
+	          tabindex: "-1"
+	        });
+	        var yearElement = yearInput.getElementsByTagName("input")[0];
+	        yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
+	        if (self.config.minDate) yearElement.setAttribute("data-min", self.config.minDate.getFullYear().toString());
+
+	        if (self.config.maxDate) {
+	          yearElement.setAttribute("data-max", self.config.maxDate.getFullYear().toString());
+	          yearElement.disabled = !!self.config.minDate && self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
+	        }
+
+	        var currentMonth = createElement("div", "flatpickr-current-month");
+	        currentMonth.appendChild(monthElement);
+	        currentMonth.appendChild(yearInput);
+	        monthNavFragment.appendChild(currentMonth);
+	        container.appendChild(monthNavFragment);
+	        return {
+	          container: container,
+	          yearElement: yearElement,
+	          monthElement: monthElement
+	        };
+	      }
+
+	      function buildMonths() {
+	        clearNode(self.monthNav);
+	        self.monthNav.appendChild(self.prevMonthNav);
+
+	        for (var m = self.config.showMonths; m--;) {
+	          var month = buildMonth();
+	          self.yearElements.push(month.yearElement);
+	          self.monthElements.push(month.monthElement);
+	          self.monthNav.appendChild(month.container);
+	        }
+
+	        self.monthNav.appendChild(self.nextMonthNav);
+	      }
+
+	      function buildMonthNav() {
+	        self.monthNav = createElement("div", "flatpickr-months");
+	        self.yearElements = [];
+	        self.monthElements = [];
+	        self.prevMonthNav = createElement("span", "flatpickr-prev-month");
+	        self.prevMonthNav.innerHTML = self.config.prevArrow;
+	        self.nextMonthNav = createElement("span", "flatpickr-next-month");
+	        self.nextMonthNav.innerHTML = self.config.nextArrow;
+	        buildMonths();
+	        Object.defineProperty(self, "_hidePrevMonthArrow", {
+	          get: function get() {
+	            return self.__hidePrevMonthArrow;
+	          },
+	          set: function set(bool) {
+	            if (self.__hidePrevMonthArrow !== bool) {
+	              toggleClass(self.prevMonthNav, "disabled", bool);
+	              self.__hidePrevMonthArrow = bool;
+	            }
+	          }
+	        });
+	        Object.defineProperty(self, "_hideNextMonthArrow", {
+	          get: function get() {
+	            return self.__hideNextMonthArrow;
+	          },
+	          set: function set(bool) {
+	            if (self.__hideNextMonthArrow !== bool) {
+	              toggleClass(self.nextMonthNav, "disabled", bool);
+	              self.__hideNextMonthArrow = bool;
+	            }
+	          }
+	        });
+	        self.currentYearElement = self.yearElements[0];
+	        updateNavigationCurrentMonth();
+	        return self.monthNav;
+	      }
+
+	      function buildTime() {
+	        self.calendarContainer.classList.add("hasTime");
+	        if (self.config.noCalendar) self.calendarContainer.classList.add("noCalendar");
+	        self.timeContainer = createElement("div", "flatpickr-time");
+	        self.timeContainer.tabIndex = -1;
+	        var separator = createElement("span", "flatpickr-time-separator", ":");
+	        var hourInput = createNumberInput("flatpickr-hour");
+	        self.hourElement = hourInput.getElementsByTagName("input")[0];
+	        var minuteInput = createNumberInput("flatpickr-minute");
+	        self.minuteElement = minuteInput.getElementsByTagName("input")[0];
+	        self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
+	        self.hourElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getHours() : self.config.time_24hr ? self.config.defaultHour : military2ampm(self.config.defaultHour));
+	        self.minuteElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getMinutes() : self.config.defaultMinute);
+	        self.hourElement.setAttribute("data-step", self.config.hourIncrement.toString());
+	        self.minuteElement.setAttribute("data-step", self.config.minuteIncrement.toString());
+	        self.hourElement.setAttribute("data-min", self.config.time_24hr ? "0" : "1");
+	        self.hourElement.setAttribute("data-max", self.config.time_24hr ? "23" : "12");
+	        self.minuteElement.setAttribute("data-min", "0");
+	        self.minuteElement.setAttribute("data-max", "59");
+	        self.timeContainer.appendChild(hourInput);
+	        self.timeContainer.appendChild(separator);
+	        self.timeContainer.appendChild(minuteInput);
+	        if (self.config.time_24hr) self.timeContainer.classList.add("time24hr");
+
+	        if (self.config.enableSeconds) {
+	          self.timeContainer.classList.add("hasSeconds");
+	          var secondInput = createNumberInput("flatpickr-second");
+	          self.secondElement = secondInput.getElementsByTagName("input")[0];
+	          self.secondElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getSeconds() : self.config.defaultSeconds);
+	          self.secondElement.setAttribute("data-step", self.minuteElement.getAttribute("data-step"));
+	          self.secondElement.setAttribute("data-min", self.minuteElement.getAttribute("data-min"));
+	          self.secondElement.setAttribute("data-max", self.minuteElement.getAttribute("data-max"));
+	          self.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
+	          self.timeContainer.appendChild(secondInput);
+	        }
+
+	        if (!self.config.time_24hr) {
+	          self.amPM = createElement("span", "flatpickr-am-pm", self.l10n.amPM[int((self.latestSelectedDateObj ? self.hourElement.value : self.config.defaultHour) > 11)]);
+	          self.amPM.title = self.l10n.toggleTitle;
+	          self.amPM.tabIndex = -1;
+	          self.timeContainer.appendChild(self.amPM);
+	        }
+
+	        return self.timeContainer;
+	      }
+
+	      function buildWeekdays() {
+	        if (!self.weekdayContainer) self.weekdayContainer = createElement("div", "flatpickr-weekdays");else clearNode(self.weekdayContainer);
+
+	        for (var i = self.config.showMonths; i--;) {
+	          var container = createElement("div", "flatpickr-weekdaycontainer");
+	          self.weekdayContainer.appendChild(container);
+	        }
+
+	        updateWeekdays();
+	        return self.weekdayContainer;
+	      }
+
+	      function updateWeekdays() {
+	        var firstDayOfWeek = self.l10n.firstDayOfWeek;
+	        var weekdays = self.l10n.weekdays.shorthand.concat();
+
+	        if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
+	          weekdays = weekdays.splice(firstDayOfWeek, weekdays.length).concat(weekdays.splice(0, firstDayOfWeek));
+	        }
+
+	        for (var i = self.config.showMonths; i--;) {
+	          self.weekdayContainer.children[i].innerHTML = "\n      <span class=flatpickr-weekday>\n        " + weekdays.join("</span><span class=flatpickr-weekday>") + "\n      </span>\n      ";
+	        }
+	      }
+
+	      function buildWeeks() {
+	        self.calendarContainer.classList.add("hasWeeks");
+	        var weekWrapper = createElement("div", "flatpickr-weekwrapper");
+	        weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
+	        var weekNumbers = createElement("div", "flatpickr-weeks");
+	        weekWrapper.appendChild(weekNumbers);
+	        return {
+	          weekWrapper: weekWrapper,
+	          weekNumbers: weekNumbers
+	        };
+	      }
+
+	      function changeMonth(value, is_offset) {
+	        if (is_offset === void 0) {
+	          is_offset = true;
+	        }
+
+	        var delta = is_offset ? value : value - self.currentMonth;
+	        if (delta < 0 && self._hidePrevMonthArrow === true || delta > 0 && self._hideNextMonthArrow === true) return;
+	        self.currentMonth += delta;
+
+	        if (self.currentMonth < 0 || self.currentMonth > 11) {
+	          self.currentYear += self.currentMonth > 11 ? 1 : -1;
+	          self.currentMonth = (self.currentMonth + 12) % 12;
+	          triggerEvent("onYearChange");
+	        }
+
+	        buildDays();
+	        triggerEvent("onMonthChange");
+	        updateNavigationCurrentMonth();
+	      }
+
+	      function clear(triggerChangeEvent) {
+	        if (triggerChangeEvent === void 0) {
+	          triggerChangeEvent = true;
+	        }
+
+	        self.input.value = "";
+	        if (self.altInput !== undefined) self.altInput.value = "";
+	        if (self.mobileInput !== undefined) self.mobileInput.value = "";
+	        self.selectedDates = [];
+	        self.latestSelectedDateObj = undefined;
+	        self.showTimeInput = false;
+
+	        if (self.config.enableTime === true) {
+	          setDefaultHours();
+	        }
+
+	        self.redraw();
+	        if (triggerChangeEvent) triggerEvent("onChange");
+	      }
+
+	      function close() {
+	        self.isOpen = false;
+
+	        if (!self.isMobile) {
+	          self.calendarContainer.classList.remove("open");
+
+	          self._input.classList.remove("active");
+	        }
+
+	        triggerEvent("onClose");
+	      }
+
+	      function destroy() {
+	        if (self.config !== undefined) triggerEvent("onDestroy");
+
+	        for (var i = self._handlers.length; i--;) {
+	          var h = self._handlers[i];
+	          h.element.removeEventListener(h.event, h.handler, h.options);
+	        }
+
+	        self._handlers = [];
+
+	        if (self.mobileInput) {
+	          if (self.mobileInput.parentNode) self.mobileInput.parentNode.removeChild(self.mobileInput);
+	          self.mobileInput = undefined;
+	        } else if (self.calendarContainer && self.calendarContainer.parentNode) {
+	          if (self.config.static && self.calendarContainer.parentNode) {
+	            var wrapper = self.calendarContainer.parentNode;
+	            wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
+
+	            if (wrapper.parentNode) {
+	              while (wrapper.firstChild) {
+	                wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
+	              }
+
+	              wrapper.parentNode.removeChild(wrapper);
+	            }
+	          } else self.calendarContainer.parentNode.removeChild(self.calendarContainer);
+	        }
+
+	        if (self.altInput) {
+	          self.input.type = "text";
+	          if (self.altInput.parentNode) self.altInput.parentNode.removeChild(self.altInput);
+	          delete self.altInput;
+	        }
+
+	        if (self.input) {
+	          self.input.type = self.input._type;
+	          self.input.classList.remove("flatpickr-input");
+	          self.input.removeAttribute("readonly");
+	          self.input.value = "";
+	        }
+
+	        ["_showTimeInput", "latestSelectedDateObj", "_hideNextMonthArrow", "_hidePrevMonthArrow", "__hideNextMonthArrow", "__hidePrevMonthArrow", "isMobile", "isOpen", "selectedDateElem", "minDateHasTime", "maxDateHasTime", "days", "daysContainer", "_input", "_positionElement", "innerContainer", "rContainer", "monthNav", "todayDateElem", "calendarContainer", "weekdayContainer", "prevMonthNav", "nextMonthNav", "currentMonthElement", "currentYearElement", "navigationCurrentMonth", "selectedDateElem", "config"].forEach(function (k) {
+	          try {
+	            delete self[k];
+	          } catch (_) {}
+	        });
+	      }
+
+	      function isCalendarElem(elem) {
+	        if (self.config.appendTo && self.config.appendTo.contains(elem)) return true;
+	        return self.calendarContainer.contains(elem);
+	      }
+
+	      function documentClick(e) {
+	        if (self.isOpen && !self.config.inline) {
+	          var isCalendarElement = isCalendarElem(e.target);
+	          var isInput = e.target === self.input || e.target === self.altInput || self.element.contains(e.target) || e.path && e.path.indexOf && (~e.path.indexOf(self.input) || ~e.path.indexOf(self.altInput));
+	          var lostFocus = e.type === "blur" ? isInput && e.relatedTarget && !isCalendarElem(e.relatedTarget) : !isInput && !isCalendarElement;
+	          var isIgnored = !self.config.ignoredFocusElements.some(function (elem) {
+	            return elem.contains(e.target);
+	          });
+
+	          if (lostFocus && isIgnored) {
+	            self.close();
+
+	            if (self.config.mode === "range" && self.selectedDates.length === 1) {
+	              self.clear(false);
+	              self.redraw();
+	            }
+	          }
+	        }
+	      }
+
+	      function changeYear(newYear) {
+	        if (!newYear || self.config.minDate && newYear < self.config.minDate.getFullYear() || self.config.maxDate && newYear > self.config.maxDate.getFullYear()) return;
+	        var newYearNum = newYear,
+	            isNewYear = self.currentYear !== newYearNum;
+	        self.currentYear = newYearNum || self.currentYear;
+
+	        if (self.config.maxDate && self.currentYear === self.config.maxDate.getFullYear()) {
+	          self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
+	        } else if (self.config.minDate && self.currentYear === self.config.minDate.getFullYear()) {
+	          self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
+	        }
+
+	        if (isNewYear) {
+	          self.redraw();
+	          triggerEvent("onYearChange");
+	        }
+	      }
+
+	      function isEnabled(date, timeless) {
+	        if (timeless === void 0) {
+	          timeless = true;
+	        }
+
+	        var dateToCheck = self.parseDate(date, undefined, timeless);
+	        if (self.config.minDate && dateToCheck && compareDates(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0 || self.config.maxDate && dateToCheck && compareDates(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0) return false;
+	        if (self.config.enable.length === 0 && self.config.disable.length === 0) return true;
+	        if (dateToCheck === undefined) return false;
+	        var bool = self.config.enable.length > 0,
+	            array = bool ? self.config.enable : self.config.disable;
+
+	        for (var i = 0, d; i < array.length; i++) {
+	          d = array[i];
+	          if (typeof d === "function" && d(dateToCheck)) return bool;else if (d instanceof Date && dateToCheck !== undefined && d.getTime() === dateToCheck.getTime()) return bool;else if (typeof d === "string" && dateToCheck !== undefined) {
+	            var parsed = self.parseDate(d, undefined, true);
+	            return parsed && parsed.getTime() === dateToCheck.getTime() ? bool : !bool;
+	          } else if (typeof d === "object" && dateToCheck !== undefined && d.from && d.to && dateToCheck.getTime() >= d.from.getTime() && dateToCheck.getTime() <= d.to.getTime()) return bool;
+	        }
+
+	        return !bool;
+	      }
+
+	      function isInView(elem) {
+	        if (self.daysContainer !== undefined) return elem.className.indexOf("hidden") === -1 && self.daysContainer.contains(elem);
+	        return false;
+	      }
+
+	      function onKeyDown(e) {
+	        var isInput = e.target === self._input;
+	        var allowInput = self.config.allowInput;
+	        var allowKeydown = self.isOpen && (!allowInput || !isInput);
+	        var allowInlineKeydown = self.config.inline && isInput && !allowInput;
+
+	        if (e.keyCode === 13 && isInput) {
+	          if (allowInput) {
+	            self.setDate(self._input.value, true, e.target === self.altInput ? self.config.altFormat : self.config.dateFormat);
+	            return e.target.blur();
+	          } else self.open();
+	        } else if (isCalendarElem(e.target) || allowKeydown || allowInlineKeydown) {
+	          var isTimeObj = !!self.timeContainer && self.timeContainer.contains(e.target);
+
+	          switch (e.keyCode) {
+	            case 13:
+	              if (isTimeObj) updateTime();else selectDate(e);
+	              break;
+
+	            case 27:
+	              e.preventDefault();
+	              focusAndClose();
+	              break;
+
+	            case 8:
+	            case 46:
+	              if (isInput && !self.config.allowInput) {
+	                e.preventDefault();
+	                self.clear();
+	              }
+
+	              break;
+
+	            case 37:
+	            case 39:
+	              if (!isTimeObj) {
+	                e.preventDefault();
+
+	                if (self.daysContainer !== undefined && (allowInput === false || isInView(document.activeElement))) {
+	                  var _delta = e.keyCode === 39 ? 1 : -1;
+
+	                  if (!e.ctrlKey) focusOnDay(undefined, _delta);else {
+	                    changeMonth(_delta);
+	                    focusOnDay(getFirstAvailableDay(1), 0);
+	                  }
+	                }
+	              } else if (self.hourElement) self.hourElement.focus();
+
+	              break;
+
+	            case 38:
+	            case 40:
+	              e.preventDefault();
+	              var delta = e.keyCode === 40 ? 1 : -1;
+
+	              if (self.daysContainer && e.target.$i !== undefined) {
+	                if (e.ctrlKey) {
+	                  changeYear(self.currentYear - delta);
+	                  focusOnDay(getFirstAvailableDay(1), 0);
+	                } else if (!isTimeObj) focusOnDay(undefined, delta * 7);
+	              } else if (self.config.enableTime) {
+	                if (!isTimeObj && self.hourElement) self.hourElement.focus();
+	                updateTime(e);
+
+	                self._debouncedChange();
+	              }
+
+	              break;
+
+	            case 9:
+	              if (!isTimeObj) {
+	                self.element.focus();
+	                break;
+	              }
+
+	              var elems = [self.hourElement, self.minuteElement, self.secondElement, self.amPM].filter(function (x) {
+	                return x;
+	              });
+	              var i = elems.indexOf(e.target);
+
+	              if (i !== -1) {
+	                var target = elems[i + (e.shiftKey ? -1 : 1)];
+
+	                if (target !== undefined) {
+	                  e.preventDefault();
+	                  target.focus();
+	                } else {
+	                  self.element.focus();
+	                }
+	              }
+
+	              break;
+
+	            default:
+	              break;
+	          }
+	        }
+
+	        if (self.amPM !== undefined && e.target === self.amPM) {
+	          switch (e.key) {
+	            case self.l10n.amPM[0].charAt(0):
+	            case self.l10n.amPM[0].charAt(0).toLowerCase():
+	              self.amPM.textContent = self.l10n.amPM[0];
+	              setHoursFromInputs();
+	              updateValue();
+	              break;
+
+	            case self.l10n.amPM[1].charAt(0):
+	            case self.l10n.amPM[1].charAt(0).toLowerCase():
+	              self.amPM.textContent = self.l10n.amPM[1];
+	              setHoursFromInputs();
+	              updateValue();
+	              break;
+	          }
+	        }
+
+	        triggerEvent("onKeyDown", e);
+	      }
+
+	      function onMouseOver(elem) {
+	        if (self.selectedDates.length !== 1 || elem && (!elem.classList.contains("flatpickr-day") || elem.classList.contains("disabled"))) return;
+	        var hoverDate = elem ? elem.dateObj.getTime() : self.days.firstElementChild.dateObj.getTime(),
+	            initialDate = self.parseDate(self.selectedDates[0], undefined, true).getTime(),
+	            rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()),
+	            rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime()),
+	            lastDate = self.daysContainer.lastChild.lastChild.dateObj.getTime();
+	        var containsDisabled = false;
+	        var minRange = 0,
+	            maxRange = 0;
+
+	        for (var t = rangeStartDate; t < lastDate; t += duration.DAY) {
+	          if (!isEnabled(new Date(t), true)) {
+	            containsDisabled = containsDisabled || t > rangeStartDate && t < rangeEndDate;
+	            if (t < initialDate && (!minRange || t > minRange)) minRange = t;else if (t > initialDate && (!maxRange || t < maxRange)) maxRange = t;
+	          }
+	        }
+
+	        for (var m = 0; m < self.config.showMonths; m++) {
+	          var month = self.daysContainer.children[m];
+	          var prevMonth = self.daysContainer.children[m - 1];
+
+	          var _loop = function _loop(i, l) {
+	            var dayElem = month.children[i],
+	                date = dayElem.dateObj;
+	            var timestamp = date.getTime();
+	            var outOfRange = minRange > 0 && timestamp < minRange || maxRange > 0 && timestamp > maxRange;
+
+	            if (outOfRange) {
+	              dayElem.classList.add("notAllowed");
+	              ["inRange", "startRange", "endRange"].forEach(function (c) {
+	                dayElem.classList.remove(c);
+	              });
+	              return "continue";
+	            } else if (containsDisabled && !outOfRange) return "continue";
+
+	            ["startRange", "inRange", "endRange", "notAllowed"].forEach(function (c) {
+	              dayElem.classList.remove(c);
+	            });
+
+	            if (elem !== undefined) {
+	              elem.classList.add(hoverDate < self.selectedDates[0].getTime() ? "startRange" : "endRange");
+
+	              if (month.contains(elem) || !(m > 0 && prevMonth && prevMonth.lastChild.dateObj.getTime() >= timestamp)) {
+	                if (initialDate < hoverDate && timestamp === initialDate) dayElem.classList.add("startRange");else if (initialDate > hoverDate && timestamp === initialDate) dayElem.classList.add("endRange");
+	                if (timestamp >= minRange && (maxRange === 0 || timestamp <= maxRange) && isBetween(timestamp, initialDate, hoverDate)) dayElem.classList.add("inRange");
+	              }
+	            }
+	          };
+
+	          for (var i = 0, l = month.children.length; i < l; i++) {
+	            var _ret = _loop(i, l);
+
+	            if (_ret === "continue") continue;
+	          }
+	        }
+	      }
+
+	      function onResize() {
+	        if (self.isOpen && !self.config.static && !self.config.inline) positionCalendar();
+	      }
+
+	      function open(e, positionElement) {
+	        if (positionElement === void 0) {
+	          positionElement = self._positionElement;
+	        }
+
+	        if (self.isMobile === true) {
+	          if (e) {
+	            e.preventDefault();
+	            e.target && e.target.blur();
+	          }
+
+	          if (self.mobileInput !== undefined) {
+	            self.mobileInput.focus();
+	            self.mobileInput.click();
+	          }
+
+	          triggerEvent("onOpen");
+	          return;
+	        }
+
+	        if (self._input.disabled || self.config.inline) return;
+	        var wasOpen = self.isOpen;
+	        self.isOpen = true;
+
+	        if (!wasOpen) {
+	          self.calendarContainer.classList.add("open");
+
+	          self._input.classList.add("active");
+
+	          triggerEvent("onOpen");
+	          positionCalendar(positionElement);
+	        }
+
+	        if (self.config.enableTime === true && self.config.noCalendar === true) {
+	          if (self.selectedDates.length === 0) {
+	            self.setDate(self.config.minDate !== undefined ? new Date(self.config.minDate.getTime()) : new Date(), false);
+	            setDefaultHours();
+	            updateValue();
+	          }
+
+	          if (self.config.allowInput === false && (e === undefined || !self.timeContainer.contains(e.relatedTarget))) {
+	            setTimeout(function () {
+	              return self.hourElement.select();
+	            }, 50);
+	          }
+	        }
+	      }
+
+	      function minMaxDateSetter(type) {
+	        return function (date) {
+	          var dateObj = self.config["_" + type + "Date"] = self.parseDate(date, self.config.dateFormat);
+	          var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
+
+	          if (dateObj !== undefined) {
+	            self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] = dateObj.getHours() > 0 || dateObj.getMinutes() > 0 || dateObj.getSeconds() > 0;
+	          }
+
+	          if (self.selectedDates) {
+	            self.selectedDates = self.selectedDates.filter(function (d) {
+	              return isEnabled(d);
+	            });
+	            if (!self.selectedDates.length && type === "min") setHoursFromDate(dateObj);
+	            updateValue();
+	          }
+
+	          if (self.daysContainer) {
+	            redraw();
+	            if (dateObj !== undefined) self.currentYearElement[type] = dateObj.getFullYear().toString();else self.currentYearElement.removeAttribute(type);
+	            self.currentYearElement.disabled = !!inverseDateObj && dateObj !== undefined && inverseDateObj.getFullYear() === dateObj.getFullYear();
+	          }
+	        };
+	      }
+
+	      function parseConfig() {
+	        var boolOpts = ["wrap", "weekNumbers", "allowInput", "clickOpens", "time_24hr", "enableTime", "noCalendar", "altInput", "shorthandCurrentMonth", "inline", "static", "enableSeconds", "disableMobile"];
+	        var userConfig = Object.assign({}, instanceConfig, JSON.parse(JSON.stringify(element.dataset || {})));
+	        var formats$$1 = {};
+	        self.config.parseDate = userConfig.parseDate;
+	        self.config.formatDate = userConfig.formatDate;
+	        Object.defineProperty(self.config, "enable", {
+	          get: function get() {
+	            return self.config._enable;
+	          },
+	          set: function set(dates) {
+	            self.config._enable = parseDateRules(dates);
+	          }
+	        });
+	        Object.defineProperty(self.config, "disable", {
+	          get: function get() {
+	            return self.config._disable;
+	          },
+	          set: function set(dates) {
+	            self.config._disable = parseDateRules(dates);
+	          }
+	        });
+	        var timeMode = userConfig.mode === "time";
+
+	        if (!userConfig.dateFormat && (userConfig.enableTime || timeMode)) {
+	          formats$$1.dateFormat = userConfig.noCalendar || timeMode ? "H:i" + (userConfig.enableSeconds ? ":S" : "") : flatpickr.defaultConfig.dateFormat + " H:i" + (userConfig.enableSeconds ? ":S" : "");
+	        }
+
+	        if (userConfig.altInput && (userConfig.enableTime || timeMode) && !userConfig.altFormat) {
+	          formats$$1.altFormat = userConfig.noCalendar || timeMode ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K") : flatpickr.defaultConfig.altFormat + (" h:i" + (userConfig.enableSeconds ? ":S" : "") + " K");
+	        }
+
+	        Object.defineProperty(self.config, "minDate", {
+	          get: function get() {
+	            return self.config._minDate;
+	          },
+	          set: minMaxDateSetter("min")
+	        });
+	        Object.defineProperty(self.config, "maxDate", {
+	          get: function get() {
+	            return self.config._maxDate;
+	          },
+	          set: minMaxDateSetter("max")
+	        });
+
+	        var minMaxTimeSetter = function minMaxTimeSetter(type) {
+	          return function (val) {
+	            self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i");
+	          };
+	        };
+
+	        Object.defineProperty(self.config, "minTime", {
+	          get: function get() {
+	            return self.config._minTime;
+	          },
+	          set: minMaxTimeSetter("min")
+	        });
+	        Object.defineProperty(self.config, "maxTime", {
+	          get: function get() {
+	            return self.config._maxTime;
+	          },
+	          set: minMaxTimeSetter("max")
+	        });
+
+	        if (userConfig.mode === "time") {
+	          self.config.noCalendar = true;
+	          self.config.enableTime = true;
+	        }
+
+	        Object.assign(self.config, formats$$1, userConfig);
+
+	        for (var i = 0; i < boolOpts.length; i++) {
+	          self.config[boolOpts[i]] = self.config[boolOpts[i]] === true || self.config[boolOpts[i]] === "true";
+	        }
+
+	        HOOKS.filter(function (hook) {
+	          return self.config[hook] !== undefined;
+	        }).forEach(function (hook) {
+	          self.config[hook] = arrayify(self.config[hook] || []).map(bindToInstance);
+	        });
+	        self.isMobile = !self.config.disableMobile && !self.config.inline && self.config.mode === "single" && !self.config.disable.length && !self.config.enable.length && !self.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+	        for (var _i = 0; _i < self.config.plugins.length; _i++) {
+	          var pluginConf = self.config.plugins[_i](self) || {};
+
+	          for (var key in pluginConf) {
+	            if (HOOKS.indexOf(key) > -1) {
+	              self.config[key] = arrayify(pluginConf[key]).map(bindToInstance).concat(self.config[key]);
+	            } else if (typeof userConfig[key] === "undefined") self.config[key] = pluginConf[key];
+	          }
+	        }
+
+	        triggerEvent("onParseConfig");
+	      }
+
+	      function setupLocale() {
+	        if (typeof self.config.locale !== "object" && typeof flatpickr.l10ns[self.config.locale] === "undefined") self.config.errorHandler(new Error("flatpickr: invalid locale " + self.config.locale));
+	        self.l10n = Object.assign({}, flatpickr.l10ns.default, typeof self.config.locale === "object" ? self.config.locale : self.config.locale !== "default" ? flatpickr.l10ns[self.config.locale] : undefined);
+	        tokenRegex.K = "(" + self.l10n.amPM[0] + "|" + self.l10n.amPM[1] + "|" + self.l10n.amPM[0].toLowerCase() + "|" + self.l10n.amPM[1].toLowerCase() + ")";
+	        self.formatDate = createDateFormatter(self);
+	        self.parseDate = createDateParser({
+	          config: self.config,
+	          l10n: self.l10n
+	        });
+	      }
+
+	      function positionCalendar(customPositionElement) {
+	        if (self.calendarContainer === undefined) return;
+	        triggerEvent("onPreCalendarPosition");
+	        var positionElement = customPositionElement || self._positionElement;
+	        var calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, function (acc, child) {
+	          return acc + child.offsetHeight;
+	        }, 0),
+	            calendarWidth = self.calendarContainer.offsetWidth,
+	            configPos = self.config.position.split(" "),
+	            configPosVertical = configPos[0],
+	            configPosHorizontal = configPos.length > 1 ? configPos[1] : null,
+	            inputBounds = positionElement.getBoundingClientRect(),
+	            distanceFromBottom = window.innerHeight - inputBounds.bottom,
+	            showOnTop = configPosVertical === "above" || configPosVertical !== "below" && distanceFromBottom < calendarHeight && inputBounds.top > calendarHeight;
+	        var top = window.pageYOffset + inputBounds.top + (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
+	        toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
+	        toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
+	        if (self.config.inline) return;
+	        var left = window.pageXOffset + inputBounds.left - (configPosHorizontal != null && configPosHorizontal === "center" ? (calendarWidth - inputBounds.width) / 2 : 0);
+	        var right = window.document.body.offsetWidth - inputBounds.right;
+	        var rightMost = left + calendarWidth > window.document.body.offsetWidth;
+	        toggleClass(self.calendarContainer, "rightMost", rightMost);
+	        if (self.config.static) return;
+	        self.calendarContainer.style.top = top + "px";
+
+	        if (!rightMost) {
+	          self.calendarContainer.style.left = left + "px";
+	          self.calendarContainer.style.right = "auto";
+	        } else {
+	          self.calendarContainer.style.left = "auto";
+	          self.calendarContainer.style.right = right + "px";
+	        }
+	      }
+
+	      function redraw() {
+	        if (self.config.noCalendar || self.isMobile) return;
+	        updateNavigationCurrentMonth();
+	        buildDays();
+	      }
+
+	      function focusAndClose() {
+	        self._input.focus();
+
+	        if (window.navigator.userAgent.indexOf("MSIE") !== -1 || navigator.msMaxTouchPoints !== undefined) {
+	          setTimeout(self.close, 0);
+	        } else {
+	          self.close();
+	        }
+	      }
+
+	      function selectDate(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+
+	        var isSelectable = function isSelectable(day) {
+	          return day.classList && day.classList.contains("flatpickr-day") && !day.classList.contains("disabled") && !day.classList.contains("notAllowed");
+	        };
+
+	        var t = findParent(e.target, isSelectable);
+	        if (t === undefined) return;
+	        var target = t;
+	        var selectedDate = self.latestSelectedDateObj = new Date(target.dateObj.getTime());
+	        var shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth || selectedDate.getMonth() > self.currentMonth + self.config.showMonths - 1) && self.config.mode !== "range";
+	        self.selectedDateElem = target;
+	        if (self.config.mode === "single") self.selectedDates = [selectedDate];else if (self.config.mode === "multiple") {
+	          var selectedIndex = isDateSelected(selectedDate);
+	          if (selectedIndex) self.selectedDates.splice(parseInt(selectedIndex), 1);else self.selectedDates.push(selectedDate);
+	        } else if (self.config.mode === "range") {
+	          if (self.selectedDates.length === 2) self.clear(false);
+	          self.selectedDates.push(selectedDate);
+	          if (compareDates(selectedDate, self.selectedDates[0], true) !== 0) self.selectedDates.sort(function (a, b) {
+	            return a.getTime() - b.getTime();
+	          });
+	        }
+	        setHoursFromInputs();
+
+	        if (shouldChangeMonth) {
+	          var isNewYear = self.currentYear !== selectedDate.getFullYear();
+	          self.currentYear = selectedDate.getFullYear();
+	          self.currentMonth = selectedDate.getMonth();
+	          if (isNewYear) triggerEvent("onYearChange");
+	          triggerEvent("onMonthChange");
+	        }
+
+	        updateNavigationCurrentMonth();
+	        buildDays();
+	        updateValue();
+	        if (self.config.enableTime) setTimeout(function () {
+	          return self.showTimeInput = true;
+	        }, 50);
+	        if (!shouldChangeMonth && self.config.mode !== "range" && self.config.showMonths === 1) focusOnDayElem(target);else self.selectedDateElem && self.selectedDateElem.focus();
+	        if (self.hourElement !== undefined) setTimeout(function () {
+	          return self.hourElement !== undefined && self.hourElement.select();
+	        }, 451);
+
+	        if (self.config.closeOnSelect) {
+	          var single = self.config.mode === "single" && !self.config.enableTime;
+	          var range = self.config.mode === "range" && self.selectedDates.length === 2 && !self.config.enableTime;
+
+	          if (single || range) {
+	            focusAndClose();
+	          }
+	        }
+
+	        triggerChange();
+	      }
+
+	      var CALLBACKS = {
+	        locale: [setupLocale, updateWeekdays],
+	        showMonths: [buildMonths, setCalendarWidth, buildWeekdays]
+	      };
+
+	      function set(option, value) {
+	        if (option !== null && typeof option === "object") Object.assign(self.config, option);else {
+	          self.config[option] = value;
+	          if (CALLBACKS[option] !== undefined) CALLBACKS[option].forEach(function (x) {
+	            return x();
+	          });else if (HOOKS.indexOf(option) > -1) self.config[option] = arrayify(value);
+	        }
+	        self.redraw();
+	        jumpToDate();
+	        updateValue(false);
+	      }
+
+	      function setSelectedDate(inputDate, format) {
+	        var dates = [];
+	        if (inputDate instanceof Array) dates = inputDate.map(function (d) {
+	          return self.parseDate(d, format);
+	        });else if (inputDate instanceof Date || typeof inputDate === "number") dates = [self.parseDate(inputDate, format)];else if (typeof inputDate === "string") {
+	          switch (self.config.mode) {
+	            case "single":
+	            case "time":
+	              dates = [self.parseDate(inputDate, format)];
+	              break;
+
+	            case "multiple":
+	              dates = inputDate.split(self.config.conjunction).map(function (date) {
+	                return self.parseDate(date, format);
+	              });
+	              break;
+
+	            case "range":
+	              dates = inputDate.split(self.l10n.rangeSeparator).map(function (date) {
+	                return self.parseDate(date, format);
+	              });
+	              break;
+
+	            default:
+	              break;
+	          }
+	        } else self.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
+	        self.selectedDates = dates.filter(function (d) {
+	          return d instanceof Date && isEnabled(d, false);
+	        });
+	        if (self.config.mode === "range") self.selectedDates.sort(function (a, b) {
+	          return a.getTime() - b.getTime();
+	        });
+	      }
+
+	      function setDate(date, triggerChange, format) {
+	        if (triggerChange === void 0) {
+	          triggerChange = false;
+	        }
+
+	        if (format === void 0) {
+	          format = self.config.dateFormat;
+	        }
+
+	        if (date !== 0 && !date || date instanceof Array && date.length === 0) return self.clear(triggerChange);
+	        setSelectedDate(date, format);
+	        self.showTimeInput = self.selectedDates.length > 0;
+	        self.latestSelectedDateObj = self.selectedDates[0];
+	        self.redraw();
+	        jumpToDate();
+	        setHoursFromDate();
+	        updateValue(triggerChange);
+	        if (triggerChange) triggerEvent("onChange");
+	      }
+
+	      function parseDateRules(arr) {
+	        return arr.slice().map(function (rule) {
+	          if (typeof rule === "string" || typeof rule === "number" || rule instanceof Date) {
+	            return self.parseDate(rule, undefined, true);
+	          } else if (rule && typeof rule === "object" && rule.from && rule.to) return {
+	            from: self.parseDate(rule.from, undefined),
+	            to: self.parseDate(rule.to, undefined)
+	          };
+
+	          return rule;
+	        }).filter(function (x) {
+	          return x;
+	        });
+	      }
+
+	      function setupDates() {
+	        self.selectedDates = [];
+	        self.now = self.parseDate(self.config.now) || new Date();
+	        var preloadedDate = self.config.defaultDate || ((self.input.nodeName === "INPUT" || self.input.nodeName === "TEXTAREA") && self.input.placeholder && self.input.value === self.input.placeholder ? null : self.input.value);
+	        if (preloadedDate) setSelectedDate(preloadedDate, self.config.dateFormat);
+	        var initialDate = self.selectedDates.length > 0 ? self.selectedDates[0] : self.config.minDate && self.config.minDate.getTime() > self.now.getTime() ? self.config.minDate : self.config.maxDate && self.config.maxDate.getTime() < self.now.getTime() ? self.config.maxDate : self.now;
+	        self.currentYear = initialDate.getFullYear();
+	        self.currentMonth = initialDate.getMonth();
+	        if (self.selectedDates.length > 0) self.latestSelectedDateObj = self.selectedDates[0];
+	        if (self.config.minTime !== undefined) self.config.minTime = self.parseDate(self.config.minTime, "H:i");
+	        if (self.config.maxTime !== undefined) self.config.maxTime = self.parseDate(self.config.maxTime, "H:i");
+	        self.minDateHasTime = !!self.config.minDate && (self.config.minDate.getHours() > 0 || self.config.minDate.getMinutes() > 0 || self.config.minDate.getSeconds() > 0);
+	        self.maxDateHasTime = !!self.config.maxDate && (self.config.maxDate.getHours() > 0 || self.config.maxDate.getMinutes() > 0 || self.config.maxDate.getSeconds() > 0);
+	        Object.defineProperty(self, "showTimeInput", {
+	          get: function get() {
+	            return self._showTimeInput;
+	          },
+	          set: function set(bool) {
+	            self._showTimeInput = bool;
+	            if (self.calendarContainer) toggleClass(self.calendarContainer, "showTimeInput", bool);
+	            self.isOpen && positionCalendar();
+	          }
+	        });
+	      }
+
+	      function setupInputs() {
+	        self.input = self.config.wrap ? element.querySelector("[data-input]") : element;
+
+	        if (!self.input) {
+	          self.config.errorHandler(new Error("Invalid input element specified"));
+	          return;
+	        }
+
+	        self.input._type = self.input.type;
+	        self.input.type = "text";
+	        self.input.classList.add("flatpickr-input");
+	        self._input = self.input;
+
+	        if (self.config.altInput) {
+	          self.altInput = createElement(self.input.nodeName, self.input.className + " " + self.config.altInputClass);
+	          self._input = self.altInput;
+	          self.altInput.placeholder = self.input.placeholder;
+	          self.altInput.disabled = self.input.disabled;
+	          self.altInput.required = self.input.required;
+	          self.altInput.tabIndex = self.input.tabIndex;
+	          self.altInput.type = "text";
+	          self.input.setAttribute("type", "hidden");
+	          if (!self.config.static && self.input.parentNode) self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
+	        }
+
+	        if (!self.config.allowInput) self._input.setAttribute("readonly", "readonly");
+	        self._positionElement = self.config.positionElement || self._input;
+	      }
+
+	      function setupMobile() {
+	        var inputType = self.config.enableTime ? self.config.noCalendar ? "time" : "datetime-local" : "date";
+	        self.mobileInput = createElement("input", self.input.className + " flatpickr-mobile");
+	        self.mobileInput.step = self.input.getAttribute("step") || "any";
+	        self.mobileInput.tabIndex = 1;
+	        self.mobileInput.type = inputType;
+	        self.mobileInput.disabled = self.input.disabled;
+	        self.mobileInput.required = self.input.required;
+	        self.mobileInput.placeholder = self.input.placeholder;
+	        self.mobileFormatStr = inputType === "datetime-local" ? "Y-m-d\\TH:i:S" : inputType === "date" ? "Y-m-d" : "H:i:S";
+
+	        if (self.selectedDates.length > 0) {
+	          self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
+	        }
+
+	        if (self.config.minDate) self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
+	        if (self.config.maxDate) self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
+	        self.input.type = "hidden";
+	        if (self.altInput !== undefined) self.altInput.type = "hidden";
+
+	        try {
+	          if (self.input.parentNode) self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
+	        } catch (_a) {}
+
+	        bind(self.mobileInput, "change", function (e) {
+	          self.setDate(e.target.value, false, self.mobileFormatStr);
+	          triggerEvent("onChange");
+	          triggerEvent("onClose");
+	        });
+	      }
+
+	      function toggle(e) {
+	        if (self.isOpen === true) return self.close();
+	        self.open(e);
+	      }
+
+	      function triggerEvent(event, data) {
+	        if (self.config === undefined) return;
+	        var hooks = self.config[event];
+
+	        if (hooks !== undefined && hooks.length > 0) {
+	          for (var i = 0; hooks[i] && i < hooks.length; i++) {
+	            hooks[i](self.selectedDates, self.input.value, self, data);
+	          }
+	        }
+
+	        if (event === "onChange") {
+	          self.input.dispatchEvent(createEvent("change"));
+	          self.input.dispatchEvent(createEvent("input"));
+	        }
+	      }
+
+	      function createEvent(name) {
+	        var e = document.createEvent("Event");
+	        e.initEvent(name, true, true);
+	        return e;
+	      }
+
+	      function isDateSelected(date) {
+	        for (var i = 0; i < self.selectedDates.length; i++) {
+	          if (compareDates(self.selectedDates[i], date) === 0) return "" + i;
+	        }
+
+	        return false;
+	      }
+
+	      function isDateInRange(date) {
+	        if (self.config.mode !== "range" || self.selectedDates.length < 2) return false;
+	        return compareDates(date, self.selectedDates[0]) >= 0 && compareDates(date, self.selectedDates[1]) <= 0;
+	      }
+
+	      function updateNavigationCurrentMonth() {
+	        if (self.config.noCalendar || self.isMobile || !self.monthNav) return;
+	        self.yearElements.forEach(function (yearElement, i) {
+	          var d = new Date(self.currentYear, self.currentMonth, 1);
+	          d.setMonth(self.currentMonth + i);
+	          self.monthElements[i].textContent = monthToStr(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
+	          yearElement.value = d.getFullYear().toString();
+	        });
+	        self._hidePrevMonthArrow = self.config.minDate !== undefined && (self.currentYear === self.config.minDate.getFullYear() ? self.currentMonth <= self.config.minDate.getMonth() : self.currentYear < self.config.minDate.getFullYear());
+	        self._hideNextMonthArrow = self.config.maxDate !== undefined && (self.currentYear === self.config.maxDate.getFullYear() ? self.currentMonth + 1 > self.config.maxDate.getMonth() : self.currentYear > self.config.maxDate.getFullYear());
+	      }
+
+	      function getDateStr(format) {
+	        return self.selectedDates.map(function (dObj) {
+	          return self.formatDate(dObj, format);
+	        }).filter(function (d, i, arr) {
+	          return self.config.mode !== "range" || self.config.enableTime || arr.indexOf(d) === i;
+	        }).join(self.config.mode !== "range" ? self.config.conjunction : self.l10n.rangeSeparator);
+	      }
+
+	      function updateValue(triggerChange) {
+	        if (triggerChange === void 0) {
+	          triggerChange = true;
+	        }
+
+	        if (self.selectedDates.length === 0) return self.clear(triggerChange);
+
+	        if (self.mobileInput !== undefined && self.mobileFormatStr) {
+	          self.mobileInput.value = self.latestSelectedDateObj !== undefined ? self.formatDate(self.latestSelectedDateObj, self.mobileFormatStr) : "";
+	        }
+
+	        self.input.value = getDateStr(self.config.dateFormat);
+
+	        if (self.altInput !== undefined) {
+	          self.altInput.value = getDateStr(self.config.altFormat);
+	        }
+
+	        if (triggerChange !== false) triggerEvent("onValueUpdate");
+	      }
+
+	      function onMonthNavClick(e) {
+	        e.preventDefault();
+	        var isPrevMonth = self.prevMonthNav.contains(e.target);
+	        var isNextMonth = self.nextMonthNav.contains(e.target);
+
+	        if (isPrevMonth || isNextMonth) {
+	          changeMonth(isPrevMonth ? -1 : 1);
+	        } else if (self.yearElements.indexOf(e.target) >= 0) {
+	          e.target.select();
+	        } else if (e.target.classList.contains("arrowUp")) {
+	          self.changeYear(self.currentYear + 1);
+	        } else if (e.target.classList.contains("arrowDown")) {
+	          self.changeYear(self.currentYear - 1);
+	        }
+	      }
+
+	      function timeWrapper(e) {
+	        e.preventDefault();
+	        var isKeyDown = e.type === "keydown",
+	            input = e.target;
+
+	        if (self.amPM !== undefined && e.target === self.amPM) {
+	          self.amPM.textContent = self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
+	        }
+
+	        var min = parseFloat(input.getAttribute("data-min")),
+	            max = parseFloat(input.getAttribute("data-max")),
+	            step = parseFloat(input.getAttribute("data-step")),
+	            curValue = parseInt(input.value, 10),
+	            delta = e.delta || (isKeyDown ? e.which === 38 ? 1 : -1 : 0);
+	        var newValue = curValue + step * delta;
+
+	        if (typeof input.value !== "undefined" && input.value.length === 2) {
+	          var isHourElem = input === self.hourElement,
+	              isMinuteElem = input === self.minuteElement;
+
+	          if (newValue < min) {
+	            newValue = max + newValue + int(!isHourElem) + (int(isHourElem) && int(!self.amPM));
+	            if (isMinuteElem) incrementNumInput(undefined, -1, self.hourElement);
+	          } else if (newValue > max) {
+	            newValue = input === self.hourElement ? newValue - max - int(!self.amPM) : min;
+	            if (isMinuteElem) incrementNumInput(undefined, 1, self.hourElement);
+	          }
+
+	          if (self.amPM && isHourElem && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) {
+	            self.amPM.textContent = self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
+	          }
+
+	          input.value = pad(newValue);
+	        }
+	      }
+
+	      init();
+	      return self;
+	    }
+
+	    function _flatpickr(nodeList, config) {
+	      var nodes = Array.prototype.slice.call(nodeList);
+	      var instances = [];
+
+	      for (var i = 0; i < nodes.length; i++) {
+	        var node = nodes[i];
+
+	        try {
+	          if (node.getAttribute("data-fp-omit") !== null) continue;
+
+	          if (node._flatpickr !== undefined) {
+	            node._flatpickr.destroy();
+
+	            node._flatpickr = undefined;
+	          }
+
+	          node._flatpickr = FlatpickrInstance(node, config || {});
+	          instances.push(node._flatpickr);
+	        } catch (e) {
+	          console.error(e);
+	        }
+	      }
+
+	      return instances.length === 1 ? instances[0] : instances;
+	    }
+
+	    if (typeof HTMLElement !== "undefined") {
+	      HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
+	        return _flatpickr(this, config);
+	      };
+
+	      HTMLElement.prototype.flatpickr = function (config) {
+	        return _flatpickr([this], config);
+	      };
+	    }
+
+	    var flatpickr = function flatpickr(selector, config) {
+	      if (selector instanceof NodeList) return _flatpickr(selector, config);else if (typeof selector === "string") return _flatpickr(window.document.querySelectorAll(selector), config);
+	      return _flatpickr([selector], config);
+	    };
+
+	    flatpickr.defaultConfig = defaults;
+	    flatpickr.l10ns = {
+	      en: Object.assign({}, english),
+	      default: Object.assign({}, english)
+	    };
+
+	    flatpickr.localize = function (l10n) {
+	      flatpickr.l10ns.default = Object.assign({}, flatpickr.l10ns.default, l10n);
+	    };
+
+	    flatpickr.setDefaults = function (config) {
+	      flatpickr.defaultConfig = Object.assign({}, flatpickr.defaultConfig, config);
+	    };
+
+	    flatpickr.parseDate = createDateParser({});
+	    flatpickr.formatDate = createDateFormatter({});
+	    flatpickr.compareDates = compareDates;
+
+	    if (typeof jQuery !== "undefined") {
+	      jQuery.fn.flatpickr = function (config) {
+	        return _flatpickr(this, config);
+	      };
+	    }
+
+	    Date.prototype.fp_incr = function (days) {
+	      return new Date(this.getFullYear(), this.getMonth(), this.getDate() + (typeof days === "string" ? parseInt(days, 10) : days));
+	    };
+
+	    if (typeof window !== "undefined") {
+	      window.flatpickr = flatpickr;
+	    }
+
+	    return flatpickr;
+
+	})));
 
 
 /***/ }),
-/* 573 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = isInteger;
-	/**
-	 * Check if the passed value is an integer
-	 *
-	 * @name 		isInteger
-	 * @param 		{Mixed} 		value 		The value to check
-	 * @return 		{Boolean} 					The check result
-	 *
-	 * @example 	js
-	 * isInteger(10) => true
-	 * isInteger('hello') => false
-	 *
-	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	 */
-	function isInteger(data) {
-	  return !isNaN(data) && function (x) {
-	    return (x | 0) === x;
-	  }(parseFloat(data));
-	}
-
-/***/ }),
-/* 574 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31855,7 +31576,7 @@
 	  value: true
 	});
 
-	var _SGoogleMapComponent = __webpack_require__(575);
+	var _SGoogleMapComponent = __webpack_require__(572);
 
 	var _SGoogleMapComponent2 = _interopRequireDefault(_SGoogleMapComponent);
 
@@ -31864,7 +31585,7 @@
 	exports.default = _SGoogleMapComponent2.default.define('s-google-map', _SGoogleMapComponent2.default);
 
 /***/ }),
-/* 575 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31879,7 +31600,7 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _coffeekrakenSGoogleMapComponentBase = __webpack_require__(576);
+	var _coffeekrakenSGoogleMapComponentBase = __webpack_require__(573);
 
 	var _coffeekrakenSGoogleMapComponentBase2 = _interopRequireDefault(_coffeekrakenSGoogleMapComponentBase);
 
@@ -32242,14 +31963,14 @@
 	exports.default = SGoogleMapComponent;
 
 /***/ }),
-/* 576 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _SGoogleMapComponentBase = __webpack_require__(577);
+	var _SGoogleMapComponentBase = __webpack_require__(574);
 
 	var _SGoogleMapComponentBase2 = _interopRequireDefault(_SGoogleMapComponentBase);
 
@@ -32258,7 +31979,7 @@
 	exports.default = _SGoogleMapComponentBase2.default;
 
 /***/ }),
-/* 577 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32271,7 +31992,7 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _googleMaps = __webpack_require__(578);
+	var _googleMaps = __webpack_require__(575);
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
@@ -32414,7 +32135,7 @@
 	exports.default = SGoogleMapComponentBase;
 
 /***/ }),
-/* 578 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
@@ -32643,7 +32364,7 @@
 
 
 /***/ }),
-/* 579 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32652,7 +32373,7 @@
 	  value: true
 	});
 
-	var _SGoogleMapMarkerComponent = __webpack_require__(580);
+	var _SGoogleMapMarkerComponent = __webpack_require__(577);
 
 	var _SGoogleMapMarkerComponent2 = _interopRequireDefault(_SGoogleMapMarkerComponent);
 
@@ -32661,7 +32382,7 @@
 	exports.default = _SGoogleMapMarkerComponent2.default.define('s-google-map-marker', _SGoogleMapMarkerComponent2.default);
 
 /***/ }),
-/* 580 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32674,11 +32395,11 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _coffeekrakenSGoogleMapComponentBase = __webpack_require__(576);
+	var _coffeekrakenSGoogleMapComponentBase = __webpack_require__(573);
 
 	var _coffeekrakenSGoogleMapComponentBase2 = _interopRequireDefault(_coffeekrakenSGoogleMapComponentBase);
 
-	var _whenAttribute = __webpack_require__(581);
+	var _whenAttribute = __webpack_require__(578);
 
 	var _whenAttribute2 = _interopRequireDefault(_whenAttribute);
 
@@ -32906,7 +32627,7 @@
 	exports.default = SGoogleMapMarkerComponent;
 
 /***/ }),
-/* 581 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32916,7 +32637,7 @@
 	});
 	exports.default = whenAttribute;
 
-	var _attributesObservable = __webpack_require__(582);
+	var _attributesObservable = __webpack_require__(579);
 
 	var _attributesObservable2 = _interopRequireDefault(_attributesObservable);
 
@@ -32982,7 +32703,7 @@
 	}
 
 /***/ }),
-/* 582 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33050,17 +32771,17 @@
 		return observable;
 	};
 
-	var _Observable = __webpack_require__(583);
+	var _Observable = __webpack_require__(580);
 
 /***/ }),
-/* 583 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(584);
-	var toSubscriber_1 = __webpack_require__(585);
-	var observable_1 = __webpack_require__(596);
-	var pipe_1 = __webpack_require__(597);
+	var root_1 = __webpack_require__(581);
+	var toSubscriber_1 = __webpack_require__(582);
+	var observable_1 = __webpack_require__(593);
+	var pipe_1 = __webpack_require__(594);
 	/**
 	 * A representation of any set of values over any amount of time. This is the most basic building block
 	 * of RxJS.
@@ -33363,7 +33084,7 @@
 	//# sourceMappingURL=Observable.js.map
 
 /***/ }),
-/* 584 */
+/* 581 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -33388,13 +33109,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 585 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var Subscriber_1 = __webpack_require__(586);
-	var rxSubscriber_1 = __webpack_require__(595);
-	var Observer_1 = __webpack_require__(594);
+	var Subscriber_1 = __webpack_require__(583);
+	var rxSubscriber_1 = __webpack_require__(592);
+	var Observer_1 = __webpack_require__(591);
 	function toSubscriber(nextOrObserver, error, complete) {
 	    if (nextOrObserver) {
 	        if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -33413,7 +33134,7 @@
 	//# sourceMappingURL=toSubscriber.js.map
 
 /***/ }),
-/* 586 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33422,10 +33143,10 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var isFunction_1 = __webpack_require__(587);
-	var Subscription_1 = __webpack_require__(588);
-	var Observer_1 = __webpack_require__(594);
-	var rxSubscriber_1 = __webpack_require__(595);
+	var isFunction_1 = __webpack_require__(584);
+	var Subscription_1 = __webpack_require__(585);
+	var Observer_1 = __webpack_require__(591);
+	var rxSubscriber_1 = __webpack_require__(592);
 	/**
 	 * Implements the {@link Observer} interface and extends the
 	 * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -33689,7 +33410,7 @@
 	//# sourceMappingURL=Subscriber.js.map
 
 /***/ }),
-/* 587 */
+/* 584 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33700,16 +33421,16 @@
 	//# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 588 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var isArray_1 = __webpack_require__(589);
-	var isObject_1 = __webpack_require__(590);
-	var isFunction_1 = __webpack_require__(587);
-	var tryCatch_1 = __webpack_require__(591);
-	var errorObject_1 = __webpack_require__(592);
-	var UnsubscriptionError_1 = __webpack_require__(593);
+	var isArray_1 = __webpack_require__(586);
+	var isObject_1 = __webpack_require__(587);
+	var isFunction_1 = __webpack_require__(584);
+	var tryCatch_1 = __webpack_require__(588);
+	var errorObject_1 = __webpack_require__(589);
+	var UnsubscriptionError_1 = __webpack_require__(590);
 	/**
 	 * Represents a disposable resource, such as the execution of an Observable. A
 	 * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -33898,7 +33619,7 @@
 	//# sourceMappingURL=Subscription.js.map
 
 /***/ }),
-/* 589 */
+/* 586 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33906,7 +33627,7 @@
 	//# sourceMappingURL=isArray.js.map
 
 /***/ }),
-/* 590 */
+/* 587 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33917,11 +33638,11 @@
 	//# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 591 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var errorObject_1 = __webpack_require__(592);
+	var errorObject_1 = __webpack_require__(589);
 	var tryCatchTarget;
 	function tryCatcher() {
 	    try {
@@ -33941,7 +33662,7 @@
 	//# sourceMappingURL=tryCatch.js.map
 
 /***/ }),
-/* 592 */
+/* 589 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33950,7 +33671,7 @@
 	//# sourceMappingURL=errorObject.js.map
 
 /***/ }),
-/* 593 */
+/* 590 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33980,7 +33701,7 @@
 	//# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ }),
-/* 594 */
+/* 591 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -33993,11 +33714,11 @@
 	//# sourceMappingURL=Observer.js.map
 
 /***/ }),
-/* 595 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(584);
+	var root_1 = __webpack_require__(581);
 	var Symbol = root_1.root.Symbol;
 	exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
 	    Symbol.for('rxSubscriber') : '@@rxSubscriber';
@@ -34008,11 +33729,11 @@
 	//# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 596 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(584);
+	var root_1 = __webpack_require__(581);
 	function getSymbolObservable(context) {
 	    var $$observable;
 	    var Symbol = context.Symbol;
@@ -34039,11 +33760,11 @@
 	//# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 597 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var noop_1 = __webpack_require__(598);
+	var noop_1 = __webpack_require__(595);
 	/* tslint:enable:max-line-length */
 	function pipe() {
 	    var fns = [];
@@ -34069,7 +33790,7 @@
 	//# sourceMappingURL=pipe.js.map
 
 /***/ }),
-/* 598 */
+/* 595 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -34079,7 +33800,7 @@
 	//# sourceMappingURL=noop.js.map
 
 /***/ }),
-/* 599 */
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34088,7 +33809,7 @@
 	  value: true
 	});
 
-	var _SRippleComponent = __webpack_require__(600);
+	var _SRippleComponent = __webpack_require__(597);
 
 	var _SRippleComponent2 = _interopRequireDefault(_SRippleComponent);
 
@@ -34097,7 +33818,7 @@
 	exports.default = _SRippleComponent2.default.define('s-ripple', _SRippleComponent2.default);
 
 /***/ }),
-/* 600 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34114,15 +33835,15 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _coffeekrakenSParticlesSystemComponent = __webpack_require__(601);
+	var _coffeekrakenSParticlesSystemComponent = __webpack_require__(598);
 
 	var _coffeekrakenSParticlesSystemComponent2 = _interopRequireDefault(_coffeekrakenSParticlesSystemComponent);
 
-	var _style = __webpack_require__(609);
+	var _style = __webpack_require__(606);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _offset = __webpack_require__(612);
+	var _offset = __webpack_require__(609);
 
 	var _offset2 = _interopRequireDefault(_offset);
 
@@ -34373,7 +34094,7 @@
 	exports.default = SRippleComponent;
 
 /***/ }),
-/* 601 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34382,7 +34103,7 @@
 	  value: true
 	});
 
-	var _SParticlesSystemComponent = __webpack_require__(602);
+	var _SParticlesSystemComponent = __webpack_require__(599);
 
 	var _SParticlesSystemComponent2 = _interopRequireDefault(_SParticlesSystemComponent);
 
@@ -34391,7 +34112,7 @@
 	exports.default = _SParticlesSystemComponent2.default.define('s-particles-system', _SParticlesSystemComponent2.default);
 
 /***/ }),
-/* 602 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34408,15 +34129,15 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _coffeekrakenSParticleComponent = __webpack_require__(603);
+	var _coffeekrakenSParticleComponent = __webpack_require__(600);
 
 	var _coffeekrakenSParticleComponent2 = _interopRequireDefault(_coffeekrakenSParticleComponent);
 
-	var _STimer = __webpack_require__(608);
+	var _STimer = __webpack_require__(605);
 
 	var _STimer2 = _interopRequireDefault(_STimer);
 
-	var _getAnimationProperties = __webpack_require__(605);
+	var _getAnimationProperties = __webpack_require__(602);
 
 	var _getAnimationProperties2 = _interopRequireDefault(_getAnimationProperties);
 
@@ -34698,7 +34419,7 @@
 	exports.default = SParticlesSystemComponent;
 
 /***/ }),
-/* 603 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34707,7 +34428,7 @@
 	  value: true
 	});
 
-	var _SParticleComponent = __webpack_require__(604);
+	var _SParticleComponent = __webpack_require__(601);
 
 	var _SParticleComponent2 = _interopRequireDefault(_SParticleComponent);
 
@@ -34716,7 +34437,7 @@
 	exports.default = _SParticleComponent2.default.define('s-particle', _SParticleComponent2.default);
 
 /***/ }),
-/* 604 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34733,7 +34454,7 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _getAnimationProperties = __webpack_require__(605);
+	var _getAnimationProperties = __webpack_require__(602);
 
 	var _getAnimationProperties2 = _interopRequireDefault(_getAnimationProperties);
 
@@ -34849,7 +34570,7 @@
 	exports.default = SParticleComponent;
 
 /***/ }),
-/* 605 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34859,11 +34580,11 @@
 	});
 	exports.default = getAnimationProperties;
 
-	var _getStyleProperty = __webpack_require__(606);
+	var _getStyleProperty = __webpack_require__(603);
 
 	var _getStyleProperty2 = _interopRequireDefault(_getStyleProperty);
 
-	var _toMs = __webpack_require__(607);
+	var _toMs = __webpack_require__(604);
 
 	var _toMs2 = _interopRequireDefault(_toMs);
 
@@ -34936,7 +34657,7 @@
 	}
 
 /***/ }),
-/* 606 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34993,7 +34714,7 @@
 	}
 
 /***/ }),
-/* 607 */
+/* 604 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -35002,6 +34723,21 @@
 		value: true
 	});
 	exports.default = toMs;
+	/**
+	 * Return the milisecond (ms) representation of a css timing unit
+	 * Currently support:
+	 * - milisecond (ms)
+	 * - second (s)
+	 *
+	 * @param    {String}    string    The string timing representation like 1s, 50ms, etc...
+	 * @return    {String}    The ms representation of the passed string
+	 *
+	 * @example    js
+	 * import toMs from 'coffeekraken-sugar/js/utils/strings/toMs'
+	 * toMs('1.2s') // 1200
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
 	function toMs(string) {
 		// parse the string to int to get the lenght of the suffix
 		// if (string.substr(0,1) === '.') string = '0${string}';
@@ -35022,7 +34758,7 @@
 	}
 
 /***/ }),
-/* 608 */
+/* 605 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -35085,16 +34821,16 @@
 
 
 		/**
-	  * Store the remaining time
+	  * How many ticks wanted during the timeout
 	  *
-	  * @type 	{Number}
+	  * @type    {Integer}
 	  */
 
 
 		/**
-	  * Store the settings for the timer
+	  * Store the timer duration wanted
 	  *
-	  * @type 		{Object}
+	  * @type 	{Number}
 	  */
 		function STimer(duration) {
 			var settings = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -35128,16 +34864,10 @@
 	    * @type 		{Boolean}
 	    * @default 	false
 	    */
-				loop: false
-
-				/**
-	    * Store the timer duration wanted
-	    *
-	    * @type 	{Number}
-	    */
-			};
+				loop: false };
 			this._duration = 0;
 			this._remaining = 0;
+			this._tickCount = null;
 			this._tickInterval = 1000;
 			this._ticks = [];
 			this._completes = [];
@@ -35153,7 +34883,8 @@
 
 			// calculate the tickInterval
 			if (this._settings.tickCount) {
-				this._tickInterval = this._duration / this._settings.tickCount; // remove 1 cause the first tick is always the start time
+				this._tickCount = this._settings.tickCount;
+				this._tickInterval = this._duration / this._tickCount; // remove 1 cause the first tick is always the start time
 			} else {
 				this._tickInterval = this._settings.tickInterval;
 			}
@@ -35193,6 +34924,20 @@
 	  */
 
 
+		/**
+	  * Store the remaining time
+	  *
+	  * @type 	{Number}
+	  */
+
+
+		/**
+	  * Store the settings for the timer
+	  *
+	  * @type 		{Object}
+	  */
+
+
 		_createClass(STimer, [{
 			key: "_tick",
 			value: function _tick() {
@@ -35204,23 +34949,18 @@
 				// update remaing
 				this._remaining -= this._tickInterval;
 
-				// loop on each ticks functions
-				this._ticks.forEach(function (tick) {
-					tick(_this);
-				});
-
 				// if we are at the end of the timer
 				if (this.remaining() <= 0) {
 					// stop the timer
 					this.stop();
-					// loop on each completes functions
-					this._completes.forEach(function (complete) {
-						complete(_this);
-					});
 					// check if need to loop
 					if (this._settings.loop) {
 						this.start();
 					}
+					// loop on each completes functions
+					this._completes.forEach(function (complete) {
+						complete(_this);
+					});
 				} else {
 					// launch another tick
 					clearTimeout(this._tickSetTimeout);
@@ -35228,6 +34968,11 @@
 						_this._tick();
 					}, this._tickInterval);
 				}
+
+				// loop on each ticks functions
+				this._ticks.forEach(function (tick) {
+					tick(_this);
+				});
 			}
 
 			/**
@@ -35254,11 +34999,28 @@
 
 				if (_duration) {
 					this._duration = _duration;
-					if (this._settings.tickCount) {
-						this._tickInterval = this._duration / this._settings.tickCount; // remove 1 cause the first tick is always the start time
+					if (this._tickCount) {
+						this._tickInterval = this._duration / this._tickCount; // remove 1 cause the first tick is always the start time
 					}
 				}
 				return this._duration;
+			}
+
+			/**
+	   * Set of get the tickCount
+	   * @param    {Inreger}    [tickCount=null]    Set the tickCount
+	   * @return    {Inreger}    The tickCount
+	   */
+
+		}, {
+			key: "tickCount",
+			value: function tickCount() {
+				var _tickCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+				if (_tickCount) {
+					this._tickCount = _tickCount;
+					this._tickInterval = this._duration / this._tickCount;
+				}
 			}
 
 			/**
@@ -35352,6 +35114,9 @@
 						_this2._tick();
 					}, remaining);
 
+					// set the start time
+					this._startTime = new Date();
+
 					// reset pauseTime
 					this._pauseTime = null;
 				} else {
@@ -35434,7 +35199,7 @@
 	exports.default = STimer;
 
 /***/ }),
-/* 609 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35451,11 +35216,11 @@
 
 	var _uncamelize2 = _interopRequireDefault(_uncamelize);
 
-	var _styleString2Object = __webpack_require__(610);
+	var _styleString2Object = __webpack_require__(607);
 
 	var _styleString2Object2 = _interopRequireDefault(_styleString2Object);
 
-	var _styleObject2String = __webpack_require__(611);
+	var _styleObject2String = __webpack_require__(608);
 
 	var _styleObject2String2 = _interopRequireDefault(_styleObject2String);
 
@@ -35496,7 +35261,7 @@
 	}
 
 /***/ }),
-/* 610 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35550,7 +35315,7 @@
 	}
 
 /***/ }),
-/* 611 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35601,7 +35366,7 @@
 	}
 
 /***/ }),
-/* 612 */
+/* 609 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -35658,7 +35423,7 @@
 	}
 
 /***/ }),
-/* 613 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35667,7 +35432,7 @@
 	  value: true
 	});
 
-	var _SEqualizeComponent = __webpack_require__(614);
+	var _SEqualizeComponent = __webpack_require__(611);
 
 	var _SEqualizeComponent2 = _interopRequireDefault(_SEqualizeComponent);
 
@@ -35676,7 +35441,7 @@
 	exports.default = _SEqualizeComponent2.default.define('s-equalize', _SEqualizeComponent2.default);
 
 /***/ }),
-/* 614 */
+/* 611 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35697,7 +35462,7 @@
 
 	var _dispatchEvent2 = _interopRequireDefault(_dispatchEvent);
 
-	var _offset = __webpack_require__(612);
+	var _offset = __webpack_require__(609);
 
 	var _offset2 = _interopRequireDefault(_offset);
 
@@ -35705,7 +35470,7 @@
 
 	var _whenVisible2 = _interopRequireDefault(_whenVisible);
 
-	var _whenAttribute = __webpack_require__(581);
+	var _whenAttribute = __webpack_require__(578);
 
 	var _whenAttribute2 = _interopRequireDefault(_whenAttribute);
 
@@ -36088,7 +35853,7 @@
 	exports.default = SEqualizeComponent;
 
 /***/ }),
-/* 615 */
+/* 612 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36097,7 +35862,7 @@
 	  value: true
 	});
 
-	var _SShareComponent = __webpack_require__(616);
+	var _SShareComponent = __webpack_require__(613);
 
 	var _SShareComponent2 = _interopRequireDefault(_SShareComponent);
 
@@ -36106,7 +35871,7 @@
 	exports.default = _SShareComponent2.default.define('s-share', _SShareComponent2.default, 'a');
 
 /***/ }),
-/* 616 */
+/* 613 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36119,11 +35884,11 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _SAnchorWebComponent2 = __webpack_require__(617);
+	var _SAnchorWebComponent2 = __webpack_require__(614);
 
 	var _SAnchorWebComponent3 = _interopRequireDefault(_SAnchorWebComponent2);
 
-	var _sharerNpm = __webpack_require__(618);
+	var _sharerNpm = __webpack_require__(615);
 
 	var _sharerNpm2 = _interopRequireDefault(_sharerNpm);
 
@@ -36435,7 +36200,7 @@
 	exports.default = SShareComponent;
 
 /***/ }),
-/* 617 */
+/* 614 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36471,7 +36236,7 @@
 	exports.default = SAnchorWebComponent;
 
 /***/ }),
-/* 618 */
+/* 615 */
 /***/ (function(module, exports) {
 
 	/**
@@ -36747,7 +36512,7 @@
 
 
 /***/ }),
-/* 619 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36756,7 +36521,7 @@
 	  value: true
 	});
 
-	var _BodymovinComponent = __webpack_require__(620);
+	var _BodymovinComponent = __webpack_require__(617);
 
 	var _BodymovinComponent2 = _interopRequireDefault(_BodymovinComponent);
 
@@ -36765,7 +36530,7 @@
 	exports.default = _BodymovinComponent2.default.define('s-bodymovin', _BodymovinComponent2.default);
 
 /***/ }),
-/* 620 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36784,11 +36549,11 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _bodymovin = __webpack_require__(621);
+	var _bodymovin = __webpack_require__(618);
 
 	var _bodymovin2 = _interopRequireDefault(_bodymovin);
 
-	var _whenProperty = __webpack_require__(622);
+	var _whenProperty = __webpack_require__(619);
 
 	var _whenProperty2 = _interopRequireDefault(_whenProperty);
 
@@ -37203,7 +36968,7 @@
 	exports.default = SBodymovinComponent;
 
 /***/ }),
-/* 621 */
+/* 618 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
@@ -51561,7 +51326,7 @@
 	}));
 
 /***/ }),
-/* 622 */
+/* 619 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51575,7 +51340,7 @@
 
 	var _get3 = _interopRequireDefault(_get2);
 
-	var _SWatcher = __webpack_require__(563);
+	var _SWatcher = __webpack_require__(620);
 
 	var _SWatcher2 = _interopRequireDefault(_SWatcher);
 
@@ -51650,7 +51415,451 @@
 	}
 
 /***/ }),
+/* 620 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _constructorName = __webpack_require__(621);
+
+	var _constructorName2 = _interopRequireDefault(_constructorName);
+
+	var _get2 = __webpack_require__(495);
+
+	var _get3 = _interopRequireDefault(_get2);
+
+	var _set2 = __webpack_require__(622);
+
+	var _set3 = _interopRequireDefault(_set2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @name 		SWatcher
+	 * This class allows you to easily monitor some object properties and get the new and old value of it
+	 *
+	 * @example 	js
+	 * // create the watcher instance
+	 * const watcher = new SWatcher();
+	 *
+	 * // object to watch
+	 * let myObject = {
+	 * 		title : 'Hello World'
+	 * };
+	 *
+	 * // watch the object
+	 * watcher.watch(myObject, 'title', (newVal, oldVal) => {
+	 *  	// do something when the title changes
+	 * });
+	 *
+	 * // update the title
+	 * myObject.title = 'Hello Universe';
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	var SWatcher = function () {
+
+		/**
+	  * @constructor
+	  */
+		function SWatcher() {
+			_classCallCheck(this, SWatcher);
+
+			this._watchStack = {};
+		}
+
+		/**
+	  * Destroy the watcher
+	  */
+
+
+		/**
+	  * Watch stack
+	  * @type 		{Object}
+	  */
+
+
+		_createClass(SWatcher, [{
+			key: 'destroy',
+			value: function destroy() {
+				// destroy the watchStack
+				this._watchStack = {};
+			}
+
+			/**
+	   * Internal implementation of the defineProp
+	   * @param 		{Object} 	obj 		The object to watch
+	   * @param 		{String} 	property 	The property of the object to watch
+	   * @param 		{Mixed} 	value 		The initial value of the property
+	   * @param 		{String} 	objPath 	The object property path to watch
+	   */
+
+		}, {
+			key: '_defineProp',
+			value: function _defineProp(obj, property, value, objPath) {
+				var _this2 = this;
+
+				var descriptor = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+
+
+				// do not define multiple time the description
+				if (this._watchStack[objPath]) return;
+
+				// store the current value
+				var val = value;
+				var currentDescriptor = Object.getOwnPropertyDescriptor(obj.prototype || obj, property);
+
+				// custom setter check
+				var _set = function _set(value) {
+					// descriptor
+					if (currentDescriptor && currentDescriptor.set) {
+						var ret = currentDescriptor.set(value);
+						if (ret) {
+							val = ret;
+						} else {
+							val = currentDescriptor.get();
+						}
+					} else {
+						val = value;
+					}
+
+					// apply the proxy for arrays, etc...
+					val = _this2._applyProxy(val, objPath, function (newVal) {
+						val = newVal;
+					});
+				};
+
+				// set the value
+				_set(value);
+
+				// make sure we have the good currentDescriptor
+				var d = Object.getOwnPropertyDescriptor(obj, property);
+				Object.defineProperty(obj, property, {
+					get: function get() {
+						var _val = val;
+						if (currentDescriptor && currentDescriptor.get) {
+							_val = currentDescriptor.get();
+						}
+						if (descriptor && descriptor.get) {
+							_val = descriptor.get(_val);
+						}
+						return _val;
+					},
+					set: function set(v) {
+						var oldValue = val;
+						if (descriptor && descriptor.set) {
+							v = descriptor.set(v);
+						}
+						// internal set to use the good setter
+						_set(v);
+						// _notify of new update
+						_this2._notify(objPath, val, oldValue);
+					},
+					configurable: descriptor && descriptor.configurable !== undefined ? descriptor.configurable : currentDescriptor && currentDescriptor.configurable !== undefined ? currentDescriptor.configurable : false,
+					enumarable: descriptor && descriptor.enumarable !== undefined ? descriptor.enumarable : currentDescriptor && currentDescriptor.enumarable !== undefined ? currentDescriptor.enumarable : true
+					// writable : currentDescriptor && currentDescriptor.writable !== undefined ? currentDescriptor.writable : true
+				});
+			}
+
+			/**
+	   * Override some array methods to be able to notify of changes
+	   * @param 		{Array} 	array 			The array to process
+	   * @param 		{Array} 	methods 		The methods to override
+	   * @param 		{String} 	objPath 		The object property path to watch
+	   * @param 		{Function} 	setValueCb 		A callback function that will set the updated value
+	   */
+
+		}, {
+			key: '_overrideArrayMethod',
+			value: function _overrideArrayMethod(array, methods, objPath, setValueCb) {
+				var _this = this;
+
+				// grab the old value
+				var oldVal = array.slice(0);
+
+				// loop on each methods to override
+				methods.forEach(function (method) {
+					array[method] = function () {
+						// array items info object
+						var updateInfo = {
+							type: Array,
+							method: method
+						};
+						if (method === 'push' || method === 'unshift' || method === 'concat') {
+							updateInfo.addedItems = Array.prototype.slice.call(arguments);
+						} else if (method === 'pop') {
+							updateInfo.removedItems = [oldVal[oldVal.length - 1]];
+						} else if (method === 'shift') {
+							updateInfo.removedItems = [oldVal[0]];
+						}
+						// @TODO Check and add missed methods to watch array
+						// apply the push
+						var ret = Array.prototype[method].apply(this, arguments);
+						// set value callback
+						setValueCb(this);
+						// _notify
+						_this._notify(objPath, this, oldVal, updateInfo);
+						// return the new value
+						return ret;
+					};
+				});
+			}
+
+			/**
+	   * Apply a proxy on the variable to detect changes
+	   * on arrays, etc...
+	   * @param 		{Mixed} 	value 		The value on which to apply the proxy
+	   * @param 		{String} 	objPath 	The object property path to watch
+	   * @param 		{Function} 	setValueCb 	A function that will be responsible to set the new value intarnally
+	   * @return 		{Mixed} 				Return the value
+	   */
+
+		}, {
+			key: '_applyProxy',
+			value: function _applyProxy(value, objPath, setValueCb) {
+				// if is an array
+				if (value instanceof Array) {
+					// override methods
+					this._overrideArrayMethod(value, ['push', 'splice', 'pop', 'shift', 'unshift', 'reverse', 'sort', 'concat'], objPath, setValueCb);
+				}
+				return value;
+			}
+
+			/**
+	   * Watch something on an object
+	   * @param 		{Object} 		object 		The object to watch
+	   * @param 		{String} 		path 		The property path to watch on the object
+	   * @param 		{Function} 		cb 			The callback called when the property is updated
+	   */
+
+		}, {
+			key: 'watch',
+			value: function watch(object, path, cb) {
+				var _this3 = this;
+
+				var descriptor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+				// split the path by ',' to watch multiple properties
+				if (typeof path === 'string') {
+					path = path.split(',');
+				}
+				if (!path instanceof Array) {
+					throw "The 'path' parameter has to be an array...";
+				}
+				// loop on each path to watch
+				path.forEach(function (p) {
+					_this3._watch(object, p.trim(), cb, descriptor);
+				});
+			}
+
+			/**
+	   * Internal watch$
+	   * @param 		{Object} 		object 		The object to watch
+	   * @param 		{String} 		path 		The property path to watch on the object
+	   * @param 		{Function} 		cb 			The callback called when the property is updated
+	   */
+
+		}, {
+			key: '_watch',
+			value: function _watch(object, path, cb) {
+				var descriptor = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+				// check if the path parameter has already a descriptor
+				var split = path.split('.');
+				var obj = object;
+				var property = null;
+				if (split.length > 1) {
+					property = split.pop();
+					obj = (0, _get3.default)(object, split.join('.'));
+				} else {
+					property = split[0];
+				}
+				var currentValue = null;
+				currentValue = (0, _get3.default)(object, path);
+
+				// if is undefined, create the value at null
+				if (obj === undefined || currentValue === undefined) {
+					(0, _set3.default)(obj, path, null);
+					// _set(this, split.join('.'),null);
+					// throw `It's not possible to watch the property ${path} cause it does not exist...`;
+				};
+
+				// define the property proxy
+				this._defineProp(obj, property, currentValue, path, descriptor);
+
+				// register new watch
+				if (!this._watchStack[path]) {
+					this._watchStack[path] = [];
+				}
+				this._watchStack[path].push(cb);
+			}
+
+			/**
+	   * Tell that something has changed
+	   * @param 		{String} 		path 		The object property path that has been updated
+	   * @param 		{Mixed} 		newValue 	The new property value
+	   * @param 		{Mixed} 		oldValue 	The old property value
+	   * @param 		{Object} 		[updateInfo=null] 	An object that add information about the update like addedItems for array, etc...
+	   */
+
+		}, {
+			key: '_notify',
+			value: function _notify(path, newValue, oldValue) {
+				var updateInfo = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+				if (this._watchStack[path] !== undefined && newValue !== oldValue) {
+					this._watchStack[path].forEach(function (cb) {
+						cb(newValue, oldValue, updateInfo);
+					});
+				}
+			}
+		}]);
+
+		return SWatcher;
+	}();
+
+	exports.default = SWatcher;
+
+/***/ }),
+/* 621 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = constructorName;
+	/**
+	 * Return the constructor name of the passed object
+	 *
+	 * @name 		constructorName
+	 * @param 		{Object} 			obj 		The object to get the constructor name from
+	 * @return 		{String}						The constructor name
+	 *
+	 * @example 	js
+	 * class MyCoolClass {
+	 * 		// class implementation...
+	 * }
+	 * const myObj = new MyCoolClass();
+	 * console.log(constructorName(myObj)); => MyCoolClass
+	 *
+	 * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	function constructorName(obj) {
+	  var funcNameRegex = /function (.{1,})\(/;
+
+	  var res = funcNameRegex.exec(obj.toString());
+	  if (res && res[1]) return res[1];
+
+	  var results = funcNameRegex.exec(obj.constructor.toString());
+	  return results && results.length > 1 ? results[1] : "";
+	}
+
+/***/ }),
+/* 622 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var baseSet = __webpack_require__(623);
+
+	/**
+	 * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
+	 * it's created. Arrays are created for missing index properties while objects
+	 * are created for all other missing properties. Use `_.setWith` to customize
+	 * `path` creation.
+	 *
+	 * **Note:** This method mutates `object`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 3.7.0
+	 * @category Object
+	 * @param {Object} object The object to modify.
+	 * @param {Array|string} path The path of the property to set.
+	 * @param {*} value The value to set.
+	 * @returns {Object} Returns `object`.
+	 * @example
+	 *
+	 * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+	 *
+	 * _.set(object, 'a[0].b.c', 4);
+	 * console.log(object.a[0].b.c);
+	 * // => 4
+	 *
+	 * _.set(object, ['x', '0', 'y', 'z'], 5);
+	 * console.log(object.x[0].y.z);
+	 * // => 5
+	 */
+	function set(object, path, value) {
+	  return object == null ? object : baseSet(object, path, value);
+	}
+
+	module.exports = set;
+
+
+/***/ }),
 /* 623 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var assignValue = __webpack_require__(544),
+	    castPath = __webpack_require__(497),
+	    isIndex = __webpack_require__(475),
+	    isObject = __webpack_require__(427),
+	    toKey = __webpack_require__(505);
+
+	/**
+	 * The base implementation of `_.set`.
+	 *
+	 * @private
+	 * @param {Object} object The object to modify.
+	 * @param {Array|string} path The path of the property to set.
+	 * @param {*} value The value to set.
+	 * @param {Function} [customizer] The function to customize path creation.
+	 * @returns {Object} Returns `object`.
+	 */
+	function baseSet(object, path, value, customizer) {
+	  if (!isObject(object)) {
+	    return object;
+	  }
+	  path = castPath(path, object);
+
+	  var index = -1,
+	      length = path.length,
+	      lastIndex = length - 1,
+	      nested = object;
+
+	  while (nested != null && ++index < length) {
+	    var key = toKey(path[index]),
+	        newValue = value;
+
+	    if (index != lastIndex) {
+	      var objValue = nested[key];
+	      newValue = customizer ? customizer(objValue, key, nested) : undefined;
+	      if (newValue === undefined) {
+	        newValue = isObject(objValue)
+	          ? objValue
+	          : (isIndex(path[index + 1]) ? [] : {});
+	      }
+	    }
+	    assignValue(nested, key, newValue);
+	    nested = nested[key];
+	  }
+	  return object;
+	}
+
+	module.exports = baseSet;
+
+
+/***/ }),
+/* 624 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51659,7 +51868,7 @@
 	  value: true
 	});
 
-	var _SITypedComponent = __webpack_require__(624);
+	var _SITypedComponent = __webpack_require__(625);
 
 	var _SITypedComponent2 = _interopRequireDefault(_SITypedComponent);
 
@@ -51668,7 +51877,7 @@
 	exports.default = _SITypedComponent2.default.define('s-i-typed', _SITypedComponent2.default);
 
 /***/ }),
-/* 624 */
+/* 625 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51685,7 +51894,7 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _ityped = __webpack_require__(625);
+	var _ityped = __webpack_require__(626);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51803,13 +52012,13 @@
 	exports.default = SITypedComponent;
 
 /***/ }),
-/* 625 */
+/* 626 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&"function"==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?"symbol":typeof a};!function(a,b){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"===("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports={init:b.init,destroy:b.destroy}:a.ityped=b}(this,function(a){function b(a){var b=a;return b.strings=a.strings||["Put your string here...","and Enjoy!"],b.typeSpeed=a.typeSpeed||100,b.backSpeed=a.backSpeed||50,b.backDelay=a.backDelay||500,b.startDelay=a.startDelay||500,b.showCursor=a.showCursor,b.loop=a.loop||!1,void 0===b.showCursor&&(b.showCursor=!0),Promise.resolve(b)}function c(a,c){a="string"==typeof a?document.querySelector(a):a,b(c).then(function(b){m=b,a._props=m,m.showCursor&&d(a,m.cursorChar||"|"),e(a)})}function d(a,b){var c=n.cloneNode();a.insertAdjacentElement("afterend",c),c.textContent=b}function e(a){l(a._props.strings,function(b,c,d){var e=a._props.typeSpeed*b.length-1;a._props.backSpeed<a._props.typeSpeed?e-=(a._props.typeSpeed-a._props.backSpeed)*b.length:a._props.backSpeed>a._props.typeSpeed&&(e+=(a._props.backSpeed-a._props.typeSpeed)*b.length);var f=this.async(),g=a._props.strings.length;h(a,b,c,g).then(function(){setTimeout(function(){f()},e)})},function(){a._props.loop&&e(a)})}function f(a,b){return new Promise(function(c,d){for(var e=0,f=0;f<b.length;f++)!function(d){var f=d,h=b.length;setTimeout(function(d){g(a,b.charAt(f)),++e===h-1&&c()},a._props.typeSpeed*d)}(f)})}function g(a,b){a.innerHTML+=b}function h(a,b,c,d){return new Promise(function(e,g){f(a,b).then(function(){setTimeout(function(){j(a,b,c,d).then(function(){setTimeout(function(){e()},a._props.startDelay)})},a._props.backDelay)})})}function i(a,b,c,d){for(var e=c;e>0;e--)!function(e){var f=e,g=c;setTimeout(function(e){a.innerHTML=b.substring(0,c-f),g--,1===f&&d()},a._props.backSpeed*e)}(e)}function j(a,b,c,d){return new Promise(function(e,f){var g=b.length;c+1===d?a._props.loop?a._props.loop&&i(a,b,g,e):(void 0!==a._props.onFinished&&"function"==typeof a._props.onFinished&&a._props.onFinished(),a.innerHTML=b):c+1!==d&&i(a,b,g,e)})}function k(a){a._props.onFinished=function(){}}var l=function(a,b,c){var d=-1,e=a.length>>>0;!function f(g){var h,i=g===!1;do{++d}while(!(d in a)&&d!==e);if(i||d===e)return void(c&&c(!i,a));g=b.call({async:function(){return h=!0,f}},a[d],d,a),h||f(g)}()},m=void 0,n=document.createElement("span");return n.classList.add("ityped-cursor"),n.textContent="|",{init:c,destroy:k}}());
 
 /***/ }),
-/* 626 */
+/* 627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51818,7 +52027,7 @@
 	  value: true
 	});
 
-	var _SResponsiveImgComponent = __webpack_require__(627);
+	var _SResponsiveImgComponent = __webpack_require__(628);
 
 	var _SResponsiveImgComponent2 = _interopRequireDefault(_SResponsiveImgComponent);
 
@@ -51827,7 +52036,7 @@
 	exports.default = _SResponsiveImgComponent2.default.define('s-responsive-img', _SResponsiveImgComponent2.default, 'img');
 
 /***/ }),
-/* 627 */
+/* 628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51846,7 +52055,7 @@
 
 	var _sNativeWebComponent2 = _interopRequireDefault(_sNativeWebComponent);
 
-	var _debounce = __webpack_require__(628);
+	var _debounce = __webpack_require__(629);
 
 	var _debounce2 = _interopRequireDefault(_debounce);
 
@@ -52161,7 +52370,7 @@
 	exports.default = SResponsiveImgComponent;
 
 /***/ }),
-/* 628 */
+/* 629 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -52202,7 +52411,7 @@
 	}
 
 /***/ }),
-/* 629 */
+/* 630 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52212,573 +52421,13 @@
 	});
 	exports.default = void 0;
 
-	var _SCharactersSlideshowComponent = _interopRequireDefault(__webpack_require__(630));
+	var _SCharactersSlideshowComponent = _interopRequireDefault(__webpack_require__(631));
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var _default = _SCharactersSlideshowComponent.default.define("s-characters-slideshow", _SCharactersSlideshowComponent.default);
 
 	exports.default = _default;
-
-/***/ }),
-/* 630 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict"
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	})
-	exports.default = void 0
-
-	var _SWebComponent2 = _interopRequireDefault(
-	  __webpack_require__(533)
-	)
-
-	var _STimer = _interopRequireDefault(
-	  __webpack_require__(608)
-	)
-
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj }
-	}
-
-	function _typeof(obj) {
-	  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-	    _typeof = function _typeof(obj) {
-	      return typeof obj
-	    }
-	  } else {
-	    _typeof = function _typeof(obj) {
-	      return obj &&
-	        typeof Symbol === "function" &&
-	        obj.constructor === Symbol &&
-	        obj !== Symbol.prototype
-	        ? "symbol"
-	        : typeof obj
-	    }
-	  }
-	  return _typeof(obj)
-	}
-
-	function _slicedToArray(arr, i) {
-	  return (
-	    _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest()
-	  )
-	}
-
-	function _nonIterableRest() {
-	  throw new TypeError("Invalid attempt to destructure non-iterable instance")
-	}
-
-	function _iterableToArrayLimit(arr, i) {
-	  var _arr = []
-	  var _n = true
-	  var _d = false
-	  var _e = undefined
-	  try {
-	    for (
-	      var _i = arr[Symbol.iterator](), _s;
-	      !(_n = (_s = _i.next()).done);
-	      _n = true
-	    ) {
-	      _arr.push(_s.value)
-	      if (i && _arr.length === i) break
-	    }
-	  } catch (err) {
-	    _d = true
-	    _e = err
-	  } finally {
-	    try {
-	      if (!_n && _i["return"] != null) _i["return"]()
-	    } finally {
-	      if (_d) throw _e
-	    }
-	  }
-	  return _arr
-	}
-
-	function _arrayWithHoles(arr) {
-	  if (Array.isArray(arr)) return arr
-	}
-
-	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function")
-	  }
-	}
-
-	function _defineProperties(target, props) {
-	  for (var i = 0; i < props.length; i++) {
-	    var descriptor = props[i]
-	    descriptor.enumerable = descriptor.enumerable || false
-	    descriptor.configurable = true
-	    if ("value" in descriptor) descriptor.writable = true
-	    Object.defineProperty(target, descriptor.key, descriptor)
-	  }
-	}
-
-	function _createClass(Constructor, protoProps, staticProps) {
-	  if (protoProps) _defineProperties(Constructor.prototype, protoProps)
-	  if (staticProps) _defineProperties(Constructor, staticProps)
-	  return Constructor
-	}
-
-	function _possibleConstructorReturn(self, call) {
-	  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-	    return call
-	  }
-	  return _assertThisInitialized(self)
-	}
-
-	function _assertThisInitialized(self) {
-	  if (self === void 0) {
-	    throw new ReferenceError(
-	      "this hasn't been initialised - super() hasn't been called"
-	    )
-	  }
-	  return self
-	}
-
-	function _get(target, property, receiver) {
-	  if (typeof Reflect !== "undefined" && Reflect.get) {
-	    _get = Reflect.get
-	  } else {
-	    _get = function _get(target, property, receiver) {
-	      var base = _superPropBase(target, property)
-	      if (!base) return
-	      var desc = Object.getOwnPropertyDescriptor(base, property)
-	      if (desc.get) {
-	        return desc.get.call(receiver)
-	      }
-	      return desc.value
-	    }
-	  }
-	  return _get(target, property, receiver || target)
-	}
-
-	function _superPropBase(object, property) {
-	  while (!Object.prototype.hasOwnProperty.call(object, property)) {
-	    object = _getPrototypeOf(object)
-	    if (object === null) break
-	  }
-	  return object
-	}
-
-	function _getPrototypeOf(o) {
-	  _getPrototypeOf = Object.setPrototypeOf
-	    ? Object.getPrototypeOf
-	    : function _getPrototypeOf(o) {
-	        return o.__proto__ || Object.getPrototypeOf(o)
-	      }
-	  return _getPrototypeOf(o)
-	}
-
-	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function")
-	  }
-	  subClass.prototype = Object.create(superClass && superClass.prototype, {
-	    constructor: { value: subClass, writable: true, configurable: true }
-	  })
-	  if (superClass) _setPrototypeOf(subClass, superClass)
-	}
-
-	function _setPrototypeOf(o, p) {
-	  _setPrototypeOf =
-	    Object.setPrototypeOf ||
-	    function _setPrototypeOf(o, p) {
-	      o.__proto__ = p
-	      return o
-	    }
-	  return _setPrototypeOf(o, p)
-	}
-
-	/**
-	 * Create a nice "slideshow" of sentences with a cool "split flap" random characters like effect
-	 *
-	 * @example    html
-	 * <s-characters-slideshow values="['Hello World','How are you universe']"></s-characters-slideshow>
-	 *
-	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
-	 */
-	var SCharactersSlideshowComponent =
-	  /*#__PURE__*/
-	  (function(_SWebComponent) {
-	    _inherits(SCharactersSlideshowComponent, _SWebComponent)
-
-	    function SCharactersSlideshowComponent() {
-	      _classCallCheck(this, SCharactersSlideshowComponent)
-
-	      return _possibleConstructorReturn(
-	        this,
-	        _getPrototypeOf(SCharactersSlideshowComponent).apply(this, arguments)
-	      )
-	    }
-
-	    _createClass(
-	      SCharactersSlideshowComponent,
-	      [
-	        {
-	          key: "componentMount",
-
-	          /**
-	           * Mount component
-	           * @definition    SWebComponent.componentMount
-	           * @protected
-	           */
-	          value: function componentMount() {
-	            var _this = this
-
-	            _get(
-	              _getPrototypeOf(SCharactersSlideshowComponent.prototype),
-	              "componentMount",
-	              this
-	            ).call(this)
-
-	            var values = this.props.values
-
-	            var _values = _slicedToArray(values, 1),
-	              firstValue = _values[0] // set the first value
-
-	            this.innerHTML = firstValue // init current slide idx
-
-	            this._currentSlideIdx = 0 // create a timer for the slideshow
-
-	            this._sliderTimer = new _STimer.default(this.props.timeout, {
-	              tickCount: 1
-	            }) // when the slideshow is complete
-
-	            this._sliderTimer.onComplete(function() {
-	              // go to next
-	              _this.next()
-	            }) // play
-
-	            this.play()
-	          }
-	          /**
-	           * Component will receive prop
-	           * @definition    SWebComponent.componentWillReceiveProp
-	           * @protected
-	           */
-	        },
-	        {
-	          key: "componentWillReceiveProp",
-	          value: function componentWillReceiveProp(name, newVal, oldVal) {
-	            _get(
-	              _getPrototypeOf(SCharactersSlideshowComponent.prototype),
-	              "componentWillReceiveProp",
-	              this
-	            ).call(this, name, newVal, oldVal)
-
-	            switch (name) {
-	              case "timeout":
-	                this._sliderTimer.duration(newVal)
-
-	                break
-
-	              default:
-	                // do nothing by default
-	                break
-	            }
-	          }
-	          /**
-	           * Play
-	           */
-	        },
-	        {
-	          key: "play",
-	          value: function play() {
-	            // start the timer
-	            this._sliderTimer.start() // track is playing flag
-
-	            this._isPlaying = true
-	          }
-	          /**
-	           * Pause
-	           */
-	        },
-	        {
-	          key: "pause",
-	          value: function pause() {
-	            // pause the timer
-	            this._sliderTimer.pause() // track the is playing flag
-
-	            this._isPlaying = false
-	          }
-	          /**
-	           * Stop
-	           */
-	        },
-	        {
-	          key: "stop",
-	          value: function stop() {
-	            // stop the timer
-	            this._sliderTimer.stop() // track the is playing flag
-
-	            this._isPlaying = false
-	          }
-	          /**
-	           * Go to the next slide
-	           */
-	        },
-	        {
-	          key: "next",
-	          value: function next() {
-	            var _this2 = this
-
-	            // handle loop property
-	            if (
-	              this._currentSlideIdx + 1 >= this.values.length &&
-	              !this.props.loop
-	            ) {
-	              // stop
-	              this.stop() // stop here
-
-	              return
-	            } // get the "from" sentence
-
-	            var fromSentence = this.props.values[this._currentSlideIdx] // update the currentSlideIdx
-
-	            this._currentSlideIdx =
-	              this._currentSlideIdx + 1 >= this.values.length
-	                ? 0
-	                : this._currentSlideIdx + 1 // get the "to" sentence
-
-	            var toSentence = this.props.values[this._currentSlideIdx] // switch
-
-	            this.switch(fromSentence, toSentence, function() {
-	              if (_this2._isPlaying) {
-	                _this2._sliderTimer.start()
-	              }
-	            })
-	          }
-	          /**
-	           * Go to the previous slide
-	           */
-	        },
-	        {
-	          key: "previous",
-	          value: function previous() {
-	            var _this3 = this
-
-	            // handle loop property
-	            if (this._currentSlideIdx - 1 < 0 && !this.props.loop) {
-	              // stop
-	              this.stop() // stop here
-
-	              return
-	            } // get the "from" sentence
-
-	            var fromSentence = this.props.values[this._currentSlideIdx] // update the currentSlideIdx
-
-	            this._currentSlideIdx =
-	              this._currentSlideIdx - 1 < 0
-	                ? this.props.values.length - 1
-	                : this._currentSlideIdx - 1 // get the "to" sentence
-
-	            var toSentence = this.props.values[this._currentSlideIdx] // switch
-
-	            this.switch(fromSentence, toSentence, function() {
-	              if (_this3._isPlaying) {
-	                _this3._sliderTimer.start()
-	              }
-	            })
-	          }
-	          /**
-	           * Switch from a sentence to another
-	           * @param    {String}    fromSentence    The from sentence
-	           * @param    {String}    toSentence    The to sentence
-	           * @param    {Function}    completeCb    The callbacl to call when the switch is finished
-	           */
-	        },
-	        {
-	          key: "switch",
-	          value: function _switch(fromSentence, toSentence, completeCb) {
-	            var _this4 = this
-
-	            // switch characters
-	            this._switch(
-	              fromSentence,
-	              toSentence,
-	              function(splits) {
-	                var newLine = splits
-	                  .map(function(character) {
-	                    if (character === undefined)
-	                      return '<span class="'.concat(
-	                        _this4.componentNameDash,
-	                        '__character">&nbsp;</span>'
-	                      )
-	                    return character
-	                  })
-	                  .join("")
-	                _this4.innerHTML = newLine
-	              },
-	              function(splits) {
-	                _this4.innerHTML = splits.join("").trim()
-	                if (completeCb) completeCb(splits)
-	              }
-	            )
-	          }
-	          /**
-	           * Split the text into an array
-	           *
-	           * Hello World
-	           * How are you unierse?
-	           *
-	           */
-	        },
-	        {
-	          key: "_switch",
-	          value: function _switch(from, to) {
-	            var cb =
-	              arguments.length > 2 && arguments[2] !== undefined
-	                ? arguments[2]
-	                : null
-	            var completeCb =
-	              arguments.length > 3 && arguments[3] !== undefined
-	                ? arguments[3]
-	                : null
-	            var fromSplits = from.split("")
-	            var toSplits = to.split("")
-	            var largeLength =
-	              fromSplits.length > toSplits.length
-	                ? fromSplits.length
-	                : toSplits.length
-	            var characters = this.props.characters.split("")
-	            var newSplits = []
-
-	            for (var i = 0; i < largeLength; i += 1) {
-	              newSplits.push(fromSplits[i])
-	            }
-
-	            var newSplitsIdx = []
-
-	            for (var _i2 = 0; _i2 < largeLength; _i2 += 1) {
-	              newSplitsIdx.push(_i2)
-	            }
-
-	            var toSplitsIdx = []
-
-	            for (var _i3 = 0; _i3 < largeLength; _i3 += 1) {
-	              toSplitsIdx.push(_i3)
-	            }
-
-	            var tickId = 0
-	            var timer = new _STimer.default(this.props.duration, {
-	              tickCount: largeLength * 2
-	            })
-	            timer.onTick(function() {
-	              if (tickId < largeLength) {
-	                // phase 1, transform to characters
-	                // pick a slot in the newSplitsIdx stack
-	                var randomIdx =
-	                  newSplitsIdx[
-	                    Math.round(Math.random() * (newSplitsIdx.length - 1))
-	                  ] // remove the idx from the stack
-
-	                newSplitsIdx.splice(newSplitsIdx.indexOf(randomIdx), 1) // set a random character in the newSplits at the randomIdx idx
-
-	                newSplits[randomIdx] =
-	                  characters[
-	                    Math.round(Math.random() * (characters.length - 1))
-	                  ]
-	              } else {
-	                // phase 2, transform into the new text
-	                // pick a slot in the newSplitsIdx stack
-	                var _randomIdx =
-	                  toSplitsIdx[
-	                    Math.round(Math.random() * (toSplitsIdx.length - 1))
-	                  ] // remove the idx from the stack
-
-	                toSplitsIdx.splice(toSplitsIdx.indexOf(_randomIdx), 1) // grab the new character
-
-	                newSplits[_randomIdx] = toSplits[_randomIdx]
-	                  ? toSplits[_randomIdx]
-	                  : null
-	              } // callback
-
-	              if (cb) cb(newSplits) // update tickId
-
-	              tickId += 1
-	            })
-	            timer.onComplete(function() {
-	              if (completeCb) completeCb(newSplits)
-	            })
-	            timer.start()
-	          }
-	        }
-	      ],
-	      [
-	        {
-	          key: "defaultCss",
-
-	          /**
-	           * Css
-	           * @protected
-	           */
-	          value: function defaultCss(componentName, componentNameDash) {
-	            return "\n      ".concat(
-	              componentNameDash,
-	              " {\n        display : inline-block;\n      }\n    "
-	            )
-	          }
-	        },
-	        {
-	          key: "defaultProps",
-
-	          /**
-	           * Default props
-	           * @definition    SWebComponent.defaultProps
-	           * @protected
-	           */
-	          get: function get() {
-	            return {
-	              /**
-	               * Specify the values to use as sentences
-	               * @prop
-	               * @type    {Array<String>}
-	               */
-	              values: ["Hello world", "How are you universe"],
-
-	              /**
-	               * Specify the transition characters to use
-	               * @prop
-	               * @type    {Array<String>}
-	               */
-	              characters: "+*/#%&§?-_",
-
-	              /**
-	               * Specify the transition duration in ms
-	               * @prop
-	               * @type    {Integer}
-	               */
-	              duration: 500,
-
-	              /**
-	               * Specify the timeout between two characters "slide"
-	               * @prop
-	               * @type    {Integer}
-	               */
-	              timeout: 4000,
-
-	              /**
-	               * Specify if the slider has to loop over the values or not
-	               * @prop
-	               * @type    {Boolean}
-	               */
-	              loop: true
-	            }
-	          }
-	        }
-	      ]
-	    )
-
-	    return SCharactersSlideshowComponent
-	  })(_SWebComponent2.default)
-
-	exports.default = SCharactersSlideshowComponent
-
 
 /***/ }),
 /* 631 */
@@ -52791,13 +52440,371 @@
 	});
 	exports.default = void 0;
 
-	var _SIconComponent = _interopRequireDefault(__webpack_require__(632));
+	var _SWebComponent2 = _interopRequireDefault(__webpack_require__(533));
+
+	var _STimer = _interopRequireDefault(__webpack_require__(605));
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _default = _SIconComponent.default.define("s-icon", _SIconComponent.default);
+	function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-	exports.default = _default;
+	function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+	function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+	function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+	function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+	function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	/**
+	 * Create a nice "slideshow" of sentences with a cool "split flap" random characters like effect
+	 *
+	 * @example    html
+	 * <s-characters-slideshow values="['Hello World','How are you universe']"></s-characters-slideshow>
+	 *
+	 * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+	 */
+	var SCharactersSlideshowComponent =
+	/*#__PURE__*/
+	function (_SWebComponent) {
+	  _inherits(SCharactersSlideshowComponent, _SWebComponent);
+
+	  function SCharactersSlideshowComponent() {
+	    _classCallCheck(this, SCharactersSlideshowComponent);
+
+	    return _possibleConstructorReturn(this, _getPrototypeOf(SCharactersSlideshowComponent).apply(this, arguments));
+	  }
+
+	  _createClass(SCharactersSlideshowComponent, [{
+	    key: "componentMount",
+
+	    /**
+	     * Mount component
+	     * @definition    SWebComponent.componentMount
+	     * @protected
+	     */
+	    value: function componentMount() {
+	      var _this = this;
+
+	      _get(_getPrototypeOf(SCharactersSlideshowComponent.prototype), "componentMount", this).call(this);
+
+	      var values = this.props.values;
+
+	      var _values = _slicedToArray(values, 1),
+	          firstValue = _values[0]; // set the first value
+
+
+	      this.innerHTML = firstValue; // init current slide idx
+
+	      this._currentSlideIdx = 0; // create a timer for the slideshow
+
+	      this._sliderTimer = new _STimer.default(this.props.timeout, {
+	        tickCount: 1
+	      }); // when the slideshow is complete
+
+	      this._sliderTimer.onComplete(function () {
+	        // go to next
+	        _this.next();
+	      }); // play
+
+
+	      this.play();
+	    }
+	    /**
+	     * Component will receive prop
+	     * @definition    SWebComponent.componentWillReceiveProp
+	     * @protected
+	     */
+
+	  }, {
+	    key: "componentWillReceiveProp",
+	    value: function componentWillReceiveProp(name, newVal, oldVal) {
+	      _get(_getPrototypeOf(SCharactersSlideshowComponent.prototype), "componentWillReceiveProp", this).call(this, name, newVal, oldVal);
+
+	      switch (name) {
+	        case "timeout":
+	          this._sliderTimer.duration(newVal);
+
+	          break;
+
+	        default:
+	          // do nothing by default
+	          break;
+	      }
+	    }
+	    /**
+	     * Play
+	     */
+
+	  }, {
+	    key: "play",
+	    value: function play() {
+	      // start the timer
+	      this._sliderTimer.start(); // track is playing flag
+
+
+	      this._isPlaying = true;
+	    }
+	    /**
+	     * Pause
+	     */
+
+	  }, {
+	    key: "pause",
+	    value: function pause() {
+	      // pause the timer
+	      this._sliderTimer.pause(); // track the is playing flag
+
+
+	      this._isPlaying = false;
+	    }
+	    /**
+	     * Stop
+	     */
+
+	  }, {
+	    key: "stop",
+	    value: function stop() {
+	      // stop the timer
+	      this._sliderTimer.stop(); // track the is playing flag
+
+
+	      this._isPlaying = false;
+	    }
+	    /**
+	     * Go to the next slide
+	     */
+
+	  }, {
+	    key: "next",
+	    value: function next() {
+	      var _this2 = this;
+
+	      // handle loop property
+	      if (this._currentSlideIdx + 1 >= this.props.values.length && !this.props.loop) {
+	        // stop
+	        this.stop(); // stop here
+
+	        return;
+	      } // get the "from" sentence
+
+
+	      var fromSentence = this.props.values[this._currentSlideIdx]; // update the currentSlideIdx
+
+	      this._currentSlideIdx = this._currentSlideIdx + 1 >= this.props.values.length ? 0 : this._currentSlideIdx + 1; // get the "to" sentence
+
+	      var toSentence = this.props.values[this._currentSlideIdx]; // switch
+
+	      this.switch(fromSentence, toSentence, function () {
+	        if (_this2._isPlaying) {
+	          _this2._sliderTimer.start();
+	        }
+	      });
+	    }
+	    /**
+	     * Go to the previous slide
+	     */
+
+	  }, {
+	    key: "previous",
+	    value: function previous() {
+	      var _this3 = this;
+
+	      // handle loop property
+	      if (this._currentSlideIdx - 1 < 0 && !this.props.loop) {
+	        // stop
+	        this.stop(); // stop here
+
+	        return;
+	      } // get the "from" sentence
+
+
+	      var fromSentence = this.props.values[this._currentSlideIdx]; // update the currentSlideIdx
+
+	      this._currentSlideIdx = this._currentSlideIdx - 1 < 0 ? this.props.values.length - 1 : this._currentSlideIdx - 1; // get the "to" sentence
+
+	      var toSentence = this.props.values[this._currentSlideIdx]; // switch
+
+	      this.switch(fromSentence, toSentence, function () {
+	        if (_this3._isPlaying) {
+	          _this3._sliderTimer.start();
+	        }
+	      });
+	    }
+	    /**
+	     * Switch from a sentence to another
+	     * @param    {String}    fromSentence    The from sentence
+	     * @param    {String}    toSentence    The to sentence
+	     * @param    {Function}    completeCb    The callbacl to call when the switch is finished
+	     */
+
+	  }, {
+	    key: "switch",
+	    value: function _switch(fromSentence, toSentence, completeCb) {
+	      var _this4 = this;
+
+	      // switch characters
+	      this._switch(fromSentence, toSentence, function (splits) {
+	        var newLine = splits.map(function (character) {
+	          if (character === undefined) return "<span class=\"".concat(_this4.componentNameDash, "__character\">&nbsp;</span>");
+	          return character;
+	        }).join("");
+	        _this4.innerHTML = newLine;
+	      }, function (splits) {
+	        _this4.innerHTML = splits.join("").trim();
+	        if (completeCb) completeCb(splits);
+	      });
+	    }
+	    /**
+	     * Split the text into an array
+	     *
+	     * Hello World
+	     * How are you unierse?
+	     *
+	     */
+
+	  }, {
+	    key: "_switch",
+	    value: function _switch(from, to) {
+	      var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	      var completeCb = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+	      var fromSplits = from.split("");
+	      var toSplits = to.split("");
+	      var largeLength = fromSplits.length > toSplits.length ? fromSplits.length : toSplits.length;
+	      var characters = this.props.characters.split("");
+	      var newSplits = [];
+
+	      for (var i = 0; i < largeLength; i += 1) {
+	        newSplits.push(fromSplits[i]);
+	      }
+
+	      var newSplitsIdx = [];
+
+	      for (var _i2 = 0; _i2 < largeLength; _i2 += 1) {
+	        newSplitsIdx.push(_i2);
+	      }
+
+	      var toSplitsIdx = [];
+
+	      for (var _i3 = 0; _i3 < largeLength; _i3 += 1) {
+	        toSplitsIdx.push(_i3);
+	      }
+
+	      var tickId = 0;
+	      var timer = new _STimer.default(this.props.duration, {
+	        tickCount: largeLength * 2
+	      });
+	      timer.onTick(function () {
+	        if (tickId < largeLength) {
+	          // phase 1, transform to characters
+	          // pick a slot in the newSplitsIdx stack
+	          var randomIdx = newSplitsIdx[Math.round(Math.random() * (newSplitsIdx.length - 1))]; // remove the idx from the stack
+
+	          newSplitsIdx.splice(newSplitsIdx.indexOf(randomIdx), 1); // set a random character in the newSplits at the randomIdx idx
+
+	          newSplits[randomIdx] = characters[Math.round(Math.random() * (characters.length - 1))];
+	        } else {
+	          // phase 2, transform into the new text
+	          // pick a slot in the newSplitsIdx stack
+	          var _randomIdx = toSplitsIdx[Math.round(Math.random() * (toSplitsIdx.length - 1))]; // remove the idx from the stack
+
+	          toSplitsIdx.splice(toSplitsIdx.indexOf(_randomIdx), 1); // grab the new character
+
+	          newSplits[_randomIdx] = toSplits[_randomIdx] ? toSplits[_randomIdx] : null;
+	        } // callback
+
+
+	        if (cb) cb(newSplits); // update tickId
+
+	        tickId += 1;
+	      });
+	      timer.onComplete(function () {
+	        if (completeCb) completeCb(newSplits);
+	      });
+	      timer.start();
+	    }
+	  }], [{
+	    key: "defaultCss",
+
+	    /**
+	     * Css
+	     * @protected
+	     */
+	    value: function defaultCss(componentName, componentNameDash) {
+	      return "\n      ".concat(componentNameDash, " {\n        display : inline-block;\n      }\n    ");
+	    }
+	  }, {
+	    key: "defaultProps",
+
+	    /**
+	     * Default props
+	     * @definition    SWebComponent.defaultProps
+	     * @protected
+	     */
+	    get: function get() {
+	      return {
+	        /**
+	         * Specify the values to use as sentences
+	         * @prop
+	         * @type    {Array<String>}
+	         */
+	        values: ["Hello world", "How are you universe"],
+
+	        /**
+	         * Specify the transition characters to use
+	         * @prop
+	         * @type    {Array<String>}
+	         */
+	        characters: "+*/#%&§?-_",
+
+	        /**
+	         * Specify the transition duration in ms
+	         * @prop
+	         * @type    {Integer}
+	         */
+	        duration: 500,
+
+	        /**
+	         * Specify the timeout between two characters "slide"
+	         * @prop
+	         * @type    {Integer}
+	         */
+	        timeout: 4000,
+
+	        /**
+	         * Specify if the slider has to loop over the values or not
+	         * @prop
+	         * @type    {Boolean}
+	         */
+	        loop: true
+	      };
+	    }
+	  }]);
+
+	  return SCharactersSlideshowComponent;
+	}(_SWebComponent2.default);
+
+	exports.default = SCharactersSlideshowComponent;
 
 /***/ }),
 /* 632 */
@@ -52810,9 +52817,28 @@
 	});
 	exports.default = void 0;
 
+	var _SIconComponent = _interopRequireDefault(__webpack_require__(633));
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _default = _SIconComponent.default.define("s-icon", _SIconComponent.default);
+
+	exports.default = _default;
+
+/***/ }),
+/* 633 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+
 	var _SWebComponent2 = _interopRequireDefault(__webpack_require__(533));
 
-	var _axios = _interopRequireDefault(__webpack_require__(633));
+	var _axios = _interopRequireDefault(__webpack_require__(634));
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52882,7 +52908,7 @@
 	    key: "_applyDefaultAttributes",
 	    value: function _applyDefaultAttributes() {
 	      // aria hidden
-	      this.setAttribute("aria-hidden", true);
+	      this.setAttribute('aria-hidden', true);
 	    }
 	    /**
 	     * Generate the icon html depending on the driver
@@ -52892,22 +52918,22 @@
 	    key: "_generateIconHtmlDependingOnDriver",
 	    value: function _generateIconHtmlDependingOnDriver() {
 	      switch (this.props.driver) {
-	        case "fonticon":
+	        case 'fonticon':
 	          return Promise.resolve("<i class=\"".concat(this.props.iconsPrefix).concat(this.props.icon, "\" aria-hidden></i>"));
 
-	        case "img":
+	        case 'img':
 	          return Promise.resolve("<img src=\"".concat(this.props.iconsPath, "/").concat(this.props.icon, ".svg\" alt=\"").concat(this.props.title, "\">"));
 
-	        case "fontawesome":
+	        case 'fontawesome':
 	          return Promise.resolve("<i class=\"".concat(this.props.icon, "\" aria-hidden></i>"));
 
-	        case "material":
+	        case 'material':
 	          return Promise.resolve("<i class=\"material-icons\" aria-hidden>".concat(this.props.icon, "</i>"));
 
-	        case "foundation":
+	        case 'foundation':
 	          return Promise.resolve("<i class=\"fi-".concat(this.props.icon, "\" aria-hidden></i>"));
 
-	        case "svg":
+	        case 'svg':
 	        default:
 	          return Promise.resolve(this._loadSvgIcon());
 	      }
@@ -52920,40 +52946,40 @@
 	    key: "_injectLibraryDependingOnDriver",
 	    value: function _injectLibraryDependingOnDriver() {
 	      switch (this.props.driver) {
-	        case "fontawesome":
+	        case 'fontawesome':
 	          {
-	            var fontawesomeElm = document.querySelector("link#s-fontawesome");
+	            var fontawesomeElm = document.querySelector('link#s-fontawesome');
 	            if (fontawesomeElm) return;
-	            var linkFontawesomeElm = document.createElement("link");
-	            linkFontawesomeElm.setAttribute("id", "s-fontawesome");
-	            linkFontawesomeElm.setAttribute("rel", "stylesheet");
-	            linkFontawesomeElm.setAttribute("href", "https://use.fontawesome.com/releases/v5.4.1/css/all.css");
-	            linkFontawesomeElm.setAttribute("integrity", "sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz");
-	            linkFontawesomeElm.setAttribute("crossorigin", "anonymous");
+	            var linkFontawesomeElm = document.createElement('link');
+	            linkFontawesomeElm.setAttribute('id', 's-fontawesome');
+	            linkFontawesomeElm.setAttribute('rel', 'stylesheet');
+	            linkFontawesomeElm.setAttribute('href', this.props.fontawesomeCssUrl);
+	            linkFontawesomeElm.setAttribute('integrity', this.props.fontawesomeCssIntegrity);
+	            linkFontawesomeElm.setAttribute('crossorigin', 'anonymous');
 	            document.head.appendChild(linkFontawesomeElm);
 	            break;
 	          }
 
-	        case "material":
+	        case 'material':
 	          {
-	            var materialElm = document.querySelector("link#s-material");
+	            var materialElm = document.querySelector('link#s-material');
 	            if (materialElm) return;
-	            var linkMaterialElm = document.createElement("link");
-	            linkMaterialElm.setAttribute("id", "s-material");
-	            linkMaterialElm.setAttribute("href", "https://fonts.googleapis.com/icon?family=Material+Icons");
-	            linkMaterialElm.setAttribute("rel", "stylesheet");
+	            var linkMaterialElm = document.createElement('link');
+	            linkMaterialElm.setAttribute('id', 's-material');
+	            linkMaterialElm.setAttribute('href', 'https://fonts.googleapis.com/icon?family=Material+Icons');
+	            linkMaterialElm.setAttribute('rel', 'stylesheet');
 	            document.head.appendChild(linkMaterialElm);
 	            break;
 	          }
 
-	        case "foundation":
+	        case 'foundation':
 	          {
-	            var foundationElm = document.querySelector("link#s-foundation");
+	            var foundationElm = document.querySelector('link#s-foundation');
 	            if (foundationElm) return;
-	            var foundationLinkElm = document.createElement("link");
-	            foundationLinkElm.setAttribute("id", "s-foundation");
-	            foundationLinkElm.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css");
-	            foundationLinkElm.setAttribute("rel", "stylesheet");
+	            var foundationLinkElm = document.createElement('link');
+	            foundationLinkElm.setAttribute('id', 's-foundation');
+	            foundationLinkElm.setAttribute('href', this.props.fondationCssUrl);
+	            foundationLinkElm.setAttribute('rel', 'stylesheet');
 	            document.head.appendChild(foundationLinkElm);
 	            break;
 	          }
@@ -52975,9 +53001,9 @@
 	      return new Promise(function (resolve) {
 	        _axios.default.get("".concat(_this2.props.iconsPath, "/").concat(_this2.props.icon, ".svg")).then(function (response) {
 	          var domParser = new DOMParser();
-	          var docElm = domParser.parseFromString(response.data, "text/html");
-	          var svgElm = docElm.querySelector("svg");
-	          svgElm.setAttribute("aria-hidden", true);
+	          var docElm = domParser.parseFromString(response.data, 'text/html');
+	          var svgElm = docElm.querySelector('svg');
+	          svgElm.setAttribute('aria-hidden', true);
 	          resolve(svgElm.outerHTML);
 	        });
 	      });
@@ -53007,7 +53033,7 @@
 	      _get(_getPrototypeOf(Component.prototype), "componentWillReceiveProp", this).call(this, name, newVal, oldVal);
 
 	      switch (name) {
-	        case "icon":
+	        case 'icon':
 	          {
 	            // inject the new icon
 	            this._generateIconHtmlDependingOnDriver().then(function (html) {
@@ -53017,7 +53043,7 @@
 	            break;
 	          }
 
-	        case "driver":
+	        case 'driver':
 	          {
 	            // inject library depending on driver
 	            this._injectLibraryDependingOnDriver();
@@ -53025,10 +53051,10 @@
 	            break;
 	          }
 
-	        case "title":
+	        case 'title':
 	          {
-	            if (this.props.driver === "img") {
-	              this.querySelector("img").setAttribute("alt", newVal);
+	            if (this.props.driver === 'img') {
+	              this.querySelector('img').setAttribute('alt', newVal);
 	            }
 
 	            break;
@@ -53072,33 +53098,54 @@
 	         * - `fonticon` : Use a font icon set
 	         * - `img` : Use an img tag to load the svg icon
 	         * - `svg` : Inline the svg directly in the page
-	         * - 'fontawesome` : Using fontawesome icons. You still need to load the library by yourself
-	         * - `material` : Using google material icons. You still need to load the library by yourself
+	         * - 'fontawesome` : Using fontawesome icons.
+	         * - `material` : Using google material icons.
 	         * @prop
 	         * @type    {String}
 	         */
-	        driver: "svg",
+	        driver: 'svg',
 
 	        /**
 	         * Specify the path to the icons folder relative to the document root of your project
 	         * @prop
 	         * @type    {String}
 	         */
-	        iconsPath: "/dist/icons",
+	        iconsPath: '/dist/icons',
 
 	        /**
 	         * Specify the icon prefix to use when using the `fonticon` driver
 	         * @prop
 	         * @type    {String}
 	         */
-	        iconsPrefix: "icon-",
+	        iconsPrefix: 'icon-',
 
 	        /**
 	         * Specify a title for the icon that will be also used as alt of the image when using img driver
 	         * @prop
 	         * @type    {String}
 	         */
-	        title: null
+	        title: null,
+
+	        /**
+	         * Specify the fontawesome icons css url to use
+	         * @prop
+	         * @type    {String}
+	         */
+	        fontawesomeCssUrl: 'https://use.fontawesome.com/releases/v5.7.1/css/all.css',
+
+	        /**
+	         * Specify the fontawesome icons css integrity checksum
+	         * @prop
+	         * @type    {String}
+	         */
+	        fontawesomeCssIntegrity: 'sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr',
+
+	        /**
+	         * Specify the fondation icons css url to use
+	         * @prop
+	         * @type    {String}
+	         */
+	        fondationCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css'
 	      };
 	    }
 	  }]);
@@ -53109,21 +53156,21 @@
 	exports.default = Component;
 
 /***/ }),
-/* 633 */
+/* 634 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(634);
+	module.exports = __webpack_require__(635);
 
 /***/ }),
-/* 634 */
+/* 635 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
-	var bind = __webpack_require__(636);
-	var Axios = __webpack_require__(638);
-	var defaults = __webpack_require__(639);
+	var utils = __webpack_require__(636);
+	var bind = __webpack_require__(637);
+	var Axios = __webpack_require__(639);
+	var defaults = __webpack_require__(640);
 
 	/**
 	 * Create an instance of Axios
@@ -53156,15 +53203,15 @@
 	};
 
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(656);
-	axios.CancelToken = __webpack_require__(657);
-	axios.isCancel = __webpack_require__(653);
+	axios.Cancel = __webpack_require__(657);
+	axios.CancelToken = __webpack_require__(658);
+	axios.isCancel = __webpack_require__(654);
 
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(658);
+	axios.spread = __webpack_require__(659);
 
 	module.exports = axios;
 
@@ -53173,13 +53220,13 @@
 
 
 /***/ }),
-/* 635 */
+/* 636 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = __webpack_require__(636);
-	var isBuffer = __webpack_require__(637);
+	var bind = __webpack_require__(637);
+	var isBuffer = __webpack_require__(638);
 
 	/*global toString:true*/
 
@@ -53482,7 +53529,7 @@
 
 
 /***/ }),
-/* 636 */
+/* 637 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -53499,7 +53546,7 @@
 
 
 /***/ }),
-/* 637 */
+/* 638 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -53526,15 +53573,15 @@
 
 
 /***/ }),
-/* 638 */
+/* 639 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(639);
-	var utils = __webpack_require__(635);
-	var InterceptorManager = __webpack_require__(650);
-	var dispatchRequest = __webpack_require__(651);
+	var defaults = __webpack_require__(640);
+	var utils = __webpack_require__(636);
+	var InterceptorManager = __webpack_require__(651);
+	var dispatchRequest = __webpack_require__(652);
 
 	/**
 	 * Create a new instance of Axios
@@ -53611,13 +53658,13 @@
 
 
 /***/ }),
-/* 639 */
+/* 640 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(635);
-	var normalizeHeaderName = __webpack_require__(640);
+	var utils = __webpack_require__(636);
+	var normalizeHeaderName = __webpack_require__(641);
 
 	var DEFAULT_CONTENT_TYPE = {
 	  'Content-Type': 'application/x-www-form-urlencoded'
@@ -53633,10 +53680,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(641);
+	    adapter = __webpack_require__(642);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(641);
+	    adapter = __webpack_require__(642);
 	  }
 	  return adapter;
 	}
@@ -53714,12 +53761,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(347)))
 
 /***/ }),
-/* 640 */
+/* 641 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -53732,18 +53779,18 @@
 
 
 /***/ }),
-/* 641 */
+/* 642 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(635);
-	var settle = __webpack_require__(642);
-	var buildURL = __webpack_require__(645);
-	var parseHeaders = __webpack_require__(646);
-	var isURLSameOrigin = __webpack_require__(647);
-	var createError = __webpack_require__(643);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(648);
+	var utils = __webpack_require__(636);
+	var settle = __webpack_require__(643);
+	var buildURL = __webpack_require__(646);
+	var parseHeaders = __webpack_require__(647);
+	var isURLSameOrigin = __webpack_require__(648);
+	var createError = __webpack_require__(644);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(649);
 
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -53840,7 +53887,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(649);
+	      var cookies = __webpack_require__(650);
 
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -53919,12 +53966,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(347)))
 
 /***/ }),
-/* 642 */
+/* 643 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createError = __webpack_require__(643);
+	var createError = __webpack_require__(644);
 
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -53951,12 +53998,12 @@
 
 
 /***/ }),
-/* 643 */
+/* 644 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var enhanceError = __webpack_require__(644);
+	var enhanceError = __webpack_require__(645);
 
 	/**
 	 * Create an Error with the specified message, config, error code, request and response.
@@ -53975,7 +54022,7 @@
 
 
 /***/ }),
-/* 644 */
+/* 645 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54002,12 +54049,12 @@
 
 
 /***/ }),
-/* 645 */
+/* 646 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -54074,12 +54121,12 @@
 
 
 /***/ }),
-/* 646 */
+/* 647 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	// Headers whose duplicates are ignored by node
 	// c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -54133,12 +54180,12 @@
 
 
 /***/ }),
-/* 647 */
+/* 648 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -54207,7 +54254,7 @@
 
 
 /***/ }),
-/* 648 */
+/* 649 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54249,12 +54296,12 @@
 
 
 /***/ }),
-/* 649 */
+/* 650 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -54308,12 +54355,12 @@
 
 
 /***/ }),
-/* 650 */
+/* 651 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -54366,17 +54413,17 @@
 
 
 /***/ }),
-/* 651 */
+/* 652 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
-	var transformData = __webpack_require__(652);
-	var isCancel = __webpack_require__(653);
-	var defaults = __webpack_require__(639);
-	var isAbsoluteURL = __webpack_require__(654);
-	var combineURLs = __webpack_require__(655);
+	var utils = __webpack_require__(636);
+	var transformData = __webpack_require__(653);
+	var isCancel = __webpack_require__(654);
+	var defaults = __webpack_require__(640);
+	var isAbsoluteURL = __webpack_require__(655);
+	var combineURLs = __webpack_require__(656);
 
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -54458,12 +54505,12 @@
 
 
 /***/ }),
-/* 652 */
+/* 653 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(635);
+	var utils = __webpack_require__(636);
 
 	/**
 	 * Transform the data for a request or a response
@@ -54484,7 +54531,7 @@
 
 
 /***/ }),
-/* 653 */
+/* 654 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54495,7 +54542,7 @@
 
 
 /***/ }),
-/* 654 */
+/* 655 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54515,7 +54562,7 @@
 
 
 /***/ }),
-/* 655 */
+/* 656 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54535,7 +54582,7 @@
 
 
 /***/ }),
-/* 656 */
+/* 657 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54560,12 +54607,12 @@
 
 
 /***/ }),
-/* 657 */
+/* 658 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Cancel = __webpack_require__(656);
+	var Cancel = __webpack_require__(657);
 
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -54623,7 +54670,7 @@
 
 
 /***/ }),
-/* 658 */
+/* 659 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -54656,7 +54703,7 @@
 
 
 /***/ }),
-/* 659 */
+/* 660 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54665,7 +54712,7 @@
 	  value: true
 	});
 
-	var _SLayersTransitionComponent = __webpack_require__(660);
+	var _SLayersTransitionComponent = __webpack_require__(661);
 
 	var _SLayersTransitionComponent2 = _interopRequireDefault(_SLayersTransitionComponent);
 
@@ -54674,7 +54721,7 @@
 	exports.default = _SLayersTransitionComponent2.default.define('s-layers-transition', _SLayersTransitionComponent2.default);
 
 /***/ }),
-/* 660 */
+/* 661 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54691,13 +54738,13 @@
 
 	var _SWebComponent3 = _interopRequireDefault(_SWebComponent2);
 
-	var _gsap = __webpack_require__(661);
+	var _gsap = __webpack_require__(662);
 
 	var _dispatchEvent = __webpack_require__(340);
 
 	var _dispatchEvent2 = _interopRequireDefault(_dispatchEvent);
 
-	var _debounce = __webpack_require__(628);
+	var _debounce = __webpack_require__(629);
 
 	var _debounce2 = _interopRequireDefault(_debounce);
 
@@ -54988,7 +55035,7 @@
 	              tl.insert(new _gsap.TweenMax(layer.points[3], d, { y: 0, ease: _gsap.Expo.easeInOut }), _this6.props.delay * (_this6._layers.length - 1) - _this6.props.delay * i);
 	            }
 	          });
-	        });
+	        }, 10);
 	      });
 	    }
 	  }], [{
@@ -55064,22 +55111,23 @@
 	exports.default = SLayersTransitionComponent;
 
 /***/ }),
-/* 661 */
+/* 662 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * VERSION: 2.0.2
-	 * DATE: 2018-08-27
+	 * VERSION: 2.1.0
+	 * DATE: 2019-02-15
 	 * UPDATES AND DOCS AT: http://greensock.com
 	 * 
 	 * Includes all of the following: TweenLite, TweenMax, TimelineLite, TimelineMax, EasePack, CSSPlugin, RoundPropsPlugin, BezierPlugin, AttrPlugin, DirectionalRotationPlugin
 	 *
-	 * @license Copyright (c) 2008-2018, GreenSock. All rights reserved.
+	 * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
 	 * This work is subject to the terms at http://greensock.com/standard-license or for
 	 * Club GreenSock members, the software agreement that was issued with your membership.
 	 * 
 	 * @author: Jack Doyle, jack@greensock.com
 	 **/
+	/* eslint-disable */
 	var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window; //helps ensure compatibility with AMD/RequireJS and CommonJS/Node
 	(_gsScope._gsQueue || (_gsScope._gsQueue = [])).push( function() {
 
@@ -55099,9 +55147,57 @@
 						p, val;
 					for (p in alt) {
 						val = alt[p];
-						vars[p] = (typeof(val) === "function") ? val(i, targets[i]) : val[i % val.length];
+						vars[p] = (typeof(val) === "function") ? val(i, targets[i], targets) : val[i % val.length];
 					}
 					delete vars.cycle;
+				},
+				//for distributing values across an array. Can accept a number, a function or (most commonly) a function which can contain the following properties: {base, amount, from, ease, grid, axis, length}. Returns a function that expects the following parameters: index, target, array. Recognizes the following
+				_distribute = function(v) {
+					if (typeof(v) === "function") {
+						return v;
+					}
+					var vars = isNaN(v) ? v : {n:1, from:(v < 0) ? ((v = -v) && "end") : 0}, //n:1 is just to indicate v was a number; we leverage that later to set v according to the length we get. If a number is passed in, we treat it like the old stagger value where 0.1, for example, would mean that things would be distributed with 0.1 between each element in the array rather than a total "amount" that's chunked out among them all.
+						ease = vars.ease,
+						from = vars.from || 0,
+						base = vars.base || 0,
+						cache = {},
+						isFromKeyword = isNaN(from),
+						axis = vars.axis,
+						ratio = {center:0.5, end:1}[from] || 0;
+					return function(i, target, a) {
+						var l = (a || vars).length,
+							distances = cache[l],
+							originX, originY, x, y, d, j, max, min, wrap;
+						if (!distances) {
+							wrap = (vars.grid === "auto") ? 0 : (vars.grid || [Infinity])[0];
+							if (!wrap) {
+								max = -Infinity;
+								while (max < (max = a[wrap++].getBoundingClientRect().left) && wrap < l) { }
+								wrap--;
+							}
+							distances = cache[l] = [];
+							originX = isFromKeyword ? (Math.min(wrap, l) * ratio) - 0.5 : from % wrap;
+							originY = isFromKeyword ? l * ratio / wrap - 0.5 : (from / wrap) | 0;
+							max = 0;
+							min = Infinity;
+							for (j = 0; j < l; j++) {
+								x = (j % wrap) - originX;
+								y = originY - ((j / wrap) | 0);
+								distances[j] = d = !axis ? Math.sqrt(x * x + y * y) : Math.abs((axis === "y") ? y : x);
+								if (d > max) {
+									max = d;
+								}
+								if (d < min) {
+									min = d;
+								}
+							}
+							distances.max = max - min;
+							distances.min = min;
+							distances.v = vars.n ? l * (v || 0) : vars.amount;
+						}
+						l = (distances[i] - distances.min) / distances.max;
+						return base + (ease ? ease.getRatio(l) : l) * distances.v;
+					};
 				},
 				TweenMax = function(target, duration, vars) {
 					TweenLite.call(this, target, duration, vars);
@@ -55114,14 +55210,14 @@
 					}
 					this.render = TweenMax.prototype.render; //speed optimization (avoid prototype lookup on this "hot" method)
 				},
-				_tinyNum = 0.0000000001,
+				_tinyNum = 0.00000001,
 				TweenLiteInternals = TweenLite._internals,
 				_isSelector = TweenLiteInternals.isSelector,
 				_isArray = TweenLiteInternals.isArray,
 				p = TweenMax.prototype = TweenLite.to({}, 0.1, {}),
 				_blankArray = [];
 
-			TweenMax.version = "2.0.2";
+			TweenMax.version = "2.1.0";
 			p.constructor = TweenMax;
 			p.kill()._gc = false;
 			TweenMax.killTweensOf = TweenMax.killDelayedCallsTo = TweenLite.killTweensOf;
@@ -55129,6 +55225,7 @@
 			TweenMax.lagSmoothing = TweenLite.lagSmoothing;
 			TweenMax.ticker = TweenLite.ticker;
 			TweenMax.render = TweenLite.render;
+			TweenMax.distribute = _distribute;
 
 			p.invalidate = function() {
 				this._yoyo = (this.vars.yoyo === true || !!this.vars.yoyoEase);
@@ -55140,45 +55237,46 @@
 			};
 			
 			p.updateTo = function(vars, resetDuration) {
-				var curRatio = this.ratio,
-					immediate = this.vars.immediateRender || vars.immediateRender,
+				var self = this,
+					curRatio = self.ratio,
+					immediate = self.vars.immediateRender || vars.immediateRender,
 					p;
-				if (resetDuration && this._startTime < this._timeline._time) {
-					this._startTime = this._timeline._time;
-					this._uncache(false);
-					if (this._gc) {
-						this._enabled(true, false);
+				if (resetDuration && self._startTime < self._timeline._time) {
+					self._startTime = self._timeline._time;
+					self._uncache(false);
+					if (self._gc) {
+						self._enabled(true, false);
 					} else {
-						this._timeline.insert(this, this._startTime - this._delay); //ensures that any necessary re-sequencing of Animations in the timeline occurs to make sure the rendering order is correct.
+						self._timeline.insert(self, self._startTime - self._delay); //ensures that any necessary re-sequencing of Animations in the timeline occurs to make sure the rendering order is correct.
 					}
 				}
 				for (p in vars) {
-					this.vars[p] = vars[p];
+					self.vars[p] = vars[p];
 				}
-				if (this._initted || immediate) {
+				if (self._initted || immediate) {
 					if (resetDuration) {
-						this._initted = false;
+						self._initted = false;
 						if (immediate) {
-							this.render(0, true, true);
+							self.render(0, true, true);
 						}
 					} else {
-						if (this._gc) {
-							this._enabled(true, false);
+						if (self._gc) {
+							self._enabled(true, false);
 						}
-						if (this._notifyPluginsOfEnabled && this._firstPT) {
-							TweenLite._onPluginEvent("_onDisable", this); //in case a plugin like MotionBlur must perform some cleanup tasks
+						if (self._notifyPluginsOfEnabled && self._firstPT) {
+							TweenLite._onPluginEvent("_onDisable", self); //in case a plugin like MotionBlur must perform some cleanup tasks
 						}
-						if (this._time / this._duration > 0.998) { //if the tween has finished (or come extremely close to finishing), we just need to rewind it to 0 and then render it again at the end which forces it to re-initialize (parsing the new vars). We allow tweens that are close to finishing (but haven't quite finished) to work this way too because otherwise, the values are so small when determining where to project the starting values that binary math issues creep in and can make the tween appear to render incorrectly when run backwards. 
-							var prevTime = this._totalTime;
-							this.render(0, true, false);
-							this._initted = false;
-							this.render(prevTime, true, false);
+						if (self._time / self._duration > 0.998) { //if the tween has finished (or come extremely close to finishing), we just need to rewind it to 0 and then render it again at the end which forces it to re-initialize (parsing the new vars). We allow tweens that are close to finishing (but haven't quite finished) to work this way too because otherwise, the values are so small when determining where to project the starting values that binary math issues creep in and can make the tween appear to render incorrectly when run backwards.
+							var prevTime = self._totalTime;
+							self.render(0, true, false);
+							self._initted = false;
+							self.render(prevTime, true, false);
 						} else {
-							this._initted = false;
-							this._init();
-							if (this._time > 0 || immediate) {
+							self._initted = false;
+							self._init();
+							if (self._time > 0 || immediate) {
 								var inv = 1 / (1 - curRatio),
-									pt = this._firstPT, endValue;
+									pt = self._firstPT, endValue;
 								while (pt) {
 									endValue = pt.s + pt.c;
 									pt.c *= inv;
@@ -55189,101 +55287,104 @@
 						}
 					}
 				}
-				return this;
+				return self;
 			};
 					
 			p.render = function(time, suppressEvents, force) {
 				if (!this._initted) if (this._duration === 0 && this.vars.repeat) { //zero duration tweens that render immediately have render() called from TweenLite's constructor, before TweenMax's constructor has finished setting _repeat, _repeatDelay, and _yoyo which are critical in determining totalDuration() so we need to call invalidate() which is a low-kb way to get those set properly.
 					this.invalidate();
 				}
-				var totalDur = (!this._dirty) ? this._totalDuration : this.totalDuration(),
-					prevTime = this._time,
-					prevTotalTime = this._totalTime, 
-					prevCycle = this._cycle,
-					duration = this._duration,
-					prevRawPrevTime = this._rawPrevTime,
+				var self = this,
+					totalDur = (!self._dirty) ? self._totalDuration : self.totalDuration(),
+					prevTime = self._time,
+					prevTotalTime = self._totalTime,
+					prevCycle = self._cycle,
+					duration = self._duration,
+					prevRawPrevTime = self._rawPrevTime,
 					isComplete, callback, pt, cycleDuration, r, type, pow, rawPrevTime, yoyoEase;
-				if (time >= totalDur - 0.0000001 && time >= 0) { //to work around occasional floating point math artifacts.
-					this._totalTime = totalDur;
-					this._cycle = this._repeat;
-					if (this._yoyo && (this._cycle & 1) !== 0) {
-						this._time = 0;
-						this.ratio = this._ease._calcEnd ? this._ease.getRatio(0) : 0;
+				if (time >= totalDur - _tinyNum && time >= 0) { //to work around occasional floating point math artifacts.
+					self._totalTime = totalDur;
+					self._cycle = self._repeat;
+					if (self._yoyo && (self._cycle & 1) !== 0) {
+						self._time = 0;
+						self.ratio = self._ease._calcEnd ? self._ease.getRatio(0) : 0;
 					} else {
-						this._time = duration;
-						this.ratio = this._ease._calcEnd ? this._ease.getRatio(1) : 1;
+						self._time = duration;
+						self.ratio = self._ease._calcEnd ? self._ease.getRatio(1) : 1;
 					}
-					if (!this._reversed) {
+					if (!self._reversed) {
 						isComplete = true;
 						callback = "onComplete";
-						force = (force || this._timeline.autoRemoveChildren); //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
+						force = (force || self._timeline.autoRemoveChildren); //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
 					}
-					if (duration === 0) if (this._initted || !this.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
-						if (this._startTime === this._timeline._duration) { //if a zero-duration tween is at the VERY end of a timeline and that timeline renders at its end, it will typically add a tiny bit of cushion to the render time to prevent rounding errors from getting in the way of tweens rendering their VERY end. If we then reverse() that timeline, the zero-duration tween will trigger its onReverseComplete even though technically the playhead didn't pass over it again. It's a very specific edge case we must accommodate.
+					if (duration === 0) if (self._initted || !self.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
+						if (self._startTime === self._timeline._duration) { //if a zero-duration tween is at the VERY end of a timeline and that timeline renders at its end, it will typically add a tiny bit of cushion to the render time to prevent rounding errors from getting in the way of tweens rendering their VERY end. If we then reverse() that timeline, the zero-duration tween will trigger its onReverseComplete even though technically the playhead didn't pass over it again. It's a very specific edge case we must accommodate.
 							time = 0;
 						}
-						if (prevRawPrevTime < 0 || (time <= 0 && time >= -0.0000001) || (prevRawPrevTime === _tinyNum && this.data !== "isPause")) if (prevRawPrevTime !== time) { //note: when this.data is "isPause", it's a callback added by addPause() on a timeline that we should not be triggered when LEAVING its exact start time. In other words, tl.addPause(1).play(1) shouldn't pause.
+						if (prevRawPrevTime < 0 || (time <= 0 && time >= -_tinyNum) || (prevRawPrevTime === _tinyNum && self.data !== "isPause")) if (prevRawPrevTime !== time) { //note: when this.data is "isPause", it's a callback added by addPause() on a timeline that we should not be triggered when LEAVING its exact start time. In other words, tl.addPause(1).play(1) shouldn't pause.
 							force = true;
 							if (prevRawPrevTime > _tinyNum) {
 								callback = "onReverseComplete";
 							}
 						}
-						this._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+						self._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 					}
 					
-				} else if (time < 0.0000001) { //to work around occasional floating point math artifacts, round super small values to 0.
-					this._totalTime = this._time = this._cycle = 0;
-					this.ratio = this._ease._calcEnd ? this._ease.getRatio(0) : 0;
+				} else if (time < _tinyNum) { //to work around occasional floating point math artifacts, round super small values to 0.
+					self._totalTime = self._time = self._cycle = 0;
+					self.ratio = self._ease._calcEnd ? self._ease.getRatio(0) : 0;
 					if (prevTotalTime !== 0 || (duration === 0 && prevRawPrevTime > 0)) {
 						callback = "onReverseComplete";
-						isComplete = this._reversed;
+						isComplete = self._reversed;
 					}
-					if (time < 0) {
-						this._active = false;
-						if (duration === 0) if (this._initted || !this.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
+					if (time > -_tinyNum) {
+						time = 0;
+					} else if (time < 0) {
+						self._active = false;
+						if (duration === 0) if (self._initted || !self.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
 							if (prevRawPrevTime >= 0) {
 								force = true;
 							}
-							this._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+							self._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 						}
 					}
-					if (!this._initted) { //if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately.
+					if (!self._initted) { //if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately.
 						force = true;
 					}
 				} else {
-					this._totalTime = this._time = time;
-					if (this._repeat !== 0) {
-						cycleDuration = duration + this._repeatDelay;
-						this._cycle = (this._totalTime / cycleDuration) >> 0; //originally _totalTime % cycleDuration but floating point errors caused problems, so I normalized it. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
-						if (this._cycle !== 0) if (this._cycle === this._totalTime / cycleDuration && prevTotalTime <= time) {
-							this._cycle--; //otherwise when rendered exactly at the end time, it will act as though it is repeating (at the beginning)
+					self._totalTime = self._time = time;
+					if (self._repeat !== 0) {
+						cycleDuration = duration + self._repeatDelay;
+						self._cycle = (self._totalTime / cycleDuration) >> 0; //originally _totalTime % cycleDuration but floating point errors caused problems, so I normalized it. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
+						if (self._cycle !== 0) if (self._cycle === self._totalTime / cycleDuration && prevTotalTime <= time) {
+							self._cycle--; //otherwise when rendered exactly at the end time, it will act as though it is repeating (at the beginning)
 						}
-						this._time = this._totalTime - (this._cycle * cycleDuration);
-						if (this._yoyo) if ((this._cycle & 1) !== 0) {
-							this._time = duration - this._time;
-							yoyoEase = this._yoyoEase || this.vars.yoyoEase; //note: we don't set this._yoyoEase in _init() like we do other properties because it's TweenMax-specific and doing it here allows us to optimize performance (most tweens don't have a yoyoEase). Note that we also must skip the this.ratio calculation further down right after we _init() in this function, because we're doing it here.
+						self._time = self._totalTime - (self._cycle * cycleDuration);
+						if (self._yoyo) if ((self._cycle & 1) !== 0) {
+							self._time = duration - self._time;
+							yoyoEase = self._yoyoEase || self.vars.yoyoEase; //note: we don't set this._yoyoEase in _init() like we do other properties because it's TweenMax-specific and doing it here allows us to optimize performance (most tweens don't have a yoyoEase). Note that we also must skip the this.ratio calculation further down right after we _init() in this function, because we're doing it here.
 							if (yoyoEase) {
-								if (!this._yoyoEase) {
-									if (yoyoEase === true && !this._initted) { //if it's not initted and yoyoEase is true, this._ease won't have been populated yet so we must discern it here.
-										yoyoEase = this.vars.ease;
-										this._yoyoEase = yoyoEase = !yoyoEase ? TweenLite.defaultEase : (yoyoEase instanceof Ease) ? yoyoEase : (typeof(yoyoEase) === "function") ? new Ease(yoyoEase, this.vars.easeParams) : Ease.map[yoyoEase] || TweenLite.defaultEase;
+								if (!self._yoyoEase) {
+									if (yoyoEase === true && !self._initted) { //if it's not initted and yoyoEase is true, this._ease won't have been populated yet so we must discern it here.
+										yoyoEase = self.vars.ease;
+										self._yoyoEase = yoyoEase = !yoyoEase ? TweenLite.defaultEase : (yoyoEase instanceof Ease) ? yoyoEase : (typeof(yoyoEase) === "function") ? new Ease(yoyoEase, self.vars.easeParams) : Ease.map[yoyoEase] || TweenLite.defaultEase;
 									} else {
-										this._yoyoEase = yoyoEase = (yoyoEase === true) ? this._ease : (yoyoEase instanceof Ease) ? yoyoEase : Ease.map[yoyoEase];
+										self._yoyoEase = yoyoEase = (yoyoEase === true) ? self._ease : (yoyoEase instanceof Ease) ? yoyoEase : Ease.map[yoyoEase];
 									}
 								}
-								this.ratio = yoyoEase ? 1 - yoyoEase.getRatio((duration - this._time) / duration) : 0;
+								self.ratio = yoyoEase ? 1 - yoyoEase.getRatio((duration - self._time) / duration) : 0;
 							}
 						}
-						if (this._time > duration) {
-							this._time = duration;
-						} else if (this._time < 0) {
-							this._time = 0;
+						if (self._time > duration) {
+							self._time = duration;
+						} else if (self._time < 0) {
+							self._time = 0;
 						}
 					}
-					if (this._easeType && !yoyoEase) {
-						r = this._time / duration;
-						type = this._easeType;
-						pow = this._easePower;
+					if (self._easeType && !yoyoEase) {
+						r = self._time / duration;
+						type = self._easeType;
+						pow = self._easePower;
 						if (type === 1 || (type === 3 && r >= 0.5)) {
 							r = 1 - r;
 						}
@@ -55299,108 +55400,98 @@
 						} else if (pow === 4) {
 							r *= r * r * r * r;
 						}
-
-						if (type === 1) {
-							this.ratio = 1 - r;
-						} else if (type === 2) {
-							this.ratio = r;
-						} else if (this._time / duration < 0.5) {
-							this.ratio = r / 2;
-						} else {
-							this.ratio = 1 - (r / 2);
-						}
+						self.ratio = (type === 1) ? 1 - r : (type === 2) ? r : (self._time / duration < 0.5) ? r / 2 : 1 - (r / 2);
 
 					} else if (!yoyoEase) {
-						this.ratio = this._ease.getRatio(this._time / duration);
+						self.ratio = self._ease.getRatio(self._time / duration);
 					}
 					
 				}
 					
-				if (prevTime === this._time && !force && prevCycle === this._cycle) {
-					if (prevTotalTime !== this._totalTime) if (this._onUpdate) if (!suppressEvents) { //so that onUpdate fires even during the repeatDelay - as long as the totalTime changed, we should trigger onUpdate.
-						this._callback("onUpdate");
+				if (prevTime === self._time && !force && prevCycle === self._cycle) {
+					if (prevTotalTime !== self._totalTime) if (self._onUpdate) if (!suppressEvents) { //so that onUpdate fires even during the repeatDelay - as long as the totalTime changed, we should trigger onUpdate.
+						self._callback("onUpdate");
 					}
 					return;
-				} else if (!this._initted) {
-					this._init();
-					if (!this._initted || this._gc) { //immediateRender tweens typically won't initialize until the playhead advances (_time is greater than 0) in order to ensure that overwriting occurs properly. Also, if all of the tweening properties have been overwritten (which would cause _gc to be true, as set in _init()), we shouldn't continue otherwise an onStart callback could be called for example.
+				} else if (!self._initted) {
+					self._init();
+					if (!self._initted || self._gc) { //immediateRender tweens typically won't initialize until the playhead advances (_time is greater than 0) in order to ensure that overwriting occurs properly. Also, if all of the tweening properties have been overwritten (which would cause _gc to be true, as set in _init()), we shouldn't continue otherwise an onStart callback could be called for example.
 						return;
-					} else if (!force && this._firstPT && ((this.vars.lazy !== false && this._duration) || (this.vars.lazy && !this._duration))) { //we stick it in the queue for rendering at the very end of the tick - this is a performance optimization because browsers invalidate styles and force a recalculation if you read, write, and then read style data (so it's better to read/read/read/write/write/write than read/write/read/write/read/write). The down side, of course, is that usually you WANT things to render immediately because you may have code running right after that which depends on the change. Like imagine running TweenLite.set(...) and then immediately after that, creating a nother tween that animates the same property to another value; the starting values of that 2nd tween wouldn't be accurate if lazy is true.
-						this._time = prevTime;
-						this._totalTime = prevTotalTime;
-						this._rawPrevTime = prevRawPrevTime;
-						this._cycle = prevCycle;
-						TweenLiteInternals.lazyTweens.push(this);
-						this._lazy = [time, suppressEvents];
+					} else if (!force && self._firstPT && ((self.vars.lazy !== false && self._duration) || (self.vars.lazy && !self._duration))) { //we stick it in the queue for rendering at the very end of the tick - this is a performance optimization because browsers invalidate styles and force a recalculation if you read, write, and then read style data (so it's better to read/read/read/write/write/write than read/write/read/write/read/write). The down side, of course, is that usually you WANT things to render immediately because you may have code running right after that which depends on the change. Like imagine running TweenLite.set(...) and then immediately after that, creating a nother tween that animates the same property to another value; the starting values of that 2nd tween wouldn't be accurate if lazy is true.
+						self._time = prevTime;
+						self._totalTime = prevTotalTime;
+						self._rawPrevTime = prevRawPrevTime;
+						self._cycle = prevCycle;
+						TweenLiteInternals.lazyTweens.push(self);
+						self._lazy = [time, suppressEvents];
 						return;
 					}
 					//_ease is initially set to defaultEase, so now that init() has run, _ease is set properly and we need to recalculate the ratio. Overall this is faster than using conditional logic earlier in the method to avoid having to set ratio twice because we only init() once but renderTime() gets called VERY frequently.
-					if (this._time && !isComplete && !yoyoEase) {
-						this.ratio = this._ease.getRatio(this._time / duration);
+					if (self._time && !isComplete && !yoyoEase) {
+						self.ratio = self._ease.getRatio(self._time / duration);
 					} else if (isComplete && this._ease._calcEnd && !yoyoEase) {
-						this.ratio = this._ease.getRatio((this._time === 0) ? 0 : 1);
+						self.ratio = self._ease.getRatio((self._time === 0) ? 0 : 1);
 					}
 				}
-				if (this._lazy !== false) {
-					this._lazy = false;
+				if (self._lazy !== false) {
+					self._lazy = false;
 				}
 
-				if (!this._active) if (!this._paused && this._time !== prevTime && time >= 0) {
-					this._active = true; //so that if the user renders a tween (as opposed to the timeline rendering it), the timeline is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the tween already finished but the user manually re-renders it as halfway done.
+				if (!self._active) if (!self._paused && self._time !== prevTime && time >= 0) {
+					self._active = true; //so that if the user renders a tween (as opposed to the timeline rendering it), the timeline is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the tween already finished but the user manually re-renders it as halfway done.
 				}
 				if (prevTotalTime === 0) {
-					if (this._initted === 2 && time > 0) {
-						//this.invalidate();
-						this._init(); //will just apply overwriting since _initted of (2) means it was a from() tween that had immediateRender:true
+					if (self._initted === 2 && time > 0) {
+						self._init(); //will just apply overwriting since _initted of (2) means it was a from() tween that had immediateRender:true
 					}
-					if (this._startAt) {
+					if (self._startAt) {
 						if (time >= 0) {
-							this._startAt.render(time, true, force);
+							self._startAt.render(time, true, force);
 						} else if (!callback) {
 							callback = "_dummyGS"; //if no callback is defined, use a dummy value just so that the condition at the end evaluates as true because _startAt should render AFTER the normal render loop when the time is negative. We could handle this in a more intuitive way, of course, but the render loop is the MOST important thing to optimize, so this technique allows us to avoid adding extra conditional logic in a high-frequency area.
 						}
 					}
-					if (this.vars.onStart) if (this._totalTime !== 0 || duration === 0) if (!suppressEvents) {
-						this._callback("onStart");
+					if (self.vars.onStart) if (self._totalTime !== 0 || duration === 0) if (!suppressEvents) {
+						self._callback("onStart");
 					}
 				}
 				
-				pt = this._firstPT;
+				pt = self._firstPT;
 				while (pt) {
 					if (pt.f) {
-						pt.t[pt.p](pt.c * this.ratio + pt.s);
+						pt.t[pt.p](pt.c * self.ratio + pt.s);
 					} else {
-						pt.t[pt.p] = pt.c * this.ratio + pt.s;
+						pt.t[pt.p] = pt.c * self.ratio + pt.s;
 					}
 					pt = pt._next;
 				}
 				
-				if (this._onUpdate) {
-					if (time < 0) if (this._startAt && this._startTime) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
-						this._startAt.render(time, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
+				if (self._onUpdate) {
+					if (time < 0) if (self._startAt && self._startTime) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
+						self._startAt.render(time, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
 					}
-					if (!suppressEvents) if (this._totalTime !== prevTotalTime || callback) {
-						this._callback("onUpdate");
+					if (!suppressEvents) if (self._totalTime !== prevTotalTime || callback) {
+						self._callback("onUpdate");
 					}
 				}
-				if (this._cycle !== prevCycle) if (!suppressEvents) if (!this._gc) if (this.vars.onRepeat) {
-					this._callback("onRepeat");
+				if (self._cycle !== prevCycle) if (!suppressEvents) if (!self._gc) if (self.vars.onRepeat) {
+					self._callback("onRepeat");
 				}
-				if (callback) if (!this._gc || force) { //check gc because there's a chance that kill() could be called in an onUpdate
-					if (time < 0 && this._startAt && !this._onUpdate && this._startTime) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
-						this._startAt.render(time, true, force);
+				if (callback) if (!self._gc || force) { //check gc because there's a chance that kill() could be called in an onUpdate
+					if (time < 0 && self._startAt && !self._onUpdate && self._startTime) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
+						self._startAt.render(time, true, force);
 					}
 					if (isComplete) {
-						if (this._timeline.autoRemoveChildren) {
-							this._enabled(false, false);
+						if (self._timeline.autoRemoveChildren) {
+							self._enabled(false, false);
 						}
-						this._active = false;
+						self._active = false;
 					}
-					if (!suppressEvents && this.vars[callback]) {
-						this._callback(callback);
+					if (!suppressEvents && self.vars[callback]) {
+						self._callback(callback);
 					}
-					if (duration === 0 && this._rawPrevTime === _tinyNum && rawPrevTime !== _tinyNum) { //the onComplete or onReverseComplete could trigger movement of the playhead and for zero-duration tweens (which must discern direction) that land directly back on their start time, we don't want to fire again on the next render. Think of several addPause()'s in a timeline that forces the playhead to a certain spot, but what if it's already paused and another tween is tweening the "time" of the timeline? Each time it moves [forward] past that spot, it would move back, and since suppressEvents is true, it'd reset _rawPrevTime to _tinyNum so that when it begins again, the callback would fire (so ultimately it could bounce back and forth during that tween). Again, this is a very uncommon scenario, but possible nonetheless.
-						this._rawPrevTime = 0;
+					if (duration === 0 && self._rawPrevTime === _tinyNum && rawPrevTime !== _tinyNum) { //the onComplete or onReverseComplete could trigger movement of the playhead and for zero-duration tweens (which must discern direction) that land directly back on their start time, we don't want to fire again on the next render. Think of several addPause()'s in a timeline that forces the playhead to a certain spot, but what if it's already paused and another tween is tweening the "time" of the timeline? Each time it moves [forward] past that spot, it would move back, and since suppressEvents is true, it'd reset _rawPrevTime to _tinyNum so that when it begins again, the callback would fire (so ultimately it could bounce back and forth during that tween). Again, this is a very uncommon scenario, but possible nonetheless.
+						self._rawPrevTime = 0;
 					}
 				}
 			};
@@ -55422,19 +55513,12 @@
 				toVars.immediateRender = (toVars.immediateRender != false && fromVars.immediateRender != false);
 				return new TweenMax(target, duration, toVars);
 			};
-			
+
 			TweenMax.staggerTo = TweenMax.allTo = function(targets, duration, vars, stagger, onCompleteAll, onCompleteAllParams, onCompleteAllScope) {
-				stagger = stagger || 0;
-				var delay = 0,
-					a = [],
-					finalComplete = function() {
-						if (vars.onComplete) {
-							vars.onComplete.apply(vars.onCompleteScope || this, arguments);
-						}
-						onCompleteAll.apply(onCompleteAllScope || vars.callbackScope || this, onCompleteAllParams || _blankArray);
-					},
+				var a = [],
+					staggerFunc = _distribute(vars.stagger || stagger),
 					cycle = vars.cycle,
-					fromCycle = (vars.startAt && vars.startAt.cycle),
+					fromCycle = (vars.startAt || _blankArray).cycle,
 					l, copy, i, p;
 				if (!_isArray(targets)) {
 					if (typeof(targets) === "string") {
@@ -55445,11 +55529,6 @@
 					}
 				}
 				targets = targets || [];
-				if (stagger < 0) {
-					targets = _slice(targets);
-					targets.reverse();
-					stagger *= -1;
-				}
 				l = targets.length - 1;
 				for (i = 0; i <= l; i++) {
 					copy = {};
@@ -55470,12 +55549,16 @@
 						}
 						_applyCycle(copy.startAt, targets, i);
 					}
-					copy.delay = delay + (copy.delay || 0);
+					copy.delay = staggerFunc(i, targets[i], targets) + (copy.delay || 0);
 					if (i === l && onCompleteAll) {
-						copy.onComplete = finalComplete;
+						copy.onComplete = function() {
+							if (vars.onComplete) {
+								vars.onComplete.apply(vars.onCompleteScope || this, arguments);
+							}
+							onCompleteAll.apply(onCompleteAllScope || vars.callbackScope || this, onCompleteAllParams || _blankArray);
+						};
 					}
 					a[i] = new TweenMax(targets[i], duration, copy);
-					delay += stagger;
 				}
 				return a;
 			};
@@ -55644,15 +55727,13 @@
 				if (this._dirty) {
 					this.totalDuration();
 				}
-				if (value > this._duration) {
-					value = this._duration;
+				var duration = this._duration,
+					cycle = this._cycle,
+					cycleDur = cycle * (duration * this._repeatDelay);
+				if (value > duration) {
+					value = duration;
 				}
-				if (this._yoyo && (this._cycle & 1) !== 0) {
-					value = (this._duration - value) + (this._cycle * (this._duration + this._repeatDelay));
-				} else if (this._repeat !== 0) {
-					value += this._cycle * (this._duration + this._repeatDelay);
-				}
-				return this.totalTime(value, suppressEvents);
+				return this.totalTime((this._yoyo && (cycle & 1)) ? duration - value + cycleDur : this._repeat ? value + cycleDur : value, suppressEvents);
 			};
 
 			p.duration = function(value) {
@@ -55719,24 +55800,25 @@
 
 			var TimelineLite = function(vars) {
 					SimpleTimeline.call(this, vars);
-					this._labels = {};
-					this.autoRemoveChildren = (this.vars.autoRemoveChildren === true);
-					this.smoothChildTiming = (this.vars.smoothChildTiming === true);
-					this._sortChildren = true;
-					this._onUpdate = this.vars.onUpdate;
-					var v = this.vars,
+					var self = this,
+						v = self.vars,
 						val, p;
+					self._labels = {};
+					self.autoRemoveChildren = !!v.autoRemoveChildren;
+					self.smoothChildTiming = !!v.smoothChildTiming;
+					self._sortChildren = true;
+					self._onUpdate = v.onUpdate;
 					for (p in v) {
 						val = v[p];
 						if (_isArray(val)) if (val.join("").indexOf("{self}") !== -1) {
-							v[p] = this._swapSelfInParams(val);
+							v[p] = self._swapSelfInParams(val);
 						}
 					}
 					if (_isArray(v.tweens)) {
-						this.add(v.tweens, 0, v.align, v.stagger);
+						self.add(v.tweens, 0, v.align, v.stagger);
 					}
 				},
-				_tinyNum = 0.0000000001,
+				_tinyNum = 0.00000001,
 				TweenLiteInternals = TweenLite._internals,
 				_internals = TimelineLite._internals = {},
 				_isSelector = TweenLiteInternals.isSelector,
@@ -55756,7 +55838,7 @@
 						p, val;
 					for (p in alt) {
 						val = alt[p];
-						vars[p] = (typeof(val) === "function") ? val(i, targets[i]) : val[i % val.length];
+						vars[p] = (typeof(val) === "function") ? val(i, targets[i], targets) : val[i % val.length];
 					}
 					delete vars.cycle;
 				},
@@ -55768,9 +55850,65 @@
 					for (i = 0; i !== l; b.push(a[i++]));
 					return b;
 				},
+				_defaultImmediateRender = function(tl, toVars, fromVars, defaultFalse) { //default to immediateRender:true unless otherwise set in toVars, fromVars or if defaultFalse is passed in as true
+					var ir = "immediateRender";
+					if (!(ir in toVars)) {
+						toVars[ir] = !(tl._paused || (fromVars && fromVars[ir] === false) || defaultFalse);
+					}
+					return toVars;
+				},
+				//for distributing values across an array. Can accept a number, a function or (most commonly) a function which can contain the following properties: {base, amount, from, ease, grid, axis, length}. Returns a function that expects the following parameters: index, target, array. Recognizes the following
+				_distribute = function(v) {
+					if (typeof(v) === "function") {
+						return v;
+					}
+					var vars = isNaN(v) ? v : {n:1, from:(v < 0) ? ((v = -v) && "end") : 0}, //n:1 is just to indicate v was a number; we leverage that later to set v according to the length we get. If a number is passed in, we treat it like the old stagger value where 0.1, for example, would mean that things would be distributed with 0.1 between each element in the array rather than a total "amount" that's chunked out among them all.
+						ease = vars.ease,
+						from = vars.from || 0,
+						base = vars.base || 0,
+						cache = {},
+						isFromKeyword = isNaN(from),
+						axis = vars.axis,
+						ratio = {center:0.5, end:1}[from] || 0;
+					return function(i, target, a) {
+						var l = (a || vars).length,
+							distances = cache[l],
+							originX, originY, x, y, d, j, max, min, wrap;
+						if (!distances) {
+							wrap = (vars.grid === "auto") ? 0 : (vars.grid || [Infinity])[0];
+							if (!wrap) {
+								max = -Infinity;
+								while (max < (max = a[wrap++].getBoundingClientRect().left) && wrap < l) { }
+								wrap--;
+							}
+							distances = cache[l] = [];
+							originX = isFromKeyword ? (Math.min(wrap, l) * ratio) - 0.5 : from % wrap;
+							originY = isFromKeyword ? l * ratio / wrap - 0.5 : (from / wrap) | 0;
+							max = 0;
+							min = Infinity;
+							for (j = 0; j < l; j++) {
+								x = (j % wrap) - originX;
+								y = originY - ((j / wrap) | 0);
+								distances[j] = d = !axis ? Math.sqrt(x * x + y * y) : Math.abs((axis === "y") ? y : x);
+								if (d > max) {
+									max = d;
+								}
+								if (d < min) {
+									min = d;
+								}
+							}
+							distances.max = max - min;
+							distances.min = min;
+							distances.v = vars.n ? l * (v || 0) : vars.amount;
+						}
+						l = (distances[i] - distances.min) / distances.max;
+						return base + (ease ? ease.getRatio(l) : l) * distances.v;
+					};
+				},
 				p = TimelineLite.prototype = new SimpleTimeline();
 
-			TimelineLite.version = "2.0.2";
+			TimelineLite.version = "2.1.0";
+			TimelineLite.distribute = _distribute;
 			p.constructor = TimelineLite;
 			p.kill()._gc = p._forcingPlayhead = p._hasPause = false;
 
@@ -55802,36 +55940,33 @@
 			};
 
 			p.from = function(target, duration, vars, position) {
-				return this.add( ((vars.repeat && _globals.TweenMax) || TweenLite).from(target, duration, vars), position);
+				return this.add( ((vars.repeat && _globals.TweenMax) || TweenLite).from(target, duration, _defaultImmediateRender(this, vars)), position);
 			};
 
 			p.fromTo = function(target, duration, fromVars, toVars, position) {
 				var Engine = (toVars.repeat && _globals.TweenMax) || TweenLite;
+				toVars = _defaultImmediateRender(this, toVars, fromVars);
 				return duration ? this.add( Engine.fromTo(target, duration, fromVars, toVars), position) : this.set(target, toVars, position);
 			};
 
 			p.staggerTo = function(targets, duration, vars, stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope) {
 				var tl = new TimelineLite({onComplete:onCompleteAll, onCompleteParams:onCompleteAllParams, callbackScope:onCompleteAllScope, smoothChildTiming:this.smoothChildTiming}),
+					staggerFunc = _distribute(vars.stagger || stagger),
+					startAt = vars.startAt,
 					cycle = vars.cycle,
 					copy, i;
 				if (typeof(targets) === "string") {
 					targets = TweenLite.selector(targets) || targets;
 				}
 				targets = targets || [];
-				if (_isSelector(targets)) { //senses if the targets object is a selector. If it is, we should translate it into an array.
+				if (_isSelector(targets)) { //if the targets object is a selector, translate it into an array.
 					targets = _slice(targets);
-				}
-				stagger = stagger || 0;
-				if (stagger < 0) {
-					targets = _slice(targets);
-					targets.reverse();
-					stagger *= -1;
 				}
 				for (i = 0; i < targets.length; i++) {
 					copy = _copy(vars);
-					if (copy.startAt) {
-						copy.startAt = _copy(copy.startAt);
-						if (copy.startAt.cycle) {
+					if (startAt) {
+						copy.startAt = _copy(startAt);
+						if (startAt.cycle) {
 							_applyCycle(copy.startAt, targets, i);
 						}
 					}
@@ -55842,21 +55977,19 @@
 							delete copy.duration;
 						}
 					}
-					tl.to(targets[i], duration, copy, i * stagger);
+					tl.to(targets[i], duration, copy, staggerFunc(i, targets[i], targets));
 				}
 				return this.add(tl, position);
 			};
 
 			p.staggerFrom = function(targets, duration, vars, stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope) {
-				vars.immediateRender = (vars.immediateRender != false);
 				vars.runBackwards = true;
-				return this.staggerTo(targets, duration, vars, stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope);
+				return this.staggerTo(targets, duration, _defaultImmediateRender(this, vars), stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope);
 			};
 
 			p.staggerFromTo = function(targets, duration, fromVars, toVars, stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope) {
 				toVars.startAt = fromVars;
-				toVars.immediateRender = (toVars.immediateRender != false && fromVars.immediateRender != false);
-				return this.staggerTo(targets, duration, toVars, stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope);
+				return this.staggerTo(targets, duration, _defaultImmediateRender(this, toVars, fromVars), stagger, position, onCompleteAll, onCompleteAllParams, onCompleteAllScope);
 			};
 
 			p.call = function(callback, params, scope, position) {
@@ -55864,11 +55997,7 @@
 			};
 
 			p.set = function(target, vars, position) {
-				position = this._parseTimeOrLabel(position, 0, true);
-				if (vars.immediateRender == null) {
-					vars.immediateRender = (position === this._time && !this._paused);
-				}
-				return this.add( new TweenLite(target, 0, vars), position);
+				return this.add( new TweenLite(target, 0, _defaultImmediateRender(this, vars, null, true)), position);
 			};
 
 			TimelineLite.exportRoot = function(vars, ignoreDelayedCalls) {
@@ -55905,9 +56034,10 @@
 			};
 
 			p.add = function(value, position, align, stagger) {
-				var curTime, l, i, child, tl, beforeRawTime;
+				var self = this,
+					curTime, l, i, child, tl, beforeRawTime;
 				if (typeof(position) !== "number") {
-					position = this._parseTimeOrLabel(position, 0, true, value);
+					position = self._parseTimeOrLabel(position, 0, true, value);
 				}
 				if (!(value instanceof Animation)) {
 					if ((value instanceof Array) || (value && value.push && _isArray(value))) {
@@ -55919,7 +56049,7 @@
 							if (_isArray(child = value[i])) {
 								child = new TimelineLite({tweens:child});
 							}
-							this.add(child, curTime);
+							self.add(child, curTime);
 							if (typeof(child) !== "string" && typeof(child) !== "function") {
 								if (align === "sequence") {
 									curTime = child._startTime + (child.totalDuration() / child._timeScale);
@@ -55929,9 +56059,9 @@
 							}
 							curTime += stagger;
 						}
-						return this._uncache(true);
+						return self._uncache(true);
 					} else if (typeof(value) === "string") {
-						return this.addLabel(value, position);
+						return self.addLabel(value, position);
 					} else if (typeof(value) === "function") {
 						value = TweenLite.delayedCall(0, value);
 					} else {
@@ -55939,19 +56069,19 @@
 					}
 				}
 
-				SimpleTimeline.prototype.add.call(this, value, position);
+				SimpleTimeline.prototype.add.call(self, value, position);
 
-				if (value._time) { //in case, for example, the _startTime is moved on a tween that has already rendered. Imagine it's at its end state, then the startTime is moved WAY later (after the end of this timeline), it should render at its beginning.
-					curTime = Math.max(0, Math.min(value.totalDuration(), (this.rawTime() - value._startTime) * value._timeScale));
-					if (Math.abs(curTime - value._totalTime) > 0.00001) { //if an onComplete restarts the tween in a nested timeline, for example, there could be an endless loop without this logic (v2.0.2), like var masterTL = new TimelineMax({autoRemoveChildren: true}), tl = new TimelineMax(); tl.eventCallback("onComplete", function() { tl.restart() } );tl.fromTo('div', 1.1, { rotation: 0 }, { rotation: 360 }, 0);masterTL.add(tl);
+				if (value._time || (!value._duration && value._initted)) { //in case, for example, the _startTime is moved on a tween that has already rendered. Imagine it's at its end state, then the startTime is moved WAY later (after the end of this timeline), it should render at its beginning.
+					curTime = (self.rawTime() - value._startTime) * value._timeScale;
+					if (!value._duration || Math.abs(Math.max(0, Math.min(value.totalDuration(), curTime))) - value._totalTime > 0.00001) {
 						value.render(curTime, false, false);
 					}
 				}
 
 				//if the timeline has already ended but the inserted tween/timeline extends the duration, we should enable this timeline again so that it renders properly. We should also align the playhead with the parent timeline's when appropriate.
-				if (this._gc || this._time === this._duration) if (!this._paused) if (this._duration < this.duration()) {
+				if (self._gc || self._time === self._duration) if (!self._paused) if (self._duration < self.duration()) {
 					//in case any of the ancestors had completed but should now be enabled...
-					tl = this;
+					tl = self;
 					beforeRawTime = (tl.rawTime() > value._startTime); //if the tween is placed on the timeline so that it starts BEFORE the current rawTime, we should align the playhead (move the timeline). This is because sometimes users will create a timeline, let it finish, and much later append a tween and expect it to run instead of jumping to its end state. While technically one could argue that it should jump to its end state, that's not what users intuitively expect.
 					while (tl._timeline) {
 						if (beforeRawTime && tl._timeline.smoothChildTiming) {
@@ -55963,7 +56093,7 @@
 					}
 				}
 
-				return this;
+				return self;
 			};
 
 			p.remove = function(value) {
@@ -56084,50 +56214,54 @@
 				if (this._gc) {
 					this._enabled(true, false);
 				}
-				var prevTime = this._time,
-					totalDur = (!this._dirty) ? this._totalDuration : this.totalDuration(),
-					prevStart = this._startTime,
-					prevTimeScale = this._timeScale,
-					prevPaused = this._paused,
-					tween, isComplete, next, callback, internalForce, pauseTween, curTime;
-				if (prevTime !== this._time) { //if totalDuration() finds a child with a negative startTime and smoothChildTiming is true, things get shifted around internally so we need to adjust the time accordingly. For example, if a tween starts at -30 we must shift EVERYTHING forward 30 seconds and move this timeline's startTime backward by 30 seconds so that things align with the playhead (no jump).
-					time += this._time - prevTime;
+				var self = this,
+					prevTime = self._time,
+					totalDur = (!self._dirty) ? self._totalDuration : self.totalDuration(),
+					prevStart = self._startTime,
+					prevTimeScale = self._timeScale,
+					prevPaused = self._paused,
+					tween, isComplete, next, callback, internalForce, pauseTween, curTime, pauseTime;
+				if (prevTime !== self._time) { //if totalDuration() finds a child with a negative startTime and smoothChildTiming is true, things get shifted around internally so we need to adjust the time accordingly. For example, if a tween starts at -30 we must shift EVERYTHING forward 30 seconds and move this timeline's startTime backward by 30 seconds so that things align with the playhead (no jump).
+					time += self._time - prevTime;
 				}
-				if (time >= totalDur - 0.0000001 && time >= 0) { //to work around occasional floating point math artifacts.
-					this._totalTime = this._time = totalDur;
-					if (!this._reversed) if (!this._hasPausedChild()) {
+				if (time >= totalDur - _tinyNum && time >= 0) { //to work around occasional floating point math artifacts.
+					self._totalTime = self._time = totalDur;
+					if (!self._reversed) if (!self._hasPausedChild()) {
 						isComplete = true;
 						callback = "onComplete";
-						internalForce = !!this._timeline.autoRemoveChildren; //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
-						if (this._duration === 0) if ((time <= 0 && time >= -0.0000001) || this._rawPrevTime < 0 || this._rawPrevTime === _tinyNum) if (this._rawPrevTime !== time && this._first) {
+						internalForce = !!self._timeline.autoRemoveChildren; //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
+						if (self._duration === 0) if ((time <= 0 && time >= -_tinyNum) || self._rawPrevTime < 0 || self._rawPrevTime === _tinyNum) if (self._rawPrevTime !== time && self._first) {
 							internalForce = true;
-							if (this._rawPrevTime > _tinyNum) {
+							if (self._rawPrevTime > _tinyNum) {
 								callback = "onReverseComplete";
 							}
 						}
 					}
-					this._rawPrevTime = (this._duration || !suppressEvents || time || this._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+					self._rawPrevTime = (self._duration || !suppressEvents || time || self._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 					time = totalDur + 0.0001; //to avoid occasional floating point rounding errors - sometimes child tweens/timelines were not being fully completed (their progress might be 0.999999999999998 instead of 1 because when _time - tween._startTime is performed, floating point errors would return a value that was SLIGHTLY off). Try (999999999999.7 - 999999999999) * 1 = 0.699951171875 instead of 0.7.
 
-				} else if (time < 0.0000001) { //to work around occasional floating point math artifacts, round super small values to 0.
-					this._totalTime = this._time = 0;
-					if (prevTime !== 0 || (this._duration === 0 && this._rawPrevTime !== _tinyNum && (this._rawPrevTime > 0 || (time < 0 && this._rawPrevTime >= 0)))) {
+				} else if (time < _tinyNum) { //to work around occasional floating point math artifacts, round super small values to 0.
+					self._totalTime = self._time = 0;
+					if (time > -_tinyNum) {
+						time = 0;
+					}
+					if (prevTime !== 0 || (self._duration === 0 && self._rawPrevTime !== _tinyNum && (self._rawPrevTime > 0 || (time < 0 && self._rawPrevTime >= 0)))) {
 						callback = "onReverseComplete";
-						isComplete = this._reversed;
+						isComplete = self._reversed;
 					}
 					if (time < 0) {
-						this._active = false;
-						if (this._timeline.autoRemoveChildren && this._reversed) { //ensures proper GC if a timeline is resumed after it's finished reversing.
+						self._active = false;
+						if (self._timeline.autoRemoveChildren && self._reversed) { //ensures proper GC if a timeline is resumed after it's finished reversing.
 							internalForce = isComplete = true;
 							callback = "onReverseComplete";
-						} else if (this._rawPrevTime >= 0 && this._first) { //when going back beyond the start, force a render so that zero-duration tweens that sit at the very beginning render their start values properly. Otherwise, if the parent timeline's playhead lands exactly at this timeline's startTime, and then moves backwards, the zero-duration tweens at the beginning would still be at their end state.
+						} else if (self._rawPrevTime >= 0 && self._first) { //when going back beyond the start, force a render so that zero-duration tweens that sit at the very beginning render their start values properly. Otherwise, if the parent timeline's playhead lands exactly at this timeline's startTime, and then moves backwards, the zero-duration tweens at the beginning would still be at their end state.
 							internalForce = true;
 						}
-						this._rawPrevTime = time;
+						self._rawPrevTime = time;
 					} else {
-						this._rawPrevTime = (this._duration || !suppressEvents || time || this._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+						self._rawPrevTime = (self._duration || !suppressEvents || time || self._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 						if (time === 0 && isComplete) { //if there's a zero-duration tween at the very beginning of a timeline and the playhead lands EXACTLY at time 0, that tween will correctly render its end values, but we need to keep the timeline alive for one more render so that the beginning values render properly as the parent's playhead keeps moving beyond the begining. Imagine obj.x starts at 0 and then we do tl.set(obj, {x:100}).to(obj, 1, {x:200}) and then later we tl.reverse()...the goal is to have obj.x revert to 0. If the playhead happens to land on exactly 0, without this chunk of code, it'd complete the timeline and remove it from the rendering queue (not good).
-							tween = this._first;
+							tween = self._first;
 							while (tween && tween._startTime === 0) {
 								if (!tween._duration) {
 									isComplete = false;
@@ -56136,24 +56270,24 @@
 							}
 						}
 						time = 0; //to avoid occasional floating point rounding errors (could cause problems especially with zero-duration tweens at the very beginning of the timeline)
-						if (!this._initted) {
+						if (!self._initted) {
 							internalForce = true;
 						}
 					}
 
 				} else {
 
-					if (this._hasPause && !this._forcingPlayhead && !suppressEvents) {
+					if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
 						if (time >= prevTime) {
-							tween = this._first;
+							tween = self._first;
 							while (tween && tween._startTime <= time && !pauseTween) {
-								if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && this._rawPrevTime === 0)) {
+								if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
 									pauseTween = tween;
 								}
 								tween = tween._next;
 							}
 						} else {
-							tween = this._last;
+							tween = self._last;
 							while (tween && tween._startTime >= time && !pauseTween) {
 								if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
 									pauseTween = tween;
@@ -56162,37 +56296,38 @@
 							}
 						}
 						if (pauseTween) {
-							this._time = time = pauseTween._startTime;
-							this._totalTime = time + (this._cycle * (this._totalDuration + this._repeatDelay));
+							self._time = self._totalTime = time = pauseTween._startTime;
+							pauseTime = self._startTime + (time / self._timeScale);
 						}
 					}
 
-					this._totalTime = this._time = this._rawPrevTime = time;
+					self._totalTime = self._time = self._rawPrevTime = time;
 				}
-				if ((this._time === prevTime || !this._first) && !force && !internalForce && !pauseTween) {
+				if ((self._time === prevTime || !self._first) && !force && !internalForce && !pauseTween) {
 					return;
-				} else if (!this._initted) {
-					this._initted = true;
+				} else if (!self._initted) {
+					self._initted = true;
 				}
 
-				if (!this._active) if (!this._paused && this._time !== prevTime && time > 0) {
-					this._active = true;  //so that if the user renders the timeline (as opposed to the parent timeline rendering it), it is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the timeline already finished but the user manually re-renders it as halfway done, for example.
+				if (!self._active) if (!self._paused && self._time !== prevTime && time > 0) {
+					self._active = true;  //so that if the user renders the timeline (as opposed to the parent timeline rendering it), it is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the timeline already finished but the user manually re-renders it as halfway done, for example.
 				}
 
-				if (prevTime === 0) if (this.vars.onStart) if (this._time !== 0 || !this._duration) if (!suppressEvents) {
-					this._callback("onStart");
+				if (prevTime === 0) if (self.vars.onStart) if (self._time !== 0 || !self._duration) if (!suppressEvents) {
+					self._callback("onStart");
 				}
 
-				curTime = this._time;
+				curTime = self._time;
 				if (curTime >= prevTime) {
-					tween = this._first;
+					tween = self._first;
 					while (tween) {
 						next = tween._next; //record it here because the value could change after rendering...
-						if (curTime !== this._time || (this._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
+						if (curTime !== self._time || (self._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
 							break;
 						} else if (tween._active || (tween._startTime <= curTime && !tween._paused && !tween._gc)) {
 							if (pauseTween === tween) {
-								this.pause();
+								self.pause();
+								self._pauseTime = pauseTime; //so that when we resume(), it's starting from exactly the right spot (the pause() method uses the rawTime for the parent, but that may be a bit too far ahead)
 							}
 							if (!tween._reversed) {
 								tween.render((time - tween._startTime) * tween._timeScale, suppressEvents, force);
@@ -56203,20 +56338,21 @@
 						tween = next;
 					}
 				} else {
-					tween = this._last;
+					tween = self._last;
 					while (tween) {
 						next = tween._prev; //record it here because the value could change after rendering...
-						if (curTime !== this._time || (this._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
+						if (curTime !== self._time || (self._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
 							break;
 						} else if (tween._active || (tween._startTime <= prevTime && !tween._paused && !tween._gc)) {
 							if (pauseTween === tween) {
 								pauseTween = tween._prev; //the linked list is organized by _startTime, thus it's possible that a tween could start BEFORE the pause and end after it, in which case it would be positioned before the pause tween in the linked list, but we should render it before we pause() the timeline and cease rendering. This is only a concern when going in reverse.
-								while (pauseTween && pauseTween.endTime() > this._time) {
+								while (pauseTween && pauseTween.endTime() > self._time) {
 									pauseTween.render( (pauseTween._reversed ? pauseTween.totalDuration() - ((time - pauseTween._startTime) * pauseTween._timeScale) : (time - pauseTween._startTime) * pauseTween._timeScale), suppressEvents, force);
 									pauseTween = pauseTween._prev;
 								}
 								pauseTween = null;
-								this.pause();
+								self.pause();
+								self._pauseTime = pauseTime; //so that when we resume(), it's starting from exactly the right spot (the pause() method uses the rawTime for the parent, but that may be a bit too far ahead)
 							}
 							if (!tween._reversed) {
 								tween.render((time - tween._startTime) * tween._timeScale, suppressEvents, force);
@@ -56228,25 +56364,25 @@
 					}
 				}
 
-				if (this._onUpdate) if (!suppressEvents) {
+				if (self._onUpdate) if (!suppressEvents) {
 					if (_lazyTweens.length) { //in case rendering caused any tweens to lazy-init, we should render them because typically when a timeline finishes, users expect things to have rendered fully. Imagine an onUpdate on a timeline that reports/checks tweened values.
 						_lazyRender();
 					}
-					this._callback("onUpdate");
+					self._callback("onUpdate");
 				}
 
-				if (callback) if (!this._gc) if (prevStart === this._startTime || prevTimeScale !== this._timeScale) if (this._time === 0 || totalDur >= this.totalDuration()) { //if one of the tweens that was rendered altered this timeline's startTime (like if an onComplete reversed the timeline), it probably isn't complete. If it is, don't worry, because whatever call altered the startTime would complete if it was necessary at the new time. The only exception is the timeScale property. Also check _gc because there's a chance that kill() could be called in an onUpdate
+				if (callback) if (!self._gc) if (prevStart === self._startTime || prevTimeScale !== self._timeScale) if (self._time === 0 || totalDur >= self.totalDuration()) { //if one of the tweens that was rendered altered this timeline's startTime (like if an onComplete reversed the timeline), it probably isn't complete. If it is, don't worry, because whatever call altered the startTime would complete if it was necessary at the new time. The only exception is the timeScale property. Also check _gc because there's a chance that kill() could be called in an onUpdate
 					if (isComplete) {
 						if (_lazyTweens.length) { //in case rendering caused any tweens to lazy-init, we should render them because typically when a timeline finishes, users expect things to have rendered fully. Imagine an onComplete on a timeline that reports/checks tweened values.
 							_lazyRender();
 						}
-						if (this._timeline.autoRemoveChildren) {
-							this._enabled(false, false);
+						if (self._timeline.autoRemoveChildren) {
+							self._enabled(false, false);
 						}
-						this._active = false;
+						self._active = false;
 					}
-					if (!suppressEvents && this.vars[callback]) {
-						this._callback(callback);
+					if (!suppressEvents && self.vars[callback]) {
+						self._callback(callback);
 					}
 				}
 			};
@@ -56417,7 +56553,8 @@
 				if (!arguments.length) {
 					if (this._dirty) {
 						var max = 0,
-							tween = this._last,
+							self = this,
+							tween = self._last,
 							prevStart = 999999999999,
 							prev, end;
 						while (tween) {
@@ -56425,22 +56562,22 @@
 							if (tween._dirty) {
 								tween.totalDuration(); //could change the tween._startTime, so make sure the tween's cache is clean before analyzing it.
 							}
-							if (tween._startTime > prevStart && this._sortChildren && !tween._paused && !this._calculatingDuration) { //in case one of the tweens shifted out of order, it needs to be re-inserted into the correct position in the sequence
-								this._calculatingDuration = 1; //prevent endless recursive calls - there are methods that get triggered that check duration/totalDuration when we add(), like _parseTimeOrLabel().
-								this.add(tween, tween._startTime - tween._delay);
-								this._calculatingDuration = 0;
+							if (tween._startTime > prevStart && self._sortChildren && !tween._paused && !self._calculatingDuration) { //in case one of the tweens shifted out of order, it needs to be re-inserted into the correct position in the sequence
+								self._calculatingDuration = 1; //prevent endless recursive calls - there are methods that get triggered that check duration/totalDuration when we add(), like _parseTimeOrLabel().
+								self.add(tween, tween._startTime - tween._delay);
+								self._calculatingDuration = 0;
 							} else {
 								prevStart = tween._startTime;
 							}
 							if (tween._startTime < 0 && !tween._paused) { //children aren't allowed to have negative startTimes unless smoothChildTiming is true, so adjust here if one is found.
 								max -= tween._startTime;
-								if (this._timeline.smoothChildTiming) {
-									this._startTime += tween._startTime / this._timeScale;
-									this._time -= tween._startTime;
-									this._totalTime -= tween._startTime;
-									this._rawPrevTime -= tween._startTime;
+								if (self._timeline.smoothChildTiming) {
+									self._startTime += tween._startTime / self._timeScale;
+									self._time -= tween._startTime;
+									self._totalTime -= tween._startTime;
+									self._rawPrevTime -= tween._startTime;
 								}
-								this.shiftChildren(-tween._startTime, false, -9999999999);
+								self.shiftChildren(-tween._startTime, false, -9999999999);
 								prevStart = 0;
 							}
 							end = tween._startTime + (tween._totalDuration / tween._timeScale);
@@ -56449,8 +56586,8 @@
 							}
 							tween = prev;
 						}
-						this._duration = this._totalDuration = max;
-						this._dirty = false;
+						self._duration = self._totalDuration = max;
+						self._dirty = false;
 					}
 					return this._totalDuration;
 				}
@@ -56458,11 +56595,10 @@
 			};
 
 			p.paused = function(value) {
-				if (!value) { //if there's a pause directly at the spot from where we're unpausing, skip it.
-					var tween = this._first,
-						time = this._time;
+				if (value === false && this._paused) { //if there's a pause directly at the spot from where we're unpausing, skip it.
+					var tween = this._first;
 					while (tween) {
-						if (tween._startTime === time && tween.data === "isPause") {
+						if (tween._startTime === this._time && tween.data === "isPause") {
 							tween._rawPrevTime = 0; //remember, _rawPrevTime is how zero-duration tweens/callbacks sense directionality and determine whether or not to fire. If _rawPrevTime is the same as _startTime on the next render, it won't fire.
 						}
 						tween = tween._next;
@@ -56511,10 +56647,10 @@
 					this._repeat = this.vars.repeat || 0;
 					this._repeatDelay = this.vars.repeatDelay || 0;
 					this._cycle = 0;
-					this._yoyo = (this.vars.yoyo === true);
+					this._yoyo = !!this.vars.yoyo;
 					this._dirty = true;
 				},
-				_tinyNum = 0.0000000001,
+				_tinyNum = 0.00000001,
 				TweenLiteInternals = TweenLite._internals,
 				_lazyTweens = TweenLiteInternals.lazyTweens,
 				_lazyRender = TweenLiteInternals.lazyRender,
@@ -56524,10 +56660,10 @@
 
 			p.constructor = TimelineMax;
 			p.kill()._gc = false;
-			TimelineMax.version = "2.0.2";
+			TimelineMax.version = "2.1.0";
 
 			p.invalidate = function() {
-				this._yoyo = (this.vars.yoyo === true);
+				this._yoyo = !!this.vars.yoyo;
 				this._repeat = this.vars.repeat || 0;
 				this._repeatDelay = this.vars.repeatDelay || 0;
 				this._uncache(true);
@@ -56597,65 +56733,69 @@
 				if (this._gc) {
 					this._enabled(true, false);
 				}
-				var prevTime = this._time,
-					totalDur = (!this._dirty) ? this._totalDuration : this.totalDuration(),
-					dur = this._duration,
-					prevTotalTime = this._totalTime,
-					prevStart = this._startTime,
-					prevTimeScale = this._timeScale,
-					prevRawPrevTime = this._rawPrevTime,
-					prevPaused = this._paused,
-					prevCycle = this._cycle,
-					tween, isComplete, next, callback, internalForce, cycleDuration, pauseTween, curTime;
-				if (prevTime !== this._time) { //if totalDuration() finds a child with a negative startTime and smoothChildTiming is true, things get shifted around internally so we need to adjust the time accordingly. For example, if a tween starts at -30 we must shift EVERYTHING forward 30 seconds and move this timeline's startTime backward by 30 seconds so that things align with the playhead (no jump).
-					time += this._time - prevTime;
+				var self = this,
+					prevTime = self._time,
+					totalDur = (!self._dirty) ? self._totalDuration : self.totalDuration(),
+					dur = self._duration,
+					prevTotalTime = self._totalTime,
+					prevStart = self._startTime,
+					prevTimeScale = self._timeScale,
+					prevRawPrevTime = self._rawPrevTime,
+					prevPaused = self._paused,
+					prevCycle = self._cycle,
+					tween, isComplete, next, callback, internalForce, cycleDuration, pauseTween, curTime, pauseTime;
+				if (prevTime !== self._time) { //if totalDuration() finds a child with a negative startTime and smoothChildTiming is true, things get shifted around internally so we need to adjust the time accordingly. For example, if a tween starts at -30 we must shift EVERYTHING forward 30 seconds and move this timeline's startTime backward by 30 seconds so that things align with the playhead (no jump).
+					time += self._time - prevTime;
 				}
-				if (time >= totalDur - 0.0000001 && time >= 0) { //to work around occasional floating point math artifacts.
-					if (!this._locked) {
-						this._totalTime = totalDur;
-						this._cycle = this._repeat;
+				if (time >= totalDur - _tinyNum && time >= 0) { //to work around occasional floating point math artifacts.
+					if (!self._locked) {
+						self._totalTime = totalDur;
+						self._cycle = self._repeat;
 					}
-					if (!this._reversed) if (!this._hasPausedChild()) {
+					if (!self._reversed) if (!self._hasPausedChild()) {
 						isComplete = true;
 						callback = "onComplete";
-						internalForce = !!this._timeline.autoRemoveChildren; //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
-						if (this._duration === 0) if ((time <= 0 && time >= -0.0000001) || prevRawPrevTime < 0 || prevRawPrevTime === _tinyNum) if (prevRawPrevTime !== time && this._first) {
+						internalForce = !!self._timeline.autoRemoveChildren; //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
+						if (self._duration === 0) if ((time <= 0 && time >= -_tinyNum) || prevRawPrevTime < 0 || prevRawPrevTime === _tinyNum) if (prevRawPrevTime !== time && self._first) {
 							internalForce = true;
 							if (prevRawPrevTime > _tinyNum) {
 								callback = "onReverseComplete";
 							}
 						}
 					}
-					this._rawPrevTime = (this._duration || !suppressEvents || time || this._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
-					if (this._yoyo && (this._cycle & 1) !== 0) {
-						this._time = time = 0;
+					self._rawPrevTime = (self._duration || !suppressEvents || time || self._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+					if (self._yoyo && (self._cycle & 1)) {
+						self._time = time = 0;
 					} else {
-						this._time = dur;
+						self._time = dur;
 						time = dur + 0.0001; //to avoid occasional floating point rounding errors - sometimes child tweens/timelines were not being fully completed (their progress might be 0.999999999999998 instead of 1 because when _time - tween._startTime is performed, floating point errors would return a value that was SLIGHTLY off). Try (999999999999.7 - 999999999999) * 1 = 0.699951171875 instead of 0.7. We cannot do less then 0.0001 because the same issue can occur when the duration is extremely large like 999999999999 in which case adding 0.00000001, for example, causes it to act like nothing was added.
 					}
 
-				} else if (time < 0.0000001) { //to work around occasional floating point math artifacts, round super small values to 0.
-					if (!this._locked) {
-						this._totalTime = this._cycle = 0;
+				} else if (time < _tinyNum) { //to work around occasional floating point math artifacts, round super small values to 0.
+					if (!self._locked) {
+						self._totalTime = self._cycle = 0;
 					}
-					this._time = 0;
-					if (prevTime !== 0 || (dur === 0 && prevRawPrevTime !== _tinyNum && (prevRawPrevTime > 0 || (time < 0 && prevRawPrevTime >= 0)) && !this._locked)) { //edge case for checking time < 0 && prevRawPrevTime >= 0: a zero-duration fromTo() tween inside a zero-duration timeline (yeah, very rare)
+					self._time = 0;
+					if (time > -_tinyNum) {
+						time = 0;
+					}
+					if (prevTime !== 0 || (dur === 0 && prevRawPrevTime !== _tinyNum && (prevRawPrevTime > 0 || (time < 0 && prevRawPrevTime >= 0)) && !self._locked)) { //edge case for checking time < 0 && prevRawPrevTime >= 0: a zero-duration fromTo() tween inside a zero-duration timeline (yeah, very rare)
 						callback = "onReverseComplete";
-						isComplete = this._reversed;
+						isComplete = self._reversed;
 					}
 					if (time < 0) {
-						this._active = false;
-						if (this._timeline.autoRemoveChildren && this._reversed) {
+						self._active = false;
+						if (self._timeline.autoRemoveChildren && self._reversed) {
 							internalForce = isComplete = true;
 							callback = "onReverseComplete";
-						} else if (prevRawPrevTime >= 0 && this._first) { //when going back beyond the start, force a render so that zero-duration tweens that sit at the very beginning render their start values properly. Otherwise, if the parent timeline's playhead lands exactly at this timeline's startTime, and then moves backwards, the zero-duration tweens at the beginning would still be at their end state.
+						} else if (prevRawPrevTime >= 0 && self._first) { //when going back beyond the start, force a render so that zero-duration tweens that sit at the very beginning render their start values properly. Otherwise, if the parent timeline's playhead lands exactly at this timeline's startTime, and then moves backwards, the zero-duration tweens at the beginning would still be at their end state.
 							internalForce = true;
 						}
-						this._rawPrevTime = time;
+						self._rawPrevTime = time;
 					} else {
-						this._rawPrevTime = (dur || !suppressEvents || time || this._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+						self._rawPrevTime = (dur || !suppressEvents || time || self._rawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration timeline or tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 						if (time === 0 && isComplete) { //if there's a zero-duration tween at the very beginning of a timeline and the playhead lands EXACTLY at time 0, that tween will correctly render its end values, but we need to keep the timeline alive for one more render so that the beginning values render properly as the parent's playhead keeps moving beyond the begining. Imagine obj.x starts at 0 and then we do tl.set(obj, {x:100}).to(obj, 1, {x:200}) and then later we tl.reverse()...the goal is to have obj.x revert to 0. If the playhead happens to land on exactly 0, without this chunk of code, it'd complete the timeline and remove it from the rendering queue (not good).
-							tween = this._first;
+							tween = self._first;
 							while (tween && tween._startTime === 0) {
 								if (!tween._duration) {
 									isComplete = false;
@@ -56664,7 +56804,7 @@
 							}
 						}
 						time = 0; //to avoid occasional floating point rounding errors (could cause problems especially with zero-duration tweens at the very beginning of the timeline)
-						if (!this._initted) {
+						if (!self._initted) {
 							internalForce = true;
 						}
 					}
@@ -56673,42 +56813,42 @@
 					if (dur === 0 && prevRawPrevTime < 0) { //without this, zero-duration repeating timelines (like with a simple callback nested at the very beginning and a repeatDelay) wouldn't render the first time through.
 						internalForce = true;
 					}
-					this._time = this._rawPrevTime = time;
-					if (!this._locked) {
-						this._totalTime = time;
-						if (this._repeat !== 0) {
-							cycleDuration = dur + this._repeatDelay;
-							this._cycle = (this._totalTime / cycleDuration) >> 0; //originally _totalTime % cycleDuration but floating point errors caused problems, so I normalized it. (4 % 0.8 should be 0 but it gets reported as 0.79999999!)
-							if (this._cycle !== 0) if (this._cycle === this._totalTime / cycleDuration && prevTotalTime <= time) {
-								this._cycle--; //otherwise when rendered exactly at the end time, it will act as though it is repeating (at the beginning)
+					self._time = self._rawPrevTime = time;
+					if (!self._locked) {
+						self._totalTime = time;
+						if (self._repeat !== 0) {
+							cycleDuration = dur + self._repeatDelay;
+							self._cycle = (self._totalTime / cycleDuration) >> 0; //originally _totalTime % cycleDuration but floating point errors caused problems, so I normalized it. (4 % 0.8 should be 0 but it gets reported as 0.79999999!)
+							if (self._cycle) if (self._cycle === self._totalTime / cycleDuration && prevTotalTime <= time) {
+								self._cycle--; //otherwise when rendered exactly at the end time, it will act as though it is repeating (at the beginning)
 							}
-							this._time = this._totalTime - (this._cycle * cycleDuration);
-							if (this._yoyo) if ((this._cycle & 1) !== 0) {
-								this._time = dur - this._time;
+							self._time = self._totalTime - (self._cycle * cycleDuration);
+							if (self._yoyo) if (self._cycle & 1) {
+								self._time = dur - self._time;
 							}
-							if (this._time > dur) {
-								this._time = dur;
+							if (self._time > dur) {
+								self._time = dur;
 								time = dur + 0.0001; //to avoid occasional floating point rounding error
-							} else if (this._time < 0) {
-								this._time = time = 0;
+							} else if (self._time < 0) {
+								self._time = time = 0;
 							} else {
-								time = this._time;
+								time = self._time;
 							}
 						}
 					}
 
-					if (this._hasPause && !this._forcingPlayhead && !suppressEvents) {
-						time = this._time;
-						if (time >= prevTime || (this._repeat && prevCycle !== this._cycle)) {
-							tween = this._first;
+					if (self._hasPause && !self._forcingPlayhead && !suppressEvents) {
+						time = self._time;
+						if (time >= prevTime || (self._repeat && prevCycle !== self._cycle)) {
+							tween = self._first;
 							while (tween && tween._startTime <= time && !pauseTween) {
-								if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && this._rawPrevTime === 0)) {
+								if (!tween._duration) if (tween.data === "isPause" && !tween.ratio && !(tween._startTime === 0 && self._rawPrevTime === 0)) {
 									pauseTween = tween;
 								}
 								tween = tween._next;
 							}
 						} else {
-							tween = this._last;
+							tween = self._last;
 							while (tween && tween._startTime >= time && !pauseTween) {
 								if (!tween._duration) if (tween.data === "isPause" && tween._rawPrevTime > 0) {
 									pauseTween = tween;
@@ -56716,96 +56856,100 @@
 								tween = tween._prev;
 							}
 						}
-						if (pauseTween && pauseTween._startTime < dur) {
-							this._time = time = pauseTween._startTime;
-							this._totalTime = time + (this._cycle * (this._totalDuration + this._repeatDelay));
+						if (pauseTween) {
+							pauseTime = self._startTime + (pauseTween._startTime / self._timeScale);
+							if (pauseTween._startTime < dur) {
+								self._time = self._rawPrevTime = time = pauseTween._startTime;
+								self._totalTime = time + (self._cycle * (self._totalDuration + self._repeatDelay));
+							}
 						}
 					}
 
 				}
 
-				if (this._cycle !== prevCycle) if (!this._locked) {
+				if (self._cycle !== prevCycle) if (!self._locked) {
 					/*
 					make sure children at the end/beginning of the timeline are rendered properly. If, for example,
 					a 3-second long timeline rendered at 2.9 seconds previously, and now renders at 3.2 seconds (which
-					would get transated to 2.8 seconds if the timeline yoyos or 0.2 seconds if it just repeats), there
+					would get translated to 2.8 seconds if the timeline yoyos or 0.2 seconds if it just repeats), there
 					could be a callback or a short tween that's at 2.95 or 3 seconds in which wouldn't render. So
 					we need to push the timeline to the end (and/or beginning depending on its yoyo value). Also we must
 					ensure that zero-duration tweens at the very beginning or end of the TimelineMax work.
 					*/
-					var backwards = (this._yoyo && (prevCycle & 1) !== 0),
-						wrap = (backwards === (this._yoyo && (this._cycle & 1) !== 0)),
-						recTotalTime = this._totalTime,
-						recCycle = this._cycle,
-						recRawPrevTime = this._rawPrevTime,
-						recTime = this._time;
+					var backwards = (self._yoyo && (prevCycle & 1) !== 0),
+						wrap = (backwards === (self._yoyo && (self._cycle & 1) !== 0)),
+						recTotalTime = self._totalTime,
+						recCycle = self._cycle,
+						recRawPrevTime = self._rawPrevTime,
+						recTime = self._time;
 
-					this._totalTime = prevCycle * dur;
-					if (this._cycle < prevCycle) {
+					self._totalTime = prevCycle * dur;
+					if (self._cycle < prevCycle) {
 						backwards = !backwards;
 					} else {
-						this._totalTime += dur;
+						self._totalTime += dur;
 					}
-					this._time = prevTime; //temporarily revert _time so that render() renders the children in the correct order. Without this, tweens won't rewind correctly. We could arhictect things in a "cleaner" way by splitting out the rendering queue into a separate method but for performance reasons, we kept it all inside this method.
+					self._time = prevTime; //temporarily revert _time so that render() renders the children in the correct order. Without this, tweens won't rewind correctly. We could arhictect things in a "cleaner" way by splitting out the rendering queue into a separate method but for performance reasons, we kept it all inside this method.
 
-					this._rawPrevTime = (dur === 0) ? prevRawPrevTime - 0.0001 : prevRawPrevTime;
-					this._cycle = prevCycle;
-					this._locked = true; //prevents changes to totalTime and skips repeat/yoyo behavior when we recursively call render()
+					self._rawPrevTime = (dur === 0) ? prevRawPrevTime - 0.0001 : prevRawPrevTime;
+					self._cycle = prevCycle;
+					self._locked = true; //prevents changes to totalTime and skips repeat/yoyo behavior when we recursively call render()
 					prevTime = (backwards) ? 0 : dur;
-					this.render(prevTime, suppressEvents, (dur === 0));
-					if (!suppressEvents) if (!this._gc) {
-						if (this.vars.onRepeat) {
-							this._cycle = recCycle; //in case the onRepeat alters the playhead or invalidates(), we shouldn't stay locked or use the previous cycle.
-							this._locked = false;
-							this._callback("onRepeat");
+					self.render(prevTime, suppressEvents, (dur === 0));
+					if (!suppressEvents) if (!self._gc) {
+						if (self.vars.onRepeat) {
+							self._cycle = recCycle; //in case the onRepeat alters the playhead or invalidates(), we shouldn't stay locked or use the previous cycle.
+							self._locked = false;
+							self._callback("onRepeat");
 						}
 					}
-					if (prevTime !== this._time) { //in case there's a callback like onComplete in a nested tween/timeline that changes the playhead position, like via seek(), we should just abort.
+					if (prevTime !== self._time) { //in case there's a callback like onComplete in a nested tween/timeline that changes the playhead position, like via seek(), we should just abort.
 						return;
 					}
 					if (wrap) {
-						this._cycle = prevCycle; //if there's an onRepeat, we reverted this above, so make sure it's set properly again. We also unlocked in that scenario, so reset that too.
-						this._locked = true;
+						self._cycle = prevCycle; //if there's an onRepeat, we reverted this above, so make sure it's set properly again. We also unlocked in that scenario, so reset that too.
+						self._locked = true;
 						prevTime = (backwards) ? dur + 0.0001 : -0.0001;
-						this.render(prevTime, true, false);
+						self.render(prevTime, true, false);
 					}
-					this._locked = false;
-					if (this._paused && !prevPaused) { //if the render() triggered callback that paused this timeline, we should abort (very rare, but possible)
+					self._locked = false;
+					if (self._paused && !prevPaused) { //if the render() triggered callback that paused this timeline, we should abort (very rare, but possible)
 						return;
 					}
-					this._time = recTime;
-					this._totalTime = recTotalTime;
-					this._cycle = recCycle;
-					this._rawPrevTime = recRawPrevTime;
+					self._time = recTime;
+					self._totalTime = recTotalTime;
+					self._cycle = recCycle;
+					self._rawPrevTime = recRawPrevTime;
 				}
 
-				if ((this._time === prevTime || !this._first) && !force && !internalForce && !pauseTween) {
-					if (prevTotalTime !== this._totalTime) if (this._onUpdate) if (!suppressEvents) { //so that onUpdate fires even during the repeatDelay - as long as the totalTime changed, we should trigger onUpdate.
-						this._callback("onUpdate");
+				if ((self._time === prevTime || !self._first) && !force && !internalForce && !pauseTween) {
+					if (prevTotalTime !== self._totalTime) if (self._onUpdate) if (!suppressEvents) { //so that onUpdate fires even during the repeatDelay - as long as the totalTime changed, we should trigger onUpdate.
+						self._callback("onUpdate");
 					}
 					return;
-				} else if (!this._initted) {
-					this._initted = true;
+				} else if (!self._initted) {
+					self._initted = true;
 				}
 
-				if (!this._active) if (!this._paused && this._totalTime !== prevTotalTime && time > 0) {
-					this._active = true;  //so that if the user renders the timeline (as opposed to the parent timeline rendering it), it is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the timeline already finished but the user manually re-renders it as halfway done, for example.
+				if (!self._active) if (!self._paused && self._totalTime !== prevTotalTime && time > 0) {
+					self._active = true;  //so that if the user renders the timeline (as opposed to the parent timeline rendering it), it is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the timeline already finished but the user manually re-renders it as halfway done, for example.
 				}
 
-				if (prevTotalTime === 0) if (this.vars.onStart) if (this._totalTime !== 0 || !this._totalDuration) if (!suppressEvents) {
-					this._callback("onStart");
+				if (prevTotalTime === 0) if (self.vars.onStart) if (self._totalTime !== 0 || !self._totalDuration) if (!suppressEvents) {
+					self._callback("onStart");
 				}
 
-				curTime = this._time;
+				curTime = self._time;
 				if (curTime >= prevTime) {
-					tween = this._first;
+					tween = self._first;
 					while (tween) {
 						next = tween._next; //record it here because the value could change after rendering...
-						if (curTime !== this._time || (this._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
+						if (curTime !== self._time || (self._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
 							break;
-						} else if (tween._active || (tween._startTime <= this._time && !tween._paused && !tween._gc)) {
+						} else if (tween._active || (tween._startTime <= self._time && !tween._paused && !tween._gc)) {
 							if (pauseTween === tween) {
-								this.pause();
+								self.pause();
+								self._pauseTime = pauseTime; //so that when we resume(), it's starting from exactly the right spot (the pause() method uses the rawTime for the parent, but that may be a bit too far ahead)
 							}
 							if (!tween._reversed) {
 								tween.render((time - tween._startTime) * tween._timeScale, suppressEvents, force);
@@ -56816,20 +56960,21 @@
 						tween = next;
 					}
 				} else {
-					tween = this._last;
+					tween = self._last;
 					while (tween) {
 						next = tween._prev; //record it here because the value could change after rendering...
-						if (curTime !== this._time || (this._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
+						if (curTime !== self._time || (self._paused && !prevPaused)) { //in case a tween pauses or seeks the timeline when rendering, like inside of an onUpdate/onComplete
 							break;
 						} else if (tween._active || (tween._startTime <= prevTime && !tween._paused && !tween._gc)) {
 							if (pauseTween === tween) {
 								pauseTween = tween._prev; //the linked list is organized by _startTime, thus it's possible that a tween could start BEFORE the pause and end after it, in which case it would be positioned before the pause tween in the linked list, but we should render it before we pause() the timeline and cease rendering. This is only a concern when going in reverse.
-								while (pauseTween && pauseTween.endTime() > this._time) {
+								while (pauseTween && pauseTween.endTime() > self._time) {
 									pauseTween.render( (pauseTween._reversed ? pauseTween.totalDuration() - ((time - pauseTween._startTime) * pauseTween._timeScale) : (time - pauseTween._startTime) * pauseTween._timeScale), suppressEvents, force);
 									pauseTween = pauseTween._prev;
 								}
 								pauseTween = null;
-								this.pause();
+								self.pause();
+								self._pauseTime = pauseTime; //so that when we resume(), it's starting from exactly the right spot (the pause() method uses the rawTime for the parent, but that may be a bit too far ahead)
 							}
 							if (!tween._reversed) {
 								tween.render((time - tween._startTime) * tween._timeScale, suppressEvents, force);
@@ -56841,40 +56986,31 @@
 					}
 				}
 
-				if (this._onUpdate) if (!suppressEvents) {
+				if (self._onUpdate) if (!suppressEvents) {
 					if (_lazyTweens.length) { //in case rendering caused any tweens to lazy-init, we should render them because typically when a timeline finishes, users expect things to have rendered fully. Imagine an onUpdate on a timeline that reports/checks tweened values.
 						_lazyRender();
 					}
-					this._callback("onUpdate");
+					self._callback("onUpdate");
 				}
-				if (callback) if (!this._locked) if (!this._gc) if (prevStart === this._startTime || prevTimeScale !== this._timeScale) if (this._time === 0 || totalDur >= this.totalDuration()) { //if one of the tweens that was rendered altered this timeline's startTime (like if an onComplete reversed the timeline), it probably isn't complete. If it is, don't worry, because whatever call altered the startTime would complete if it was necessary at the new time. The only exception is the timeScale property. Also check _gc because there's a chance that kill() could be called in an onUpdate
+				if (callback) if (!self._locked) if (!self._gc) if (prevStart === self._startTime || prevTimeScale !== self._timeScale) if (self._time === 0 || totalDur >= self.totalDuration()) { //if one of the tweens that was rendered altered this timeline's startTime (like if an onComplete reversed the timeline), it probably isn't complete. If it is, don't worry, because whatever call altered the startTime would complete if it was necessary at the new time. The only exception is the timeScale property. Also check _gc because there's a chance that kill() could be called in an onUpdate
 					if (isComplete) {
 						if (_lazyTweens.length) { //in case rendering caused any tweens to lazy-init, we should render them because typically when a timeline finishes, users expect things to have rendered fully. Imagine an onComplete on a timeline that reports/checks tweened values.
 							_lazyRender();
 						}
-						if (this._timeline.autoRemoveChildren) {
-							this._enabled(false, false);
+						if (self._timeline.autoRemoveChildren) {
+							self._enabled(false, false);
 						}
-						this._active = false;
+						self._active = false;
 					}
-					if (!suppressEvents && this.vars[callback]) {
-						this._callback(callback);
+					if (!suppressEvents && self.vars[callback]) {
+						self._callback(callback);
 					}
 				}
 			};
 
 			p.getActive = function(nested, tweens, timelines) {
-				if (nested == null) {
-					nested = true;
-				}
-				if (tweens == null) {
-					tweens = true;
-				}
-				if (timelines == null) {
-					timelines = false;
-				}
 				var a = [],
-					all = this.getChildren(nested, tweens, timelines),
+					all = this.getChildren(nested || (nested == null), tweens || (nested == null), !!timelines),
 					cnt = 0,
 					l = all.length,
 					i, tween;
@@ -56965,15 +57101,13 @@
 				if (this._dirty) {
 					this.totalDuration();
 				}
-				if (value > this._duration) {
-					value = this._duration;
+				var duration = this._duration,
+					cycle = this._cycle,
+					cycleDur = cycle * (duration * this._repeatDelay);
+				if (value > duration) {
+					value = duration;
 				}
-				if (this._yoyo && (this._cycle & 1) !== 0) {
-					value = (this._duration - value) + (this._cycle * (this._duration + this._repeatDelay));
-				} else if (this._repeat !== 0) {
-					value += this._cycle * (this._duration + this._repeatDelay);
-				}
-				return this.totalTime(value, suppressEvents);
+				return this.totalTime((this._yoyo && (cycle & 1)) ? duration - value + cycleDur : this._repeat ? value + cycleDur : value, suppressEvents);
 			};
 
 			p.repeat = function(value) {
@@ -57002,7 +57136,7 @@
 
 			p.currentLabel = function(value) {
 				if (!arguments.length) {
-					return this.getLabelBefore(this._time + 0.00000001);
+					return this.getLabelBefore(this._time + _tinyNum);
 				}
 				return this.seek(value, true);
 			};
@@ -57655,7 +57789,7 @@
 				p = CSSPlugin.prototype = new TweenPlugin("css");
 
 			p.constructor = CSSPlugin;
-			CSSPlugin.version = "2.0.2";
+			CSSPlugin.version = "2.1.0";
 			CSSPlugin.API = 2;
 			CSSPlugin.defaultTransformPerspective = 0;
 			CSSPlugin.defaultSkewType = "compensated";
@@ -57688,7 +57822,7 @@
 				_dummyElement = {style:{}},
 				_doc = _gsScope.document || {createElement: function() {return _dummyElement;}},
 				_createElement = function(type, ns) {
-					return _doc.createElementNS ? _doc.createElementNS(ns || "http://www.w3.org/1999/xhtml", type) : _doc.createElement(type);
+					return (ns && _doc.createElementNS) ? _doc.createElementNS(ns, type) : _doc.createElement(type);
 				},
 				_tempDiv = _createElement("div"),
 				_tempImg = _createElement("img"),
@@ -57750,7 +57884,10 @@
 					return null;
 				},
 
-				_getComputedStyle = (typeof(window) !== "undefined" ? window : _doc.defaultView || {getComputedStyle:function() {}}).getComputedStyle,
+				_computedStyleScope = (typeof(window) !== "undefined" ? window : _doc.defaultView || {getComputedStyle:function() {}}),
+				_getComputedStyle = function(e) {
+					return _computedStyleScope.getComputedStyle(e); //to avoid errors in Microsoft Edge, we need to call getComputedStyle() from a specific scope, typically window.
+				},
 
 				/**
 				 * @private Returns the css style for a particular property of an element. For example, to get whatever the current "left" css value for an element with an ID of "myElement", you could do:
@@ -58685,6 +58822,7 @@
 					this.multi = options.multi;
 					this.keyword = options.keyword;
 					this.dflt = options.defaultValue;
+					this.allowFunc = options.allowFunc;
 					this.pr = options.priority || 0;
 				},
 
@@ -58963,7 +59101,7 @@
 					var tm = e._gsTransform || new Transform(),
 						rnd = 100000,
 						style = e.style,
-						isDefault, s, m, n, dec, none;
+						isDefault, s, m, n, dec, nextSibling, parent;
 					if (_transformProp) {
 						s = _getStyle(e, _transformPropCSS, null, true);
 					} else if (e.currentStyle) {
@@ -58972,24 +59110,31 @@
 						s = (s && s.length === 4) ? [s[0].substr(4), Number(s[2].substr(4)), Number(s[1].substr(4)), s[3].substr(4), (tm.x || 0), (tm.y || 0)].join(",") : "";
 					}
 					isDefault = (!s || s === "none" || s === "matrix(1, 0, 0, 1, 0, 0)");
-					if (_transformProp && ((none = (!_getComputedStyle(e) || _getComputedStyle(e).display === "none")) || !e.parentNode)) { //note: Firefox returns null for getComputedStyle() if the element is in an iframe that has display:none. https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-						if (none) { //browsers don't report transforms accurately unless the element is in the DOM and has a display value that's not "none". Firefox and Microsoft browsers have a partial bug where they'll report transforms even if display:none BUT not any percentage-based values like translate(-50%, 8px) will be reported as if it's translate(0, 8px).
-							n = style.display;
-							style.display = "block";
-						}
-						if (!e.parentNode) {
+					if (_transformProp && isDefault && !e.offsetParent) { //note: if offsetParent is null, that means the element isn't in the normal document flow, like if it has display:none or one of its ancestors has display:none). Firefox returns null for getComputedStyle() if the element is in an iframe that has display:none. https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+						//browsers don't report transforms accurately unless the element is in the DOM and has a display value that's not "none". Firefox and Microsoft browsers have a partial bug where they'll report transforms even if display:none BUT not any percentage-based values like translate(-50%, 8px) will be reported as if it's translate(0, 8px).
+						n = style.display;
+						style.display = "block";
+						parent = e.parentNode;
+						if (!parent || !e.offsetParent) {
 							dec = 1; //flag
-							_docElement.appendChild(e);
+							nextSibling = e.nextSibling;
+							_docElement.appendChild(e); //we must add it to the DOM in order to get values properly
 						}
 						s = _getStyle(e, _transformPropCSS, null, true);
 						isDefault = (!s || s === "none" || s === "matrix(1, 0, 0, 1, 0, 0)");
 						if (n) {
 							style.display = n;
-						} else if (none) {
+						} else {
 							_removeProp(style, "display");
 						}
 						if (dec) {
-							_docElement.removeChild(e);
+							if (nextSibling) {
+								parent.insertBefore(e, nextSibling);
+							} else if (parent) {
+								parent.appendChild(e);
+							} else {
+								_docElement.removeChild(e);
+							}
 						}
 					}
 					if (tm.svg || (e.getCTM && _isSVG(e))) {
@@ -59551,12 +59696,7 @@
 			_registerComplexSpecialProp("transform,scale,scaleX,scaleY,scaleZ,x,y,z,rotation,rotationX,rotationY,rotationZ,skewX,skewY,shortRotation,shortRotationX,shortRotationY,shortRotationZ,transformOrigin,svgOrigin,transformPerspective,directionalRotation,parseTransform,force3D,skewType,xPercent,yPercent,smoothOrigin", {parser:function(t, e, parsingProp, cssp, pt, plugin, vars) {
 				if (cssp._lastParsedTransform === vars) { return pt; } //only need to parse the transform once, and only if the browser supports it.
 				cssp._lastParsedTransform = vars;
-				var scaleFunc = (vars.scale && typeof(vars.scale) === "function") ? vars.scale : 0, //if there's a function-based "scale" value, swap in the resulting numeric value temporarily. Otherwise, if it's called for both scaleX and scaleY independently, they may not match (like if the function uses Math.random()).
-					swapFunc;
-				if (typeof(vars[parsingProp]) === "function") { //whatever property triggers the initial parsing might be a function-based value in which case it already got called in parse(), thus we don't want to call it again in here. The most efficient way to avoid this is to temporarily swap the value directly into the vars object, and then after we do all our parsing in this function, we'll swap it back again.
-					swapFunc = vars[parsingProp];
-					vars[parsingProp] = e;
-				}
+				var scaleFunc = (vars.scale && typeof(vars.scale) === "function") ? vars.scale : 0; //if there's a function-based "scale" value, swap in the resulting numeric value temporarily. Otherwise, if it's called for both scaleX and scaleY independently, they may not match (like if the function uses Math.random()).
 				if (scaleFunc) {
 					vars.scale = scaleFunc(_index, t);
 				}
@@ -59680,7 +59820,7 @@
 					}
 				}
 
-				orig = v.transformOrigin;
+				orig = (typeof(v.transformOrigin) === "function") ? v.transformOrigin(_index, _target) : v.transformOrigin;
 				if (m1.svg && (orig || v.svgOrigin)) {
 					x = m1.xOffset; //when we change the origin, in order to prevent things from jumping we adjust the x/y so we must record those here so that we can create PropTweens for them and flip them at the same time as the origin
 					y = m1.yOffset;
@@ -59697,14 +59837,18 @@
 					if (_transformProp) {
 						hasChange = true;
 						p = _transformOriginProp;
-						orig = (orig || _getStyle(t, p, _cs, false, "50% 50%")) + ""; //cast as string to avoid errors
+						if (!orig) {
+							orig = (_getStyle(t, p, _cs, false, "50% 50%") + "").split(" ");
+							orig = orig[0] + " " + orig[1] + " " + m1.zOrigin + "px";
+						}
+						orig += "";
 						pt = new CSSPropTween(style, p, 0, 0, pt, -1, transformOriginString);
 						pt.b = style[p];
 						pt.plugin = plugin;
 						if (_supports3D) {
 							copy = m1.zOrigin;
 							orig = orig.split(" ");
-							m1.zOrigin = ((orig.length > 2 && !(copy !== 0 && orig[2] === "0px")) ? parseFloat(orig[2]) : copy) || 0; //Safari doesn't handle the z part of transformOrigin correctly, so we'll manually handle it in the _set3DTransformRatio() method.
+							m1.zOrigin = ((orig.length > 2) ? parseFloat(orig[2]) : copy) || 0; //Safari doesn't handle the z part of transformOrigin correctly, so we'll manually handle it in the _set3DTransformRatio() method.
 							pt.xs0 = pt.e = orig[0] + " " + (orig[1] || "50%") + " 0px"; //we must define a z value of 0px specifically otherwise iOS 5 Safari will stick with the old one (if one was defined)!
 							pt = new CSSPropTween(m1, "zOrigin", 0, 0, pt, -1, pt.n); //we must create a CSSPropTween for the _gsTransform.zOrigin so that it gets reset properly at the beginning if the tween runs backward (as opposed to just setting m1.zOrigin here)
 							pt.b = copy;
@@ -59721,16 +59865,14 @@
 				if (hasChange) {
 					cssp._transformType = (!(m1.svg && _useSVGTransformAttr) && (has3D || this._transformType === 3)) ? 3 : 2; //quicker than calling cssp._enableTransforms();
 				}
-				if (swapFunc) {
-					vars[parsingProp] = swapFunc;
-				}
 				if (scaleFunc) {
 					vars.scale = scaleFunc;
 				}
 				return pt;
-			}, prefix:true});
+			}, allowFunc:true, prefix:true});
 
 			_registerComplexSpecialProp("boxShadow", {defaultValue:"0px 0px 0px 0px #999", prefix:true, color:true, multi:true, keyword:"inset"});
+			_registerComplexSpecialProp("clipPath", {defaultValue:"inset(0px)", prefix:true, multi:true, formatter:_getFormatter("inset(0px 0px 0px 0px)", false, true)});
 
 			_registerComplexSpecialProp("borderRadius", {defaultValue:"0px", parser:function(t, e, p, cssp, pt, plugin) {
 				e = this.format(e);
@@ -60161,10 +60303,10 @@
 					p, sp, bn, en, bs, es, bsfx, esfx, isStr, rel;
 				for (p in vars) {
 					es = vars[p]; //ending value string
-					if (typeof(es) === "function") {
+					sp = _specialProps[p]; //SpecialProp lookup.
+					if (typeof(es) === "function" && !(sp && sp.allowFunc)) {
 						es = es(_index, _target);
 					}
-					sp = _specialProps[p]; //SpecialProp lookup.
 					if (sp) {
 						pt = sp.parse(target, es, p, this, pt, plugin, vars);
 					} else if (p.substr(0,2) === "--") { //for tweening CSS variables (which always start with "--"). To maximize performance and simplicity, we bypass CSSPlugin altogether and just add a normal property tween to the tween instance itself.
@@ -61163,7 +61305,7 @@
 					return p;
 				},
 				gs = _namespace("com.greensock"),
-				_tinyNum = 0.0000000001,
+				_tinyNum = 0.00000001,
 				_slice = function(a) { //don't use Array.prototype.slice.call(target, 0) because that doesn't work in IE8 with a NodeList that's returned by querySelectorAll()
 					var b = [],
 						l = a.length,
@@ -61547,9 +61689,9 @@
 					this._duration = this._totalDuration = duration || 0;
 					this._delay = Number(vars.delay) || 0;
 					this._timeScale = 1;
-					this._active = (vars.immediateRender === true);
+					this._active = !!vars.immediateRender;
 					this.data = vars.data;
-					this._reversed = (vars.reversed === true);
+					this._reversed = !!vars.reversed;
 
 					if (!_rootTimeline) {
 						return;
@@ -61643,7 +61785,7 @@
 				var tl = this._timeline, //the 2 root timelines won't have a _timeline; they're always active.
 					startTime = this._startTime,
 					rawTime;
-				return (!tl || (!this._gc && !this._paused && tl.isActive() && (rawTime = tl.rawTime(true)) >= startTime && rawTime < startTime + this.totalDuration() / this._timeScale - 0.0000001));
+				return (!tl || (!this._gc && !this._paused && tl.isActive() && (rawTime = tl.rawTime(true)) >= startTime && rawTime < startTime + this.totalDuration() / this._timeScale - _tinyNum));
 			};
 
 			p._enabled = function (enabled, ignoreTimeline) {
@@ -62094,7 +62236,7 @@
 			p._firstPT = p._targets = p._overwrittenProps = p._startAt = null;
 			p._notifyPluginsOfEnabled = p._lazy = false;
 
-			TweenLite.version = "2.0.2";
+			TweenLite.version = "2.1.0";
 			TweenLite.defaultEase = p._ease = new Ease(null, null, 1, 1);
 			TweenLite.defaultOverwrite = "auto";
 			TweenLite.ticker = _ticker;
@@ -62141,6 +62283,9 @@
 						pt = pt._next;
 					}
 				},
+				_blobRound = function(v) {
+					return (((v * 1000) | 0) / 1000) + "";
+				},
 				//compares two strings (start/end), finds the numbers that are different and spits back an array representing the whole value but with the changing values isolated as elements. For example, "rgb(0,0,0)" and "rgb(100,50,0)" would become ["rgb(", 0, ",", 50, ",0)"]. Notice it merges the parts that are identical (performance optimization). The array also has a linked list of PropTweens attached starting with _firstPT that contain the tweening data (t, p, s, c, f, etc.). It also stores the starting value as a "start" property so that we can revert to it if/when necessary, like when a tween rewinds fully. If the quantity of numbers differs between the start and end, it will always prioritize the end value(s). The pt parameter is optional - it's for a PropTween that will be appended to the end of the linked list and is typically for actually setting the value after all of the elements have been updated (with array.join("")).
 				_blobDif = function(start, end, filter, pt) {
 					var a = [],
@@ -62185,7 +62330,7 @@
 							}
 							num = parseFloat(startNums[i]);
 							a.push(num);
-							a._firstPT = {_next: a._firstPT, t:a, p: a.length-1, s:num, c:((currentNum.charAt(1) === "=") ? parseInt(currentNum.charAt(0) + "1", 10) * parseFloat(currentNum.substr(2)) : (parseFloat(currentNum) - num)) || 0, f:0, m:(color && color < 4) ? Math.round : 0};
+							a._firstPT = {_next: a._firstPT, t:a, p: a.length-1, s:num, c:((currentNum.charAt(1) === "=") ? parseInt(currentNum.charAt(0) + "1", 10) * parseFloat(currentNum.substr(2)) : (parseFloat(currentNum) - num)) || 0, f:0, m:(color && color < 4) ? Math.round : _blobRound}; //limiting to 3 decimal places and casting as a string can really help performance when array.join() is called!
 							//note: we don't set _prev because we'll never need to remove individual PropTweens from this list.
 						}
 						charIndex += currentNum.length;
@@ -62237,16 +62382,16 @@
 				_plugins = TweenLite._plugins = {},
 				_tweenLookup = _internals.tweenLookup = {},
 				_tweenLookupNum = 0,
-				_reservedProps = _internals.reservedProps = {ease:1, delay:1, overwrite:1, onComplete:1, onCompleteParams:1, onCompleteScope:1, useFrames:1, runBackwards:1, startAt:1, onUpdate:1, onUpdateParams:1, onUpdateScope:1, onStart:1, onStartParams:1, onStartScope:1, onReverseComplete:1, onReverseCompleteParams:1, onReverseCompleteScope:1, onRepeat:1, onRepeatParams:1, onRepeatScope:1, easeParams:1, yoyo:1, immediateRender:1, repeat:1, repeatDelay:1, data:1, paused:1, reversed:1, autoCSS:1, lazy:1, onOverwrite:1, callbackScope:1, stringFilter:1, id:1, yoyoEase:1},
+				_reservedProps = _internals.reservedProps = {ease:1, delay:1, overwrite:1, onComplete:1, onCompleteParams:1, onCompleteScope:1, useFrames:1, runBackwards:1, startAt:1, onUpdate:1, onUpdateParams:1, onUpdateScope:1, onStart:1, onStartParams:1, onStartScope:1, onReverseComplete:1, onReverseCompleteParams:1, onReverseCompleteScope:1, onRepeat:1, onRepeatParams:1, onRepeatScope:1, easeParams:1, yoyo:1, immediateRender:1, repeat:1, repeatDelay:1, data:1, paused:1, reversed:1, autoCSS:1, lazy:1, onOverwrite:1, callbackScope:1, stringFilter:1, id:1, yoyoEase:1, stagger:1},
 				_overwriteLookup = {none:0, all:1, auto:2, concurrent:3, allOnStart:4, preexisting:5, "true":1, "false":0},
 				_rootFramesTimeline = Animation._rootFramesTimeline = new SimpleTimeline(),
 				_rootTimeline = Animation._rootTimeline = new SimpleTimeline(),
 				_nextGCFrame = 30,
 				_lazyRender = _internals.lazyRender = function() {
-					var i = _lazyTweens.length,
-						tween;
+					var l = _lazyTweens.length,
+						i, tween;
 					_lazyLookup = {};
-					while (--i > -1) {
+					for (i = 0; i < l; i++) {
 						tween = _lazyTweens[i];
 						if (tween && tween._lazy !== false) {
 							tween.render(tween._lazy[0], tween._lazy[1], true);
@@ -62346,7 +62491,7 @@
 						}
 						return changed;
 					}
-					//NOTE: Add 0.0000000001 to overcome floating point errors that can cause the startTime to be VERY slightly off (when a tween's time() is set for example)
+					//NOTE: Add tiny amount to overcome floating point errors that can cause the startTime to be VERY slightly off (when a tween's time() is set for example)
 					var startTime = tween._startTime + _tinyNum,
 						overlaps = [],
 						oCount = 0,
@@ -62361,7 +62506,7 @@
 							if (_checkOverlap(curTween, globalStart, zeroDur) === 0) {
 								overlaps[oCount++] = curTween;
 							}
-						} else if (curTween._startTime <= startTime) if (curTween._startTime + curTween.totalDuration() / curTween._timeScale > startTime) if (!((zeroDur || !curTween._initted) && startTime - curTween._startTime <= 0.0000000002)) {
+						} else if (curTween._startTime <= startTime) if (curTween._startTime + curTween.totalDuration() / curTween._timeScale > startTime) if (!((zeroDur || !curTween._initted) && startTime - curTween._startTime <= _tinyNum * 2)) {
 							overlaps[oCount++] = curTween;
 						}
 					}
@@ -62409,11 +62554,12 @@
 					dur = this._duration,
 					immediate = !!v.immediateRender,
 					ease = v.ease,
+					startAt = this._startAt,
 					i, initPlugins, pt, p, startVars, l;
 				if (v.startAt) {
-					if (this._startAt) {
-						this._startAt.render(-1, true); //if we've run a startAt previously (when the tween instantiated), we should revert it so that the values re-instantiate correctly particularly for relative tweens. Without this, a TweenLite.fromTo(obj, 1, {x:"+=100"}, {x:"-=100"}), for example, would actually jump to +=200 because the startAt would run twice, doubling the relative change.
-						this._startAt.kill();
+					if (startAt) {
+						startAt.render(-1, true); //if we've run a startAt previously (when the tween instantiated), we should revert it so that the values re-instantiate correctly particularly for relative tweens. Without this, a TweenLite.fromTo(obj, 1, {x:"+=100"}, {x:"-=100"}), for example, would actually jump to +=200 because the startAt would run twice, doubling the relative change.
+						startAt.kill();
 					}
 					startVars = {};
 					for (p in v.startAt) { //copy the properties/values into a new object to avoid collisions, like var to = {x:0}, from = {x:500}; timeline.fromTo(e, 1, from, to).fromTo(e, 1, to, from);
@@ -62437,9 +62583,9 @@
 					}
 				} else if (v.runBackwards && dur !== 0) {
 					//from() tweens must be handled uniquely: their beginning values must be rendered but we don't want overwriting to occur yet (when time is still 0). Wait until the tween actually begins before doing all the routines like overwriting. At that time, we should render at the END of the tween to ensure that things initialize correctly (remember, from() tweens go backwards)
-					if (this._startAt) {
-						this._startAt.render(-1, true);
-						this._startAt.kill();
+					if (startAt) {
+						startAt.render(-1, true);
+						startAt.kill();
 						this._startAt = null;
 					} else {
 						if (this._time !== 0) { //in rare cases (like if a from() tween runs and then is invalidate()-ed), immediateRender could be true but the initial forced-render gets skipped, so there's no need to force the render in this context when the _time is greater than 0
@@ -62509,7 +62655,6 @@
 				if (target == null) {
 					return false;
 				}
-
 				if (_lazyLookup[target._gsTweenID]) {
 					_lazyRender(); //if other tweens of the same target have recently initted but haven't rendered yet, we've got to force the render so that the starting values are correct (imagine populating a timeline with a bunch of sequential tweens and then jumping to the end)
 				}
@@ -62569,55 +62714,58 @@
 			};
 
 			p.render = function(time, suppressEvents, force) {
-				var prevTime = this._time,
-					duration = this._duration,
-					prevRawPrevTime = this._rawPrevTime,
+				var self = this,
+					prevTime = self._time,
+					duration = self._duration,
+					prevRawPrevTime = self._rawPrevTime,
 					isComplete, callback, pt, rawPrevTime;
-				if (time >= duration - 0.0000001 && time >= 0) { //to work around occasional floating point math artifacts.
-					this._totalTime = this._time = duration;
-					this.ratio = this._ease._calcEnd ? this._ease.getRatio(1) : 1;
-					if (!this._reversed ) {
+				if (time >= duration - _tinyNum && time >= 0) { //to work around occasional floating point math artifacts.
+					self._totalTime = self._time = duration;
+					self.ratio = self._ease._calcEnd ? self._ease.getRatio(1) : 1;
+					if (!self._reversed ) {
 						isComplete = true;
 						callback = "onComplete";
-						force = (force || this._timeline.autoRemoveChildren); //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
+						force = (force || self._timeline.autoRemoveChildren); //otherwise, if the animation is unpaused/activated after it's already finished, it doesn't get removed from the parent timeline.
 					}
-					if (duration === 0) if (this._initted || !this.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
-						if (this._startTime === this._timeline._duration) { //if a zero-duration tween is at the VERY end of a timeline and that timeline renders at its end, it will typically add a tiny bit of cushion to the render time to prevent rounding errors from getting in the way of tweens rendering their VERY end. If we then reverse() that timeline, the zero-duration tween will trigger its onReverseComplete even though technically the playhead didn't pass over it again. It's a very specific edge case we must accommodate.
+					if (duration === 0) if (self._initted || !self.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
+						if (self._startTime === self._timeline._duration) { //if a zero-duration tween is at the VERY end of a timeline and that timeline renders at its end, it will typically add a tiny bit of cushion to the render time to prevent rounding errors from getting in the way of tweens rendering their VERY end. If we then reverse() that timeline, the zero-duration tween will trigger its onReverseComplete even though technically the playhead didn't pass over it again. It's a very specific edge case we must accommodate.
 							time = 0;
 						}
-						if (prevRawPrevTime < 0 || (time <= 0 && time >= -0.0000001) || (prevRawPrevTime === _tinyNum && this.data !== "isPause")) if (prevRawPrevTime !== time) { //note: when this.data is "isPause", it's a callback added by addPause() on a timeline that we should not be triggered when LEAVING its exact start time. In other words, tl.addPause(1).play(1) shouldn't pause.
+						if (prevRawPrevTime < 0 || (time <= 0 && time >= -_tinyNum) || (prevRawPrevTime === _tinyNum && self.data !== "isPause")) if (prevRawPrevTime !== time) { //note: when this.data is "isPause", it's a callback added by addPause() on a timeline that we should not be triggered when LEAVING its exact start time. In other words, tl.addPause(1).play(1) shouldn't pause.
 							force = true;
 							if (prevRawPrevTime > _tinyNum) {
 								callback = "onReverseComplete";
 							}
 						}
-						this._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+						self._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 					}
 
-				} else if (time < 0.0000001) { //to work around occasional floating point math artifacts, round super small values to 0.
-					this._totalTime = this._time = 0;
-					this.ratio = this._ease._calcEnd ? this._ease.getRatio(0) : 0;
+				} else if (time < _tinyNum) { //to work around occasional floating point math artifacts, round super small values to 0.
+					self._totalTime = self._time = 0;
+					self.ratio = self._ease._calcEnd ? self._ease.getRatio(0) : 0;
 					if (prevTime !== 0 || (duration === 0 && prevRawPrevTime > 0)) {
 						callback = "onReverseComplete";
-						isComplete = this._reversed;
+						isComplete = self._reversed;
 					}
-					if (time < 0) {
-						this._active = false;
-						if (duration === 0) if (this._initted || !this.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
-							if (prevRawPrevTime >= 0 && !(prevRawPrevTime === _tinyNum && this.data === "isPause")) {
+					if (time > -_tinyNum) {
+						time = 0;
+					} else if (time < 0) {
+						self._active = false;
+						if (duration === 0) if (self._initted || !self.vars.lazy || force) { //zero-duration tweens are tricky because we must discern the momentum/direction of time in order to determine whether the starting values should be rendered or the ending values. If the "playhead" of its timeline goes past the zero-duration tween in the forward direction or lands directly on it, the end values should be rendered, but if the timeline's "playhead" moves past it in the backward direction (from a postitive time to a negative time), the starting values must be rendered.
+							if (prevRawPrevTime >= 0 && !(prevRawPrevTime === _tinyNum && self.data === "isPause")) {
 								force = true;
 							}
-							this._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
+							self._rawPrevTime = rawPrevTime = (!suppressEvents || time || prevRawPrevTime === time) ? time : _tinyNum; //when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect. We set the _rawPrevTime to be a precise tiny number to indicate this scenario rather than using another property/variable which would increase memory usage. This technique is less readable, but more efficient.
 						}
 					}
-					if (!this._initted || (this._startAt && this._startAt.progress())) { //if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately. Also, we check progress() because if startAt has already rendered at its end, we should force a render at its beginning. Otherwise, if you put the playhead directly on top of where a fromTo({immediateRender:false}) starts, and then move it backwards, the from() won't revert its values.
+					if (!self._initted || (self._startAt && self._startAt.progress())) { //if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately. Also, we check progress() because if startAt has already rendered at its end, we should force a render at its beginning. Otherwise, if you put the playhead directly on top of where a fromTo({immediateRender:false}) starts, and then move it backwards, the from() won't revert its values.
 						force = true;
 					}
 				} else {
-					this._totalTime = this._time = time;
+					self._totalTime = self._time = time;
 
-					if (this._easeType) {
-						var r = time / duration, type = this._easeType, pow = this._easePower;
+					if (self._easeType) {
+						var r = time / duration, type = self._easeType, pow = self._easePower;
 						if (type === 1 || (type === 3 && r >= 0.5)) {
 							r = 1 - r;
 						}
@@ -62633,93 +62781,83 @@
 						} else if (pow === 4) {
 							r *= r * r * r * r;
 						}
-
-						if (type === 1) {
-							this.ratio = 1 - r;
-						} else if (type === 2) {
-							this.ratio = r;
-						} else if (time / duration < 0.5) {
-							this.ratio = r / 2;
-						} else {
-							this.ratio = 1 - (r / 2);
-						}
-
+						self.ratio = (type === 1) ? 1 - r : (type === 2) ? r : (time / duration < 0.5) ? r / 2 : 1 - (r / 2);
 					} else {
-						this.ratio = this._ease.getRatio(time / duration);
+						self.ratio = self._ease.getRatio(time / duration);
 					}
 				}
 
-				if (this._time === prevTime && !force) {
+				if (self._time === prevTime && !force) {
 					return;
-				} else if (!this._initted) {
-					this._init();
-					if (!this._initted || this._gc) { //immediateRender tweens typically won't initialize until the playhead advances (_time is greater than 0) in order to ensure that overwriting occurs properly. Also, if all of the tweening properties have been overwritten (which would cause _gc to be true, as set in _init()), we shouldn't continue otherwise an onStart callback could be called for example.
+				} else if (!self._initted) {
+					self._init();
+					if (!self._initted || self._gc) { //immediateRender tweens typically won't initialize until the playhead advances (_time is greater than 0) in order to ensure that overwriting occurs properly. Also, if all of the tweening properties have been overwritten (which would cause _gc to be true, as set in _init()), we shouldn't continue otherwise an onStart callback could be called for example.
 						return;
-					} else if (!force && this._firstPT && ((this.vars.lazy !== false && this._duration) || (this.vars.lazy && !this._duration))) {
-						this._time = this._totalTime = prevTime;
-						this._rawPrevTime = prevRawPrevTime;
-						_lazyTweens.push(this);
-						this._lazy = [time, suppressEvents];
+					} else if (!force && self._firstPT && ((self.vars.lazy !== false && self._duration) || (self.vars.lazy && !self._duration))) {
+						self._time = self._totalTime = prevTime;
+						self._rawPrevTime = prevRawPrevTime;
+						_lazyTweens.push(self);
+						self._lazy = [time, suppressEvents];
 						return;
 					}
 					//_ease is initially set to defaultEase, so now that init() has run, _ease is set properly and we need to recalculate the ratio. Overall this is faster than using conditional logic earlier in the method to avoid having to set ratio twice because we only init() once but renderTime() gets called VERY frequently.
-					if (this._time && !isComplete) {
-						this.ratio = this._ease.getRatio(this._time / duration);
-					} else if (isComplete && this._ease._calcEnd) {
-						this.ratio = this._ease.getRatio((this._time === 0) ? 0 : 1);
+					if (self._time && !isComplete) {
+						self.ratio = self._ease.getRatio(self._time / duration);
+					} else if (isComplete && self._ease._calcEnd) {
+						self.ratio = self._ease.getRatio((self._time === 0) ? 0 : 1);
 					}
 				}
-				if (this._lazy !== false) { //in case a lazy render is pending, we should flush it because the new render is occurring now (imagine a lazy tween instantiating and then immediately the user calls tween.seek(tween.duration()), skipping to the end - the end render would be forced, and then if we didn't flush the lazy render, it'd fire AFTER the seek(), rendering it at the wrong time.
-					this._lazy = false;
+				if (self._lazy !== false) { //in case a lazy render is pending, we should flush it because the new render is occurring now (imagine a lazy tween instantiating and then immediately the user calls tween.seek(tween.duration()), skipping to the end - the end render would be forced, and then if we didn't flush the lazy render, it'd fire AFTER the seek(), rendering it at the wrong time.
+					self._lazy = false;
 				}
-				if (!this._active) if (!this._paused && this._time !== prevTime && time >= 0) {
-					this._active = true;  //so that if the user renders a tween (as opposed to the timeline rendering it), the timeline is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the tween already finished but the user manually re-renders it as halfway done.
+				if (!self._active) if (!self._paused && self._time !== prevTime && time >= 0) {
+					self._active = true;  //so that if the user renders a tween (as opposed to the timeline rendering it), the timeline is forced to re-render and align it with the proper time/frame on the next rendering cycle. Maybe the tween already finished but the user manually re-renders it as halfway done.
 				}
 				if (prevTime === 0) {
-					if (this._startAt) {
+					if (self._startAt) {
 						if (time >= 0) {
-							this._startAt.render(time, true, force);
+							self._startAt.render(time, true, force);
 						} else if (!callback) {
 							callback = "_dummyGS"; //if no callback is defined, use a dummy value just so that the condition at the end evaluates as true because _startAt should render AFTER the normal render loop when the time is negative. We could handle this in a more intuitive way, of course, but the render loop is the MOST important thing to optimize, so this technique allows us to avoid adding extra conditional logic in a high-frequency area.
 						}
 					}
-					if (this.vars.onStart) if (this._time !== 0 || duration === 0) if (!suppressEvents) {
-						this._callback("onStart");
+					if (self.vars.onStart) if (self._time !== 0 || duration === 0) if (!suppressEvents) {
+						self._callback("onStart");
 					}
 				}
-				pt = this._firstPT;
+				pt = self._firstPT;
 				while (pt) {
 					if (pt.f) {
-						pt.t[pt.p](pt.c * this.ratio + pt.s);
+						pt.t[pt.p](pt.c * self.ratio + pt.s);
 					} else {
-						pt.t[pt.p] = pt.c * this.ratio + pt.s;
+						pt.t[pt.p] = pt.c * self.ratio + pt.s;
 					}
 					pt = pt._next;
 				}
 
-				if (this._onUpdate) {
-					if (time < 0) if (this._startAt && time !== -0.0001) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
-						this._startAt.render(time, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
+				if (self._onUpdate) {
+					if (time < 0) if (self._startAt && time !== -0.0001) { //if the tween is positioned at the VERY beginning (_startTime 0) of its parent timeline, it's illegal for the playhead to go back further, so we should not render the recorded startAt values.
+						self._startAt.render(time, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
 					}
-					if (!suppressEvents) if (this._time !== prevTime || isComplete || force) {
-						this._callback("onUpdate");
+					if (!suppressEvents) if (self._time !== prevTime || isComplete || force) {
+						self._callback("onUpdate");
 					}
 				}
-				if (callback) if (!this._gc || force) { //check _gc because there's a chance that kill() could be called in an onUpdate
-					if (time < 0 && this._startAt && !this._onUpdate && time !== -0.0001) { //-0.0001 is a special value that we use when looping back to the beginning of a repeated TimelineMax, in which case we shouldn't render the _startAt values.
-						this._startAt.render(time, true, force);
+				if (callback) if (!self._gc || force) { //check _gc because there's a chance that kill() could be called in an onUpdate
+					if (time < 0 && self._startAt && !self._onUpdate && time !== -0.0001) { //-0.0001 is a special value that we use when looping back to the beginning of a repeated TimelineMax, in which case we shouldn't render the _startAt values.
+						self._startAt.render(time, true, force);
 					}
 					if (isComplete) {
-						if (this._timeline.autoRemoveChildren) {
-							this._enabled(false, false);
+						if (self._timeline.autoRemoveChildren) {
+							self._enabled(false, false);
 						}
-						this._active = false;
+						self._active = false;
 					}
-					if (!suppressEvents && this.vars[callback]) {
-						this._callback(callback);
+					if (!suppressEvents && self.vars[callback]) {
+						self._callback(callback);
 					}
-					if (duration === 0 && this._rawPrevTime === _tinyNum && rawPrevTime !== _tinyNum) { //the onComplete or onReverseComplete could trigger movement of the playhead and for zero-duration tweens (which must discern direction) that land directly back on their start time, we don't want to fire again on the next render. Think of several addPause()'s in a timeline that forces the playhead to a certain spot, but what if it's already paused and another tween is tweening the "time" of the timeline? Each time it moves [forward] past that spot, it would move back, and since suppressEvents is true, it'd reset _rawPrevTime to _tinyNum so that when it begins again, the callback would fire (so ultimately it could bounce back and forth during that tween). Again, this is a very uncommon scenario, but possible nonetheless.
-						this._rawPrevTime = 0;
+					if (duration === 0 && self._rawPrevTime === _tinyNum && rawPrevTime !== _tinyNum) { //the onComplete or onReverseComplete could trigger movement of the playhead and for zero-duration tweens (which must discern direction) that land directly back on their start time, we don't want to fire again on the next render. Think of several addPause()'s in a timeline that forces the playhead to a certain spot, but what if it's already paused and another tween is tweening the "time" of the timeline? Each time it moves [forward] past that spot, it would move back, and since suppressEvents is true, it'd reset _rawPrevTime to _tinyNum so that when it begins again, the callback would fire (so ultimately it could bounce back and forth during that tween). Again, this is a very uncommon scenario, but possible nonetheless.
+						self._rawPrevTime = 0;
 					}
 				}
 			};
@@ -62820,13 +62958,14 @@
 				if (this._notifyPluginsOfEnabled) {
 					TweenLite._onPluginEvent("_onDisable", this);
 				}
+				var t = this._time;
 				this._firstPT = this._overwrittenProps = this._startAt = this._onUpdate = null;
 				this._notifyPluginsOfEnabled = this._active = this._lazy = false;
 				this._propLookup = (this._targets) ? {} : [];
 				Animation.prototype.invalidate.call(this);
 				if (this.vars.immediateRender) {
 					this._time = -_tinyNum; //forces a render without having to set the render() "force" parameter to true because we want to allow lazying by default (using the "force" parameter always forces an immediate full render)
-					this.render(Math.min(0, -this._delay)); //in case delay is negative.
+					this.render(t, false, this.vars.lazy !== false);
 				}
 				return this;
 			};

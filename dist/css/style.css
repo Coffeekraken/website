@@ -1305,6 +1305,8 @@
  * - invert {Boolean}
  * - opacity {Percent}
  * - mix {Color}
+ * - lightness {Percent}
+ * - saturation {Percent}
  *
  * @param 		{String|Color} 		$color 				The color name or the color value to manipulate
  * @param 		{String|List} 			[$modifier=null] 	The color modifier to apply. Can be a registered modifier name or a modifier list
@@ -2431,6 +2433,7 @@
  * - sugar.size.abs.cover : ```.abs-cover```
  * - sugar.size.abs.contain : ```.abs-contain```
  * - sugar.size.abs.fit : ```.abs-fit```
+ * - sugar.media.object : ```.mo .mo--center .mo--end .mo__content```
  * - sugar.clearfix.default : ```.clearfix```
  * - sugar.clearfix.float : ```.clearfix-float```
  * - sugar.clearfix.micro : ```.clearfix-micro```
@@ -2972,6 +2975,38 @@
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.mo {
+  /**
+	 * @name 		```.mo .mo--center .mo__content```
+	 * Famous media object class
+	 * @styleguide 	Helpers / Media object
+	 * @example 	html
+	 * <div class="mo">
+	 *   <div class="mo__content">
+	 *     <img src="https://source.unsplash.com/random/100x100" />
+	 *   </div>
+	 *   <div class="mo__content">
+	 *     <h2 class="h3">Hello World</h2>
+	 *     <p class="p">Phasellus fringilla aliquet justo eget pulvinar. Donec in justo leo.</p>
+	 *   </div>
+	 * </div>
+	 */
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.mo--center {
+  align-items: center;
+}
+
+.mo--end {
+  align-items: flex-end;
+}
+
+.mo__content {
+  flex: 0 1 auto;
 }
 
 .clearfix {
@@ -5356,255 +5391,6 @@ body {
  */
 @media screen and (max-width: 640px) {
   /**
-			 * @name  			```.m-b@mobile```
-			 * Apply the margin bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b\@mobile {
-    margin-bottom: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-t@mobile```
-			 * Apply the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t\@mobile {
-    margin-top: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-l@mobile```
-			 * Apply the margin left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l\@mobile {
-    margin-left: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-r@mobile```
-			 * Apply the margin right "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r\@mobile {
-    margin-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-s@mobile```
-			 * Apply the margin side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s\@mobile {
-    margin-left: 2.85714rem;
-    margin-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m@mobile```
-			 * Apply the margin "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m\@mobile {
-    margin: 2.85714rem;
-  }
-  /**
-			 * @name  			```.no-m-b@mobile```
-			 * Remove the margin bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t@mobile```
-			 * Remove the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l@mobile```
-			 * Remove the margin left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r@mobile```
-			 * Remove the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s@mobile```
-			 * Remove the margin side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b@mobile```
-			 * Apply the padding bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b\@mobile {
-    padding-bottom: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-t@mobile```
-			 * Apply the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t\@mobile {
-    padding-top: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-l@mobile```
-			 * Apply the padding left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l\@mobile {
-    padding-left: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-r@mobile```
-			 * Apply the padding right "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r\@mobile {
-    padding-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-s@mobile```
-			 * Apply the padding side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s\@mobile {
-    padding-left: 2.85714rem;
-    padding-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p@mobile```
-			 * Apply the padding "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p\@mobile {
-    padding: 2.85714rem;
-  }
-  /**
-			 * @name  			```.no-p-b@mobile```
-			 * Remove the padding bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t@mobile```
-			 * Remove the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l@mobile```
-			 * Remove the padding left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r@mobile```
-			 * Remove the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s@mobile```
-			 * Remove the padding side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
 			 * @name  			```.m-b-smaller@mobile```
 			 * Apply the margin bottom "smaller" on the "mobile" state
 			 * @styleguide 		Layout / Responsive Margins
@@ -6096,6 +5882,255 @@ body {
 			 * <div style="background:#2b3438; width:100px; height:5px"></div>
 			 */
   .no-p-s-small\@mobile {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /**
+			 * @name  			```.m-b@mobile```
+			 * Apply the margin bottom "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m-b\@mobile {
+    margin-bottom: 2.85714rem;
+  }
+  /**
+			 * @name  			```.m-t@mobile```
+			 * Apply the margin top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m-t\@mobile {
+    margin-top: 2.85714rem;
+  }
+  /**
+			 * @name  			```.m-l@mobile```
+			 * Apply the margin left "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m-l\@mobile {
+    margin-left: 2.85714rem;
+  }
+  /**
+			 * @name  			```.m-r@mobile```
+			 * Apply the margin right "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m-r\@mobile {
+    margin-right: 2.85714rem;
+  }
+  /**
+			 * @name  			```.m-s@mobile```
+			 * Apply the margin side "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m-s\@mobile {
+    margin-left: 2.85714rem;
+    margin-right: 2.85714rem;
+  }
+  /**
+			 * @name  			```.m@mobile```
+			 * Apply the margin "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="m@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .m\@mobile {
+    margin: 2.85714rem;
+  }
+  /**
+			 * @name  			```.no-m-b@mobile```
+			 * Remove the margin bottom "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-m-b\@mobile {
+    margin-bottom: 0 !important;
+  }
+  /**
+			 * @name  			```.no-m-t@mobile```
+			 * Remove the margin top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-m-t\@mobile {
+    margin-top: 0 !important;
+  }
+  /**
+			 * @name  			```.no-m-l@mobile```
+			 * Remove the margin left "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-m-l\@mobile {
+    margin-left: 0 !important;
+  }
+  /**
+			 * @name  			```.no-m-r@mobile```
+			 * Remove the margin top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-m-r\@mobile {
+    margin-right: 0 !important;
+  }
+  /**
+			 * @name  			```.no-m-s@mobile```
+			 * Remove the margin side "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Margins
+			 * @example 		html
+			 * <div class="no-m-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-m-s\@mobile {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  /**
+			 * @name  			```.p-b@mobile```
+			 * Apply the padding bottom "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p-b\@mobile {
+    padding-bottom: 2.85714rem;
+  }
+  /**
+			 * @name  			```.p-t@mobile```
+			 * Apply the padding top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p-t\@mobile {
+    padding-top: 2.85714rem;
+  }
+  /**
+			 * @name  			```.p-l@mobile```
+			 * Apply the padding left "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p-l\@mobile {
+    padding-left: 2.85714rem;
+  }
+  /**
+			 * @name  			```.p-r@mobile```
+			 * Apply the padding right "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p-r\@mobile {
+    padding-right: 2.85714rem;
+  }
+  /**
+			 * @name  			```.p-s@mobile```
+			 * Apply the padding side "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p-s\@mobile {
+    padding-left: 2.85714rem;
+    padding-right: 2.85714rem;
+  }
+  /**
+			 * @name  			```.p@mobile```
+			 * Apply the padding "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="p@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .p\@mobile {
+    padding: 2.85714rem;
+  }
+  /**
+			 * @name  			```.no-p-b@mobile```
+			 * Remove the padding bottom "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-p-b\@mobile {
+    padding-bottom: 0 !important;
+  }
+  /**
+			 * @name  			```.no-p-t@mobile```
+			 * Remove the padding top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-p-t\@mobile {
+    padding-top: 0 !important;
+  }
+  /**
+			 * @name  			```.no-p-l@mobile```
+			 * Remove the padding left "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-p-l\@mobile {
+    padding-left: 0 !important;
+  }
+  /**
+			 * @name  			```.no-p-r@mobile```
+			 * Remove the padding top "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-p-r\@mobile {
+    padding-right: 0 !important;
+  }
+  /**
+			 * @name  			```.no-p-s@mobile```
+			 * Remove the padding side "default" on the "mobile" state
+			 * @styleguide 		Layout / Responsive Paddings
+			 * @example 		html
+			 * <div class="no-p-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
+			 * <div style="background:#2b3438; width:100px; height:5px"></div>
+			 */
+  .no-p-s\@mobile {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -6967,7 +7002,7 @@ table {
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "40px", "smaller": "10px", "small": "20px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythm": {"scope-class": "vr"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": ["Roboto", "Helvetica"], "font-weight": 400}, "roboto-light": {"font-family": ["Roboto", "Helvetica"], "font-weight": 300}, "roboto-bold": {"font-family": ["Roboto", "Helvetica"], "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "roboto", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"smaller": "10px", "small": "20px", "default": "40px", "medium": "60px", "big": "100px", "bigger": "150px"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438", "modifiers": {"dark": "#15191b"}}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "grey": {"color": "#FBFBFC"}, "white": {"color": "#fff"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythm": {"scope-class": "vr"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}, "roboto": {"font-family": ["Roboto", "Helvetica"], "font-weight": 400}, "roboto-light": {"font-family": ["Roboto", "Helvetica"], "font-weight": 300}, "roboto-bold": {"font-family": ["Roboto", "Helvetica"], "font-weight": 800}}, "filters": {"shadowed": "drop-shadow(rgba(0, 0, 0, 0.3) 0 0 10px)", "blured": "blur(3px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -9647,6 +9682,32 @@ blockquote:last-child {
   background: red;
 }
 
+.kitchen-sink {
+  padding: 4.28571rem 0 !important;
+}
+
+.kitchen-sink__img {
+  width: 120%;
+  line-height: 0;
+  margin-bottom: -7.14286rem;
+  margin-top: -7.14286rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+}
+
+@media screen and (max-width: 640px) {
+  .kitchen-sink__img {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.kitchen-sink__img img {
+  width: 100%;
+}
+
 .repositories {
   background-color: #f2bc2b;
   background-image: url("../img/header-bkg.jpg");
@@ -11028,6 +11089,8 @@ img[lazy-src][loaded] {
  */
 .btn, .btn--block {
   display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border-style: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0);
@@ -11128,6 +11191,7 @@ button {
   padding: 0.8em 1.4em;
   height: 2.6em;
   display: block;
+  display: flex;
   width: 100%;
 }
 
@@ -11157,7 +11221,7 @@ button {
   display: block;
   bottom: 0.32em;
   left: 50%;
-  height: .2em;
+  height: 0.2em;
   width: 0;
   transform: translateX(-50%) translateY(0) translateZ(0);
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
@@ -11242,7 +11306,7 @@ button {
   display: block;
   bottom: 0.32em;
   left: 50%;
-  height: .2em;
+  height: 0.2em;
   width: 0;
   transform: translateX(-50%) translateY(0) translateZ(0);
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
@@ -11254,7 +11318,7 @@ button {
   width: calc(100% - 2.8em);
 }
 
-.btn--primary.btn:disabled {
+.btn--primary.btn--disabled, .btn--primary.btn:disabled {
   background-color: #f2bc2b;
   border-color: #f2bc2b;
   color: white;
@@ -11263,7 +11327,7 @@ button {
   pointer-events: none;
 }
 
-.btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
+.btn--primary.btn--disabled[active]:not(:disabled), .btn--primary.btn--disabled.active:not(:disabled), .btn--primary.btn--disabled:active:not(:disabled), .btn--primary.btn--disabled:hover:not(:disabled), .btn--primary.btn:disabled[active]:not(:disabled), .btn--primary.btn:disabled.active:not(:disabled), .btn--primary.btn:disabled:active:not(:disabled), .btn--primary.btn:disabled:hover:not(:disabled) {
   background-color: #c4920c;
   border-color: #c4920c;
 }
@@ -11352,7 +11416,7 @@ button {
   display: block;
   bottom: 0.32em;
   left: 50%;
-  height: .2em;
+  height: 0.2em;
   width: 0;
   transform: translateX(-50%) translateY(0) translateZ(0);
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
@@ -11364,7 +11428,7 @@ button {
   width: calc(100% - 2.8em);
 }
 
-.btn--secondary.btn:disabled {
+.btn--secondary.btn--disabled, .btn--secondary.btn:disabled {
   background-color: #2b3438;
   border-color: #2b3438;
   color: white;
@@ -11373,7 +11437,7 @@ button {
   pointer-events: none;
 }
 
-.btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
+.btn--secondary.btn--disabled[active]:not(:disabled), .btn--secondary.btn--disabled.active:not(:disabled), .btn--secondary.btn--disabled:active:not(:disabled), .btn--secondary.btn--disabled:hover:not(:disabled), .btn--secondary.btn:disabled[active]:not(:disabled), .btn--secondary.btn:disabled.active:not(:disabled), .btn--secondary.btn:disabled:active:not(:disabled), .btn--secondary.btn:disabled:hover:not(:disabled) {
   background-color: #0a0c0d;
   border-color: #0a0c0d;
 }
@@ -11974,7 +12038,7 @@ button {
  * This file provide the mixins to generate table classes
  */
 /**
- * Provide all the classes of the button component like .table, .table--striped, etc...
+ * Provide all the classes of the table component like .table, .table--striped, etc...
  * - ```.table```
  * - ```.table--striped```
  * - ```.table--bordered```
@@ -11991,7 +12055,7 @@ button {
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Provide all the style classes of the button component like .table, .table--striped, etc...
+ * Provide all the style classes of the table component like .table, .table--striped, etc...
  * - ```.table```
  * - ```.table--striped```
  * - ```.table--bordered```
@@ -12008,7 +12072,7 @@ button {
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Provide all the bare classes of the button component like .table, .table--striped, etc...
+ * Provide all the bare classes of the table component like .table, .table--striped, etc...
  * - ```.table```
  * - ```.table--striped```
  * - ```.table--bordered```
@@ -12138,7 +12202,8 @@ button {
 			 * Display responsive overflow table contents
 			 * @styleguide 		Atoms / Table
 			 * @example 		html
-			 * <table class="table table--responsive-overflow">
+			 * <div class="table table--responsive-overflow">
+			 * <table>
 			 * 	<thead>
 			 * 		<tr>
 			 *  		<th>#</th>
@@ -12156,12 +12221,17 @@ button {
 			 * 		</tr>
 			 * 	</tbody>
 			 * </table>
+			 * </div>
 			 */
 .table--responsive-overflow {
   min-height: 0.01%;
   overflow-x: auto;
   width: 100%;
   overflow-y: hidden;
+}
+
+.table--responsive-overflow > table {
+  width: 100%;
 }
 
 /**
