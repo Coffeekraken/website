@@ -8,8 +8,25 @@
  * All external librarie needed in the project.
  */
 /**
- * @name 	Functions API
- * This are all the API functions that are exposed by gridle.
+ * Internal variables
+ */
+/**
+ * Import utils
+ */
+/**
+ * Import the API
+ */
+/**
+ * Generate custom class using gridle states
+ */
+/*
+ * Gridle state
+ *
+ * @param 	string|map|list 	$states 		A list of states, a state name or a state map
+ * @param 	boolean 			$has-parent 	Mostly always true, mean that the mixin is used in a css selector and not in css root level
+ */
+/**
+ * Import functions
  */
 /**
  * Get states count
@@ -26,18 +43,10 @@
  * @return 		{String} 	The current state name
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
-/**
- * Get the column width in percent for the global or a specific context
- *
- * @param 	{Integer} 		[$columns=1] 							The number of columns to calculate
- * @param 	{Integer} 		[$stateMap-or-stateName=current] 	 	The state to calculate the column width for
- * @return 	{Percent} 												The width in percent
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
 /*
  * Get a state map
  *
- * @param 	{String|Map} 		[$state=current] 		The name or map of the state to get
+ * @param 	{String} 		[$state=current] 		The name of the state to get
  * @return 	{Map} 				A state map object
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -55,14 +64,6 @@
  * @return 	{Mixed} 												The finded value
  */
 /**
- * Set a variable in a state
- * @param  		{String} 	$var                    	Variable name to assign
- * @param  		{Mixed} 	$newValue          			The new value to assign
- * @param 		{String} 	[$state=current] 			The state to apply the variable for
- * @return 		{List}                         			The states list (full)
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
  * get the registered gridle states
  * @return 	{Map} 		All the registered states
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
@@ -73,44 +74,40 @@
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Get the register columns map
- * @param 	{String|List<String>} 		[$state=current] 		The state name or map
- * @return 	{Map} 												The map of registered columns for the specified state
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * Return a multiple of the gutter-unit variable
+ * @param    {Number}    $miltiplicator    The multiplicator to use
+ * @return    {String}    The calc representation of the multiplied value
  */
 /**
- * Will return the generated selector depending on the "package" wanted, the state and some optional values that might be needed by the package (like for row-align that need a "side" value)
- * @param 		{String} 							$package 			The package to generate the selector for (see _settings.scss file)
- * @param 		{String|List<String} 				[$states=null] 		The list of state to generate the selector for. If not specified, will generate for all registered states
- * @param 		{Mixed} 							[$value=null] 		The value that will be used to replace the "%{tokenName}" inside the package pattern
- * @example 	scss
- * g-selector(grid, mobile, 2) {
- * 	// your code here
- * 	// The selector will be .gr-2@mobile
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * Return a multiple of the column-unit variable
+ * @param    {Number}    $miltiplicator    The multiplicator to use
+ * @return    {String}    The calc representation of the multiplied value
  */
 /**
- * Return the current used driver
- * @return 	{String} 		The used driver like default or driver
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Check if the used driver is the specified one
- * @param 		{String} 		$driver 	The driver to check
- * @return 		{Boolean} 					True if is the current driver
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * Return a multiple of the gutter AND column unit variables
+ * @param    {Number}    $miltiplicator    The multiplicator to use
+ * @return    {String}    The calc representation of the multiplied value
  */
 /**
  * Get the media query for a particular state, or width, etc...
  *
- * @param 	{Mixed} 		[$stateName-or-stateMap=current] 		The state name of the min width
+ * @param 	{Mixed} 		[$stateName=current] 		The state name to generate the media query for
  * @return 	{String} 												The media query string without the @media
  */
 /**
- * @name 	Setting mixins
- * This are all the mixins that are exposed by gridle for the setting up your grid.
+ * Process a selector by:
+ * 1. replacing @default with ''
+ * @param    {String}    $selector    The selector to process
+ * @return    {String}    The processed selector
+ */
+/**
+ * Import the generate mixins
+ */
+/**
+ * Generate the classes
+ */
+/**
+ * Import the setup mixins
  */
 /**
  * Setting up your grid
@@ -122,25 +119,18 @@
  *	min-width : null,
  *	max-width : null,
  *	query : null,
- *	classes : true,
- *	context : 12,
- *	column-width : null,
- *	gutter-width : 20px,
- *	gutter-height : 0,
- *	gutter-top : 0,
- *	gutter-right : 10px,
- *	gutter-bottom : 0,
- *	gutter-left : 10px,
- *	direction : ltr,
- *	dir-attribute : false,
- *	name-multiplicator : 1,
- *	states-classes : false,
- *	classes-prefix : null
+ *  columns: 12,
+ *  rows: 12,
+ *	column-width : 60,
+ *  width: 1200,
+ *  gutter-width: null,
+ *  container-width: 90vw,
+ *  container-max-width: 1200px
  * );
  *
  * // setting up your grid
  * \@include g-setup((
- * 	context : 12
+ * 	columns : 12
  * 	// other settings
  * ));
  *
@@ -158,609 +148,14 @@
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Register some clear each that will been generated in classes
- * @param 		{Integer} 		$count 		The n each item to clear
- * @param 		{String} 		$what 		What to clear (left, right, both)
- * @example 	scss
- * \@include g-register-clear-each(2, left);
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Register a new custom column in case the generated ones are not enough.
- * This is useful when you have a 12 columns grid and you need some 1/5 ones.
- * @param 		{String} 		$name 		The column name
- * @param 		{Integer} 		$columns 	The column width
- * @param 		{Integer} 		$context 	The context on which to calculate the column width
- *
- * @example 	scss
- * \@include g-register-column(1on5, 1, 5);
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set a pattern for a specified package used to generate the classnames
- * @param 		{String} 	$package 		The package name to specify the pattern for
- * @param 		{List} 		$pattern 		The new classname pattern
- *
- * @example 	scss
- * \@include g-set-classname-map(grid, ('grid','-','%count','@','%state'));
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set a generic selector for a specific package. This generic selector will be used to target some elements like [class*="gr-"].
- * If not specified for a package, the generic selector will be generated automatically but sometimes it's better to hardcode it.
- * @param 		{String} 		$package 		The package to specify the generic selector for
- * @param 		{String} 		$selector 		The generic selector like [class*="gr-"], or whatever...
- * @example 	scss
- * \@include g-set-generic-selector(grid, '[class*="gr-"]');
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Register some basics states:
- *
- * - mobile : 0 to 480px
- * - tablet : 481px to 1024px
- *
- * @example 	scss
- * \@include g-register-default-states();
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
  * Register some basics mobile first states:
  *
- * - mobile : 320px to infinite
  * - tablet : 640px to infinite
  * - desktop : 992px to infinite
  * - large : 1200px to infinite
  *
  * @example 	scss
  * \@include g-register-mobile-first-states();
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Register bootstrap 3 states
- *
- * - xs : 0 to 750px
- * - sm : 750px to infinite
- * - md : 970px to infinite
- * - lg : 1170px to infinite
- *
- * @example 	scss
- * \@include g-register-bootstrap3-states();
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Register bootstrap 4 states
- *
- * - xs : 0 to 576px
- * - sm : 576px to infinite
- * - md : 970px to infinite
- * - lg : 1200px to infinite
- *
- * @example 	scss
- * \@include g-register-bootstrap4-states();
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	Base API
- * This are all the base API mixins that are exposed by gridle.
- */
-/**
- * Specify a layout using a single call like in the example bellow
- * @param 		{Map} 				$layout 				The map layout wanted
- * @param 		{Map|List|String} 	[$context=null] 		The context in which to apply the layout
- * @example 	scss
- * body {
- * 	\@include g-layout((
- * 	 	'#header' : 12,
- * 	 	'#sidebar' : 4 mobile 12,
- * 	 	'#content' : 8 mobile 12,
- * 	 	'#footer' : 12
- * 	));
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply some styling in a passed state
- * @param 		{Map|List|String} 		$states 		The states to apply the css for. Can be a state map, a list of states or a state name
- * @example 	scss
- * .my-cool-element {
- * 	// specify a register state name
- * 	\@include g-state(mobile) {
- * 		// your css code here...
- * 	}
- * 	// specify more than one register states
- * 	\@include g-state(mobile tablet) {
- * 		// your css code here...
- * 	}
- *  // specify a min and max width
- * 	\@include g-state(200px, 500px) {
- * 		// your css code here...
- * 	}
- * 	// passing a state map (complexe usage)
- * 	\@include g-state((
- * 		query : 'print only'
- * 	)) {
- * 		// your code here...
- * 	}
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply some css depending on the element size (element queries)
- * **Using this mixin requires that you import the ```gridle-eq.js``` file into your javascript code**
- * @param 	{Number} 	$size 				The size to take care of. If negative, mean lower than, if positive, mean greater than.
- * @param 	{Boolean} 	[$height=false] 	Set to true to handle height instead of width
- * @example 	scss
- * .my-cool-element {
- *  	\@include g-eq(-400px) {
- *  		// your css that will be applied when element
- *  		// is between 0 and 399px wide
- *  	}
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Basically, this is the same as the ```g-state``` mixin, with the difference that it will not print any media queries. It will just create a state context in which your inside code will refer.
- * @param 		{Map|List|String} 		$states 		The states to apply the css for. Can be a state map, a list of states or a state name
- * @example 	scss
- * @warn(g-get-state-var(min-width)); // will output the min-width of the default state
- * \@include g-state-context(mobile) {
- *  	@warn(g-get-state-var(min-width)); // will output the min-width of the mobile state
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Will print the generated selector depending on the "package" wanted, the state and some optional values that might be needed by the package (like for row-align that need a "side" value)
- * @param 		{String} 							$package 			The package to generate the selector for (see _settings.scss file)
- * @param 		{String|List<String} 				[$states=null] 		The list of state to generate the selector for. If not specified, will generate for all registered states
- * @param 		{Mixed} 							[$value=null] 		The value that will be used to replace the "%{tokenName}" inside the package pattern
- * @example 	scss
- * \@include g-selector(grid, mobile, 2) {
- * 	// your code here
- * 	// The selector will be .gr-2@mobile
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Helper gridle mixin that let you specify the grid properties through ```g-set``` map, or a list of properties like "8 push 2 mobile 12 push 0"
- * @param 		{Map|List} 			$properties 			The grid properties to apply
- * @example 	scss
- * #content {
- * 	// using list
- * 	\@include gridle(8 mobile 12);
- * 	// using a map
- * 	\@include gridle((
- * 		grid : 8,
- * 		mobile : (
- * 			grid : 12
- * 		)
- * 	));
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Helper mixin that let you specify the grid properties through map formated like in the example bellow.
- * Here's the possible properties:
- *
- * - ```grid``` {Integer} : The grid column count
- * - ```container``` {Boolean} : Set the element as container
- * - ```grid-grow``` {Boolean} : Set the element a grid column that grow
- * - ```grid-adapt``` {Boolean} : Set the element a grid column that adapt
- * - ```grid-table``` {Boolean} : Set the element a grid column of type table
- * - ```push``` {Integer} : Set the push count
- * - ```pull``` {Integer} : Set the pull count
- * - ```prefix``` {Integer} : Set the prefix count
- * - ```suffix``` {Integer} : Set the suffix count
- * - ```clear-each``` {Integer} : Set the clear each count
- * - ```grid-centered``` {Boolean} : Set the grid column as centered
- * - ```row``` {Boolean} : Set the element as a grid row
- * - ```row-full``` {Boolean} : Set the element as a grid row full
- * - ```col``` {Boolean} : Set the element as a grid column (vertical)
- * - ```row-align``` {String} : Set the row alignement
- * - ```row-no-gutter``` {Boolean} : Remove the gutters on columns inside this row
- * - ```nowrap``` {Boolean} : Set a nowrap on the row
- * - ```wrap``` {Boolean} : Reset the wrap property on the row
- * - ```order``` {Integer} : Set the order of the column (flex driver)
- * - ```hide``` {Boolean} : Hide the element
- * - ```show``` {Boolean} : Show the element
- * - ```visible``` {Boolean} : Set the visibility of the element to visible
- * - ```not-visible``` {Boolean} : Set the visibility of the element to hidden
- * - ```invisible``` {Boolean} : Set the visibility of the element to hidden
- * - ```show-inline``` {Boolean} : Set the display of the element to inline-block
- * - ```float``` {String} : Set the specified float of the element
- * - ```clear``` {String} : Clear the specified float of the element
- * - ```no-gutter``` {Boolean|String|List<String>} : Remove the specified gutters
- * - ```gutter``` {Boolean|String|List<String>} : Apply the specified gutters
- *
- * @param 		{Map} 			$properties 			The grid map properties to apply
- * @example 	scss
- * #content {
- * 	// using a map
- * 	\@include gridle((
- * 		grid : 8,
- * 		push : 2
- * 		mobile : (
- * 			grid : 12
- * 		),
- * 		{stateName} : {mapProperties}
- * 	));
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the push count for the column
- * @param 		{Integer} 		$columns 			The number of columns to push this column
- * @param 		{Integer} 		[$context=null]  	The context on which to calculate the push value. By default, it is the default context setted with ```g-setup```.
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-push(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the pull count for the column
- * @param 		{Integer} 		$columns 			The number of columns to pull this column
- * @param 		{Integer} 		[$context=null]  	The context on which to calculate the pull value. By default, it is the default context setted with ```g-setup```.
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-pull(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the prefix count for the column
- * @param 		{Integer} 		$columns 			The number of columns to prefix this column
- * @param 		{Integer} 		[$context=null]  	The context on which to calculate the prefix value. By default, it is the default context setted with ```g-setup```.
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-prefix(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the suffix count for the column
- * @param 		{Integer} 		$columns 			The number of columns to suffix this column
- * @param 		{Integer} 		[$context=null]  	The context on which to calculate the suffix value. By default, it is the default context setted with ```g-setup```.
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-suffix(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Display a debug grid on top of the row
- * @example 	scss
- * .my-row {
- * 	\@include g-row-debug();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Make the element a grid container
- * @example 	scss
- * .my-cool-container {
- * 	\@include g-container();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Remove the gutters on each columns inside the row
- * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to clear
- * @example 	scss
- * .my-cool-row {
- * 	\@include g-row-no-gutter(left right);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Make a column centered
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-grid-centered();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Hide an element
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-hide();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the visibility of an element to hidden
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-not-visible();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the visibility of an element to hidden
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-invisible();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the display of an element to block
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-show();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the display of an element to inline-block
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-show();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the visibility of an element to visible
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-show();
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the float property of the element to the specified direction
- * @param 		{String} 		[$float=left] 		The float direction to set
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-float(right);
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Clear the float property of the element to the specified direction
- * @param 		{String} 		[$float=left] 		The float direction to clear
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-clear(right);
- * }
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Remove the gutters on the column
- * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to clear
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-no-gutter(left right);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the gutters on the column
- * @param 		{String|List<String>} 		[$sides=top right bottom left] 		The sides to apply gutters on
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-gutter(left right);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	Generate mixins
- * This are all the mixins that you can use to generate classes to use inside your HTML codebase
- */
-/**
- * Generate a custom class for all the states
- * @param 	{List} 	$pattern 					The name pattern of the class
- * @param 	{List} 	[$statesNames=null] 		The states names to generate. If null or all, will generate the class for all registered states
- * @example 	scss
- * \@include g-generate-custom-class(('my','-','cool','-','class','-','%state')) {
- * 	color: pink;
- * 	padding: g-get-state-var(gutter-left);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Generate all the classes depending on the packages you have specified like:
- * - ```.container@{state}``` : default container
- * - ```.row@{state}``` : default row
- * - ```.row-align-{align}@{state}``` : default row-align
- * - ```.row-full@{state}``` : default row-full
- * - ```.row-debug@{state}``` : default row-debug
- * - ```.row-no-gutter@{state}``` : default row-no-gutter
- * - ```.nowrap@{state}``` : default nowrap
- * - ```.wrap@{state}``` : default wrap
- * - ```.col@{state}``` : default col
- * - ```.gr-{column}@{state}``` : default grid
- * - ```.gr-table@{state}``` : default gr-table
- * - ```.gr-grow@{state}``` : default gr-grow
- * - ```.gr-adapt@{state}``` : default gr-adapt
- * - ```.gr-centered@{state}``` : default gr-centered
- * - ```.push@{state}``` : default push
- * - ```.pull@{state}``` : default pull
- * - ```.prefix@{state}``` : default prefix
- * - ```.suffix@{state}``` : default suffix
- * - ```.hide@{state}``` : helpers hide
- * - ```.show@{state}``` : helpers show
- * - ```.show-inline@{state}``` : helpers show-inline
- * - ```.not-visible@{state}``` : helpers not-visible
- * - ```.visible@{state}``` : helpers visible
- * - ```.float-{%float}@{state}``` : helpers float
- * - ```.clear-{%float}@{state}``` : helpers clear
- * - ```.clear-each-{%count}@{state}``` : helpers clear-each
- * - ```.gutter-{%side}@{state}``` : helpers gutter
- * - ```.no-gutter-{%side}@{state}``` : helpers no-gutter
- * - ```.auto-height@{state}``` : helpers auto-height
- * - ```.order-{%column-count}@{state}``` : helpers order
- *
- * @param 		{String|List<String>} 		[$states=all] 		The states to generate the classes for
- * @param 		{String|List<String>} 		[$package=all] 		The packages to generate the classes for
- * @param 		{String} 					[$scope=null] 		A classname to scope the classes in
- *
- * @example 	scss
- * // generate all the classes
- * \@include g-classes();
- * // generate only certain states
- * \@include g-classes(mobile tablet);
- * // generate only the helpers for all the states
- * \@include g-classes(all, helpers);
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	Default driver API
- * This are all the API mixins that are exposed by gridle for the default driver.
- */
-/**
- * Set the element as a row
- * @param 		{Boolean} 		[$reverse=false] 		Revert the columns order if true
- * @example 	scss
- * .my-cool-row {
- * 	\@include g-row();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the element as a col
- * @param 		{Boolean} 		[$reverse=false] 		Revert the columns order if true
- * @example 	scss
- * .my-cool-col {
- * 	\@include g-col();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply a nowrap on the element
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-nowrap();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Reset the nowrap on the element
- * @example 	scss
- * .my-cool-element {
- * 	\@include g-wrap();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply a column width on the element
- * @param 		{Integer|String} 		$columns 			The column count to apply or a registered column name
- * @param 		{Integer} 				[$context=null]  	The context on which to calculate the column width. If null, take the context setted with ```g-setup```
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-grid(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the grid element as a table display type
- * @example 	scss
- * .my-cool-column {
- * 	\@include g-grid(2);
- * 	\@include g-grid-table();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the width of the row element to full viewport width
- * @example 	scss
- * .my-cool-row {
- *  \@include g-row();
- * 	\@include g-row-full();
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the width of the grid element to adapt to his content
- * @example 	scss
- * .my-cool-column {
- *  \@include g-grid-adapt();
- *  // or
- *  \@include g-grid(adapt);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the width of the grid element to grow depending on the place it has at disposal
- * @example 	scss
- * .my-cool-column {
- *  \@include g-grid-grow();
- *  // or
- *  \@include g-grid(grow);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Clear each n childs
- * @example 	scss
- * .my-cool-row {
- *  \@include g-clear-each(2);
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the alignement of the columns inside the row using these alignement properties:
- *
- * - top : Align vertical top
- * - middle : Align vertical middle
- * - bottom : Align vertical bottom
- * - left : Align horizontal left
- * - center : Align horizontal center
- * - right : Align horizontal right
- *
- * @example 	scss
- * .my-cool-row {
- *  \@include g-row-align(middle center);
- *  \@include g-row-align(right);
- *  \@include g-row-align(middle);
- *  // etc...
- * }
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -3479,42 +2874,64 @@
 	 * @gridle-min-width 	
 	 * @gridle-max-width 	
 	 * @gridle-query 	
-	 * @gridle-classes 	true
-	 * @gridle-context 	12
-	 * @gridle-gutter-width 	20px
-	 * @gridle-gutter-height 	20px
-	 * @gridle-gutter-top 	10px
-	 * @gridle-gutter-right 	10px
-	 * @gridle-gutter-bottom 	10px
-	 * @gridle-gutter-left 	10px
-	 * @gridle-direction 	ltr
-	 * @gridle-dir-attribute 	false
-	 * @gridle-name-multiplicator 	1
-	 * @gridle-states-classes 	false
-	 * @gridle-classes-prefix 	
+	 * @gridle-columns    12
+	 * @gridle-rows     12
+	 * @gridle-column-width    60
+	 * @gridle-width    960
+	 * @gridle-gutter-width    20px
+	 * @gridle-container-width    90vw
+	 * @gridle-container-max-width    1200px
 	 */
 /**
-	 * @name 	mobile State
-	 * Here's the settings for the **mobile** state.
+	 * @name 	tablet State
+	 * Here's the settings for the **tablet** state.
 	 * @styleguide 	Gridle / States
 	 * @display 	gridle-settings
-	 * @gridle-name 	mobile
-	 * @gridle-min-width 	
-	 * @gridle-max-width 	640px
+	 * @gridle-name 	tablet
+	 * @gridle-min-width 	640px
+	 * @gridle-max-width 	
 	 * @gridle-query 	
-	 * @gridle-classes 	true
-	 * @gridle-context 	12
-	 * @gridle-gutter-width 	40px
-	 * @gridle-gutter-height 	40px
-	 * @gridle-gutter-top 	20px
-	 * @gridle-gutter-right 	20px
-	 * @gridle-gutter-bottom 	20px
-	 * @gridle-gutter-left 	20px
-	 * @gridle-direction 	ltr
-	 * @gridle-dir-attribute 	false
-	 * @gridle-name-multiplicator 	1
-	 * @gridle-states-classes 	false
-	 * @gridle-classes-prefix 	
+	 * @gridle-columns    12
+	 * @gridle-rows     12
+	 * @gridle-column-width    60
+	 * @gridle-width    960
+	 * @gridle-gutter-width    20px
+	 * @gridle-container-width    90vw
+	 * @gridle-container-max-width    1200px
+	 */
+/**
+	 * @name 	desktop State
+	 * Here's the settings for the **desktop** state.
+	 * @styleguide 	Gridle / States
+	 * @display 	gridle-settings
+	 * @gridle-name 	desktop
+	 * @gridle-min-width 	992px
+	 * @gridle-max-width 	
+	 * @gridle-query 	
+	 * @gridle-columns    12
+	 * @gridle-rows     12
+	 * @gridle-column-width    60
+	 * @gridle-width    960
+	 * @gridle-gutter-width    20px
+	 * @gridle-container-width    90vw
+	 * @gridle-container-max-width    1200px
+	 */
+/**
+	 * @name 	large State
+	 * Here's the settings for the **large** state.
+	 * @styleguide 	Gridle / States
+	 * @display 	gridle-settings
+	 * @gridle-name 	large
+	 * @gridle-min-width 	1200px
+	 * @gridle-max-width 	
+	 * @gridle-query 	
+	 * @gridle-columns    12
+	 * @gridle-rows     12
+	 * @gridle-column-width    60
+	 * @gridle-width    960
+	 * @gridle-gutter-width    20px
+	 * @gridle-container-width    90vw
+	 * @gridle-container-max-width    1200px
 	 */
 /**
  * Utils
@@ -3976,13 +3393,6 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
 .bkg-kraken {
   background-image: url("../img/kraken-bkg.png");
   background-repeat: no-repeat;
@@ -3990,2899 +3400,2028 @@
   background-position: bottom 50%;
 }
 
-.container:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.row:before, .row-reverse:before, .row:after, .row-reverse:after {
-  content: "";
-  display: table;
-}
-
-.row:after, .row-reverse:after {
-  clear: both;
-}
-
-.row, .row-reverse {
-  zoom: 1;
-}
-
-.gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12 {
-  display: inline-block;
-  min-height: 1px;
-  float: left;
+/**
+   * Container
+   */
+.container {
+  max-width: var(--g-container-max-width);
+  width: var(--g-container-width);
+  margin: 0 auto;
   box-sizing: border-box;
-  vertical-align: top;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.gr-adapt {
-  display: table-cell;
-  width: 1px;
-  white-space: nowrap !important;
-  box-sizing: border-box;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.gr-grow {
-  display: table-cell;
-  width: 99999px;
-  box-sizing: border-box;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.push-1on5, .push-0, .push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12 {
-  position: relative;
-}
-
-.pull-1on5, .pull-0, .pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12 {
-  position: relative;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.nowrap > * {
-  white-space: normal;
-}
-
-.wrap {
-  white-space: normal;
-}
-
-.gr-centered {
-  display: block !important;
-  float: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  clear: both !important;
-}
-
-@media screen and (max-width: 640px) {
-  .container\@mobile:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .row\@mobile:before, .row-reverse\@mobile:before, .row\@mobile:after, .row-reverse\@mobile:after {
-    content: "";
-    display: table;
-  }
-  .row\@mobile:after, .row-reverse\@mobile:after {
-    clear: both;
-  }
-  .row\@mobile, .row-reverse\@mobile {
-    zoom: 1;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, [class*="gr-"] {
-    display: inline-block;
-    min-height: 1px;
-    float: left;
-    box-sizing: border-box;
-    vertical-align: top;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-adapt\@mobile {
-    display: table-cell;
-    width: 1px;
-    white-space: nowrap !important;
-    box-sizing: border-box;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-grow\@mobile {
-    display: table-cell;
-    width: 99999px;
-    box-sizing: border-box;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .push-1on5\@mobile, .push-0\@mobile, .push-1\@mobile, .push-2\@mobile, .push-3\@mobile, .push-4\@mobile, .push-5\@mobile, .push-6\@mobile, .push-7\@mobile, .push-8\@mobile, .push-9\@mobile, .push-10\@mobile, .push-11\@mobile, .push-12\@mobile {
-    position: relative;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .pull-1on5\@mobile, .pull-0\@mobile, .pull-1\@mobile, .pull-2\@mobile, .pull-3\@mobile, .pull-4\@mobile, .pull-5\@mobile, .pull-6\@mobile, .pull-7\@mobile, .pull-8\@mobile, .pull-9\@mobile, .pull-10\@mobile, .pull-11\@mobile, .pull-12\@mobile {
-    position: relative;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .nowrap\@mobile {
-    white-space: nowrap;
-  }
-  .nowrap\@mobile > * {
-    white-space: normal;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .wrap\@mobile {
-    white-space: normal;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-centered\@mobile {
-    display: block !important;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    clear: both !important;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  @-ms-viewport {
-    width: device-width;
-  }
-}
-
-#gridle-settings {
-  content: '{ "version" : "3.0.1", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }, "mobile":{ "name" : "mobile", "min-width" : null, "max-width" : "640px", "query" : "screen and (max-width: 640px)", "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "40px", "gutter-height" : "40px", "gutter-top" : "20px", "gutter-right" : "20px", "gutter-bottom" : "20px", "gutter-left" : "20px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }';
 }
 
 /**
-	 * @name 	Columns
-	 * Grid columns available
-	 * @styleguide 	Gridle / Columns
-	 * @example 	html
-	 * <style>
-	 * .row.gridle-styleguide {
-	 * 	margin-bottom: 20px;
-	 * }
-	 * [class*="gr-"].gridle-styleguide {
-	 * 	background:#eee;
-	 * 	padding:20px;
-	 * }
-	 * </style>
-	 * <div class="gridle-styleguide .container">
-	 *  <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-1on5">.gr-1on5</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-1">.gr-1</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-2">.gr-2</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-3">.gr-3</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-4">.gr-4</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-5">.gr-5</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-6">.gr-6</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-7">.gr-7</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-8">.gr-8</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-9">.gr-9</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-10">.gr-10</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-11">.gr-11</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-12">.gr-12</div></div>
-	 * </div>
-	 */
-.gr-1on5 {
-  width: 20%;
-}
-
-.push-1on5 {
-  left: 20%;
-  right: auto;
-}
-
-.pull-1on5 {
-  right: 20%;
-  left: auto;
-}
-
-.prefix-1on5 {
-  margin-left: 20%;
-}
-
-.suffix-1on5 {
-  margin-right: 20%;
-}
-
-.gr-0 {
-  width: 0%;
-}
-
-.push-0 {
-  left: 0%;
-  right: auto;
-}
-
-.pull-0 {
-  right: 0%;
-  left: auto;
-}
-
-.prefix-0 {
-  margin-left: 0%;
-}
-
-.suffix-0 {
-  margin-right: 0%;
-}
-
-.gr-1 {
-  width: 8.33333%;
-}
-
-.push-1 {
-  left: 8.33333%;
-  right: auto;
-}
-
-.pull-1 {
-  right: 8.33333%;
-  left: auto;
-}
-
-.prefix-1 {
-  margin-left: 8.33333%;
-}
-
-.suffix-1 {
-  margin-right: 8.33333%;
-}
-
-.gr-2 {
-  width: 16.66667%;
-}
-
-.push-2 {
-  left: 16.66667%;
-  right: auto;
-}
-
-.pull-2 {
-  right: 16.66667%;
-  left: auto;
-}
-
-.prefix-2 {
-  margin-left: 16.66667%;
-}
-
-.suffix-2 {
-  margin-right: 16.66667%;
-}
-
-.gr-3 {
-  width: 25%;
-}
-
-.push-3 {
-  left: 25%;
-  right: auto;
-}
-
-.pull-3 {
-  right: 25%;
-  left: auto;
-}
-
-.prefix-3 {
-  margin-left: 25%;
-}
-
-.suffix-3 {
-  margin-right: 25%;
-}
-
-.gr-4 {
-  width: 33.33333%;
-}
-
-.push-4 {
-  left: 33.33333%;
-  right: auto;
-}
-
-.pull-4 {
-  right: 33.33333%;
-  left: auto;
-}
-
-.prefix-4 {
-  margin-left: 33.33333%;
-}
-
-.suffix-4 {
-  margin-right: 33.33333%;
-}
-
-.gr-5 {
-  width: 41.66667%;
-}
-
-.push-5 {
-  left: 41.66667%;
-  right: auto;
-}
-
-.pull-5 {
-  right: 41.66667%;
-  left: auto;
-}
-
-.prefix-5 {
-  margin-left: 41.66667%;
-}
-
-.suffix-5 {
-  margin-right: 41.66667%;
-}
-
-.gr-6 {
-  width: 50%;
-}
-
-.push-6 {
-  left: 50%;
-  right: auto;
-}
-
-.pull-6 {
-  right: 50%;
-  left: auto;
-}
-
-.prefix-6 {
-  margin-left: 50%;
-}
-
-.suffix-6 {
-  margin-right: 50%;
-}
-
-.gr-7 {
-  width: 58.33333%;
-}
-
-.push-7 {
-  left: 58.33333%;
-  right: auto;
-}
-
-.pull-7 {
-  right: 58.33333%;
-  left: auto;
-}
-
-.prefix-7 {
-  margin-left: 58.33333%;
-}
-
-.suffix-7 {
-  margin-right: 58.33333%;
-}
-
-.gr-8 {
-  width: 66.66667%;
-}
-
-.push-8 {
-  left: 66.66667%;
-  right: auto;
-}
-
-.pull-8 {
-  right: 66.66667%;
-  left: auto;
-}
-
-.prefix-8 {
-  margin-left: 66.66667%;
-}
-
-.suffix-8 {
-  margin-right: 66.66667%;
-}
-
-.gr-9 {
-  width: 75%;
-}
-
-.push-9 {
-  left: 75%;
-  right: auto;
-}
-
-.pull-9 {
-  right: 75%;
-  left: auto;
-}
-
-.prefix-9 {
-  margin-left: 75%;
-}
-
-.suffix-9 {
-  margin-right: 75%;
-}
-
-.gr-10 {
-  width: 83.33333%;
-}
-
-.push-10 {
-  left: 83.33333%;
-  right: auto;
-}
-
-.pull-10 {
-  right: 83.33333%;
-  left: auto;
-}
-
-.prefix-10 {
-  margin-left: 83.33333%;
-}
-
-.suffix-10 {
-  margin-right: 83.33333%;
-}
-
-.gr-11 {
-  width: 91.66667%;
-}
-
-.push-11 {
-  left: 91.66667%;
-  right: auto;
-}
-
-.pull-11 {
-  right: 91.66667%;
-  left: auto;
-}
-
-.prefix-11 {
-  margin-left: 91.66667%;
-}
-
-.suffix-11 {
-  margin-right: 91.66667%;
-}
-
-.gr-12 {
-  width: 100%;
-}
-
-.push-12 {
-  left: 100%;
-  right: auto;
-}
-
-.pull-12 {
-  right: 100%;
-  left: auto;
-}
-
-.prefix-12 {
-  margin-left: 100%;
-}
-
-.suffix-12 {
-  margin-right: 100%;
-}
-
-body {
-  direction: ltr;
-}
-
-@media screen and (max-width: 640px) {
-  .gr-1on5\@mobile {
-    width: 20%;
-  }
-  .push-1on5\@mobile {
-    left: 20%;
-    right: auto;
-  }
-  .pull-1on5\@mobile {
-    right: 20%;
-    left: auto;
-  }
-  .prefix-1on5\@mobile {
-    margin-left: 20%;
-  }
-  .suffix-1on5\@mobile {
-    margin-right: 20%;
-  }
-  .gr-0\@mobile {
-    width: 0%;
-  }
-  .push-0\@mobile {
-    left: 0%;
-    right: auto;
-  }
-  .pull-0\@mobile {
-    right: 0%;
-    left: auto;
-  }
-  .prefix-0\@mobile {
-    margin-left: 0%;
-  }
-  .suffix-0\@mobile {
-    margin-right: 0%;
-  }
-  .gr-1\@mobile {
-    width: 8.33333%;
-  }
-  .push-1\@mobile {
-    left: 8.33333%;
-    right: auto;
-  }
-  .pull-1\@mobile {
-    right: 8.33333%;
-    left: auto;
-  }
-  .prefix-1\@mobile {
-    margin-left: 8.33333%;
-  }
-  .suffix-1\@mobile {
-    margin-right: 8.33333%;
-  }
-  .gr-2\@mobile {
-    width: 16.66667%;
-  }
-  .push-2\@mobile {
-    left: 16.66667%;
-    right: auto;
-  }
-  .pull-2\@mobile {
-    right: 16.66667%;
-    left: auto;
-  }
-  .prefix-2\@mobile {
-    margin-left: 16.66667%;
-  }
-  .suffix-2\@mobile {
-    margin-right: 16.66667%;
-  }
-  .gr-3\@mobile {
-    width: 25%;
-  }
-  .push-3\@mobile {
-    left: 25%;
-    right: auto;
-  }
-  .pull-3\@mobile {
-    right: 25%;
-    left: auto;
-  }
-  .prefix-3\@mobile {
-    margin-left: 25%;
-  }
-  .suffix-3\@mobile {
-    margin-right: 25%;
-  }
-  .gr-4\@mobile {
-    width: 33.33333%;
-  }
-  .push-4\@mobile {
-    left: 33.33333%;
-    right: auto;
-  }
-  .pull-4\@mobile {
-    right: 33.33333%;
-    left: auto;
-  }
-  .prefix-4\@mobile {
-    margin-left: 33.33333%;
-  }
-  .suffix-4\@mobile {
-    margin-right: 33.33333%;
-  }
-  .gr-5\@mobile {
-    width: 41.66667%;
-  }
-  .push-5\@mobile {
-    left: 41.66667%;
-    right: auto;
-  }
-  .pull-5\@mobile {
-    right: 41.66667%;
-    left: auto;
-  }
-  .prefix-5\@mobile {
-    margin-left: 41.66667%;
-  }
-  .suffix-5\@mobile {
-    margin-right: 41.66667%;
-  }
-  .gr-6\@mobile {
-    width: 50%;
-  }
-  .push-6\@mobile {
-    left: 50%;
-    right: auto;
-  }
-  .pull-6\@mobile {
-    right: 50%;
-    left: auto;
-  }
-  .prefix-6\@mobile {
-    margin-left: 50%;
-  }
-  .suffix-6\@mobile {
-    margin-right: 50%;
-  }
-  .gr-7\@mobile {
-    width: 58.33333%;
-  }
-  .push-7\@mobile {
-    left: 58.33333%;
-    right: auto;
-  }
-  .pull-7\@mobile {
-    right: 58.33333%;
-    left: auto;
-  }
-  .prefix-7\@mobile {
-    margin-left: 58.33333%;
-  }
-  .suffix-7\@mobile {
-    margin-right: 58.33333%;
-  }
-  .gr-8\@mobile {
-    width: 66.66667%;
-  }
-  .push-8\@mobile {
-    left: 66.66667%;
-    right: auto;
-  }
-  .pull-8\@mobile {
-    right: 66.66667%;
-    left: auto;
-  }
-  .prefix-8\@mobile {
-    margin-left: 66.66667%;
-  }
-  .suffix-8\@mobile {
-    margin-right: 66.66667%;
-  }
-  .gr-9\@mobile {
-    width: 75%;
-  }
-  .push-9\@mobile {
-    left: 75%;
-    right: auto;
-  }
-  .pull-9\@mobile {
-    right: 75%;
-    left: auto;
-  }
-  .prefix-9\@mobile {
-    margin-left: 75%;
-  }
-  .suffix-9\@mobile {
-    margin-right: 75%;
-  }
-  .gr-10\@mobile {
-    width: 83.33333%;
-  }
-  .push-10\@mobile {
-    left: 83.33333%;
-    right: auto;
-  }
-  .pull-10\@mobile {
-    right: 83.33333%;
-    left: auto;
-  }
-  .prefix-10\@mobile {
-    margin-left: 83.33333%;
-  }
-  .suffix-10\@mobile {
-    margin-right: 83.33333%;
-  }
-  .gr-11\@mobile {
-    width: 91.66667%;
-  }
-  .push-11\@mobile {
-    left: 91.66667%;
-    right: auto;
-  }
-  .pull-11\@mobile {
-    right: 91.66667%;
-    left: auto;
-  }
-  .prefix-11\@mobile {
-    margin-left: 91.66667%;
-  }
-  .suffix-11\@mobile {
-    margin-right: 91.66667%;
-  }
-  .gr-12\@mobile {
-    width: 100%;
-  }
-  .push-12\@mobile {
-    left: 100%;
-    right: auto;
-  }
-  .pull-12\@mobile {
-    right: 100%;
-    left: auto;
-  }
-  .prefix-12\@mobile {
-    margin-left: 100%;
-  }
-  .suffix-12\@mobile {
-    margin-right: 100%;
-  }
-  body {
-    direction: ltr;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .gr-1on5, .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .gr-1on5\@mobile, .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  .gr-grow, .gr-grow\@mobile {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  .gr-adapt, .gr-adapt\@mobile {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-}
-
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
-.clear {
-  clear: both;
-}
-
-.clear-left {
-  clear: left;
-}
-
-.clear-right {
-  clear: right;
-}
-
-.auto-height {
-  height: inherit;
-  min-height: inherit;
-  max-height: inherit;
-}
-
-.row {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-[class*="no-gutter"] > .row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.row-reverse {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: -10px;
-  margin-right: -10px;
-  transform: rotateY(180deg);
-}
-
-.row-reverse > [class*="gr-"] {
-  transform: rotateY(-180deg);
-}
-
-[class*="no-gutter"] > .row-reverse {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.row-full {
-  width: 100vw;
-  margin-left: 50% !important;
-  margin-right: 0 !important;
-  transform: translateX(-50%);
-}
-
+   * Grid
+   */
+.gr {
+  display: grid;
+  grid-template-columns: repeat(var(--g-columns), 1fr);
+  grid-column-gap: var(--g-gutter-unit);
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: stretch;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+
+/**
+   * Grid flex
+   */
+.gr--flex {
+  display: flex;
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+}
+
+/**
+   * Column
+   */
 .col {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: -10px;
-  margin-right: -10px;
+  box-sizing: border-box;
 }
 
-.col-reverse {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: -10px;
-  margin-right: -10px;
-  transform: rotateX(180deg);
+/**
+   * Row
+   */
+.row {
+  box-sizing: border-box;
 }
 
-.col-reverse > [class*="gr-"] {
-  transform: rotateX(-180deg);
+/**
+   * Grid gutters
+   */
+.gr--gutters {
+  grid-column-gap: var(--g-gutter-unit);
+  grid-row-gap: var(--g-gutter-unit);
 }
 
-.gr-table {
-  display: table-cell;
-  float: none;
-  vertical-align: top;
+.gr--gutters.gr--flex {
+  margin-top: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+  margin-bottom: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
 }
 
-.row-no-gutter {
+.gr--gutters.gr--flex > .col {
+  margin: calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--no-gutter {
+  grid-row-gap: 0;
+  grid-column-gap: 0;
   margin-left: 0;
   margin-right: 0;
 }
 
-.row-no-gutter > [class*="gr-"] {
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-  padding-left: 0;
+.gr--no-gutter.gr--flex > .col {
+  margin: 0;
 }
 
-.row-no-gutter-top {
+.gr--gutters-side {
+  grid-column-gap: var(--g-gutter-unit);
+  grid-row-gap: 0;
+}
+
+.gr--gutters-side.gr--flex {
+  margin-left: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+  margin-right: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+}
+
+.gr--gutters-side.gr--flex > .col {
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--gutters-updown {
+  grid-column-gap: 0;
+  grid-row-gap: var(--g-gutter-unit);
+}
+
+.gr--gutters-updown.gr--flex {
+  margin-top: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+  margin-bottom: calc(calc(var(--g-gutter-unit) * 1) / 2 * -1);
+}
+
+.gr--gutters-updown.gr--flex > .col {
+  margin: calc(calc(var(--g-gutter-unit) * 1) / 2) 0;
+}
+
+.gr--no-gutter-side {
+  grid-row-gap: 0;
+}
+
+.gr--no-gutter-side.gr--flex {
   margin-left: 0;
   margin-right: 0;
 }
 
-.row-no-gutter-top > [class*="gr-"] {
-  padding-top: 0;
-}
-
-.row-no-gutter-right {
+.gr--no-gutter-side.gr--flex > .col {
   margin-left: 0;
   margin-right: 0;
 }
 
-.row-no-gutter-right > [class*="gr-"] {
-  padding-right: 0;
+.gr--no-gutter-updown {
+  grid-column-gap: 0;
 }
 
-.row-no-gutter-bottom {
-  margin-left: 0;
-  margin-right: 0;
+.gr--no-gutter-updown.gr--flex {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.row-no-gutter-bottom > [class*="gr-"] {
-  padding-bottom: 0;
+.gr--no-gutter-updown.gr--flex > .col {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.row-no-gutter-left {
-  margin-left: 0;
-  margin-right: 0;
+/**
+       * Apply the settings through variables
+       */
+:root {
+  /* Grid proportions */
+  --g-width: 960;
+  --g-column-width: 60;
+  --g-columns: 12;
+  --g-rows: 12;
+  /* Grid logic */
+  --g-gutters: calc(var(--g-columns) - 1);
+  /* Grid proportion logic */
+  --g-column-proportion: calc(var(--g-column-width) / var(--g-width));
+  --g-gutter-proportion: calc((1 - (var(--g-columns) * var(--g-column-proportion))) / var(--g-gutters));
+  /* Container Units */
+  --g-column-unit: calc(var(--g-column-proportion) * var(--g-container-width));
+  --g-gutter-unit: 20px;
+  --g-column-and-gutter-unit: calc(var(--g-column-unit) + var(--g-gutter-unit));
+  /* Container Width */
+  --g-container-width: 90vw;
+  --g-container-max-width: 1200px;
 }
 
-.row-no-gutter-left > [class*="gr-"] {
-  padding-left: 0;
+/**
+       * Row wrap and nowrap
+       */
+.gr--wrap {
+  flex-wrap: wrap;
 }
 
-.row-align-left {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  text-align: left;
+.gr--nowrap {
+  flex-wrap: nowrap;
 }
 
-.row-align-left > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: top;
-  font-size: 1rem;
+/**
+       * Row alignements
+       */
+.gr--start {
+  align-content: start;
+  align-items: flex-start;
 }
 
-.row-align-center {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  text-align: center;
+.gr--middle {
+  align-content: center;
+  align-items: center;
 }
 
-.row-align-center > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: top;
-  font-size: 1rem;
+.gr--end {
+  align-content: end;
+  align-items: flex-end;
 }
 
-.row-align-center > * {
-  text-align: left;
+/**
+       * Grid cells alignements
+       */
+.col--start {
+  align-self: start;
 }
 
-.row-align-right {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  text-align: right;
+.gr--flex .col--start {
+  align-self: flex-start;
 }
 
-.row-align-right > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: top;
-  font-size: 1rem;
+.col--middle {
+  align-self: center;
 }
 
-.row-align-right > * {
-  text-align: left;
+.col--end {
+  align-self: end;
 }
 
-.row-align-middle {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  vertical-align: middle;
+.gr--flex .col--end {
+  align-self: flex-end;
 }
 
-.row-align-middle > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: middle;
-  font-size: 1rem;
+/**
+       * Grid cells
+       */
+.col--1 {
+  grid-column-end: span 1;
 }
 
-.row-align-top {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  vertical-align: top;
+.gr--flex .col--1 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
 }
 
-.row-align-top > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: top;
-  font-size: 1rem;
+.gr--flex.gr--no-gutter .col--1,
+.gr--flex.gr--no-gutter-side .col--1 {
+  width: calc(100% / var(--g-columns) * 1);
+  flex-basis: calc(100% / var(--g-columns) * 1);
 }
 
-.row-align-bottom {
-  font-size: 0;
-  word-spacing: 0;
-  letter-spacing: 0;
-  clear: both;
-  vertical-align: bottom;
+.col--start-1 {
+  grid-column-start: 1;
 }
 
-.row-align-bottom > * {
-  word-spacing: normal;
-  letter-spacing: normal;
-  float: none !important;
-  vertical-align: bottom;
-  font-size: 1rem;
+.col--height-1 {
+  height: calc(calc(var(--g-column-unit) * 1) + calc(var(--g-gutter-unit) * 0));
 }
 
-.no-gutter {
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-  padding-left: 0;
+.col--2 {
+  grid-column-end: span 2;
 }
 
-.no-gutter-left {
-  padding-left: 0;
+.gr--flex .col--2 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
 }
 
-.no-gutter-right {
-  padding-right: 0;
+.gr--flex.gr--no-gutter .col--2,
+.gr--flex.gr--no-gutter-side .col--2 {
+  width: calc(100% / var(--g-columns) * 2);
+  flex-basis: calc(100% / var(--g-columns) * 2);
 }
 
-.no-gutter-top {
-  padding-top: 0;
+.col--start-2 {
+  grid-column-start: 2;
 }
 
-.no-gutter-bottom {
-  padding-bottom: 0;
+.col--height-2 {
+  height: calc(calc(var(--g-column-unit) * 2) + calc(var(--g-gutter-unit) * 1));
 }
 
-.gutter {
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+.col--3 {
+  grid-column-end: span 3;
 }
 
-.gutter-left {
-  padding-left: 10px;
+.gr--flex .col--3 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
 }
 
-.gutter-right {
-  padding-right: 10px;
+.gr--flex.gr--no-gutter .col--3,
+.gr--flex.gr--no-gutter-side .col--3 {
+  width: calc(100% / var(--g-columns) * 3);
+  flex-basis: calc(100% / var(--g-columns) * 3);
 }
 
-.gutter-top {
-  padding-top: 10px;
+.col--start-3 {
+  grid-column-start: 3;
 }
 
-.gutter-bottom {
-  padding-bottom: 10px;
+.col--height-3 {
+  height: calc(calc(var(--g-column-unit) * 3) + calc(var(--g-gutter-unit) * 2));
 }
 
+.col--4 {
+  grid-column-end: span 4;
+}
+
+.gr--flex .col--4 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--4,
+.gr--flex.gr--no-gutter-side .col--4 {
+  width: calc(100% / var(--g-columns) * 4);
+  flex-basis: calc(100% / var(--g-columns) * 4);
+}
+
+.col--start-4 {
+  grid-column-start: 4;
+}
+
+.col--height-4 {
+  height: calc(calc(var(--g-column-unit) * 4) + calc(var(--g-gutter-unit) * 3));
+}
+
+.col--5 {
+  grid-column-end: span 5;
+}
+
+.gr--flex .col--5 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--5,
+.gr--flex.gr--no-gutter-side .col--5 {
+  width: calc(100% / var(--g-columns) * 5);
+  flex-basis: calc(100% / var(--g-columns) * 5);
+}
+
+.col--start-5 {
+  grid-column-start: 5;
+}
+
+.col--height-5 {
+  height: calc(calc(var(--g-column-unit) * 5) + calc(var(--g-gutter-unit) * 4));
+}
+
+.col--6 {
+  grid-column-end: span 6;
+}
+
+.gr--flex .col--6 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--6,
+.gr--flex.gr--no-gutter-side .col--6 {
+  width: calc(100% / var(--g-columns) * 6);
+  flex-basis: calc(100% / var(--g-columns) * 6);
+}
+
+.col--start-6 {
+  grid-column-start: 6;
+}
+
+.col--height-6 {
+  height: calc(calc(var(--g-column-unit) * 6) + calc(var(--g-gutter-unit) * 5));
+}
+
+.col--7 {
+  grid-column-end: span 7;
+}
+
+.gr--flex .col--7 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--7,
+.gr--flex.gr--no-gutter-side .col--7 {
+  width: calc(100% / var(--g-columns) * 7);
+  flex-basis: calc(100% / var(--g-columns) * 7);
+}
+
+.col--start-7 {
+  grid-column-start: 7;
+}
+
+.col--height-7 {
+  height: calc(calc(var(--g-column-unit) * 7) + calc(var(--g-gutter-unit) * 6));
+}
+
+.col--8 {
+  grid-column-end: span 8;
+}
+
+.gr--flex .col--8 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--8,
+.gr--flex.gr--no-gutter-side .col--8 {
+  width: calc(100% / var(--g-columns) * 8);
+  flex-basis: calc(100% / var(--g-columns) * 8);
+}
+
+.col--start-8 {
+  grid-column-start: 8;
+}
+
+.col--height-8 {
+  height: calc(calc(var(--g-column-unit) * 8) + calc(var(--g-gutter-unit) * 7));
+}
+
+.col--9 {
+  grid-column-end: span 9;
+}
+
+.gr--flex .col--9 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--9,
+.gr--flex.gr--no-gutter-side .col--9 {
+  width: calc(100% / var(--g-columns) * 9);
+  flex-basis: calc(100% / var(--g-columns) * 9);
+}
+
+.col--start-9 {
+  grid-column-start: 9;
+}
+
+.col--height-9 {
+  height: calc(calc(var(--g-column-unit) * 9) + calc(var(--g-gutter-unit) * 8));
+}
+
+.col--10 {
+  grid-column-end: span 10;
+}
+
+.gr--flex .col--10 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--10,
+.gr--flex.gr--no-gutter-side .col--10 {
+  width: calc(100% / var(--g-columns) * 10);
+  flex-basis: calc(100% / var(--g-columns) * 10);
+}
+
+.col--start-10 {
+  grid-column-start: 10;
+}
+
+.col--height-10 {
+  height: calc(calc(var(--g-column-unit) * 10) + calc(var(--g-gutter-unit) * 9));
+}
+
+.col--11 {
+  grid-column-end: span 11;
+}
+
+.gr--flex .col--11 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--11,
+.gr--flex.gr--no-gutter-side .col--11 {
+  width: calc(100% / var(--g-columns) * 11);
+  flex-basis: calc(100% / var(--g-columns) * 11);
+}
+
+.col--start-11 {
+  grid-column-start: 11;
+}
+
+.col--height-11 {
+  height: calc(calc(var(--g-column-unit) * 11) + calc(var(--g-gutter-unit) * 10));
+}
+
+.col--12 {
+  grid-column-end: span 12;
+}
+
+.gr--flex .col--12 {
+  flex: 0 0 auto;
+  width: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+  flex-basis: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex.gr--no-gutter .col--12,
+.gr--flex.gr--no-gutter-side .col--12 {
+  width: calc(100% / var(--g-columns) * 12);
+  flex-basis: calc(100% / var(--g-columns) * 12);
+}
+
+.col--start-12 {
+  grid-column-start: 12;
+}
+
+.col--height-12 {
+  height: calc(calc(var(--g-column-unit) * 12) + calc(var(--g-gutter-unit) * 11));
+}
+
+.gr--rows-1 {
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.row--1 {
+  grid-row-end: span 1;
+}
+
+.row--start-1 {
+  grid-row-start: 1;
+}
+
+.gr--rows-2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.row--2 {
+  grid-row-end: span 2;
+}
+
+.row--start-2 {
+  grid-row-start: 2;
+}
+
+.gr--rows-3 {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.row--3 {
+  grid-row-end: span 3;
+}
+
+.row--start-3 {
+  grid-row-start: 3;
+}
+
+.gr--rows-4 {
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.row--4 {
+  grid-row-end: span 4;
+}
+
+.row--start-4 {
+  grid-row-start: 4;
+}
+
+.gr--rows-5 {
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.row--5 {
+  grid-row-end: span 5;
+}
+
+.row--start-5 {
+  grid-row-start: 5;
+}
+
+.gr--rows-6 {
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.row--6 {
+  grid-row-end: span 6;
+}
+
+.row--start-6 {
+  grid-row-start: 6;
+}
+
+.gr--rows-7 {
+  grid-template-rows: repeat(7, 1fr);
+}
+
+.row--7 {
+  grid-row-end: span 7;
+}
+
+.row--start-7 {
+  grid-row-start: 7;
+}
+
+.gr--rows-8 {
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.row--8 {
+  grid-row-end: span 8;
+}
+
+.row--start-8 {
+  grid-row-start: 8;
+}
+
+.gr--rows-9 {
+  grid-template-rows: repeat(9, 1fr);
+}
+
+.row--9 {
+  grid-row-end: span 9;
+}
+
+.row--start-9 {
+  grid-row-start: 9;
+}
+
+.gr--rows-10 {
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.row--10 {
+  grid-row-end: span 10;
+}
+
+.row--start-10 {
+  grid-row-start: 10;
+}
+
+.gr--rows-11 {
+  grid-template-rows: repeat(11, 1fr);
+}
+
+.row--11 {
+  grid-row-end: span 11;
+}
+
+.row--start-11 {
+  grid-row-start: 11;
+}
+
+.gr--rows-12 {
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.row--12 {
+  grid-row-end: span 12;
+}
+
+.row--start-12 {
+  grid-row-start: 12;
+}
+
+/**
+       * Flex grid cells
+       */
+.gr--flex .col--adapt {
+  width: auto !important;
+  flex-basis: auto !important;
+  flex: 0 0 auto;
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+.gr--flex .col--grow {
+  width: auto !important;
+  flex-basis: auto !important;
+  flex: 1 1 auto;
+  margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+}
+
+/**
+       * Utilities
+       */
 .hide {
-  display: none !important;
-}
-
-.not-visible {
-  visibility: hidden;
+  display: none;
 }
 
 .show {
-  display: block !important;
+  display: block;
 }
 
 .show-inline {
-  display: inline-block !important;
+  display: inline-block;
 }
 
-.visible {
-  visibility: visible;
+@media screen and (min-width: 640px) {
+  /**
+       * Apply the settings through variables
+       */
+  :root {
+    /* Grid proportions */
+    --g-width: 960;
+    --g-column-width: 60;
+    --g-columns: 12;
+    --g-rows: 12;
+    /* Grid logic */
+    --g-gutters: calc(var(--g-columns) - 1);
+    /* Grid proportion logic */
+    --g-column-proportion: calc(var(--g-column-width) / var(--g-width));
+    --g-gutter-proportion: calc((1 - (var(--g-columns) * var(--g-column-proportion))) / var(--g-gutters));
+    /* Container Units */
+    --g-column-unit: calc(var(--g-column-proportion) * var(--g-container-width));
+    --g-gutter-unit: 20px;
+    --g-column-and-gutter-unit: calc(var(--g-column-unit) + var(--g-gutter-unit));
+    /* Container Width */
+    --g-container-width: 90vw;
+    --g-container-max-width: 1200px;
+  }
+  /**
+       * Row wrap and nowrap
+       */
+  .gr--wrap\@tablet {
+    flex-wrap: wrap;
+  }
+  .gr--nowrap\@tablet {
+    flex-wrap: nowrap;
+  }
+  /**
+       * Row alignements
+       */
+  .gr--start\@tablet {
+    align-content: start;
+    align-items: flex-start;
+  }
+  .gr--middle\@tablet {
+    align-content: center;
+    align-items: center;
+  }
+  .gr--end\@tablet {
+    align-content: end;
+    align-items: flex-end;
+  }
+  /**
+       * Grid cells alignements
+       */
+  .col--start\@tablet {
+    align-self: start;
+  }
+  .gr--flex .col--start\@tablet {
+    align-self: flex-start;
+  }
+  .col--middle\@tablet {
+    align-self: center;
+  }
+  .col--end\@tablet {
+    align-self: end;
+  }
+  .gr--flex .col--end\@tablet {
+    align-self: flex-end;
+  }
+  /**
+       * Grid cells
+       */
+  .col--1\@tablet {
+    grid-column-end: span 1;
+  }
+  .gr--flex .col--1\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--1\@tablet,
+  .gr--flex.gr--no-gutter-side .col--1\@tablet {
+    width: calc(100% / var(--g-columns) * 1);
+    flex-basis: calc(100% / var(--g-columns) * 1);
+  }
+  .col--start-1\@tablet {
+    grid-column-start: 1;
+  }
+  .col--height-1\@tablet {
+    height: calc(calc(var(--g-column-unit) * 1) + calc(var(--g-gutter-unit) * 0));
+  }
+  .col--2\@tablet {
+    grid-column-end: span 2;
+  }
+  .gr--flex .col--2\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--2\@tablet,
+  .gr--flex.gr--no-gutter-side .col--2\@tablet {
+    width: calc(100% / var(--g-columns) * 2);
+    flex-basis: calc(100% / var(--g-columns) * 2);
+  }
+  .col--start-2\@tablet {
+    grid-column-start: 2;
+  }
+  .col--height-2\@tablet {
+    height: calc(calc(var(--g-column-unit) * 2) + calc(var(--g-gutter-unit) * 1));
+  }
+  .col--3\@tablet {
+    grid-column-end: span 3;
+  }
+  .gr--flex .col--3\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--3\@tablet,
+  .gr--flex.gr--no-gutter-side .col--3\@tablet {
+    width: calc(100% / var(--g-columns) * 3);
+    flex-basis: calc(100% / var(--g-columns) * 3);
+  }
+  .col--start-3\@tablet {
+    grid-column-start: 3;
+  }
+  .col--height-3\@tablet {
+    height: calc(calc(var(--g-column-unit) * 3) + calc(var(--g-gutter-unit) * 2));
+  }
+  .col--4\@tablet {
+    grid-column-end: span 4;
+  }
+  .gr--flex .col--4\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--4\@tablet,
+  .gr--flex.gr--no-gutter-side .col--4\@tablet {
+    width: calc(100% / var(--g-columns) * 4);
+    flex-basis: calc(100% / var(--g-columns) * 4);
+  }
+  .col--start-4\@tablet {
+    grid-column-start: 4;
+  }
+  .col--height-4\@tablet {
+    height: calc(calc(var(--g-column-unit) * 4) + calc(var(--g-gutter-unit) * 3));
+  }
+  .col--5\@tablet {
+    grid-column-end: span 5;
+  }
+  .gr--flex .col--5\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--5\@tablet,
+  .gr--flex.gr--no-gutter-side .col--5\@tablet {
+    width: calc(100% / var(--g-columns) * 5);
+    flex-basis: calc(100% / var(--g-columns) * 5);
+  }
+  .col--start-5\@tablet {
+    grid-column-start: 5;
+  }
+  .col--height-5\@tablet {
+    height: calc(calc(var(--g-column-unit) * 5) + calc(var(--g-gutter-unit) * 4));
+  }
+  .col--6\@tablet {
+    grid-column-end: span 6;
+  }
+  .gr--flex .col--6\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--6\@tablet,
+  .gr--flex.gr--no-gutter-side .col--6\@tablet {
+    width: calc(100% / var(--g-columns) * 6);
+    flex-basis: calc(100% / var(--g-columns) * 6);
+  }
+  .col--start-6\@tablet {
+    grid-column-start: 6;
+  }
+  .col--height-6\@tablet {
+    height: calc(calc(var(--g-column-unit) * 6) + calc(var(--g-gutter-unit) * 5));
+  }
+  .col--7\@tablet {
+    grid-column-end: span 7;
+  }
+  .gr--flex .col--7\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--7\@tablet,
+  .gr--flex.gr--no-gutter-side .col--7\@tablet {
+    width: calc(100% / var(--g-columns) * 7);
+    flex-basis: calc(100% / var(--g-columns) * 7);
+  }
+  .col--start-7\@tablet {
+    grid-column-start: 7;
+  }
+  .col--height-7\@tablet {
+    height: calc(calc(var(--g-column-unit) * 7) + calc(var(--g-gutter-unit) * 6));
+  }
+  .col--8\@tablet {
+    grid-column-end: span 8;
+  }
+  .gr--flex .col--8\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--8\@tablet,
+  .gr--flex.gr--no-gutter-side .col--8\@tablet {
+    width: calc(100% / var(--g-columns) * 8);
+    flex-basis: calc(100% / var(--g-columns) * 8);
+  }
+  .col--start-8\@tablet {
+    grid-column-start: 8;
+  }
+  .col--height-8\@tablet {
+    height: calc(calc(var(--g-column-unit) * 8) + calc(var(--g-gutter-unit) * 7));
+  }
+  .col--9\@tablet {
+    grid-column-end: span 9;
+  }
+  .gr--flex .col--9\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--9\@tablet,
+  .gr--flex.gr--no-gutter-side .col--9\@tablet {
+    width: calc(100% / var(--g-columns) * 9);
+    flex-basis: calc(100% / var(--g-columns) * 9);
+  }
+  .col--start-9\@tablet {
+    grid-column-start: 9;
+  }
+  .col--height-9\@tablet {
+    height: calc(calc(var(--g-column-unit) * 9) + calc(var(--g-gutter-unit) * 8));
+  }
+  .col--10\@tablet {
+    grid-column-end: span 10;
+  }
+  .gr--flex .col--10\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--10\@tablet,
+  .gr--flex.gr--no-gutter-side .col--10\@tablet {
+    width: calc(100% / var(--g-columns) * 10);
+    flex-basis: calc(100% / var(--g-columns) * 10);
+  }
+  .col--start-10\@tablet {
+    grid-column-start: 10;
+  }
+  .col--height-10\@tablet {
+    height: calc(calc(var(--g-column-unit) * 10) + calc(var(--g-gutter-unit) * 9));
+  }
+  .col--11\@tablet {
+    grid-column-end: span 11;
+  }
+  .gr--flex .col--11\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--11\@tablet,
+  .gr--flex.gr--no-gutter-side .col--11\@tablet {
+    width: calc(100% / var(--g-columns) * 11);
+    flex-basis: calc(100% / var(--g-columns) * 11);
+  }
+  .col--start-11\@tablet {
+    grid-column-start: 11;
+  }
+  .col--height-11\@tablet {
+    height: calc(calc(var(--g-column-unit) * 11) + calc(var(--g-gutter-unit) * 10));
+  }
+  .col--12\@tablet {
+    grid-column-end: span 12;
+  }
+  .gr--flex .col--12\@tablet {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--12\@tablet,
+  .gr--flex.gr--no-gutter-side .col--12\@tablet {
+    width: calc(100% / var(--g-columns) * 12);
+    flex-basis: calc(100% / var(--g-columns) * 12);
+  }
+  .col--start-12\@tablet {
+    grid-column-start: 12;
+  }
+  .col--height-12\@tablet {
+    height: calc(calc(var(--g-column-unit) * 12) + calc(var(--g-gutter-unit) * 11));
+  }
+  .gr--rows-1\@tablet {
+    grid-template-rows: repeat(1, 1fr);
+  }
+  .row--1\@tablet {
+    grid-row-end: span 1;
+  }
+  .row--start-1\@tablet {
+    grid-row-start: 1;
+  }
+  .gr--rows-2\@tablet {
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .row--2\@tablet {
+    grid-row-end: span 2;
+  }
+  .row--start-2\@tablet {
+    grid-row-start: 2;
+  }
+  .gr--rows-3\@tablet {
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .row--3\@tablet {
+    grid-row-end: span 3;
+  }
+  .row--start-3\@tablet {
+    grid-row-start: 3;
+  }
+  .gr--rows-4\@tablet {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .row--4\@tablet {
+    grid-row-end: span 4;
+  }
+  .row--start-4\@tablet {
+    grid-row-start: 4;
+  }
+  .gr--rows-5\@tablet {
+    grid-template-rows: repeat(5, 1fr);
+  }
+  .row--5\@tablet {
+    grid-row-end: span 5;
+  }
+  .row--start-5\@tablet {
+    grid-row-start: 5;
+  }
+  .gr--rows-6\@tablet {
+    grid-template-rows: repeat(6, 1fr);
+  }
+  .row--6\@tablet {
+    grid-row-end: span 6;
+  }
+  .row--start-6\@tablet {
+    grid-row-start: 6;
+  }
+  .gr--rows-7\@tablet {
+    grid-template-rows: repeat(7, 1fr);
+  }
+  .row--7\@tablet {
+    grid-row-end: span 7;
+  }
+  .row--start-7\@tablet {
+    grid-row-start: 7;
+  }
+  .gr--rows-8\@tablet {
+    grid-template-rows: repeat(8, 1fr);
+  }
+  .row--8\@tablet {
+    grid-row-end: span 8;
+  }
+  .row--start-8\@tablet {
+    grid-row-start: 8;
+  }
+  .gr--rows-9\@tablet {
+    grid-template-rows: repeat(9, 1fr);
+  }
+  .row--9\@tablet {
+    grid-row-end: span 9;
+  }
+  .row--start-9\@tablet {
+    grid-row-start: 9;
+  }
+  .gr--rows-10\@tablet {
+    grid-template-rows: repeat(10, 1fr);
+  }
+  .row--10\@tablet {
+    grid-row-end: span 10;
+  }
+  .row--start-10\@tablet {
+    grid-row-start: 10;
+  }
+  .gr--rows-11\@tablet {
+    grid-template-rows: repeat(11, 1fr);
+  }
+  .row--11\@tablet {
+    grid-row-end: span 11;
+  }
+  .row--start-11\@tablet {
+    grid-row-start: 11;
+  }
+  .gr--rows-12\@tablet {
+    grid-template-rows: repeat(12, 1fr);
+  }
+  .row--12\@tablet {
+    grid-row-end: span 12;
+  }
+  .row--start-12\@tablet {
+    grid-row-start: 12;
+  }
+  /**
+       * Flex grid cells
+       */
+  .gr--flex .col--adapt\@tablet {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 0 0 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex .col--grow\@tablet {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 1 1 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  /**
+       * Utilities
+       */
+  .hide\@tablet {
+    display: none;
+  }
+  .show\@tablet {
+    display: block;
+  }
+  .show-inline\@tablet {
+    display: inline-block;
+  }
 }
 
-.row-debug {
-  position: relative;
-  z-index: 99999;
-  overflow: hidden;
+@media screen and (min-width: 992px) {
+  /**
+       * Apply the settings through variables
+       */
+  :root {
+    /* Grid proportions */
+    --g-width: 960;
+    --g-column-width: 60;
+    --g-columns: 12;
+    --g-rows: 12;
+    /* Grid logic */
+    --g-gutters: calc(var(--g-columns) - 1);
+    /* Grid proportion logic */
+    --g-column-proportion: calc(var(--g-column-width) / var(--g-width));
+    --g-gutter-proportion: calc((1 - (var(--g-columns) * var(--g-column-proportion))) / var(--g-gutters));
+    /* Container Units */
+    --g-column-unit: calc(var(--g-column-proportion) * var(--g-container-width));
+    --g-gutter-unit: 20px;
+    --g-column-and-gutter-unit: calc(var(--g-column-unit) + var(--g-gutter-unit));
+    /* Container Width */
+    --g-container-width: 90vw;
+    --g-container-max-width: 1200px;
+  }
+  /**
+       * Row wrap and nowrap
+       */
+  .gr--wrap\@desktop {
+    flex-wrap: wrap;
+  }
+  .gr--nowrap\@desktop {
+    flex-wrap: nowrap;
+  }
+  /**
+       * Row alignements
+       */
+  .gr--start\@desktop {
+    align-content: start;
+    align-items: flex-start;
+  }
+  .gr--middle\@desktop {
+    align-content: center;
+    align-items: center;
+  }
+  .gr--end\@desktop {
+    align-content: end;
+    align-items: flex-end;
+  }
+  /**
+       * Grid cells alignements
+       */
+  .col--start\@desktop {
+    align-self: start;
+  }
+  .gr--flex .col--start\@desktop {
+    align-self: flex-start;
+  }
+  .col--middle\@desktop {
+    align-self: center;
+  }
+  .col--end\@desktop {
+    align-self: end;
+  }
+  .gr--flex .col--end\@desktop {
+    align-self: flex-end;
+  }
+  /**
+       * Grid cells
+       */
+  .col--1\@desktop {
+    grid-column-end: span 1;
+  }
+  .gr--flex .col--1\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--1\@desktop,
+  .gr--flex.gr--no-gutter-side .col--1\@desktop {
+    width: calc(100% / var(--g-columns) * 1);
+    flex-basis: calc(100% / var(--g-columns) * 1);
+  }
+  .col--start-1\@desktop {
+    grid-column-start: 1;
+  }
+  .col--height-1\@desktop {
+    height: calc(calc(var(--g-column-unit) * 1) + calc(var(--g-gutter-unit) * 0));
+  }
+  .col--2\@desktop {
+    grid-column-end: span 2;
+  }
+  .gr--flex .col--2\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--2\@desktop,
+  .gr--flex.gr--no-gutter-side .col--2\@desktop {
+    width: calc(100% / var(--g-columns) * 2);
+    flex-basis: calc(100% / var(--g-columns) * 2);
+  }
+  .col--start-2\@desktop {
+    grid-column-start: 2;
+  }
+  .col--height-2\@desktop {
+    height: calc(calc(var(--g-column-unit) * 2) + calc(var(--g-gutter-unit) * 1));
+  }
+  .col--3\@desktop {
+    grid-column-end: span 3;
+  }
+  .gr--flex .col--3\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--3\@desktop,
+  .gr--flex.gr--no-gutter-side .col--3\@desktop {
+    width: calc(100% / var(--g-columns) * 3);
+    flex-basis: calc(100% / var(--g-columns) * 3);
+  }
+  .col--start-3\@desktop {
+    grid-column-start: 3;
+  }
+  .col--height-3\@desktop {
+    height: calc(calc(var(--g-column-unit) * 3) + calc(var(--g-gutter-unit) * 2));
+  }
+  .col--4\@desktop {
+    grid-column-end: span 4;
+  }
+  .gr--flex .col--4\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--4\@desktop,
+  .gr--flex.gr--no-gutter-side .col--4\@desktop {
+    width: calc(100% / var(--g-columns) * 4);
+    flex-basis: calc(100% / var(--g-columns) * 4);
+  }
+  .col--start-4\@desktop {
+    grid-column-start: 4;
+  }
+  .col--height-4\@desktop {
+    height: calc(calc(var(--g-column-unit) * 4) + calc(var(--g-gutter-unit) * 3));
+  }
+  .col--5\@desktop {
+    grid-column-end: span 5;
+  }
+  .gr--flex .col--5\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--5\@desktop,
+  .gr--flex.gr--no-gutter-side .col--5\@desktop {
+    width: calc(100% / var(--g-columns) * 5);
+    flex-basis: calc(100% / var(--g-columns) * 5);
+  }
+  .col--start-5\@desktop {
+    grid-column-start: 5;
+  }
+  .col--height-5\@desktop {
+    height: calc(calc(var(--g-column-unit) * 5) + calc(var(--g-gutter-unit) * 4));
+  }
+  .col--6\@desktop {
+    grid-column-end: span 6;
+  }
+  .gr--flex .col--6\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--6\@desktop,
+  .gr--flex.gr--no-gutter-side .col--6\@desktop {
+    width: calc(100% / var(--g-columns) * 6);
+    flex-basis: calc(100% / var(--g-columns) * 6);
+  }
+  .col--start-6\@desktop {
+    grid-column-start: 6;
+  }
+  .col--height-6\@desktop {
+    height: calc(calc(var(--g-column-unit) * 6) + calc(var(--g-gutter-unit) * 5));
+  }
+  .col--7\@desktop {
+    grid-column-end: span 7;
+  }
+  .gr--flex .col--7\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--7\@desktop,
+  .gr--flex.gr--no-gutter-side .col--7\@desktop {
+    width: calc(100% / var(--g-columns) * 7);
+    flex-basis: calc(100% / var(--g-columns) * 7);
+  }
+  .col--start-7\@desktop {
+    grid-column-start: 7;
+  }
+  .col--height-7\@desktop {
+    height: calc(calc(var(--g-column-unit) * 7) + calc(var(--g-gutter-unit) * 6));
+  }
+  .col--8\@desktop {
+    grid-column-end: span 8;
+  }
+  .gr--flex .col--8\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--8\@desktop,
+  .gr--flex.gr--no-gutter-side .col--8\@desktop {
+    width: calc(100% / var(--g-columns) * 8);
+    flex-basis: calc(100% / var(--g-columns) * 8);
+  }
+  .col--start-8\@desktop {
+    grid-column-start: 8;
+  }
+  .col--height-8\@desktop {
+    height: calc(calc(var(--g-column-unit) * 8) + calc(var(--g-gutter-unit) * 7));
+  }
+  .col--9\@desktop {
+    grid-column-end: span 9;
+  }
+  .gr--flex .col--9\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--9\@desktop,
+  .gr--flex.gr--no-gutter-side .col--9\@desktop {
+    width: calc(100% / var(--g-columns) * 9);
+    flex-basis: calc(100% / var(--g-columns) * 9);
+  }
+  .col--start-9\@desktop {
+    grid-column-start: 9;
+  }
+  .col--height-9\@desktop {
+    height: calc(calc(var(--g-column-unit) * 9) + calc(var(--g-gutter-unit) * 8));
+  }
+  .col--10\@desktop {
+    grid-column-end: span 10;
+  }
+  .gr--flex .col--10\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--10\@desktop,
+  .gr--flex.gr--no-gutter-side .col--10\@desktop {
+    width: calc(100% / var(--g-columns) * 10);
+    flex-basis: calc(100% / var(--g-columns) * 10);
+  }
+  .col--start-10\@desktop {
+    grid-column-start: 10;
+  }
+  .col--height-10\@desktop {
+    height: calc(calc(var(--g-column-unit) * 10) + calc(var(--g-gutter-unit) * 9));
+  }
+  .col--11\@desktop {
+    grid-column-end: span 11;
+  }
+  .gr--flex .col--11\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--11\@desktop,
+  .gr--flex.gr--no-gutter-side .col--11\@desktop {
+    width: calc(100% / var(--g-columns) * 11);
+    flex-basis: calc(100% / var(--g-columns) * 11);
+  }
+  .col--start-11\@desktop {
+    grid-column-start: 11;
+  }
+  .col--height-11\@desktop {
+    height: calc(calc(var(--g-column-unit) * 11) + calc(var(--g-gutter-unit) * 10));
+  }
+  .col--12\@desktop {
+    grid-column-end: span 12;
+  }
+  .gr--flex .col--12\@desktop {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--12\@desktop,
+  .gr--flex.gr--no-gutter-side .col--12\@desktop {
+    width: calc(100% / var(--g-columns) * 12);
+    flex-basis: calc(100% / var(--g-columns) * 12);
+  }
+  .col--start-12\@desktop {
+    grid-column-start: 12;
+  }
+  .col--height-12\@desktop {
+    height: calc(calc(var(--g-column-unit) * 12) + calc(var(--g-gutter-unit) * 11));
+  }
+  .gr--rows-1\@desktop {
+    grid-template-rows: repeat(1, 1fr);
+  }
+  .row--1\@desktop {
+    grid-row-end: span 1;
+  }
+  .row--start-1\@desktop {
+    grid-row-start: 1;
+  }
+  .gr--rows-2\@desktop {
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .row--2\@desktop {
+    grid-row-end: span 2;
+  }
+  .row--start-2\@desktop {
+    grid-row-start: 2;
+  }
+  .gr--rows-3\@desktop {
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .row--3\@desktop {
+    grid-row-end: span 3;
+  }
+  .row--start-3\@desktop {
+    grid-row-start: 3;
+  }
+  .gr--rows-4\@desktop {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .row--4\@desktop {
+    grid-row-end: span 4;
+  }
+  .row--start-4\@desktop {
+    grid-row-start: 4;
+  }
+  .gr--rows-5\@desktop {
+    grid-template-rows: repeat(5, 1fr);
+  }
+  .row--5\@desktop {
+    grid-row-end: span 5;
+  }
+  .row--start-5\@desktop {
+    grid-row-start: 5;
+  }
+  .gr--rows-6\@desktop {
+    grid-template-rows: repeat(6, 1fr);
+  }
+  .row--6\@desktop {
+    grid-row-end: span 6;
+  }
+  .row--start-6\@desktop {
+    grid-row-start: 6;
+  }
+  .gr--rows-7\@desktop {
+    grid-template-rows: repeat(7, 1fr);
+  }
+  .row--7\@desktop {
+    grid-row-end: span 7;
+  }
+  .row--start-7\@desktop {
+    grid-row-start: 7;
+  }
+  .gr--rows-8\@desktop {
+    grid-template-rows: repeat(8, 1fr);
+  }
+  .row--8\@desktop {
+    grid-row-end: span 8;
+  }
+  .row--start-8\@desktop {
+    grid-row-start: 8;
+  }
+  .gr--rows-9\@desktop {
+    grid-template-rows: repeat(9, 1fr);
+  }
+  .row--9\@desktop {
+    grid-row-end: span 9;
+  }
+  .row--start-9\@desktop {
+    grid-row-start: 9;
+  }
+  .gr--rows-10\@desktop {
+    grid-template-rows: repeat(10, 1fr);
+  }
+  .row--10\@desktop {
+    grid-row-end: span 10;
+  }
+  .row--start-10\@desktop {
+    grid-row-start: 10;
+  }
+  .gr--rows-11\@desktop {
+    grid-template-rows: repeat(11, 1fr);
+  }
+  .row--11\@desktop {
+    grid-row-end: span 11;
+  }
+  .row--start-11\@desktop {
+    grid-row-start: 11;
+  }
+  .gr--rows-12\@desktop {
+    grid-template-rows: repeat(12, 1fr);
+  }
+  .row--12\@desktop {
+    grid-row-end: span 12;
+  }
+  .row--start-12\@desktop {
+    grid-row-start: 12;
+  }
+  /**
+       * Flex grid cells
+       */
+  .gr--flex .col--adapt\@desktop {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 0 0 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex .col--grow\@desktop {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 1 1 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  /**
+       * Utilities
+       */
+  .hide\@desktop {
+    display: none;
+  }
+  .show\@desktop {
+    display: block;
+  }
+  .show-inline\@desktop {
+    display: inline-block;
+  }
 }
 
-.row-debug:before {
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 99999px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
-  background-size: 16.66667% 100%;
-  z-index: 99999;
-}
-
-@media screen and (max-width: 640px) {
-  .float-left\@mobile {
-    float: left;
+@media screen and (min-width: 1200px) {
+  /**
+       * Apply the settings through variables
+       */
+  :root {
+    /* Grid proportions */
+    --g-width: 960;
+    --g-column-width: 60;
+    --g-columns: 12;
+    --g-rows: 12;
+    /* Grid logic */
+    --g-gutters: calc(var(--g-columns) - 1);
+    /* Grid proportion logic */
+    --g-column-proportion: calc(var(--g-column-width) / var(--g-width));
+    --g-gutter-proportion: calc((1 - (var(--g-columns) * var(--g-column-proportion))) / var(--g-gutters));
+    /* Container Units */
+    --g-column-unit: calc(var(--g-column-proportion) * var(--g-container-width));
+    --g-gutter-unit: 20px;
+    --g-column-and-gutter-unit: calc(var(--g-column-unit) + var(--g-gutter-unit));
+    /* Container Width */
+    --g-container-width: 90vw;
+    --g-container-max-width: 1200px;
   }
-  .float-right\@mobile {
-    float: right;
+  /**
+       * Row wrap and nowrap
+       */
+  .gr--wrap\@large {
+    flex-wrap: wrap;
   }
-  .clear\@mobile {
-    clear: both;
+  .gr--nowrap\@large {
+    flex-wrap: nowrap;
   }
-  .clear-left\@mobile {
-    clear: left;
+  /**
+       * Row alignements
+       */
+  .gr--start\@large {
+    align-content: start;
+    align-items: flex-start;
   }
-  .clear-right\@mobile {
-    clear: right;
+  .gr--middle\@large {
+    align-content: center;
+    align-items: center;
   }
-  .auto-height\@mobile {
-    height: inherit;
-    min-height: inherit;
-    max-height: inherit;
+  .gr--end\@large {
+    align-content: end;
+    align-items: flex-end;
   }
-  .row\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -20px;
-    margin-right: -20px;
+  /**
+       * Grid cells alignements
+       */
+  .col--start\@large {
+    align-self: start;
   }
-  [class*="no-gutter"] > .row\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  .gr--flex .col--start\@large {
+    align-self: flex-start;
   }
-  .row-reverse\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -20px;
-    margin-right: -20px;
-    transform: rotateY(180deg);
+  .col--middle\@large {
+    align-self: center;
   }
-  .row-reverse\@mobile > [class*="gr-"] {
-    transform: rotateY(-180deg);
+  .col--end\@large {
+    align-self: end;
   }
-  [class*="no-gutter"] > .row-reverse\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  .gr--flex .col--end\@large {
+    align-self: flex-end;
   }
-  .row-full\@mobile {
-    width: 100vw;
-    margin-left: 50% !important;
-    margin-right: 0 !important;
-    transform: translateX(-50%);
+  /**
+       * Grid cells
+       */
+  .col--1\@large {
+    grid-column-end: span 1;
   }
-  .col\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -20px;
-    margin-right: -20px;
+  .gr--flex .col--1\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 1 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .col-reverse\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: -20px;
-    margin-right: -20px;
-    transform: rotateX(180deg);
+  .gr--flex.gr--no-gutter .col--1\@large,
+  .gr--flex.gr--no-gutter-side .col--1\@large {
+    width: calc(100% / var(--g-columns) * 1);
+    flex-basis: calc(100% / var(--g-columns) * 1);
   }
-  .col-reverse\@mobile > [class*="gr-"] {
-    transform: rotateX(-180deg);
+  .col--start-1\@large {
+    grid-column-start: 1;
   }
-  .gr-table\@mobile {
-    display: table-cell;
-    float: none;
-    vertical-align: top;
+  .col--height-1\@large {
+    height: calc(calc(var(--g-column-unit) * 1) + calc(var(--g-gutter-unit) * 0));
   }
-  .row-no-gutter\@mobile {
-    margin-left: 0;
-    margin-right: 0;
+  .col--2\@large {
+    grid-column-end: span 2;
   }
-  .row-no-gutter\@mobile > [class*="gr-"] {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+  .gr--flex .col--2\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 2 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .row-no-gutter-top\@mobile {
-    margin-left: 0;
-    margin-right: 0;
+  .gr--flex.gr--no-gutter .col--2\@large,
+  .gr--flex.gr--no-gutter-side .col--2\@large {
+    width: calc(100% / var(--g-columns) * 2);
+    flex-basis: calc(100% / var(--g-columns) * 2);
   }
-  .row-no-gutter-top\@mobile > [class*="gr-"] {
-    padding-top: 0;
+  .col--start-2\@large {
+    grid-column-start: 2;
   }
-  .row-no-gutter-right\@mobile {
-    margin-left: 0;
-    margin-right: 0;
+  .col--height-2\@large {
+    height: calc(calc(var(--g-column-unit) * 2) + calc(var(--g-gutter-unit) * 1));
   }
-  .row-no-gutter-right\@mobile > [class*="gr-"] {
-    padding-right: 0;
+  .col--3\@large {
+    grid-column-end: span 3;
   }
-  .row-no-gutter-bottom\@mobile {
-    margin-left: 0;
-    margin-right: 0;
+  .gr--flex .col--3\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 3 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .row-no-gutter-bottom\@mobile > [class*="gr-"] {
-    padding-bottom: 0;
+  .gr--flex.gr--no-gutter .col--3\@large,
+  .gr--flex.gr--no-gutter-side .col--3\@large {
+    width: calc(100% / var(--g-columns) * 3);
+    flex-basis: calc(100% / var(--g-columns) * 3);
   }
-  .row-no-gutter-left\@mobile {
-    margin-left: 0;
-    margin-right: 0;
+  .col--start-3\@large {
+    grid-column-start: 3;
   }
-  .row-no-gutter-left\@mobile > [class*="gr-"] {
-    padding-left: 0;
+  .col--height-3\@large {
+    height: calc(calc(var(--g-column-unit) * 3) + calc(var(--g-gutter-unit) * 2));
   }
-  .row-align-left\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: left;
+  .col--4\@large {
+    grid-column-end: span 4;
   }
-  .row-align-left\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
+  .gr--flex .col--4\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 4 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .row-align-center\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: center;
+  .gr--flex.gr--no-gutter .col--4\@large,
+  .gr--flex.gr--no-gutter-side .col--4\@large {
+    width: calc(100% / var(--g-columns) * 4);
+    flex-basis: calc(100% / var(--g-columns) * 4);
   }
-  .row-align-center\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
+  .col--start-4\@large {
+    grid-column-start: 4;
   }
-  .row-align-center\@mobile > * {
-    text-align: left;
+  .col--height-4\@large {
+    height: calc(calc(var(--g-column-unit) * 4) + calc(var(--g-gutter-unit) * 3));
   }
-  .row-align-right\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    text-align: right;
+  .col--5\@large {
+    grid-column-end: span 5;
   }
-  .row-align-right\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
+  .gr--flex .col--5\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 5 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .row-align-right\@mobile > * {
-    text-align: left;
+  .gr--flex.gr--no-gutter .col--5\@large,
+  .gr--flex.gr--no-gutter-side .col--5\@large {
+    width: calc(100% / var(--g-columns) * 5);
+    flex-basis: calc(100% / var(--g-columns) * 5);
   }
-  .row-align-middle\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: middle;
+  .col--start-5\@large {
+    grid-column-start: 5;
   }
-  .row-align-middle\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: middle;
-    font-size: 1rem;
+  .col--height-5\@large {
+    height: calc(calc(var(--g-column-unit) * 5) + calc(var(--g-gutter-unit) * 4));
   }
-  .row-align-top\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: top;
+  .col--6\@large {
+    grid-column-end: span 6;
   }
-  .row-align-top\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: top;
-    font-size: 1rem;
+  .gr--flex .col--6\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 6 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .row-align-bottom\@mobile {
-    font-size: 0;
-    word-spacing: 0;
-    letter-spacing: 0;
-    clear: both;
-    vertical-align: bottom;
+  .gr--flex.gr--no-gutter .col--6\@large,
+  .gr--flex.gr--no-gutter-side .col--6\@large {
+    width: calc(100% / var(--g-columns) * 6);
+    flex-basis: calc(100% / var(--g-columns) * 6);
   }
-  .row-align-bottom\@mobile > * {
-    word-spacing: normal;
-    letter-spacing: normal;
-    float: none !important;
-    vertical-align: bottom;
-    font-size: 1rem;
+  .col--start-6\@large {
+    grid-column-start: 6;
   }
-  .no-gutter\@mobile {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+  .col--height-6\@large {
+    height: calc(calc(var(--g-column-unit) * 6) + calc(var(--g-gutter-unit) * 5));
   }
-  .no-gutter-left\@mobile {
-    padding-left: 0;
+  .col--7\@large {
+    grid-column-end: span 7;
   }
-  .no-gutter-right\@mobile {
-    padding-right: 0;
+  .gr--flex .col--7\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 7 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .no-gutter-top\@mobile {
-    padding-top: 0;
+  .gr--flex.gr--no-gutter .col--7\@large,
+  .gr--flex.gr--no-gutter-side .col--7\@large {
+    width: calc(100% / var(--g-columns) * 7);
+    flex-basis: calc(100% / var(--g-columns) * 7);
   }
-  .no-gutter-bottom\@mobile {
-    padding-bottom: 0;
+  .col--start-7\@large {
+    grid-column-start: 7;
   }
-  .gutter\@mobile {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
+  .col--height-7\@large {
+    height: calc(calc(var(--g-column-unit) * 7) + calc(var(--g-gutter-unit) * 6));
   }
-  .gutter-left\@mobile {
-    padding-left: 20px;
+  .col--8\@large {
+    grid-column-end: span 8;
   }
-  .gutter-right\@mobile {
-    padding-right: 20px;
+  .gr--flex .col--8\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 8 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .gutter-top\@mobile {
-    padding-top: 20px;
+  .gr--flex.gr--no-gutter .col--8\@large,
+  .gr--flex.gr--no-gutter-side .col--8\@large {
+    width: calc(100% / var(--g-columns) * 8);
+    flex-basis: calc(100% / var(--g-columns) * 8);
   }
-  .gutter-bottom\@mobile {
-    padding-bottom: 20px;
+  .col--start-8\@large {
+    grid-column-start: 8;
   }
-  .hide\@mobile {
-    display: none !important;
+  .col--height-8\@large {
+    height: calc(calc(var(--g-column-unit) * 8) + calc(var(--g-gutter-unit) * 7));
   }
-  .not-visible\@mobile {
-    visibility: hidden;
+  .col--9\@large {
+    grid-column-end: span 9;
   }
-  .show\@mobile {
-    display: block !important;
+  .gr--flex .col--9\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 9 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-  .show-inline\@mobile {
-    display: inline-block !important;
+  .gr--flex.gr--no-gutter .col--9\@large,
+  .gr--flex.gr--no-gutter-side .col--9\@large {
+    width: calc(100% / var(--g-columns) * 9);
+    flex-basis: calc(100% / var(--g-columns) * 9);
   }
-  .visible\@mobile {
-    visibility: visible;
+  .col--start-9\@large {
+    grid-column-start: 9;
   }
-  .row-debug\@mobile {
-    position: relative;
-    z-index: 99999;
-    overflow: hidden;
+  .col--height-9\@large {
+    height: calc(calc(var(--g-column-unit) * 9) + calc(var(--g-gutter-unit) * 8));
   }
-  .row-debug\@mobile:before {
-    pointer-events: none;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 99999px;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
-    background-size: 16.66667% 100%;
-    z-index: 99999;
+  .col--10\@large {
+    grid-column-end: span 10;
   }
-}
-
-[class*="gr-"] > [class^="row"],
-[class*="gr-"] > [class^="col"] {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-@media screen and (max-width: 640px) {
-  [class*="gr-"] > [class^="row"],
-  [class*="gr-"] > [class^="col"] {
-    margin-left: -20px;
-    margin-right: -20px;
+  .gr--flex .col--10\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 10 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
   }
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 640px) and (max-width: 640px) and (max-width: 640px) {
-  [class*="gr-"] {
-    width: 100%;
+  .gr--flex.gr--no-gutter .col--10\@large,
+  .gr--flex.gr--no-gutter-side .col--10\@large {
+    width: calc(100% / var(--g-columns) * 10);
+    flex-basis: calc(100% / var(--g-columns) * 10);
   }
-}
-
-@media screen and (max-width: 640px) {
-  [class*="gr-"] {
-    padding-right: 20px;
-    padding-left: 20px;
+  .col--start-10\@large {
+    grid-column-start: 10;
   }
-}
-
-@media screen and (max-width: 640px) {
-  .container {
-    padding: 0 30px;
+  .col--height-10\@large {
+    height: calc(calc(var(--g-column-unit) * 10) + calc(var(--g-gutter-unit) * 9));
+  }
+  .col--11\@large {
+    grid-column-end: span 11;
+  }
+  .gr--flex .col--11\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 11 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--11\@large,
+  .gr--flex.gr--no-gutter-side .col--11\@large {
+    width: calc(100% / var(--g-columns) * 11);
+    flex-basis: calc(100% / var(--g-columns) * 11);
+  }
+  .col--start-11\@large {
+    grid-column-start: 11;
+  }
+  .col--height-11\@large {
+    height: calc(calc(var(--g-column-unit) * 11) + calc(var(--g-gutter-unit) * 10));
+  }
+  .col--12\@large {
+    grid-column-end: span 12;
+  }
+  .gr--flex .col--12\@large {
+    flex: 0 0 auto;
+    width: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    flex-basis: calc(100% / var(--g-columns) * 12 - calc(var(--g-gutter-unit) * 1));
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex.gr--no-gutter .col--12\@large,
+  .gr--flex.gr--no-gutter-side .col--12\@large {
+    width: calc(100% / var(--g-columns) * 12);
+    flex-basis: calc(100% / var(--g-columns) * 12);
+  }
+  .col--start-12\@large {
+    grid-column-start: 12;
+  }
+  .col--height-12\@large {
+    height: calc(calc(var(--g-column-unit) * 12) + calc(var(--g-gutter-unit) * 11));
+  }
+  .gr--rows-1\@large {
+    grid-template-rows: repeat(1, 1fr);
+  }
+  .row--1\@large {
+    grid-row-end: span 1;
+  }
+  .row--start-1\@large {
+    grid-row-start: 1;
+  }
+  .gr--rows-2\@large {
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .row--2\@large {
+    grid-row-end: span 2;
+  }
+  .row--start-2\@large {
+    grid-row-start: 2;
+  }
+  .gr--rows-3\@large {
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .row--3\@large {
+    grid-row-end: span 3;
+  }
+  .row--start-3\@large {
+    grid-row-start: 3;
+  }
+  .gr--rows-4\@large {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .row--4\@large {
+    grid-row-end: span 4;
+  }
+  .row--start-4\@large {
+    grid-row-start: 4;
+  }
+  .gr--rows-5\@large {
+    grid-template-rows: repeat(5, 1fr);
+  }
+  .row--5\@large {
+    grid-row-end: span 5;
+  }
+  .row--start-5\@large {
+    grid-row-start: 5;
+  }
+  .gr--rows-6\@large {
+    grid-template-rows: repeat(6, 1fr);
+  }
+  .row--6\@large {
+    grid-row-end: span 6;
+  }
+  .row--start-6\@large {
+    grid-row-start: 6;
+  }
+  .gr--rows-7\@large {
+    grid-template-rows: repeat(7, 1fr);
+  }
+  .row--7\@large {
+    grid-row-end: span 7;
+  }
+  .row--start-7\@large {
+    grid-row-start: 7;
+  }
+  .gr--rows-8\@large {
+    grid-template-rows: repeat(8, 1fr);
+  }
+  .row--8\@large {
+    grid-row-end: span 8;
+  }
+  .row--start-8\@large {
+    grid-row-start: 8;
+  }
+  .gr--rows-9\@large {
+    grid-template-rows: repeat(9, 1fr);
+  }
+  .row--9\@large {
+    grid-row-end: span 9;
+  }
+  .row--start-9\@large {
+    grid-row-start: 9;
+  }
+  .gr--rows-10\@large {
+    grid-template-rows: repeat(10, 1fr);
+  }
+  .row--10\@large {
+    grid-row-end: span 10;
+  }
+  .row--start-10\@large {
+    grid-row-start: 10;
+  }
+  .gr--rows-11\@large {
+    grid-template-rows: repeat(11, 1fr);
+  }
+  .row--11\@large {
+    grid-row-end: span 11;
+  }
+  .row--start-11\@large {
+    grid-row-start: 11;
+  }
+  .gr--rows-12\@large {
+    grid-template-rows: repeat(12, 1fr);
+  }
+  .row--12\@large {
+    grid-row-end: span 12;
+  }
+  .row--start-12\@large {
+    grid-row-start: 12;
+  }
+  /**
+       * Flex grid cells
+       */
+  .gr--flex .col--adapt\@large {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 0 0 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  .gr--flex .col--grow\@large {
+    width: auto !important;
+    flex-basis: auto !important;
+    flex: 1 1 auto;
+    margin: 0 calc(calc(var(--g-gutter-unit) * 1) / 2);
+  }
+  /**
+       * Utilities
+       */
+  .hide\@large {
+    display: none;
+  }
+  .show\@large {
+    display: block;
+  }
+  .show-inline\@large {
+    display: inline-block;
   }
 }
 
 /**
  * Responsive spaces if gridle is available
  */
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b-smaller@mobile```
-			 * Apply the margin bottom "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b-smaller\@mobile {
-    margin-bottom: 0.71429rem;
-  }
-  /**
-			 * @name  			```.m-t-smaller@mobile```
-			 * Apply the margin top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t-smaller\@mobile {
-    margin-top: 0.71429rem;
-  }
-  /**
-			 * @name  			```.m-l-smaller@mobile```
-			 * Apply the margin left "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l-smaller\@mobile {
-    margin-left: 0.71429rem;
-  }
-  /**
-			 * @name  			```.m-r-smaller@mobile```
-			 * Apply the margin right "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r-smaller\@mobile {
-    margin-right: 0.71429rem;
-  }
-  /**
-			 * @name  			```.m-s-smaller@mobile```
-			 * Apply the margin side "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s-smaller\@mobile {
-    margin-left: 0.71429rem;
-    margin-right: 0.71429rem;
-  }
-  /**
-			 * @name  			```.m-smaller@mobile```
-			 * Apply the margin "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-smaller\@mobile {
-    margin: 0.71429rem;
-  }
-  /**
-			 * @name  			```.no-m-b-smaller@mobile```
-			 * Remove the margin bottom "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b-smaller\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t-smaller@mobile```
-			 * Remove the margin top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t-smaller\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l-smaller@mobile```
-			 * Remove the margin left "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l-smaller\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r-smaller@mobile```
-			 * Remove the margin top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r-smaller\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s-smaller@mobile```
-			 * Remove the margin side "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s-smaller\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b-smaller@mobile```
-			 * Apply the padding bottom "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b-smaller\@mobile {
-    padding-bottom: 0.71429rem;
-  }
-  /**
-			 * @name  			```.p-t-smaller@mobile```
-			 * Apply the padding top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t-smaller\@mobile {
-    padding-top: 0.71429rem;
-  }
-  /**
-			 * @name  			```.p-l-smaller@mobile```
-			 * Apply the padding left "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l-smaller\@mobile {
-    padding-left: 0.71429rem;
-  }
-  /**
-			 * @name  			```.p-r-smaller@mobile```
-			 * Apply the padding right "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r-smaller\@mobile {
-    padding-right: 0.71429rem;
-  }
-  /**
-			 * @name  			```.p-s-smaller@mobile```
-			 * Apply the padding side "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s-smaller\@mobile {
-    padding-left: 0.71429rem;
-    padding-right: 0.71429rem;
-  }
-  /**
-			 * @name  			```.p-smaller@mobile```
-			 * Apply the padding "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-smaller@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-smaller\@mobile {
-    padding: 0.71429rem;
-  }
-  /**
-			 * @name  			```.no-p-b-smaller@mobile```
-			 * Remove the padding bottom "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b-smaller\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t-smaller@mobile```
-			 * Remove the padding top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t-smaller\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l-smaller@mobile```
-			 * Remove the padding left "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l-smaller\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r-smaller@mobile```
-			 * Remove the padding top "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r-smaller\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s-smaller@mobile```
-			 * Remove the padding side "smaller" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s-smaller@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s-smaller\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b-small@mobile```
-			 * Apply the margin bottom "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b-small\@mobile {
-    margin-bottom: 1.42857rem;
-  }
-  /**
-			 * @name  			```.m-t-small@mobile```
-			 * Apply the margin top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t-small\@mobile {
-    margin-top: 1.42857rem;
-  }
-  /**
-			 * @name  			```.m-l-small@mobile```
-			 * Apply the margin left "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l-small\@mobile {
-    margin-left: 1.42857rem;
-  }
-  /**
-			 * @name  			```.m-r-small@mobile```
-			 * Apply the margin right "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r-small\@mobile {
-    margin-right: 1.42857rem;
-  }
-  /**
-			 * @name  			```.m-s-small@mobile```
-			 * Apply the margin side "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s-small\@mobile {
-    margin-left: 1.42857rem;
-    margin-right: 1.42857rem;
-  }
-  /**
-			 * @name  			```.m-small@mobile```
-			 * Apply the margin "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-small\@mobile {
-    margin: 1.42857rem;
-  }
-  /**
-			 * @name  			```.no-m-b-small@mobile```
-			 * Remove the margin bottom "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b-small\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t-small@mobile```
-			 * Remove the margin top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t-small\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l-small@mobile```
-			 * Remove the margin left "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l-small\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r-small@mobile```
-			 * Remove the margin top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r-small\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s-small@mobile```
-			 * Remove the margin side "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s-small\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b-small@mobile```
-			 * Apply the padding bottom "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b-small\@mobile {
-    padding-bottom: 1.42857rem;
-  }
-  /**
-			 * @name  			```.p-t-small@mobile```
-			 * Apply the padding top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t-small\@mobile {
-    padding-top: 1.42857rem;
-  }
-  /**
-			 * @name  			```.p-l-small@mobile```
-			 * Apply the padding left "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l-small\@mobile {
-    padding-left: 1.42857rem;
-  }
-  /**
-			 * @name  			```.p-r-small@mobile```
-			 * Apply the padding right "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r-small\@mobile {
-    padding-right: 1.42857rem;
-  }
-  /**
-			 * @name  			```.p-s-small@mobile```
-			 * Apply the padding side "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s-small\@mobile {
-    padding-left: 1.42857rem;
-    padding-right: 1.42857rem;
-  }
-  /**
-			 * @name  			```.p-small@mobile```
-			 * Apply the padding "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-small@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-small\@mobile {
-    padding: 1.42857rem;
-  }
-  /**
-			 * @name  			```.no-p-b-small@mobile```
-			 * Remove the padding bottom "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b-small\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t-small@mobile```
-			 * Remove the padding top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t-small\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l-small@mobile```
-			 * Remove the padding left "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l-small\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r-small@mobile```
-			 * Remove the padding top "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r-small\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s-small@mobile```
-			 * Remove the padding side "small" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s-small@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s-small\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b@mobile```
-			 * Apply the margin bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b\@mobile {
-    margin-bottom: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-t@mobile```
-			 * Apply the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t\@mobile {
-    margin-top: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-l@mobile```
-			 * Apply the margin left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l\@mobile {
-    margin-left: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-r@mobile```
-			 * Apply the margin right "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r\@mobile {
-    margin-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m-s@mobile```
-			 * Apply the margin side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s\@mobile {
-    margin-left: 2.85714rem;
-    margin-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.m@mobile```
-			 * Apply the margin "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m\@mobile {
-    margin: 2.85714rem;
-  }
-  /**
-			 * @name  			```.no-m-b@mobile```
-			 * Remove the margin bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t@mobile```
-			 * Remove the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l@mobile```
-			 * Remove the margin left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r@mobile```
-			 * Remove the margin top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s@mobile```
-			 * Remove the margin side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b@mobile```
-			 * Apply the padding bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b\@mobile {
-    padding-bottom: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-t@mobile```
-			 * Apply the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t\@mobile {
-    padding-top: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-l@mobile```
-			 * Apply the padding left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l\@mobile {
-    padding-left: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-r@mobile```
-			 * Apply the padding right "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r\@mobile {
-    padding-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p-s@mobile```
-			 * Apply the padding side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s\@mobile {
-    padding-left: 2.85714rem;
-    padding-right: 2.85714rem;
-  }
-  /**
-			 * @name  			```.p@mobile```
-			 * Apply the padding "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p\@mobile {
-    padding: 2.85714rem;
-  }
-  /**
-			 * @name  			```.no-p-b@mobile```
-			 * Remove the padding bottom "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t@mobile```
-			 * Remove the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l@mobile```
-			 * Remove the padding left "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r@mobile```
-			 * Remove the padding top "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s@mobile```
-			 * Remove the padding side "default" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b-medium@mobile```
-			 * Apply the margin bottom "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b-medium\@mobile {
-    margin-bottom: 4.28571rem;
-  }
-  /**
-			 * @name  			```.m-t-medium@mobile```
-			 * Apply the margin top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t-medium\@mobile {
-    margin-top: 4.28571rem;
-  }
-  /**
-			 * @name  			```.m-l-medium@mobile```
-			 * Apply the margin left "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l-medium\@mobile {
-    margin-left: 4.28571rem;
-  }
-  /**
-			 * @name  			```.m-r-medium@mobile```
-			 * Apply the margin right "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r-medium\@mobile {
-    margin-right: 4.28571rem;
-  }
-  /**
-			 * @name  			```.m-s-medium@mobile```
-			 * Apply the margin side "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s-medium\@mobile {
-    margin-left: 4.28571rem;
-    margin-right: 4.28571rem;
-  }
-  /**
-			 * @name  			```.m-medium@mobile```
-			 * Apply the margin "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-medium\@mobile {
-    margin: 4.28571rem;
-  }
-  /**
-			 * @name  			```.no-m-b-medium@mobile```
-			 * Remove the margin bottom "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b-medium\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t-medium@mobile```
-			 * Remove the margin top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t-medium\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l-medium@mobile```
-			 * Remove the margin left "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l-medium\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r-medium@mobile```
-			 * Remove the margin top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r-medium\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s-medium@mobile```
-			 * Remove the margin side "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s-medium\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b-medium@mobile```
-			 * Apply the padding bottom "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b-medium\@mobile {
-    padding-bottom: 4.28571rem;
-  }
-  /**
-			 * @name  			```.p-t-medium@mobile```
-			 * Apply the padding top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t-medium\@mobile {
-    padding-top: 4.28571rem;
-  }
-  /**
-			 * @name  			```.p-l-medium@mobile```
-			 * Apply the padding left "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l-medium\@mobile {
-    padding-left: 4.28571rem;
-  }
-  /**
-			 * @name  			```.p-r-medium@mobile```
-			 * Apply the padding right "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r-medium\@mobile {
-    padding-right: 4.28571rem;
-  }
-  /**
-			 * @name  			```.p-s-medium@mobile```
-			 * Apply the padding side "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s-medium\@mobile {
-    padding-left: 4.28571rem;
-    padding-right: 4.28571rem;
-  }
-  /**
-			 * @name  			```.p-medium@mobile```
-			 * Apply the padding "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-medium@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-medium\@mobile {
-    padding: 4.28571rem;
-  }
-  /**
-			 * @name  			```.no-p-b-medium@mobile```
-			 * Remove the padding bottom "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b-medium\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t-medium@mobile```
-			 * Remove the padding top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t-medium\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l-medium@mobile```
-			 * Remove the padding left "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l-medium\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r-medium@mobile```
-			 * Remove the padding top "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r-medium\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s-medium@mobile```
-			 * Remove the padding side "medium" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s-medium@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s-medium\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b-big@mobile```
-			 * Apply the margin bottom "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b-big\@mobile {
-    margin-bottom: 7.14286rem;
-  }
-  /**
-			 * @name  			```.m-t-big@mobile```
-			 * Apply the margin top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t-big\@mobile {
-    margin-top: 7.14286rem;
-  }
-  /**
-			 * @name  			```.m-l-big@mobile```
-			 * Apply the margin left "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l-big\@mobile {
-    margin-left: 7.14286rem;
-  }
-  /**
-			 * @name  			```.m-r-big@mobile```
-			 * Apply the margin right "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r-big\@mobile {
-    margin-right: 7.14286rem;
-  }
-  /**
-			 * @name  			```.m-s-big@mobile```
-			 * Apply the margin side "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s-big\@mobile {
-    margin-left: 7.14286rem;
-    margin-right: 7.14286rem;
-  }
-  /**
-			 * @name  			```.m-big@mobile```
-			 * Apply the margin "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-big\@mobile {
-    margin: 7.14286rem;
-  }
-  /**
-			 * @name  			```.no-m-b-big@mobile```
-			 * Remove the margin bottom "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b-big\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t-big@mobile```
-			 * Remove the margin top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t-big\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l-big@mobile```
-			 * Remove the margin left "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l-big\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r-big@mobile```
-			 * Remove the margin top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r-big\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s-big@mobile```
-			 * Remove the margin side "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s-big\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b-big@mobile```
-			 * Apply the padding bottom "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b-big\@mobile {
-    padding-bottom: 7.14286rem;
-  }
-  /**
-			 * @name  			```.p-t-big@mobile```
-			 * Apply the padding top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t-big\@mobile {
-    padding-top: 7.14286rem;
-  }
-  /**
-			 * @name  			```.p-l-big@mobile```
-			 * Apply the padding left "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l-big\@mobile {
-    padding-left: 7.14286rem;
-  }
-  /**
-			 * @name  			```.p-r-big@mobile```
-			 * Apply the padding right "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r-big\@mobile {
-    padding-right: 7.14286rem;
-  }
-  /**
-			 * @name  			```.p-s-big@mobile```
-			 * Apply the padding side "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s-big\@mobile {
-    padding-left: 7.14286rem;
-    padding-right: 7.14286rem;
-  }
-  /**
-			 * @name  			```.p-big@mobile```
-			 * Apply the padding "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-big@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-big\@mobile {
-    padding: 7.14286rem;
-  }
-  /**
-			 * @name  			```.no-p-b-big@mobile```
-			 * Remove the padding bottom "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b-big\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t-big@mobile```
-			 * Remove the padding top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t-big\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l-big@mobile```
-			 * Remove the padding left "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l-big\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r-big@mobile```
-			 * Remove the padding top "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r-big\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s-big@mobile```
-			 * Remove the padding side "big" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s-big@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s-big\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  /**
-			 * @name  			```.m-b-bigger@mobile```
-			 * Apply the margin bottom "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-b-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-b-bigger\@mobile {
-    margin-bottom: 10.71429rem;
-  }
-  /**
-			 * @name  			```.m-t-bigger@mobile```
-			 * Apply the margin top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-t-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-t-bigger\@mobile {
-    margin-top: 10.71429rem;
-  }
-  /**
-			 * @name  			```.m-l-bigger@mobile```
-			 * Apply the margin left "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-l-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-l-bigger\@mobile {
-    margin-left: 10.71429rem;
-  }
-  /**
-			 * @name  			```.m-r-bigger@mobile```
-			 * Apply the margin right "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-r-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-r-bigger\@mobile {
-    margin-right: 10.71429rem;
-  }
-  /**
-			 * @name  			```.m-s-bigger@mobile```
-			 * Apply the margin side "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-s-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-s-bigger\@mobile {
-    margin-left: 10.71429rem;
-    margin-right: 10.71429rem;
-  }
-  /**
-			 * @name  			```.m-bigger@mobile```
-			 * Apply the margin "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="m-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .m-bigger\@mobile {
-    margin: 10.71429rem;
-  }
-  /**
-			 * @name  			```.no-m-b-bigger@mobile```
-			 * Remove the margin bottom "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-b-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-b-bigger\@mobile {
-    margin-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-t-bigger@mobile```
-			 * Remove the margin top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-t-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-t-bigger\@mobile {
-    margin-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-l-bigger@mobile```
-			 * Remove the margin left "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-l-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-l-bigger\@mobile {
-    margin-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-r-bigger@mobile```
-			 * Remove the margin top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-r-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-r-bigger\@mobile {
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-m-s-bigger@mobile```
-			 * Remove the margin side "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Margins
-			 * @example 		html
-			 * <div class="no-m-s-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-m-s-bigger\@mobile {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /**
-			 * @name  			```.p-b-bigger@mobile```
-			 * Apply the padding bottom "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-b-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-b-bigger\@mobile {
-    padding-bottom: 10.71429rem;
-  }
-  /**
-			 * @name  			```.p-t-bigger@mobile```
-			 * Apply the padding top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-t-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-t-bigger\@mobile {
-    padding-top: 10.71429rem;
-  }
-  /**
-			 * @name  			```.p-l-bigger@mobile```
-			 * Apply the padding left "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-l-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-l-bigger\@mobile {
-    padding-left: 10.71429rem;
-  }
-  /**
-			 * @name  			```.p-r-bigger@mobile```
-			 * Apply the padding right "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-r-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-r-bigger\@mobile {
-    padding-right: 10.71429rem;
-  }
-  /**
-			 * @name  			```.p-s-bigger@mobile```
-			 * Apply the padding side "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-s-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-s-bigger\@mobile {
-    padding-left: 10.71429rem;
-    padding-right: 10.71429rem;
-  }
-  /**
-			 * @name  			```.p-bigger@mobile```
-			 * Apply the padding "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="p-bigger@mobile" style="display:inline-block; background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="display:inline-block; background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .p-bigger\@mobile {
-    padding: 10.71429rem;
-  }
-  /**
-			 * @name  			```.no-p-b-bigger@mobile```
-			 * Remove the padding bottom "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-b-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-b-bigger\@mobile {
-    padding-bottom: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-t-bigger@mobile```
-			 * Remove the padding top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-t-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-t-bigger\@mobile {
-    padding-top: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-l-bigger@mobile```
-			 * Remove the padding left "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-l-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-l-bigger\@mobile {
-    padding-left: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-r-bigger@mobile```
-			 * Remove the padding top "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-r-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-r-bigger\@mobile {
-    padding-right: 0 !important;
-  }
-  /**
-			 * @name  			```.no-p-s-bigger@mobile```
-			 * Remove the padding side "bigger" on the "mobile" state
-			 * @styleguide 		Layout / Responsive Paddings
-			 * @example 		html
-			 * <div class="no-p-s-bigger@mobile" style="background:#f2bc2b; width:100px; height:5px"></div>
-			 * <div style="background:#2b3438; width:100px; height:5px"></div>
-			 */
-  .no-p-s-bigger\@mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -9657,20 +8196,20 @@ blockquote:last-child {
 }
 
 .codebook__img {
-  width: 120%;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
   line-height: 0;
-  margin-bottom: -7.14286rem;
-  margin-top: -7.14286rem;
   position: relative;
   z-index: 1;
   box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .codebook__img {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    width: 120%;
+    margin-bottom: -7.14286rem;
+    margin-top: -7.14286rem;
   }
 }
 
@@ -9678,29 +8217,25 @@ blockquote:last-child {
   width: 100%;
 }
 
-.header {
-  background: red;
-}
-
 .kitchen-sink {
   padding: 4.28571rem 0 !important;
 }
 
 .kitchen-sink__img {
-  width: 120%;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
   line-height: 0;
-  margin-bottom: -7.14286rem;
-  margin-top: -7.14286rem;
   position: relative;
   z-index: 1;
   box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .kitchen-sink__img {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    width: 120%;
+    margin-bottom: -7.14286rem;
+    margin-top: -7.14286rem;
   }
 }
 
@@ -9717,35 +8252,6 @@ blockquote:last-child {
   position: relative;
 }
 
-.repositories s-layers-transition {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-@media screen and (max-width: 640px) {
-  .repositories s-layers-transition {
-    display: none;
-  }
-}
-
-.repositories__content {
-  opacity: 0.0001;
-}
-
-@media screen and (max-width: 640px) {
-  .repositories__content {
-    opacity: 1;
-  }
-}
-
-.active .repositories__content {
-  opacity: 1;
-}
-
 .use {
   background-color: #f2bc2b;
   background-image: url("../img/header-bkg.jpg");
@@ -9755,56 +8261,22 @@ blockquote:last-child {
   position: relative;
 }
 
-.use s-layers-transition {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-@media screen and (max-width: 640px) {
-  .use s-layers-transition {
-    display: none;
-  }
-}
-
-.use__content {
-  opacity: 0.0001;
-}
-
-@media screen and (max-width: 640px) {
-  .use__content {
-    opacity: 1;
-  }
-}
-
-.active .use__content {
-  opacity: 1;
-}
-
 .who__img-macbook-kraken {
-  position: absolute;
   width: 100% !important;
   max-width: 57.07143rem;
+  position: static;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .who__img-macbook-kraken {
-    position: static;
-    transform: none;
+    position: absolute;
   }
 }
 
 body {
   padding-top: 50px;
+  padding-top: 0;
   overflow-x: hidden;
-}
-
-@media screen and (max-width: 640px) {
-  body {
-    padding-top: 0;
-  }
 }
 
 /**
@@ -9845,6 +8317,7 @@ body {
   padding: 7.14286rem 0;
   color: white;
   position: relative;
+  text-align: center;
 }
 
 .header s-layers-transition {
@@ -9853,12 +8326,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-@media screen and (max-width: 640px) {
-  .header s-layers-transition {
-    display: none;
-  }
+  display: none;
 }
 
 .header s-layers-transition canvas {
@@ -9870,9 +8338,9 @@ body {
   color: inherit;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .header {
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -9900,29 +8368,19 @@ body {
   position: relative;
   left: 100%;
   transform: translateX(-100%);
-}
-
-@media screen and (max-width: 640px) {
-  .header__img-editors {
-    left: 0;
-    transform: none;
-    width: 80%;
-    margin: 2.85714rem 0;
-  }
+  left: 0;
+  transform: none;
+  width: 80%;
+  margin: 2.85714rem 0;
 }
 
 .header__content {
   opacity: 0.0001;
+  opacity: 1;
 }
 
 .active .header__content {
   opacity: 1;
-}
-
-@media screen and (max-width: 640px) {
-  .header__content {
-    opacity: 1;
-  }
 }
 
 /**
@@ -10061,12 +8519,12 @@ body.scrolled .nav--topbar .nav__item.logo:first-child {
  * </section>
  */
 .section {
-  padding: 10.71429rem 0;
+  padding: 4.28571rem 0;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .section {
-    padding: 4.28571rem 0;
+    padding: 10.71429rem 0;
   }
 }
 
@@ -11049,14 +9507,9 @@ img[lazy-src][loaded] {
   font-family: Roboto, Helvetica;
   font-weight: 800;
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0;
-}
-
-@media screen and (max-width: 640px) {
-  .pill {
-    font-family: Roboto, Helvetica;
-    font-weight: 400;
-    padding: 0.6em 1.8em;
-  }
+  font-family: Roboto, Helvetica;
+  font-weight: 400;
+  padding: 0.6em 1.8em;
 }
 
 /**

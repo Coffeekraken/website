@@ -53,6 +53,7 @@ body {
 	padding: s-space(big) 0;
 	color: white;
 	position:relative;
+	text-align: center;
 
 	s-layers-transition {
 		@include s-fit(absolute);
@@ -71,8 +72,8 @@ body {
 		color: inherit;
 	}
 
-	@include g-state(mobile) {
-		text-align: center;
+	@include g-state(tablet) {
+		text-align: left;
 	}
 }
 	.header__img-kraken {

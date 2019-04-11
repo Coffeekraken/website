@@ -1,15 +1,6 @@
 @import 'node_modules/coffeekraken-s-animation-component/index';
 
-@include g-state((
-	min-width: 640px
-)) {
+@include g-state(tablet) {
 	@include s-anim-letters-in-reveal-classes();
 	@include s-anim-slide-in-classes();
-}
-
-@include g-state(mobile) {
-	* {
-		animation: none !important;
-		transition: none !important;
-	}
 }

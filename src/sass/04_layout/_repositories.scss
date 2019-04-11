@@ -6,24 +6,4 @@
 	background-position: top 50%;
 	// background-attachment: fixed;
 	position: relative;
-
-	s-layers-transition {
-		@include s-fit(absolute);
-		z-index: 1;
-
-		@include g-state(mobile) {
-			display: none;
-		}
-	}
 }
-	.repositories__content {
-		opacity: 0.0001;
-
-		@include g-state(mobile) {
-			opacity: 1;
-		}
-
-		.active & {
-			opacity: 1;
-		}
-	}

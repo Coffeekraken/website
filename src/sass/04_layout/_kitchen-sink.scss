@@ -3,18 +3,18 @@
 }
 
 .kitchen-sink__img {
-	width: 120%;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
 	line-height: 0;
-	margin-bottom: s-space(big) * -1;
-	margin-top: s-space(big) * -1;
 	position: relative;
 	z-index: 1;
 	@include s-depth(10);
-
-	@include g-state(mobile) {
-		width: 100%;
-		margin-top: 0;
-		margin-bottom: 0;
+	
+	@include g-state(tablet) {
+		width: 120%;
+		margin-bottom: s-space(big) * -1;
+		margin-top: s-space(big) * -1;
 	}
 
 	img {

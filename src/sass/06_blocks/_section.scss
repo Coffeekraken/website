@@ -8,9 +8,9 @@
  * </section>
  */
 .section {
-	padding: s-space(bigger) 0;
-
-	@include g-state(mobile) {
-		padding: s-space(medium) 0;
+	padding: s-space(medium) 0;
+	
+	@include g-state(tablet) {
+		padding: s-space(bigger) 0;
 	}
 }

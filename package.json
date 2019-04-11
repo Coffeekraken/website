@@ -54,7 +54,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "coffeekraken-carpenter": "^1.2.13",
-    "coffeekraken-gridle": "^3.0.2",
+    "coffeekraken-gridle": "^4.0.0-beta.2",
     "coffeekraken-s-animation-component": "^1.0.1",
     "coffeekraken-s-bodymovin-component": "^1.0.5",
     "coffeekraken-s-button-component": "^1.0.3",

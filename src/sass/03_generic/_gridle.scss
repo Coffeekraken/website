@@ -1,17 +1,2 @@
 // generate classes
 @include g-classes();
-
-// container
-.container {
-	max-width:1200px;
-	margin:0 auto;
-}
-
-@include g-state(mobile) {
-	[class*="gr-"] {
-		@include gridle(12);
-	}
-	.container {
-		padding: 0 30px;
-	}
-}
